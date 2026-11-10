@@ -1,0 +1,1082 @@
+{
+  "passed": true,
+  "checks": 324,
+  "interactionChecks": 23,
+  "responsiveCases": 75,
+  "pages": 15,
+  "observations": [
+    {
+      "name": "Server date error focuses summary and retains text",
+      "passed": true
+    },
+    {
+      "name": "Error link focuses invalid date with inline description",
+      "passed": true
+    },
+    {
+      "name": "Host can post pinned notice through UI",
+      "passed": true
+    },
+    {
+      "name": "Poll default deadline fits group end",
+      "passed": true
+    },
+    {
+      "name": "Exact meeting remains private before approval",
+      "passed": true
+    },
+    {
+      "name": "Application remains pending until host approval",
+      "passed": true
+    },
+    {
+      "name": "No empty invitation dropdown when all connections are already listed",
+      "passed": true
+    },
+    {
+      "name": "Host approval changes roster to two joined members",
+      "passed": true
+    },
+    {
+      "name": "Host can assign preparation task to a member",
+      "passed": true
+    },
+    {
+      "name": "Equal split hides and disables custom amount inputs",
+      "passed": true
+    },
+    {
+      "name": "Custom split reveals required selected-member amounts",
+      "passed": true
+    },
+    {
+      "name": "Unchecked member does not require a custom amount",
+      "passed": true
+    },
+    {
+      "name": "Switching split modes retains typed allocations",
+      "passed": true
+    },
+    {
+      "name": "Equal expense shows exact 40000 per member",
+      "passed": true
+    },
+    {
+      "name": "Joined member confirms the current meeting",
+      "passed": true
+    },
+    {
+      "name": "Member vote updates tally and offers changing choice",
+      "passed": true
+    },
+    {
+      "name": "Pinned notice can be acknowledged once",
+      "passed": true
+    },
+    {
+      "name": "Assignee completes own task through UI",
+      "passed": true
+    },
+    {
+      "name": "Repayment remains pending until recipient confirms",
+      "passed": true
+    },
+    {
+      "name": "Member submits report and sees pending status",
+      "passed": true
+    },
+    {
+      "name": "Admin report decision saves through UI",
+      "passed": true
+    },
+    {
+      "name": "Recipient confirmation clears both balances",
+      "passed": true
+    },
+    {
+      "name": "Host finalizes voted choice into shared schedule",
+      "passed": true
+    }
+  ],
+  "responsive": [
+    {
+      "page": "admin-moderation",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "admin-moderation",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "admin-moderation",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "admin-moderation",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "admin-moderation",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "discovery",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "detail",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "mine",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "profile",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "create",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "edit",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "overview",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "members",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "chat",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "schedule",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "tasks",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "expenses",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "report",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360,
+      "unlabeled": [],
+      "width": 360,
+      "passed": true
+    },
+    {
+      "page": "reports",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 375,
+      "unlabeled": [],
+      "width": 375,
+      "passed": true
+    },
+    {
+      "page": "discovery",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "detail",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "mine",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "profile",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "create",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "edit",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "overview",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "members",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "chat",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "schedule",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "tasks",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "expenses",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "report",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753,
+      "unlabeled": [],
+      "width": 753,
+      "passed": true
+    },
+    {
+      "page": "reports",
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 768,
+      "unlabeled": [],
+      "width": 768,
+      "passed": true
+    },
+    {
+      "page": "discovery",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "detail",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "mine",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "profile",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "create",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "edit",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "overview",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "members",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "chat",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "schedule",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "tasks",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "expenses",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "report",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009,
+      "unlabeled": [],
+      "width": 1009,
+      "passed": true
+    },
+    {
+      "page": "reports",
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1024,
+      "unlabeled": [],
+      "width": 1024,
+      "passed": true
+    },
+    {
+      "page": "discovery",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "detail",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "mine",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "profile",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "create",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "edit",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "overview",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "members",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "chat",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "schedule",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "tasks",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "expenses",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "report",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "unlabeled": [],
+      "width": 1265,
+      "passed": true
+    },
+    {
+      "page": "reports",
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1280,
+      "unlabeled": [],
+      "width": 1280,
+      "passed": true
+    },
+    {
+      "page": "discovery",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "detail",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "mine",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "profile",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "create",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "edit",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "overview",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "members",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "chat",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "schedule",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "tasks",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "expenses",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "report",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    },
+    {
+      "page": "reports",
+      "size": {
+        "width": 812,
+        "height": 375
+      },
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797,
+      "unlabeled": [],
+      "width": 797,
+      "passed": true
+    }
+  ],
+  "console": [],
+  "database": "HoTroDuLich_Companion_20261105",
+  "base": "http://127.0.0.1:5223",
+  "date": "2026-11-05T17:13:23.388Z"
+}

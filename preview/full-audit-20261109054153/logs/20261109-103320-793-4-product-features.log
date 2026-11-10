@@ -1,0 +1,11 @@
+AssertionError [ERR_ASSERTION]: Revision stores extended fields and uploaded photo
+    at check (D:\KLTN\preview\full-audit-20261109054153\tests\product-features.cjs:8:32)
+    at D:\KLTN\preview\full-audit-20261109054153\tests\product-features.cjs:72:2
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

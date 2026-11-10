@@ -1,0 +1,12 @@
+@model List<KeHoachChuyenDi>
+@{ ViewData["Title"] = "Chọn chuyến đi"; }
+<div class="container-narrow trip-selection">
+ <a class="back" href="@(ViewBag.ServiceId != null ? "/Explore/Detail/" + ViewBag.ServiceId : ViewBag.PlaceId != null ? "/Explore/Place/" + ViewBag.PlaceId : "/Plans")">← Quay lại lựa chọn</a>
+ <div class="page-head"><div><span class="eyebrow">THÊM MỘT TRẢI NGHIỆM</span><h1>Đi cùng chuyến nào?</h1><p>@(ViewBag.SelectionName ?? "Chọn chuyến đi để sắp xếp hoạt động.")</p></div></div>
+ @if(Model.Count == 0){<div class="notice">Tạo chuyến đi đầu tiên. Lựa chọn này sẽ được giữ để bạn xếp vào lịch ngay sau đó.</div>}
+ <a class="trip-create-option" asp-controller="Plans" asp-action="Edit" asp-route-serviceId="@ViewBag.ServiceId" asp-route-placeId="@ViewBag.PlaceId">@Ui.Icon("plus")<span><strong>Tạo chuyến đi mới</strong><small>Giữ lựa chọn và tiếp tục xếp lịch</small></span>@Ui.Icon("arrow")</a>
+ @if(Model.Count > 0){<h2 class="selection-heading">Hoặc chọn chuyến đi đã có</h2>}
+ @foreach(var p in Model){
+  <a class="list-card" asp-controller="Plans" asp-action="Activity" asp-route-id="@p.MaKeHoach" asp-route-serviceId="@ViewBag.ServiceId" asp-route-placeId="@ViewBag.PlaceId"><div><h3>@p.TenKeHoach</h3><p>@p.NoiDen · @p.NgayBatDau.ToString("dd/MM/yyyy") – @p.NgayKetThuc.ToString("dd/MM/yyyy")</p></div>@Ui.Icon("arrow")</a>
+ }
+</div>

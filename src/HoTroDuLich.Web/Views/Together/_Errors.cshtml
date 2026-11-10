@@ -1,0 +1,1 @@
+@if(!ViewData.ModelState.IsValid){<div class="validation-summary-errors" data-together-errors role="alert" tabindex="-1"><strong>Kiểm tra thông tin để tiếp tục</strong><ul>@foreach(var item in ViewData.ModelState.Where(x=>x.Value?.Errors.Count>0)){foreach(var error in item.Value!.Errors){<li data-field="@item.Key">@error.ErrorMessage</li>}}</ul></div>}

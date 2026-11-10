@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "scope": "Functional, HTTP/HTML, SQL, EF and contract checks; browser visual review excluded",
+  "checks": 4492,
+  "reports": [
+    {
+      "name": "features",
+      "file": "tests/discovery-features-results.json",
+      "checks": 52,
+      "date": "2026-11-08T07:11:05.347Z"
+    },
+    {
+      "name": "context",
+      "file": "tests/discovery-context-results.json",
+      "checks": 29,
+      "date": "2026-11-08T07:11:07.967Z"
+    },
+    {
+      "name": "edge",
+      "file": "tests/discovery-edge-results.json",
+      "checks": 28,
+      "date": "2026-11-08T07:11:11.087Z"
+    },
+    {
+      "name": "route",
+      "file": "tests/discovery-route-results.json",
+      "checks": 8,
+      "date": "2026-11-08T07:11:12.446Z"
+    },
+    {
+      "name": "schema-test",
+      "file": "tests/discovery-schema-test-results.json",
+      "checks": 747,
+      "date": "2026-11-08T02:11:50.568Z"
+    },
+    {
+      "name": "schema-upgrade",
+      "file": "tests/discovery-schema-upgrade-results.json",
+      "checks": 747,
+      "date": "2026-11-08T02:15:03.275Z"
+    },
+    {
+      "name": "schema-main",
+      "file": "tests/discovery-schema-main-results.json",
+      "checks": 747,
+      "date": "2026-11-08T07:19:29.027Z"
+    },
+    {
+      "name": "contract",
+      "file": "tests/discovery-contract-results.json",
+      "checks": 1621,
+      "date": "2026-11-08T07:18:07.76197Z"
+    },
+    {
+      "name": "permissions",
+      "file": "tests/discovery-permissions-results.json",
+      "checks": 61,
+      "date": "2026-11-08T02:10:55.773Z"
+    },
+    {
+      "name": "rehearsal",
+      "file": "tests/discovery-rehearsal-results.json",
+      "checks": 51,
+      "date": "2026-11-08T02:15:02.512Z"
+    },
+    {
+      "name": "deploy",
+      "file": "tests/discovery-deploy-results.json",
+      "checks": 58,
+      "date": "2026-11-08T07:19:26.750Z"
+    },
+    {
+      "name": "pages",
+      "file": "tests/discovery-pages-results.json",
+      "checks": 289,
+      "date": "2026-11-08T07:13:24.373Z"
+    },
+    {
+      "name": "main",
+      "file": "tests/discovery-main-results.json",
+      "checks": 33,
+      "date": "2026-11-08T07:22:33.456Z"
+    },
+    {
+      "name": "appdata",
+      "file": "tests/discovery-appdata-results.json",
+      "checks": 21,
+      "date": "2026-11-08T07:26:09.1239890Z"
+    }
+  ],
+  "browserVisual": {
+    "performed": false,
+    "reason": "Computer Use stopped because it could not confidently determine the Chrome URL; no alternative browser automation attempted"
+  },
+  "main": "http://localhost:5216",
+  "mainDatabase": "HoTroDuLich",
+  "schema": {
+    "tables": 58,
+    "columns": 616,
+    "originalTablesPreserved": 46
+  },
+  "date": "2026-11-08T07:26:08.743Z"
+}

@@ -1,0 +1,688 @@
+{
+  "passed": true,
+  "applied": true,
+  "checks": 169,
+  "observations": [
+    {
+      "name": "Fresh rehearsal target is absent",
+      "passed": true
+    },
+    {
+      "name": "Main has the expected 31-table schema before 005",
+      "passed": true
+    },
+    {
+      "name": "Fresh main COPY_ONLY/CHECKSUM backup passes VERIFYONLY",
+      "passed": true
+    },
+    {
+      "name": "Fresh App_Data archive hashes verified",
+      "passed": true
+    },
+    {
+      "name": "Backup data/log file list verified",
+      "passed": true
+    },
+    {
+      "name": "Separate rehearsal file path is unused: HoTroDuLich_CompanionUpgrade_20261105.mdf",
+      "passed": true
+    },
+    {
+      "name": "Separate rehearsal file path is unused: HoTroDuLich_CompanionUpgrade_20261105_log.ldf",
+      "passed": true
+    },
+    {
+      "name": "Restored backup only into separate rehearsal database",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: BanCapNhatDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: ChiaSeChuyenDi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: DanhGiaDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: DeNghiDieuChinhDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: DeNghiKetNoiDongHanh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: DiaDiemDuLich original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: DichVuDuLich original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: GiaiTrinhNhaCungCap original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: HoatDongLichTrinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: HoSoNguoiDung original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: HoSoXacMinhNhaCungCap original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: KeHoachChuyenDi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: KetQuaCungCapDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: KhoanChiChuyenDi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: LichPhucVuDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: LuaChonDaLuu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: MucChuanBi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: NhaCungCapDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: NhatKyThaoTac original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: NhuCauDongHanh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: PhuongAnXuLy original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: QuyetDinhQuyenHoatDong original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: QuyetDinhXacMinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: TaiKhoan original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: TaiLieuGiaiTrinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: TaiLieuXacMinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: TinhHuongHoatDong original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: TinhHuongPhatSinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: ThoaThuanDongHanh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: ThongBao original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: YeuCauDatDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "Final 005 script runs and reruns with permission script",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: BanCapNhatDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: ChiaSeChuyenDi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: DanhGiaDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: DeNghiDieuChinhDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: DeNghiKetNoiDongHanh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: DiaDiemDuLich original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: DichVuDuLich original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: GiaiTrinhNhaCungCap original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: HoatDongLichTrinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: HoSoNguoiDung original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: HoSoXacMinhNhaCungCap original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: KeHoachChuyenDi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: KetQuaCungCapDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: KhoanChiChuyenDi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: LichPhucVuDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: LuaChonDaLuu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: MucChuanBi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: NhaCungCapDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: NhatKyThaoTac original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: NhuCauDongHanh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: PhuongAnXuLy original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: QuyetDinhQuyenHoatDong original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: QuyetDinhXacMinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: TaiKhoan original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: TaiLieuGiaiTrinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: TaiLieuXacMinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: TinhHuongHoatDong original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: TinhHuongPhatSinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: ThoaThuanDongHanh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: ThongBao original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich_CompanionUpgrade_20261105: YeuCauDatDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal has 46 tables and 473 columns",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: BaoCaoDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: BinhChonDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: ChanDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: HoanTraNhom",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: HoatDongNhom",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: HoSoDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: KhoanChiNhom",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: LuaChonBinhChon",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: NhomDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: PhanBoChiNhom",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: PhieuBinhChon",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: TinNhanDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: ThanhVienDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: ViecNhom",
+      "passed": true
+    },
+    {
+      "name": "Rehearsal new table empty: XacNhanThongBaoNhom",
+      "passed": true
+    },
+    {
+      "name": "Fresh deployment rehearsal passed",
+      "passed": true
+    },
+    {
+      "name": "Backup/rehearsal is less than 30 minutes old",
+      "passed": true
+    },
+    {
+      "name": "Main still has the expected pre-upgrade schema",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: BanCapNhatDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: ChiaSeChuyenDi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: DanhGiaDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: DeNghiDieuChinhDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: DeNghiKetNoiDongHanh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: DiaDiemDuLich original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: DichVuDuLich original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: GiaiTrinhNhaCungCap original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: HoatDongLichTrinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: HoSoNguoiDung original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: HoSoXacMinhNhaCungCap original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: KeHoachChuyenDi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: KetQuaCungCapDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: KhoanChiChuyenDi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: LichPhucVuDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: LuaChonDaLuu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: MucChuanBi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: NhaCungCapDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: NhatKyThaoTac original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: NhuCauDongHanh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: PhuongAnXuLy original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: QuyetDinhQuyenHoatDong original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: QuyetDinhXacMinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: TaiKhoan original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: TaiLieuGiaiTrinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: TaiLieuXacMinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: TinhHuongHoatDong original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: TinhHuongPhatSinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: ThoaThuanDongHanh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: ThongBao original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: YeuCauDatDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "005 and application permissions applied to main",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: BanCapNhatDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: ChiaSeChuyenDi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: DanhGiaDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: DeNghiDieuChinhDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: DeNghiKetNoiDongHanh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: DiaDiemDuLich original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: DichVuDuLich original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: GiaiTrinhNhaCungCap original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: HoatDongLichTrinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: HoSoNguoiDung original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: HoSoXacMinhNhaCungCap original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: KeHoachChuyenDi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: KetQuaCungCapDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: KhoanChiChuyenDi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: LichPhucVuDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: LuaChonDaLuu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: MucChuanBi original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: NhaCungCapDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: NhatKyThaoTac original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: NhuCauDongHanh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: PhuongAnXuLy original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: QuyetDinhQuyenHoatDong original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: QuyetDinhXacMinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: TaiKhoan original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: TaiLieuGiaiTrinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: TaiLieuXacMinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: TinhHuongHoatDong original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: TinhHuongPhatSinh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: ThoaThuanDongHanh original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: ThongBao original values preserved",
+      "passed": true
+    },
+    {
+      "name": "HoTroDuLich: YeuCauDatDichVu original values preserved",
+      "passed": true
+    },
+    {
+      "name": "Main has 46 tables and 473 columns",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: BaoCaoDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: BinhChonDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: ChanDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: HoanTraNhom",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: HoatDongNhom",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: HoSoDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: KhoanChiNhom",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: LuaChonBinhChon",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: NhomDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: PhanBoChiNhom",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: PhieuBinhChon",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: TinNhanDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: ThanhVienDongHanh",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: ViecNhom",
+      "passed": true
+    },
+    {
+      "name": "Main new table empty, no test fixtures: XacNhanThongBaoNhom",
+      "passed": true
+    }
+  ],
+  "backup": "D:\\KLTN\\preview\\backups\\HoTroDuLich_before_companion_deploy_20261105_170532Z.bak",
+  "appDataBackup": "D:\\KLTN\\preview\\backups\\App_Data_before_companion_20261106_000533.zip",
+  "database": "HoTroDuLich",
+  "target": "HoTroDuLich_CompanionUpgrade_20261105",
+  "date": "2026-11-05T17:07:28.487Z"
+}

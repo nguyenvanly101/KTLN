@@ -1,0 +1,4968 @@
+{
+  "passed": true,
+  "checks": 948,
+  "schema": {
+    "settings": {
+      "name": "HoTroDuLich_FullTextUpgrade_20261104",
+      "collation_name": "Vietnamese_100_CI_AS_SC",
+      "is_read_committed_snapshot_on": true,
+      "snapshot_isolation_state_desc": "OFF",
+      "recovery_model_desc": "FULL",
+      "page_verify_option_desc": "CHECKSUM",
+      "is_auto_close_on": false
+    },
+    "columns": [
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "MaBanCapNhat",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "MaDichVu",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "SoPhienBan",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "TenDichVu",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "LoaiDichVu",
+        "type": "nvarchar",
+        "max_length": 100,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "MoTa",
+        "type": "nvarchar",
+        "max_length": 8000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "KhuVucPhucVu",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "MaDiaDiem",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "GiaThamKhao",
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "ThoiGianPhucVu",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "DieuKienPhucVu",
+        "type": "nvarchar",
+        "max_length": 4000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "TamNgungTu",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "TamNgungDen",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "LyDoTamNgung",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "TrangThaiDuyet",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_BanCapNhatDichVu_TrangThaiDuyet",
+        "default_sql": "('ChoDuyet')"
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "LyDo",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "MaAdminDuyet",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "ThoiDiemGui",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_BanCapNhatDichVu_ThoiDiemGui",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "ThoiDiemDuyet",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "MaDeNghi",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "MaYeuCau",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "LoaiDeNghi",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "DieuKienCu",
+        "type": "nvarchar",
+        "max_length": 4000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "NgayBatDauMoi",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "NgayKetThucMoi",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "SoNguoiMoi",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "SoLuongMoi",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "DieuKienMoi",
+        "type": "nvarchar",
+        "max_length": 4000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "LyDo",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "ThoiDiemGui",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_DeNghiDieuChinhDichVu_ThoiDiemGui",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "QuyetDinh",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "DieuKienDeXuat",
+        "type": "nvarchar",
+        "max_length": 4000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "ThoiDiemPhanHoi",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "TrangThai",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_DeNghiDieuChinhDichVu_TrangThai",
+        "default_sql": "('ChoPhanHoi')"
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiKetNoiDongHanh",
+        "name": "MaDeNghi",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "DeNghiKetNoiDongHanh",
+        "name": "MaNhuCau",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiKetNoiDongHanh",
+        "name": "MaNguoiGui",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiKetNoiDongHanh",
+        "name": "LoiGioiThieu",
+        "type": "nvarchar",
+        "max_length": 2000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiKetNoiDongHanh",
+        "name": "ThoiDiemGui",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_DeNghiKetNoiDongHanh_ThoiDiemGui",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "DeNghiKetNoiDongHanh",
+        "name": "ThoiDiemPhanHoi",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DeNghiKetNoiDongHanh",
+        "name": "TrangThai",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_DeNghiKetNoiDongHanh_TrangThai",
+        "default_sql": "('ChoPhanHoi')"
+      },
+      {
+        "table": "DeNghiKetNoiDongHanh",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DiaDiemDuLich",
+        "name": "MaDiaDiem",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "DiaDiemDuLich",
+        "name": "TenDiaDiem",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DiaDiemDuLich",
+        "name": "LoaiDiaDiem",
+        "type": "nvarchar",
+        "max_length": 100,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DiaDiemDuLich",
+        "name": "KhuVuc",
+        "type": "nvarchar",
+        "max_length": 200,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DiaDiemDuLich",
+        "name": "DiaChi",
+        "type": "nvarchar",
+        "max_length": 600,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DiaDiemDuLich",
+        "name": "MoTa",
+        "type": "nvarchar",
+        "max_length": 8000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DiaDiemDuLich",
+        "name": "DangHienThi",
+        "type": "bit",
+        "max_length": 1,
+        "precision": 1,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_DiaDiemDuLich_DangHienThi",
+        "default_sql": "((1))"
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "MaDichVu",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "MaNhaCungCap",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "TenDichVu",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "LoaiDichVu",
+        "type": "nvarchar",
+        "max_length": 100,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "MoTa",
+        "type": "nvarchar",
+        "max_length": 8000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "KhuVucPhucVu",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "MaDiaDiem",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "GiaThamKhao",
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "ThoiGianPhucVu",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "DieuKienPhucVu",
+        "type": "nvarchar",
+        "max_length": 4000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "TamNgungTu",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "TamNgungDen",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "LyDoTamNgung",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "TrangThaiCongBo",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "TrangThaiTiepNhan",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_DichVuDuLich_TrangThaiTiepNhan",
+        "default_sql": "('TiepNhan')"
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "MaQuyetDinhKhongTiepNhan",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "PhienBanCongBo",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "ThoiDiemTao",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_DichVuDuLich_ThoiDiemTao",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "ThoiDiemCapNhat",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_DichVuDuLich_ThoiDiemCapNhat",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "GiaiTrinhNhaCungCap",
+        "name": "MaGiaiTrinh",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "GiaiTrinhNhaCungCap",
+        "name": "MaQuyetDinh",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "GiaiTrinhNhaCungCap",
+        "name": "NoiDung",
+        "type": "nvarchar",
+        "max_length": 4000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "GiaiTrinhNhaCungCap",
+        "name": "ThoiDiemGui",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_GiaiTrinhNhaCungCap_ThoiDiemGui",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "GiaiTrinhNhaCungCap",
+        "name": "TrangThai",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_GiaiTrinhNhaCungCap_TrangThai",
+        "default_sql": "('ChoXemXet')"
+      },
+      {
+        "table": "GiaiTrinhNhaCungCap",
+        "name": "KetQuaXemXet",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "GiaiTrinhNhaCungCap",
+        "name": "MaAdminXemXet",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "GiaiTrinhNhaCungCap",
+        "name": "ThoiDiemXemXet",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "MaHoatDong",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "MaKeHoach",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "Ngay",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "Gio",
+        "type": "time",
+        "max_length": 3,
+        "precision": 8,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "ThuTu",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "MaDiaDiem",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "MaDichVu",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "NoiDung",
+        "type": "nvarchar",
+        "max_length": 600,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "ChiPhiDuKien",
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "HoSoNguoiDung",
+        "name": "MaHoSo",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "HoSoNguoiDung",
+        "name": "MaTaiKhoan",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "HoSoNguoiDung",
+        "name": "TenHienThi",
+        "type": "nvarchar",
+        "max_length": 200,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "HoSoNguoiDung",
+        "name": "AnhDaiDien",
+        "type": "nvarchar",
+        "max_length": 800,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "HoSoNguoiDung",
+        "name": "GioiThieu",
+        "type": "nvarchar",
+        "max_length": 2000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "HoSoNguoiDung",
+        "name": "NoiSinhSong",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "HoSoNguoiDung",
+        "name": "SoThich",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "HoSoNguoiDung",
+        "name": "ThongTinChiaSe",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_HoSoNguoiDung_ThongTinChiaSe",
+        "default_sql": "('RiengTu')"
+      },
+      {
+        "table": "HoSoNguoiDung",
+        "name": "ThoiDiemCapNhat",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_HoSoNguoiDung_ThoiDiemCapNhat",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "HoSoNguoiDung",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "HoSoXacMinhNhaCungCap",
+        "name": "MaHoSo",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "HoSoXacMinhNhaCungCap",
+        "name": "MaNhaCungCap",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "HoSoXacMinhNhaCungCap",
+        "name": "NoiDungDangKy",
+        "type": "nvarchar",
+        "max_length": 4000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "HoSoXacMinhNhaCungCap",
+        "name": "NguoiDaiDien",
+        "type": "nvarchar",
+        "max_length": 200,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "HoSoXacMinhNhaCungCap",
+        "name": "ThoiDiemNop",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_HoSoXacMinhNhaCungCap_ThoiDiemNop",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "HoSoXacMinhNhaCungCap",
+        "name": "SoLanBoSung",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_HoSoXacMinhNhaCungCap_SoLanBoSung",
+        "default_sql": "((0))"
+      },
+      {
+        "table": "HoSoXacMinhNhaCungCap",
+        "name": "TrangThaiXuLy",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_HoSoXacMinhNhaCungCap_TrangThaiXuLy",
+        "default_sql": "('ChoXacMinh')"
+      },
+      {
+        "table": "HoSoXacMinhNhaCungCap",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "MaKeHoach",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "MaTaiKhoan",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "TenKeHoach",
+        "type": "nvarchar",
+        "max_length": 300,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "NoiDen",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "NgayBatDau",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "NgayKetThuc",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "NganSachDuKien",
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "TrangThai",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_KeHoachChuyenDi_TrangThai",
+        "default_sql": "('Nhap')"
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "ThoiDiemTao",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_KeHoachChuyenDi_ThoiDiemTao",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "ThoiDiemCapNhat",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_KeHoachChuyenDi_ThoiDiemCapNhat",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "MaKetQua",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "MaYeuCau",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "HangMuc",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "KetQuaThucHien",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "GhiChu",
+        "type": "nvarchar",
+        "max_length": 2000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "ThoiDiemGhi",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_KetQuaCungCapDichVu_ThoiDiemGhi",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "NoiDungPhanAnh",
+        "type": "nvarchar",
+        "max_length": 4000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "ThoiDiemPhanAnh",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "TrangThaiKiemTra",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_KetQuaCungCapDichVu_TrangThaiKiemTra",
+        "default_sql": "('DaGhiNhan')"
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "ThoiDiemKiemTra",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "MaNhaCungCap",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "MaTaiKhoan",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "TenDonVi",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "LoaiHinh",
+        "type": "nvarchar",
+        "max_length": 100,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "NguoiLienHe",
+        "type": "nvarchar",
+        "max_length": 200,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "DiaChi",
+        "type": "nvarchar",
+        "max_length": 600,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "SoDienThoai",
+        "type": "varchar",
+        "max_length": 15,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "EmailLienHe",
+        "type": "nvarchar",
+        "max_length": 512,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "TrangThaiXacMinh",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_NhaCungCapDichVu_TrangThaiXacMinh",
+        "default_sql": "('ChoXacMinh')"
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "TrangThaiQuyenHoatDong",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "ThoiDiemTao",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_NhaCungCapDichVu_ThoiDiemTao",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "MaNhatKy",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "MaTaiKhoan",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "LoaiSuKien",
+        "type": "nvarchar",
+        "max_length": 80,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "DoiTuong",
+        "type": "nvarchar",
+        "max_length": 80,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "MaDoiTuong",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "TrangThaiTruoc",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "TrangThaiSau",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "LyDo",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "DiaChiIP",
+        "type": "nvarchar",
+        "max_length": 90,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "ThoiDiem",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_NhatKyThaoTac_ThoiDiem",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "MaNhuCau",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "MaTaiKhoan",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "NoiDung",
+        "type": "nvarchar",
+        "max_length": 4000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "DiemDen",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "NgayBatDau",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "NgayKetThuc",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "NganSachDuKien",
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "HinhThucDi",
+        "type": "nvarchar",
+        "max_length": 100,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "MongMuonDongHanh",
+        "type": "nvarchar",
+        "max_length": 2000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "PhamViChiaSe",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "ThoiDiemDang",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_NhuCauDongHanh_ThoiDiemDang",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "TrangThaiCongBo",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_NhuCauDongHanh_TrangThaiCongBo",
+        "default_sql": "('DangCongBo')"
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "PhuongAnXuLy",
+        "name": "MaPhuongAn",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "PhuongAnXuLy",
+        "name": "MaTinhHuong",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "PhuongAnXuLy",
+        "name": "NoiDung",
+        "type": "nvarchar",
+        "max_length": 2000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "PhuongAnXuLy",
+        "name": "ThoiDiemChon",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_PhuongAnXuLy_ThoiDiemChon",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "PhuongAnXuLy",
+        "name": "LaHienHanh",
+        "type": "bit",
+        "max_length": 1,
+        "precision": 1,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_PhuongAnXuLy_LaHienHanh",
+        "default_sql": "((1))"
+      },
+      {
+        "table": "QuyetDinhQuyenHoatDong",
+        "name": "MaQuyetDinh",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "QuyetDinhQuyenHoatDong",
+        "name": "MaNhaCungCap",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhQuyenHoatDong",
+        "name": "TrangThaiTruoc",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhQuyenHoatDong",
+        "name": "TrangThaiSau",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhQuyenHoatDong",
+        "name": "LyDo",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhQuyenHoatDong",
+        "name": "CanCu",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhQuyenHoatDong",
+        "name": "ThoiHan",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhQuyenHoatDong",
+        "name": "MaAdmin",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhQuyenHoatDong",
+        "name": "ThoiDiem",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_QuyetDinhQuyenHoatDong_ThoiDiem",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "QuyetDinhXacMinh",
+        "name": "MaQuyetDinh",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "QuyetDinhXacMinh",
+        "name": "MaHoSo",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhXacMinh",
+        "name": "LanXuLy",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhXacMinh",
+        "name": "KetQua",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhXacMinh",
+        "name": "KetQuaXacMinh",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhXacMinh",
+        "name": "LyDo",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhXacMinh",
+        "name": "MaAdminDuyet",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "QuyetDinhXacMinh",
+        "name": "ThoiDiemDuyet",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_QuyetDinhXacMinh_ThoiDiemDuyet",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "MaTaiKhoan",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "Email",
+        "type": "nvarchar",
+        "max_length": 512,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "SoDienThoai",
+        "type": "varchar",
+        "max_length": 15,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "MatKhauBam",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "VaiTro",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "TrangThai",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_TaiKhoan_TrangThai",
+        "default_sql": "('HoatDong')"
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "DauPhien",
+        "type": "uniqueidentifier",
+        "max_length": 16,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_TaiKhoan_DauPhien",
+        "default_sql": "(newid())"
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "PhaiDoiMatKhau",
+        "type": "bit",
+        "max_length": 1,
+        "precision": 1,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_TaiKhoan_PhaiDoiMatKhau",
+        "default_sql": "((0))"
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "ThoiDiemTao",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_TaiKhoan_ThoiDiemTao",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "ThoiDiemDangNhapCuoi",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "ThoiDiemNgung",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiLieuGiaiTrinh",
+        "name": "MaTaiLieu",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "TaiLieuGiaiTrinh",
+        "name": "MaGiaiTrinh",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiLieuGiaiTrinh",
+        "name": "TenTepGoc",
+        "type": "nvarchar",
+        "max_length": 510,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiLieuGiaiTrinh",
+        "name": "DuongDan",
+        "type": "nvarchar",
+        "max_length": 800,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiLieuGiaiTrinh",
+        "name": "LoaiTep",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiLieuGiaiTrinh",
+        "name": "KichThuoc",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiLieuGiaiTrinh",
+        "name": "ThoiDiemTai",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_TaiLieuGiaiTrinh_ThoiDiemTai",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "TaiLieuXacMinh",
+        "name": "MaTaiLieu",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "TaiLieuXacMinh",
+        "name": "MaHoSo",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiLieuXacMinh",
+        "name": "TenTepGoc",
+        "type": "nvarchar",
+        "max_length": 510,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiLieuXacMinh",
+        "name": "DuongDan",
+        "type": "nvarchar",
+        "max_length": 800,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiLieuXacMinh",
+        "name": "LoaiTep",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiLieuXacMinh",
+        "name": "KichThuoc",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TaiLieuXacMinh",
+        "name": "LanNop",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_TaiLieuXacMinh_LanNop",
+        "default_sql": "((0))"
+      },
+      {
+        "table": "TaiLieuXacMinh",
+        "name": "ThoiDiemTai",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_TaiLieuXacMinh_ThoiDiemTai",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "TinhHuongHoatDong",
+        "name": "MaTinhHuong",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TinhHuongHoatDong",
+        "name": "MaHoatDong",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TinhHuongPhatSinh",
+        "name": "MaTinhHuong",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "TinhHuongPhatSinh",
+        "name": "MaKeHoach",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TinhHuongPhatSinh",
+        "name": "LoaiTinhHuong",
+        "type": "nvarchar",
+        "max_length": 100,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TinhHuongPhatSinh",
+        "name": "MoTa",
+        "type": "nvarchar",
+        "max_length": 4000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "TinhHuongPhatSinh",
+        "name": "ViTri",
+        "type": "nvarchar",
+        "max_length": 600,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "TinhHuongPhatSinh",
+        "name": "ThoiDiemGhiNhan",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_TinhHuongPhatSinh_ThoiDiemGhiNhan",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "TinhHuongPhatSinh",
+        "name": "TrangThaiXuLy",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_TinhHuongPhatSinh_TrangThaiXuLy",
+        "default_sql": "('ChuaGiaiQuyet')"
+      },
+      {
+        "table": "TinhHuongPhatSinh",
+        "name": "KetQuaXuLy",
+        "type": "nvarchar",
+        "max_length": 4000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "TinhHuongPhatSinh",
+        "name": "ThoiDiemCapNhat",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_TinhHuongPhatSinh_ThoiDiemCapNhat",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "TinhHuongPhatSinh",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "MaThoaThuan",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "MaDeNghi",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "PhienBan",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "NgayDi",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "NgayVe",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "NoiDen",
+        "type": "nvarchar",
+        "max_length": 400,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "NganSach",
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "PhamViDiCung",
+        "type": "nvarchar",
+        "max_length": 2000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "MaNguoiDeXuat",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "ThoiDiemDeXuat",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_ThoaThuanDongHanh_ThoiDiemDeXuat",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "MaNguoiXacNhan",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "ThoiDiemXacNhan",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "LoaiPhienBan",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_ThoaThuanDongHanh_LoaiPhienBan",
+        "default_sql": "('NoiDung')"
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "TrangThai",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_ThoaThuanDongHanh_TrangThai",
+        "default_sql": "('ChoXacNhan')"
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "LyDo",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "MaNguoiKetThuc",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "ThoiDiemKetThuc",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "ThongBao",
+        "name": "MaThongBao",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "ThongBao",
+        "name": "MaNguoiNhan",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "ThongBao",
+        "name": "LoaiThongBao",
+        "type": "nvarchar",
+        "max_length": 80,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "ThongBao",
+        "name": "NoiDung",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "ThongBao",
+        "name": "DuongDan",
+        "type": "nvarchar",
+        "max_length": 600,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "ThongBao",
+        "name": "DaDoc",
+        "type": "bit",
+        "max_length": 1,
+        "precision": 1,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_ThongBao_DaDoc",
+        "default_sql": "((0))"
+      },
+      {
+        "table": "ThongBao",
+        "name": "ThoiDiemTao",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_ThongBao_ThoiDiemTao",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "MaYeuCau",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": true
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "MaTaiKhoan",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "MaDichVu",
+        "type": "bigint",
+        "max_length": 8,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "NgayBatDau",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "NgayKetThuc",
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "ThoiGianDenDi",
+        "type": "nvarchar",
+        "max_length": 200,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "SoNguoi",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "SoLuong",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "NoiDungLuaChon",
+        "type": "nvarchar",
+        "max_length": 2000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "GhiChu",
+        "type": "nvarchar",
+        "max_length": 2000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "ChiPhiDuKien",
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "DieuKienDeXuat",
+        "type": "nvarchar",
+        "max_length": 4000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "PhienBan",
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_YeuCauDatDichVu_PhienBan",
+        "default_sql": "((1))"
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "ThoiDiemGui",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_YeuCauDatDichVu_ThoiDiemGui",
+        "default_sql": "(sysutcdatetime())"
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "ThoiDiemPhanHoi",
+        "type": "datetime2",
+        "max_length": 6,
+        "precision": 19,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "LyDo",
+        "type": "nvarchar",
+        "max_length": 1000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "TrangThai",
+        "type": "varchar",
+        "max_length": 30,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false,
+        "default_name": "DF_YeuCauDatDichVu_TrangThai",
+        "default_sql": "('ChoPhanHoi')"
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "MaLuotGui",
+        "type": "uniqueidentifier",
+        "max_length": 16,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "RowVersion",
+        "type": "timestamp",
+        "max_length": 8,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      }
+    ],
+    "indexes": [
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "IX_BanCapNhat_DiaDiem",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([MaDiaDiem] IS NOT NULL)",
+        "columns": [
+          {
+            "name": "MaDiaDiem",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "IX_BanCapNhat_HangDoi",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([TrangThaiDuyet]='ChoDuyet')",
+        "columns": [
+          {
+            "name": "ThoiDiemGui",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "MaDichVu",
+            "is_descending_key": false,
+            "is_included_column": true
+          },
+          {
+            "name": "SoPhienBan",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "PK_BanCapNhatDichVu",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaBanCapNhat",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "UX_BanCapNhatDichVu_ChoDuyet",
+        "is_unique": true,
+        "is_primary_key": false,
+        "filter_definition": "([TrangThaiDuyet]='ChoDuyet')",
+        "columns": [
+          {
+            "name": "MaDichVu",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "BanCapNhatDichVu",
+        "name": "UX_BanCapNhatDichVu_PhienBan",
+        "is_unique": true,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaDichVu",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "SoPhienBan",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "IX_DeNghiDieuChinh_YeuCau",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaYeuCau",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThoiDiemGui",
+            "is_descending_key": true,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "PK_DeNghiDieuChinhDichVu",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaDeNghi",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "DeNghiDieuChinhDichVu",
+        "name": "UX_DeNghiDieuChinhDichVu_Cho",
+        "is_unique": true,
+        "is_primary_key": false,
+        "filter_definition": "([TrangThai] IN ('ChoPhanHoi', 'DeXuatKhac'))",
+        "columns": [
+          {
+            "name": "MaYeuCau",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "DeNghiKetNoiDongHanh",
+        "name": "IX_DeNghiKetNoi_NguoiGui",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaNguoiGui",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThoiDiemGui",
+            "is_descending_key": true,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "DeNghiKetNoiDongHanh",
+        "name": "IX_DeNghiKetNoi_NhuCau",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaNhuCau",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "TrangThai",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "MaNguoiGui",
+            "is_descending_key": false,
+            "is_included_column": true
+          },
+          {
+            "name": "ThoiDiemGui",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "DeNghiKetNoiDongHanh",
+        "name": "PK_DeNghiKetNoiDongHanh",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaDeNghi",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "DeNghiKetNoiDongHanh",
+        "name": "UX_DeNghiKetNoiDongHanh_HieuLuc",
+        "is_unique": true,
+        "is_primary_key": false,
+        "filter_definition": "([TrangThai] IN ('ChoPhanHoi', 'DaChapNhan'))",
+        "columns": [
+          {
+            "name": "MaNguoiGui",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "MaNhuCau",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "DiaDiemDuLich",
+        "name": "IX_DiaDiem_TimKiem",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([DangHienThi]=(1))",
+        "columns": [
+          {
+            "name": "KhuVuc",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "LoaiDiaDiem",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "TenDiaDiem",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "DiaDiemDuLich",
+        "name": "PK_DiaDiemDuLich",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaDiaDiem",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "IX_DichVu_DiaDiem",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([MaDiaDiem] IS NOT NULL)",
+        "columns": [
+          {
+            "name": "MaDiaDiem",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "IX_DichVu_NhaCungCap",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaNhaCungCap",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "TrangThaiCongBo",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "IX_DichVu_QuyetDinh",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([MaQuyetDinhKhongTiepNhan] IS NOT NULL)",
+        "columns": [
+          {
+            "name": "MaQuyetDinhKhongTiepNhan",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "IX_DichVu_TimKiem",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([TrangThaiCongBo]='DaDuyet')",
+        "columns": [
+          {
+            "name": "KhuVucPhucVu",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "LoaiDichVu",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "TenDichVu",
+            "is_descending_key": false,
+            "is_included_column": true
+          },
+          {
+            "name": "GiaThamKhao",
+            "is_descending_key": false,
+            "is_included_column": true
+          },
+          {
+            "name": "TrangThaiTiepNhan",
+            "is_descending_key": false,
+            "is_included_column": true
+          },
+          {
+            "name": "MaNhaCungCap",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "DichVuDuLich",
+        "name": "PK_DichVuDuLich",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaDichVu",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "GiaiTrinhNhaCungCap",
+        "name": "IX_GiaiTrinh_ChoXemXet",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([TrangThai]='ChoXemXet')",
+        "columns": [
+          {
+            "name": "ThoiDiemGui",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "MaQuyetDinh",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "GiaiTrinhNhaCungCap",
+        "name": "IX_GiaiTrinh_QuyetDinh",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaQuyetDinh",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "GiaiTrinhNhaCungCap",
+        "name": "PK_GiaiTrinhNhaCungCap",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaGiaiTrinh",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "IX_HoatDong_DiaDiem",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([MaDiaDiem] IS NOT NULL)",
+        "columns": [
+          {
+            "name": "MaDiaDiem",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "IX_HoatDong_DichVu",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([MaDichVu] IS NOT NULL)",
+        "columns": [
+          {
+            "name": "MaDichVu",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "IX_HoatDong_KeHoach",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaKeHoach",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "Ngay",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThuTu",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "HoatDongLichTrinh",
+        "name": "PK_HoatDongLichTrinh",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaHoatDong",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "HoSoNguoiDung",
+        "name": "PK_HoSoNguoiDung",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaHoSo",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "HoSoNguoiDung",
+        "name": "UX_HoSoNguoiDung_MaTaiKhoan",
+        "is_unique": true,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaTaiKhoan",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "HoSoXacMinhNhaCungCap",
+        "name": "IX_HoSoXacMinh_HangDoi",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "TrangThaiXuLy",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThoiDiemNop",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "MaNhaCungCap",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "HoSoXacMinhNhaCungCap",
+        "name": "IX_HoSoXacMinh_NhaCungCap",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaNhaCungCap",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThoiDiemNop",
+            "is_descending_key": true,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "HoSoXacMinhNhaCungCap",
+        "name": "PK_HoSoXacMinhNhaCungCap",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaHoSo",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "HoSoXacMinhNhaCungCap",
+        "name": "UX_HoSoXacMinh_DangXuLy",
+        "is_unique": true,
+        "is_primary_key": false,
+        "filter_definition": "([TrangThaiXuLy] IN ('ChoXacMinh', 'CanBoSung'))",
+        "columns": [
+          {
+            "name": "MaNhaCungCap",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "IX_KeHoach_TaiKhoan",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaTaiKhoan",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "NgayBatDau",
+            "is_descending_key": true,
+            "is_included_column": false
+          },
+          {
+            "name": "TenKeHoach",
+            "is_descending_key": false,
+            "is_included_column": true
+          },
+          {
+            "name": "NoiDen",
+            "is_descending_key": false,
+            "is_included_column": true
+          },
+          {
+            "name": "TrangThai",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "KeHoachChuyenDi",
+        "name": "PK_KeHoachChuyenDi",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaKeHoach",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "IX_KetQua_ChoKiemTra",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([TrangThaiKiemTra]='ChoKiemTra')",
+        "columns": [
+          {
+            "name": "ThoiDiemPhanAnh",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "MaYeuCau",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "PK_KetQuaCungCapDichVu",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaKetQua",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "KetQuaCungCapDichVu",
+        "name": "UX_KetQuaCungCapDichVu_HangMuc",
+        "is_unique": true,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaYeuCau",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "HangMuc",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "IX_NhaCungCap_TrangThai",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "TrangThaiXacMinh",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "TrangThaiQuyenHoatDong",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "TenDonVi",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "PK_NhaCungCapDichVu",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaNhaCungCap",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "NhaCungCapDichVu",
+        "name": "UX_NhaCungCapDichVu_MaTaiKhoan",
+        "is_unique": true,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaTaiKhoan",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "IX_NhatKy_DoiTuong",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([DoiTuong] IS NOT NULL)",
+        "columns": [
+          {
+            "name": "DoiTuong",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "MaDoiTuong",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThoiDiem",
+            "is_descending_key": true,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "IX_NhatKy_TaiKhoan",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([MaTaiKhoan] IS NOT NULL)",
+        "columns": [
+          {
+            "name": "MaTaiKhoan",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThoiDiem",
+            "is_descending_key": true,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "IX_NhatKy_ThoiDiem",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "ThoiDiem",
+            "is_descending_key": true,
+            "is_included_column": false
+          },
+          {
+            "name": "LoaiSuKien",
+            "is_descending_key": false,
+            "is_included_column": true
+          },
+          {
+            "name": "MaTaiKhoan",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "NhatKyThaoTac",
+        "name": "PK_NhatKyThaoTac",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaNhatKy",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "IX_NhuCau_TaiKhoan",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaTaiKhoan",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "TrangThaiCongBo",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "IX_NhuCau_TimKiem",
+        "is_unique": false,
+        "is_primary_key": false,
+        "filter_definition": "([TrangThaiCongBo]='DangCongBo')",
+        "columns": [
+          {
+            "name": "DiemDen",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "NgayBatDau",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "NgayKetThuc",
+            "is_descending_key": false,
+            "is_included_column": true
+          },
+          {
+            "name": "PhamViChiaSe",
+            "is_descending_key": false,
+            "is_included_column": true
+          },
+          {
+            "name": "MaTaiKhoan",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "NhuCauDongHanh",
+        "name": "PK_NhuCauDongHanh",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaNhuCau",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "PhuongAnXuLy",
+        "name": "IX_PhuongAn_TinhHuong",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaTinhHuong",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThoiDiemChon",
+            "is_descending_key": true,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "PhuongAnXuLy",
+        "name": "PK_PhuongAnXuLy",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaPhuongAn",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "PhuongAnXuLy",
+        "name": "UX_PhuongAnXuLy_HienHanh",
+        "is_unique": true,
+        "is_primary_key": false,
+        "filter_definition": "([LaHienHanh]=(1))",
+        "columns": [
+          {
+            "name": "MaTinhHuong",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "QuyetDinhQuyenHoatDong",
+        "name": "IX_QuyetDinhQuyen_NhaCungCap",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaNhaCungCap",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThoiDiem",
+            "is_descending_key": true,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "QuyetDinhQuyenHoatDong",
+        "name": "PK_QuyetDinhQuyenHoatDong",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaQuyetDinh",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "QuyetDinhXacMinh",
+        "name": "PK_QuyetDinhXacMinh",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaQuyetDinh",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "QuyetDinhXacMinh",
+        "name": "UX_QuyetDinhXacMinh_LanXuLy",
+        "is_unique": true,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaHoSo",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "LanXuLy",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "PK_TaiKhoan",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaTaiKhoan",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "UX_TaiKhoan_Email",
+        "is_unique": true,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "Email",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TaiKhoan",
+        "name": "UX_TaiKhoan_SoDienThoai",
+        "is_unique": true,
+        "is_primary_key": false,
+        "filter_definition": "([SoDienThoai] IS NOT NULL)",
+        "columns": [
+          {
+            "name": "SoDienThoai",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TaiLieuGiaiTrinh",
+        "name": "IX_TaiLieuGiaiTrinh_GiaiTrinh",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaGiaiTrinh",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TaiLieuGiaiTrinh",
+        "name": "PK_TaiLieuGiaiTrinh",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaTaiLieu",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TaiLieuGiaiTrinh",
+        "name": "UX_TaiLieuGiaiTrinh_DuongDan",
+        "is_unique": true,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "DuongDan",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TaiLieuXacMinh",
+        "name": "IX_TaiLieuXacMinh_HoSo",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaHoSo",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "LanNop",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TaiLieuXacMinh",
+        "name": "PK_TaiLieuXacMinh",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaTaiLieu",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TaiLieuXacMinh",
+        "name": "UX_TaiLieuXacMinh_DuongDan",
+        "is_unique": true,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "DuongDan",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TinhHuongHoatDong",
+        "name": "IX_TinhHuongHoatDong_HoatDong",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaHoatDong",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TinhHuongHoatDong",
+        "name": "PK_TinhHuongHoatDong",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaTinhHuong",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "MaHoatDong",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TinhHuongPhatSinh",
+        "name": "IX_TinhHuong_KeHoach",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaKeHoach",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThoiDiemGhiNhan",
+            "is_descending_key": true,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "TinhHuongPhatSinh",
+        "name": "PK_TinhHuongPhatSinh",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaTinhHuong",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "PK_ThoaThuanDongHanh",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaThoaThuan",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "UX_ThoaThuanDongHanh_ChoXacNhan",
+        "is_unique": true,
+        "is_primary_key": false,
+        "filter_definition": "([TrangThai]='ChoXacNhan')",
+        "columns": [
+          {
+            "name": "MaDeNghi",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "UX_ThoaThuanDongHanh_DaXacNhan",
+        "is_unique": true,
+        "is_primary_key": false,
+        "filter_definition": "([TrangThai]='DaXacNhan')",
+        "columns": [
+          {
+            "name": "MaDeNghi",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "ThoaThuanDongHanh",
+        "name": "UX_ThoaThuanDongHanh_PhienBan",
+        "is_unique": true,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaDeNghi",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "PhienBan",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "ThongBao",
+        "name": "IX_ThongBao_NguoiNhan",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaNguoiNhan",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "DaDoc",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThoiDiemTao",
+            "is_descending_key": true,
+            "is_included_column": false
+          },
+          {
+            "name": "LoaiThongBao",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "ThongBao",
+        "name": "PK_ThongBao",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaThongBao",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "IX_YeuCau_DichVu",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaDichVu",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "TrangThai",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThoiDiemGui",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "IX_YeuCau_TaiKhoan",
+        "is_unique": false,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaTaiKhoan",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "ThoiDiemGui",
+            "is_descending_key": true,
+            "is_included_column": false
+          },
+          {
+            "name": "MaDichVu",
+            "is_descending_key": false,
+            "is_included_column": true
+          },
+          {
+            "name": "TrangThai",
+            "is_descending_key": false,
+            "is_included_column": true
+          }
+        ]
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "PK_YeuCauDatDichVu",
+        "is_unique": true,
+        "is_primary_key": true,
+        "columns": [
+          {
+            "name": "MaYeuCau",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      },
+      {
+        "table": "YeuCauDatDichVu",
+        "name": "UX_YeuCauDatDichVu_LuotGui",
+        "is_unique": true,
+        "is_primary_key": false,
+        "columns": [
+          {
+            "name": "MaTaiKhoan",
+            "is_descending_key": false,
+            "is_included_column": false
+          },
+          {
+            "name": "MaLuotGui",
+            "is_descending_key": false,
+            "is_included_column": false
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "name": "CK_DichVuDuLich_GiaThamKhao",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DichVuDuLich_KhongTiepNhan",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DichVuDuLich_KhuVucPhucVu_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DichVuDuLich_LoaiDichVu_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DichVuDuLich_PhienBanCongBo",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DichVuDuLich_TamNgung",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DichVuDuLich_TenDichVu_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DichVuDuLich_TrangThaiCongBo",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DichVuDuLich_TrangThaiTiepNhan",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_GiaiTrinhNhaCungCap_TrangThai",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_GiaiTrinhNhaCungCap_XemXet",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_DaXacNhan",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_DeNghiNgung",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_HaiBen",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_LoaiPhienBan",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_LyDo",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_NganSach",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_Ngay",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_Ngung",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_NoiDen_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_PhienBan",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_Rut",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_TrangThai",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThoaThuanDongHanh_XacNhan",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_BanCapNhatDichVu_Duyet",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_BanCapNhatDichVu_GiaThamKhao",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_BanCapNhatDichVu_KhuVucPhucVu_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_BanCapNhatDichVu_LoaiDichVu_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_BanCapNhatDichVu_LyDo",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_BanCapNhatDichVu_SoPhienBan",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_BanCapNhatDichVu_TamNgung",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_BanCapNhatDichVu_TenDichVu_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_BanCapNhatDichVu_TrangThaiDuyet",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_HoatDongLichTrinh_ChiPhiDuKien",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_HoatDongLichTrinh_MotMuc",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_HoatDongLichTrinh_ThuTu",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_YeuCauDatDichVu_ChiPhiDuKien",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_YeuCauDatDichVu_DeXuat",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_YeuCauDatDichVu_LyDo",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_YeuCauDatDichVu_Ngay",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_YeuCauDatDichVu_PhanHoi",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_YeuCauDatDichVu_PhienBan",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_YeuCauDatDichVu_SoLuong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_YeuCauDatDichVu_SoNguoi",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_YeuCauDatDichVu_TrangThai",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TaiLieuGiaiTrinh_KichThuoc",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TaiLieuGiaiTrinh_LoaiTep",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TaiLieuGiaiTrinh_TenTepGoc_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DiaDiemDuLich_KhuVuc_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiDieuChinhDichVu_DeXuat",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DiaDiemDuLich_LoaiDiaDiem_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiDieuChinhDichVu_DieuKienMoi",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DiaDiemDuLich_TenDiaDiem_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiDieuChinhDichVu_Huy",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TaiKhoan_Email",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiDieuChinhDichVu_LoaiDeNghi",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TaiKhoan_Ngung",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiDieuChinhDichVu_LyDo",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TaiKhoan_SoDienThoai",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiDieuChinhDichVu_NgayMoi",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TaiKhoan_TrangThai",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiDieuChinhDichVu_PhanHoi",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TaiKhoan_VaiTro",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiDieuChinhDichVu_SoLuongMoi",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_HoSoNguoiDung_TenHienThi_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiDieuChinhDichVu_SoNguoiMoi",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_HoSoNguoiDung_ThongTinChiaSe",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiDieuChinhDichVu_TrangThai",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiDieuChinhDichVu_TuChoi",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_KeHoachChuyenDi_NganSachDuKien",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_KeHoachChuyenDi_Ngay",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_KetQuaCungCapDichVu_ChoKiemTra",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_KeHoachChuyenDi_NoiDen_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_KetQuaCungCapDichVu_ChuaXacDinh",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_KeHoachChuyenDi_TenKeHoach_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_KetQuaCungCapDichVu_DaKiemTra",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_KeHoachChuyenDi_TrangThai",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_KetQuaCungCapDichVu_HangMuc_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_KetQuaCungCapDichVu_KetQuaThucHien",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhaCungCapDichVu_EmailLienHe",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_KetQuaCungCapDichVu_PhanAnh",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhaCungCapDichVu_LoaiHinh_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_KetQuaCungCapDichVu_TrangThaiKiemTra",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhaCungCapDichVu_NguoiLienHe_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhaCungCapDichVu_SoDienThoai",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhaCungCapDichVu_TenDonVi_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhaCungCapDichVu_TrangThai",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhaCungCapDichVu_TrangThaiQuyenHoatDong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhaCungCapDichVu_TrangThaiXacMinh",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhatKyThaoTac_LoaiSuKien_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhuCauDongHanh_DiemDen_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhuCauDongHanh_NganSachDuKien",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhuCauDongHanh_Ngay",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhuCauDongHanh_PhamViChiaSe",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_NhuCauDongHanh_TrangThaiCongBo",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_ThongBao_LoaiThongBao_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TinhHuongPhatSinh_KetQua",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TinhHuongPhatSinh_LoaiTinhHuong_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TinhHuongPhatSinh_TrangThaiXuLy",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_HoSoXacMinhNhaCungCap_NguoiDaiDien_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_HoSoXacMinhNhaCungCap_SoLanBoSung",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_HoSoXacMinhNhaCungCap_TrangThaiXuLy",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_QuyetDinhQuyenHoatDong_DoiTrangThai",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_QuyetDinhQuyenHoatDong_LyDoCanCu",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_QuyetDinhQuyenHoatDong_ThoiHan",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_QuyetDinhQuyenHoatDong_TrangThaiSau",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_QuyetDinhQuyenHoatDong_TrangThaiTruoc",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiKetNoiDongHanh_PhanHoi",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DeNghiKetNoiDongHanh_TrangThai",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_QuyetDinhXacMinh_KetQua",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_QuyetDinhXacMinh_LanXuLy",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_QuyetDinhXacMinh_LyDo",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TaiLieuXacMinh_KichThuoc",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TaiLieuXacMinh_LanNop",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TaiLieuXacMinh_LoaiTep",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_TaiLieuXacMinh_TenTepGoc_KhongRong",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "CK_DichVuDuLich_CongBo",
+        "is_disabled": false,
+        "is_not_trusted": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "name": "FK_DichVuDuLich_MaDiaDiem",
+        "table": "DichVuDuLich",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_DichVuDuLich_MaNhaCungCap",
+        "table": "DichVuDuLich",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_DichVuDuLich_MaQuyetDinhKhongTiepNhan",
+        "table": "DichVuDuLich",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_GiaiTrinhNhaCungCap_MaQuyetDinh",
+        "table": "GiaiTrinhNhaCungCap",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_GiaiTrinhNhaCungCap_MaAdminXemXet",
+        "table": "GiaiTrinhNhaCungCap",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_ThoaThuanDongHanh_MaDeNghi",
+        "table": "ThoaThuanDongHanh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_ThoaThuanDongHanh_MaNguoiDeXuat",
+        "table": "ThoaThuanDongHanh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_ThoaThuanDongHanh_MaNguoiKetThuc",
+        "table": "ThoaThuanDongHanh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_ThoaThuanDongHanh_MaNguoiXacNhan",
+        "table": "ThoaThuanDongHanh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_BanCapNhatDichVu_MaDiaDiem",
+        "table": "BanCapNhatDichVu",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_BanCapNhatDichVu_MaDichVu",
+        "table": "BanCapNhatDichVu",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_BanCapNhatDichVu_MaAdminDuyet",
+        "table": "BanCapNhatDichVu",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_HoatDongLichTrinh_MaDiaDiem",
+        "table": "HoatDongLichTrinh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_HoatDongLichTrinh_MaDichVu",
+        "table": "HoatDongLichTrinh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_HoatDongLichTrinh_MaKeHoach",
+        "table": "HoatDongLichTrinh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_YeuCauDatDichVu_MaDichVu",
+        "table": "YeuCauDatDichVu",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_YeuCauDatDichVu_MaTaiKhoan",
+        "table": "YeuCauDatDichVu",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_TaiLieuGiaiTrinh_MaGiaiTrinh",
+        "table": "TaiLieuGiaiTrinh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_TinhHuongHoatDong_MaHoatDong",
+        "table": "TinhHuongHoatDong",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_TinhHuongHoatDong_MaTinhHuong",
+        "table": "TinhHuongHoatDong",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_HoSoNguoiDung_MaTaiKhoan",
+        "table": "HoSoNguoiDung",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_DeNghiDieuChinhDichVu_MaYeuCau",
+        "table": "DeNghiDieuChinhDichVu",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_KeHoachChuyenDi_MaTaiKhoan",
+        "table": "KeHoachChuyenDi",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_KetQuaCungCapDichVu_MaYeuCau",
+        "table": "KetQuaCungCapDichVu",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_NhaCungCapDichVu_MaTaiKhoan",
+        "table": "NhaCungCapDichVu",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_NhatKyThaoTac_MaTaiKhoan",
+        "table": "NhatKyThaoTac",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_NhuCauDongHanh_MaTaiKhoan",
+        "table": "NhuCauDongHanh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_ThongBao_MaNguoiNhan",
+        "table": "ThongBao",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_TinhHuongPhatSinh_MaKeHoach",
+        "table": "TinhHuongPhatSinh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_HoSoXacMinhNhaCungCap_MaNhaCungCap",
+        "table": "HoSoXacMinhNhaCungCap",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_QuyetDinhQuyenHoatDong_MaNhaCungCap",
+        "table": "QuyetDinhQuyenHoatDong",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_QuyetDinhQuyenHoatDong_MaAdmin",
+        "table": "QuyetDinhQuyenHoatDong",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_DeNghiKetNoiDongHanh_MaNhuCau",
+        "table": "DeNghiKetNoiDongHanh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_DeNghiKetNoiDongHanh_MaNguoiGui",
+        "table": "DeNghiKetNoiDongHanh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_PhuongAnXuLy_MaTinhHuong",
+        "table": "PhuongAnXuLy",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_QuyetDinhXacMinh_MaHoSo",
+        "table": "QuyetDinhXacMinh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_QuyetDinhXacMinh_MaAdminDuyet",
+        "table": "QuyetDinhXacMinh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      },
+      {
+        "name": "FK_TaiLieuXacMinh_MaHoSo",
+        "table": "TaiLieuXacMinh",
+        "delete_referential_action_desc": "NO_ACTION",
+        "is_disabled": false,
+        "is_not_trusted": false
+      }
+    ],
+    "views": [
+      {
+        "name": "vw_DeNghiKetNoi_NguoiNhan",
+        "definition": "CREATE   VIEW [dbo].[vw_DeNghiKetNoi_NguoiNhan] AS\r\nSELECT d.MaDeNghi, d.MaNhuCau, d.MaNguoiGui, n.MaTaiKhoan AS MaNguoiNhan, d.TrangThai, d.ThoiDiemGui, d.ThoiDiemPhanHoi FROM dbo.DeNghiKetNoiDongHanh AS d JOIN dbo.NhuCauDongHanh AS n ON n.MaNhuCau = d.MaNhuCau;\r\n"
+      },
+      {
+        "name": "vw_TinhHuong_NguoiGhi",
+        "definition": "CREATE   VIEW [dbo].[vw_TinhHuong_NguoiGhi] AS\r\nSELECT t.MaTinhHuong, t.MaKeHoach, k.MaTaiKhoan AS MaNguoiGhi, t.LoaiTinhHuong, t.TrangThaiXuLy, t.ThoiDiemGhiNhan FROM dbo.TinhHuongPhatSinh AS t JOIN dbo.KeHoachChuyenDi AS k ON k.MaKeHoach = t.MaKeHoach;\r\n"
+      },
+      {
+        "name": "vw_GiaiTrinh_NhaCungCap",
+        "definition": "CREATE   VIEW [dbo].[vw_GiaiTrinh_NhaCungCap] AS\r\nSELECT g.MaGiaiTrinh, g.MaQuyetDinh, q.MaNhaCungCap, g.TrangThai, g.ThoiDiemGui FROM dbo.GiaiTrinhNhaCungCap AS g JOIN dbo.QuyetDinhQuyenHoatDong AS q ON q.MaQuyetDinh = g.MaQuyetDinh;\r\n"
+      },
+      {
+        "name": "vw_YeuCau_NhaCungCap",
+        "definition": "CREATE   VIEW [dbo].[vw_YeuCau_NhaCungCap] AS\r\nSELECT y.MaYeuCau, y.MaTaiKhoan AS MaKhach, y.MaDichVu, d.MaNhaCungCap, c.MaTaiKhoan AS MaTaiKhoanNCC, y.TrangThai, y.ThoiDiemGui FROM dbo.YeuCauDatDichVu AS y JOIN dbo.DichVuDuLich AS d ON d.MaDichVu = y.MaDichVu JOIN dbo.NhaCungCapDichVu AS c ON c.MaNhaCungCap = d.MaNhaCungCap;\r\n"
+      }
+    ]
+  },
+  "date": "2026-11-04T06:47:12.529Z"
+}

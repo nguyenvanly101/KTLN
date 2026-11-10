@@ -1,0 +1,15 @@
+@model FilteredPage<AdminVerificationRow>
+@{ViewData["Title"]="Xác minh nhà cung cấp";}
+<div class="container-wide">
+ <div class="page-head"><div><span class="eyebrow">HỒ SƠ NHÀ CUNG CẤP</span><h1>Xác minh nhà cung cấp</h1><p>Tiếp nhận hồ sơ và đối chiếu tài liệu đăng ký của nhà cung cấp.</p></div><span class="count-pill">@Model.Total hồ sơ</span></div>
+ <form action="/Admin/Verifications" method="get" class="list-filters panel">
+  <div class="field"><label for="verification-query">Tìm đơn vị hoặc người đại diện</label><input class="form-control" id="verification-query" name="q" value="@Model.Query" maxlength="100" placeholder="Nhập tên cần tìm…"/></div>
+  <div class="field"><label for="verification-status">Trạng thái hồ sơ</label><select class="form-select" id="verification-status" name="status"><option value="" selected="@(Model.Status=="")">Tất cả trạng thái</option>@foreach(var s in new[]{"ChoXacMinh","CanBoSung","DaXacMinh","TuChoi"}){<option value="@s" selected="@(Model.Status==s)">@Labels.Status(s)</option>}</select></div>
+  <button class="btn btn-dark" type="submit">@Ui.Icon("filter") Lọc kết quả</button><a class="filter-reset" href="/Admin/Verifications">Đặt lại</a>
+ </form>
+ @if(Model.Items.Count==0){<div class="empty">@Ui.Icon("shield")<h2>Không có hồ sơ phù hợp</h2><p>Hồ sơ mới sẽ xuất hiện ở trạng thái chờ xác minh. Chọn tất cả trạng thái để xem lịch sử.</p></div>}
+ else{<div class="panel table-wrap"><table class="table"><thead><tr><th>Nhà cung cấp</th><th>Người đại diện</th><th>Ngày nộp</th><th>Trạng thái</th><th></th></tr></thead><tbody>
+ @foreach(var row in Model.Items){var h=row.Profile;<tr><td><b>@row.ProviderName</b><span class="help">Hồ sơ #@h.MaHoSo · Bổ sung @h.SoLanBoSung lần</span></td><td>@h.NguoiDaiDien</td><td>@Ui.LocalTime(h.ThoiDiemNop).ToString("dd/MM/yyyy")</td><td><span class="badge @Labels.Badge(h.TrangThaiXuLy.ToString())">@Labels.Status(h.TrangThaiXuLy.ToString())</span></td><td><a href="/Admin/Verification/@h.MaHoSo">Xem hồ sơ @Ui.Icon("chevron")</a></td></tr>}
+ </tbody></table></div>}
+ <partial name="_PageNavigation" model="Model.Navigation"/>
+</div>

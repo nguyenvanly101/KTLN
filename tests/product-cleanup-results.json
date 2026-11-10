@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "portsFree": [
+    5216,
+    5221
+  ],
+  "localDb": "Running",
+  "stoppedOnlyOwnWebServers": true,
+  "date": "2026-11-05T02:19:46.6103921+07:00"
+}

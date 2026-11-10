@@ -1,0 +1,135 @@
+[
+  {
+    "controller": "JourneyController",
+    "action": "Today",
+    "method": "GET",
+    "role": "KHACH_DU_LICH",
+    "template": null
+  },
+  {
+    "controller": "JourneyController",
+    "action": "Complete",
+    "method": "POST",
+    "role": "KHACH_DU_LICH",
+    "template": null
+  },
+  {
+    "controller": "JourneyController",
+    "action": "Share",
+    "method": "GET",
+    "role": "KHACH_DU_LICH",
+    "template": null
+  },
+  {
+    "controller": "JourneyController",
+    "action": "Share",
+    "method": "POST",
+    "role": "KHACH_DU_LICH",
+    "template": null
+  },
+  {
+    "controller": "JourneyController",
+    "action": "Revoke",
+    "method": "POST",
+    "role": "KHACH_DU_LICH",
+    "template": null
+  },
+  {
+    "controller": "JourneyController",
+    "action": "Print",
+    "method": "GET",
+    "role": "KHACH_DU_LICH",
+    "template": null
+  },
+  {
+    "controller": "TripShareController",
+    "action": "Open",
+    "method": "GET",
+    "role": null,
+    "template": "/s/{token}"
+  },
+  {
+    "controller": "ReviewsController",
+    "action": "Service",
+    "method": "GET",
+    "role": null,
+    "template": null
+  },
+  {
+    "controller": "ReviewsController",
+    "action": "Mine",
+    "method": "GET",
+    "role": "KHACH_DU_LICH",
+    "template": null
+  },
+  {
+    "controller": "ReviewsController",
+    "action": "Write",
+    "method": "GET",
+    "role": "KHACH_DU_LICH",
+    "template": null
+  },
+  {
+    "controller": "ReviewsController",
+    "action": "Write",
+    "method": "POST",
+    "role": "KHACH_DU_LICH",
+    "template": null
+  },
+  {
+    "controller": "ReviewsController",
+    "action": "Partner",
+    "method": "GET",
+    "role": "NHA_CUNG_CAP",
+    "template": null
+  },
+  {
+    "controller": "ReviewsController",
+    "action": "Reply",
+    "method": "POST",
+    "role": "NHA_CUNG_CAP",
+    "template": null
+  },
+  {
+    "controller": "ReviewsController",
+    "action": "Moderation",
+    "method": "GET",
+    "role": "QUAN_TRI_VIEN",
+    "template": null
+  },
+  {
+    "controller": "ReviewsController",
+    "action": "Moderate",
+    "method": "POST",
+    "role": "QUAN_TRI_VIEN",
+    "template": null
+  },
+  {
+    "controller": "AvailabilityController",
+    "action": "Index",
+    "method": "GET",
+    "role": null,
+    "template": null
+  },
+  {
+    "controller": "AvailabilityController",
+    "action": "Manage",
+    "method": "GET",
+    "role": "NHA_CUNG_CAP",
+    "template": null
+  },
+  {
+    "controller": "AvailabilityController",
+    "action": "Save",
+    "method": "POST",
+    "role": "NHA_CUNG_CAP",
+    "template": null
+  },
+  {
+    "controller": "AvailabilityController",
+    "action": "Remove",
+    "method": "POST",
+    "role": "NHA_CUNG_CAP",
+    "template": null
+  }
+]

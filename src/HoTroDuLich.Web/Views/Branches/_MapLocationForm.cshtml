@@ -1,0 +1,20 @@
+@model MapLocationInput
+@inject GoogleMapsClient Maps
+@{var mapName=Maps.MapsReady?"Google Maps":"OpenStreetMap";}
+<div class="form-grid">
+ <div class="field"><label asp-for="Name">Tên địa điểm / tên cơ sở và chi nhánh</label><input class="form-control" asp-for="Name" maxlength="200" placeholder="Ví dụ: tên quán — chi nhánh cụ thể"/><span asp-validation-for="Name"></span></div>
+ <div class="field"><label asp-for="Region">Khu vực</label><input class="form-control" asp-for="Region" maxlength="200" placeholder="Phường/xã, tỉnh/thành phố"/><span asp-validation-for="Region"></span></div>
+ <div class="field full"><label asp-for="Address">Địa chỉ do bạn cung cấp</label><input class="form-control" asp-for="Address" maxlength="400" placeholder="Số nhà, đường, phường/xã, tỉnh/thành phố"/><span asp-validation-for="Address"></span></div>
+</div>
+<section class="pl-location-picker" data-location-picker>
+ <div class="pl-section-title"><div><span class="eyebrow">VỊ TRÍ PHỤC VỤ THỰC TẾ</span><h2>Đúng cơ sở. Đúng điểm đến.</h2></div><a href="@(Maps.MapsReady?"https://www.google.com/maps":"https://www.openstreetmap.org/")" target="_blank" rel="noopener noreferrer">Mở @mapName @Ui.Icon("arrow")</a></div>
+ <p class="help">Tìm đúng cơ sở trên @mapName hoặc đặt ghim tại điểm phục vụ. Tên và địa chỉ hồ sơ phía trên là thông tin bạn cung cấp.</p>
+ <div class="pl-autocomplete" data-autocomplete="location"><label for="map-location-query">Tìm cơ sở hoặc địa chỉ</label><input id="map-location-query" class="form-control" type="search" autocomplete="off" maxlength="200" placeholder="Tên cơ sở, địa chỉ cụ thể…" role="combobox" aria-expanded="false" aria-autocomplete="list"/><div class="pl-suggestions" role="listbox" hidden></div><p class="help" data-autocomplete-status role="status"></p></div>
+ <input type="hidden" asp-for="GooglePlaceId"/><input type="hidden" asp-for="LocationSource"/>
+ <div class="pl-selected-place" data-selected-place>@if(Model.GooglePlaceId!=null){<span>Đã liên kết một địa điểm Google.</span>@if(!Maps.MapsReady&&Model.LocationSource=="Google"){<p class="help">Để cập nhật vị trí bằng OpenStreetMap, hãy tìm lại địa chỉ hoặc đặt ghim mới.</p>}}</div>
+ <div class="pl-map pl-map-editor" data-location-map aria-label="Chọn vị trí cơ sở trên bản đồ"><div class="pl-map-fallback"><strong>Vị trí trên @mapName</strong><p>Đang tải bản đồ. Bạn cũng có thể nhập tọa độ bên dưới.</p></div></div>
+ <p class="help">Chạm vào bản đồ để đặt ghim tại vị trí bạn xác nhận. Ghim do bạn đặt được ghi nhận là vị trí do bạn cung cấp.</p>
+ <details class="pl-coordinates" open="@(Model.Latitude==null)"><summary>Nhập hoặc kiểm tra tọa độ vị trí</summary><div class="form-grid"><div class="field"><label asp-for="Latitude">Vĩ độ</label><input class="form-control" name="Latitude" id="Latitude" type="number" step="any" min="-90" max="90" value="@Model.Latitude?.ToString(System.Globalization.CultureInfo.InvariantCulture)"/><span asp-validation-for="Latitude"></span></div><div class="field"><label asp-for="Longitude">Kinh độ</label><input class="form-control" name="Longitude" id="Longitude" type="number" step="any" min="-180" max="180" value="@Model.Longitude?.ToString(System.Globalization.CultureInfo.InvariantCulture)"/><span asp-validation-for="Longitude"></span></div></div><p class="help">Sửa tọa độ thủ công sẽ chuyển sang vị trí do bạn cung cấp.</p></details>
+ <label class="pl-confirm"><input asp-for="ConfirmLocation"/> Tôi xác nhận thông tin và ghim bản đồ chỉ đúng địa điểm/cơ sở này.</label><span asp-validation-for="ConfirmLocation"></span>
+ <p class="pl-map-status" data-map-status role="status"></p>
+</section>

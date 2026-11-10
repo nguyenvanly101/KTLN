@@ -1,0 +1,506 @@
+{
+  "passed": true,
+  "checks": 63,
+  "observations": [
+    {
+      "name": "SQL backup passed VERIFYONLY WITH CHECKSUM",
+      "passed": true
+    },
+    {
+      "name": "Application files and keys were backed up and archive counted",
+      "passed": true
+    },
+    {
+      "name": "BanCapNhatDichVu original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "BanCapNhatDichVu original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "DiaDiemDuLich original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "DiaDiemDuLich original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "HoatDongLichTrinh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "HoatDongLichTrinh original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "HoSoNguoiDung original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "HoSoNguoiDung original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "KeHoachChuyenDi original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "KeHoachChuyenDi original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "KetQuaCungCapDichVu original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "KetQuaCungCapDichVu original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "NhaCungCapDichVu original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "NhaCungCapDichVu original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "NhatKyThaoTac original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "NhatKyThaoTac original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "NhuCauDongHanh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "NhuCauDongHanh original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "PhuongAnXuLy original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "PhuongAnXuLy original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhXacMinh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhXacMinh original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "TaiKhoan original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "TaiKhoan original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuGiaiTrinh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuGiaiTrinh original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuXacMinh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuXacMinh original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongHoatDong original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongHoatDong original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongPhatSinh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongPhatSinh original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "ThoaThuanDongHanh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "ThoaThuanDongHanh original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "ThongBao original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "ThongBao original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "YeuCauDatDichVu original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "YeuCauDatDichVu original values and identifiers preserved (SHA-256)",
+      "passed": true
+    },
+    {
+      "name": "LuaChonDaLuu starts empty; test records were not copied",
+      "passed": true
+    },
+    {
+      "name": "MucChuanBi starts empty; test records were not copied",
+      "passed": true
+    },
+    {
+      "name": "KhoanChiChuyenDi starts empty; test records were not copied",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich.DiaChiPhucVu preserves unspecified historical data",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich.DonViGia preserves unspecified historical data",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich.ChinhSachHuy preserves unspecified historical data",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich.AnhJson preserves unspecified historical data",
+      "passed": true
+    },
+    {
+      "name": "BanCapNhatDichVu.DiaChiPhucVu preserves unspecified historical data",
+      "passed": true
+    },
+    {
+      "name": "BanCapNhatDichVu.DonViGia preserves unspecified historical data",
+      "passed": true
+    },
+    {
+      "name": "BanCapNhatDichVu.ChinhSachHuy preserves unspecified historical data",
+      "passed": true
+    },
+    {
+      "name": "BanCapNhatDichVu.AnhJson preserves unspecified historical data",
+      "passed": true
+    }
+  ],
+  "database": "HoTroDuLich",
+  "before": [
+    {
+      "name": "BanCapNhatDichVu",
+      "rows": 6,
+      "sha256": "00AEDBE18002E9B1F63B6B8670320A97EC80D20305DB6531B3385900A832BAE9"
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu",
+      "rows": 0
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh",
+      "rows": 1,
+      "sha256": "1EA1D7FC087561BCB906606FE5996631F95F2AB93BAC7A10B08DC057ACF89D61"
+    },
+    {
+      "name": "DiaDiemDuLich",
+      "rows": 3,
+      "sha256": "42C2829284DD6E26D803C48585AFD95ED23BCDBCC4A030D0D040D86BFAF348C2"
+    },
+    {
+      "name": "DichVuDuLich",
+      "rows": 6,
+      "sha256": "95A2B66DA322D1F22C71664BFDC39341186E3F8DF9FB90C0F874F24B7171625E"
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap",
+      "rows": 0
+    },
+    {
+      "name": "HoatDongLichTrinh",
+      "rows": 2,
+      "sha256": "7C3D320F2C190D6D96A8B611D41C189F7C6DE0E2A9D3173DBAFF914DF3B5DD9D"
+    },
+    {
+      "name": "HoSoNguoiDung",
+      "rows": 5,
+      "sha256": "E0039C5DFD8E4EEAFA0360A8FE448CC96C935A986D6537C937F0238D6B7C31EF"
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap",
+      "rows": 2,
+      "sha256": "B8CD3A4B51309A36EAA57BD0B5789F7AE3D67FF4A60839326A7A298C3406DEA9"
+    },
+    {
+      "name": "KeHoachChuyenDi",
+      "rows": 2,
+      "sha256": "D3EE5EEF26590B9760EBECF42AEF7744429E0AF57000ED47058716C66DCD6BC4"
+    },
+    {
+      "name": "KetQuaCungCapDichVu",
+      "rows": 0
+    },
+    {
+      "name": "NhaCungCapDichVu",
+      "rows": 2,
+      "sha256": "653700E962534B52CDF72C616DF375446211BD3DE073E03369E1DB13DA3F9A9B"
+    },
+    {
+      "name": "NhatKyThaoTac",
+      "rows": 46,
+      "sha256": "0D5411CB1E855ECB3798283773593BFC7911C83E10A5FF8F8322D2AD54533D58"
+    },
+    {
+      "name": "NhuCauDongHanh",
+      "rows": 1,
+      "sha256": "1CAB5CBEC2E90FE5BAF97746F5782DC605194C1CF3A78D3918D9CB448B244DD0"
+    },
+    {
+      "name": "PhuongAnXuLy",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhXacMinh",
+      "rows": 1,
+      "sha256": "224E691769D08577A6EFC59A552DD65C486C6A7F5EC57B39C93514D78A4E22F5"
+    },
+    {
+      "name": "TaiKhoan",
+      "rows": 5,
+      "sha256": "5CF05DE034C123FE266225ED72F008569E5A28C0EB5ED918D68D19307C3C311B"
+    },
+    {
+      "name": "TaiLieuGiaiTrinh",
+      "rows": 0
+    },
+    {
+      "name": "TaiLieuXacMinh",
+      "rows": 1,
+      "sha256": "1C43DFD6B91398E49C2E648F02FE3331E44FBA69DD08ED3BB6BC288D5B39B045"
+    },
+    {
+      "name": "TinhHuongHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "TinhHuongPhatSinh",
+      "rows": 1,
+      "sha256": "4842DFAFA98BAE26F782115BB51AD4A6097C0D698F7DE0D74D842C90877E699C"
+    },
+    {
+      "name": "ThoaThuanDongHanh",
+      "rows": 1,
+      "sha256": "5BE936EDEC74592FF7CBA46F28B739D4E482E073C41C104751CE8E784B08DDCA"
+    },
+    {
+      "name": "ThongBao",
+      "rows": 7,
+      "sha256": "7FAF6E08AD0AD4AEE39F26268A2A75E9297DEB635B4A2BED9A788F1C91AEDF00"
+    },
+    {
+      "name": "YeuCauDatDichVu",
+      "rows": 0
+    }
+  ],
+  "after": [
+    {
+      "name": "BanCapNhatDichVu",
+      "rows": 6,
+      "sha256": "00AEDBE18002E9B1F63B6B8670320A97EC80D20305DB6531B3385900A832BAE9"
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu",
+      "rows": 0
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh",
+      "rows": 1,
+      "sha256": "1EA1D7FC087561BCB906606FE5996631F95F2AB93BAC7A10B08DC057ACF89D61"
+    },
+    {
+      "name": "DiaDiemDuLich",
+      "rows": 3,
+      "sha256": "42C2829284DD6E26D803C48585AFD95ED23BCDBCC4A030D0D040D86BFAF348C2"
+    },
+    {
+      "name": "DichVuDuLich",
+      "rows": 6,
+      "sha256": "95A2B66DA322D1F22C71664BFDC39341186E3F8DF9FB90C0F874F24B7171625E"
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap",
+      "rows": 0
+    },
+    {
+      "name": "HoatDongLichTrinh",
+      "rows": 2,
+      "sha256": "7C3D320F2C190D6D96A8B611D41C189F7C6DE0E2A9D3173DBAFF914DF3B5DD9D"
+    },
+    {
+      "name": "HoSoNguoiDung",
+      "rows": 5,
+      "sha256": "E0039C5DFD8E4EEAFA0360A8FE448CC96C935A986D6537C937F0238D6B7C31EF"
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap",
+      "rows": 2,
+      "sha256": "B8CD3A4B51309A36EAA57BD0B5789F7AE3D67FF4A60839326A7A298C3406DEA9"
+    },
+    {
+      "name": "KeHoachChuyenDi",
+      "rows": 2,
+      "sha256": "D3EE5EEF26590B9760EBECF42AEF7744429E0AF57000ED47058716C66DCD6BC4"
+    },
+    {
+      "name": "KetQuaCungCapDichVu",
+      "rows": 0
+    },
+    {
+      "name": "NhaCungCapDichVu",
+      "rows": 2,
+      "sha256": "653700E962534B52CDF72C616DF375446211BD3DE073E03369E1DB13DA3F9A9B"
+    },
+    {
+      "name": "NhatKyThaoTac",
+      "rows": 46,
+      "sha256": "0D5411CB1E855ECB3798283773593BFC7911C83E10A5FF8F8322D2AD54533D58"
+    },
+    {
+      "name": "NhuCauDongHanh",
+      "rows": 1,
+      "sha256": "1CAB5CBEC2E90FE5BAF97746F5782DC605194C1CF3A78D3918D9CB448B244DD0"
+    },
+    {
+      "name": "PhuongAnXuLy",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhXacMinh",
+      "rows": 1,
+      "sha256": "224E691769D08577A6EFC59A552DD65C486C6A7F5EC57B39C93514D78A4E22F5"
+    },
+    {
+      "name": "TaiKhoan",
+      "rows": 5,
+      "sha256": "5CF05DE034C123FE266225ED72F008569E5A28C0EB5ED918D68D19307C3C311B"
+    },
+    {
+      "name": "TaiLieuGiaiTrinh",
+      "rows": 0
+    },
+    {
+      "name": "TaiLieuXacMinh",
+      "rows": 1,
+      "sha256": "1C43DFD6B91398E49C2E648F02FE3331E44FBA69DD08ED3BB6BC288D5B39B045"
+    },
+    {
+      "name": "TinhHuongHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "TinhHuongPhatSinh",
+      "rows": 1,
+      "sha256": "4842DFAFA98BAE26F782115BB51AD4A6097C0D698F7DE0D74D842C90877E699C"
+    },
+    {
+      "name": "ThoaThuanDongHanh",
+      "rows": 1,
+      "sha256": "5BE936EDEC74592FF7CBA46F28B739D4E482E073C41C104751CE8E784B08DDCA"
+    },
+    {
+      "name": "ThongBao",
+      "rows": 7,
+      "sha256": "7FAF6E08AD0AD4AEE39F26268A2A75E9297DEB635B4A2BED9A788F1C91AEDF00"
+    },
+    {
+      "name": "YeuCauDatDichVu",
+      "rows": 0
+    }
+  ],
+  "backup": "D:\\KLTN\\preview\\backups\\HoTroDuLich_before_product_20261105_015725.bak",
+  "appBackup": {
+    "passed": true,
+    "path": "D:\\KLTN\\preview\\backups\\App_Data_before_product_20261105_021127.zip",
+    "files": 21,
+    "sha256": "36C3AF9D6D6F5836056BD13D8747A81BD6A233BE720C2D143E9593CDE4917319",
+    "date": "2026-11-05T02:11:27.3409490+07:00"
+  },
+  "date": "2026-11-04T19:13:09.672Z"
+}

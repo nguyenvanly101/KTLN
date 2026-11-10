@@ -1,0 +1,6 @@
+Processed 1000 pages for database 'HoTroDuLich_FullTextRestore_20261104', file 'HoTroDuLich' on file 1.
+Processed 1 pages for database 'HoTroDuLich_FullTextRestore_20261104', file 'HoTroDuLich_log' on file 1.
+RESTORE DATABASE successfully processed 1001 pages in 0.015 seconds (520.930 MB/sec).
+Processed 0 pages for database 'HoTroDuLich_FullTextRestore_20261104', file 'HoTroDuLich' on file 1.
+Processed 18 pages for database 'HoTroDuLich_FullTextRestore_20261104', file 'HoTroDuLich_log' on file 1.
+Timeout expired

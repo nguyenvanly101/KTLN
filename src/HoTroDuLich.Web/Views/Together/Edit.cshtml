@@ -1,0 +1,3 @@
+@model CompanionFormPage
+@{ViewData["Title"]=Model.Input.Id==0?"Tạo lời rủ đi cùng":"Chỉnh sửa nhóm";ViewBag.CompanionPlans=Model.Plans;}
+<div class="container-narrow together-page"><a class="back" href="@(Model.Input.Id>0?"/Together/Group/"+Model.Input.Id:"/Together/Mine")">← Không gian đồng hành</a><header class="product-heading"><div><span class="eyebrow">TỪ MỘT Ý TƯỞNG, THÀNH MỘT CUỘC GẶP</span><h1>@ViewData["Title"]</h1><p>Mô tả trải nghiệm và người bạn muốn cùng tham gia. Điểm hẹn cụ thể chỉ dành cho thành viên.</p></div></header><partial name="_Errors"/><form class="panel together-form" action="/Together/Edit" method="post">@Html.AntiForgeryToken()<partial name="_GroupForm" model="Model.Input"/></form></div>

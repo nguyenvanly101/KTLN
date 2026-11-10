@@ -1,0 +1,942 @@
+{
+  "passed": true,
+  "checks": 108,
+  "observations": [
+    {
+      "name": "Checklist completion persists",
+      "passed": true
+    },
+    {
+      "name": "Preparation validation focuses error and preserves inputs",
+      "passed": true
+    },
+    {
+      "name": "Error summary link focuses due field",
+      "passed": true
+    },
+    {
+      "name": "New preparation item saves through browser form",
+      "passed": true
+    },
+    {
+      "name": "Expense summary separates actual spending from estimates",
+      "passed": true
+    },
+    {
+      "name": "Browser-entered decimal is preserved in totals",
+      "passed": true
+    },
+    {
+      "name": "Expense edit retains exact amount and category",
+      "passed": true
+    },
+    {
+      "name": "Saved choices grouped under Explore menu",
+      "passed": true
+    },
+    {
+      "name": "Comparison gives feedback when nothing is selected",
+      "passed": true
+    },
+    {
+      "name": "Comparison renders both selected services",
+      "passed": true
+    },
+    {
+      "name": "Saved no horizontal overflow at 375",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 360,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 375
+      }
+    },
+    {
+      "name": "Saved heading and labels at 375",
+      "passed": true
+    },
+    {
+      "name": "Saved images load at 375",
+      "passed": true
+    },
+    {
+      "name": "Compare no horizontal overflow at 375",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 360,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 375
+      }
+    },
+    {
+      "name": "Compare heading and labels at 375",
+      "passed": true
+    },
+    {
+      "name": "Compare images load at 375",
+      "passed": true
+    },
+    {
+      "name": "Preparation no horizontal overflow at 375",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 360,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 375
+      }
+    },
+    {
+      "name": "Preparation heading and labels at 375",
+      "passed": true
+    },
+    {
+      "name": "Preparation images load at 375",
+      "passed": true
+    },
+    {
+      "name": "Expenses no horizontal overflow at 375",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 360,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 375
+      }
+    },
+    {
+      "name": "Expenses heading and labels at 375",
+      "passed": true
+    },
+    {
+      "name": "Expenses images load at 375",
+      "passed": true
+    },
+    {
+      "name": "Trip no horizontal overflow at 375",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 360,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 375
+      }
+    },
+    {
+      "name": "Trip heading and labels at 375",
+      "passed": true
+    },
+    {
+      "name": "Trip images load at 375",
+      "passed": true
+    },
+    {
+      "name": "Saved no horizontal overflow at 768",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 753,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 768
+      }
+    },
+    {
+      "name": "Saved heading and labels at 768",
+      "passed": true
+    },
+    {
+      "name": "Saved images load at 768",
+      "passed": true
+    },
+    {
+      "name": "Compare no horizontal overflow at 768",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 753,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 768
+      }
+    },
+    {
+      "name": "Compare heading and labels at 768",
+      "passed": true
+    },
+    {
+      "name": "Compare images load at 768",
+      "passed": true
+    },
+    {
+      "name": "Preparation no horizontal overflow at 768",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 753,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 768
+      }
+    },
+    {
+      "name": "Preparation heading and labels at 768",
+      "passed": true
+    },
+    {
+      "name": "Preparation images load at 768",
+      "passed": true
+    },
+    {
+      "name": "Expenses no horizontal overflow at 768",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 753,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 768
+      }
+    },
+    {
+      "name": "Expenses heading and labels at 768",
+      "passed": true
+    },
+    {
+      "name": "Expenses images load at 768",
+      "passed": true
+    },
+    {
+      "name": "Trip no horizontal overflow at 768",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 753,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 768
+      }
+    },
+    {
+      "name": "Trip heading and labels at 768",
+      "passed": true
+    },
+    {
+      "name": "Trip images load at 768",
+      "passed": true
+    },
+    {
+      "name": "Saved no horizontal overflow at 1024",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 1009,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 1024
+      }
+    },
+    {
+      "name": "Saved heading and labels at 1024",
+      "passed": true
+    },
+    {
+      "name": "Saved images load at 1024",
+      "passed": true
+    },
+    {
+      "name": "Compare no horizontal overflow at 1024",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 1009,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 1024
+      }
+    },
+    {
+      "name": "Compare heading and labels at 1024",
+      "passed": true
+    },
+    {
+      "name": "Compare images load at 1024",
+      "passed": true
+    },
+    {
+      "name": "Preparation no horizontal overflow at 1024",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 1009,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 1024
+      }
+    },
+    {
+      "name": "Preparation heading and labels at 1024",
+      "passed": true
+    },
+    {
+      "name": "Preparation images load at 1024",
+      "passed": true
+    },
+    {
+      "name": "Expenses no horizontal overflow at 1024",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 1009,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 1024
+      }
+    },
+    {
+      "name": "Expenses heading and labels at 1024",
+      "passed": true
+    },
+    {
+      "name": "Expenses images load at 1024",
+      "passed": true
+    },
+    {
+      "name": "Trip no horizontal overflow at 1024",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 1009,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 1024
+      }
+    },
+    {
+      "name": "Trip heading and labels at 1024",
+      "passed": true
+    },
+    {
+      "name": "Trip images load at 1024",
+      "passed": true
+    },
+    {
+      "name": "Saved no horizontal overflow at 1280",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 1265,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 1280
+      }
+    },
+    {
+      "name": "Saved heading and labels at 1280",
+      "passed": true
+    },
+    {
+      "name": "Saved images load at 1280",
+      "passed": true
+    },
+    {
+      "name": "Compare no horizontal overflow at 1280",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 1265,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 1280
+      }
+    },
+    {
+      "name": "Compare heading and labels at 1280",
+      "passed": true
+    },
+    {
+      "name": "Compare images load at 1280",
+      "passed": true
+    },
+    {
+      "name": "Preparation no horizontal overflow at 1280",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 1265,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 1280
+      }
+    },
+    {
+      "name": "Preparation heading and labels at 1280",
+      "passed": true
+    },
+    {
+      "name": "Preparation images load at 1280",
+      "passed": true
+    },
+    {
+      "name": "Expenses no horizontal overflow at 1280",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 1265,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 1280
+      }
+    },
+    {
+      "name": "Expenses heading and labels at 1280",
+      "passed": true
+    },
+    {
+      "name": "Expenses images load at 1280",
+      "passed": true
+    },
+    {
+      "name": "Trip no horizontal overflow at 1280",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 1265,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 1280
+      }
+    },
+    {
+      "name": "Trip heading and labels at 1280",
+      "passed": true
+    },
+    {
+      "name": "Trip images load at 1280",
+      "passed": true
+    },
+    {
+      "name": "Saved no horizontal overflow at 812",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 797,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 812
+      }
+    },
+    {
+      "name": "Saved heading and labels at 812",
+      "passed": true
+    },
+    {
+      "name": "Saved images load at 812",
+      "passed": true
+    },
+    {
+      "name": "Compare no horizontal overflow at 812",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 797,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 812
+      }
+    },
+    {
+      "name": "Compare heading and labels at 812",
+      "passed": true
+    },
+    {
+      "name": "Compare images load at 812",
+      "passed": true
+    },
+    {
+      "name": "Preparation no horizontal overflow at 812",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 797,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 812
+      }
+    },
+    {
+      "name": "Preparation heading and labels at 812",
+      "passed": true
+    },
+    {
+      "name": "Preparation images load at 812",
+      "passed": true
+    },
+    {
+      "name": "Expenses no horizontal overflow at 812",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 797,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 812
+      }
+    },
+    {
+      "name": "Expenses heading and labels at 812",
+      "passed": true
+    },
+    {
+      "name": "Expenses images load at 812",
+      "passed": true
+    },
+    {
+      "name": "Trip no horizontal overflow at 812",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 797,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 812
+      }
+    },
+    {
+      "name": "Trip heading and labels at 812",
+      "passed": true
+    },
+    {
+      "name": "Trip images load at 812",
+      "passed": true
+    },
+    {
+      "name": "No browser console warnings or errors in reviewed flows",
+      "passed": true
+    },
+    {
+      "name": "Provider creates draft through normal multipart form",
+      "passed": true
+    },
+    {
+      "name": "Provider draft preserves added information",
+      "passed": true
+    },
+    {
+      "name": "ProviderEdit no overflow at 375",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 360,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 375
+      }
+    },
+    {
+      "name": "ProviderEdit heading and labels at 375",
+      "passed": true
+    },
+    {
+      "name": "ProviderEdit images load at 375",
+      "passed": true
+    },
+    {
+      "name": "ProviderList no overflow at 375",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 360,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 375
+      }
+    },
+    {
+      "name": "ProviderList heading and labels at 375",
+      "passed": true
+    },
+    {
+      "name": "ProviderList images load at 375",
+      "passed": true
+    },
+    {
+      "name": "ProviderEdit no overflow at 768",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 753,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 768
+      }
+    },
+    {
+      "name": "ProviderEdit heading and labels at 768",
+      "passed": true
+    },
+    {
+      "name": "ProviderEdit images load at 768",
+      "passed": true
+    },
+    {
+      "name": "ProviderList no overflow at 768",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 753,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 768
+      }
+    },
+    {
+      "name": "ProviderList heading and labels at 768",
+      "passed": true
+    },
+    {
+      "name": "ProviderList images load at 768",
+      "passed": true
+    },
+    {
+      "name": "ProviderEdit no overflow at 1280",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 1265,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 1280
+      }
+    },
+    {
+      "name": "ProviderEdit heading and labels at 1280",
+      "passed": true
+    },
+    {
+      "name": "ProviderEdit images load at 1280",
+      "passed": true
+    },
+    {
+      "name": "ProviderList no overflow at 1280",
+      "passed": true,
+      "detail": {
+        "brokenImages": [],
+        "documentWidth": 1265,
+        "h1": 1,
+        "missingLabels": [],
+        "width": 1280
+      }
+    },
+    {
+      "name": "ProviderList heading and labels at 1280",
+      "passed": true
+    },
+    {
+      "name": "ProviderList images load at 1280",
+      "passed": true
+    },
+    {
+      "name": "Provider flows have no console warnings or errors",
+      "passed": true
+    },
+    {
+      "name": "Editing provider draft preserves exact price and new fields",
+      "passed": true
+    }
+  ],
+  "responsive": [
+    {
+      "page": "Saved",
+      "width": 375,
+      "height": 812,
+      "brokenImages": [],
+      "documentWidth": 360,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Compare",
+      "width": 375,
+      "height": 812,
+      "brokenImages": [],
+      "documentWidth": 360,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Preparation",
+      "width": 375,
+      "height": 812,
+      "brokenImages": [],
+      "documentWidth": 360,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Expenses",
+      "width": 375,
+      "height": 812,
+      "brokenImages": [],
+      "documentWidth": 360,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Trip",
+      "width": 375,
+      "height": 812,
+      "brokenImages": [],
+      "documentWidth": 360,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Saved",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": [],
+      "documentWidth": 753,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Compare",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": [],
+      "documentWidth": 753,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Preparation",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": [],
+      "documentWidth": 753,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Expenses",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": [],
+      "documentWidth": 753,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Trip",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": [],
+      "documentWidth": 753,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Saved",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": [],
+      "documentWidth": 1009,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Compare",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": [],
+      "documentWidth": 1009,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Preparation",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": [],
+      "documentWidth": 1009,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Expenses",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": [],
+      "documentWidth": 1009,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Trip",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": [],
+      "documentWidth": 1009,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Saved",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": [],
+      "documentWidth": 1265,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Compare",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": [],
+      "documentWidth": 1265,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Preparation",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": [],
+      "documentWidth": 1265,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Expenses",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": [],
+      "documentWidth": 1265,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Trip",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": [],
+      "documentWidth": 1265,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Saved",
+      "width": 812,
+      "height": 375,
+      "brokenImages": [],
+      "documentWidth": 797,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Compare",
+      "width": 812,
+      "height": 375,
+      "brokenImages": [],
+      "documentWidth": 797,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Preparation",
+      "width": 812,
+      "height": 375,
+      "brokenImages": [],
+      "documentWidth": 797,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Expenses",
+      "width": 812,
+      "height": 375,
+      "brokenImages": [],
+      "documentWidth": 797,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "Trip",
+      "width": 812,
+      "height": 375,
+      "brokenImages": [],
+      "documentWidth": 797,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "ProviderEdit",
+      "width": 375,
+      "height": 812,
+      "brokenImages": [],
+      "documentWidth": 360,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "ProviderList",
+      "width": 375,
+      "height": 812,
+      "brokenImages": [],
+      "documentWidth": 360,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "ProviderEdit",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": [],
+      "documentWidth": 753,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "ProviderList",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": [],
+      "documentWidth": 753,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "ProviderEdit",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": [],
+      "documentWidth": 1265,
+      "h1": 1,
+      "missingLabels": []
+    },
+    {
+      "page": "ProviderList",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": [],
+      "documentWidth": 1265,
+      "h1": 1,
+      "missingLabels": []
+    }
+  ],
+  "console": [],
+  "database": "HoTroDuLich_Product_20261105",
+  "base": "http://127.0.0.1:5221",
+  "demoPlan": 4,
+  "demoService": 11,
+  "date": "2026-11-04T19:19:11.363Z"
+}

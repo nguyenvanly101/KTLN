@@ -1,0 +1,228 @@
+{
+  "passed": true,
+  "checks": 54,
+  "observations": [
+    {
+      "name": "Home opens current place search: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Current place search opens from home",
+      "passed": true
+    },
+    {
+      "name": "Public information catalog: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Information catalog and map render",
+      "passed": true
+    },
+    {
+      "name": "Accent-insensitive search: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Reject inverted prices: 400 ",
+      "passed": true
+    },
+    {
+      "name": "Reject unknown feature: 400 ",
+      "passed": true
+    },
+    {
+      "name": "Reject invalid coordinates: 400 ",
+      "passed": true
+    },
+    {
+      "name": "Reject inverted viewport: 400 ",
+      "passed": true
+    },
+    {
+      "name": "Anonymous cannot manage: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Traveler cannot manage catalog: 403 ",
+      "passed": true
+    },
+    {
+      "name": "Admin authoring: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Publish sourced place: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Created entry id",
+      "passed": true
+    },
+    {
+      "name": "Published entry public: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Source and unknown distinctions",
+      "passed": true
+    },
+    {
+      "name": "Vietnamese accent-insensitive result: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Matching name found",
+      "passed": true
+    },
+    {
+      "name": "Unknown excluded from confirmed feature filter: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Unknown accessibility is not Yes",
+      "passed": true
+    },
+    {
+      "name": "Known feature: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Indoor result included",
+      "passed": true
+    },
+    {
+      "name": "Map dataset: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Map linked to search",
+      "passed": true
+    },
+    {
+      "name": "Map omits internal metadata",
+      "passed": true
+    },
+    {
+      "name": "Closed at requested time: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Hours filter excludes closed entry",
+      "passed": true
+    },
+    {
+      "name": "Ask specific question: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Question retry idempotent: 302 ",
+      "passed": true
+    },
+    {
+      "name": "One question after retry",
+      "passed": true
+    },
+    {
+      "name": "Pending question private",
+      "passed": true
+    },
+    {
+      "name": "Admin answers with source: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Published answer public",
+      "passed": true
+    },
+    {
+      "name": "Submit contextual experience: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Pending experience private",
+      "passed": true
+    },
+    {
+      "name": "Moderate experience: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Experience found by topic",
+      "passed": true
+    },
+    {
+      "name": "Follow content: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Report wrong info: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Cannot resolve unaccepted report: 409 ",
+      "passed": true
+    },
+    {
+      "name": "Actual acceptance: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Record report outcome: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Versioned content update: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Follower gets relevant change",
+      "passed": true
+    },
+    {
+      "name": "Reject stale edit: 409 ",
+      "passed": true
+    },
+    {
+      "name": "Create private collection: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Save information in collection: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Other user cannot write collection: 404 ",
+      "passed": true
+    },
+    {
+      "name": "Other user cannot read collection",
+      "passed": true
+    },
+    {
+      "name": "Route requires antiforgery: 400 ",
+      "passed": true
+    },
+    {
+      "name": "Invalid routing coordinates rejected before external call",
+      "passed": true
+    },
+    {
+      "name": "Original FullText search still available: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Trip list regression: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Provider regression: 200 ",
+      "passed": true
+    }
+  ],
+  "fixtures": {
+    "entryId": 28,
+    "seed": "DISCOVERY 902435d3"
+  },
+  "database": "HoTroDuLich_Branches_Audit_20261109054153",
+  "date": "2026-11-09T10:54:41.907Z"
+}

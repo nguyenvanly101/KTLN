@@ -1,0 +1,113 @@
+{
+  "passed": true,
+  "checks": 18,
+  "modes": [
+    {
+      "command": ".\\start.ps1",
+      "passed": true,
+      "observations": [
+        {
+          "path": "/",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "path": "/Availability?serviceId=1",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "path": "/Reviews/Service/1",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "path": "/Journey/Today?planId=1",
+          "status": 302,
+          "expected": 302,
+          "passed": true
+        },
+        {
+          "path": "/Journey/Share?planId=1",
+          "status": 302,
+          "expected": 302,
+          "passed": true
+        },
+        {
+          "path": "/css/journey-features.css",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "path": "/js/journey-features.js",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "command": ".\\start.ps1 -Dev",
+      "passed": true,
+      "observations": [
+        {
+          "path": "/",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "path": "/Availability?serviceId=1",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "path": "/Reviews/Service/1",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "path": "/Journey/Today?planId=1",
+          "status": 302,
+          "expected": 302,
+          "passed": true
+        },
+        {
+          "path": "/Journey/Share?planId=1",
+          "status": 302,
+          "expected": 302,
+          "passed": true
+        },
+        {
+          "path": "/css/journey-features.css",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "path": "/js/journey-features.js",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "date": "2026-11-05T02:08:06.824Z",
+  "cleanup": {
+    "agentServersStopped": true,
+    "testPort5222Free": true,
+    "userMainServerPreserved": true,
+    "mainProcessId": 15436,
+    "mainProcessStarted": "2026-11-05T13:34:11+07:00",
+    "liveHomeAndCalendarHttp200": true,
+    "activeSqlPipeReachable": true,
+    "localDbInfoObservation": "Công cụ info báo Stopped nhưng SQL process/pipe đang hoạt động; không thay đổi hay khởi động lại instance."
+  }
+}

@@ -1,0 +1,167 @@
+[
+  {
+    "method": "GET",
+    "action": "Mine",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "GET",
+    "action": "Thread",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "GET",
+    "action": "Profile",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Profile",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "GET",
+    "action": "Edit",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Edit",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "GET",
+    "action": "Group",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "State",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Join",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Invite",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Member",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Attendance",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Block",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Message",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Read",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "HideMessage",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Poll",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Vote",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "ClosePoll",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Activity",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "CancelActivity",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Task",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "TaskAction",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Expense",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "CancelExpense",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Payment",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "PaymentAction",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "GET",
+    "action": "Report",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "POST",
+    "action": "Report",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "GET",
+    "action": "Reports",
+    "role": "KHACH_DU_LICH"
+  },
+  {
+    "method": "GET",
+    "action": "Moderation",
+    "role": "QUAN_TRI_VIEN"
+  },
+  {
+    "method": "POST",
+    "action": "Moderate",
+    "role": "QUAN_TRI_VIEN"
+  },
+  {
+    "method": "POST",
+    "action": "Restore",
+    "role": "QUAN_TRI_VIEN"
+  }
+]

@@ -1,0 +1,3 @@
+@if(ViewBag.TripPlan is KeHoachChuyenDi trip){
+ <div class="trip-context">@Ui.Icon("calendar")<span>Đang chọn trải nghiệm cho <strong>@trip.TenKeHoach</strong></span><a class="text-link" href="/Plans/Detail/@trip.MaKeHoach">Về chuyến đi @Ui.Icon("arrow")</a></div>
+}

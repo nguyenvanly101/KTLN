@@ -1,0 +1,88 @@
+{
+  "database": "HoTroDuLich",
+  "base": "http://localhost:5216",
+  "runs": [
+    {
+      "command": ".\\start.ps1",
+      "results": [
+        {
+          "route": "/",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "route": "/css/product-features.css",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "route": "/js/site.js",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "route": "/Saved",
+          "status": 302,
+          "expected": 302
+        },
+        {
+          "route": "/Preparation?planId=1",
+          "status": 302,
+          "expected": 302
+        },
+        {
+          "route": "/Expenses?planId=1",
+          "status": 302,
+          "expected": 302
+        },
+        {
+          "name": "Existing LocalDB instance remains Running",
+          "passed": true
+        }
+      ],
+      "date": "2026-11-04T19:14:44.591Z"
+    },
+    {
+      "command": ".\\start.ps1 -Dev",
+      "results": [
+        {
+          "route": "/",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "route": "/css/product-features.css",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "route": "/js/site.js",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "route": "/Saved",
+          "status": 302,
+          "expected": 302
+        },
+        {
+          "route": "/Preparation?planId=1",
+          "status": 302,
+          "expected": 302
+        },
+        {
+          "route": "/Expenses?planId=1",
+          "status": 302,
+          "expected": 302
+        },
+        {
+          "name": "Existing LocalDB instance remains Running",
+          "passed": true
+        }
+      ],
+      "date": "2026-11-04T19:15:14.611Z"
+    }
+  ],
+  "checks": 14,
+  "passed": true
+}

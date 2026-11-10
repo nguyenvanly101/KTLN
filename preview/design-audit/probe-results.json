@@ -1,0 +1,129 @@
+{
+  "date": "2026-11-04T04:15:06.637Z",
+  "base": "http://localhost:5218",
+  "database": "HoTroDuLich_Audit_20261104_Design",
+  "findings": [
+    {
+      "id": "PLAN_RESET",
+      "expected": "Nhap",
+      "actual": "DaChapNhan",
+      "evidence": {
+        "planId": "2"
+      }
+    },
+    {
+      "id": "PLAN_PAST",
+      "expected": "400",
+      "actual": 302,
+      "evidence": {
+        "location": "/Plans/Detail/3"
+      }
+    },
+    {
+      "id": "EXPIRED_NEED",
+      "expected": "not listed",
+      "actual": true,
+      "evidence": {}
+    },
+    {
+      "id": "AGREEMENT_PENDING_AFTER_WITHDRAW",
+      "expected": "replaced; cannot confirm",
+      "actual": true,
+      "evidence": {
+        "connId": "1",
+        "t1": "1",
+        "t2": "2"
+      }
+    },
+    {
+      "id": "AGREEMENT_REVIVE",
+      "expected": "rejected",
+      "actual": 302,
+      "evidence": {
+        "connId": "1"
+      }
+    },
+    {
+      "id": "AGREEMENT_NEW_AFTER_END",
+      "expected": "422",
+      "actual": 302,
+      "evidence": {
+        "connId": "1"
+      }
+    },
+    {
+      "id": "DEACTIVATE_PENDING_ONLY",
+      "expected": "pending proposal should be replaced; deactivation allowed",
+      "actual": 422,
+      "evidence": {
+        "message": "Còn thỏa thuận hoặc yêu cầu dịch vụ chưa hoàn tất"
+      }
+    },
+    {
+      "id": "PUBLIC_SEARCH_provider",
+      "expected": "200 per chapter 4",
+      "actual": 403,
+      "evidence": {}
+    },
+    {
+      "id": "PUBLIC_SEARCH_admin",
+      "expected": "200 per chapter 4",
+      "actual": 403,
+      "evidence": {}
+    },
+    {
+      "id": "ADMIN_PROFILE",
+      "expected": "200 per 4.9.18",
+      "actual": 403,
+      "evidence": {}
+    },
+    {
+      "id": "WEAK_PASSWORD",
+      "expected": "400",
+      "actual": 302,
+      "evidence": {}
+    },
+    {
+      "id": "PROVIDER_NO_DOCUMENTS",
+      "expected": "400",
+      "actual": 302,
+      "evidence": {}
+    },
+    {
+      "id": "PAUSE_NO_REASON",
+      "expected": "400",
+      "actual": 302,
+      "evidence": {}
+    },
+    {
+      "id": "MANUAL_RECEPTION",
+      "expected": "absent per BR06.01-5",
+      "actual": true,
+      "evidence": {}
+    },
+    {
+      "id": "PROFILE_DEFAULT",
+      "expected": "RiengTu",
+      "actual": "CongKhai",
+      "evidence": {}
+    },
+    {
+      "id": "CHANGE_ON_SERVICE_DAY",
+      "expected": "422",
+      "actual": 302,
+      "evidence": {
+        "bookingId": "1"
+      }
+    },
+    {
+      "id": "INVALID_FORM_PRESERVES_INPUT",
+      "expected": "400 with form and entered data",
+      "actual": {
+        "status": 400,
+        "hasForm": false,
+        "hasDestinationInput": false
+      },
+      "evidence": {}
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+@model List<DichVuDuLich>
+@{
+ ViewData["Title"]="Quản lý dịch vụ";
+ var p=(NhaCungCapDichVu)ViewBag.Provider;
+ var canSubmit=(bool)ViewBag.CanSubmit;
+}
+<div class="container-wide">
+ <section class="workspace-hero provider-hero" aria-labelledby="provider-title"><div><span class="eyebrow">ĐỐI TÁC / DỊCH VỤ DU LỊCH</span><h1 id="provider-title">Trải nghiệm tốt.<br/>Bắt đầu từ dịch vụ của bạn.</h1><p>@p.TenDonVi · Quản lý nội dung công bố và theo dõi tiếp nhận dịch vụ.</p>@if(canSubmit){<a class="btn btn-dark" href="/Provider/Edit">@Ui.Icon("plus") Thêm dịch vụ</a>}</div><span class="workspace-emblem" aria-hidden="true">@Ui.Icon("compass")</span></section>
+ <nav class="workspace-shortcuts" aria-label="Công việc của đối tác"><a href="/nha-cung-cap/co-so">@Ui.Icon("pin") Cơ sở & chi nhánh @Ui.Icon("arrow")</a><a href="/Bookings">@Ui.Icon("ticket") Yêu cầu của khách @Ui.Icon("arrow")</a><a href="/Provider/Verification">@Ui.Icon("shield") Hồ sơ xác minh @Ui.Icon("arrow")</a><a href="/Provider/Rights">@Ui.Icon("users") Quyền hoạt động @Ui.Icon("arrow")</a></nav>
+ <partial name="/Views/Branches/_SetupNotice.cshtml" model="Model"/><div class="provider-status-strip"><div>@Ui.Icon("shield")<span><small>Xác minh nhà cung cấp</small><strong>@Labels.Status(p.TrangThaiXacMinh.ToString())</strong></span></div><div>@Ui.Icon("check")<span><small>Quyền hoạt động</small><strong>@Labels.Status(p.TrangThaiQuyenHoatDong.ToString())</strong></span></div><a class="text-link" href="/Provider/Verification">Xem hồ sơ @Ui.Icon("arrow")</a></div>
+ <div class="stats compact-stats"><div class="stat">@Ui.Icon("grid")<small>Tất cả dịch vụ</small><strong>@Model.Count</strong></div><div class="stat">@Ui.Icon("compass")<small>Đang công bố</small><strong>@Model.Count(s=>s.TrangThaiCongBo.ToString()=="DaDuyet")</strong></div><div class="stat">@Ui.Icon("clock")<small>Chưa từng được duyệt</small><strong>@Model.Count(s=>s.PhienBanCongBo==null)</strong></div></div>
+ <div class="section-head"><div><h2 class="workspace-section-title">Danh mục dịch vụ của bạn</h2><p>Nội dung mới và bản cập nhật được công bố sau khi quản trị viên duyệt.</p></div></div>
+ @if(Model.Count==0){<div class="empty">@Ui.Icon("grid")<h3>Chưa có dịch vụ nào</h3><p>@(canSubmit?"Giới thiệu dịch vụ đầu tiên để khách bắt đầu khám phá.":"Hoàn tất xác minh nhà cung cấp để gửi dịch vụ đầu tiên.")</p><a class="btn btn-dark" href="@(canSubmit?"/Provider/Edit":"/Provider/Verification")">@(canSubmit?"Thêm dịch vụ":"Xem hồ sơ xác minh")</a></div>}
+ @foreach(var s in Model){
+  <div class="list-card managed-service"><div class="managed-service-main"><img class="managed-service-thumb" src="@Ui.ProviderImage(s)" alt="@Ui.ServiceImageLabel(s) · @s.TenDichVu" loading="lazy" width="196" height="176"/><div><span class="badge @Labels.Badge(s.TrangThaiCongBo.ToString())">@Labels.Status(s.TrangThaiCongBo.ToString())</span><h3>@s.TenDichVu</h3><p>@s.KhuVucPhucVu · @DanhMuc.Ten(s.LoaiDichVu) · @Labels.Money(s.GiaThamKhao)</p><span class="help">@Labels.Status(s.TrangThaiTiepNhan.ToString()) · Phiên bản công bố @(s.PhienBanCongBo?.ToString()??"chưa có")</span></div></div><div class="actions"><a class="btn btn-outline" href="/Availability/Manage?serviceId=@s.MaDichVu">Lịch phục vụ</a><a class="text-link" href="/Reviews/Partner?serviceId=@s.MaDichVu">Đánh giá</a><a href="/Provider/Edit/@s.MaDichVu" class="btn btn-outline">@(canSubmit?"Chỉnh sửa":"Xem lịch sử") @Ui.Icon("arrow")</a></div></div>
+ }
+</div>

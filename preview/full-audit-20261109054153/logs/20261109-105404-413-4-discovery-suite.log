@@ -1,0 +1,5 @@
+PASS 54 information-search checks
+PASS 29 contextual discovery checks
+PASS 27 edge/privacy checks
+PASS real OSRM route: 0.80 km, 36 geometry vertices, 1 detour candidates
+PASS final functional suite, shared authenticated sessions

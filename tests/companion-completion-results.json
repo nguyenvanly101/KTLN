@@ -1,0 +1,117 @@
+{
+  "passed": true,
+  "status": "complete",
+  "checks": 9113,
+  "note": "Assertion total includes independent suites and repeated schema/backup checks; not a count of unique requirements.",
+  "reports": [
+    {
+      "file": "tests/companion-rehearsal-results.json",
+      "checks": 70,
+      "date": "2026-11-05T11:17:39.300Z"
+    },
+    {
+      "file": "tests/companion-upgrade-results.json",
+      "checks": 169,
+      "date": "2026-11-05T17:07:28.487Z"
+    },
+    {
+      "file": "tests/companion-appdata-backup-results.json",
+      "checks": 22,
+      "date": "2026-11-05T17:05:33.3923758Z"
+    },
+    {
+      "file": "tests/companion-contract-results.json",
+      "checks": 2555,
+      "date": "2026-11-05T15:14:32.2864662Z"
+    },
+    {
+      "file": "tests/companion-schema-results.json",
+      "checks": 2422,
+      "date": "2026-11-05T15:11:17.176Z"
+    },
+    {
+      "file": "tests/companion-main-schema-results.json",
+      "checks": 2422,
+      "date": "2026-11-05T17:08:41.621Z"
+    },
+    {
+      "file": "tests/companion-features-results.json",
+      "checks": 158,
+      "date": "2026-11-05T15:10:08.387Z"
+    },
+    {
+      "file": "tests/companion-edge-results.json",
+      "checks": 166,
+      "date": "2026-11-05T15:16:26.769Z"
+    },
+    {
+      "file": "tests/companion-journey-regression-results.json",
+      "checks": 150,
+      "date": "2026-11-05T15:13:17.464Z"
+    },
+    {
+      "file": "tests/companion-product-regression-results.json",
+      "checks": 90,
+      "date": "2026-11-05T17:01:29.958Z"
+    },
+    {
+      "file": "tests/companion-trip-regression-results.json",
+      "checks": 82,
+      "date": "2026-11-05T17:02:57.395Z"
+    },
+    {
+      "file": "tests/companion-navigation-results.json",
+      "checks": 102,
+      "date": "2026-11-05T17:03:28.810Z"
+    },
+    {
+      "file": "tests/companion-smoke-results.json",
+      "checks": 41,
+      "date": "2026-11-05T17:05:43.005Z"
+    },
+    {
+      "file": "tests/companion-pages-results.json",
+      "checks": 222,
+      "date": "2026-11-05T17:03:20.592Z"
+    },
+    {
+      "file": "tests/companion-permissions-results.json",
+      "checks": 104,
+      "date": "2026-11-05T15:15:20.672Z"
+    },
+    {
+      "file": "tests/companion-browser-results.json",
+      "checks": 324,
+      "date": "2026-11-05T17:13:23.388Z"
+    },
+    {
+      "file": "tests/companion-startup-results.json",
+      "checks": 14
+    }
+  ],
+  "main": {
+    "url": "http://localhost:5216/Together",
+    "database": "HoTroDuLich",
+    "tables": 46,
+    "columns": 473,
+    "running": true,
+    "launch": "start.ps1",
+    "mode": "Development"
+  },
+  "testServerStopped": true,
+  "temporaryBrowserTabClosed": true,
+  "viewportReset": true,
+  "screenshots": [
+    "preview/companion-discovery-desktop.png",
+    "preview/companion-overview-desktop.png",
+    "preview/companion-chat-desktop.png",
+    "preview/companion-schedule-desktop.png",
+    "preview/companion-expenses-desktop.png",
+    "preview/companion-discovery-mobile.png",
+    "preview/companion-overview-mobile.png",
+    "preview/companion-expenses-mobile.png"
+  ],
+  "sqlBackup": "D:\\KLTN\\preview\\backups\\HoTroDuLich_before_companion_deploy_20261105_170532Z.bak",
+  "appDataBackup": "D:\\KLTN\\preview\\backups\\App_Data_before_companion_20261106_000533.zip",
+  "date": "2026-11-05T17:19:56.109Z"
+}

@@ -1,0 +1,1329 @@
+{
+  "tables": {
+    "DiscoveryEntry": {
+      "keys": [
+        "Id"
+      ],
+      "identity": "Id",
+      "columns": [
+        {
+          "name": "Id",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "Slug",
+          "sqlType": "varchar(160)",
+          "nullable": ""
+        },
+        {
+          "name": "Kind",
+          "sqlType": "varchar(25)",
+          "nullable": ""
+        },
+        {
+          "name": "ParentId",
+          "sqlType": "bigint",
+          "nullable": "x"
+        },
+        {
+          "name": "PlaceId",
+          "sqlType": "bigint",
+          "nullable": "x"
+        },
+        {
+          "name": "ServiceId",
+          "sqlType": "bigint",
+          "nullable": "x"
+        },
+        {
+          "name": "Title",
+          "sqlType": "nvarchar(200)",
+          "nullable": ""
+        },
+        {
+          "name": "Region",
+          "sqlType": "nvarchar(100)",
+          "nullable": ""
+        },
+        {
+          "name": "Summary",
+          "sqlType": "nvarchar(700)",
+          "nullable": ""
+        },
+        {
+          "name": "Body",
+          "sqlType": "nvarchar(max)",
+          "nullable": ""
+        },
+        {
+          "name": "Address",
+          "sqlType": "nvarchar(400)",
+          "nullable": "x"
+        },
+        {
+          "name": "Latitude",
+          "sqlType": "decimal(9,6)",
+          "nullable": "x"
+        },
+        {
+          "name": "Longitude",
+          "sqlType": "decimal(9,6)",
+          "nullable": "x"
+        },
+        {
+          "name": "LocationNote",
+          "sqlType": "nvarchar(300)",
+          "nullable": "x"
+        },
+        {
+          "name": "SourceName",
+          "sqlType": "nvarchar(200)",
+          "nullable": ""
+        },
+        {
+          "name": "SourceStamp",
+          "sqlType": "varchar(64)",
+          "nullable": "x"
+        },
+        {
+          "name": "SourceUrl",
+          "sqlType": "nvarchar(1000)",
+          "nullable": "x"
+        },
+        {
+          "name": "CheckedOn",
+          "sqlType": "date",
+          "nullable": "x"
+        },
+        {
+          "name": "ValidFrom",
+          "sqlType": "date",
+          "nullable": "x"
+        },
+        {
+          "name": "ValidTo",
+          "sqlType": "date",
+          "nullable": "x"
+        },
+        {
+          "name": "PriceFrom",
+          "sqlType": "decimal(18,2)",
+          "nullable": "x"
+        },
+        {
+          "name": "PriceTo",
+          "sqlType": "decimal(18,2)",
+          "nullable": "x"
+        },
+        {
+          "name": "PriceUnit",
+          "sqlType": "nvarchar(100)",
+          "nullable": "x"
+        },
+        {
+          "name": "Includes",
+          "sqlType": "nvarchar(1000)",
+          "nullable": "x"
+        },
+        {
+          "name": "Excludes",
+          "sqlType": "nvarchar(1000)",
+          "nullable": "x"
+        },
+        {
+          "name": "Hours",
+          "sqlType": "nvarchar(700)",
+          "nullable": "x"
+        },
+        {
+          "name": "OpenDays",
+          "sqlType": "varchar(7)",
+          "nullable": "x"
+        },
+        {
+          "name": "OpenTime",
+          "sqlType": "time(0)",
+          "nullable": "x"
+        },
+        {
+          "name": "CloseTime",
+          "sqlType": "time(0)",
+          "nullable": "x"
+        },
+        {
+          "name": "DurationMinutes",
+          "sqlType": "int",
+          "nullable": "x"
+        },
+        {
+          "name": "Tags",
+          "sqlType": "nvarchar(500)",
+          "nullable": ""
+        },
+        {
+          "name": "TransportMode",
+          "sqlType": "varchar(25)",
+          "nullable": "x"
+        },
+        {
+          "name": "Origin",
+          "sqlType": "nvarchar(200)",
+          "nullable": "x"
+        },
+        {
+          "name": "Destination",
+          "sqlType": "nvarchar(200)",
+          "nullable": "x"
+        },
+        {
+          "name": "Contact",
+          "sqlType": "nvarchar(300)",
+          "nullable": "x"
+        },
+        {
+          "name": "Status",
+          "sqlType": "varchar(20)",
+          "nullable": ""
+        },
+        {
+          "name": "CreatedBy",
+          "sqlType": "bigint",
+          "nullable": "x"
+        },
+        {
+          "name": "UpdatedBy",
+          "sqlType": "bigint",
+          "nullable": "x"
+        },
+        {
+          "name": "UpdatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "RowVersion",
+          "sqlType": "rowversion",
+          "nullable": ""
+        }
+      ],
+      "checks": {
+        "CK_DS_Kind": "Kind IN ('Destination','Area','Place','Service','Guide','Transport','Event','Amenity')",
+        "CK_DS_Link": "(PlaceId IS NULL OR ServiceId IS NULL) AND (PlaceId IS NULL OR Kind='Place') AND (ServiceId IS NULL OR Kind='Service')",
+        "CK_DS_Coord": "(Latitude IS NULL AND Longitude IS NULL) OR (Latitude IS NOT NULL AND Longitude IS NOT NULL AND Latitude BETWEEN -90 AND 90 AND Longitude BETWEEN -180 AND 180)",
+        "CK_DS_Price": "(PriceFrom IS NULL OR PriceFrom>=0) AND (PriceTo IS NULL OR PriceTo>=0) AND (PriceFrom IS NULL OR PriceTo IS NULL OR PriceTo>=PriceFrom)",
+        "CK_DS_Dates": "ValidFrom IS NULL OR ValidTo IS NULL OR ValidTo>=ValidFrom",
+        "CK_DS_Duration": "DurationMinutes IS NULL OR DurationMinutes BETWEEN 1 AND 1440",
+        "CK_DS_Status": "Status IN ('Draft','Published','Hidden')",
+        "CK_DS_Title": "LEN(LTRIM(RTRIM(Title)))>0",
+        "CK_DS_Self": "ParentId IS NULL OR ParentId<>Id",
+        "CK_DS_Hours": "(OpenTime IS NULL AND CloseTime IS NULL AND OpenDays IS NULL) OR (OpenTime IS NOT NULL AND CloseTime IS NOT NULL AND OpenDays IS NOT NULL AND LEN(OpenDays)>0 AND OpenDays NOT LIKE '%[^1234567]%')"
+      },
+      "fks": [
+        {
+          "columns": [
+            "ParentId"
+          ],
+          "table": "DiscoveryEntry",
+          "keys": [
+            "Id"
+          ]
+        },
+        {
+          "columns": [
+            "PlaceId"
+          ],
+          "table": "DiaDiemDuLich",
+          "keys": [
+            "MaDiaDiem"
+          ]
+        },
+        {
+          "columns": [
+            "ServiceId"
+          ],
+          "table": "DichVuDuLich",
+          "keys": [
+            "MaDichVu"
+          ]
+        },
+        {
+          "columns": [
+            "CreatedBy"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        },
+        {
+          "columns": [
+            "UpdatedBy"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        }
+      ],
+      "indexes": [
+        {
+          "name": "UX_DS_Slug",
+          "columns": [
+            "Slug"
+          ],
+          "unique": true,
+          "filter": null
+        },
+        {
+          "name": "UX_DS_Place",
+          "columns": [
+            "PlaceId"
+          ],
+          "unique": true,
+          "filter": "PlaceId IS NOT NULL"
+        },
+        {
+          "name": "UX_DS_Service",
+          "columns": [
+            "ServiceId"
+          ],
+          "unique": true,
+          "filter": "ServiceId IS NOT NULL"
+        },
+        {
+          "name": "IX_DS_Search",
+          "columns": [
+            "Status",
+            "Kind",
+            "Region"
+          ],
+          "unique": false,
+          "filter": null
+        },
+        {
+          "name": "IX_DS_Parent",
+          "columns": [
+            "ParentId",
+            "Status"
+          ],
+          "unique": false,
+          "filter": null
+        },
+        {
+          "name": "IX_DS_Dates",
+          "columns": [
+            "ValidFrom",
+            "ValidTo"
+          ],
+          "unique": false,
+          "filter": null
+        }
+      ]
+    },
+    "DiscoveryFeature": {
+      "keys": [
+        "EntryId",
+        "Code"
+      ],
+      "columns": [
+        {
+          "name": "EntryId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "Code",
+          "sqlType": "varchar(40)",
+          "nullable": ""
+        },
+        {
+          "name": "State",
+          "sqlType": "varchar(12)",
+          "nullable": ""
+        },
+        {
+          "name": "Note",
+          "sqlType": "nvarchar(500)",
+          "nullable": "x"
+        }
+      ],
+      "checks": {
+        "CK_DSF_State": "State IN ('Yes','No','Unknown')",
+        "CK_DSF_Code": "Code IN ('AccessibleEntrance','AccessibleRestroom','Parking','Seating','Children','Indoor','PublicTransport','BookingRequired','Luggage','Charging','FreeEntry','Vegetarian')"
+      },
+      "fks": [
+        {
+          "columns": [
+            "EntryId"
+          ],
+          "table": "DiscoveryEntry",
+          "keys": [
+            "Id"
+          ]
+        }
+      ]
+    },
+    "DiscoveryPrice": {
+      "keys": [
+        "Id"
+      ],
+      "identity": "Id",
+      "columns": [
+        {
+          "name": "Id",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "EntryId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "Label",
+          "sqlType": "nvarchar(100)",
+          "nullable": ""
+        },
+        {
+          "name": "Amount",
+          "sqlType": "decimal(18,2)",
+          "nullable": "x"
+        },
+        {
+          "name": "Unit",
+          "sqlType": "nvarchar(100)",
+          "nullable": ""
+        },
+        {
+          "name": "Conditions",
+          "sqlType": "nvarchar(1000)",
+          "nullable": ""
+        },
+        {
+          "name": "Included",
+          "sqlType": "nvarchar(1000)",
+          "nullable": ""
+        },
+        {
+          "name": "Extra",
+          "sqlType": "nvarchar(1000)",
+          "nullable": ""
+        },
+        {
+          "name": "Active",
+          "sqlType": "bit",
+          "nullable": ""
+        },
+        {
+          "name": "From",
+          "sqlType": "date",
+          "nullable": "x"
+        },
+        {
+          "name": "Until",
+          "sqlType": "date",
+          "nullable": "x"
+        }
+      ],
+      "checks": {
+        "CK_DSP_Amount": "Amount IS NULL OR Amount BETWEEN 0 AND 1000000000",
+        "CK_DSP_Dates": "[From] IS NULL OR Until IS NULL OR Until>=[From]"
+      },
+      "fks": [
+        {
+          "columns": [
+            "EntryId"
+          ],
+          "table": "DiscoveryEntry",
+          "keys": [
+            "Id"
+          ]
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_DSP_Entry",
+          "columns": [
+            "EntryId"
+          ],
+          "unique": false,
+          "filter": null
+        }
+      ]
+    },
+    "DiscoveryQuestion": {
+      "keys": [
+        "Id"
+      ],
+      "identity": "Id",
+      "columns": [
+        {
+          "name": "Id",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "EntryId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "OwnerId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "Question",
+          "sqlType": "nvarchar(1000)",
+          "nullable": ""
+        },
+        {
+          "name": "Answer",
+          "sqlType": "nvarchar(4000)",
+          "nullable": "x"
+        },
+        {
+          "name": "AnswerSource",
+          "sqlType": "nvarchar(1000)",
+          "nullable": "x"
+        },
+        {
+          "name": "AnsweredBy",
+          "sqlType": "bigint",
+          "nullable": "x"
+        },
+        {
+          "name": "AnsweredAt",
+          "sqlType": "datetime2(0)",
+          "nullable": "x"
+        },
+        {
+          "name": "Status",
+          "sqlType": "varchar(20)",
+          "nullable": ""
+        },
+        {
+          "name": "SubmissionId",
+          "sqlType": "uniqueidentifier",
+          "nullable": ""
+        },
+        {
+          "name": "CreatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "RowVersion",
+          "sqlType": "rowversion",
+          "nullable": ""
+        }
+      ],
+      "checks": {
+        "CK_DSQ_Status": "Status IN ('Pending','Answered','Hidden')",
+        "CK_DSQ_Answer": "Status<>'Answered' OR (Answer IS NOT NULL AND LEN(Answer)>0 AND AnsweredBy IS NOT NULL AND AnsweredAt IS NOT NULL)"
+      },
+      "fks": [
+        {
+          "columns": [
+            "EntryId"
+          ],
+          "table": "DiscoveryEntry",
+          "keys": [
+            "Id"
+          ]
+        },
+        {
+          "columns": [
+            "OwnerId"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        },
+        {
+          "columns": [
+            "AnsweredBy"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_DSQ_Entry",
+          "columns": [
+            "EntryId",
+            "Status"
+          ],
+          "unique": false,
+          "filter": null
+        },
+        {
+          "name": "UX_DSQ_Send",
+          "columns": [
+            "OwnerId",
+            "SubmissionId"
+          ],
+          "unique": true,
+          "filter": null
+        }
+      ]
+    },
+    "DiscoveryExperience": {
+      "keys": [
+        "Id"
+      ],
+      "identity": "Id",
+      "columns": [
+        {
+          "name": "Id",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "EntryId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "OwnerId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "Title",
+          "sqlType": "nvarchar(150)",
+          "nullable": ""
+        },
+        {
+          "name": "Body",
+          "sqlType": "nvarchar(2000)",
+          "nullable": ""
+        },
+        {
+          "name": "Topics",
+          "sqlType": "varchar(200)",
+          "nullable": ""
+        },
+        {
+          "name": "VisitedOn",
+          "sqlType": "date",
+          "nullable": ""
+        },
+        {
+          "name": "Rating",
+          "sqlType": "int",
+          "nullable": ""
+        },
+        {
+          "name": "Status",
+          "sqlType": "varchar(20)",
+          "nullable": ""
+        },
+        {
+          "name": "ModeratedBy",
+          "sqlType": "bigint",
+          "nullable": "x"
+        },
+        {
+          "name": "ModerationNote",
+          "sqlType": "nvarchar(500)",
+          "nullable": "x"
+        },
+        {
+          "name": "SubmissionId",
+          "sqlType": "uniqueidentifier",
+          "nullable": ""
+        },
+        {
+          "name": "CreatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "RowVersion",
+          "sqlType": "rowversion",
+          "nullable": ""
+        }
+      ],
+      "checks": {
+        "CK_DSE_Status": "Status IN ('Pending','Published','Hidden')",
+        "CK_DSE_Rating": "Rating BETWEEN 1 AND 5"
+      },
+      "fks": [
+        {
+          "columns": [
+            "EntryId"
+          ],
+          "table": "DiscoveryEntry",
+          "keys": [
+            "Id"
+          ]
+        },
+        {
+          "columns": [
+            "OwnerId"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        },
+        {
+          "columns": [
+            "ModeratedBy"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_DSE_Entry",
+          "columns": [
+            "EntryId",
+            "Status",
+            "VisitedOn"
+          ],
+          "unique": false,
+          "filter": null
+        },
+        {
+          "name": "UX_DSE_Send",
+          "columns": [
+            "OwnerId",
+            "SubmissionId"
+          ],
+          "unique": true,
+          "filter": null
+        }
+      ]
+    },
+    "DiscoveryReport": {
+      "keys": [
+        "Id"
+      ],
+      "identity": "Id",
+      "columns": [
+        {
+          "name": "Id",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "EntryId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "OwnerId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "Category",
+          "sqlType": "varchar(30)",
+          "nullable": ""
+        },
+        {
+          "name": "Body",
+          "sqlType": "nvarchar(2000)",
+          "nullable": ""
+        },
+        {
+          "name": "EvidenceUrl",
+          "sqlType": "nvarchar(1000)",
+          "nullable": "x"
+        },
+        {
+          "name": "Status",
+          "sqlType": "varchar(20)",
+          "nullable": ""
+        },
+        {
+          "name": "Response",
+          "sqlType": "nvarchar(1000)",
+          "nullable": "x"
+        },
+        {
+          "name": "HandledBy",
+          "sqlType": "bigint",
+          "nullable": "x"
+        },
+        {
+          "name": "SubmissionId",
+          "sqlType": "uniqueidentifier",
+          "nullable": ""
+        },
+        {
+          "name": "CreatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "RowVersion",
+          "sqlType": "rowversion",
+          "nullable": ""
+        }
+      ],
+      "checks": {
+        "CK_DSR_Status": "Status IN ('Pending','Checking','Resolved','Rejected')",
+        "CK_DSR_Category": "Category IN ('Price','Hours','Address','Accessibility','Closed','Content','Other')",
+        "CK_DSR_Response": "Status NOT IN ('Resolved','Rejected') OR (Response IS NOT NULL AND HandledBy IS NOT NULL)"
+      },
+      "fks": [
+        {
+          "columns": [
+            "EntryId"
+          ],
+          "table": "DiscoveryEntry",
+          "keys": [
+            "Id"
+          ]
+        },
+        {
+          "columns": [
+            "OwnerId"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        },
+        {
+          "columns": [
+            "HandledBy"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_DSR_Status",
+          "columns": [
+            "Status",
+            "CreatedAt"
+          ],
+          "unique": false,
+          "filter": null
+        },
+        {
+          "name": "UX_DSR_Send",
+          "columns": [
+            "OwnerId",
+            "SubmissionId"
+          ],
+          "unique": true,
+          "filter": null
+        }
+      ]
+    },
+    "DiscoveryFollow": {
+      "keys": [
+        "EntryId",
+        "OwnerId"
+      ],
+      "columns": [
+        {
+          "name": "EntryId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "OwnerId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "Active",
+          "sqlType": "bit",
+          "nullable": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "RowVersion",
+          "sqlType": "rowversion",
+          "nullable": ""
+        }
+      ],
+      "fks": [
+        {
+          "columns": [
+            "EntryId"
+          ],
+          "table": "DiscoveryEntry",
+          "keys": [
+            "Id"
+          ]
+        },
+        {
+          "columns": [
+            "OwnerId"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_DSF_Owner",
+          "columns": [
+            "OwnerId",
+            "Active"
+          ],
+          "unique": false,
+          "filter": null
+        }
+      ]
+    },
+    "DiscoveryRevision": {
+      "keys": [
+        "Id"
+      ],
+      "identity": "Id",
+      "columns": [
+        {
+          "name": "Id",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "EntryId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "ActorId",
+          "sqlType": "bigint",
+          "nullable": "x"
+        },
+        {
+          "name": "BeforeJson",
+          "sqlType": "nvarchar(max)",
+          "nullable": ""
+        },
+        {
+          "name": "AfterJson",
+          "sqlType": "nvarchar(max)",
+          "nullable": ""
+        },
+        {
+          "name": "Summary",
+          "sqlType": "nvarchar(500)",
+          "nullable": ""
+        },
+        {
+          "name": "Public",
+          "sqlType": "bit",
+          "nullable": ""
+        },
+        {
+          "name": "CreatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        }
+      ],
+      "fks": [
+        {
+          "columns": [
+            "EntryId"
+          ],
+          "table": "DiscoveryEntry",
+          "keys": [
+            "Id"
+          ]
+        },
+        {
+          "columns": [
+            "ActorId"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_DSRevision_Entry",
+          "columns": [
+            "EntryId",
+            "Id"
+          ],
+          "unique": false,
+          "filter": null
+        }
+      ]
+    },
+    "DiscoveryProposal": {
+      "keys": [
+        "Id"
+      ],
+      "identity": "Id",
+      "columns": [
+        {
+          "name": "Id",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "EntryId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "OwnerId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "BaseVersion",
+          "sqlType": "varchar(20)",
+          "nullable": ""
+        },
+        {
+          "name": "Payload",
+          "sqlType": "nvarchar(max)",
+          "nullable": ""
+        },
+        {
+          "name": "Status",
+          "sqlType": "varchar(20)",
+          "nullable": ""
+        },
+        {
+          "name": "Reason",
+          "sqlType": "nvarchar(500)",
+          "nullable": "x"
+        },
+        {
+          "name": "ReviewedBy",
+          "sqlType": "bigint",
+          "nullable": "x"
+        },
+        {
+          "name": "SubmissionId",
+          "sqlType": "uniqueidentifier",
+          "nullable": ""
+        },
+        {
+          "name": "CreatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "RowVersion",
+          "sqlType": "rowversion",
+          "nullable": ""
+        }
+      ],
+      "checks": {
+        "CK_DSProposal_Status": "Status IN ('Pending','Accepted','Rejected')"
+      },
+      "fks": [
+        {
+          "columns": [
+            "EntryId"
+          ],
+          "table": "DiscoveryEntry",
+          "keys": [
+            "Id"
+          ]
+        },
+        {
+          "columns": [
+            "OwnerId"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        },
+        {
+          "columns": [
+            "ReviewedBy"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_DSProposal_Status",
+          "columns": [
+            "Status",
+            "CreatedAt"
+          ],
+          "unique": false,
+          "filter": null
+        },
+        {
+          "name": "UX_DSProposal_Send",
+          "columns": [
+            "OwnerId",
+            "SubmissionId"
+          ],
+          "unique": true,
+          "filter": null
+        }
+      ]
+    },
+    "DiscoveryCollection": {
+      "keys": [
+        "Id"
+      ],
+      "identity": "Id",
+      "columns": [
+        {
+          "name": "Id",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "OwnerId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "Name",
+          "sqlType": "nvarchar(100)",
+          "nullable": ""
+        },
+        {
+          "name": "Note",
+          "sqlType": "nvarchar(500)",
+          "nullable": "x"
+        },
+        {
+          "name": "Archived",
+          "sqlType": "bit",
+          "nullable": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "RowVersion",
+          "sqlType": "rowversion",
+          "nullable": ""
+        }
+      ],
+      "fks": [
+        {
+          "columns": [
+            "OwnerId"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_DSCollection_Owner",
+          "columns": [
+            "OwnerId",
+            "Archived"
+          ],
+          "unique": false,
+          "filter": null
+        }
+      ]
+    },
+    "DiscoveryCollectionItem": {
+      "keys": [
+        "CollectionId",
+        "EntryId"
+      ],
+      "columns": [
+        {
+          "name": "CollectionId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "EntryId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "Note",
+          "sqlType": "nvarchar(500)",
+          "nullable": "x"
+        },
+        {
+          "name": "Removed",
+          "sqlType": "bit",
+          "nullable": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "RowVersion",
+          "sqlType": "rowversion",
+          "nullable": ""
+        }
+      ],
+      "fks": [
+        {
+          "columns": [
+            "CollectionId"
+          ],
+          "table": "DiscoveryCollection",
+          "keys": [
+            "Id"
+          ]
+        },
+        {
+          "columns": [
+            "EntryId"
+          ],
+          "table": "DiscoveryEntry",
+          "keys": [
+            "Id"
+          ]
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_DSCollectionItem_Entry",
+          "columns": [
+            "EntryId"
+          ],
+          "unique": false,
+          "filter": null
+        }
+      ]
+    },
+    "DiscoveryRoute": {
+      "keys": [
+        "Id"
+      ],
+      "identity": "Id",
+      "columns": [
+        {
+          "name": "Id",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "OwnerId",
+          "sqlType": "bigint",
+          "nullable": ""
+        },
+        {
+          "name": "Name",
+          "sqlType": "nvarchar(100)",
+          "nullable": ""
+        },
+        {
+          "name": "PointsJson",
+          "sqlType": "nvarchar(2000)",
+          "nullable": ""
+        },
+        {
+          "name": "Mode",
+          "sqlType": "varchar(12)",
+          "nullable": ""
+        },
+        {
+          "name": "Archived",
+          "sqlType": "bit",
+          "nullable": ""
+        },
+        {
+          "name": "SubmissionId",
+          "sqlType": "uniqueidentifier",
+          "nullable": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "sqlType": "datetime2(0)",
+          "nullable": ""
+        },
+        {
+          "name": "RowVersion",
+          "sqlType": "rowversion",
+          "nullable": ""
+        }
+      ],
+      "checks": {
+        "CK_DSRoute_Mode": "Mode IN ('car','foot','bike')"
+      },
+      "fks": [
+        {
+          "columns": [
+            "OwnerId"
+          ],
+          "table": "TaiKhoan",
+          "keys": [
+            "MaTaiKhoan"
+          ]
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_DSRoute_Owner",
+          "columns": [
+            "OwnerId",
+            "Archived"
+          ],
+          "unique": false,
+          "filter": null
+        },
+        {
+          "name": "UX_DSRoute_Send",
+          "columns": [
+            "OwnerId",
+            "SubmissionId"
+          ],
+          "unique": true,
+          "filter": null
+        }
+      ]
+    }
+  }
+}

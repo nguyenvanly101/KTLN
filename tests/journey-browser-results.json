@@ -1,0 +1,1316 @@
+{
+  "passed": true,
+  "checks": 174,
+  "observations": [
+    {
+      "name": "Create clean demo trip through normal form",
+      "passed": true
+    },
+    {
+      "name": "Activity timing saves through browser form",
+      "passed": true
+    },
+    {
+      "name": "Activity form opens for Một bữa trưa giữa phố núi",
+      "passed": true
+    },
+    {
+      "name": "Added timed activity Một bữa trưa giữa phố núi",
+      "passed": true
+    },
+    {
+      "name": "Activity form opens for Nhận phòng giữa thung lũng",
+      "passed": true
+    },
+    {
+      "name": "Added timed activity Nhận phòng giữa thung lũng",
+      "passed": true
+    },
+    {
+      "name": "Today completion persists through real form",
+      "passed": true
+    },
+    {
+      "name": "Next activity updates after completing a stop",
+      "passed": true
+    },
+    {
+      "name": "Sharing defaults exclude budget and service requests",
+      "passed": true
+    },
+    {
+      "name": "Share confirmation is required in real form",
+      "passed": true
+    },
+    {
+      "name": "Share validation focuses error summary",
+      "passed": true
+    },
+    {
+      "name": "Normal share form creates a usable snapshot link",
+      "passed": true
+    },
+    {
+      "name": "Copy link provides success or usable fallback",
+      "passed": true
+    },
+    {
+      "name": "Public snapshot excludes unchecked budget",
+      "passed": true
+    },
+    {
+      "name": "Shared snapshot exposes print/PDF action",
+      "passed": true
+    },
+    {
+      "name": "Reviews live inside booking workspace tabs",
+      "passed": true
+    },
+    {
+      "name": "Existing review rating is prefilled",
+      "passed": true
+    },
+    {
+      "name": "Review edit saves through browser form",
+      "passed": true
+    },
+    {
+      "name": "Calendar note saves through browser form",
+      "passed": true
+    },
+    {
+      "name": "Unchecked calendar checkbox persists closed and clears capacity",
+      "passed": true
+    },
+    {
+      "name": "Calendar reopening preserves capacity",
+      "passed": true
+    },
+    {
+      "name": "Provider reply saves through actual form",
+      "passed": true
+    },
+    {
+      "name": "Admin hide requires reason through real form",
+      "passed": true
+    },
+    {
+      "name": "Moderation error points to the correct row",
+      "passed": true
+    },
+    {
+      "name": "Admin publishes review with empty optional reason",
+      "passed": true
+    },
+    {
+      "name": "Approved reply leaves pending moderation queue",
+      "passed": true
+    },
+    {
+      "name": "Public service shows approved traveler review",
+      "passed": true
+    },
+    {
+      "name": "Public service shows approved provider reply",
+      "passed": true
+    },
+    {
+      "name": "Public service hides pending reply",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Moderation 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Moderation 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Moderation 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Moderation 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Moderation 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Moderation 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Moderation 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Moderation 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Moderation 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Moderation 812",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Service/2 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Service/2 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Service/2 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Service/2 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Service/2 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Service/2 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Service/2 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Service/2 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Service/2 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Service/2 812",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability?serviceId=2 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability?serviceId=2 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability?serviceId=2 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability?serviceId=2 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability?serviceId=2 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability?serviceId=2 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability?serviceId=2 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability?serviceId=2 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability?serviceId=2 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability?serviceId=2 812",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /s/PhV91w4Y0BzYDJ2J7_3U5cVJzmTmJCC7nyxIefwu5B0 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /s/PhV91w4Y0BzYDJ2J7_3U5cVJzmTmJCC7nyxIefwu5B0 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /s/PhV91w4Y0BzYDJ2J7_3U5cVJzmTmJCC7nyxIefwu5B0 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /s/PhV91w4Y0BzYDJ2J7_3U5cVJzmTmJCC7nyxIefwu5B0 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /s/PhV91w4Y0BzYDJ2J7_3U5cVJzmTmJCC7nyxIefwu5B0 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /s/PhV91w4Y0BzYDJ2J7_3U5cVJzmTmJCC7nyxIefwu5B0 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /s/PhV91w4Y0BzYDJ2J7_3U5cVJzmTmJCC7nyxIefwu5B0 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /s/PhV91w4Y0BzYDJ2J7_3U5cVJzmTmJCC7nyxIefwu5B0 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /s/PhV91w4Y0BzYDJ2J7_3U5cVJzmTmJCC7nyxIefwu5B0 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /s/PhV91w4Y0BzYDJ2J7_3U5cVJzmTmJCC7nyxIefwu5B0 812",
+      "passed": true
+    },
+    {
+      "name": "Saving calendar preserves selected editing day",
+      "passed": true
+    },
+    {
+      "name": "Calendar edit retains reference capacity",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09 812",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Partner?serviceId=2 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Partner?serviceId=2 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Partner?serviceId=2 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Partner?serviceId=2 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Partner?serviceId=2 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Partner?serviceId=2 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Partner?serviceId=2 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Partner?serviceId=2 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Partner?serviceId=2 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Partner?serviceId=2 812",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Provider 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Provider 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Provider 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Provider 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Provider 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Provider 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Provider 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Provider 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Provider 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Provider 812",
+      "passed": true
+    },
+    {
+      "name": "Next stop heading remains readable on navy background",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Today?planId=10006 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Today?planId=10006 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Today?planId=10006 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Today?planId=10006 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Today?planId=10006 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Today?planId=10006 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Today?planId=10006 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Today?planId=10006 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Today?planId=10006 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Today?planId=10006 812",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Share?planId=10006 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Share?planId=10006 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Share?planId=10006 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Share?planId=10006 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Share?planId=10006 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Share?planId=10006 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Share?planId=10006 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Share?planId=10006 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Share?planId=10006 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Share?planId=10006 812",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Print?planId=10006 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Print?planId=10006 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Print?planId=10006 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Print?planId=10006 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Print?planId=10006 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Print?planId=10006 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Print?planId=10006 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Print?planId=10006 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Journey/Print?planId=10006 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Journey/Print?planId=10006 812",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Plans/Activity/10006?activityId=10027 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Plans/Activity/10006?activityId=10027 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Plans/Activity/10006?activityId=10027 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Plans/Activity/10006?activityId=10027 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Plans/Activity/10006?activityId=10027 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Plans/Activity/10006?activityId=10027 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Plans/Activity/10006?activityId=10027 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Plans/Activity/10006?activityId=10027 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Plans/Activity/10006?activityId=10027 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Plans/Activity/10006?activityId=10027 812",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Mine 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Mine 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Mine 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Mine 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Mine 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Mine 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Mine 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Mine 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Reviews/Mine 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Reviews/Mine 812",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Plans/Detail/10006 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Plans/Detail/10006 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Plans/Detail/10006 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Plans/Detail/10006 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Plans/Detail/10006 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Plans/Detail/10006 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Plans/Detail/10006 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Plans/Detail/10006 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Plans/Detail/10006 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Plans/Detail/10006 812",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability?serviceId=2&planId=10006 375",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability?serviceId=2&planId=10006 375",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability?serviceId=2&planId=10006 768",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability?serviceId=2&planId=10006 768",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability?serviceId=2&planId=10006 1024",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability?serviceId=2&planId=10006 1024",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability?serviceId=2&planId=10006 1280",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability?serviceId=2&planId=10006 1280",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow /Availability?serviceId=2&planId=10006 812",
+      "passed": true
+    },
+    {
+      "name": "Heading and image rendering /Availability?serviceId=2&planId=10006 812",
+      "passed": true
+    },
+    {
+      "name": "Final console has no recorded warnings or errors",
+      "passed": true
+    },
+    {
+      "name": "All 75 viewport observations have one heading, rendered images and no horizontal overflow",
+      "passed": true
+    }
+  ],
+  "responsive": [
+    {
+      "path": "/Reviews/Moderation",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Reviews/Moderation",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753
+    },
+    {
+      "path": "/Reviews/Moderation",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Reviews/Moderation",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Reviews/Moderation",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Reviews/Service/2",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Reviews/Service/2",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753
+    },
+    {
+      "path": "/Reviews/Service/2",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Reviews/Service/2",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Reviews/Service/2",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Availability?serviceId=2",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Availability?serviceId=2",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753
+    },
+    {
+      "path": "/Availability?serviceId=2",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Availability?serviceId=2",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Availability?serviceId=2",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/s/{token}",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/s/{token}",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 768
+    },
+    {
+      "path": "/s/{token}",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/s/{token}",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1280
+    },
+    {
+      "path": "/s/{token}",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753
+    },
+    {
+      "path": "/Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Availability/Manage?serviceId=2&month=2026-11&edit=2026-11-09",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Reviews/Partner?serviceId=2",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Reviews/Partner?serviceId=2",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753
+    },
+    {
+      "path": "/Reviews/Partner?serviceId=2",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Reviews/Partner?serviceId=2",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Reviews/Partner?serviceId=2",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Provider",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Provider",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753
+    },
+    {
+      "path": "/Provider",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Provider",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Provider",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Journey/Today?planId=10006",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Journey/Today?planId=10006",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753
+    },
+    {
+      "path": "/Journey/Today?planId=10006",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Journey/Today?planId=10006",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Journey/Today?planId=10006",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Journey/Share?planId=10006",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Journey/Share?planId=10006",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753
+    },
+    {
+      "path": "/Journey/Share?planId=10006",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Journey/Share?planId=10006",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Journey/Share?planId=10006",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Journey/Print?planId=10006",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Journey/Print?planId=10006",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 768
+    },
+    {
+      "path": "/Journey/Print?planId=10006",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Journey/Print?planId=10006",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1280
+    },
+    {
+      "path": "/Journey/Print?planId=10006",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Plans/Activity/10006?activityId=10027",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Plans/Activity/10006?activityId=10027",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753
+    },
+    {
+      "path": "/Plans/Activity/10006?activityId=10027",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Plans/Activity/10006?activityId=10027",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Plans/Activity/10006?activityId=10027",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Reviews/Mine",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Reviews/Mine",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753
+    },
+    {
+      "path": "/Reviews/Mine",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Reviews/Mine",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Reviews/Mine",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Plans/Detail/10006",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Plans/Detail/10006",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753
+    },
+    {
+      "path": "/Plans/Detail/10006",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Plans/Detail/10006",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Plans/Detail/10006",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Availability?serviceId=2&planId=10006",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Availability?serviceId=2&planId=10006",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 753
+    },
+    {
+      "path": "/Availability?serviceId=2&planId=10006",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Availability?serviceId=2&planId=10006",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Availability?serviceId=2&planId=10006",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    },
+    {
+      "path": "/Reviews/Write?bookingId=3",
+      "width": 375,
+      "height": 812,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 360
+    },
+    {
+      "path": "/Reviews/Write?bookingId=3",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 768
+    },
+    {
+      "path": "/Reviews/Write?bookingId=3",
+      "width": 1024,
+      "height": 768,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1009
+    },
+    {
+      "path": "/Reviews/Write?bookingId=3",
+      "width": 1280,
+      "height": 900,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 1265
+    },
+    {
+      "path": "/Reviews/Write?bookingId=3",
+      "width": 812,
+      "height": 375,
+      "brokenImages": 0,
+      "h1": 1,
+      "scrollWidth": 797
+    }
+  ],
+  "console": [],
+  "database": "HoTroDuLich_Journey_20261105",
+  "base": "http://127.0.0.1:5222",
+  "date": "2026-11-05T02:05:00.959Z",
+  "screenshots": [
+    "preview/journey-today-desktop.png",
+    "preview/journey-today-mobile.png",
+    "preview/journey-public-snapshot.png",
+    "preview/journey-calendar-desktop.png",
+    "preview/journey-share-desktop.png"
+  ],
+  "limitations": "Bố cục 15 màn hình ở 5 kích thước. CSS in và nút in đã kiểm tra; không xác nhận hộp thoại máy in của hệ điều hành."
+}

@@ -1,0 +1,7 @@
+**/bin/
+**/obj/
+**/App_Data/
+**/.vs/
+*.user
+*.suo
+tests/last-results.json

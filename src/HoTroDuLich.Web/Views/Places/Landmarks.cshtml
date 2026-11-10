@@ -1,0 +1,6 @@
+@model List<MocDiaDiem>
+@{ViewData["Title"]="Địa điểm & cửa vào";}
+<div class="container-wide pl-manage"><div class="page-head"><div><span class="eyebrow">QUẢN TRỊ THÔNG TIN ĐỊA ĐIỂM</span><h1>Địa điểm & cửa vào</h1><p>Tạo mốc cụ thể để khách xem thông tin và tìm các cơ sở quanh đúng vị trí.</p></div><a class="btn btn-dark" href="/quan-tri/moc-dia-diem/them">@Ui.Icon("plus") Thêm mốc</a></div>
+ @if(Model.Count==0){<div class="pl-empty"><h2>Thêm điểm tham quan hoặc cửa vào đầu tiên</h2><p>Mỗi cửa vào có thể là một mốc riêng, liên kết với địa điểm chính và có vị trí riêng trên bản đồ.</p></div>}
+ <div class="pl-owner-grid">@foreach(var l in Model){<article class="panel"><div class="pl-card-top"><span class="eyebrow">@(l.Type=="Entrance"?"Cửa vào":"Điểm tham quan / mốc")</span><span class="badge">@(l.IsPublished?"Đang công bố":"Đang ẩn")</span></div><h2><a href="/quan-tri/moc-dia-diem/@l.Id">@l.Name</a></h2><p>@l.Address</p><p class="help">Nguồn: @l.SourceName · Kiểm tra @l.CheckedOn.ToString("dd/MM/yyyy")</p><a class="btn btn-outline" href="/quan-tri/moc-dia-diem/@l.Id">Chỉnh sửa</a>@if(l.IsPublished){<a class="text-link" href="/dia-diem/@l.Id">Xem trang khách @Ui.Icon("arrow")</a>}</article>}</div>
+</div>

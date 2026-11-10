@@ -1,0 +1,140 @@
+{
+  "passed": true,
+  "checks": 33,
+  "observations": [
+    {
+      "name": "Main /",
+      "passed": true
+    },
+    {
+      "name": "New discovery home live",
+      "passed": true
+    },
+    {
+      "name": "Integrated map markup",
+      "passed": true
+    },
+    {
+      "name": "New assets linked",
+      "passed": true
+    },
+    {
+      "name": "Main /Discovery?Q=H%E1%BB%99i+An",
+      "passed": true
+    },
+    {
+      "name": "Main /Discovery?Q=khach+san+Hoi+An",
+      "passed": true
+    },
+    {
+      "name": "Main /Discovery?Kind=Transport",
+      "passed": true
+    },
+    {
+      "name": "Main /Discovery?Kind=Guide",
+      "passed": true
+    },
+    {
+      "name": "Main /Discovery?Kind=Event",
+      "passed": true
+    },
+    {
+      "name": "Main /Discovery?Kind=Amenity",
+      "passed": true
+    },
+    {
+      "name": "Main /thong-tin/mo-tim-kiem",
+      "passed": true
+    },
+    {
+      "name": "Main /Explore/Place/2",
+      "passed": true
+    },
+    {
+      "name": "Main /Explore/Detail/1",
+      "passed": true
+    },
+    {
+      "name": "Main /api/discovery/map",
+      "passed": true
+    },
+    {
+      "name": "Main has real sourced map points",
+      "passed": true
+    },
+    {
+      "name": "No test titles copied to main map",
+      "passed": true
+    },
+    {
+      "name": "Asset /lib/bootstrap/dist/css/bootstrap.min.css",
+      "passed": true
+    },
+    {
+      "name": "Asset /css/site.css",
+      "passed": true
+    },
+    {
+      "name": "Asset /css/function-pages.css",
+      "passed": true
+    },
+    {
+      "name": "Asset /css/experience.css",
+      "passed": true
+    },
+    {
+      "name": "Asset /css/trip-workspace.css",
+      "passed": true
+    },
+    {
+      "name": "Asset /css/product-features.css",
+      "passed": true
+    },
+    {
+      "name": "Asset /css/journey-features.css",
+      "passed": true
+    },
+    {
+      "name": "Asset /css/companion-features.css",
+      "passed": true
+    },
+    {
+      "name": "Asset /css/discovery.css",
+      "passed": true
+    },
+    {
+      "name": "Asset /lib/leaflet/leaflet.css",
+      "passed": true
+    },
+    {
+      "name": "Asset /js/site.js",
+      "passed": true
+    },
+    {
+      "name": "Asset /js/journey-features.js",
+      "passed": true
+    },
+    {
+      "name": "Asset /js/companion-features.js",
+      "passed": true
+    },
+    {
+      "name": "Asset /lib/leaflet/leaflet.js",
+      "passed": true
+    },
+    {
+      "name": "Asset /js/discovery.js",
+      "passed": true
+    },
+    {
+      "name": "Main catalog has no QA fixtures",
+      "passed": true
+    },
+    {
+      "name": "Main schema 58 tables",
+      "passed": true
+    }
+  ],
+  "base": "http://localhost:5216",
+  "date": "2026-11-08T07:22:33.456Z"
+}

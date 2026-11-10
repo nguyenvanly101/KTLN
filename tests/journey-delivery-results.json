@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "suites": 14,
+  "results": [
+    {
+      "artifact": "tests/journey-features-results.json",
+      "passed": true,
+      "checks": 150,
+      "date": "2026-11-05T01:56:26.333Z"
+    },
+    {
+      "artifact": "tests/journey-contract-results.json",
+      "passed": true,
+      "checks": 1986,
+      "date": "2026-11-05T01:56:28.3998289Z"
+    },
+    {
+      "artifact": "tests/journey-schema-results.json",
+      "passed": true,
+      "checks": 1778,
+      "date": "2026-11-05T01:23:51.505Z"
+    },
+    {
+      "artifact": "tests/journey-main-schema-results.json",
+      "passed": true,
+      "checks": 1778,
+      "date": "2026-11-05T02:07:12.661Z"
+    },
+    {
+      "artifact": "tests/journey-database-permissions-results.json",
+      "passed": true,
+      "checks": 29,
+      "date": "2026-11-05T01:42:20.275Z"
+    },
+    {
+      "artifact": "tests/journey-trip-regression-results.json",
+      "passed": true,
+      "checks": 82,
+      "date": "2026-11-05T02:01:44.703Z"
+    },
+    {
+      "artifact": "tests/journey-navigation-results.json",
+      "passed": true,
+      "checks": 102,
+      "date": "2026-11-05T02:03:30.008Z"
+    },
+    {
+      "artifact": "tests/journey-smoke-results.json",
+      "passed": true,
+      "checks": 41,
+      "date": "2026-11-05T02:04:53.375Z"
+    },
+    {
+      "artifact": "tests/journey-product-regression-results.json",
+      "passed": true,
+      "checks": 90,
+      "date": "2026-11-05T01:31:58.657Z"
+    },
+    {
+      "artifact": "tests/journey-browser-results.json",
+      "passed": true,
+      "checks": 174,
+      "date": "2026-11-05T02:05:00.959Z"
+    },
+    {
+      "artifact": "tests/journey-rehearsal-results.json",
+      "passed": true,
+      "checks": 58,
+      "date": "2026-11-04T19:39:22.633Z"
+    },
+    {
+      "artifact": "tests/journey-upgrade-results.json",
+      "passed": true,
+      "checks": 67,
+      "date": "2026-11-05T02:06:31.828Z"
+    },
+    {
+      "artifact": "tests/journey-appdata-backup-results.json",
+      "passed": true,
+      "checks": 22,
+      "date": "2026-11-05T02:06:30.3145048Z"
+    },
+    {
+      "artifact": "tests/journey-startup-results.json",
+      "passed": true,
+      "checks": 18,
+      "date": "2026-11-05T02:08:06.824Z"
+    }
+  ],
+  "screenshots": [
+    "preview/journey-today-desktop.png",
+    "preview/journey-today-mobile.png",
+    "preview/journey-share-desktop.png",
+    "preview/journey-public-snapshot.png",
+    "preview/journey-calendar-desktop.png"
+  ],
+  "backup": "D:\\KLTN\\preview\\backups\\HoTroDuLich_before_journey_deploy_20261105_020630Z.bak",
+  "appDataBackup": "D:\\KLTN\\preview\\backups\\App_Data_before_journey_deploy_20261105_090630.zip",
+  "database": "HoTroDuLich",
+  "schema": {
+    "tables": 31,
+    "columns": 335,
+    "foreignKeys": 47,
+    "checks": 132,
+    "uniqueIndexes": 25,
+    "queryIndexes": 40,
+    "views": 4
+  },
+  "originalActions": 91,
+  "newJourneyEndpoints": 19,
+  "build": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "notes": [
+    "Assertion counts are per suite, not independent requirements.",
+    "Main preservation was verified during the upgrade maintenance window.",
+    "Later live-data observation is separate and does not infer the cause of changes.",
+    "Agent test servers stopped; later user dotnet run on 5216 preserved.",
+    "PDF uses browser printing; durations are manual estimates."
+  ],
+  "date": "2026-11-05T07:01:13.909Z"
+}

@@ -1,0 +1,3 @@
+@model ReviewFeed
+@{ViewData["Title"]="Đánh giá · "+Model.Service.TenDichVu;}
+<div class="container-narrow journey-page"><a class="back" href="/Explore/Detail/@Model.Service.MaDichVu">← @Model.Service.TenDichVu</a><h1>Trải nghiệm từ những chuyến đi</h1><partial name="_PublicReviews" model="Model"/></div>

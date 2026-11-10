@@ -1,0 +1,132 @@
+{
+  "isRegressionTest": false,
+  "allMatch": false,
+  "matched": 20,
+  "compared": 28,
+  "changedTables": [
+    "HoSoXacMinhNhaCungCap",
+    "LuaChonDaLuu",
+    "NhaCungCapDichVu",
+    "NhatKyThaoTac",
+    "QuyetDinhQuyenHoatDong",
+    "QuyetDinhXacMinh",
+    "TaiKhoan",
+    "ThongBao"
+  ],
+  "comparison": [
+    {
+      "name": "BanCapNhatDichVu",
+      "passed": true
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu",
+      "passed": true
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh",
+      "passed": true
+    },
+    {
+      "name": "DiaDiemDuLich",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich",
+      "passed": true
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap",
+      "passed": true
+    },
+    {
+      "name": "HoatDongLichTrinh",
+      "passed": true
+    },
+    {
+      "name": "HoSoNguoiDung",
+      "passed": true
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap",
+      "passed": false
+    },
+    {
+      "name": "KeHoachChuyenDi",
+      "passed": true
+    },
+    {
+      "name": "KetQuaCungCapDichVu",
+      "passed": true
+    },
+    {
+      "name": "KhoanChiChuyenDi",
+      "passed": true
+    },
+    {
+      "name": "LuaChonDaLuu",
+      "passed": false
+    },
+    {
+      "name": "MucChuanBi",
+      "passed": true
+    },
+    {
+      "name": "NhaCungCapDichVu",
+      "passed": false
+    },
+    {
+      "name": "NhatKyThaoTac",
+      "passed": false
+    },
+    {
+      "name": "NhuCauDongHanh",
+      "passed": true
+    },
+    {
+      "name": "PhuongAnXuLy",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong",
+      "passed": false
+    },
+    {
+      "name": "QuyetDinhXacMinh",
+      "passed": false
+    },
+    {
+      "name": "TaiKhoan",
+      "passed": false
+    },
+    {
+      "name": "TaiLieuGiaiTrinh",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuXacMinh",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongHoatDong",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongPhatSinh",
+      "passed": true
+    },
+    {
+      "name": "ThoaThuanDongHanh",
+      "passed": true
+    },
+    {
+      "name": "ThongBao",
+      "passed": false
+    },
+    {
+      "name": "YeuCauDatDichVu",
+      "passed": true
+    }
+  ],
+  "date": "2026-11-05T06:45:20.384Z",
+  "note": "Ảnh chụp so sánh lúc 13:45, sau khi một phiên dotnet run mới được mở lúc 13:33 và database đã có hoạt động tiếp theo. Có 8 bảng khác mốc sao lưu trước nâng cấp; quan sát này không chứng minh nguyên nhân thay đổi. Kiểm chứng giữ nguyên dữ liệu ngay trong cửa sổ nâng cấp nằm ở journey-upgrade-results.json (67 kiểm tra đạt)."
+}

@@ -1,0 +1,4 @@
+@model DichVuDuLich
+@inject ReviewService Community
+@{var feed=await Community.PublicFeed(Model.MaDichVu);}
+<partial name="/Views/Reviews/_PublicReviews.cshtml" model="feed"/>

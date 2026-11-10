@@ -1,0 +1,8 @@
+@model PageNavigation
+<div class="list-footer">
+ <span>@Model.Total kết quả · Trang @Model.Page / @Model.Pages</span>
+ @if(Model.Pages>1){<nav class="actions" aria-label="Phân trang">
+  @if(Model.Page>1){<a class="btn btn-outline" href="@(Model.Route)?q=@Uri.EscapeDataString(Model.Query)&status=@Model.Status&page=@(Model.Page-1)">← Trang trước</a>}
+  @if(Model.Page<Model.Pages){<a class="btn btn-outline" href="@(Model.Route)?q=@Uri.EscapeDataString(Model.Query)&status=@Model.Status&page=@(Model.Page+1)">Trang sau →</a>}
+ </nav>}
+</div>

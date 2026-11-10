@@ -1,0 +1,10 @@
+{
+  "database": "HoTroDuLich_Companion_20261105",
+  "group": 30002,
+  "discoveryGroups": [
+    30002,
+    10005,
+    10006
+  ],
+  "note": "UI fixtures only; never copied to main database"
+}

@@ -1,0 +1,144 @@
+{
+  "date": "2026-11-04",
+  "layouts": [
+    {
+      "label": "Provider mobile",
+      "brokenLoadedImages": 0,
+      "documentWidth": 360,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5218/Provider",
+      "width": 375
+    },
+    {
+      "label": "Provider desktop",
+      "brokenLoadedImages": 0,
+      "documentWidth": 1351,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5218/Provider",
+      "width": 1366
+    },
+    {
+      "label": "Admin desktop",
+      "brokenLoadedImages": 0,
+      "documentWidth": 1351,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5218/Admin",
+      "width": 1366
+    },
+    {
+      "label": "Admin mobile",
+      "brokenLoadedImages": 0,
+      "documentWidth": 360,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5218/Admin",
+      "width": 375
+    },
+    {
+      "label": "Admin reviews mobile",
+      "brokenLoadedImages": 0,
+      "documentWidth": 360,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5218/Admin/ServiceReviews",
+      "width": 375
+    },
+    {
+      "label": "Login mobile",
+      "brokenLoadedImages": 0,
+      "documentWidth": 360,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5218/Account/Login",
+      "width": 375
+    },
+    {
+      "label": "Registration provider mobile",
+      "brokenLoadedImages": 0,
+      "documentWidth": 360,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5218/Account/Register",
+      "width": 375
+    },
+    {
+      "label": "Bookings mobile",
+      "brokenLoadedImages": 0,
+      "documentWidth": 360,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5218/Bookings",
+      "width": 375
+    },
+    {
+      "label": "Booking detail mobile",
+      "brokenLoadedImages": 0,
+      "documentWidth": 375,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5218/Bookings/Detail/1",
+      "width": 375
+    },
+    {
+      "label": "Companions mobile",
+      "brokenLoadedImages": 0,
+      "documentWidth": 360,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5216/Companions?q=&budget=&style=Ngh%E1%BB%89+d%C6%B0%E1%BB%A1ng&start=&end=",
+      "width": 375
+    },
+    {
+      "label": "Companions landscape",
+      "brokenLoadedImages": 0,
+      "documentWidth": 797,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5216/Companions?q=&budget=&style=Ngh%E1%BB%89+d%C6%B0%E1%BB%A1ng&start=&end=",
+      "width": 812
+    },
+    {
+      "label": "Homepage mobile",
+      "brokenLoadedImages": 0,
+      "documentWidth": 360,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5216/",
+      "width": 375
+    },
+    {
+      "label": "Search results mobile",
+      "brokenLoadedImages": 0,
+      "documentWidth": 360,
+      "h1Count": 1,
+      "horizontalOverflow": false,
+      "smallVisibleInputs": 0,
+      "url": "http://localhost:5216/?q=&region=%C4%90%C3%A0+L%E1%BA%A1t&type=",
+      "width": 375
+    }
+  ],
+  "menuEscape": {
+    "expanded": "false",
+    "focusReturned": true
+  },
+  "searchFilters": {
+    "minPrice": "200000",
+    "region": "Đà Lạt",
+    "type": "Lưu trú"
+  }
+}

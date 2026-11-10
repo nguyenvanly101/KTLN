@@ -1,0 +1,14 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+429 !== 302
+
+    at Client.login (D:\KLTN\preview\full-audit-20261109054153\tests\fulltext-smoke.cjs:10:212)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D:\KLTN\preview\full-audit-20261109054153\tests\fulltext-ui-flows.cjs:12:2 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 429,
+  expected: 302,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

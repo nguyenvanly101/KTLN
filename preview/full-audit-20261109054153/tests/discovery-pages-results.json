@@ -1,0 +1,1041 @@
+{
+  "passed": true,
+  "checks": 258,
+  "pages": 14,
+  "kind": "HTTP HTML structure; no browser visual inspection",
+  "observations": [
+    {
+      "name": "Page /kham-pha",
+      "passed": true
+    },
+    {
+      "name": "/kham-pha Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/kham-pha responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/kham-pha unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/kham-pha label target anchor-query",
+      "passed": true
+    },
+    {
+      "name": "/kham-pha label target place-category",
+      "passed": true
+    },
+    {
+      "name": "/kham-pha label target place-query",
+      "passed": true
+    },
+    {
+      "name": "/kham-pha label target search-radius",
+      "passed": true
+    },
+    {
+      "name": "/kham-pha label target search-mode",
+      "passed": true
+    },
+    {
+      "name": "/kham-pha label target search-sort",
+      "passed": true
+    },
+    {
+      "name": "/kham-pha no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Discovery?Kind=Area",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area image has text and reserved dimensions",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-q",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-region",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-date",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-at",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-min",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-max",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-unit",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-sort",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-lat",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-lng",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-radius",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-route-target",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-route-find",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-mode",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-corridor",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-detour",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area label target ds-route-name",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Area no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Discovery?Q=H%E1%BB%99i+An&Features=Indoor",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor image has text and reserved dimensions",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor image has text and reserved dimensions",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-q",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-region",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-date",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-at",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-min",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-max",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-unit",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-sort",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-lat",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-lng",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-radius",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-route-target",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-route-find",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-mode",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-corridor",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-detour",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor label target ds-route-name",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Q=H%E1%BB%99i+An&Features=Indoor no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Discovery/Entry/1",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Entry/1 Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Entry/1 responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Entry/1 unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Entry/1 image has text and reserved dimensions",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Entry/1 image has text and reserved dimensions",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Entry/1 image has text and reserved dimensions",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Entry/1 image has text and reserved dimensions",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Entry/1 image has text and reserved dimensions",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Entry/1 image has text and reserved dimensions",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Entry/1 image has text and reserved dimensions",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Entry/1 no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Discovery?Kind=Event&Date=2099-01-01",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-q",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-region",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-date",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-at",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-min",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-max",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-unit",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-sort",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-lat",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-lng",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-radius",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-route-target",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-route-find",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-mode",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-corridor",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-detour",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 label target ds-route-name",
+      "passed": true
+    },
+    {
+      "name": "/Discovery?Kind=Event&Date=2099-01-01 no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Explore/Detail/1",
+      "passed": true
+    },
+    {
+      "name": "/Explore/Detail/1 Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Explore/Detail/1 responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Explore/Detail/1 unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Explore/Detail/1 image has text and reserved dimensions",
+      "passed": true
+    },
+    {
+      "name": "/Explore/Detail/1 no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Discovery/Library",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library label target ds-import-name",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library label target ds-collection-name",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library label target item-note-3-28",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library label target collection-name-3",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library label target collection-note-3",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library label target item-note-2-23",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library label target collection-name-2",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library label target collection-note-2",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library label target item-note-1-19",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library label target collection-name-1",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library label target collection-note-1",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Library no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Discovery/Edit",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Kind",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Region",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Title",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target ParentId",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Summary",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Content",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Tags",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Address",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Latitude",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Longitude",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target LocationNote",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target SourceName",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target CheckedOn",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target SourceUrl",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Contact",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target PriceFrom",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target PriceTo",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target PriceUnit",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Includes",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Excludes",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Hours",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target OpenDays",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target DurationMinutes",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target OpenTime",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target CloseTime",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target ValidFrom",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target ValidTo",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Prices_0__Label",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Prices_0__Amount",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Prices_0__Unit",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Prices_0__Conditions",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Prices_0__Included",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Prices_0__Extra",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Prices_0__From",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Prices_0__Until",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_0__State",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_0__Note",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_1__State",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_1__Note",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_2__State",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_2__Note",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_3__State",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_3__Note",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_4__State",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_4__Note",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_5__State",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_5__Note",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_6__State",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_6__Note",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_7__State",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_7__Note",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_8__State",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_8__Note",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_9__State",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_9__Note",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_10__State",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_10__Note",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_11__State",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target FeatureRows_11__Note",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Origin",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Destination",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target TransportMode",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Status",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit label target Reason",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Edit no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Discovery/Manage",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Discovery/Manage?tab=questions",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions label target answer-3",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions label target answer-source-3",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions label target answer-reason-3",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions label target answer-2",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions label target answer-source-2",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions label target answer-reason-2",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions label target answer-1",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions label target answer-source-1",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions label target answer-reason-1",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=questions no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Discovery/Manage?tab=experiences",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=experiences Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=experiences responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=experiences unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=experiences POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=experiences POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=experiences POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=experiences POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=experiences label target moderation-3",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=experiences label target moderation-2",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=experiences label target moderation-1",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=experiences no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Discovery/Manage?tab=reports",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=reports Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=reports responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=reports unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=reports POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=reports no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Discovery/Manage?tab=proposals",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=proposals Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=proposals responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=proposals unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=proposals POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage?tab=proposals no exception output",
+      "passed": true
+    },
+    {
+      "name": "Page /Discovery/Manage",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage Vietnamese language",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage responsive viewport",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage unique IDs",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage POST has antiforgery",
+      "passed": true
+    },
+    {
+      "name": "/Discovery/Manage no exception output",
+      "passed": true
+    },
+    {
+      "name": "Map content rendered as text, no tile prefetch",
+      "passed": true
+    },
+    {
+      "name": "Reduced motion and focus styles",
+      "passed": true
+    },
+    {
+      "name": "Mobile breakpoint styles present",
+      "passed": true
+    }
+  ],
+  "date": "2026-11-09T10:54:46.700Z"
+}

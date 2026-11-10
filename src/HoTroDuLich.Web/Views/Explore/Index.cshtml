@@ -1,0 +1,69 @@
+@model List<DichVuDuLich>
+@{
+ ViewData["Title"]="Khám phá Việt Nam";
+ var places=(List<DiaDiemDuLich>)ViewBag.Places;
+ var filtered=Context.Request.Query.Any(x=>!string.IsNullOrWhiteSpace(x.Value));
+ var canPlan=User.Identity?.IsAuthenticated!=true||User.IsInRole(TravelService.Traveler);
+ var currentType=DanhMuc.ChuanHoa((string?)ViewBag.Type);
+}
+<div class="discovery-page">
+@if(!filtered){
+ <section class="discovery-hero" aria-labelledby="discovery-title">
+  <div class="discovery-hero-content">
+   <span class="hero-kicker">@Ui.Icon("compass") ĐI TỰ TÚC. KHÁM PHÁ TỰ DO.</span>
+   <h1 id="discovery-title">Việt Nam rộng mở.<br/>Bạn muốn <em>đi đâu?</em></h1>
+   <p>Một miền đất mới, một trải nghiệm khác.<br/>Tự lên lịch trình, chọn dịch vụ và tìm người cùng bạn lên đường.</p>
+   <div class="hero-actions"><a href="#travel-search" class="btn btn-dark">Tìm chuyến đi của bạn @Ui.Icon("arrow")</a>@if(canPlan){<a href="/Plans/Edit" class="hero-secondary">Tự lên lịch trình @Ui.Icon("calendar")</a>}</div>
+   <div class="hero-route" aria-label="Ba bước cho hành trình"><span><b>01</b> Khám phá</span><i></i><span><b>02</b> Lên kế hoạch</span><i></i><span><b>03</b> Cùng đi</span></div>
+  </div>
+  <div class="hero-visual">
+   <div class="hero-photo-frame"><img class="hero-photo" src="~/images/vietnam-bay.jpg" alt="Những đảo đá vôi giữa làn nước xanh ở vịnh Hạ Long" fetchpriority="high" width="1920" height="1440"/><div class="hero-shade"></div><div class="hero-location">@Ui.Icon("pin")<span>Hạ Long, Quảng Ninh<small>Một khoảng xanh để thấy mình thật nhỏ.</small></span></div></div>
+   <a class="hero-postcard" href="/?region=Hội%20An"><img src="~/images/hoian.jpg" alt="Một góc phố cổ Hội An" width="320" height="240"/><span>Hội An<small>Chậm lại một chút @Ui.Icon("arrow")</small></span></a>
+   <div class="hero-travel-note" aria-hidden="true">@Ui.Icon("compass")<span>Ít quen thuộc.<br/><b>Nhiều trải nghiệm.</b></span></div>
+   <span class="hero-photo-credit">Ảnh minh họa · Ryan Le / Unsplash</span>
+  </div>
+ </section>
+}else{
+ <div class="search-page-heading"><span class="eyebrow">KHÁM PHÁ / TÌM KIẾM</span><h1>@(string.IsNullOrWhiteSpace((string?)ViewBag.Query)?"Tìm nơi bạn muốn đến":"Kết quả cho “"+ViewBag.Query+"”")</h1><p>Có @(Model.Count+places.Count) kết quả phù hợp. Một trải nghiệm mới đang chờ bạn.</p></div>
+}
+<div class="discovery-inner">
+ <partial name="_TripContext"/>
+ <section id="travel-search" aria-label="Tìm điểm đến và dịch vụ" class="search-box @(filtered?"search-box-results":"")">
+  <div class="search-box-tabs"><span class="active">@Ui.Icon("compass") Điểm đến & dịch vụ</span><a href="/Companions">@Ui.Icon("users") Tìm người đồng hành</a><span class="search-caption">BẮT ĐẦU MỘT HÀNH TRÌNH MỚI</span></div>
+  <form action="/" method="get" class="discovery-search">
+   @if(ViewBag.TripPlan is KeHoachChuyenDi tripSearch){<input type="hidden" name="planId" value="@tripSearch.MaKeHoach"/>}
+   <div class="search-input search-keyword">@Ui.Icon("search")<div><label for="q">Bạn muốn tìm gì?</label><input id="q" name="q" value="@ViewBag.Query" placeholder="Điểm đến, nơi ở, trải nghiệm…"/></div></div>
+   <div class="search-input">@Ui.Icon("pin")<div><label for="region">Điểm đến</label><select id="region" name="region"><option value="">Tất cả khu vực</option>@foreach(var region in (ViewBag.Regions as List<string>??[])){<option selected="@(ViewBag.Region==region)" value="@region">@region</option>}</select></div></div>
+   <div class="search-input">@Ui.Icon("grid")<div><label for="type">Loại hình</label><select id="type" name="type"><option value="">Tất cả trải nghiệm</option>@foreach(var type in new[]{"DiaDiem"}.Concat(DanhMuc.LoaiDichVu)){<option selected="@(currentType==type)" value="@type">@DanhMuc.Ten(type)</option>}</select></div></div>
+   @if(ViewBag.Min!=null){<input type="hidden" name="min" value="@ViewBag.Min"/>}@if(ViewBag.Max!=null){<input type="hidden" name="max" value="@ViewBag.Max"/>}
+   <button class="btn btn-dark" type="submit">@Ui.Icon("search") Tìm kiếm</button>
+  </form>
+ </section>
+ @if(!filtered){
+  <div class="discovery-suggestions"><span>Đi đâu hôm nay?</span><a href="/?region=Đà%20Lạt">Đà Lạt @Ui.Icon("arrow")</a><a href="/?region=Hội%20An">Hội An @Ui.Icon("arrow")</a><a href="/?region=Hải%20Phòng">Hải Phòng @Ui.Icon("arrow")</a></div>
+  <section class="destination-section" id="destinations" aria-labelledby="destination-title">
+   <div class="section-head"><div><span class="eyebrow">01 / CẢM HỨNG LÊN ĐƯỜNG</span><h2 id="destination-title">Mỗi nơi đến, một cảm hứng.</h2><p>Lên núi đón sương. Ghé một phố cũ. Hay cứ đi về phía biển.</p></div><a class="quiet-link" href="/?type=DiaDiem">Khám phá điểm đến @Ui.Icon("arrow")</a></div>
+   <div class="destination-grid">
+    <a class="destination-tile destination-dalat" href="/?region=Đà%20Lạt"><img src="~/images/dalat.jpg" alt="Hồ và rừng thông trong sương sớm ở Đà Lạt" loading="lazy" width="720" height="540"/><div><span>ĐI TRỐN GIỮA MIỀN XANH</span><h3>Đà Lạt</h3><p>Một chút sương, một chút bình yên.</p></div><span class="destination-arrow">@Ui.Icon("arrow")</span><span class="destination-index">01</span></a>
+    <a class="destination-tile" href="/?region=Hội%20An"><img src="~/images/hoian.jpg" alt="Giàn hoa và những ngôi nhà cổ ở Hội An" loading="lazy" width="720" height="540"/><div><span>CHẠM VÀO NHỮNG NGÀY CHẬM</span><h3>Hội An</h3><p>Phố cũ. Chuyện mới. Vị thân quen.</p></div><span class="destination-arrow">@Ui.Icon("arrow")</span><span class="destination-index">02</span></a>
+    <a class="destination-tile" href="/?region=Hải%20Phòng"><img src="~/images/vietnam-bay.jpg" alt="Ảnh minh họa cảnh quan vùng vịnh miền Bắc" loading="lazy" width="720" height="540"/><div><span>THEO TIẾNG GỌI CỦA BIỂN</span><h3>Hải Phòng</h3><p>Tìm về Cát Bà và vịnh Lan Hạ.</p></div><span class="destination-arrow">@Ui.Icon("arrow")</span><span class="destination-index">03</span></a>
+   </div>
+  </section>
+  @if(canPlan){
+   <section class="journey-builder" aria-labelledby="builder-title"><div class="builder-copy"><span class="eyebrow">BẠN CẦM BẢN ĐỒ. BẠN CHỌN LỐI ĐI.</span><h2 id="builder-title">Ý tưởng của bạn.<br/>Lịch trình theo cách bạn.</h2><p>Gom điểm đến, sắp xếp hoạt động và dự trù chi phí vào một kế hoạch dễ theo dõi.</p><a class="text-link" href="/Plans/Edit">Tạo lịch trình đầu tiên @Ui.Icon("arrow")</a></div><div class="builder-steps"><a href="/?type=DiaDiem"><span>01</span><div><h3>Chọn nơi muốn đến</h3><p>Tìm một điểm đến khiến bạn muốn lên đường.</p></div>@Ui.Icon("pin")</a><a href="/Plans/Edit"><span>02</span><div><h3>Xếp lịch theo nhịp của bạn</h3><p>Chủ động ngày đi, hoạt động và ngân sách.</p></div>@Ui.Icon("calendar")</a><a href="/Bookings"><span>03</span><div><h3>Chọn dịch vụ, sẵn sàng đi</h3><p>Gửi yêu cầu và theo dõi xác nhận tại một nơi.</p></div>@Ui.Icon("ticket")</a></div></section>
+  }
+ }
+ <section class="experiences-section" id="experiences" aria-labelledby="experience-title">
+  <div class="section-head"><div><span class="eyebrow">@(filtered?"KẾT QUẢ DÀNH CHO BẠN":"02 / THÊM TRẢI NGHIỆM CHO CHUYẾN ĐI")</span><h2 id="experience-title">@(filtered?"Những lựa chọn phù hợp":"Đi một chuyến. Thử nhiều điều.")</h2><p>@(filtered?"Chọn một kết quả để xem thông tin và lên kế hoạch.":"Nơi ở vừa ý, một bữa ngon và những trải nghiệm địa phương.")</p></div>@if(filtered){<a class="quiet-link" asp-controller="Explore" asp-action="Index" asp-route-planId="@((ViewBag.TripPlan as KeHoachChuyenDi)?.MaKeHoach)">Xóa bộ lọc @Ui.Icon("filter")</a>}else{<span class="section-aside-note">Bạn chọn trải nghiệm.<br/>Hành Trình giúp bạn sắp xếp.</span>}</div>
+  <nav class="category-tabs" aria-label="Loại hình dịch vụ"><a class="@(string.IsNullOrEmpty(currentType)?"active":"")" aria-current="@(string.IsNullOrEmpty(currentType)?"page":null)" asp-controller="Explore" asp-action="Index" asp-route-planId="@((ViewBag.TripPlan as KeHoachChuyenDi)?.MaKeHoach)" asp-route-region="@ViewBag.Region" asp-route-q="@ViewBag.Query" asp-route-min="@ViewBag.Min" asp-route-max="@ViewBag.Max">@Ui.Icon("grid") Tất cả</a>@foreach(var type in DanhMuc.LoaiDichVu.Concat(new[]{"DiaDiem"})){<a class="@(currentType==type?"active":"")" aria-current="@(currentType==type?"page":null)" asp-controller="Explore" asp-action="Index" asp-route-planId="@((ViewBag.TripPlan as KeHoachChuyenDi)?.MaKeHoach)" asp-route-type="@type" asp-route-region="@ViewBag.Region" asp-route-q="@ViewBag.Query" asp-route-min="@ViewBag.Min" asp-route-max="@ViewBag.Max">@Ui.Icon(Ui.CategoryIcon(type)) @DanhMuc.Ten(type)</a>}</nav>
+  <div class="@(filtered?"search-results-layout":"")">
+   @if(filtered){<aside class="filter-panel"><h3>@Ui.Icon("filter") Thu gọn lựa chọn</h3><form action="/" method="get">@if(ViewBag.TripPlan is KeHoachChuyenDi tripFilter){<input type="hidden" name="planId" value="@tripFilter.MaKeHoach"/>}<input type="hidden" name="q" value="@ViewBag.Query"/><input type="hidden" name="region" value="@ViewBag.Region"/><input type="hidden" name="type" value="@currentType"/><label for="min-price">Giá từ (₫)</label><input id="min-price" class="form-control" type="number" min="0" name="min" value="@ViewBag.Min" placeholder="Không giới hạn"/><label for="max-price">Giá đến (₫)</label><input id="max-price" class="form-control" type="number" min="0" name="max" value="@ViewBag.Max" placeholder="Không giới hạn"/><button class="btn btn-dark w-100" type="submit">Áp dụng bộ lọc</button></form><p>Giá tham khảo. Chi phí được nhà cung cấp xác nhận khi phản hồi yêu cầu.</p></aside>}
+   <div><div class="service-grid">@foreach(var service in Model){<partial name="_ServiceCard" model="service"/>}
+    @if(filtered){@foreach(var place in places){<article class="service-card"><a class="service-image" asp-controller="Explore" asp-action="Place" asp-route-id="@place.MaDiaDiem" asp-route-planId="@((ViewBag.TripPlan as KeHoachChuyenDi)?.MaKeHoach)"><img src="@Ui.DestinationImage(place.KhuVuc)" alt="Ảnh minh họa @place.KhuVuc" loading="lazy" width="600" height="440"/><span class="image-label">@Ui.Icon("pin") @place.LoaiDiaDiem</span></a><div class="service-body"><div class="location">@Ui.Icon("pin") @place.KhuVuc</div><h3><a asp-controller="Explore" asp-action="Place" asp-route-id="@place.MaDiaDiem" asp-route-planId="@((ViewBag.TripPlan as KeHoachChuyenDi)?.MaKeHoach)">@place.TenDiaDiem</a></h3><p>@place.MoTa</p><a class="text-link" asp-controller="Explore" asp-action="Place" asp-route-id="@place.MaDiaDiem" asp-route-planId="@((ViewBag.TripPlan as KeHoachChuyenDi)?.MaKeHoach)">Xem địa điểm @Ui.Icon("arrow")</a></div></article>}}
+   </div>@if(Model.Count==0&&(!filtered||places.Count==0)){<div class="empty">@Ui.Icon("search")<h3>Chưa tìm thấy điều bạn muốn?</h3><p>Thử từ khóa khác hoặc mở rộng bộ lọc để tìm thêm lựa chọn.</p><a class="btn btn-dark" href="/">Khám phá tất cả</a></div>}</div>
+  </div>
+ </section>
+ @if(!filtered){
+  <section class="companion-feature" aria-labelledby="companion-feature-title"><div class="companion-feature-photo"><img src="~/images/dalat.jpg" alt="Bình minh trên hồ ở Đà Lạt" loading="lazy" width="720" height="540"/><span class="feature-note">CÙNG MỘT ĐIỂM ĐẾN. THÊM MỘT NGƯỜI BẠN.</span><span class="feature-compass" aria-hidden="true">@Ui.Icon("users")</span></div><div class="companion-feature-copy"><span class="eyebrow">03 / ĐI CÙNG NGƯỜI HỢP GU</span><h2 id="companion-feature-title">Một lời rủ.<br/>Một hành trình mới.</h2><p>Có người cũng đang muốn đi nơi bạn muốn đến. Tìm nhau, trao đổi lịch trình và cùng viết thêm những câu chuyện.</p><a href="/Companions" class="btn btn-lime">Tìm người đồng hành @Ui.Icon("arrow")</a>@if(canPlan){<a href="/Companions/Edit" class="text-link">Hoặc đăng lời rủ của bạn @Ui.Icon("plus")</a>}</div></section>
+ }
+</div></div>

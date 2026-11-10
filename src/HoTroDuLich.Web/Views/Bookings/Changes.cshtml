@@ -1,0 +1,62 @@
+@model YeuCauDatDichVu
+@inject TravelService Travel
+@{
+ ViewData["Title"]="Thay đổi / hủy #"+Model.MaYeuCau;
+ ViewData["BookingSection"]="changes";
+ var changes=(List<DeNghiDieuChinhDichVu>)ViewBag.Changes;
+ var customer=Model.MaTaiKhoan==Travel.UserId;
+ var pending=changes.Any(x=>x.TrangThai is TrangThaiDeNghiDieuChinh.ChoPhanHoi or TrangThaiDeNghiDieuChinh.DeXuatKhac);
+ var canChange=Model.TrangThai==TrangThaiYeuCau.DaXacNhan&&Model.NgayBatDau>TravelService.Today;
+}
+<div class="container-narrow">
+ <a class="back" href="/Bookings/Adjustments">← Thay đổi / hủy dịch vụ</a>
+ <div class="page-head"><div><h1>Thay đổi / hủy dịch vụ</h1><p>@ViewBag.ServiceName · Yêu cầu #@Model.MaYeuCau</p></div>
+ @if(customer&&canChange&&!pending){<a class="btn btn-dark" href="/Bookings/Change/@Model.MaYeuCau">@Ui.Icon("plus") Gửi đề nghị</a>}</div>
+ <partial name="/Views/Bookings/_BookingTabs.cshtml" model="Model"/>
+ <div class="notice">Trạng thái đặt dịch vụ: <b>@Labels.Status(Model.TrangThai.ToString())</b>. Điều kiện đã xác nhận giữ hiệu lực cho đến khi hai bên thống nhất thay đổi hoặc hủy.</div>
+ @if(changes.Count==0){<div class="empty">@Ui.Icon("calendar")<h2>Chưa có đề nghị thay đổi hoặc hủy</h2><p>@(customer?"Bạn có thể gửi đề nghị trước ngày bắt đầu phục vụ khi chưa có kết quả ghi nhận.":"Các đề nghị thay đổi hoặc hủy từ khách sẽ xuất hiện tại đây.")</p></div>}
+ @foreach(var d in changes){
+  <article class="panel">
+   <span class="eyebrow">ĐỀ NGHỊ #@d.MaDeNghi · @Labels.Status(d.LoaiDeNghi.ToString())</span>
+   <span class="badge @Labels.Badge(d.TrangThai.ToString())">@Labels.Status(d.TrangThai.ToString())</span>
+   <p class="prose mt-3">Lý do: @d.LyDo</p>
+   @if(d.LoaiDeNghi==LoaiDeNghi.ThayDoi){
+    <dl class="facts"><div><dt>Thời gian mới</dt><dd>@(d.NgayBatDauMoi?.ToString("dd/MM/yyyy")??"Giữ ngày bắt đầu") — @(d.NgayKetThucMoi?.ToString("dd/MM/yyyy")??"Giữ ngày kết thúc")</dd></div><div><dt>Quy mô mới</dt><dd>@(d.SoNguoiMoi?.ToString()??"Giữ số") người · @(d.SoLuongMoi?.ToString()??"Giữ số") đơn vị</dd></div></dl>
+    <p class="prose">@d.DieuKienMoi</p>
+   }
+   @if(d.DieuKienDeXuat!=null){<div class="notice">Đề xuất của nhà cung cấp: @d.DieuKienDeXuat</div>}
+   @if(d.QuyetDinh!=null){<p class="help">Phản hồi: @d.QuyetDinh</p>}
+   <details><summary>Điều kiện gốc được bảo toàn</summary><p class="prose">@d.DieuKienCu</p></details>
+   @if(d.TrangThai is TrangThaiDeNghiDieuChinh.ChoPhanHoi or TrangThaiDeNghiDieuChinh.DeXuatKhac){
+    @if(customer||d.TrangThai==TrangThaiDeNghiDieuChinh.ChoPhanHoi){
+     <form action="/Bookings/ChangeAction" method="post">
+      @Html.AntiForgeryToken()<div asp-validation-summary="All" role="alert" tabindex="-1"></div>
+      <input type="hidden" name="Id" value="@d.MaDeNghi"/><input type="hidden" name="Version" value="@TravelService.Token(d.RowVersion)"/><input type="hidden" name="bookingId" value="@Model.MaYeuCau"/>
+      @if(customer){
+       <div class="form-actions">
+        @if(d.TrangThai==TrangThaiDeNghiDieuChinh.DeXuatKhac){<button class="btn btn-dark" name="Decision" value="KhachDongY" type="submit">Đồng ý điều kiện đề xuất</button>}
+        <button class="btn btn-outline" name="Decision" value="DaRut" type="submit">Rút đề nghị</button>
+       </div>
+      }else{
+       <div class="field mt-3"><label for="reason-@d.MaDeNghi">Lý do từ chối</label><input id="reason-@d.MaDeNghi" class="form-control" name="Reason" maxlength="500"/></div>
+       @if(d.LoaiDeNghi==LoaiDeNghi.ThayDoi){
+        <details class="mt-3"><summary>Đề xuất điều kiện thay đổi khác</summary>
+         <p class="help">Điền các giá trị muốn thay đổi. Trường để trống giữ giá trị trong đề nghị của khách.</p>
+         <div class="form-grid">
+          <div class="field"><label for="start-@d.MaDeNghi">Ngày bắt đầu</label><input id="start-@d.MaDeNghi" class="form-control" name="Start" type="date"/></div>
+          <div class="field"><label for="end-@d.MaDeNghi">Ngày kết thúc</label><input id="end-@d.MaDeNghi" class="form-control" name="End" type="date"/></div>
+          <div class="field"><label for="people-@d.MaDeNghi">Số người</label><input id="people-@d.MaDeNghi" class="form-control" name="People" type="number" min="1" max="100"/></div>
+          <div class="field"><label for="quantity-@d.MaDeNghi">Số lượng</label><input id="quantity-@d.MaDeNghi" class="form-control" name="Quantity" type="number" min="1" max="100"/></div>
+          <div class="field full"><label for="terms-@d.MaDeNghi">Giải thích điều kiện đề xuất</label><textarea id="terms-@d.MaDeNghi" name="Text" class="form-control" maxlength="2000"></textarea></div>
+         </div>
+         <button class="btn btn-outline" name="Decision" value="DeXuatKhac" type="submit">Gửi đề xuất để khách xác nhận</button>
+        </details>
+       }
+       <div class="form-actions"><button class="btn btn-dark" name="Decision" value="ChapNhan" type="submit">Chấp nhận đề nghị</button><button class="btn btn-outline" name="Decision" value="TuChoi" type="submit">Từ chối đề nghị</button></div>
+      }
+     </form>
+    }else{<div class="notice mt-3">Đã gửi đề xuất khác. Đang chờ khách xác nhận hoặc rút đề nghị.</div>}
+   }
+  </article>
+ }
+</div>

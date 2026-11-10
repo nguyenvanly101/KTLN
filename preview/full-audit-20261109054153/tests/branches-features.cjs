@@ -1,0 +1,94 @@
+const fs=require('node:fs'),assert=require('node:assert/strict'),{randomUUID}=require('node:crypto');
+const {Client,val,base}=require('./fulltext-smoke.cjs');
+const {database,sql,json,literal}=require('./branches-sql.cjs');
+const fixture=JSON.parse(fs.readFileSync('preview/branches-fixture.json','utf8'));assert.equal(fixture.database,database);
+const checks=[],stamp=Date.now().toString(),today=new Date(Date.now()+7*3600000).toISOString().slice(0,10);
+const user=label=>fixture.users.find(x=>x.label===label);
+function check(ok,name){assert.ok(ok,name);checks.push(name);}
+function row(table,id,key='Id'){return json(database,`SELECT * FROM dbo.[${table}] WHERE [${key}]=${Number(id)} FOR JSON PATH;`)[0];}
+function named(table,name){return json(database,`SELECT TOP(1) * FROM dbo.[${table}] WHERE Name=${literal(name)} ORDER BY Id DESC FOR JSON PATH;`)[0];}
+function pending(id){return json(database,`SELECT TOP(1) * FROM BanCapNhatCoSo WHERE BranchId=${Number(id)} ORDER BY Number DESC FOR JSON PATH;`)[0];}
+async function status(promise,expected,name){const r=await promise;check(r.status===expected,name+' ['+r.status+'] '+(r.status!==expected?r.text.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').slice(0,1300):''));return r;}
+async function post(c,path,page,values){const data=new URLSearchParams();data.append('__RequestVerificationToken',val(page,'__RequestVerificationToken'));for(const [k,v]of Object.entries(values)){if(v==null)continue;for(const item of Array.isArray(v)?v:[v])data.append(k,String(item));}return c.req(path,data);}
+const branch=(name,lat,other={})=>({Id:0,Name:name,Address:'Địa chỉ '+name,Region:'Khu vực kiểm thử',Type:'AnUong',Summary:'Giới thiệu của đúng chi nhánh '+name,Hours:'11:00–21:00',Phone:'0939000101',LocationSource:'Provider',Latitude:lat,Longitude:107.58,ConfirmLocation:true,OwnershipEvidence:'QA_SECRET_'+name,Parking:true,VegetarianOptions:true,VeganOnly:false,AccessibleEntrance:false,Operation:'Submit',...other});
+let context={};
+(async()=>{
+ for(let attempt=0;;attempt++){try{const ready=await fetch(base+'/api/maps/config');if(ready.ok)break;}catch{}if(attempt>=45)throw Error('Test server did not become ready');await new Promise(r=>setTimeout(r,1000));}
+ const guest=new Client(),owner=new Client(),other=new Client(),traveler=new Client(),admin=new Client();
+ await owner.login(user('provider').email,'BranchTest@2026');await other.login(user('other').email,'BranchTest@2026');await traveler.login(user('traveler').email,'BranchTest@2026');await admin.login(user('admin').email,'BranchTest@2026');
+ const initial=await status(guest.get('/kham-pha'),200,'Public search loads without Google credentials');
+ const home=await status(guest.get('/'),302,'Home opens the place search');
+ await status(guest.get(home.location),200,'Home redirect opens the default category');
+ await status(guest.get('/kham-pha?Category='),200,'All categories remains valid when the form submits an empty category');
+ check(initial.text.includes('Chọn một mốc')&&initial.html.includes('data-search-map'),'Search contains anchor and integrated map');
+ check(initial.headers.get('content-security-policy').includes('maps.googleapis.com')&&initial.headers.get('content-security-policy').includes('nonce-'),'Google Maps CSP uses response nonce');
+ check(/name="maps-nonce"/.test(initial.html),'Map nonce is available to loader');
+ const cfg=await status(guest.get('/api/maps/config'),200,'Public map configuration');check(!Object.keys(JSON.parse(cfg.html)).some(x=>/server|secret/i.test(x)),'Server key is not returned to browser');
+ await status(guest.get('/api/maps/suggest?q='),200,'Empty autocomplete is safe');
+ await status(guest.get('/kham-pha?RadiusKm=0.1'),200,'Decimal radius uses invariant form values in vi-VN');
+ await status(guest.get('/kham-pha?RadiusKm=0'),400,'Out-of-range radius rejected');
+ await status(guest.get('/kham-pha?AnchorKind=Pin&Lat=16.47&Lng=107.58&IncludeGoogle=false'),200,'Manual coordinate anchor remains precise');
+ await status(guest.get('/nha-cung-cap/co-so'),302,'Guest cannot manage branches');
+ await status(traveler.get('/nha-cung-cap/co-so'),403,'Traveler cannot manage provider branches');
+ await status(owner.get('/quan-tri/co-so'),403,'Provider cannot review branches');
+ let edit=await status(owner.get('/nha-cung-cap/co-so/them'),200,'Provider opens branch editor');
+ await status(owner.req('/nha-cung-cap/co-so/luu',new URLSearchParams(branch('NoCsrf',16.47))),400,'Branch save requires antiforgery');
+ const aInput=branch('QA Quán A1 '+stamp,16.47),a2Input=branch('QA Quán A2 '+stamp,16.475,{Parking:false,VeganOnly:true}),bInput=branch('QA Quán B '+stamp,16.48);
+ await status(post(owner,'/nha-cung-cap/co-so/luu',edit,aInput),302,'Provider submits first branch');const a=named('CoSoDichVu',aInput.Name);check(a.Status==='Pending','Unreviewed branch stays pending');context.a=a.Id;
+ await status(guest.get('/co-so/'+a.Id),404,'Unreviewed branch not publicly visible');
+ await status(other.get('/nha-cung-cap/co-so/'+a.Id),404,'Other provider cannot read branch editor or ownership evidence');
+ let review=await status(admin.get('/quan-tri/co-so/'+pending(a.Id).Id),200,'Admin opens branch review');check(review.text.includes(aInput.OwnershipEvidence),'Ownership evidence available for review');
+ await status(post(admin,'/quan-tri/co-so/duyet',review,{Id:pending(a.Id).Id,Version:val(review,'Version'),Decision:'Approved'}),302,'Admin approves exact branch');
+ let publicBranch=await status(guest.get('/co-so/'+a.Id),200,'Approved branch publicly visible');check(publicBranch.text.includes(aInput.Address)&&!publicBranch.text.includes('QA_SECRET_'),'Public branch shows correct address without private ownership evidence');
+ edit=await owner.get('/nha-cung-cap/co-so/them');await status(post(owner,'/nha-cung-cap/co-so/luu',edit,a2Input),302,'Same provider submits second branch');const a2=named('CoSoDichVu',a2Input.Name);context.a2=a2.Id;
+ review=await admin.get('/quan-tri/co-so/'+pending(a2.Id).Id);await status(post(admin,'/quan-tri/co-so/duyet',review,{Id:pending(a2.Id).Id,Version:val(review,'Version'),Decision:'Approved'}),302,'Second branch independently approved');
+ const otherEdit=await other.get('/nha-cung-cap/co-so/them');await status(post(other,'/nha-cung-cap/co-so/luu',otherEdit,bInput),302,'Another provider submits own branch');const b=named('CoSoDichVu',bInput.Name);context.b=b.Id;
+ review=await admin.get('/quan-tri/co-so/'+pending(b.Id).Id);await status(post(admin,'/quan-tri/co-so/duyet',review,{Id:pending(b.Id).Id,Version:val(review,'Version'),Decision:'Approved'}),302,'Other provider branch approved');
+ const ownerList=await status(owner.get('/nha-cung-cap/co-so'),200,'Owner branch list');check(ownerList.text.includes(aInput.Name)&&ownerList.text.includes(a2Input.Name)&&!ownerList.text.includes(bInput.Name),'Provider list contains own multiple branches only');
+ const wrongEdit=await owner.get('/nha-cung-cap/co-so/'+a.Id);await status(post(other,'/nha-cung-cap/co-so/luu',otherEdit,{...aInput,Id:a.Id,Version:val(wrongEdit,'Version'),Name:'Cannot overwrite'}),404,'Other provider cannot mutate branch by forged ID');
+ const badLocation=await status(post(owner,'/nha-cung-cap/co-so/luu',edit,{...aInput,Name:'QA missing coordinate '+stamp,Longitude:''}),422,'Partial position rejected with preserved form');check(badLocation.text.includes('QA missing coordinate'),'Invalid branch form preserves authored data');
+ await status(post(owner,'/nha-cung-cap/co-so/luu',edit,{...aInput,Name:'QA Google missing '+stamp,LocationSource:'Google',GooglePlaceId:'ChIJ_test_missing_key'}),503,'Missing Google key does not fabricate verified location');
+ let lm=await admin.get('/quan-tri/moc-dia-diem/them');const parentName='QA Điểm chính '+stamp;
+ const parentInput={Id:0,Name:parentName,Address:'Địa chỉ điểm thử',Region:'Khu vực kiểm thử',Type:'Point',SourceName:'Nguồn kiểm thử riêng',CheckedOn:today,IsPublished:true,LocationSource:'Provider',Latitude:16.469,Longitude:107.58,ConfirmLocation:true};
+ await status(post(admin,'/quan-tri/moc-dia-diem/luu',lm,parentInput),302,'Admin publishes a specific landmark');const parent=named('MocDiaDiem',parentName);context.parent=parent.Id;
+ const entranceName='QA Cửa Đông Bắc thử '+stamp;
+ await status(post(admin,'/quan-tri/moc-dia-diem/luu',lm,{...parentInput,Name:entranceName,Address:'Địa chỉ cửa thử',Type:'Entrance',ParentId:parent.Id,Latitude:16.47,Longitude:107.581}),302,'Entrance has own coordinate and parent landmark');const entrance=named('MocDiaDiem',entranceName);context.entrance=entrance.Id;
+ const landmarkPage=await status(guest.get('/dia-diem/'+parent.Id),200,'Landmark shows linked entrance');check(landmarkPage.text.includes(entranceName),'Entrance is discoverable from parent');
+ const result=await status(guest.get('/kham-pha?AnchorKind=Landmark&AnchorId='+entrance.Id+'&Category=AnUong&IncludeGoogle=false'),200,'Search uses exact entrance anchor');
+ const payload=JSON.parse(result.html.match(/data-places-payload>([\s\S]*?)<\/script>/)[1]);check(payload.anchor.id===entrance.Id&&payload.anchor.position.lng===107.581,'Search origin is entrance, not parent center');check(payload.hits.some(x=>x.name===aInput.Name)&&payload.hits.some(x=>x.name===a2Input.Name),'Nearby returns both branches independently');
+ const filtered=await status(guest.get('/kham-pha?AnchorKind=Landmark&AnchorId='+entrance.Id+'&Category=AnUong&Parking=true&IncludeGoogle=false'),200,'Branch-specific parking filter');check(filtered.text.includes(aInput.Name)&&!filtered.text.includes(a2Input.Name),'Amenities are not inherited across sibling branches');
+ const suggest=await status(guest.get('/api/maps/suggest?q='+encodeURIComponent(entranceName.normalize('NFD').replace(/\p{M}/gu,'').replaceAll('Đ','D').replaceAll('đ','d'))),200,'Local landmark suggestions');check(JSON.parse(suggest.html).items.some(x=>x.localId===entrance.Id),'Autocomplete can select an exact entrance');
+ const serviceName='QA Gói ăn tại cơ sở '+stamp;const service={Id:0,Name:serviceName,Type:'AnUong',Region:'Khu vực kiểm thử',Description:'Dịch vụ riêng đã kiểm thử',Price:150000,PriceUnit:'người/suất',Hours:'11:00–20:00',Terms:'Cần xác nhận khả năng phục vụ',Operation:'GuiDang',BranchIds:[a.Id]};
+ const serviceEdit=await status(owner.get('/nha-cung-cap/dich-vu/mo-bieu-mau'),200,'Service editor shows approved own branches');check(serviceEdit.text.includes(aInput.Name)&&serviceEdit.text.includes(a2Input.Name)&&!serviceEdit.text.includes(bInput.Name),'Service selector restricted to owned approved branches');
+ await status(post(owner,'/Provider/Edit',serviceEdit,{...service,BranchIds:[b.Id]}),422,'Cannot post service at another provider branch');
+ await status(post(owner,'/Provider/Edit',serviceEdit,service),302,'Service submitted with explicit branch');
+ const s=json(database,`SELECT TOP(1) * FROM DichVuDuLich WHERE TenDichVu=${literal(serviceName)} ORDER BY MaDichVu DESC FOR JSON PATH;`)[0];context.service=s.MaDichVu;
+ const serviceRevision=()=>json(database,`SELECT TOP(1) * FROM BanCapNhatDichVu WHERE MaDichVu=${s.MaDichVu} ORDER BY SoPhienBan DESC FOR JSON PATH;`)[0];
+ let sr=serviceRevision();check(json(database,`SELECT * FROM BanCapNhatDichVuCoSo WHERE RevisionId=${sr.MaBanCapNhat} FOR JSON PATH;`)[0].BranchId===a.Id,'Service revision snapshots branch association');
+ let serviceReview=await admin.get('/Admin/Review/'+sr.MaBanCapNhat);await status(post(admin,'/Admin/Review',serviceReview,{Id:sr.MaBanCapNhat,Version:sr.SoPhienBan,Decision:'DaDuyet'}),302,'Service approval publishes branch association');
+ check((await guest.get('/co-so/'+a.Id)).text.includes(serviceName)&&!(await guest.get('/co-so/'+a2.Id)).text.includes(serviceName),'Service appears only at selected branch');
+ let bookingPage=await status(traveler.get('/Bookings/Create/'+s.MaDichVu+'?branchId='+a.Id),200,'Booking carries selected branch');
+ const booking={ServiceId:s.MaDichVu,BranchId:a.Id,SubmissionId:randomUUID(),Start:today,People:2,Quantity:1,Notes:'Yêu cầu tại cơ sở A1'};
+ let preview=await status(post(traveler,'/Bookings/Create',bookingPage,booking),200,'Booking preview verifies branch');check(preview.text.includes(aInput.Name)&&val(preview,'BranchVersion'),'Preview names branch and carries version');
+ const sent=await status(post(traveler,'/Bookings/Submit',preview,{...booking,BranchVersion:val(preview,'BranchVersion')}),302,'Request stores exact selected branch');const requestId=Number(sent.location.split('/').pop());context.booking=requestId;
+ const snapshot=row('YeuCauDatCoSo',requestId,'RequestId');check(snapshot.BranchId===a.Id&&snapshot.Address===aInput.Address,'Request contains immutable branch identity and address snapshot');
+ const requestPage=await status(owner.get('/Bookings/Detail/'+requestId),200,'Provider sees request branch address');check(requestPage.text.includes(aInput.Address),'Provider receives specific branch location');await status(other.get('/Bookings/Detail/'+requestId),404,'Other provider cannot inspect branch booking');
+ const dup=await status(post(traveler,'/Bookings/Submit',preview,{...booking,BranchVersion:val(preview,'BranchVersion')}),302,'Request retry is idempotent');check(Number(dup.location.split('/').pop())===requestId,'Retry preserves request and branch snapshot');
+ const ownEdit=await owner.get('/nha-cung-cap/co-so/'+a.Id);const updatedAddress='Địa chỉ A1 đã cập nhật '+stamp;
+ await status(post(owner,'/nha-cung-cap/co-so/luu',ownEdit,{...aInput,Id:a.Id,Version:val(ownEdit,'Version'),Address:updatedAddress}),302,'Branch update submitted as a revision');check((await guest.get('/co-so/'+a.Id)).text.includes(aInput.Address),'Pending branch update leaves current public address unchanged');
+ const srBranch=pending(a.Id);review=await admin.get('/quan-tri/co-so/'+srBranch.Id);await status(post(admin,'/quan-tri/co-so/duyet',review,{Id:srBranch.Id,Version:val(review,'Version'),Decision:'Approved'}),302,'Branch update approved');check((await guest.get('/co-so/'+a.Id)).text.includes(updatedAddress),'Approved address replaces public branch address');check(row('YeuCauDatCoSo',requestId,'RequestId').Address===aInput.Address,'Historical request address survives branch update');
+ const currentService=row('DichVuDuLich',s.MaDichVu,'MaDichVu');const updateForm=await owner.get('/Provider/Edit/'+s.MaDichVu);
+ await status(post(owner,'/Provider/Edit',updateForm,{...service,Id:s.MaDichVu,Version:currentService.RowVersion,BranchIds:[a2.Id]}),302,'Service branch-only change creates revision');check(json(database,`SELECT * FROM DichVuCoSo WHERE ServiceId=${s.MaDichVu} FOR JSON PATH;`)[0].BranchId===a.Id,'Pending service change keeps old published branch');
+ let togglePage=await owner.get('/nha-cung-cap/co-so');let a2Current=row('CoSoDichVu',a2.Id);
+ await status(post(owner,'/nha-cung-cap/co-so/hien-thi',togglePage,{Id:a2.Id,Version:a2Current.RowVersion}),302,'Owner can hide approved branch');
+ sr=serviceRevision();serviceReview=await admin.get('/Admin/Review/'+sr.MaBanCapNhat);await status(post(admin,'/Admin/Review',serviceReview,{Id:sr.MaBanCapNhat,Version:sr.SoPhienBan,Decision:'DaDuyet'}),422,'Service approval rechecks target branch visibility');
+ check(serviceRevision().TrangThaiDuyet==='ChoDuyet','Rejected approval attempt rolls back revision state');
+ togglePage=await owner.get('/nha-cung-cap/co-so');a2Current=row('CoSoDichVu',a2.Id);await status(post(owner,'/nha-cung-cap/co-so/hien-thi',togglePage,{Id:a2.Id,Version:a2Current.RowVersion}),302,'Owner restores branch');
+ serviceReview=await admin.get('/Admin/Review/'+sr.MaBanCapNhat);await status(post(admin,'/Admin/Review',serviceReview,{Id:sr.MaBanCapNhat,Version:sr.SoPhienBan,Decision:'DaDuyet'}),302,'Service branch change approved atomically');
+ check(!(await guest.get('/co-so/'+a.Id)).text.includes(serviceName)&&(await guest.get('/co-so/'+a2.Id)).text.includes(serviceName),'Approved move changes only intended branch association');
+ const compare=await status(guest.get('/kham-pha/so-sanh?ids='+a.Id+'&ids='+a2.Id),200,'Guest compares two branches');check(compare.text.includes(aInput.Name)&&compare.text.includes(a2Input.Name),'Comparison distinguishes same-provider branches');
+ const tokenPage=await guest.get('/kham-pha');await status(guest.req('/api/maps/route',new URLSearchParams()),400,'Routes API requires antiforgery');
+ const raw=await fetch(base+'/api/maps/route',{method:'POST',headers:{cookie:[...guest.cookies].map(([k,v])=>k+'='+v).join('; '),'Content-Type':'application/json',RequestVerificationToken:val(tokenPage,'__RequestVerificationToken')},body:JSON.stringify({originLat:16.47,originLng:107.58,destinationLat:16.475,destinationLng:107.58,mode:'invalid'})});check(raw.status===400,'Route rejects unsupported modes before contacting the map provider');
+ for(const path of ['/quan-tri/moc-dia-diem','/quan-tri/co-so?status=All','/Provider','/thong-tin/mo-tim-kiem'])await status((path.startsWith('/quan-tri')?admin:path==='/Provider'?owner:guest).get(path),200,'Integrated page '+path);
+ fs.writeFileSync('tests/branches-features-results.json',JSON.stringify({passed:true,checks:checks.length,observations:checks,context,database,base,liveGoogle:false,date:new Date().toISOString()},null,2));console.log('PASS '+checks.length+' branch/search/ownership/publication/request checks.');
+})().catch(e=>{fs.writeFileSync('tests/branches-features-results.json',JSON.stringify({passed:false,checks:checks.length,observations:checks,context,database,base,error:e.stack,date:new Date().toISOString()},null,2));console.error(e);process.exitCode=1;});

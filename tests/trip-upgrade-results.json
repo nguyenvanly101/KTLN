@@ -1,0 +1,214 @@
+{
+  "passed": true,
+  "database": "HoTroDuLich",
+  "tables": 25,
+  "rowsPreserved": true,
+  "backup": "preview/backups/HoTroDuLich_before_trip_20261104_235610.bak",
+  "backupChecksumVerified": true,
+  "sourceBackup": "preview/before-trip-workflow-restorable.zip",
+  "date": "2026-11-05T00:53:11.3662944+07:00",
+  "before": [
+    {
+      "name": "BanCapNhatDichVu",
+      "rows": 6
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu",
+      "rows": 0
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh",
+      "rows": 1
+    },
+    {
+      "name": "DiaDiemDuLich",
+      "rows": 3
+    },
+    {
+      "name": "DichVuDuLich",
+      "rows": 6
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap",
+      "rows": 0
+    },
+    {
+      "name": "HoatDongLichTrinh",
+      "rows": 2
+    },
+    {
+      "name": "HoSoNguoiDung",
+      "rows": 5
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap",
+      "rows": 2
+    },
+    {
+      "name": "KeHoachChuyenDi",
+      "rows": 2
+    },
+    {
+      "name": "KetQuaCungCapDichVu",
+      "rows": 0
+    },
+    {
+      "name": "NhaCungCapDichVu",
+      "rows": 2
+    },
+    {
+      "name": "NhatKyThaoTac",
+      "rows": 44
+    },
+    {
+      "name": "NhuCauDongHanh",
+      "rows": 1
+    },
+    {
+      "name": "PhuongAnXuLy",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhXacMinh",
+      "rows": 1
+    },
+    {
+      "name": "TaiKhoan",
+      "rows": 5
+    },
+    {
+      "name": "TaiLieuGiaiTrinh",
+      "rows": 0
+    },
+    {
+      "name": "TaiLieuXacMinh",
+      "rows": 1
+    },
+    {
+      "name": "TinhHuongHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "TinhHuongPhatSinh",
+      "rows": 1
+    },
+    {
+      "name": "ThoaThuanDongHanh",
+      "rows": 1
+    },
+    {
+      "name": "ThongBao",
+      "rows": 7
+    },
+    {
+      "name": "YeuCauDatDichVu",
+      "rows": 0
+    }
+  ],
+  "after": [
+    {
+      "name": "BanCapNhatDichVu",
+      "rows": 6
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu",
+      "rows": 0
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh",
+      "rows": 1
+    },
+    {
+      "name": "DiaDiemDuLich",
+      "rows": 3
+    },
+    {
+      "name": "DichVuDuLich",
+      "rows": 6
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap",
+      "rows": 0
+    },
+    {
+      "name": "HoatDongLichTrinh",
+      "rows": 2
+    },
+    {
+      "name": "HoSoNguoiDung",
+      "rows": 5
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap",
+      "rows": 2
+    },
+    {
+      "name": "KeHoachChuyenDi",
+      "rows": 2
+    },
+    {
+      "name": "KetQuaCungCapDichVu",
+      "rows": 0
+    },
+    {
+      "name": "NhaCungCapDichVu",
+      "rows": 2
+    },
+    {
+      "name": "NhatKyThaoTac",
+      "rows": 44
+    },
+    {
+      "name": "NhuCauDongHanh",
+      "rows": 1
+    },
+    {
+      "name": "PhuongAnXuLy",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhXacMinh",
+      "rows": 1
+    },
+    {
+      "name": "TaiKhoan",
+      "rows": 5
+    },
+    {
+      "name": "TaiLieuGiaiTrinh",
+      "rows": 0
+    },
+    {
+      "name": "TaiLieuXacMinh",
+      "rows": 1
+    },
+    {
+      "name": "TinhHuongHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "TinhHuongPhatSinh",
+      "rows": 1
+    },
+    {
+      "name": "ThoaThuanDongHanh",
+      "rows": 1
+    },
+    {
+      "name": "ThongBao",
+      "rows": 7
+    },
+    {
+      "name": "YeuCauDatDichVu",
+      "rows": 0
+    }
+  ]
+}

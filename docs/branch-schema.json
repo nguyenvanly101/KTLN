@@ -1,0 +1,780 @@
+{
+  "CoSoDichVu": {
+    "identity": true,
+    "keys": [
+      "Id"
+    ],
+    "columns": [
+      {
+        "name": "Id",
+        "sql": "bigint",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "ProviderId",
+        "sql": "bigint",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Name",
+        "sql": "nvarchar(200)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Type",
+        "sql": "varchar(30)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Region",
+        "sql": "nvarchar(200)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Address",
+        "sql": "nvarchar(400)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Summary",
+        "sql": "nvarchar(2000)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Phone",
+        "sql": "nvarchar(30)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Website",
+        "sql": "nvarchar(500)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Hours",
+        "sql": "nvarchar(300)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Parking",
+        "sql": "bit",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "VegetarianOptions",
+        "sql": "bit",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "VeganOnly",
+        "sql": "bit",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "AccessibleEntrance",
+        "sql": "bit",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "GooglePlaceId",
+        "sql": "nvarchar(256)",
+        "nullable": true,
+        "def": null,
+        "collation": "Latin1_General_100_BIN2"
+      },
+      {
+        "name": "Latitude",
+        "sql": "decimal(9,6)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Longitude",
+        "sql": "decimal(9,6)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "LocationSource",
+        "sql": "varchar(15)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "LocationExpiresAt",
+        "sql": "datetime2(0)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Status",
+        "sql": "varchar(25)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "PublishedVersion",
+        "sql": "int",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "CreatedAt",
+        "sql": "datetime2(0)",
+        "nullable": false,
+        "def": "SYSUTCDATETIME()",
+        "collation": null
+      },
+      {
+        "name": "UpdatedAt",
+        "sql": "datetime2(0)",
+        "nullable": false,
+        "def": "SYSUTCDATETIME()",
+        "collation": null
+      },
+      {
+        "name": "RowVersion",
+        "sql": "rowversion",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      }
+    ],
+    "fks": [
+      [
+        "ProviderId",
+        "NhaCungCapDichVu",
+        "MaNhaCungCap"
+      ]
+    ],
+    "checks": {
+      "Location": "((Latitude IS NULL AND Longitude IS NULL) OR (Latitude IS NOT NULL AND Longitude IS NOT NULL AND Latitude BETWEEN -90 AND 90 AND Longitude BETWEEN -180 AND 180)) AND ((LocationSource='Provider' AND LocationExpiresAt IS NULL) OR (LocationSource='Google' AND GooglePlaceId IS NOT NULL))",
+      "Type": "Type IN ('LuuTru','AnUong','PhuongTien','HoatDong','Khac')",
+      "Status": "Status IN ('Draft','Pending','Approved','Rejected','ChangesRequested','Hidden')"
+    },
+    "indexes": [
+      [
+        "IX_CoSo_Provider",
+        "ProviderId,Status"
+      ],
+      [
+        "IX_CoSo_Search",
+        "Status,Type,Region"
+      ],
+      [
+        "UX_CoSo_GooglePlace",
+        "GooglePlaceId",
+        true,
+        "GooglePlaceId IS NOT NULL AND PublishedVersion IS NOT NULL"
+      ]
+    ]
+  },
+  "BanCapNhatCoSo": {
+    "identity": true,
+    "keys": [
+      "Id"
+    ],
+    "columns": [
+      {
+        "name": "Id",
+        "sql": "bigint",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "BranchId",
+        "sql": "bigint",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Number",
+        "sql": "int",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Name",
+        "sql": "nvarchar(200)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Type",
+        "sql": "varchar(30)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Region",
+        "sql": "nvarchar(200)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Address",
+        "sql": "nvarchar(400)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Summary",
+        "sql": "nvarchar(2000)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Phone",
+        "sql": "nvarchar(30)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Website",
+        "sql": "nvarchar(500)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Hours",
+        "sql": "nvarchar(300)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Parking",
+        "sql": "bit",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "VegetarianOptions",
+        "sql": "bit",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "VeganOnly",
+        "sql": "bit",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "AccessibleEntrance",
+        "sql": "bit",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "GooglePlaceId",
+        "sql": "nvarchar(256)",
+        "nullable": true,
+        "def": null,
+        "collation": "Latin1_General_100_BIN2"
+      },
+      {
+        "name": "Latitude",
+        "sql": "decimal(9,6)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Longitude",
+        "sql": "decimal(9,6)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "LocationSource",
+        "sql": "varchar(15)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "LocationExpiresAt",
+        "sql": "datetime2(0)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Status",
+        "sql": "varchar(25)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "OwnershipEvidence",
+        "sql": "nvarchar(2000)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Reason",
+        "sql": "nvarchar(1000)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "AdminId",
+        "sql": "bigint",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "SubmittedAt",
+        "sql": "datetime2(0)",
+        "nullable": false,
+        "def": "SYSUTCDATETIME()",
+        "collation": null
+      },
+      {
+        "name": "ReviewedAt",
+        "sql": "datetime2(0)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "RowVersion",
+        "sql": "rowversion",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      }
+    ],
+    "fks": [
+      [
+        "BranchId",
+        "CoSoDichVu",
+        "Id"
+      ],
+      [
+        "AdminId",
+        "TaiKhoan",
+        "MaTaiKhoan"
+      ]
+    ],
+    "checks": {
+      "Location": "((Latitude IS NULL AND Longitude IS NULL) OR (Latitude IS NOT NULL AND Longitude IS NOT NULL AND Latitude BETWEEN -90 AND 90 AND Longitude BETWEEN -180 AND 180)) AND ((LocationSource='Provider' AND LocationExpiresAt IS NULL) OR (LocationSource='Google' AND GooglePlaceId IS NOT NULL))",
+      "Number": "Number>0",
+      "Status": "Status IN ('Pending','Approved','Rejected','ChangesRequested')",
+      "Type": "Type IN ('LuuTru','AnUong','PhuongTien','HoatDong','Khac')"
+    },
+    "indexes": [
+      [
+        "UX_CoSoRevision_Number",
+        "BranchId,Number",
+        true
+      ],
+      [
+        "UX_CoSoRevision_Pending",
+        "BranchId",
+        true,
+        "Status='Pending'"
+      ],
+      [
+        "IX_CoSoRevision_Queue",
+        "Status,SubmittedAt"
+      ]
+    ]
+  },
+  "DichVuCoSo": {
+    "keys": [
+      "ServiceId",
+      "BranchId"
+    ],
+    "columns": [
+      {
+        "name": "ServiceId",
+        "sql": "bigint",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "BranchId",
+        "sql": "bigint",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      }
+    ],
+    "fks": [
+      [
+        "ServiceId",
+        "DichVuDuLich",
+        "MaDichVu"
+      ],
+      [
+        "BranchId",
+        "CoSoDichVu",
+        "Id"
+      ]
+    ],
+    "indexes": [
+      [
+        "IX_DichVuCoSo_Branch",
+        "BranchId,ServiceId"
+      ]
+    ]
+  },
+  "BanCapNhatDichVuCoSo": {
+    "keys": [
+      "RevisionId",
+      "BranchId"
+    ],
+    "columns": [
+      {
+        "name": "RevisionId",
+        "sql": "bigint",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "BranchId",
+        "sql": "bigint",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      }
+    ],
+    "fks": [
+      [
+        "RevisionId",
+        "BanCapNhatDichVu",
+        "MaBanCapNhat"
+      ],
+      [
+        "BranchId",
+        "CoSoDichVu",
+        "Id"
+      ]
+    ],
+    "indexes": [
+      [
+        "IX_BanCapNhatDichVuCoSo_Branch",
+        "BranchId,RevisionId"
+      ]
+    ]
+  },
+  "MocDiaDiem": {
+    "identity": true,
+    "keys": [
+      "Id"
+    ],
+    "columns": [
+      {
+        "name": "Id",
+        "sql": "bigint",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "ParentId",
+        "sql": "bigint",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Name",
+        "sql": "nvarchar(200)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Type",
+        "sql": "varchar(15)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Region",
+        "sql": "nvarchar(200)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Address",
+        "sql": "nvarchar(400)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Summary",
+        "sql": "nvarchar(2000)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Hours",
+        "sql": "nvarchar(300)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Fees",
+        "sql": "nvarchar(1000)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "GooglePlaceId",
+        "sql": "nvarchar(256)",
+        "nullable": true,
+        "def": null,
+        "collation": "Latin1_General_100_BIN2"
+      },
+      {
+        "name": "Latitude",
+        "sql": "decimal(9,6)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Longitude",
+        "sql": "decimal(9,6)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "LocationSource",
+        "sql": "varchar(15)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "LocationExpiresAt",
+        "sql": "datetime2(0)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "SourceName",
+        "sql": "nvarchar(200)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "SourceUrl",
+        "sql": "nvarchar(500)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "CheckedOn",
+        "sql": "date",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "IsPublished",
+        "sql": "bit",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "AdminId",
+        "sql": "bigint",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "UpdatedAt",
+        "sql": "datetime2(0)",
+        "nullable": false,
+        "def": "SYSUTCDATETIME()",
+        "collation": null
+      },
+      {
+        "name": "RowVersion",
+        "sql": "rowversion",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      }
+    ],
+    "fks": [
+      [
+        "ParentId",
+        "MocDiaDiem",
+        "Id"
+      ],
+      [
+        "AdminId",
+        "TaiKhoan",
+        "MaTaiKhoan"
+      ]
+    ],
+    "checks": {
+      "Location": "((Latitude IS NULL AND Longitude IS NULL) OR (Latitude IS NOT NULL AND Longitude IS NOT NULL AND Latitude BETWEEN -90 AND 90 AND Longitude BETWEEN -180 AND 180)) AND ((LocationSource='Provider' AND LocationExpiresAt IS NULL) OR (LocationSource='Google' AND GooglePlaceId IS NOT NULL))",
+      "Type": "Type IN ('Point','Entrance')",
+      "Parent": "ParentId IS NULL OR ParentId<>Id"
+    },
+    "indexes": [
+      [
+        "IX_MocDiaDiem_Parent",
+        "ParentId"
+      ],
+      [
+        "IX_MocDiaDiem_Search",
+        "IsPublished,Region"
+      ],
+      [
+        "UX_MocDiaDiem_GooglePlace",
+        "GooglePlaceId",
+        true,
+        "GooglePlaceId IS NOT NULL"
+      ]
+    ]
+  },
+  "YeuCauDatCoSo": {
+    "keys": [
+      "RequestId"
+    ],
+    "columns": [
+      {
+        "name": "RequestId",
+        "sql": "bigint",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "BranchId",
+        "sql": "bigint",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "BranchName",
+        "sql": "nvarchar(200)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "Address",
+        "sql": "nvarchar(400)",
+        "nullable": false,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "GooglePlaceId",
+        "sql": "nvarchar(256)",
+        "nullable": true,
+        "def": null,
+        "collation": "Latin1_General_100_BIN2"
+      },
+      {
+        "name": "ProviderLatitude",
+        "sql": "decimal(9,6)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      },
+      {
+        "name": "ProviderLongitude",
+        "sql": "decimal(9,6)",
+        "nullable": true,
+        "def": null,
+        "collation": null
+      }
+    ],
+    "fks": [
+      [
+        "RequestId",
+        "YeuCauDatDichVu",
+        "MaYeuCau"
+      ],
+      [
+        "BranchId",
+        "CoSoDichVu",
+        "Id"
+      ]
+    ],
+    "indexes": [
+      [
+        "IX_YeuCauDatCoSo_Branch",
+        "BranchId,RequestId"
+      ]
+    ]
+  }
+}

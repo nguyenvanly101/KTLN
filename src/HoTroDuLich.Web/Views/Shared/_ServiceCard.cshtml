@@ -1,0 +1,8 @@
+@model DichVuDuLich
+@{ var cardPlanId = (ViewBag.TripPlan as KeHoachChuyenDi)?.MaKeHoach; }
+<article class="service-card">
+ <a class="service-image" asp-controller="Explore" asp-action="Detail" asp-route-id="@Model.MaDichVu" asp-route-planId="@cardPlanId" aria-label="Xem @Model.TenDichVu"><img src="@Ui.ServiceImage(Model)" alt="@Ui.ServiceImageLabel(Model) · @Model.TenDichVu" loading="lazy" width="600" height="440"/><span class="image-label">@Ui.Icon(Ui.CategoryIcon(Model.LoaiDichVu)) @DanhMuc.Ten(Model.LoaiDichVu)</span></a>
+ <div class="service-body"><div class="location">@Ui.Icon("pin") @Model.KhuVucPhucVu</div><h3><a asp-controller="Explore" asp-action="Detail" asp-route-id="@Model.MaDichVu" asp-route-planId="@cardPlanId">@Model.TenDichVu</a></h3><p>@Model.MoTa</p>
+ @if(Model.TrangThaiTiepNhan.ToString()!="TiepNhan"){<span class="badge @Labels.Badge(Model.TrangThaiTiepNhan.ToString())">@Labels.Status(Model.TrangThaiTiepNhan.ToString())</span>}
+ <div class="service-bottom"><div><span class="price-caption">Giá tham khảo</span><strong>@Labels.Money(Model.GiaThamKhao)</strong>@if(Model.DonViGia!=null){<small class="price-unit">/ @Model.DonViGia</small>}</div><a class="card-link" asp-controller="Explore" asp-action="Detail" asp-route-id="@Model.MaDichVu" asp-route-planId="@cardPlanId" aria-label="Chi tiết @Model.TenDichVu">Chi tiết @Ui.Icon("arrow")</a></div><partial name="_SaveChoice" model="@(new SavedInput{ServiceId=Model.MaDichVu,ReturnUrl=Context.Request.Path+Context.Request.QueryString})"/></div>
+</article>

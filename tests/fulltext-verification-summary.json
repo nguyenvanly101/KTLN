@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-04T08:02:47.307Z",
+  "results": [
+    {
+      "file": "fulltext-contract-results.json",
+      "passed": true,
+      "checks": 1697,
+      "date": "2026-11-04T07:54:34.3065999Z"
+    },
+    {
+      "file": "fulltext-main-schema-results.json",
+      "passed": true,
+      "checks": 1472,
+      "date": "2026-11-04T07:25:13.407Z"
+    },
+    {
+      "file": "fulltext-workflow-results.json",
+      "passed": true,
+      "checks": 169,
+      "date": "2026-11-04T07:37:50.806Z"
+    },
+    {
+      "file": "fulltext-access-results.json",
+      "passed": true,
+      "checks": 364,
+      "date": "2026-11-04T07:41:01.718Z"
+    },
+    {
+      "file": "fulltext-smoke-results.json",
+      "passed": true,
+      "checks": 41,
+      "date": "2026-11-04T07:54:36.122Z"
+    },
+    {
+      "file": "fulltext-ui-flow-results.json",
+      "passed": true,
+      "checks": 35,
+      "date": "2026-11-04T07:40:57.326Z"
+    },
+    {
+      "file": "fulltext-security-results.json",
+      "passed": true,
+      "checks": 23,
+      "date": "2026-11-04T07:36:31.592Z"
+    }
+  ]
+}

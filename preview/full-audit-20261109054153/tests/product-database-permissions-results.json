@@ -1,0 +1,118 @@
+{
+  "passed": true,
+  "checks": 22,
+  "database": "HoTroDuLich_Branches_Audit_20261109054153",
+  "results": [
+    {
+      "table": "LuaChonDaLuu",
+      "permission": "SELECT",
+      "allowed": 1
+    },
+    {
+      "table": "LuaChonDaLuu",
+      "permission": "INSERT",
+      "allowed": 1
+    },
+    {
+      "table": "LuaChonDaLuu",
+      "permission": "UPDATE",
+      "allowed": 1
+    },
+    {
+      "table": "LuaChonDaLuu",
+      "permission": "DELETE",
+      "allowed": 1
+    },
+    {
+      "table": "MucChuanBi",
+      "permission": "SELECT",
+      "allowed": 1
+    },
+    {
+      "table": "MucChuanBi",
+      "permission": "INSERT",
+      "allowed": 1
+    },
+    {
+      "table": "MucChuanBi",
+      "permission": "UPDATE",
+      "allowed": 1
+    },
+    {
+      "table": "MucChuanBi",
+      "permission": "DELETE",
+      "allowed": 1
+    },
+    {
+      "table": "KhoanChiChuyenDi",
+      "permission": "SELECT",
+      "allowed": 1
+    },
+    {
+      "table": "KhoanChiChuyenDi",
+      "permission": "INSERT",
+      "allowed": 1
+    },
+    {
+      "table": "KhoanChiChuyenDi",
+      "permission": "UPDATE",
+      "allowed": 1
+    },
+    {
+      "table": "KhoanChiChuyenDi",
+      "permission": "DELETE",
+      "allowed": 1
+    },
+    {
+      "table": "HoatDongLichTrinh",
+      "permission": "DELETE",
+      "allowed": 1
+    },
+    {
+      "table": "TaiKhoan",
+      "permission": "DELETE",
+      "allowed": 0
+    },
+    {
+      "table": "KeHoachChuyenDi",
+      "permission": "DELETE",
+      "allowed": 0
+    },
+    {
+      "table": "NhatKyThaoTac",
+      "permission": "UPDATE",
+      "allowed": 0
+    },
+    {
+      "table": "QuyetDinhXacMinh",
+      "permission": "UPDATE",
+      "allowed": 0
+    },
+    {
+      "table": "QuyetDinhQuyenHoatDong",
+      "permission": "UPDATE",
+      "allowed": 0
+    },
+    {
+      "table": "TaiLieuXacMinh",
+      "permission": "UPDATE",
+      "allowed": 0
+    },
+    {
+      "table": "TaiLieuGiaiTrinh",
+      "permission": "UPDATE",
+      "allowed": 0
+    },
+    {
+      "table": "TinhHuongHoatDong",
+      "permission": "UPDATE",
+      "allowed": 0
+    },
+    {
+      "table": "TaiKhoan",
+      "permission": "ALTER",
+      "allowed": 0
+    }
+  ],
+  "date": "2026-11-09T10:32:56.072Z"
+}

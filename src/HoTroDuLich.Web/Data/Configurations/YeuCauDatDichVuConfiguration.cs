@@ -1,0 +1,56 @@
+using HoTroDuLich.Web.Domain;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+namespace HoTroDuLich.Web.Data.Configurations;
+public sealed class YeuCauDatDichVuConfiguration : IEntityTypeConfiguration<YeuCauDatDichVu> {
+ public void Configure(EntityTypeBuilder<YeuCauDatDichVu> e) {
+ e.ToTable("YeuCauDatDichVu");
+ e.HasKey(x => x.MaYeuCau);
+ e.Property(x => x.MaKeHoach).HasColumnType("bigint");
+ e.HasOne<KeHoachChuyenDi>().WithMany().HasForeignKey(x => x.MaKeHoach).OnDelete(DeleteBehavior.NoAction);
+ e.HasIndex(x => new { x.MaKeHoach, x.ThoiDiemGui }, "IX_YeuCau_KeHoach").IsDescending(false, true).IncludeProperties("MaDichVu", "TrangThai");
+ e.HasOne(x=>x.TaiKhoan).WithMany(x=>x.YeuCauDatDichVu).HasForeignKey(x => x.MaTaiKhoan).OnDelete(DeleteBehavior.Restrict);
+ e.HasOne(x=>x.DichVuDuLich).WithMany(x=>x.YeuCauDatDichVu).HasForeignKey(x => x.MaDichVu).OnDelete(DeleteBehavior.Restrict);
+ e.Property(x => x.ThoiGianDenDi).HasMaxLength(100);
+ e.ToTable(t => t.HasCheckConstraint("CK_YeuCauDatDichVu_SoNguoi", "[SoNguoi] BETWEEN 1 AND 100"));
+ e.ToTable(t => t.HasCheckConstraint("CK_YeuCauDatDichVu_SoLuong", "[SoLuong] BETWEEN 1 AND 100"));
+ e.Property(x => x.NoiDungLuaChon).HasMaxLength(1000);
+ e.Property(x => x.GhiChu).HasMaxLength(1000);
+ e.Property(x => x.ChiPhiDuKien).HasPrecision(18,2);
+ e.ToTable(t => t.HasCheckConstraint("CK_YeuCauDatDichVu_ChiPhiDuKien", "[ChiPhiDuKien] >= 0"));
+ e.Property(x => x.DieuKienDeXuat).HasMaxLength(2000);
+ e.ToTable(t => t.HasCheckConstraint("CK_YeuCauDatDichVu_PhienBan", "[PhienBan] >= 1"));
+ e.Property(x => x.LyDo).HasMaxLength(500);
+ e.Property(x => x.TrangThai).HasMaxLength(30).IsUnicode(false);
+ e.ToTable(t => t.HasCheckConstraint("CK_YeuCauDatDichVu_TrangThai", "[TrangThai] IN ('ChoPhanHoi','DeXuatKhac','DaXacNhan','TuChoi','KhongTiepTuc','DaHuy','HoanThanh','ThucHienMotPhan','KhongThucHien','ChoKiemTra')"));
+ e.Property(x => x.RowVersion).IsRowVersion();
+ e.ToTable(t => t.HasCheckConstraint("CK_YeuCauDatDichVu_Ngay", "NgayKetThuc IS NULL OR NgayKetThuc >= NgayBatDau"));
+ e.ToTable(t => t.HasCheckConstraint("CK_YeuCauDatDichVu_LyDo", "TrangThai <> 'TuChoi' OR (LyDo IS NOT NULL AND LEN(LTRIM(LyDo)) > 0)"));
+ e.ToTable(t => t.HasCheckConstraint("CK_YeuCauDatDichVu_PhanHoi", "TrangThai NOT IN ('DeXuatKhac', 'DaXacNhan', 'TuChoi') OR ThoiDiemPhanHoi IS NOT NULL"));
+ e.ToTable(t => t.HasCheckConstraint("CK_YeuCauDatDichVu_DeXuat", "TrangThai <> 'DeXuatKhac' OR (DieuKienDeXuat IS NOT NULL AND LEN(LTRIM(DieuKienDeXuat)) > 0)"));
+ e.HasIndex(x => new { x.MaTaiKhoan, x.MaLuotGui }, "UX_YeuCauDatDichVu_LuotGui").IsUnique().HasDatabaseName("UX_YeuCauDatDichVu_LuotGui");
+ e.Property(x=>x.MaYeuCau).HasColumnType("bigint");
+ e.Property(x=>x.MaTaiKhoan).HasColumnType("bigint");
+ e.Property(x=>x.MaDichVu).HasColumnType("bigint");
+ e.Property(x=>x.NgayBatDau).HasColumnType("date");
+ e.Property(x=>x.NgayKetThuc).HasColumnType("date");
+ e.Property(x=>x.ThoiGianDenDi).HasColumnType("nvarchar(100)");
+ e.Property(x=>x.SoNguoi).HasColumnType("int");
+ e.Property(x=>x.SoLuong).HasColumnType("int");
+ e.Property(x=>x.NoiDungLuaChon).HasColumnType("nvarchar(1000)");
+ e.Property(x=>x.GhiChu).HasColumnType("nvarchar(1000)");
+ e.Property(x=>x.ChiPhiDuKien).HasColumnType("decimal(18,2)");
+ e.Property(x=>x.DieuKienDeXuat).HasColumnType("nvarchar(2000)");
+ e.Property(x=>x.PhienBan).HasColumnType("int");
+ e.Property(x=>x.PhienBan).HasSentinel(true).HasDefaultValueSql("1", "DF_YeuCauDatDichVu_PhienBan");
+ e.Property(x=>x.ThoiDiemGui).HasColumnType("datetime2(0)");
+ e.Property(x=>x.ThoiDiemGui).HasDefaultValueSql("SYSUTCDATETIME()", "DF_YeuCauDatDichVu_ThoiDiemGui");
+ e.Property(x=>x.ThoiDiemPhanHoi).HasColumnType("datetime2(0)");
+ e.Property(x=>x.LyDo).HasColumnType("nvarchar(500)");
+ e.Property(x=>x.TrangThai).HasColumnType("varchar(30)");
+ e.Property(x=>x.TrangThai).HasDefaultValueSql("'ChoPhanHoi'", "DF_YeuCauDatDichVu_TrangThai");
+ e.Property(x=>x.MaLuotGui).HasColumnType("uniqueidentifier");
+ e.HasIndex(x=>new {x.MaTaiKhoan,x.ThoiDiemGui},"IX_YeuCau_TaiKhoan").HasDatabaseName("IX_YeuCau_TaiKhoan").IsDescending(false,true).IncludeProperties("MaDichVu","TrangThai");
+ e.HasIndex(x=>new {x.MaDichVu,x.TrangThai},"IX_YeuCau_DichVu").HasDatabaseName("IX_YeuCau_DichVu").IncludeProperties("ThoiDiemGui");
+ }
+}

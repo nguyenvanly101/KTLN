@@ -1,0 +1,19 @@
+{
+  "tables": {
+    "HoSoDongHanh": {},
+    "NhomDongHanh": {},
+    "ThanhVienDongHanh": {},
+    "TinNhanDongHanh": {},
+    "XacNhanThongBaoNhom": {},
+    "BinhChonDongHanh": {},
+    "LuaChonBinhChon": {},
+    "PhieuBinhChon": {},
+    "HoatDongNhom": {},
+    "ViecNhom": {},
+    "KhoanChiNhom": {},
+    "PhanBoChiNhom": {},
+    "HoanTraNhom": {},
+    "ChanDongHanh": {},
+    "BaoCaoDongHanh": {}
+  }
+}

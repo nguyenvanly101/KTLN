@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "checks": 8,
+  "provider": "OSRM / OpenStreetMap",
+  "distanceKm": 0.7962,
+  "minutes": 10.616666666666667,
+  "points": [
+    {
+      "lat": 15.883333,
+      "lng": 108.333333,
+      "name": "Mốc di sản công khai"
+    },
+    {
+      "lat": 15.880058,
+      "lng": 108.338047,
+      "name": "Mốc đơn vị lưu trú công khai"
+    }
+  ],
+  "nearby": [
+    {
+      "id": 17,
+      "title": "Anantara Hội An — thông tin tham khảo",
+      "kind": "Service",
+      "kindLabel": "Dịch vụ",
+      "region": "Hội An",
+      "url": "/Discovery/Entry/17",
+      "lat": 15.880058,
+      "lng": 108.338047,
+      "summary": "Thông tin lưu trú từ trang của đơn vị vận hành. Tra cứu vị trí và liên hệ nguồn để kiểm tra điều kiện theo ngày.",
+      "price": null,
+      "unit": null,
+      "distanceKm": 0.009016265158047316,
+      "extraMinutes": 0,
+      "checkedOn": "2026-11-08"
+    }
+  ],
+  "elapsedMs": 1330,
+  "date": "2026-11-08T07:11:12.446Z"
+}

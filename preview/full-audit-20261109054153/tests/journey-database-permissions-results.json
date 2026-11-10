@@ -1,0 +1,148 @@
+{
+  "passed": true,
+  "checks": 29,
+  "database": "HoTroDuLich_Branches_Audit_20261109054153",
+  "results": [
+    {
+      "table": "ChiaSeChuyenDi",
+      "permission": "SELECT",
+      "allowed": 1
+    },
+    {
+      "table": "ChiaSeChuyenDi",
+      "permission": "INSERT",
+      "allowed": 1
+    },
+    {
+      "table": "ChiaSeChuyenDi",
+      "permission": "UPDATE",
+      "allowed": 1
+    },
+    {
+      "table": "ChiaSeChuyenDi",
+      "permission": "DELETE",
+      "allowed": 0
+    },
+    {
+      "table": "ChiaSeChuyenDi",
+      "permission": "ALTER",
+      "allowed": 0
+    },
+    {
+      "table": "DanhGiaDichVu",
+      "permission": "SELECT",
+      "allowed": 1
+    },
+    {
+      "table": "DanhGiaDichVu",
+      "permission": "INSERT",
+      "allowed": 1
+    },
+    {
+      "table": "DanhGiaDichVu",
+      "permission": "UPDATE",
+      "allowed": 1
+    },
+    {
+      "table": "DanhGiaDichVu",
+      "permission": "DELETE",
+      "allowed": 0
+    },
+    {
+      "table": "DanhGiaDichVu",
+      "permission": "ALTER",
+      "allowed": 0
+    },
+    {
+      "table": "LichPhucVuDichVu",
+      "permission": "SELECT",
+      "allowed": 1
+    },
+    {
+      "table": "LichPhucVuDichVu",
+      "permission": "INSERT",
+      "allowed": 1
+    },
+    {
+      "table": "LichPhucVuDichVu",
+      "permission": "UPDATE",
+      "allowed": 1
+    },
+    {
+      "table": "LichPhucVuDichVu",
+      "permission": "DELETE",
+      "allowed": 1
+    },
+    {
+      "table": "LichPhucVuDichVu",
+      "permission": "ALTER",
+      "allowed": 0
+    },
+    {
+      "table": "LuaChonDaLuu",
+      "permission": "DELETE",
+      "allowed": 1
+    },
+    {
+      "table": "MucChuanBi",
+      "permission": "DELETE",
+      "allowed": 1
+    },
+    {
+      "table": "KhoanChiChuyenDi",
+      "permission": "DELETE",
+      "allowed": 1
+    },
+    {
+      "table": "HoatDongLichTrinh",
+      "permission": "DELETE",
+      "allowed": 1
+    },
+    {
+      "table": "TaiKhoan",
+      "permission": "DELETE",
+      "allowed": 0
+    },
+    {
+      "table": "KeHoachChuyenDi",
+      "permission": "DELETE",
+      "allowed": 0
+    },
+    {
+      "table": "YeuCauDatDichVu",
+      "permission": "DELETE",
+      "allowed": 0
+    },
+    {
+      "table": "NhatKyThaoTac",
+      "permission": "UPDATE",
+      "allowed": 0
+    },
+    {
+      "table": "QuyetDinhXacMinh",
+      "permission": "UPDATE",
+      "allowed": 0
+    },
+    {
+      "table": "QuyetDinhQuyenHoatDong",
+      "permission": "UPDATE",
+      "allowed": 0
+    },
+    {
+      "table": "TaiLieuXacMinh",
+      "permission": "UPDATE",
+      "allowed": 0
+    },
+    {
+      "table": "TaiLieuGiaiTrinh",
+      "permission": "UPDATE",
+      "allowed": 0
+    },
+    {
+      "table": "TinhHuongHoatDong",
+      "permission": "UPDATE",
+      "allowed": 0
+    }
+  ],
+  "date": "2026-11-09T10:32:56.414Z"
+}

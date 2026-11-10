@@ -1,0 +1,115 @@
+{
+  "passed": true,
+  "checks": 27,
+  "observations": [
+    {
+      "name": "Core fixture exists",
+      "passed": true
+    },
+    {
+      "name": "Reject unsafe source URL: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "Reject future experience: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot edit unrelated place: 403 expected 403 ",
+      "passed": true
+    },
+    {
+      "name": "Provider service indexed",
+      "passed": true
+    },
+    {
+      "name": "Provider submits enrichment: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Proposal not public before acceptance",
+      "passed": true
+    },
+    {
+      "name": "Admin applies exact proposal: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Accepted enrichment public",
+      "passed": true
+    },
+    {
+      "name": "Service reviews require existing booking flow: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "Second proposal submitted: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Admin publishes newer content: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Stale proposal rejected: 409 expected 409 ",
+      "passed": true
+    },
+    {
+      "name": "Close stale test proposal: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Private collection fixture",
+      "passed": true
+    },
+    {
+      "name": "Cannot import missing entry: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "Save private route: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Route submission idempotent: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "One saved route",
+      "passed": true
+    },
+    {
+      "name": "Coordinates preserve decimal point",
+      "passed": true
+    },
+    {
+      "name": "Route private across users",
+      "passed": true
+    },
+    {
+      "name": "Cannot archive another user route: 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Hide entry: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Hidden entry not publicly readable: 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Hidden entry absent in suggestions",
+      "passed": true
+    },
+    {
+      "name": "Saved hidden entry has neutral placeholder",
+      "passed": true
+    },
+    {
+      "name": "Unsupported mode never silently becomes car",
+      "passed": true
+    }
+  ],
+  "date": "2026-11-09T10:54:44.628Z"
+}

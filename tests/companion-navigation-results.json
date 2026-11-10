@@ -1,0 +1,416 @@
+{
+  "passed": true,
+  "checks": 102,
+  "base": "http://localhost:5223",
+  "date": "2026-11-05T17:03:28.810Z",
+  "observations": [
+    {
+      "name": "GET / returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /",
+      "passed": true
+    },
+    {
+      "name": "New discovery hero is rendered",
+      "passed": true
+    },
+    {
+      "name": "Public navigation has three related groups",
+      "passed": true
+    },
+    {
+      "name": "Trip and companion workspaces are reachable",
+      "passed": true
+    },
+    {
+      "name": "GET /?q=M%C3%A2y&region=%C4%90%C3%A0%20L%E1%BA%A1t&type=LuuTru&min=100000&max=1000000 returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /?q=M%C3%A2y&region=%C4%90%C3%A0%20L%E1%BA%A1t&type=LuuTru&min=100000&max=1000000",
+      "passed": true
+    },
+    {
+      "name": "Search results prioritize the filter and results",
+      "passed": true
+    },
+    {
+      "name": "Search preserves q",
+      "passed": true
+    },
+    {
+      "name": "Search preserves region",
+      "passed": true
+    },
+    {
+      "name": "Search preserves min",
+      "passed": true
+    },
+    {
+      "name": "Search preserves max",
+      "passed": true
+    },
+    {
+      "name": "GET /dong-hanh/tim-kiem/tim-nhu-cau?noiDen=%C4%90%C3%A0%20L%E1%BA%A1t&nganSachToiDa=2000000&hinhThucDi=Phuot&tuNgay=2026-11-11&denNgay=2026-11-30 returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /dong-hanh/tim-kiem/tim-nhu-cau?noiDen=%C4%90%C3%A0%20L%E1%BA%A1t&nganSachToiDa=2000000&hinhThucDi=Phuot&tuNgay=2026-11-11&denNgay=2026-11-30",
+      "passed": true
+    },
+    {
+      "name": "Additional companion filters stay open after use",
+      "passed": true
+    },
+    {
+      "name": "Companion results prioritize filters and invitations",
+      "passed": true
+    },
+    {
+      "name": "Companion filter values are retained",
+      "passed": true
+    },
+    {
+      "name": "GET /Companions returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Companions",
+      "passed": true
+    },
+    {
+      "name": "GET /Account/Register returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Account/Register",
+      "passed": true
+    },
+    {
+      "name": "GET /Explore/Place/1 returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Explore/Place/1",
+      "passed": true
+    },
+    {
+      "name": "GET /Explore/Detail/1 returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Explore/Detail/1",
+      "passed": true
+    },
+    {
+      "name": "Asset /css/experience.css loads",
+      "passed": true
+    },
+    {
+      "name": "Asset /js/site.js loads",
+      "passed": true
+    },
+    {
+      "name": "Asset /images/icons.svg loads",
+      "passed": true
+    },
+    {
+      "name": "Asset /images/vietnam-bay.jpg loads",
+      "passed": true
+    },
+    {
+      "name": "Asset /images/hoian.jpg loads",
+      "passed": true
+    },
+    {
+      "name": "Asset /images/dalat.jpg loads",
+      "passed": true
+    },
+    {
+      "name": "GET /Account/Login returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Account/Login",
+      "passed": true
+    },
+    {
+      "name": "Login khach@hanhtrinh.vn",
+      "passed": true
+    },
+    {
+      "name": "Existing demo account can open workspace: khach@hanhtrinh.vn",
+      "passed": true
+    },
+    {
+      "name": "GET /Plans returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Plans",
+      "passed": true
+    },
+    {
+      "name": "Traveler workspace groups trips and companions",
+      "passed": true
+    },
+    {
+      "name": "Traveler can find personal companion posts from the grouped menu",
+      "passed": true
+    },
+    {
+      "name": "Booking operations are nested within their owning workspace",
+      "passed": true
+    },
+    {
+      "name": "GET /Plans/Edit returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Plans/Edit",
+      "passed": true
+    },
+    {
+      "name": "GET /Plans/Detail/1 returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Plans/Detail/1",
+      "passed": true
+    },
+    {
+      "name": "GET /Companions/Mine returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Companions/Mine",
+      "passed": true
+    },
+    {
+      "name": "GET /Companions/Connections returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Companions/Connections",
+      "passed": true
+    },
+    {
+      "name": "GET /Companions/Edit returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Companions/Edit",
+      "passed": true
+    },
+    {
+      "name": "GET /Support returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Support",
+      "passed": true
+    },
+    {
+      "name": "GET /Account/Profile returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Account/Profile",
+      "passed": true
+    },
+    {
+      "name": "GET /Account/Notifications returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Account/Notifications",
+      "passed": true
+    },
+    {
+      "name": "GET /Account/Password returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Account/Password",
+      "passed": true
+    },
+    {
+      "name": "GET /Bookings returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Bookings",
+      "passed": true
+    },
+    {
+      "name": "Shared booking navigation on /Bookings",
+      "passed": true
+    },
+    {
+      "name": "GET /Bookings/Adjustments returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Bookings/Adjustments",
+      "passed": true
+    },
+    {
+      "name": "Shared booking navigation on /Bookings/Adjustments",
+      "passed": true
+    },
+    {
+      "name": "GET /Bookings/Results returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Bookings/Results",
+      "passed": true
+    },
+    {
+      "name": "Shared booking navigation on /Bookings/Results",
+      "passed": true
+    },
+    {
+      "name": "GET /Account/Login returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Account/Login",
+      "passed": true
+    },
+    {
+      "name": "Login nhacungcap@hanhtrinh.vn",
+      "passed": true
+    },
+    {
+      "name": "Existing demo account can open workspace: nhacungcap@hanhtrinh.vn",
+      "passed": true
+    },
+    {
+      "name": "GET /Provider returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Provider",
+      "passed": true
+    },
+    {
+      "name": "GET /Provider/Verification returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Provider/Verification",
+      "passed": true
+    },
+    {
+      "name": "GET /Provider/Rights returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Provider/Rights",
+      "passed": true
+    },
+    {
+      "name": "GET /Bookings returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Bookings",
+      "passed": true
+    },
+    {
+      "name": "GET /Bookings/Adjustments returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Bookings/Adjustments",
+      "passed": true
+    },
+    {
+      "name": "GET /Bookings/Results returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Bookings/Results",
+      "passed": true
+    },
+    {
+      "name": "Provider has no traveler write access",
+      "passed": true
+    },
+    {
+      "name": "GET /Account/Login returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Account/Login",
+      "passed": true
+    },
+    {
+      "name": "Login admin@hanhtrinh.vn",
+      "passed": true
+    },
+    {
+      "name": "Existing demo account can open workspace: admin@hanhtrinh.vn",
+      "passed": true
+    },
+    {
+      "name": "GET /Admin returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Admin",
+      "passed": true
+    },
+    {
+      "name": "GET /Admin/ServiceReviews returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Admin/ServiceReviews",
+      "passed": true
+    },
+    {
+      "name": "GET /Admin/Verifications returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Admin/Verifications",
+      "passed": true
+    },
+    {
+      "name": "GET /Admin/Providers returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Admin/Providers",
+      "passed": true
+    },
+    {
+      "name": "GET /Admin/Audit returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Admin/Audit",
+      "passed": true
+    },
+    {
+      "name": "GET /Admin returns 200",
+      "passed": true
+    },
+    {
+      "name": "Razor page renders: /Admin",
+      "passed": true
+    },
+    {
+      "name": "Administrator does not get traveler actions",
+      "passed": true
+    },
+    {
+      "name": "Traveler cannot open administration",
+      "passed": true
+    }
+  ]
+}

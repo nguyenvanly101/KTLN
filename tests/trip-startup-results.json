@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "status": 200,
+  "url": "http://localhost:5216",
+  "command": ".\\start.ps1 -Dev",
+  "date": "2026-11-05T00:53:15.2937746+07:00"
+}

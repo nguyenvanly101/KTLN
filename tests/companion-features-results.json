@@ -1,0 +1,655 @@
+{
+  "passed": true,
+  "checks": 158,
+  "observations": [
+    {
+      "name": "Isolated Companion database selected",
+      "passed": true
+    },
+    {
+      "name": "Register isolated third traveler: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Public discovery /Together: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Public discovery /Together?region=%C4%90%C3%A0%20L%E1%BA%A1t&kind=HoatDong: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Guest sign-in required /Together/Mine: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Provider denied traveler route /Together/Mine: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Guest sign-in required /Together/Profile: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Provider denied traveler route /Together/Profile: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Guest sign-in required /Together/Edit: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Provider denied traveler route /Together/Edit: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Guest sign-in required /Together/Reports: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Provider denied traveler route /Together/Reports: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Traveler denied moderation: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Save travel preferences: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Budget decimal binds invariantly",
+      "passed": true
+    },
+    {
+      "name": "Invalid preference enum rejected: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "Overprecision optional budget rejected: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "Create private source trip: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Create private activity source: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Cannot attach foreign private trip: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Short activity cannot silently span several days: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "Required group form retains validation: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "Create public group from private trip: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Organizer is the only initial joined member",
+      "passed": true
+    },
+    {
+      "name": "Group reference budget keeps decimals",
+      "passed": true
+    },
+    {
+      "name": "Public invitation renders: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Public invitation excludes meeting, private budget and activity cost",
+      "passed": true
+    },
+    {
+      "name": "Preference suggestions render: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Matching gives concrete explanations",
+      "passed": true
+    },
+    {
+      "name": "Host can edit group: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Foreign host edit denied: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Pending outsider denied private overview: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Pending outsider denied private members: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Pending outsider denied private chat: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Pending outsider denied private schedule: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Pending outsider denied private tasks: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Pending outsider denied private expenses: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Outsider denied thread metadata: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Second traveler requests membership: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Third traveler requests membership: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Applicant cannot approve another applicant: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Host approves member 4: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Host approves member 20002: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Accepted member can enter workspace: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Host workspace overview renders: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Host workspace members renders: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Host workspace chat renders: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Host workspace schedule renders: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Host workspace tasks renders: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Host workspace expenses renders: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Meeting is visible after acceptance",
+      "passed": true
+    },
+    {
+      "name": "Member confirms current meeting: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Host changes meeting: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Meeting revision advances",
+      "passed": true
+    },
+    {
+      "name": "Old meeting page cannot acknowledge an unseen new meeting: HTTP 409, expected 409",
+      "passed": true
+    },
+    {
+      "name": "Member acknowledges new meeting: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Host posts pinned announcement: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Repeated message submission is idempotent: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Message not duplicated",
+      "passed": true
+    },
+    {
+      "name": "Message submission key cannot be reused for different content: HTTP 409, expected 409",
+      "passed": true
+    },
+    {
+      "name": "Member cannot impersonate organizer announcement: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Chat renders: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Message content is HTML encoded",
+      "passed": true
+    },
+    {
+      "name": "Member acknowledges pinned announcement: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Repeated acknowledgement is idempotent: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "One notice acknowledgement per member",
+      "passed": true
+    },
+    {
+      "name": "Thread count endpoint renders: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Thread count respects visible messages",
+      "passed": true
+    },
+    {
+      "name": "Unrelated member cannot hide another message: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Duplicate poll choices rejected: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "Member proposes group poll: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Member casts vote: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Stale own vote rejected: HTTP 409, expected 409",
+      "passed": true
+    },
+    {
+      "name": "Member changes own single vote: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "One vote per member",
+      "passed": true
+    },
+    {
+      "name": "Only host can finalize poll: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Host finalizes and schedules selected choice: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Chosen activity added once to shared schedule",
+      "passed": true
+    },
+    {
+      "name": "Closed poll rejects votes: HTTP 409, expected 409",
+      "passed": true
+    },
+    {
+      "name": "Member proposes through poll instead of overwriting shared schedule: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Import requires explicit sharing confirmation: HTTP 422, expected 422",
+      "passed": true
+    },
+    {
+      "name": "Host explicitly copies one private activity: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "No other private activities copied",
+      "passed": true
+    },
+    {
+      "name": "Shared activity excludes private cost and trip budget",
+      "passed": true
+    },
+    {
+      "name": "Organizer assigns preparation task: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Unassigned member cannot mark another task: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Assignee completes task: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Task completion persisted",
+      "passed": true
+    },
+    {
+      "name": "Only organizer assigns tasks to other people: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Cannot record another person as payer: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Expense rejects fractions smaller than a cent: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "Record equal split expense: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Repeated expense submission is idempotent: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Equal split preserves every cent",
+      "passed": true
+    },
+    {
+      "name": "Deterministic cent rounding",
+      "passed": true
+    },
+    {
+      "name": "Shared expense view renders: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Member sees own balance",
+      "passed": true
+    },
+    {
+      "name": "Other member cannot cancel payer record: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Unsettled participant cannot leave group: HTTP 422, expected 422",
+      "passed": true
+    },
+    {
+      "name": "Record external repayment 4: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Third party cannot acknowledge repayment: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Sender cannot acknowledge receipt on behalf of receiver: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Recipient confirms external repayment: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Repayment cannot exceed remaining balances: HTTP 422, expected 422",
+      "passed": true
+    },
+    {
+      "name": "Record external repayment 4: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Confirm remaining second member balance: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Record external repayment 20002: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Confirm remaining third member balance: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Balanced participant can leave: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Former member cannot read ongoing chat: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Cannot change cleared balances after a participant leaves: HTTP 422, expected 422",
+      "passed": true
+    },
+    {
+      "name": "Member reports a specific message: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Admin sees reported evidence: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Moderation includes report and evidence only",
+      "passed": true
+    },
+    {
+      "name": "Moderation does not grant whole private group access: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Moderation requires reason: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "Admin hides reported message: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Reported message is hidden",
+      "passed": true
+    },
+    {
+      "name": "Hidden message leaves chat",
+      "passed": true
+    },
+    {
+      "name": "Member blocks organizer interactions: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Blocked host public invitation hidden: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Existing group records retained after block: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Group still allows operational messages: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Blocked sender messages filtered both directions",
+      "passed": true
+    },
+    {
+      "name": "Unblock own record: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Deactivation preview includes extension: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Account cannot bypass group obligations",
+      "passed": true
+    },
+    {
+      "name": "Create two-seat concurrency fixture: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Request last seat: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Request last seat: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Only one concurrent applicant gets the final seat",
+      "passed": true
+    },
+    {
+      "name": "Capacity preserved under concurrency",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Profile: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Edit: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required State: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Join: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Invite: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Member: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Attendance: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Block: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Message: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Read: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required HideMessage: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Poll: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Vote: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required ClosePoll: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Activity: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required CancelActivity: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Task: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required TaskAction: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Expense: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required CancelExpense: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Payment: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required PaymentAction: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Report: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Moderate: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required Restore: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "Group mutations leave audit records",
+      "passed": true
+    }
+  ],
+  "fixture": {
+    "stamp": 1793891366363,
+    "thirdUser": 20002,
+    "plan": 20002,
+    "sourceActivity": 20002,
+    "group": 20002,
+    "messageSubmission": "e1f1951f-d589-4ff7-b8d7-20b6de7b1950",
+    "message": 20002,
+    "poll": 20002,
+    "task": 20002,
+    "expense": 20002,
+    "report": 20002,
+    "raceGroup": 20003
+  },
+  "database": "HoTroDuLich_Companion_20261105",
+  "base": "http://localhost:5223",
+  "date": "2026-11-05T15:10:08.387Z"
+}

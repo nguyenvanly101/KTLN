@@ -1,0 +1,2 @@
+@model BanCapNhatDichVu
+<p>Địa chỉ: @(Model.DiaChiPhucVu??"Chưa có")</p><p>Đơn vị giá: @(Model.DonViGia??"Chưa có")</p><p class="prose">@(Model.ChinhSachHuy??"Chưa có chính sách thay đổi/hủy riêng")</p><div class="service-photo-grid">@for(var photo=0;photo<Ui.ServicePhotos(Model.AnhJson).Length;photo++){<img src="/service-photos/review/@Model.MaDichVu/@photo?revision=@Model.MaBanCapNhat" alt="Ảnh phiên bản @Model.SoPhienBan, ảnh @(photo+1)" loading="lazy" width="400" height="300"/>}</div>

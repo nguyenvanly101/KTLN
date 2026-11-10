@@ -1,0 +1,4 @@
+@model DeactivationInput
+@{ViewData["Title"]="Ngừng sử dụng tài khoản";}
+<div class="container-narrow"><a class="back" href="/ho-so/xem-ho-so">← Hồ sơ cá nhân</a><div class="page-head"><div><span class="eyebrow">QUẢN LÝ TÀI KHOẢN</span><h1>Ngừng sử dụng tài khoản</h1><p>Xác thực lại để xem các nghĩa vụ cần hoàn tất và hệ quả trước khi xác nhận.</p></div></div>
+<div class="panel"><form action="/tai-khoan/ngung-su-dung/xac-thuc-lai" method="post">@Html.AntiForgeryToken()<div asp-validation-summary="All" role="alert" tabindex="-1"></div><div class="field"><label asp-for="Password">Mật khẩu hiện tại</label><input class="form-control" asp-for="Password" type="password" autocomplete="current-password" required/><span asp-validation-for="Password"></span></div><div class="form-actions"><button class="btn btn-dark" type="submit">Kiểm tra điều kiện</button><a class="btn btn-outline" href="/ho-so/xem-ho-so">Quay lại hồ sơ</a></div></form></div></div>

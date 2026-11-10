@@ -1,0 +1,18 @@
+@model AdminOverview
+@{ViewData["Title"]="Tổng quan quản trị";}
+<div class="container-wide">
+ <section class="workspace-hero admin-hero" aria-labelledby="admin-title"><div><span class="eyebrow">QUẢN TRỊ / TỔNG QUAN VẬN HÀNH</span><h1 id="admin-title">Tổng quan quản trị</h1><p>Mọi công việc tại một nơi.<br/>Theo dõi xét duyệt, xác minh và hoạt động của đối tác.</p></div><span class="workspace-emblem" aria-hidden="true">@Ui.Icon("shield")</span></section>
+ <div class="admin-priority-label">@Ui.Icon("clock") Công việc & nhà cung cấp</div>
+ <div class="stats">
+  <a class="stat stat-link" href="/Admin/ServiceReviews">@Ui.Icon("check")<small>Phiên bản dịch vụ chờ duyệt</small><strong>@Model.PendingServices</strong><span>Đi đến xét duyệt @Ui.Icon("arrow")</span></a>
+  <a class="stat stat-link" href="/Admin/Verifications">@Ui.Icon("shield")<small>Hồ sơ chờ xác minh</small><strong>@Model.PendingVerifications</strong><span>Đi đến xác minh @Ui.Icon("arrow")</span></a>
+  <a class="stat stat-link" href="/Admin/Providers">@Ui.Icon("users")<small>Nhà cung cấp trên hệ thống</small><strong>@Model.Providers</strong><span>Quản lý quyền hoạt động @Ui.Icon("arrow")</span></a>
+ </div>
+ <div class="section-head"><div><h2 class="workspace-section-title">Nghiệp vụ quản trị</h2><p>Chọn chức năng để xem danh sách và xử lý chi tiết.</p></div></div>
+ <div class="function-grid">
+  <a class="function-card" href="/Admin/ServiceReviews"><span class="function-icon">@Ui.Icon("check")</span><div><h2>Xét duyệt dịch vụ</h2><p>So sánh phiên bản, duyệt công bố hoặc yêu cầu nhà cung cấp chỉnh sửa.</p><span>Mở danh sách xét duyệt @Ui.Icon("arrow")</span></div></a>
+  <a class="function-card" href="/Admin/Verifications"><span class="function-icon">@Ui.Icon("shield")</span><div><h2>Xác minh nhà cung cấp</h2><p>Kiểm tra hồ sơ, tài liệu và ghi nhận kết quả xác minh.</p><span>Mở danh sách hồ sơ @Ui.Icon("arrow")</span></div></a>
+  <a class="function-card" href="/Admin/Providers"><span class="function-icon">@Ui.Icon("users")</span><div><h2>Quyền hoạt động</h2><p>Xem xét đình chỉ, khôi phục, thu hồi và giải trình của nhà cung cấp.</p><span>@Model.PendingExplanations giải trình chờ xem xét @Ui.Icon("arrow")</span></div></a>
+  <a class="function-card" href="/Admin/Audit"><span class="function-icon">@Ui.Icon("clock")</span><div><h2>Nhật ký hoạt động</h2><p>Tra cứu các thao tác và quyết định đã được ghi nhận trên hệ thống.</p><span>Xem nhật ký @Ui.Icon("arrow")</span></div></a>
+ </div>
+</div>

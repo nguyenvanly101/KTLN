@@ -1,0 +1,10 @@
+{
+  "database": "HoTroDuLich_Journey_20261105",
+  "plan": 10006,
+  "activities": [
+    10027,
+    10028,
+    10029
+  ],
+  "description": "Dữ liệu demo tạo qua biểu mẫu chỉ trên database thử, không đưa sang database chính."
+}

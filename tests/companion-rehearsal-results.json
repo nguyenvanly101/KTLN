@@ -1,0 +1,289 @@
+{
+  "passed": true,
+  "checks": 70,
+  "observations": [
+    {
+      "name": "Isolated restore target does not exist",
+      "passed": true
+    },
+    {
+      "name": "Expected existing journey schema",
+      "passed": true
+    },
+    {
+      "name": "Main COPY_ONLY CHECKSUM backup verified",
+      "passed": true
+    },
+    {
+      "name": "Backup contains data and log files",
+      "passed": true
+    },
+    {
+      "name": "Backup restored into separate data/log paths",
+      "passed": true
+    },
+    {
+      "name": "BanCapNhatDichVu: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "ChiaSeChuyenDi: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "DanhGiaDichVu: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "DiaDiemDuLich: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "HoatDongLichTrinh: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "HoSoNguoiDung: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "KeHoachChuyenDi: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "KetQuaCungCapDichVu: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "KhoanChiChuyenDi: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "LichPhucVuDichVu: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "LuaChonDaLuu: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "MucChuanBi: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "NhaCungCapDichVu: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "NhatKyThaoTac: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "NhuCauDongHanh: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "PhuongAnXuLy: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhXacMinh: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "TaiKhoan: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuGiaiTrinh: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuXacMinh: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongHoatDong: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongPhatSinh: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "ThoaThuanDongHanh: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "ThongBao: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "YeuCauDatDichVu: restored values match main",
+      "passed": true
+    },
+    {
+      "name": "Fresh 005 migration owns required SET options",
+      "passed": true
+    },
+    {
+      "name": "005 rerun succeeds",
+      "passed": true
+    },
+    {
+      "name": "BanCapNhatDichVu: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "ChiaSeChuyenDi: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "DanhGiaDichVu: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "DiaDiemDuLich: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "HoatDongLichTrinh: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "HoSoNguoiDung: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "KeHoachChuyenDi: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "KetQuaCungCapDichVu: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "KhoanChiChuyenDi: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "LichPhucVuDichVu: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "LuaChonDaLuu: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "MucChuanBi: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "NhaCungCapDichVu: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "NhatKyThaoTac: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "NhuCauDongHanh: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "PhuongAnXuLy: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhXacMinh: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "TaiKhoan: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuGiaiTrinh: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuXacMinh: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongHoatDong: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongPhatSinh: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "ThoaThuanDongHanh: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "ThongBao: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "YeuCauDatDichVu: original values preserved after both runs",
+      "passed": true
+    },
+    {
+      "name": "46 tables and 473 columns",
+      "passed": true
+    }
+  ],
+  "database": "HoTroDuLich_Companion_20261105",
+  "backup": "D:\\KLTN\\preview\\backups\\HoTroDuLich_before_companion_20261105_111734Z.bak",
+  "date": "2026-11-05T11:17:39.300Z"
+}
