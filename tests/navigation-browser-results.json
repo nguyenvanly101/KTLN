@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "checks": 23,
+  "observations": [
+    {
+      "name": "Lọc trạng thái không có chuyến đi hiển thị hướng dẫn",
+      "passed": true
+    },
+    {
+      "name": "Tìm chuyến đi bằng từ khóa không dấu",
+      "passed": true
+    },
+    {
+      "name": "Tìm tên không tồn tại có trạng thái trống",
+      "passed": true
+    },
+    {
+      "name": "Xóa bộ lọc khôi phục danh sách",
+      "passed": true
+    },
+    {
+      "name": "Tab bỏ qua liên kết trong nhóm đang đóng",
+      "passed": true
+    },
+    {
+      "name": "Escape đóng menu, mở nội dung và trả focus",
+      "passed": true
+    },
+    {
+      "name": "Chuyển tab đặt dịch vụ giữ vị trí đang dùng",
+      "passed": true
+    },
+    {
+      "name": "Bộ lọc đồng hành gửi đúng, giữ giá trị và mở lại nhóm phụ",
+      "passed": true
+    },
+    {
+      "name": "Kết quả đồng hành trên điện thoại ưu tiên bộ lọc, không tràn ngang",
+      "passed": true
+    },
+    {
+      "name": "Menu công khai trên điện thoại mở nhóm và đóng bằng Escape",
+      "passed": true
+    },
+    {
+      "name": "Không tràn ngang / 768×1024",
+      "passed": true
+    },
+    {
+      "name": "Không tràn ngang / 1024×768",
+      "passed": true
+    },
+    {
+      "name": "Không tràn ngang / 812×375",
+      "passed": true
+    },
+    {
+      "name": "Không tràn ngang /Plans/Edit 375×812",
+      "passed": true
+    },
+    {
+      "name": "Không tràn ngang /Plans/Detail/1 375×812",
+      "passed": true
+    },
+    {
+      "name": "Không tràn ngang /Account/Password 375×812",
+      "passed": true
+    },
+    {
+      "name": "Số tiền lịch trình được trình bày nguyên dòng trên điện thoại",
+      "passed": true
+    },
+    {
+      "name": "Trạng thái đối tác và ảnh dịch vụ được nhóm trong cùng hàng",
+      "passed": true
+    },
+    {
+      "name": "Không gian nhà cung cấp không tràn ngang trên điện thoại",
+      "passed": true
+    },
+    {
+      "name": "Bảng điều khiển quản trị không tràn ngang trên điện thoại",
+      "passed": true
+    },
+    {
+      "name": "Quản trị mở nhóm duyệt và xác minh trên điện thoại",
+      "passed": true
+    },
+    {
+      "name": "Menu desktop chỉ mở một nhóm",
+      "passed": true
+    },
+    {
+      "name": "Mở nhóm Đồng hành tự đóng nhóm Chuyến đi",
+      "passed": true
+    }
+  ],
+  "responsive": [
+    {
+      "width": 768,
+      "height": 1024,
+      "path": "/",
+      "navExpanded": "false",
+      "scrollWidth": 753,
+      "title": "Việt Nam rộng mở.Bạn muốn đi đâu?"
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "path": "/",
+      "navExpanded": "false",
+      "scrollWidth": 1009,
+      "title": "Việt Nam rộng mở.Bạn muốn đi đâu?"
+    },
+    {
+      "width": 812,
+      "height": 375,
+      "path": "/",
+      "navExpanded": "false",
+      "scrollWidth": 797,
+      "title": "Việt Nam rộng mở.Bạn muốn đi đâu?"
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "path": "/Plans/Edit",
+      "navExpanded": "false",
+      "scrollWidth": 360,
+      "title": "Tạo chuyến đi"
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "path": "/Plans/Detail/1",
+      "navExpanded": "false",
+      "scrollWidth": 360,
+      "title": "Đà Lạt, những ngày thảnh thơi"
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "path": "/Account/Password",
+      "navExpanded": "false",
+      "scrollWidth": 375,
+      "title": "Đổi mật khẩu"
+    }
+  ],
+  "base": "http://localhost:5216",
+  "date": "2026-11-04T15:31:57.984Z"
+}

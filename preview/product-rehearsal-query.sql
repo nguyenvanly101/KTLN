@@ -1,0 +1,1 @@
+SET NOCOUNT ON; SELECT (SELECT COUNT(*) FROM sys.tables WHERE is_ms_shipped=0) AS tables,(SELECT COUNT(*) FROM sys.columns c JOIN sys.tables t ON t.object_id=c.object_id WHERE t.is_ms_shipped=0) AS columns FOR JSON PATH;

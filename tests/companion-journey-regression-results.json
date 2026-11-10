@@ -1,0 +1,619 @@
+{
+  "passed": true,
+  "checks": 150,
+  "observations": [
+    {
+      "name": "Expected isolated journey database",
+      "passed": true
+    },
+    {
+      "name": "Guest protected /Journey/Today?planId=1: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Provider denied /Journey/Today?planId=1: HTTP 403 expected 403",
+      "passed": true
+    },
+    {
+      "name": "Foreign plan denied /Journey/Today?planId=1: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Guest protected /Journey/Share?planId=1: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Provider denied /Journey/Share?planId=1: HTTP 403 expected 403",
+      "passed": true
+    },
+    {
+      "name": "Foreign plan denied /Journey/Share?planId=1: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Guest protected /Journey/Print?planId=1: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Provider denied /Journey/Print?planId=1: HTTP 403 expected 403",
+      "passed": true
+    },
+    {
+      "name": "Foreign plan denied /Journey/Print?planId=1: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Traveler cannot manage service calendar: HTTP 403 expected 403",
+      "passed": true
+    },
+    {
+      "name": "Guest calendar management requires login: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot impersonate customer reviewer: HTTP 403 expected 403",
+      "passed": true
+    },
+    {
+      "name": "Traveler cannot moderate: HTTP 403 expected 403",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot moderate: HTTP 403 expected 403",
+      "passed": true
+    },
+    {
+      "name": "Create today trip: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Activity form posts activity ID, not parent plan ID",
+      "passed": true
+    },
+    {
+      "name": "Save activity Tham quan vườn hoa 1793891570776: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Activity form posts activity ID, not parent plan ID",
+      "passed": true
+    },
+    {
+      "name": "Save activity Dùng bữa nhẹ 1793891570776: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Activity form posts activity ID, not parent plan ID",
+      "passed": true
+    },
+    {
+      "name": "Save activity Điểm dừng bên hồ 1793891570776: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Activity form posts activity ID, not parent plan ID",
+      "passed": true
+    },
+    {
+      "name": "Save activity Đêm ngắm sao 1793891570776: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Activity form posts activity ID, not parent plan ID",
+      "passed": true
+    },
+    {
+      "name": "Save activity Trở về phòng 1793891570776: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Trip includes timing checks: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Detects overlapping nonadjacent activities",
+      "passed": true
+    },
+    {
+      "name": "Can preview future trip day: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Detects overlap across midnight",
+      "passed": true
+    },
+    {
+      "name": "Move activity in original itinerary: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Today respects manually chosen itinerary order",
+      "passed": true
+    },
+    {
+      "name": "Restore original itinerary order: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Confirm trip before progress changes: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Mark today activity complete: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Completion timestamp persists",
+      "passed": true
+    },
+    {
+      "name": "Completion preserves confirmed FullText plan state",
+      "passed": true
+    },
+    {
+      "name": "Stale progress command rejected: HTTP 409 expected 409",
+      "passed": true
+    },
+    {
+      "name": "Other traveler cannot change progress: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Future day cannot be marked complete: HTTP 422 expected 422",
+      "passed": true
+    },
+    {
+      "name": "Progress requires CSRF: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "Activity form posts activity ID, not parent plan ID",
+      "passed": true
+    },
+    {
+      "name": "Save activity Tham quan vườn hoa 1793891570776: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Rescheduling clears old completion",
+      "passed": true
+    },
+    {
+      "name": "Legacy API edits still work: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Legacy edit without extension fields retains duration",
+      "passed": true
+    },
+    {
+      "name": "Invalid duration rejected: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "Complete rescheduled activity: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Public calendar renders: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Provider can read public calendar: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Public calendar hides traveler-only booking action from provider",
+      "passed": true
+    },
+    {
+      "name": "Calendar keeps trip context: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Calendar booking link retains the selected trip",
+      "passed": true
+    },
+    {
+      "name": "Calendar cannot load foreign trip context: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Invalid month rejected: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "Provider opens a service day: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Open date preview works: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Provider closes the date after preview: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Final submit rechecks newly closed date: HTTP 422 expected 422",
+      "passed": true
+    },
+    {
+      "name": "Preview rejects closed date: HTTP 422 expected 422",
+      "passed": true
+    },
+    {
+      "name": "Stale calendar edit rejected: HTTP 409 expected 409",
+      "passed": true
+    },
+    {
+      "name": "Cannot rewrite past service calendar: HTTP 422 expected 422",
+      "passed": true
+    },
+    {
+      "name": "Calendar writes reject traveler role: HTTP 403 expected 403",
+      "passed": true
+    },
+    {
+      "name": "Calendar writes require CSRF: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "Close lodging checkout date: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Lodging excludes checkout day from occupied nights: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "A second provider exists in restored fixture",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot read another provider calendar: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot update another provider calendar: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Draft service calendar is not public: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Traveler cannot remove calendar day: HTTP 403 expected 403",
+      "passed": true
+    },
+    {
+      "name": "Cannot remove calendar through foreign service: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Stale calendar removal rejected: HTTP 409 expected 409",
+      "passed": true
+    },
+    {
+      "name": "Provider resets day to unknown: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Removed day is no longer a published availability claim",
+      "passed": true
+    },
+    {
+      "name": "Preview today service request: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Submit today request: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Provider confirms original request workflow: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Cannot review a request without service result: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Provider result form renders: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Original service result items exist",
+      "passed": true
+    },
+    {
+      "name": "Record full result through original workflow: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Original workflow reaches completed state",
+      "passed": true
+    },
+    {
+      "name": "Completed request can be reviewed: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Other traveler cannot review this request: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Rating bounds enforced: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "Review content required: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "Customer sends review for moderation: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Identical repeated review does not duplicate: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "One pending review per request",
+      "passed": true
+    },
+    {
+      "name": "Pending review remains private",
+      "passed": true
+    },
+    {
+      "name": "Admin moderation list renders: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Hiding content requires a reason: HTTP 422 expected 422",
+      "passed": true
+    },
+    {
+      "name": "Admin publishes review: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Published review feed renders: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Public review is published and HTML encoded",
+      "passed": true
+    },
+    {
+      "name": "Stale moderation rejected: HTTP 409 expected 409",
+      "passed": true
+    },
+    {
+      "name": "Register isolated foreign provider: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot read another service private review management: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot reply to another provider review: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Provider review management renders: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Provider replies to own service review: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Pending provider reply is not public",
+      "passed": true
+    },
+    {
+      "name": "Admin approves provider reply: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Approved provider reply becomes public",
+      "passed": true
+    },
+    {
+      "name": "Customer edits review: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Review edits return review and reply to moderation",
+      "passed": true
+    },
+    {
+      "name": "Foreign review edit rejected: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Review writes require CSRF: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "Reapprove edited review: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Reapprove reply: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Admin hides review with reason: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Hidden review/reply and internal reasons stay private",
+      "passed": true
+    },
+    {
+      "name": "Restore reviewed content: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Add private checklist fixture: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Add private expense fixture: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Share management renders: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Sharing requires content confirmation: HTTP 422 expected 422",
+      "passed": true
+    },
+    {
+      "name": "Share expiry bound enforced: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "Create share snapshot: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Share URL uses cryptographic 32-byte token",
+      "passed": true
+    },
+    {
+      "name": "Anonymous reader can open active snapshot: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Default snapshot excludes private and opt-in data",
+      "passed": true
+    },
+    {
+      "name": "Share response prevents caching, indexing and referrer disclosure",
+      "passed": true
+    },
+    {
+      "name": "Only token hash is persisted",
+      "passed": true
+    },
+    {
+      "name": "Snapshot JSON itself excludes private data",
+      "passed": true
+    },
+    {
+      "name": "Public URL parameters cannot expand shared content",
+      "passed": true
+    },
+    {
+      "name": "Malformed share token returns generic not found: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Activity form posts activity ID, not parent plan ID",
+      "passed": true
+    },
+    {
+      "name": "Save activity Nội dung mới chưa chia sẻ 1793891570776: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Existing snapshot does not publish later schedule edits",
+      "passed": true
+    },
+    {
+      "name": "Create share snapshot: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Share URL uses cryptographic 32-byte token",
+      "passed": true
+    },
+    {
+      "name": "Opt-in snapshot includes selected budget/services only",
+      "passed": true
+    },
+    {
+      "name": "Other traveler cannot revoke share: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Owner revokes share: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Revoked share cannot be opened: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Create share snapshot: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "Share URL uses cryptographic 32-byte token",
+      "passed": true
+    },
+    {
+      "name": "Expired snapshot cannot be opened: HTTP 404 expected 404",
+      "passed": true
+    },
+    {
+      "name": "Owner print view is private and read only: HTTP 200 expected 200",
+      "passed": true
+    },
+    {
+      "name": "Print view has print action and no account navigation",
+      "passed": true
+    },
+    {
+      "name": "Anonymous cannot open private print: HTTP 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "CSRF required /Journey/Share: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required /Journey/Revoke: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required /Reviews/Reply: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required /Reviews/Moderate: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "CSRF required /Availability/Remove: HTTP 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "004 migration can repeat without changing snapshots",
+      "passed": true
+    },
+    {
+      "name": "New mutations are auditable",
+      "passed": true
+    }
+  ],
+  "fixture": {
+    "stamp": 1793891570776,
+    "plan": 20003,
+    "activity": 20003,
+    "calendar": 1,
+    "booking": 1,
+    "review": 1,
+    "sharePath": "/s/h1vviux4kPIgPjGibJQiN30F5mI91oMotbyxfUTOVVc",
+    "fullSharePath": "/s/b6Go2gZIQCSWotczw6mgpl-6zeQX6A-s9bNGoSYybzc"
+  },
+  "database": "HoTroDuLich_Companion_20261105",
+  "base": "http://localhost:5223",
+  "date": "2026-11-05T15:13:17.464Z"
+}

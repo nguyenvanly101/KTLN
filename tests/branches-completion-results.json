@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "reports": [
+    {
+      "file": "branches-upgrade-results.json",
+      "passed": true,
+      "assertions": null
+    },
+    {
+      "file": "branches-populated-upgrade-results.json",
+      "passed": true,
+      "assertions": null
+    },
+    {
+      "file": "branches-contract-results.json",
+      "passed": true,
+      "assertions": 47
+    },
+    {
+      "file": "branches-legacy-contract-results.json",
+      "passed": true,
+      "assertions": 1621
+    },
+    {
+      "file": "branches-features-results.json",
+      "passed": true,
+      "assertions": 83
+    },
+    {
+      "file": "branches-edge-results.json",
+      "passed": true,
+      "assertions": 32
+    },
+    {
+      "file": "branches-pages-results.json",
+      "passed": true,
+      "assertions": 147
+    },
+    {
+      "file": "branches-deploy-results.json",
+      "passed": true,
+      "assertions": null
+    },
+    {
+      "file": "branches-main-results.json",
+      "passed": true,
+      "assertions": 45
+    }
+  ],
+  "assertions": 1975,
+  "main": {
+    "url": "http://localhost:5216/kham-pha",
+    "database": "HoTroDuLich",
+    "tables": 64,
+    "columns": 699
+  },
+  "liveGoogle": false,
+  "visualReview": false,
+  "notes": [
+    "User has no API key; Google REST tests use mocked payloads.",
+    "Computer Use stopped because browser URL could not be determined; no UI input was sent.",
+    "Assertion totals are not a count of unique requirements."
+  ],
+  "date": "2026-11-08T14:40:01.290Z"
+}

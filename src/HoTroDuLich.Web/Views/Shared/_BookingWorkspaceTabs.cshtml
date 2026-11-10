@@ -1,0 +1,12 @@
+@{
+ var bookingAction=ViewData["UiAction"]?.ToString()??ViewContext.RouteData.Values["action"]?.ToString()??"Index";
+ var reviews=ViewContext.RouteData.Values["controller"]?.ToString()=="Reviews";
+ var changes=new[]{"Adjustments","Changes","Change","ChangeAction","Edit"}.Contains(bookingAction);
+ var results=new[]{"Results","Outcome","Result","ResultAction"}.Contains(bookingAction);
+}
+<nav class="tabs booking-workspace-tabs" aria-label="Quản lý đặt dịch vụ">
+ <a class="@(!changes&&!results&&!reviews?"active":"")" aria-current="@(!changes&&!results&&!reviews?"page":null)" href="/Bookings">@Ui.Icon("ticket") Yêu cầu đặt</a>
+ <a class="@(changes?"active":"")" aria-current="@(changes?"page":null)" href="/Bookings/Adjustments">@Ui.Icon("calendar") Thay đổi / hủy</a>
+ <a class="@(results?"active":"")" aria-current="@(results?"page":null)" href="/Bookings/Results">@Ui.Icon("check") Kết quả phục vụ</a>
+ @if(User.IsInRole(TravelService.Traveler)){<a class="@(reviews?"active":"")" aria-current="@(reviews?"page":null)" href="/Reviews/Mine">@Ui.Icon("compass") Đánh giá của tôi</a>}
+</nav>

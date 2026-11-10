@@ -1,0 +1,15 @@
+@model FilteredPage<AdminReviewRow>
+@{ViewData["Title"]="Xét duyệt dịch vụ";}
+<div class="container-wide">
+ <div class="page-head"><div><span class="eyebrow">QUẢN TRỊ DỊCH VỤ</span><h1>Xét duyệt dịch vụ</h1><p>Kiểm tra các phiên bản dịch vụ do nhà cung cấp gửi lên.</p></div><span class="count-pill">@Model.Total phiên bản</span></div>
+ <form action="/Admin/ServiceReviews" method="get" class="list-filters panel">
+  <div class="field"><label for="review-query">Tìm dịch vụ hoặc nhà cung cấp</label><input class="form-control" id="review-query" name="q" value="@Model.Query" maxlength="100" placeholder="Nhập tên cần tìm…"/></div>
+  <div class="field"><label for="review-status">Trạng thái xét duyệt</label><select class="form-select" id="review-status" name="status"><option value="" selected="@(Model.Status=="")">Tất cả trạng thái</option>@foreach(var s in new[]{"ChoDuyet","DaDuyet","CanSua","TuChoi"}){<option value="@s" selected="@(Model.Status==s)">@Labels.Status(s)</option>}</select></div>
+  <button class="btn btn-dark" type="submit">@Ui.Icon("filter") Lọc kết quả</button><a class="filter-reset" href="/Admin/ServiceReviews">Đặt lại</a>
+ </form>
+ @if(Model.Items.Count==0){<div class="empty">@Ui.Icon("check")<h2>Không có phiên bản phù hợp</h2><p>Thử thay đổi từ khóa hoặc trạng thái để xem các phiên bản khác.</p></div>}
+ else{<div class="panel table-wrap"><table class="table"><thead><tr><th>Dịch vụ</th><th>Nhà cung cấp</th><th>Ngày gửi</th><th>Trạng thái</th><th></th></tr></thead><tbody>
+ @foreach(var row in Model.Items){var v=row.Revision;<tr><td><b>@v.TenDichVu</b><span class="help">Phiên bản @v.SoPhienBan · @v.KhuVucPhucVu</span></td><td>@row.ProviderName</td><td>@Ui.LocalTime(v.ThoiDiemGui).ToString("dd/MM/yyyy")</td><td><span class="badge @Labels.Badge(v.TrangThaiDuyet.ToString())">@Labels.Status(v.TrangThaiDuyet.ToString())</span></td><td><a href="/Admin/Review/@v.MaBanCapNhat">@(v.TrangThaiDuyet.ToString()=="ChoDuyet"?"Xét duyệt":"Xem phiên bản") @Ui.Icon("chevron")</a></td></tr>}
+ </tbody></table></div>}
+ <partial name="_PageNavigation" model="Model.Navigation"/>
+</div>

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "full backup restored",
+    "log backup restored",
+    "database ONLINE",
+    "CHECKDB passed",
+    "25 table row counts match source"
+  ],
+  "source": "HoTroDuLich",
+  "restored": "HoTroDuLich_FullTextRestore_20261104",
+  "date": "2026-11-04T07:50:17.8659307Z"
+}

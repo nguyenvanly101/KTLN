@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "checks": 23,
+  "observations": [
+    {
+      "name": "unknown login: 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "provider denied traveler plan: 403 expected 403",
+      "passed": true
+    },
+    {
+      "name": "missing CSRF: 400 expected 400",
+      "passed": true
+    },
+    {
+      "name": "Kestrel Server header disabled",
+      "passed": true
+    },
+    {
+      "name": "frame protection",
+      "passed": true
+    },
+    {
+      "name": "MIME sniffing protection",
+      "passed": true
+    },
+    {
+      "name": "same-origin form policy",
+      "passed": true
+    },
+    {
+      "name": "successful login identifies account in audit",
+      "passed": true
+    },
+    {
+      "name": "failed login independently persists masked identity",
+      "passed": true
+    },
+    {
+      "name": "audit excludes raw identifier and password",
+      "passed": true
+    },
+    {
+      "name": "SK07 refusal persists outside rejected request",
+      "passed": true
+    },
+    {
+      "name": "SK08 records actual antiforgery rejection",
+      "passed": true
+    },
+    {
+      "name": "auth attempt 4 has expected status",
+      "passed": true
+    },
+    {
+      "name": "auth attempt 5 has expected status",
+      "passed": true
+    },
+    {
+      "name": "auth attempt 6 has expected status",
+      "passed": true
+    },
+    {
+      "name": "auth attempt 7 has expected status",
+      "passed": true
+    },
+    {
+      "name": "auth attempt 8 has expected status",
+      "passed": true
+    },
+    {
+      "name": "auth attempt 9 has expected status",
+      "passed": true
+    },
+    {
+      "name": "auth attempt 10 has expected status",
+      "passed": true
+    },
+    {
+      "name": "auth attempt 11 has expected status",
+      "passed": true
+    },
+    {
+      "name": "SK08 rate-limit rejection persists",
+      "passed": true
+    },
+    {
+      "name": "logout: 302 expected 302",
+      "passed": true
+    },
+    {
+      "name": "SK02 logout audit",
+      "passed": true
+    }
+  ],
+  "date": "2026-11-04T07:36:31.592Z",
+  "database": "HoTroDuLich_FullText_20261104",
+  "base": "http://localhost:5219"
+}

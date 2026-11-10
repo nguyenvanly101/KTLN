@@ -1,0 +1,5 @@
+@model BookingInput
+@inject HoTroDuLich.Web.Data.AppDbContext BranchDb
+@using Microsoft.EntityFrameworkCore
+@{var branch=Model.BranchId!=null?await BranchDb.Set<CoSoDichVu>().AsNoTracking().SingleOrDefaultAsync(x=>x.Id==Model.BranchId):null;}
+@if(branch!=null){<div class="notice"><strong>Cơ sở sử dụng dịch vụ: @branch.Name</strong><p>@branch.Address</p></div>}

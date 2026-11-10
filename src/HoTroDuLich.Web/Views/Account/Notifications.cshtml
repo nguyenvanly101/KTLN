@@ -1,0 +1,15 @@
+@model List<ThongBao>
+@{ViewData["Title"]="Thông báo";}
+<div class="container-narrow">
+ <div class="page-head"><div><h1>Thông báo</h1><p>Theo dõi phản hồi và các cập nhật liên quan đến bạn.</p></div></div>
+ @if(Model.Count==0){<div class="empty"><span class="eyebrow">Thông tin</span><h2>Bạn chưa có thông báo mới</h2><p>Thông báo mới sẽ xuất hiện tại đây.</p></div>}
+ @foreach(var n in Model){
+  <article class="list-card">
+   <div><span class="eyebrow">@(n.DaDoc?"ĐÃ ĐỌC":"MỚI") · @Ui.LocalTime(n.ThoiDiemTao).ToString("dd/MM/yyyy HH:mm")</span><h2 class="h5">@n.NoiDung</h2></div>
+   <form action="/thong-bao/@n.MaThongBao/mo" method="post">
+    @Html.AntiForgeryToken()
+    <button class="btn btn-outline" type="submit">@(n.DuongDan!=null?"Xem chi tiết ↗":n.DaDoc?"Đã đọc":"Đánh dấu đã đọc")</button>
+   </form>
+  </article>
+ }
+</div>

@@ -1,0 +1,29 @@
+{
+  "database": "HoTroDuLich_Branches_Audit_20261109054153",
+  "users": [
+    {
+      "label": "provider",
+      "email": "branch-provider-054435521@example.com",
+      "id": 5,
+      "providerId": 2
+    },
+    {
+      "label": "other",
+      "email": "branch-other-054435521@example.com",
+      "id": 6,
+      "providerId": 3
+    },
+    {
+      "label": "traveler",
+      "email": "branch-traveler-054435521@example.com",
+      "id": 7,
+      "providerId": null
+    },
+    {
+      "label": "admin",
+      "email": "branch-admin-054435521@example.com",
+      "id": 8,
+      "providerId": null
+    }
+  ]
+}

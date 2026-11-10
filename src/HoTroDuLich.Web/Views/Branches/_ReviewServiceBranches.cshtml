@@ -1,0 +1,5 @@
+@model (BanCapNhatDichVu Pending,DichVuDuLich Current,NhaCungCapDichVu Provider)
+@inject HoTroDuLich.Web.Data.AppDbContext BranchDb
+@using Microsoft.EntityFrameworkCore
+@{var currentIds=await BranchDb.Set<DichVuCoSo>().Where(x=>x.ServiceId==Model.Current.MaDichVu).Select(x=>x.BranchId).ToListAsync();var pendingIds=await BranchDb.Set<BanCapNhatDichVuCoSo>().Where(x=>x.RevisionId==Model.Pending.MaBanCapNhat).Select(x=>x.BranchId).ToListAsync();var rows=await BranchDb.Set<CoSoDichVu>().AsNoTracking().Where(x=>currentIds.Contains(x.Id)||pendingIds.Contains(x.Id)).ToListAsync();}
+<section class="comparison"><div class="panel"><h3>Cơ sở đang áp dụng</h3>@foreach(var b in rows.Where(x=>currentIds.Contains(x.Id))){<p><strong>@b.Name</strong><br/>@b.Address</p>}@if(currentIds.Count==0){<p class="help">Dịch vụ cũ chưa được gắn cơ sở.</p>}</div><div class="panel"><h3>Cơ sở trong bản đề nghị</h3>@foreach(var b in rows.Where(x=>pendingIds.Contains(x.Id))){<p><strong>@b.Name</strong> · @PlaceText.State(b.Status)<br/>@b.Address</p>}@if(pendingIds.Count==0){<p class="help">Phiên bản trước khi có mô hình cơ sở.</p>}</div></section>

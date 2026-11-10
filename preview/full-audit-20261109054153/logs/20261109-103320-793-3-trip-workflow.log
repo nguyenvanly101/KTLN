@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: Search within trip: HTTP 302 expected 200 
+    at check (D:\KLTN\preview\full-audit-20261109054153\tests\trip-workflow.cjs:8:35)
+    at response (D:\KLTN\preview\full-audit-20261109054153\tests\trip-workflow.cjs:16:73)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D:\KLTN\preview\full-audit-20261109054153\tests\trip-workflow.cjs:53:7 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

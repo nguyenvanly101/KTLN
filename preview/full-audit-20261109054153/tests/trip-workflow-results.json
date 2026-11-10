@@ -1,0 +1,384 @@
+{
+  "passed": true,
+  "checks": 92,
+  "observations": [
+    {
+      "name": "Isolated database is selected",
+      "passed": true
+    },
+    {
+      "name": "Guest must sign in: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot open traveler workspace: HTTP 403 expected 403 ",
+      "passed": true
+    },
+    {
+      "name": "Select a trip for a service: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Selection screen keeps the chosen service and offers a new trip",
+      "passed": true
+    },
+    {
+      "name": "New trip link retains the selected service",
+      "passed": true
+    },
+    {
+      "name": "Create isolated first-time traveler fixture: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Traveler without trips can continue selection: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "First trip creation retains the selected experience",
+      "passed": true
+    },
+    {
+      "name": "Open create trip with selected service: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Create form retains service and fills destination",
+      "passed": true
+    },
+    {
+      "name": "Invalid plan keeps form: HTTP 400 expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "Validation preserves continuation context",
+      "passed": true
+    },
+    {
+      "name": "Create trip and continue: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Redirect goes directly to chosen experience",
+      "passed": true
+    },
+    {
+      "name": "Open prefilled activity: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Activity retains service, trip and reference cost",
+      "passed": true
+    },
+    {
+      "name": "Save selected experience: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Canonical route opens trip hub: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Hub exposes section trip-overview",
+      "passed": true
+    },
+    {
+      "name": "Hub exposes section itinerary",
+      "passed": true
+    },
+    {
+      "name": "Hub exposes section trip-bookings",
+      "passed": true
+    },
+    {
+      "name": "Hub exposes section trip-budget",
+      "passed": true
+    },
+    {
+      "name": "Hub exposes section trip-help",
+      "passed": true
+    },
+    {
+      "name": "Budget concern becomes an actionable next step",
+      "passed": true
+    },
+    {
+      "name": "Record an incident from a trip: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Trip overview surfaces unresolved incident",
+      "passed": true
+    },
+    {
+      "name": "Itinerary includes empty days after adding an activity",
+      "passed": true
+    },
+    {
+      "name": "Activity booking keeps its trip and activity",
+      "passed": true
+    },
+    {
+      "name": "Trip opens the current search: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Search retains destination and trip",
+      "passed": true
+    },
+    {
+      "name": "Search within trip: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Search retains and names its trip",
+      "passed": true
+    },
+    {
+      "name": "Search lists published branches for the trip: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Search service preserves its exact branch and the trip",
+      "passed": true
+    },
+    {
+      "name": "Search branch link carries the trip",
+      "passed": true
+    },
+    {
+      "name": "Open branch from the trip: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Branch detail keeps the trip on its service links",
+      "passed": true
+    },
+    {
+      "name": "Open branch service from the trip: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Booking link carries the trip",
+      "passed": true
+    },
+    {
+      "name": "Canonical search retains context: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Canonical search displays trip name",
+      "passed": true
+    },
+    {
+      "name": "Service detail within trip: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Add experience skips trip selection when context is known",
+      "passed": true
+    },
+    {
+      "name": "Start request from scheduled activity: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Booking defaults to activity date and lodging trip end",
+      "passed": true
+    },
+    {
+      "name": "Trip is selected in request form",
+      "passed": true
+    },
+    {
+      "name": "Review trip request: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Preview retains trip and names it",
+      "passed": true
+    },
+    {
+      "name": "Revise preview: HTTP 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Revise preserves entered dates and notes",
+      "passed": true
+    },
+    {
+      "name": "Submit trip request: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Request stores explicit trip foreign key",
+      "passed": true
+    },
+    {
+      "name": "Repeated submission is safe: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Repeated submission opens same request",
+      "passed": true
+    },
+    {
+      "name": "Hub shows its request and real waiting count",
+      "passed": true
+    },
+    {
+      "name": "Standalone requests remain supported: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Matching dates do not automatically assign a trip",
+      "passed": true
+    },
+    {
+      "name": "Hub excludes unrelated request",
+      "passed": true
+    },
+    {
+      "name": "Assign existing request explicitly: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Assignment retains agreed business version",
+      "passed": true
+    },
+    {
+      "name": "Stale trip assignment is rejected: HTTP 409 expected 409 ",
+      "passed": true
+    },
+    {
+      "name": "Trip assignment requires CSRF: HTTP 400 expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "Other traveler cannot assign someone else request: HTTP 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot assign traveler request: HTTP 403 expected 403 ",
+      "passed": true
+    },
+    {
+      "name": "Unlink request without deleting it: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Unlinked request is retained",
+      "passed": true
+    },
+    {
+      "name": "Other traveler creates own trip: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Trip hub checks ownership: HTTP 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Old link redirects to current place search: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Search context checks trip ownership: HTTP 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Branch detail also checks trip ownership: HTTP 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Booking form checks trip ownership: HTTP 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Activity must match requested service: HTTP 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Preview rejects foreign trip: HTTP 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Direct submission rejects foreign trip: HTTP 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Unauthorized trip association creates no request",
+      "passed": true
+    },
+    {
+      "name": "Cannot move own request into foreign trip: HTTP 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Failed assignment retains previous association",
+      "passed": true
+    },
+    {
+      "name": "Ambiguous experience selection rejected: HTTP 400 expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "Invalid continuation rejected before creating trip: HTTP 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Provider proposes changed conditions: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Hub surfaces actual customer decision",
+      "passed": true
+    },
+    {
+      "name": "Traveler confirms exact provider proposal: HTTP 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Hub updates next steps after confirmation",
+      "passed": true
+    },
+    {
+      "name": "Request links back and exposes assignment controls",
+      "passed": true
+    },
+    {
+      "name": "Provider UI does not expose private trip controls",
+      "passed": true
+    },
+    {
+      "name": "Map URL encodes actual published place, not fabricated coordinates",
+      "passed": true
+    },
+    {
+      "name": "Place selection has its own continuation context",
+      "passed": true
+    },
+    {
+      "name": "Out-of-trip dates produce explicit review warning",
+      "passed": true
+    },
+    {
+      "name": "Migration can run repeatedly without changing requests",
+      "passed": true
+    },
+    {
+      "name": "Trip foreign key exists",
+      "passed": true
+    }
+  ],
+  "fixture": {
+    "plan": 12,
+    "activity": 17,
+    "booking": 13,
+    "separate": 14,
+    "otherPlan": 13
+  },
+  "database": "HoTroDuLich_Branches_Audit_20261109054153",
+  "base": "http://127.0.0.1:5236",
+  "date": "2026-11-09T10:55:56.433Z"
+}

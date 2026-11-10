@@ -1,0 +1,714 @@
+{
+  "passed": true,
+  "checks": 169,
+  "observations": [
+    {
+      "name": "GET /ke-hoach/mo-ke-hoach-moi: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/khoi-tao-ke-hoach: 400 expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "invalid form keeps entered destination",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/khoi-tao-ke-hoach: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "GET /ke-hoach/40002: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "itinerary shows every day including empty days",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/chap-nhan: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "explicit plan confirmation",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/them-hoat-dong: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "editing accepted itinerary resets draft",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/them-hoat-dong: 409 expected 409 ",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/them-hoat-dong: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "activity order starts at one for each day",
+      "passed": true
+    },
+    {
+      "name": "GET /ke-hoach/40002: 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/cap-nhat-thong-tin: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/40002/tinh-huong/ghi-nhan-tinh-huong: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "incident links multiple activities",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/xoa-hoat-dong: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/40002/tinh-huong/ghi-phuong-an: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "choosing an option does not resolve incident",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/40002/tinh-huong/ghi-ket-qua: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "unresolved incident retains selected option",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/40002/tinh-huong/ghi-ket-qua: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /ke-hoach/40002/tinh-huong/ghi-phuong-an: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "GET /ho-so/xem-ho-so: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "POST /ho-so/luu-thay-doi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "profile ignores role overposting",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/nhu-cau/xem-truoc: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "preview never inserts a need",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/nhu-cau/cong-bo: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "GET /dong-hanh/tim-kiem/xem-chi-tiet/40002: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "when-connected summary hides details but keeps display name",
+      "passed": true
+    },
+    {
+      "name": "GET /dong-hanh/tim-kiem/xem-chi-tiet/40002: 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/de-nghi/gui-de-nghi: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/de-nghi/gui-de-nghi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/de-nghi/gui-de-nghi: 409 expected 409 ",
+      "passed": true
+    },
+    {
+      "name": "GET /dong-hanh/thoa-thuan/mo-tao-thoa-thuan?maKetNoi=30002: 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/de-nghi/phan-hoi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "GET /dong-hanh/tim-kiem/xem-chi-tiet/40002: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "accepted connection reveals need and contact while respecting private bio",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/thoa-thuan/gui-de-nghi-thoa-thuan: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/thoa-thuan/xac-nhan: 403 expected 403 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/thoa-thuan/gui-de-nghi-thoa-thuan: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "counteroffer replaces only pending version",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/thoa-thuan/gui-de-nghi-thoa-thuan: 409 expected 409 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/thoa-thuan/xac-nhan: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/thoa-thuan/gui-de-nghi-thoa-thuan: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "new pending proposal preserves active agreement",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/thoa-thuan/xac-nhan: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "refusal records responding person",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/thoa-thuan/de-nghi-ngung: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "stop proposal copies active agreement",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/thoa-thuan/gui-de-nghi-thoa-thuan: 409 expected 409 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/thoa-thuan/rut: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "withdrawal ends active agreement and cancels pending stop",
+      "passed": true
+    },
+    {
+      "name": "GET /dong-hanh/thoa-thuan/mo-tao-thoa-thuan?maKetNoi=30002: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/thoa-thuan/gui-de-nghi-thoa-thuan: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "GET /tai-khoan/dang-ky/mo-dang-ky: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "provider registration includes all designed fields and document: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "new profile defaults private",
+      "passed": true
+    },
+    {
+      "name": "GET /nha-cung-cap/dich-vu/mo-bieu-mau: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "GET /tep/XacMinh/40002: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "verification download is an attachment",
+      "passed": true
+    },
+    {
+      "name": "GET /tep/XacMinh/40002: 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "POST /quan-tri/xac-minh/xac-minh: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "fake PDF signature rejected: 400 expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "supplement can add documents without replacing registration content: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "supplement increments submission round",
+      "passed": true
+    },
+    {
+      "name": "POST /quan-tri/xac-minh/xac-minh: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /nha-cung-cap/dich-vu/gui-dang: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "draft does not create review revision",
+      "passed": true
+    },
+    {
+      "name": "POST /nha-cung-cap/dich-vu/gui-dang: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /quan-tri/xet-duyet-dich-vu/duyet: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /nha-cung-cap/dich-vu/cap-nhat-dich-vu: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "POST /nha-cung-cap/dich-vu/cap-nhat-dich-vu: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /quan-tri/xet-duyet-dich-vu/duyet: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "GET /thong-tin/xem-chi-tiet?loai=DiaDiem&maMuc=1: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "place detail includes associated published services",
+      "passed": true
+    },
+    {
+      "name": "GET /nha-cung-cap/dich-vu: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "manual reception toggle removed",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/kiem-tra-truoc-gui: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "booking preview shows published pause and availability warnings",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/kiem-tra-truoc-gui: 400 expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/gui-yeu-cau: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/gui-yeu-cau: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "concurrent identical submission returns the same booking",
+      "passed": true
+    },
+    {
+      "name": "idempotency inserts one row",
+      "passed": true
+    },
+    {
+      "name": "optional estimated cost stays null",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40003/dieu-chinh/gui-de-nghi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "unconfirmed booking can be edited directly",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/chap-nhan: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "provider proposal updates structured booking fields",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/chap-nhan: 409 expected 409 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40003/dieu-chinh/gui-de-nghi: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/phan-hoi-de-xuat: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "customer refusal closes provider proposal",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/gui-yeu-cau: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/chap-nhan: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40004/dieu-chinh/gui-de-nghi: 400 expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40004/dieu-chinh/gui-de-nghi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "pending adjustment preserves original agreement",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40004/dieu-chinh/gui-de-nghi: 409 expected 409 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40004/dieu-chinh/phan-hoi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "provider adjustment counteroffer also preserves original agreement",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40004/dieu-chinh/phan-hoi-de-xuat: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "accepted partial adjustment applies structured values and retains omitted end date",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/gui-yeu-cau: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/chap-nhan: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40005/dieu-chinh/gui-de-nghi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40005/dieu-chinh/phan-hoi: 400 expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40005/dieu-chinh/phan-hoi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "provider acceptance applies cancellation",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/gui-yeu-cau: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/chap-nhan: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40006/dieu-chinh/gui-de-nghi: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40006/ket-qua/luu-ket-qua: 400 expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40006/ket-qua/luu-ket-qua: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "unknown item keeps aggregate pending inspection",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40006/ket-qua/luu-ket-qua: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40006/ket-qua/luu-ket-qua: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "mixed item results aggregate partial performance",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40006/ket-qua/gui-phan-anh: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "complaint preserves recorded result until review",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40006/ket-qua/luu-ket-qua: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "provider review closes only the complained item",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40006/ket-qua/gui-phan-anh: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/gui-yeu-cau: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /nha-cung-cap/dich-vu/gui-dang: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "GET /quan-tri/quyen-hoat-dong/xem-he-qua?maNCC=40002&thaoTac=TamDinhChi: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "rights action has a concrete consequence preview",
+      "passed": true
+    },
+    {
+      "name": "POST /quan-tri/quyen-hoat-dong/tam-dinh-chi: 400 expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "POST /quan-tri/quyen-hoat-dong/tam-dinh-chi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "suspension stops pending requests and preserves confirmed agreements",
+      "passed": true
+    },
+    {
+      "name": "POST /quan-tri/quyen-hoat-dong/nhan-giai-trinh: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /quan-tri/quyen-hoat-dong/nhan-giai-trinh: 409 expected 409 ",
+      "passed": true
+    },
+    {
+      "name": "explanation notifies active administrator",
+      "passed": true
+    },
+    {
+      "name": "POST /quan-tri/quyen-hoat-dong/khoi-phuc: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "restoration reopens services linked to current suspension",
+      "passed": true
+    },
+    {
+      "name": "restoration closes pending explanation",
+      "passed": true
+    },
+    {
+      "name": "restoration does not reopen stopped booking",
+      "passed": true
+    },
+    {
+      "name": "POST /quan-tri/quyen-hoat-dong/thu-hoi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "revocation distinguishes approved and never-approved services",
+      "passed": true
+    },
+    {
+      "name": "revocation preserves existing confirmed booking",
+      "passed": true
+    },
+    {
+      "name": "GET /thong-tin/xem-chi-tiet?loai=DichVu&maMuc=50002: 404 expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "revoked provider can submit a new verification profile: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /quan-tri/xac-minh/xac-minh: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "re-verification does not republish revoked content",
+      "passed": true
+    },
+    {
+      "name": "POST /nha-cung-cap/dich-vu/cap-nhat-dich-vu: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /quan-tri/xet-duyet-dich-vu/duyet: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "reapproval after re-verification clears old reception block",
+      "passed": true
+    },
+    {
+      "name": "GET /tai-khoan/dang-ky/mo-dang-ky: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "register deactivation fixture: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/nhu-cau/cong-bo: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/de-nghi/gui-de-nghi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/de-nghi/phan-hoi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /dong-hanh/thoa-thuan/gui-de-nghi-thoa-thuan: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /tai-khoan/ngung-su-dung/xac-thuc-lai: 200 expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "pending companion proposal does not block deactivation",
+      "passed": true
+    },
+    {
+      "name": "reauthentication is read-only",
+      "passed": true
+    },
+    {
+      "name": "POST /tai-khoan/ngung-su-dung/ngung-tai-khoan: 409 expected 409 ",
+      "passed": true
+    },
+    {
+      "name": "new obligation after confirmation preview: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /tai-khoan/ngung-su-dung/ngung-tai-khoan: 422 expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "deactivation rechecks obligations inside transaction",
+      "passed": true
+    },
+    {
+      "name": "POST /yeu-cau/40008/dieu-chinh/gui-de-nghi: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "POST /tai-khoan/ngung-su-dung/ngung-tai-khoan: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "deactivation commits account and need changes together",
+      "passed": true
+    },
+    {
+      "name": "deactivation cancels pending companion proposals",
+      "passed": true
+    },
+    {
+      "name": "GET /ke-hoach: 302 expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "GET /dong-hanh/tim-kiem/xem-chi-tiet/40003: 404 expected 404 ",
+      "passed": true
+    }
+  ],
+  "fixture": {
+    "stamp": 1793777853532,
+    "plan": 40002,
+    "incident": 30002,
+    "need": 40002,
+    "connection": 30002,
+    "providerEmail": "ft-provider-1793777853532@example.test",
+    "provider": 40002,
+    "service": 50002,
+    "serviceInput": {
+      "tenDichVu": "Dịch vụ FullText 1793777853532",
+      "loaiDichVu": "LuuTru",
+      "khuVucPhucVu": "Đà Lạt",
+      "maDiaDiem": 1,
+      "moTa": "Mô tả đã sửa theo yêu cầu",
+      "giaThamKhao": 100000,
+      "thoiGianPhucVu": "14:00–12:00",
+      "dieuKienPhucVu": "Thỏa thuận trực tiếp",
+      "tamNgungTu": "2026-11-11",
+      "tamNgungDen": "2026-11-13",
+      "lyDoTamNgung": "Bảo trì theo lịch",
+      "thaoTac": "LuuNhap"
+    },
+    "booking": 40003,
+    "confirmed": 40004,
+    "resultBooking": 40006,
+    "waiting": 40007,
+    "deactivatedUser": 50003
+  },
+  "date": "2026-11-04T07:37:50.806Z",
+  "database": "HoTroDuLich_FullText_20261104",
+  "base": "http://localhost:5219"
+}

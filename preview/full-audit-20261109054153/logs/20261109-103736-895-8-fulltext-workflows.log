@@ -1,0 +1,18 @@
+PHASE authentication, validation, plan and incidents
+PHASE companion visibility, connections and agreement versions
+PHASE provider registration, verification, drafts and publication
+PHASE booking previews, idempotency and structured negotiation
+AssertionError [ERR_ASSERTION]: POST /yeu-cau/gui-yeu-cau: 409 expected 302  Không thể hoàn tất yêu cầu · Hành Trình Đến nội dung chính Hành Trình ĐI ĐỂ CÓ CHUYỆN KỂ Khám phá TÌM CẢM HỨNG LÊN ĐƯỜNG Thư viện tra cứu Danh sách, tuyến đã lưu và cập nhật Địa điểm & bản đồ Chọn mốc, tìm cơ sở quanh đây Lưu trú Tìm một nơi dừng chân Ăn uống & trải nghiệm Khám phá hương vị địa phương Thuê xe & di chuyển Tìm đúng điểm giao nhận Cẩm nang & hỏi đáp Thông tin cần biết trước khi chọn Chuyến đi TỪ Ý TƯỞNG ĐẾN LÊN ĐƯỜNG Chuyến đi của tôi Ngày đi, hoạt động và ngân sách Đặt dịch vụ Yêu cầu, thay đổi và kết quả Hỗ trợ chuyến đi Theo dõi và xử lý tình huống Đồng hành CÙNG ĐI, THÊM KẾT NỐI Tìm người đồng hành Chọn một lời rủ hợp với bạn Lời rủ đi cùng Nhóm đồng hành của tôi Bài đăng của tôi Quản lý những lời rủ lên đường Kết nối của tôi Lời mời và thỏa thuận cùng đi 49 T Tên hiển thị 1794220717887 Khách du lịch Thông tin cá nhân Thông báo Đăng xuất Kiểm tra thông tin Chưa thể hoàn tất yêu cầu Thông tin cơ sở đã thay đổi. Kiểm tra lại yêu cầu trước khi gửi. Vui lòng mở lại dữ liệu hiện tại để kiểm tra trước khi thao tác tiếp. ← Quay lại biểu mẫu Về trang khám phá CÓ MỘT VIỆT NAM ĐANG CHỜ BẠN Chuyến đi hay bắt đầu từ một ý tưởng. Lên kế hoạch của bạn Hành Trình Đi theo cách của bạn. Kết nối những trải nghiệm mới. Khám phá Điểm đến Dịch vụ du lịch Tìm người đồng hành Hành trình của bạn Chuyến đi của tôi Đặt dịch vụ Hỗ trợ chuyến đi © 2026 Hành Trình Điều khoản sử dụng · Quyền riêng tư Ảnh điểm đến và dịch vụ mang tính minh họa. KHÁM PHÁ · KẾ HOẠCH · ĐỒNG HÀNH 
+    at check (D:\KLTN\preview\full-audit-20261109054153\tests\fulltext-helpers.cjs:3:32)
+    at status (D:\KLTN\preview\full-audit-20261109054153\tests\fulltext-helpers.cjs:8:68)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Promise.all (index 0)
+    at async module.exports (D:\KLTN\preview\full-audit-20261109054153\tests\fulltext-booking-scenarios.cjs:7:108)
+    at async D:\KLTN\preview\full-audit-20261109054153\tests\fulltext-workflows.cjs:58:2 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

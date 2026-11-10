@@ -1,0 +1,12 @@
+PHASE authentication, validation, plan and incidents
+AssertionError [ERR_ASSERTION]: itinerary shows every day including empty days
+    at check (D:\KLTN\preview\full-audit-20261109054153\tests\fulltext-helpers.cjs:3:32)
+    at D:\KLTN\preview\full-audit-20261109054153\tests\fulltext-workflows.cjs:18:35
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

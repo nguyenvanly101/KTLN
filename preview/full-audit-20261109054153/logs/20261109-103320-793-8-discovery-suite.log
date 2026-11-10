@@ -1,0 +1,16 @@
+PASS 54 information-search checks
+AssertionError [ERR_ASSERTION]: Canonical search has integrated map
+    at check (D:\KLTN\preview\full-audit-20261109054153\tests\discovery-context.cjs:2:32)
+    at D:\KLTN\preview\full-audit-20261109054153\tests\discovery-context.cjs:16:136
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D:\KLTN\preview\full-audit-20261109054153\tests\discovery-suite.cjs:5:135 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+Error: Không đạt: ./discovery-context.cjs
+    at D:\KLTN\preview\full-audit-20261109054153\tests\discovery-suite.cjs:5:183
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)

@@ -1,0 +1,17 @@
+@model DiaDiemDuLich
+@{ ViewData["Title"] = Model.TenDiaDiem; var trip = ViewBag.TripPlan as KeHoachChuyenDi; }
+<div class="container-narrow">
+ <a class="back" asp-controller="Explore" asp-action="Index" asp-route-planId="@trip?.MaKeHoach" asp-route-region="@trip?.NoiDen">← Khám phá điểm đến</a>
+ <partial name="_TripContext"/><partial name="/Views/Discovery/_LegacyLink.cshtml" model="Model"/>
+ <div class="detail-gallery"><img class="detail-cover" src="@Ui.DestinationImage(Model.KhuVuc)" alt="Ảnh minh họa @Model.KhuVuc" width="900" height="600"/><span>Ảnh minh họa</span></div>
+ <span class="eyebrow">@Model.LoaiDiaDiem · @Model.KhuVuc</span><h1>@Model.TenDiaDiem</h1><p class="prose">@Model.MoTa</p><p>@Model.DiaChi</p>
+ <partial name="_SaveChoice" model="@(new SavedInput{PlaceId=Model.MaDiaDiem,ReturnUrl=Context.Request.Path+Context.Request.QueryString})"/>
+ <div class="trip-place-actions">
+  @if(User.Identity?.IsAuthenticated != true || User.IsInRole(TravelService.Traveler)){
+   @if(trip != null){<a class="btn btn-dark" href="/Plans/Activity/@trip.MaKeHoach?placeId=@Model.MaDiaDiem">@Ui.Icon("plus") Thêm vào chuyến này</a>}
+   else {<a class="btn btn-dark" href="/Plans/Select?placeId=@Model.MaDiaDiem">Thêm vào lịch trình @Ui.Icon("arrow")</a>}
+  }
+  <a class="btn btn-outline" href="@(string.IsNullOrWhiteSpace(Model.DiaChi) ? Ui.MapSearch(Ui.PlaceQuery(Model)) : Ui.Directions(Ui.PlaceQuery(Model)))" target="_blank" rel="noopener noreferrer">@Ui.Icon("pin") @(string.IsNullOrWhiteSpace(Model.DiaChi) ? "Tìm trên Google Maps" : "Chỉ đường trên Google Maps")<span class="sr-only"> (mở tab mới)</span></a>
+ </div><p class="help">Bản đồ tra theo tên và địa chỉ được công bố. Kiểm tra đúng vị trí trước khi di chuyển.</p>
+</div>
+@if(ViewBag.Services is List<DichVuDuLich> services && services.Count > 0){<section class="container-wide mt-4"><div class="section-head"><h2>Dịch vụ tại điểm đến</h2></div><div class="service-grid">@foreach(var service in services){<partial name="_ServiceCard" model="service"/>}</div></section>}

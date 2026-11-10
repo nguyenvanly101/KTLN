@@ -1,0 +1,681 @@
+{
+  "passed": true,
+  "checks": 166,
+  "observations": [
+    {
+      "name": "Publish original FullText companion need: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Send original connection request: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Pending legacy connection cannot be attached: HTTP 422, expected 422",
+      "passed": true
+    },
+    {
+      "name": "Accept original connection: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Open group from accepted connection: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Connection context retained in form",
+      "passed": true
+    },
+    {
+      "name": "Create group linked to accepted connection: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Existing linked group opens instead of duplicating: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Short activity rejects several days: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "Date validation identifies the end-date control",
+      "passed": true
+    },
+    {
+      "name": "Poll cannot remain open after group ends: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "Poll deadline error identifies the input",
+      "passed": true
+    },
+    {
+      "name": "Provider discovery navigation excludes traveler-only links",
+      "passed": true
+    },
+    {
+      "name": "Cannot invite someone without accepted connection: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Invite accepted connection: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Invitation does not automatically join recipient",
+      "passed": true
+    },
+    {
+      "name": "Invitee cannot enter until accepting: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Recipient can decline invitation: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Reinvite requires current membership version: HTTP 409, expected 409",
+      "passed": true
+    },
+    {
+      "name": "Host can invite again with current version: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Recipient explicitly accepts group: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Third party applies to public group: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Host admits third group member: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Group membership does not grant original private two-party agreement: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Two-party agreement link hidden from unrelated group member",
+      "passed": true
+    },
+    {
+      "name": "Custom split sum must exactly match total: HTTP 422, expected 422",
+      "passed": true
+    },
+    {
+      "name": "Record custom split: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Custom member allocation persisted",
+      "passed": true
+    },
+    {
+      "name": "Payer can cancel before participants leave: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Expense cancellation retains original record",
+      "passed": true
+    },
+    {
+      "name": "Record expense for subset of members: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Create pending external repayment: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Receiver rejects unreceived repayment: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Create pending external repayment: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Sender withdraws unconfirmed repayment: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Create pending external repayment: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Receiver confirms actual received repayment: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Create deadline fixture: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Expired poll rejects new votes: HTTP 409, expected 409",
+      "passed": true
+    },
+    {
+      "name": "Organizer closes expired proposal: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Create live tally fixture: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Cannot shorten a group before an open poll deadline: HTTP 400, expected 400",
+      "passed": true
+    },
+    {
+      "name": "Shortened group points to the end-date field",
+      "passed": true
+    },
+    {
+      "name": "Member votes after organizer viewed poll: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Host cannot finalize unseen changed tally: HTTP 409, expected 409",
+      "passed": true
+    },
+    {
+      "name": "Block existing travel connection: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Publish fresh need without a previous connection: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Block preserves FullText unavailable-need error: HTTP 422, expected 422",
+      "passed": true
+    },
+    {
+      "name": "Blocked fresh request creates no connection",
+      "passed": true
+    },
+    {
+      "name": "Blocked connection excluded from invitations: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Create group message while members block one another: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Report form cannot reveal a mutually blocked message: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Unblock existing connection: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Cannot move task identifiers across groups: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Cannot report a message from a different group: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Report public group content: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Group moderation checks current target version: HTTP 409, expected 409",
+      "passed": true
+    },
+    {
+      "name": "Admin hides group with reason: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Hidden group not publicly accessible: HTTP 404, expected 404",
+      "passed": true
+    },
+    {
+      "name": "Members retain history of hidden group: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "Hidden group blocks new messages: HTTP 422, expected 422",
+      "passed": true
+    },
+    {
+      "name": "Admin can restore group after review: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Restored group public again: HTTP 200, expected 200",
+      "passed": true
+    },
+    {
+      "name": "guest role denied GET Mine: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied GET Mine: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied GET Mine: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied GET Thread: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied GET Thread: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied GET Thread: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied GET Profile: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied GET Profile: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied GET Profile: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Profile: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Profile: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Profile: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied GET Edit: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied GET Edit: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied GET Edit: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Edit: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Edit: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Edit: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied GET Group: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied GET Group: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied GET Group: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST State: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST State: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST State: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Join: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Join: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Join: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Invite: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Invite: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Invite: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Member: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Member: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Member: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Attendance: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Attendance: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Attendance: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Block: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Block: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Block: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Message: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Message: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Message: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Read: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Read: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Read: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST HideMessage: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST HideMessage: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST HideMessage: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Poll: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Poll: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Poll: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Vote: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Vote: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Vote: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST ClosePoll: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST ClosePoll: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST ClosePoll: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Activity: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Activity: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Activity: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST CancelActivity: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST CancelActivity: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST CancelActivity: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Task: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Task: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Task: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST TaskAction: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST TaskAction: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST TaskAction: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Expense: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Expense: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Expense: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST CancelExpense: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST CancelExpense: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST CancelExpense: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Payment: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Payment: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Payment: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST PaymentAction: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST PaymentAction: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST PaymentAction: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied GET Report: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied GET Report: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied GET Report: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Report: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Report: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied POST Report: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied GET Reports: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied GET Reports: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "admin role denied GET Reports: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied GET Moderation: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied GET Moderation: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "traveler role denied GET Moderation: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Moderate: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Moderate: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "traveler role denied POST Moderate: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "guest role denied POST Restore: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "provider role denied POST Restore: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "traveler role denied POST Restore: HTTP 403, expected 403",
+      "passed": true
+    },
+    {
+      "name": "Host ends group: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Ended group read-only for new chat: HTTP 422, expected 422",
+      "passed": true
+    },
+    {
+      "name": "Balanced member can leave ended group: HTTP 302, expected 302",
+      "passed": true
+    },
+    {
+      "name": "Moderation writes one audit decision",
+      "passed": true
+    }
+  ],
+  "fixture": {
+    "stamp": 1794220700355,
+    "need": 2,
+    "connection": 1,
+    "group": 3,
+    "cost": 2,
+    "report": 2
+  },
+  "database": "HoTroDuLich_Branches_Audit_20261109054153",
+  "base": "http://127.0.0.1:5236",
+  "date": "2026-11-09T10:38:26.036Z"
+}

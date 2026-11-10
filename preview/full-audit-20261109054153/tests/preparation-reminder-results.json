@@ -1,0 +1,37 @@
+{
+  "database": "HoTroDuLich_Branches_Audit_20261109054153",
+  "task": 6,
+  "snapshots": [
+    {
+      "phase": "before",
+      "MaMuc": 6,
+      "NhacHan": true,
+      "DaHoanThanh": false,
+      "HanHoanThanh": "2026-11-09",
+      "Notifications": 0,
+      "date": "2026-11-09T10:37:54.534Z"
+    },
+    {
+      "phase": "first-restart",
+      "MaMuc": 6,
+      "NgayDaNhac": "2026-11-09",
+      "NhacHan": true,
+      "DaHoanThanh": false,
+      "HanHoanThanh": "2026-11-09",
+      "Notifications": 1,
+      "date": "2026-11-09T10:37:57.619Z"
+    },
+    {
+      "phase": "second-restart",
+      "MaMuc": 6,
+      "NgayDaNhac": "2026-11-09",
+      "NhacHan": true,
+      "DaHoanThanh": false,
+      "HanHoanThanh": "2026-11-09",
+      "Notifications": 1,
+      "date": "2026-11-09T10:38:06.955Z"
+    }
+  ],
+  "passed": true,
+  "checks": 3
+}

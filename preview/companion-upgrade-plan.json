@@ -1,0 +1,1475 @@
+{
+  "backup": "D:\\KLTN\\preview\\backups\\HoTroDuLich_before_companion_deploy_20261105_170532Z.bak",
+  "appDataBackup": "D:\\KLTN\\preview\\backups\\App_Data_before_companion_20261106_000533.zip",
+  "original": [
+    {
+      "name": "BanCapNhatDichVu",
+      "Columns": [
+        {
+          "name": "MaBanCapNhat"
+        },
+        {
+          "name": "MaDichVu"
+        },
+        {
+          "name": "SoPhienBan"
+        },
+        {
+          "name": "TenDichVu"
+        },
+        {
+          "name": "LoaiDichVu"
+        },
+        {
+          "name": "MoTa"
+        },
+        {
+          "name": "KhuVucPhucVu"
+        },
+        {
+          "name": "MaDiaDiem"
+        },
+        {
+          "name": "GiaThamKhao"
+        },
+        {
+          "name": "ThoiGianPhucVu"
+        },
+        {
+          "name": "DieuKienPhucVu"
+        },
+        {
+          "name": "TamNgungTu"
+        },
+        {
+          "name": "TamNgungDen"
+        },
+        {
+          "name": "LyDoTamNgung"
+        },
+        {
+          "name": "TrangThaiDuyet"
+        },
+        {
+          "name": "LyDo"
+        },
+        {
+          "name": "MaAdminDuyet"
+        },
+        {
+          "name": "ThoiDiemGui"
+        },
+        {
+          "name": "ThoiDiemDuyet"
+        },
+        {
+          "name": "DiaChiPhucVu"
+        },
+        {
+          "name": "DonViGia"
+        },
+        {
+          "name": "ChinhSachHuy"
+        },
+        {
+          "name": "AnhJson"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaBanCapNhat"
+        }
+      ]
+    },
+    {
+      "name": "ChiaSeChuyenDi",
+      "Columns": [
+        {
+          "name": "MaChiaSe"
+        },
+        {
+          "name": "MaKeHoach"
+        },
+        {
+          "name": "TokenHash"
+        },
+        {
+          "name": "SnapshotJson"
+        },
+        {
+          "name": "HanSuDung"
+        },
+        {
+          "name": "DaThuHoi"
+        },
+        {
+          "name": "ChiaSeNganSach"
+        },
+        {
+          "name": "ChiaSeDichVu"
+        },
+        {
+          "name": "ThoiDiemTao"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaChiaSe"
+        }
+      ]
+    },
+    {
+      "name": "DanhGiaDichVu",
+      "Columns": [
+        {
+          "name": "MaDanhGia"
+        },
+        {
+          "name": "MaYeuCau"
+        },
+        {
+          "name": "SoSao"
+        },
+        {
+          "name": "NoiDung"
+        },
+        {
+          "name": "TrangThai"
+        },
+        {
+          "name": "LyDoKiemDuyet"
+        },
+        {
+          "name": "PhanHoiNCC"
+        },
+        {
+          "name": "TrangThaiPhanHoi"
+        },
+        {
+          "name": "LyDoPhanHoi"
+        },
+        {
+          "name": "ThoiDiemTao"
+        },
+        {
+          "name": "ThoiDiemCapNhat"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaDanhGia"
+        }
+      ]
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu",
+      "Columns": [
+        {
+          "name": "MaDeNghi"
+        },
+        {
+          "name": "MaYeuCau"
+        },
+        {
+          "name": "LoaiDeNghi"
+        },
+        {
+          "name": "DieuKienCu"
+        },
+        {
+          "name": "NgayBatDauMoi"
+        },
+        {
+          "name": "NgayKetThucMoi"
+        },
+        {
+          "name": "SoNguoiMoi"
+        },
+        {
+          "name": "SoLuongMoi"
+        },
+        {
+          "name": "DieuKienMoi"
+        },
+        {
+          "name": "LyDo"
+        },
+        {
+          "name": "ThoiDiemGui"
+        },
+        {
+          "name": "QuyetDinh"
+        },
+        {
+          "name": "DieuKienDeXuat"
+        },
+        {
+          "name": "ThoiDiemPhanHoi"
+        },
+        {
+          "name": "TrangThai"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaDeNghi"
+        }
+      ]
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh",
+      "Columns": [
+        {
+          "name": "MaDeNghi"
+        },
+        {
+          "name": "MaNhuCau"
+        },
+        {
+          "name": "MaNguoiGui"
+        },
+        {
+          "name": "LoiGioiThieu"
+        },
+        {
+          "name": "ThoiDiemGui"
+        },
+        {
+          "name": "ThoiDiemPhanHoi"
+        },
+        {
+          "name": "TrangThai"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaDeNghi"
+        }
+      ]
+    },
+    {
+      "name": "DiaDiemDuLich",
+      "Columns": [
+        {
+          "name": "MaDiaDiem"
+        },
+        {
+          "name": "TenDiaDiem"
+        },
+        {
+          "name": "LoaiDiaDiem"
+        },
+        {
+          "name": "KhuVuc"
+        },
+        {
+          "name": "DiaChi"
+        },
+        {
+          "name": "MoTa"
+        },
+        {
+          "name": "DangHienThi"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaDiaDiem"
+        }
+      ]
+    },
+    {
+      "name": "DichVuDuLich",
+      "Columns": [
+        {
+          "name": "MaDichVu"
+        },
+        {
+          "name": "MaNhaCungCap"
+        },
+        {
+          "name": "TenDichVu"
+        },
+        {
+          "name": "LoaiDichVu"
+        },
+        {
+          "name": "MoTa"
+        },
+        {
+          "name": "KhuVucPhucVu"
+        },
+        {
+          "name": "MaDiaDiem"
+        },
+        {
+          "name": "GiaThamKhao"
+        },
+        {
+          "name": "ThoiGianPhucVu"
+        },
+        {
+          "name": "DieuKienPhucVu"
+        },
+        {
+          "name": "TamNgungTu"
+        },
+        {
+          "name": "TamNgungDen"
+        },
+        {
+          "name": "LyDoTamNgung"
+        },
+        {
+          "name": "TrangThaiCongBo"
+        },
+        {
+          "name": "TrangThaiTiepNhan"
+        },
+        {
+          "name": "MaQuyetDinhKhongTiepNhan"
+        },
+        {
+          "name": "PhienBanCongBo"
+        },
+        {
+          "name": "ThoiDiemTao"
+        },
+        {
+          "name": "ThoiDiemCapNhat"
+        },
+        {
+          "name": "RowVersion"
+        },
+        {
+          "name": "DiaChiPhucVu"
+        },
+        {
+          "name": "DonViGia"
+        },
+        {
+          "name": "ChinhSachHuy"
+        },
+        {
+          "name": "AnhJson"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaDichVu"
+        }
+      ]
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap",
+      "Columns": [
+        {
+          "name": "MaGiaiTrinh"
+        },
+        {
+          "name": "MaQuyetDinh"
+        },
+        {
+          "name": "NoiDung"
+        },
+        {
+          "name": "ThoiDiemGui"
+        },
+        {
+          "name": "TrangThai"
+        },
+        {
+          "name": "KetQuaXemXet"
+        },
+        {
+          "name": "MaAdminXemXet"
+        },
+        {
+          "name": "ThoiDiemXemXet"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaGiaiTrinh"
+        }
+      ]
+    },
+    {
+      "name": "HoatDongLichTrinh",
+      "Columns": [
+        {
+          "name": "MaHoatDong"
+        },
+        {
+          "name": "MaKeHoach"
+        },
+        {
+          "name": "Ngay"
+        },
+        {
+          "name": "Gio"
+        },
+        {
+          "name": "ThuTu"
+        },
+        {
+          "name": "MaDiaDiem"
+        },
+        {
+          "name": "MaDichVu"
+        },
+        {
+          "name": "NoiDung"
+        },
+        {
+          "name": "ChiPhiDuKien"
+        },
+        {
+          "name": "ThoiLuongPhut"
+        },
+        {
+          "name": "DiChuyenTruocPhut"
+        },
+        {
+          "name": "HoanThanhLuc"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaHoatDong"
+        }
+      ]
+    },
+    {
+      "name": "HoSoNguoiDung",
+      "Columns": [
+        {
+          "name": "MaHoSo"
+        },
+        {
+          "name": "MaTaiKhoan"
+        },
+        {
+          "name": "TenHienThi"
+        },
+        {
+          "name": "AnhDaiDien"
+        },
+        {
+          "name": "GioiThieu"
+        },
+        {
+          "name": "NoiSinhSong"
+        },
+        {
+          "name": "SoThich"
+        },
+        {
+          "name": "ThongTinChiaSe"
+        },
+        {
+          "name": "ThoiDiemCapNhat"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaHoSo"
+        }
+      ]
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap",
+      "Columns": [
+        {
+          "name": "MaHoSo"
+        },
+        {
+          "name": "MaNhaCungCap"
+        },
+        {
+          "name": "NoiDungDangKy"
+        },
+        {
+          "name": "NguoiDaiDien"
+        },
+        {
+          "name": "ThoiDiemNop"
+        },
+        {
+          "name": "SoLanBoSung"
+        },
+        {
+          "name": "TrangThaiXuLy"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaHoSo"
+        }
+      ]
+    },
+    {
+      "name": "KeHoachChuyenDi",
+      "Columns": [
+        {
+          "name": "MaKeHoach"
+        },
+        {
+          "name": "MaTaiKhoan"
+        },
+        {
+          "name": "TenKeHoach"
+        },
+        {
+          "name": "NoiDen"
+        },
+        {
+          "name": "NgayBatDau"
+        },
+        {
+          "name": "NgayKetThuc"
+        },
+        {
+          "name": "NganSachDuKien"
+        },
+        {
+          "name": "TrangThai"
+        },
+        {
+          "name": "ThoiDiemTao"
+        },
+        {
+          "name": "ThoiDiemCapNhat"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaKeHoach"
+        }
+      ]
+    },
+    {
+      "name": "KetQuaCungCapDichVu",
+      "Columns": [
+        {
+          "name": "MaKetQua"
+        },
+        {
+          "name": "MaYeuCau"
+        },
+        {
+          "name": "HangMuc"
+        },
+        {
+          "name": "KetQuaThucHien"
+        },
+        {
+          "name": "GhiChu"
+        },
+        {
+          "name": "ThoiDiemGhi"
+        },
+        {
+          "name": "NoiDungPhanAnh"
+        },
+        {
+          "name": "ThoiDiemPhanAnh"
+        },
+        {
+          "name": "TrangThaiKiemTra"
+        },
+        {
+          "name": "ThoiDiemKiemTra"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaKetQua"
+        }
+      ]
+    },
+    {
+      "name": "KhoanChiChuyenDi",
+      "Columns": [
+        {
+          "name": "MaKhoanChi"
+        },
+        {
+          "name": "MaKeHoach"
+        },
+        {
+          "name": "NoiDung"
+        },
+        {
+          "name": "LoaiChi"
+        },
+        {
+          "name": "SoTien"
+        },
+        {
+          "name": "NgayChi"
+        },
+        {
+          "name": "GhiChu"
+        },
+        {
+          "name": "MaLuotGhi"
+        },
+        {
+          "name": "ThoiDiemTao"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaKhoanChi"
+        }
+      ]
+    },
+    {
+      "name": "LichPhucVuDichVu",
+      "Columns": [
+        {
+          "name": "MaLich"
+        },
+        {
+          "name": "MaDichVu"
+        },
+        {
+          "name": "Ngay"
+        },
+        {
+          "name": "TiepNhan"
+        },
+        {
+          "name": "SoLuongThamKhao"
+        },
+        {
+          "name": "GhiChu"
+        },
+        {
+          "name": "ThoiDiemCapNhat"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaLich"
+        }
+      ]
+    },
+    {
+      "name": "LuaChonDaLuu",
+      "Columns": [
+        {
+          "name": "MaLuaChon"
+        },
+        {
+          "name": "MaTaiKhoan"
+        },
+        {
+          "name": "MaDichVu"
+        },
+        {
+          "name": "MaDiaDiem"
+        },
+        {
+          "name": "TenMuc"
+        },
+        {
+          "name": "ThoiDiemLuu"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaLuaChon"
+        }
+      ]
+    },
+    {
+      "name": "MucChuanBi",
+      "Columns": [
+        {
+          "name": "MaMuc"
+        },
+        {
+          "name": "MaKeHoach"
+        },
+        {
+          "name": "NoiDung"
+        },
+        {
+          "name": "Nhom"
+        },
+        {
+          "name": "HanHoanThanh"
+        },
+        {
+          "name": "DaHoanThanh"
+        },
+        {
+          "name": "NhacHan"
+        },
+        {
+          "name": "NgayDaNhac"
+        },
+        {
+          "name": "ThoiDiemTao"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaMuc"
+        }
+      ]
+    },
+    {
+      "name": "NhaCungCapDichVu",
+      "Columns": [
+        {
+          "name": "MaNhaCungCap"
+        },
+        {
+          "name": "MaTaiKhoan"
+        },
+        {
+          "name": "TenDonVi"
+        },
+        {
+          "name": "LoaiHinh"
+        },
+        {
+          "name": "NguoiLienHe"
+        },
+        {
+          "name": "DiaChi"
+        },
+        {
+          "name": "SoDienThoai"
+        },
+        {
+          "name": "EmailLienHe"
+        },
+        {
+          "name": "TrangThaiXacMinh"
+        },
+        {
+          "name": "TrangThaiQuyenHoatDong"
+        },
+        {
+          "name": "ThoiDiemTao"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaNhaCungCap"
+        }
+      ]
+    },
+    {
+      "name": "NhatKyThaoTac",
+      "Columns": [
+        {
+          "name": "MaNhatKy"
+        },
+        {
+          "name": "MaTaiKhoan"
+        },
+        {
+          "name": "LoaiSuKien"
+        },
+        {
+          "name": "DoiTuong"
+        },
+        {
+          "name": "MaDoiTuong"
+        },
+        {
+          "name": "TrangThaiTruoc"
+        },
+        {
+          "name": "TrangThaiSau"
+        },
+        {
+          "name": "LyDo"
+        },
+        {
+          "name": "DiaChiIP"
+        },
+        {
+          "name": "ThoiDiem"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaNhatKy"
+        }
+      ]
+    },
+    {
+      "name": "NhuCauDongHanh",
+      "Columns": [
+        {
+          "name": "MaNhuCau"
+        },
+        {
+          "name": "MaTaiKhoan"
+        },
+        {
+          "name": "NoiDung"
+        },
+        {
+          "name": "DiemDen"
+        },
+        {
+          "name": "NgayBatDau"
+        },
+        {
+          "name": "NgayKetThuc"
+        },
+        {
+          "name": "NganSachDuKien"
+        },
+        {
+          "name": "HinhThucDi"
+        },
+        {
+          "name": "MongMuonDongHanh"
+        },
+        {
+          "name": "PhamViChiaSe"
+        },
+        {
+          "name": "ThoiDiemDang"
+        },
+        {
+          "name": "TrangThaiCongBo"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaNhuCau"
+        }
+      ]
+    },
+    {
+      "name": "PhuongAnXuLy",
+      "Columns": [
+        {
+          "name": "MaPhuongAn"
+        },
+        {
+          "name": "MaTinhHuong"
+        },
+        {
+          "name": "NoiDung"
+        },
+        {
+          "name": "ThoiDiemChon"
+        },
+        {
+          "name": "LaHienHanh"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaPhuongAn"
+        }
+      ]
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong",
+      "Columns": [
+        {
+          "name": "MaQuyetDinh"
+        },
+        {
+          "name": "MaNhaCungCap"
+        },
+        {
+          "name": "TrangThaiTruoc"
+        },
+        {
+          "name": "TrangThaiSau"
+        },
+        {
+          "name": "LyDo"
+        },
+        {
+          "name": "CanCu"
+        },
+        {
+          "name": "ThoiHan"
+        },
+        {
+          "name": "MaAdmin"
+        },
+        {
+          "name": "ThoiDiem"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaQuyetDinh"
+        }
+      ]
+    },
+    {
+      "name": "QuyetDinhXacMinh",
+      "Columns": [
+        {
+          "name": "MaQuyetDinh"
+        },
+        {
+          "name": "MaHoSo"
+        },
+        {
+          "name": "LanXuLy"
+        },
+        {
+          "name": "KetQua"
+        },
+        {
+          "name": "KetQuaXacMinh"
+        },
+        {
+          "name": "LyDo"
+        },
+        {
+          "name": "MaAdminDuyet"
+        },
+        {
+          "name": "ThoiDiemDuyet"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaQuyetDinh"
+        }
+      ]
+    },
+    {
+      "name": "TaiKhoan",
+      "Columns": [
+        {
+          "name": "MaTaiKhoan"
+        },
+        {
+          "name": "Email"
+        },
+        {
+          "name": "SoDienThoai"
+        },
+        {
+          "name": "MatKhauBam"
+        },
+        {
+          "name": "VaiTro"
+        },
+        {
+          "name": "TrangThai"
+        },
+        {
+          "name": "DauPhien"
+        },
+        {
+          "name": "PhaiDoiMatKhau"
+        },
+        {
+          "name": "ThoiDiemTao"
+        },
+        {
+          "name": "ThoiDiemDangNhapCuoi"
+        },
+        {
+          "name": "ThoiDiemNgung"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaTaiKhoan"
+        }
+      ]
+    },
+    {
+      "name": "TaiLieuGiaiTrinh",
+      "Columns": [
+        {
+          "name": "MaTaiLieu"
+        },
+        {
+          "name": "MaGiaiTrinh"
+        },
+        {
+          "name": "TenTepGoc"
+        },
+        {
+          "name": "DuongDan"
+        },
+        {
+          "name": "LoaiTep"
+        },
+        {
+          "name": "KichThuoc"
+        },
+        {
+          "name": "ThoiDiemTai"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaTaiLieu"
+        }
+      ]
+    },
+    {
+      "name": "TaiLieuXacMinh",
+      "Columns": [
+        {
+          "name": "MaTaiLieu"
+        },
+        {
+          "name": "MaHoSo"
+        },
+        {
+          "name": "TenTepGoc"
+        },
+        {
+          "name": "DuongDan"
+        },
+        {
+          "name": "LoaiTep"
+        },
+        {
+          "name": "KichThuoc"
+        },
+        {
+          "name": "LanNop"
+        },
+        {
+          "name": "ThoiDiemTai"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaTaiLieu"
+        }
+      ]
+    },
+    {
+      "name": "TinhHuongHoatDong",
+      "Columns": [
+        {
+          "name": "MaTinhHuong"
+        },
+        {
+          "name": "MaHoatDong"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaTinhHuong"
+        },
+        {
+          "name": "MaHoatDong"
+        }
+      ]
+    },
+    {
+      "name": "TinhHuongPhatSinh",
+      "Columns": [
+        {
+          "name": "MaTinhHuong"
+        },
+        {
+          "name": "MaKeHoach"
+        },
+        {
+          "name": "LoaiTinhHuong"
+        },
+        {
+          "name": "MoTa"
+        },
+        {
+          "name": "ViTri"
+        },
+        {
+          "name": "ThoiDiemGhiNhan"
+        },
+        {
+          "name": "TrangThaiXuLy"
+        },
+        {
+          "name": "KetQuaXuLy"
+        },
+        {
+          "name": "ThoiDiemCapNhat"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaTinhHuong"
+        }
+      ]
+    },
+    {
+      "name": "ThoaThuanDongHanh",
+      "Columns": [
+        {
+          "name": "MaThoaThuan"
+        },
+        {
+          "name": "MaDeNghi"
+        },
+        {
+          "name": "PhienBan"
+        },
+        {
+          "name": "NgayDi"
+        },
+        {
+          "name": "NgayVe"
+        },
+        {
+          "name": "NoiDen"
+        },
+        {
+          "name": "NganSach"
+        },
+        {
+          "name": "PhamViDiCung"
+        },
+        {
+          "name": "MaNguoiDeXuat"
+        },
+        {
+          "name": "ThoiDiemDeXuat"
+        },
+        {
+          "name": "MaNguoiXacNhan"
+        },
+        {
+          "name": "ThoiDiemXacNhan"
+        },
+        {
+          "name": "LoaiPhienBan"
+        },
+        {
+          "name": "TrangThai"
+        },
+        {
+          "name": "LyDo"
+        },
+        {
+          "name": "MaNguoiKetThuc"
+        },
+        {
+          "name": "ThoiDiemKetThuc"
+        },
+        {
+          "name": "RowVersion"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaThoaThuan"
+        }
+      ]
+    },
+    {
+      "name": "ThongBao",
+      "Columns": [
+        {
+          "name": "MaThongBao"
+        },
+        {
+          "name": "MaNguoiNhan"
+        },
+        {
+          "name": "LoaiThongBao"
+        },
+        {
+          "name": "NoiDung"
+        },
+        {
+          "name": "DuongDan"
+        },
+        {
+          "name": "DaDoc"
+        },
+        {
+          "name": "ThoiDiemTao"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaThongBao"
+        }
+      ]
+    },
+    {
+      "name": "YeuCauDatDichVu",
+      "Columns": [
+        {
+          "name": "MaYeuCau"
+        },
+        {
+          "name": "MaTaiKhoan"
+        },
+        {
+          "name": "MaDichVu"
+        },
+        {
+          "name": "NgayBatDau"
+        },
+        {
+          "name": "NgayKetThuc"
+        },
+        {
+          "name": "ThoiGianDenDi"
+        },
+        {
+          "name": "SoNguoi"
+        },
+        {
+          "name": "SoLuong"
+        },
+        {
+          "name": "NoiDungLuaChon"
+        },
+        {
+          "name": "GhiChu"
+        },
+        {
+          "name": "ChiPhiDuKien"
+        },
+        {
+          "name": "DieuKienDeXuat"
+        },
+        {
+          "name": "PhienBan"
+        },
+        {
+          "name": "ThoiDiemGui"
+        },
+        {
+          "name": "ThoiDiemPhanHoi"
+        },
+        {
+          "name": "LyDo"
+        },
+        {
+          "name": "TrangThai"
+        },
+        {
+          "name": "MaLuotGui"
+        },
+        {
+          "name": "RowVersion"
+        },
+        {
+          "name": "MaKeHoach"
+        }
+      ],
+      "Keys": [
+        {
+          "name": "MaYeuCau"
+        }
+      ]
+    }
+  ],
+  "before": [
+    {
+      "name": "BanCapNhatDichVu",
+      "rows": 6,
+      "sha256": "D99FB82CDC18BCEE160D9D54AED4A8B819DBB337152388FFC9D172B31EE0B1DA"
+    },
+    {
+      "name": "ChiaSeChuyenDi",
+      "rows": 1,
+      "sha256": "E6EBE23B77A3EEE4C7B5ABDCABE228D9217408779DD464AD6157796915528D18"
+    },
+    {
+      "name": "DanhGiaDichVu",
+      "rows": 0
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu",
+      "rows": 0
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh",
+      "rows": 1,
+      "sha256": "1EA1D7FC087561BCB906606FE5996631F95F2AB93BAC7A10B08DC057ACF89D61"
+    },
+    {
+      "name": "DiaDiemDuLich",
+      "rows": 3,
+      "sha256": "42C2829284DD6E26D803C48585AFD95ED23BCDBCC4A030D0D040D86BFAF348C2"
+    },
+    {
+      "name": "DichVuDuLich",
+      "rows": 6,
+      "sha256": "B354A1C82004B39274DBA6ABDDBA57BE0359A2DC6F545BE944391BDD80FA1E82"
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap",
+      "rows": 0
+    },
+    {
+      "name": "HoatDongLichTrinh",
+      "rows": 2,
+      "sha256": "5DBCFF5C0E75CFA97797512DF76C915328056771EF5D043A7D7D95FA78D02470"
+    },
+    {
+      "name": "HoSoNguoiDung",
+      "rows": 5,
+      "sha256": "E0039C5DFD8E4EEAFA0360A8FE448CC96C935A986D6537C937F0238D6B7C31EF"
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap",
+      "rows": 2,
+      "sha256": "8AA4FA586493B88649D3E1ADDF477B29391F379583F0072A7A4B2668EA10032E"
+    },
+    {
+      "name": "KeHoachChuyenDi",
+      "rows": 2,
+      "sha256": "D3EE5EEF26590B9760EBECF42AEF7744429E0AF57000ED47058716C66DCD6BC4"
+    },
+    {
+      "name": "KetQuaCungCapDichVu",
+      "rows": 0
+    },
+    {
+      "name": "KhoanChiChuyenDi",
+      "rows": 0
+    },
+    {
+      "name": "LichPhucVuDichVu",
+      "rows": 0
+    },
+    {
+      "name": "LuaChonDaLuu",
+      "rows": 1,
+      "sha256": "D2365D7C124DB9906C7A1F39618C7CB0627941C11D1FAB155AC66B68555FAB67"
+    },
+    {
+      "name": "MucChuanBi",
+      "rows": 0
+    },
+    {
+      "name": "NhaCungCapDichVu",
+      "rows": 2,
+      "sha256": "3F6B35E6DA73FFE24BD4C5FC2DB6D1BFEF9209E67C6211D7C39A70A4C332BE94"
+    },
+    {
+      "name": "NhatKyThaoTac",
+      "rows": 57,
+      "sha256": "C60FC40EAAC968F59E050A68CDC369781985AAD544CE797A809547F307312B15"
+    },
+    {
+      "name": "NhuCauDongHanh",
+      "rows": 1,
+      "sha256": "1CAB5CBEC2E90FE5BAF97746F5782DC605194C1CF3A78D3918D9CB448B244DD0"
+    },
+    {
+      "name": "PhuongAnXuLy",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong",
+      "rows": 1,
+      "sha256": "579950AC3E76F2AA75AE8E8A01B8B07E1BF463D2E65AC8AA66EE18F6A72ED6B3"
+    },
+    {
+      "name": "QuyetDinhXacMinh",
+      "rows": 2,
+      "sha256": "ACB889A28CDCFCC9C1A8D3DF258CA24BB426A08B5A7AE78675A610D585B7D105"
+    },
+    {
+      "name": "TaiKhoan",
+      "rows": 5,
+      "sha256": "8F6B394E4D3EDCF398E5DCB3CBD098BD0F41DA0C3F42F1FC5300E337BA4C6FD0"
+    },
+    {
+      "name": "TaiLieuGiaiTrinh",
+      "rows": 0
+    },
+    {
+      "name": "TaiLieuXacMinh",
+      "rows": 1,
+      "sha256": "1C43DFD6B91398E49C2E648F02FE3331E44FBA69DD08ED3BB6BC288D5B39B045"
+    },
+    {
+      "name": "TinhHuongHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "TinhHuongPhatSinh",
+      "rows": 1,
+      "sha256": "4842DFAFA98BAE26F782115BB51AD4A6097C0D698F7DE0D74D842C90877E699C"
+    },
+    {
+      "name": "ThoaThuanDongHanh",
+      "rows": 1,
+      "sha256": "5BE936EDEC74592FF7CBA46F28B739D4E482E073C41C104751CE8E784B08DDCA"
+    },
+    {
+      "name": "ThongBao",
+      "rows": 9,
+      "sha256": "6179E76951276AC259F413A7C640C5F500ECE248E901923765A1235CC997A3C4"
+    },
+    {
+      "name": "YeuCauDatDichVu",
+      "rows": 0
+    }
+  ],
+  "target": "HoTroDuLich_CompanionUpgrade_20261105",
+  "rehearsalPassed": true,
+  "rehearsalDate": "2026-11-05T17:05:35.314Z",
+  "applied": true,
+  "appliedDate": "2026-11-05T17:07:28.483Z"
+}

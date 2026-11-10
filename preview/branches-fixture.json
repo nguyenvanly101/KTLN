@@ -1,0 +1,29 @@
+{
+  "database": "HoTroDuLich_Branches_20261108_Final",
+  "users": [
+    {
+      "label": "provider",
+      "email": "branch-provider-121306864@example.com",
+      "id": 10002,
+      "providerId": 10002
+    },
+    {
+      "label": "other",
+      "email": "branch-other-121306864@example.com",
+      "id": 10003,
+      "providerId": 10003
+    },
+    {
+      "label": "traveler",
+      "email": "branch-traveler-121306864@example.com",
+      "id": 10004,
+      "providerId": null
+    },
+    {
+      "label": "admin",
+      "email": "branch-admin-121306864@example.com",
+      "id": 10005,
+      "providerId": null
+    }
+  ]
+}

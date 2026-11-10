@@ -1,0 +1,3 @@
+@model BookingInput
+@{ViewData["Title"]="Sửa yêu cầu đang chờ";}
+<div class="container-narrow"><a class="back" href="/Bookings/Detail/@Model.Id">← Chi tiết yêu cầu</a><div class="page-head"><div><h1>Sửa yêu cầu đang chờ</h1><p>@ViewBag.ServiceName · Nhà cung cấp sẽ nhận thông báo sau khi bạn lưu.</p></div></div><div class="panel"><form action="/Bookings/Edit" method="post">@Html.AntiForgeryToken()<div asp-validation-summary="All" role="alert" tabindex="-1"></div><partial name="/Views/Bookings/_BookingFields.cshtml" model="Model"/><div class="form-actions"><button class="btn btn-dark" type="submit">Lưu yêu cầu đã sửa</button><a class="btn btn-outline" href="/Bookings/Detail/@Model.Id">Hủy</a></div></form></div></div>

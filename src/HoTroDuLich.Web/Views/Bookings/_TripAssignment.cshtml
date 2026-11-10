@@ -1,0 +1,8 @@
+@model YeuCauDatDichVu
+@inject TravelService TripTravel
+@if(User.IsInRole(TravelService.Traveler) && Model.MaTaiKhoan == TripTravel.UserId){
+ var plans = await TripTravel.Plans();
+ <details class="trip-assignment" open="@(Model.MaKeHoach == null)"><summary>@(Model.MaKeHoach == null ? "Gắn yêu cầu vào một chuyến đi" : "Thay đổi chuyến đi của yêu cầu")</summary>
+  <form action="/Bookings/Trip" method="post">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@Model.MaYeuCau"/><input type="hidden" name="version" value="@TravelService.Token(Model.RowVersion)"/><div class="field"><label for="assign-trip">Chuyến đi</label><select class="form-control" id="assign-trip" name="planId"><option value="">Yêu cầu riêng, chưa gắn chuyến đi</option>@foreach(var trip in plans){<option value="@trip.MaKeHoach" selected="@(trip.MaKeHoach == Model.MaKeHoach)">@trip.TenKeHoach</option>}</select><small>Chỉ thay đổi nơi theo dõi yêu cầu. Ngày phục vụ và điều kiện đã thống nhất được giữ nguyên.</small></div><div class="form-actions"><button class="btn btn-outline" type="submit">Lưu chuyến đi</button></div></form>
+ </details>
+}

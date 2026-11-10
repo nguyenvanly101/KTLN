@@ -1,0 +1,401 @@
+{
+  "version": 1,
+  "tables": {
+    "LuaChonDaLuu": [
+      {
+        "name": "MaLuaChon",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "rules": "PK",
+        "default": null
+      },
+      {
+        "name": "MaTaiKhoan",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "rules": "FK → TaiKhoan",
+        "default": null
+      },
+      {
+        "name": "MaDichVu",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "rules": "FK → DichVuDuLich",
+        "default": null
+      },
+      {
+        "name": "MaDiaDiem",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "rules": "FK → DiaDiemDuLich",
+        "default": null
+      },
+      {
+        "name": "TenMuc",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "ThoiDiemLuu",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      }
+    ],
+    "MucChuanBi": [
+      {
+        "name": "MaMuc",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "rules": "PK",
+        "default": null
+      },
+      {
+        "name": "MaKeHoach",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "rules": "FK → KeHoachChuyenDi",
+        "default": null
+      },
+      {
+        "name": "NoiDung",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "Nhom",
+        "sqlType": "VARCHAR(40)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "HanHoanThanh",
+        "sqlType": "DATE",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "DaHoanThanh",
+        "sqlType": "BIT",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "NhacHan",
+        "sqlType": "BIT",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "NgayDaNhac",
+        "sqlType": "DATE",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "ThoiDiemTao",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      }
+    ],
+    "KhoanChiChuyenDi": [
+      {
+        "name": "MaKhoanChi",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "rules": "PK",
+        "default": null
+      },
+      {
+        "name": "MaKeHoach",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "rules": "FK → KeHoachChuyenDi",
+        "default": null
+      },
+      {
+        "name": "NoiDung",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "LoaiChi",
+        "sqlType": "VARCHAR(40)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "SoTien",
+        "sqlType": "DECIMAL(18,2)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "NgayChi",
+        "sqlType": "DATE",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "GhiChu",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "MaLuotGhi",
+        "sqlType": "UNIQUEIDENTIFIER",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "ThoiDiemTao",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      }
+    ]
+  },
+  "additionalColumns": {
+    "DichVuDuLich": [
+      {
+        "name": "DiaChiPhucVu",
+        "sqlType": "NVARCHAR(300)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "DonViGia",
+        "sqlType": "NVARCHAR(50)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "ChinhSachHuy",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "AnhJson",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      }
+    ],
+    "BanCapNhatDichVu": [
+      {
+        "name": "DiaChiPhucVu",
+        "sqlType": "NVARCHAR(300)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "DonViGia",
+        "sqlType": "NVARCHAR(50)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "ChinhSachHuy",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "AnhJson",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      }
+    ]
+  },
+  "indexes": [
+    {
+      "table": "LuaChonDaLuu",
+      "name": "UX_LuaChon_DichVu",
+      "unique": true,
+      "keys": [
+        [
+          "MaTaiKhoan",
+          false
+        ],
+        [
+          "MaDichVu",
+          false
+        ]
+      ],
+      "filter": "[MaDichVu] IS NOT NULL"
+    },
+    {
+      "table": "LuaChonDaLuu",
+      "name": "UX_LuaChon_DiaDiem",
+      "unique": true,
+      "keys": [
+        [
+          "MaTaiKhoan",
+          false
+        ],
+        [
+          "MaDiaDiem",
+          false
+        ]
+      ],
+      "filter": "[MaDiaDiem] IS NOT NULL"
+    },
+    {
+      "table": "LuaChonDaLuu",
+      "name": "IX_LuaChon_TaiKhoan",
+      "keys": [
+        [
+          "MaTaiKhoan",
+          false
+        ],
+        [
+          "ThoiDiemLuu",
+          true
+        ]
+      ]
+    },
+    {
+      "table": "MucChuanBi",
+      "name": "UX_ChuanBi_NoiDung",
+      "unique": true,
+      "keys": [
+        [
+          "MaKeHoach",
+          false
+        ],
+        [
+          "NoiDung",
+          false
+        ]
+      ]
+    },
+    {
+      "table": "MucChuanBi",
+      "name": "IX_ChuanBi_KeHoach",
+      "keys": [
+        [
+          "MaKeHoach",
+          false
+        ],
+        [
+          "HanHoanThanh",
+          false
+        ]
+      ]
+    },
+    {
+      "table": "KhoanChiChuyenDi",
+      "name": "UX_KhoanChi_LuotGhi",
+      "unique": true,
+      "keys": [
+        [
+          "MaKeHoach",
+          false
+        ],
+        [
+          "MaLuotGhi",
+          false
+        ]
+      ]
+    },
+    {
+      "table": "KhoanChiChuyenDi",
+      "name": "IX_KhoanChi_KeHoach",
+      "keys": [
+        [
+          "MaKeHoach",
+          false
+        ],
+        [
+          "NgayChi",
+          true
+        ]
+      ]
+    }
+  ],
+  "counts": {
+    "tables": 28,
+    "columns": 302,
+    "foreignKeys": 44,
+    "checks": 123,
+    "uniqueIndexes": 22,
+    "queryIndexes": 38
+  },
+  "checks": [
+    {
+      "table": "LuaChonDaLuu",
+      "name": "CK_LuaChonDaLuu_MotMuc",
+      "expression": "(MaDichVu IS NOT NULL AND MaDiaDiem IS NULL) OR (MaDichVu IS NULL AND MaDiaDiem IS NOT NULL)"
+    },
+    {
+      "table": "MucChuanBi",
+      "name": "CK_MucChuanBi_Nhom",
+      "expression": "Nhom IN ('GiayTo','HanhLy','DiChuyen','DatDichVu','Khac')"
+    },
+    {
+      "table": "KhoanChiChuyenDi",
+      "name": "CK_KhoanChi_SoTien",
+      "expression": "SoTien>0 AND SoTien<=1000000000"
+    },
+    {
+      "table": "KhoanChiChuyenDi",
+      "name": "CK_KhoanChi_Loai",
+      "expression": "LoaiChi IN ('LuuTru','AnUong','DiChuyen','HoatDong','MuaSam','Khac')"
+    },
+    {
+      "table": "DichVuDuLich",
+      "name": "CK_DichVu_AnhJson",
+      "expression": "AnhJson IS NULL OR ISJSON(AnhJson)=1"
+    },
+    {
+      "table": "BanCapNhatDichVu",
+      "name": "CK_BanCapNhat_AnhJson",
+      "expression": "AnhJson IS NULL OR ISJSON(AnhJson)=1"
+    }
+  ]
+}

@@ -1,0 +1,329 @@
+{
+  "passed": true,
+  "checks": 80,
+  "observations": [
+    {
+      "name": "Restore destination does not exist",
+      "passed": true
+    },
+    {
+      "name": "Verified backup restored into separate MDF/LDF files",
+      "passed": true
+    },
+    {
+      "name": "BanCapNhatDichVu backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "DiaDiemDuLich backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "HoatDongLichTrinh backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "HoSoNguoiDung backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "KeHoachChuyenDi backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "KetQuaCungCapDichVu backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "NhaCungCapDichVu backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "NhatKyThaoTac backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "NhuCauDongHanh backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "PhuongAnXuLy backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhXacMinh backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "TaiKhoan backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuGiaiTrinh backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuXacMinh backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongHoatDong backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongPhatSinh backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "ThoaThuanDongHanh backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "ThongBao backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "YeuCauDatDichVu backup matches main pre-upgrade values",
+      "passed": true
+    },
+    {
+      "name": "Fresh migration creates filtered indexes from QUOTED_IDENTIFIER OFF",
+      "passed": true
+    },
+    {
+      "name": "Re-running migration succeeds",
+      "passed": true
+    },
+    {
+      "name": "BanCapNhatDichVu original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "BanCapNhatDichVu original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "DiaDiemDuLich original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "DiaDiemDuLich original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "HoatDongLichTrinh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "HoatDongLichTrinh original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "HoSoNguoiDung original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "HoSoNguoiDung original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "KeHoachChuyenDi original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "KeHoachChuyenDi original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "KetQuaCungCapDichVu original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "KetQuaCungCapDichVu original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "NhaCungCapDichVu original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "NhaCungCapDichVu original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "NhatKyThaoTac original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "NhatKyThaoTac original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "NhuCauDongHanh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "NhuCauDongHanh original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "PhuongAnXuLy original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "PhuongAnXuLy original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhXacMinh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhXacMinh original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "TaiKhoan original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "TaiKhoan original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuGiaiTrinh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuGiaiTrinh original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuXacMinh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuXacMinh original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongHoatDong original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongHoatDong original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongPhatSinh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongPhatSinh original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "ThoaThuanDongHanh original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "ThoaThuanDongHanh original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "ThongBao original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "ThongBao original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "YeuCauDatDichVu original row count preserved",
+      "passed": true
+    },
+    {
+      "name": "YeuCauDatDichVu original values preserved after both migration runs",
+      "passed": true
+    },
+    {
+      "name": "Restored copy has the declared 28 tables and 302 columns",
+      "passed": true
+    }
+  ],
+  "database": "HoTroDuLich_ProductUpgrade_20261105",
+  "backup": "D:\\KLTN\\preview\\backups\\HoTroDuLich_before_product_20261105_015725.bak",
+  "date": "2026-11-04T19:12:53.148Z"
+}

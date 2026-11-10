@@ -1,0 +1,3506 @@
+{
+  "source": "26271.3-FullText-XayDungHeThongHoTroKhachDuLichTuTuc (4).docx",
+  "tables": {
+    "TaiKhoan": [
+      {
+        "name": "MaTaiKhoan",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "Email",
+        "sqlType": "NVARCHAR(256)",
+        "nullable": "",
+        "default": "",
+        "rules": "UX Email; CK định dạng email"
+      },
+      {
+        "name": "SoDienThoai",
+        "sqlType": "VARCHAR(15)",
+        "nullable": "x",
+        "default": "",
+        "rules": "UX SoDienThoai (lọc); CK 0 + 9–10 số"
+      },
+      {
+        "name": "MatKhauBam",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "VaiTro",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK ∈ KHACH_DU_LICH/NHA_CUNG_CAP/QUAN_TRI_VIEN"
+      },
+      {
+        "name": "TrangThai",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'HoatDong'",
+        "rules": "CK ∈ HoatDong/DaNgung"
+      },
+      {
+        "name": "DauPhien",
+        "sqlType": "UNIQUEIDENTIFIER",
+        "nullable": "",
+        "default": "NEWID()",
+        "rules": ""
+      },
+      {
+        "name": "PhaiDoiMatKhau",
+        "sqlType": "BIT",
+        "nullable": "",
+        "default": "0",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemTao",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemDangNhapCuoi",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemNgung",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "HoSoNguoiDung": [
+      {
+        "name": "MaHoSo",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaTaiKhoan",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → TaiKhoan; UX MaTaiKhoan"
+      },
+      {
+        "name": "TenHienThi",
+        "sqlType": "NVARCHAR(100)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "AnhDaiDien",
+        "sqlType": "NVARCHAR(400)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "GioiThieu",
+        "sqlType": "NVARCHAR(1000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "NoiSinhSong",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "SoThich",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThongTinChiaSe",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'RiengTu'",
+        "rules": "CK ∈ CongKhai/KhiKetNoi/RiengTu"
+      },
+      {
+        "name": "ThoiDiemCapNhat",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "NhaCungCapDichVu": [
+      {
+        "name": "MaNhaCungCap",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaTaiKhoan",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → TaiKhoan; UX MaTaiKhoan"
+      },
+      {
+        "name": "TenDonVi",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "LoaiHinh",
+        "sqlType": "NVARCHAR(50)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "NguoiLienHe",
+        "sqlType": "NVARCHAR(100)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "DiaChi",
+        "sqlType": "NVARCHAR(300)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "SoDienThoai",
+        "sqlType": "VARCHAR(15)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK 0 + 9–10 số"
+      },
+      {
+        "name": "EmailLienHe",
+        "sqlType": "NVARCHAR(256)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK định dạng email"
+      },
+      {
+        "name": "TrangThaiXacMinh",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'ChoXacMinh'",
+        "rules": "CK ∈ ChoXacMinh/CanBoSung/DaXacMinh/TuChoi/DaThuHoi"
+      },
+      {
+        "name": "TrangThaiQuyenHoatDong",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "x",
+        "default": "",
+        "rules": "CK ∈ DangHoatDong/TamDinhChi/DaThuHoi"
+      },
+      {
+        "name": "ThoiDiemTao",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "HoSoXacMinhNhaCungCap": [
+      {
+        "name": "MaHoSo",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaNhaCungCap",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → NhaCungCapDichVu; UX_HoSoXacMinh_DangXuLy (lọc)"
+      },
+      {
+        "name": "NoiDungDangKy",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "NguoiDaiDien",
+        "sqlType": "NVARCHAR(100)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "ThoiDiemNop",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "SoLanBoSung",
+        "sqlType": "INT",
+        "nullable": "",
+        "default": "0",
+        "rules": "CK >= 0"
+      },
+      {
+        "name": "TrangThaiXuLy",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'ChoXacMinh'",
+        "rules": "CK ∈ ChoXacMinh/CanBoSung/DaXacMinh/TuChoi"
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "QuyetDinhXacMinh": [
+      {
+        "name": "MaQuyetDinh",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaHoSo",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → HoSoXacMinhNhaCungCap; UX LanXuLy"
+      },
+      {
+        "name": "LanXuLy",
+        "sqlType": "INT",
+        "nullable": "",
+        "default": "",
+        "rules": "UX LanXuLy; CK >= 1"
+      },
+      {
+        "name": "KetQua",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK ∈ CanBoSung/DaXacMinh/TuChoi"
+      },
+      {
+        "name": "KetQuaXacMinh",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "LyDo",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "MaAdminDuyet",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → TaiKhoan"
+      },
+      {
+        "name": "ThoiDiemDuyet",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      }
+    ],
+    "TaiLieuXacMinh": [
+      {
+        "name": "MaTaiLieu",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaHoSo",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → HoSoXacMinhNhaCungCap"
+      },
+      {
+        "name": "TenTepGoc",
+        "sqlType": "NVARCHAR(255)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "DuongDan",
+        "sqlType": "NVARCHAR(400)",
+        "nullable": "",
+        "default": "",
+        "rules": "UX DuongDan"
+      },
+      {
+        "name": "LoaiTep",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK ∈ pdf/jpg/png"
+      },
+      {
+        "name": "KichThuoc",
+        "sqlType": "INT",
+        "nullable": "",
+        "default": "",
+        "rules": "CK BETWEEN 1 AND 5242880"
+      },
+      {
+        "name": "LanNop",
+        "sqlType": "INT",
+        "nullable": "",
+        "default": "0",
+        "rules": "CK >= 0"
+      },
+      {
+        "name": "ThoiDiemTai",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      }
+    ],
+    "QuyetDinhQuyenHoatDong": [
+      {
+        "name": "MaQuyetDinh",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaNhaCungCap",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → NhaCungCapDichVu"
+      },
+      {
+        "name": "TrangThaiTruoc",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK ∈ DangHoatDong/TamDinhChi/DaThuHoi"
+      },
+      {
+        "name": "TrangThaiSau",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK ∈ DangHoatDong/TamDinhChi/DaThuHoi"
+      },
+      {
+        "name": "LyDo",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "CanCu",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiHan",
+        "sqlType": "DATE",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "MaAdmin",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → TaiKhoan"
+      },
+      {
+        "name": "ThoiDiem",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      }
+    ],
+    "GiaiTrinhNhaCungCap": [
+      {
+        "name": "MaGiaiTrinh",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaQuyetDinh",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → QuyetDinhQuyenHoatDong"
+      },
+      {
+        "name": "NoiDung",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemGui",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "TrangThai",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'ChoXemXet'",
+        "rules": "CK ∈ ChoXemXet/DaXemXet"
+      },
+      {
+        "name": "KetQuaXemXet",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "MaAdminXemXet",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "default": "",
+        "rules": "FK → TaiKhoan"
+      },
+      {
+        "name": "ThoiDiemXemXet",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "TaiLieuGiaiTrinh": [
+      {
+        "name": "MaTaiLieu",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaGiaiTrinh",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → GiaiTrinhNhaCungCap"
+      },
+      {
+        "name": "TenTepGoc",
+        "sqlType": "NVARCHAR(255)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "DuongDan",
+        "sqlType": "NVARCHAR(400)",
+        "nullable": "",
+        "default": "",
+        "rules": "UX DuongDan"
+      },
+      {
+        "name": "LoaiTep",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK ∈ pdf/jpg/png"
+      },
+      {
+        "name": "KichThuoc",
+        "sqlType": "INT",
+        "nullable": "",
+        "default": "",
+        "rules": "CK BETWEEN 1 AND 5242880"
+      },
+      {
+        "name": "ThoiDiemTai",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      }
+    ],
+    "DiaDiemDuLich": [
+      {
+        "name": "MaDiaDiem",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "TenDiaDiem",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "LoaiDiaDiem",
+        "sqlType": "NVARCHAR(50)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "KhuVuc",
+        "sqlType": "NVARCHAR(100)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "DiaChi",
+        "sqlType": "NVARCHAR(300)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "MoTa",
+        "sqlType": "NVARCHAR(4000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "DangHienThi",
+        "sqlType": "BIT",
+        "nullable": "",
+        "default": "1",
+        "rules": ""
+      }
+    ],
+    "DichVuDuLich": [
+      {
+        "name": "MaDichVu",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaNhaCungCap",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → NhaCungCapDichVu"
+      },
+      {
+        "name": "TenDichVu",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "LoaiDichVu",
+        "sqlType": "NVARCHAR(50)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "MoTa",
+        "sqlType": "NVARCHAR(4000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "KhuVucPhucVu",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "MaDiaDiem",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "default": "",
+        "rules": "FK → DiaDiemDuLich"
+      },
+      {
+        "name": "GiaThamKhao",
+        "sqlType": "DECIMAL(18,2)",
+        "nullable": "x",
+        "default": "",
+        "rules": "CK >= 0"
+      },
+      {
+        "name": "ThoiGianPhucVu",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "DieuKienPhucVu",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "TamNgungTu",
+        "sqlType": "DATE",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "TamNgungDen",
+        "sqlType": "DATE",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "LyDoTamNgung",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "TrangThaiCongBo",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK ∈ Nhap/ChoDuyet/DaDuyet/TuChoi/CanSua/NgungCongBo"
+      },
+      {
+        "name": "TrangThaiTiepNhan",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'TiepNhan'",
+        "rules": "CK ∈ TiepNhan/KhongTiepNhanMoi"
+      },
+      {
+        "name": "MaQuyetDinhKhongTiepNhan",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "default": "",
+        "rules": "FK → QuyetDinhQuyenHoatDong"
+      },
+      {
+        "name": "PhienBanCongBo",
+        "sqlType": "INT",
+        "nullable": "x",
+        "default": "",
+        "rules": "CK >= 1"
+      },
+      {
+        "name": "ThoiDiemTao",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemCapNhat",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "BanCapNhatDichVu": [
+      {
+        "name": "MaBanCapNhat",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaDichVu",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → DichVuDuLich; UX PhienBan; UX ChoDuyet (lọc)"
+      },
+      {
+        "name": "SoPhienBan",
+        "sqlType": "INT",
+        "nullable": "",
+        "default": "",
+        "rules": "UX PhienBan; CK >= 1"
+      },
+      {
+        "name": "TenDichVu",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "LoaiDichVu",
+        "sqlType": "NVARCHAR(50)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "MoTa",
+        "sqlType": "NVARCHAR(4000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "KhuVucPhucVu",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "MaDiaDiem",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "default": "",
+        "rules": "FK → DiaDiemDuLich"
+      },
+      {
+        "name": "GiaThamKhao",
+        "sqlType": "DECIMAL(18,2)",
+        "nullable": "x",
+        "default": "",
+        "rules": "CK >= 0"
+      },
+      {
+        "name": "ThoiGianPhucVu",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "DieuKienPhucVu",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "TamNgungTu",
+        "sqlType": "DATE",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "TamNgungDen",
+        "sqlType": "DATE",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "LyDoTamNgung",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "TrangThaiDuyet",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'ChoDuyet'",
+        "rules": "CK ∈ ChoDuyet/DaDuyet/TuChoi/CanSua"
+      },
+      {
+        "name": "LyDo",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "MaAdminDuyet",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "default": "",
+        "rules": "FK → TaiKhoan"
+      },
+      {
+        "name": "ThoiDiemGui",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemDuyet",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "KeHoachChuyenDi": [
+      {
+        "name": "MaKeHoach",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaTaiKhoan",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → TaiKhoan"
+      },
+      {
+        "name": "TenKeHoach",
+        "sqlType": "NVARCHAR(150)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "NoiDen",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "NgayBatDau",
+        "sqlType": "DATE",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "NgayKetThuc",
+        "sqlType": "DATE",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "NganSachDuKien",
+        "sqlType": "DECIMAL(18,2)",
+        "nullable": "x",
+        "default": "",
+        "rules": "CK >= 0"
+      },
+      {
+        "name": "TrangThai",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'Nhap'",
+        "rules": "CK ∈ Nhap/DaChapNhan"
+      },
+      {
+        "name": "ThoiDiemTao",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemCapNhat",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "HoatDongLichTrinh": [
+      {
+        "name": "MaHoatDong",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaKeHoach",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → KeHoachChuyenDi"
+      },
+      {
+        "name": "Ngay",
+        "sqlType": "DATE",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "Gio",
+        "sqlType": "TIME(0)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThuTu",
+        "sqlType": "INT",
+        "nullable": "",
+        "default": "",
+        "rules": "CK >= 1"
+      },
+      {
+        "name": "MaDiaDiem",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "default": "",
+        "rules": "FK → DiaDiemDuLich"
+      },
+      {
+        "name": "MaDichVu",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "default": "",
+        "rules": "FK → DichVuDuLich"
+      },
+      {
+        "name": "NoiDung",
+        "sqlType": "NVARCHAR(300)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ChiPhiDuKien",
+        "sqlType": "DECIMAL(18,2)",
+        "nullable": "x",
+        "default": "",
+        "rules": "CK >= 0"
+      }
+    ],
+    "TinhHuongPhatSinh": [
+      {
+        "name": "MaTinhHuong",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaKeHoach",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → KeHoachChuyenDi"
+      },
+      {
+        "name": "LoaiTinhHuong",
+        "sqlType": "NVARCHAR(50)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "MoTa",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ViTri",
+        "sqlType": "NVARCHAR(300)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemGhiNhan",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "TrangThaiXuLy",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'ChuaGiaiQuyet'",
+        "rules": "CK ∈ ChuaGiaiQuyet/DaChonPhuongAn/GiaiQuyetMotPhan/DaGiaiQuyet/DungXuLy"
+      },
+      {
+        "name": "KetQuaXuLy",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemCapNhat",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "TinhHuongHoatDong": [
+      {
+        "name": "MaTinhHuong",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "PK; FK → TinhHuongPhatSinh"
+      },
+      {
+        "name": "MaHoatDong",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "PK; FK → HoatDongLichTrinh"
+      }
+    ],
+    "PhuongAnXuLy": [
+      {
+        "name": "MaPhuongAn",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaTinhHuong",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → TinhHuongPhatSinh; UX HienHanh (lọc)"
+      },
+      {
+        "name": "NoiDung",
+        "sqlType": "NVARCHAR(1000)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemChon",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "LaHienHanh",
+        "sqlType": "BIT",
+        "nullable": "",
+        "default": "1",
+        "rules": ""
+      }
+    ],
+    "NhuCauDongHanh": [
+      {
+        "name": "MaNhuCau",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaTaiKhoan",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → TaiKhoan"
+      },
+      {
+        "name": "NoiDung",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "DiemDen",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "NgayBatDau",
+        "sqlType": "DATE",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "NgayKetThuc",
+        "sqlType": "DATE",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "NganSachDuKien",
+        "sqlType": "DECIMAL(18,2)",
+        "nullable": "x",
+        "default": "",
+        "rules": "CK >= 0"
+      },
+      {
+        "name": "HinhThucDi",
+        "sqlType": "NVARCHAR(50)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "MongMuonDongHanh",
+        "sqlType": "NVARCHAR(1000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "PhamViChiaSe",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK ∈ CongKhai/DaDangNhap/KhiKetNoi"
+      },
+      {
+        "name": "ThoiDiemDang",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "TrangThaiCongBo",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'DangCongBo'",
+        "rules": "CK ∈ DangCongBo/DungCongBo"
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "DeNghiKetNoiDongHanh": [
+      {
+        "name": "MaDeNghi",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaNhuCau",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → NhuCauDongHanh; UX HieuLuc (lọc)"
+      },
+      {
+        "name": "MaNguoiGui",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → TaiKhoan; UX HieuLuc (lọc)"
+      },
+      {
+        "name": "LoiGioiThieu",
+        "sqlType": "NVARCHAR(1000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemGui",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemPhanHoi",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "TrangThai",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'ChoPhanHoi'",
+        "rules": "CK ∈ ChoPhanHoi/DaChapNhan/TuChoi/DaRut/HetHieuLuc"
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "ThoaThuanDongHanh": [
+      {
+        "name": "MaThoaThuan",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaDeNghi",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → DeNghiKetNoiDongHanh; UX PhienBan; UX DaXacNhan (lọc); UX ChoXacNhan (lọc)"
+      },
+      {
+        "name": "PhienBan",
+        "sqlType": "INT",
+        "nullable": "",
+        "default": "",
+        "rules": "UX PhienBan; CK >= 1"
+      },
+      {
+        "name": "NgayDi",
+        "sqlType": "DATE",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "NgayVe",
+        "sqlType": "DATE",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "NoiDen",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "NganSach",
+        "sqlType": "DECIMAL(18,2)",
+        "nullable": "x",
+        "default": "",
+        "rules": "CK >= 0"
+      },
+      {
+        "name": "PhamViDiCung",
+        "sqlType": "NVARCHAR(1000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "MaNguoiDeXuat",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → TaiKhoan"
+      },
+      {
+        "name": "ThoiDiemDeXuat",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "MaNguoiXacNhan",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "default": "",
+        "rules": "FK → TaiKhoan"
+      },
+      {
+        "name": "ThoiDiemXacNhan",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "LoaiPhienBan",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'NoiDung'",
+        "rules": "CK ∈ NoiDung/DeNghiNgung"
+      },
+      {
+        "name": "TrangThai",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'ChoXacNhan'",
+        "rules": "CK ∈ ChoXacNhan/DaXacNhan/TuChoi/DaThayThe/DaNgung/MotBenDaRut"
+      },
+      {
+        "name": "LyDo",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "MaNguoiKetThuc",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "default": "",
+        "rules": "FK → TaiKhoan"
+      },
+      {
+        "name": "ThoiDiemKetThuc",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "YeuCauDatDichVu": [
+      {
+        "name": "MaYeuCau",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaTaiKhoan",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → TaiKhoan; UX LuotGui"
+      },
+      {
+        "name": "MaDichVu",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → DichVuDuLich"
+      },
+      {
+        "name": "NgayBatDau",
+        "sqlType": "DATE",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "NgayKetThuc",
+        "sqlType": "DATE",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiGianDenDi",
+        "sqlType": "NVARCHAR(100)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "SoNguoi",
+        "sqlType": "INT",
+        "nullable": "",
+        "default": "",
+        "rules": "CK BETWEEN 1 AND 100"
+      },
+      {
+        "name": "SoLuong",
+        "sqlType": "INT",
+        "nullable": "",
+        "default": "",
+        "rules": "CK BETWEEN 1 AND 100"
+      },
+      {
+        "name": "NoiDungLuaChon",
+        "sqlType": "NVARCHAR(1000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "GhiChu",
+        "sqlType": "NVARCHAR(1000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ChiPhiDuKien",
+        "sqlType": "DECIMAL(18,2)",
+        "nullable": "x",
+        "default": "",
+        "rules": "CK >= 0"
+      },
+      {
+        "name": "DieuKienDeXuat",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "PhienBan",
+        "sqlType": "INT",
+        "nullable": "",
+        "default": "1",
+        "rules": "CK >= 1"
+      },
+      {
+        "name": "ThoiDiemGui",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemPhanHoi",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "LyDo",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "TrangThai",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'ChoPhanHoi'",
+        "rules": "CK ∈ ChoPhanHoi/DeXuatKhac/DaXacNhan/TuChoi/KhongTiepTuc/DaHuy/HoanThanh/ThucHienMotPhan/KhongThucHien/ChoKiemTra"
+      },
+      {
+        "name": "MaLuotGui",
+        "sqlType": "UNIQUEIDENTIFIER",
+        "nullable": "",
+        "default": "",
+        "rules": "UX LuotGui"
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "DeNghiDieuChinhDichVu": [
+      {
+        "name": "MaDeNghi",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaYeuCau",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → YeuCauDatDichVu; UX Cho (lọc)"
+      },
+      {
+        "name": "LoaiDeNghi",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK ∈ ThayDoi/Huy"
+      },
+      {
+        "name": "DieuKienCu",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "NgayBatDauMoi",
+        "sqlType": "DATE",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "NgayKetThucMoi",
+        "sqlType": "DATE",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "SoNguoiMoi",
+        "sqlType": "INT",
+        "nullable": "x",
+        "default": "",
+        "rules": "CK BETWEEN 1 AND 100"
+      },
+      {
+        "name": "SoLuongMoi",
+        "sqlType": "INT",
+        "nullable": "x",
+        "default": "",
+        "rules": "CK BETWEEN 1 AND 100"
+      },
+      {
+        "name": "DieuKienMoi",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "LyDo",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemGui",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "QuyetDinh",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "DieuKienDeXuat",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemPhanHoi",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "TrangThai",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'ChoPhanHoi'",
+        "rules": "CK ∈ ChoPhanHoi/DeXuatKhac/ChapNhan/TuChoi/DaRut"
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "KetQuaCungCapDichVu": [
+      {
+        "name": "MaKetQua",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaYeuCau",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → YeuCauDatDichVu; UX HangMuc"
+      },
+      {
+        "name": "HangMuc",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "",
+        "default": "",
+        "rules": "UX HangMuc; CK không rỗng"
+      },
+      {
+        "name": "KetQuaThucHien",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK ∈ DayDu/MotPhan/KhongThucHien/KhachKhongDen/ChuaXacDinh"
+      },
+      {
+        "name": "GhiChu",
+        "sqlType": "NVARCHAR(1000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemGhi",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      },
+      {
+        "name": "NoiDungPhanAnh",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemPhanAnh",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "TrangThaiKiemTra",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "default": "'DaGhiNhan'",
+        "rules": "CK ∈ DaGhiNhan/ChoKiemTra/DaKiemTra"
+      },
+      {
+        "name": "ThoiDiemKiemTra",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      }
+    ],
+    "ThongBao": [
+      {
+        "name": "MaThongBao",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaNguoiNhan",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "default": "",
+        "rules": "FK → TaiKhoan"
+      },
+      {
+        "name": "LoaiThongBao",
+        "sqlType": "NVARCHAR(40)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "NoiDung",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "DuongDan",
+        "sqlType": "NVARCHAR(300)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "DaDoc",
+        "sqlType": "BIT",
+        "nullable": "",
+        "default": "0",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiemTao",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      }
+    ],
+    "NhatKyThaoTac": [
+      {
+        "name": "MaNhatKy",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "default": "",
+        "rules": "PK"
+      },
+      {
+        "name": "MaTaiKhoan",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "default": "",
+        "rules": "FK → TaiKhoan"
+      },
+      {
+        "name": "LoaiSuKien",
+        "sqlType": "NVARCHAR(40)",
+        "nullable": "",
+        "default": "",
+        "rules": "CK không rỗng"
+      },
+      {
+        "name": "DoiTuong",
+        "sqlType": "NVARCHAR(40)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "MaDoiTuong",
+        "sqlType": "BIGINT",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "TrangThaiTruoc",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "TrangThaiSau",
+        "sqlType": "NVARCHAR(200)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "LyDo",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "DiaChiIP",
+        "sqlType": "NVARCHAR(45)",
+        "nullable": "x",
+        "default": "",
+        "rules": ""
+      },
+      {
+        "name": "ThoiDiem",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "default": "SYSUTCDATETIME()",
+        "rules": ""
+      }
+    ]
+  },
+  "queryIndexes": [
+    {
+      "name": "IX_HoSoXacMinh_HangDoi",
+      "table": "HoSoXacMinhNhaCungCap",
+      "columns": "TrangThaiXuLy, ThoiDiemNop (MaNhaCungCap)",
+      "filter": "—",
+      "purpose": "SUC10.02 moDanhSach: hồ sơ chờ xác minh, cũ trước"
+    },
+    {
+      "name": "IX_HoSoXacMinh_NhaCungCap",
+      "table": "HoSoXacMinhNhaCungCap",
+      "columns": "MaNhaCungCap, ThoiDiemNop DESC",
+      "filter": "—",
+      "purpose": "Hồ sơ mới nhất của NCC; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_TaiLieuXacMinh_HoSo",
+      "table": "TaiLieuXacMinh",
+      "columns": "MaHoSo, LanNop",
+      "filter": "—",
+      "purpose": "SUC10.02 xemHoSo: tài liệu theo lần nộp; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_NhaCungCap_TrangThai",
+      "table": "NhaCungCapDichVu",
+      "columns": "TrangThaiXacMinh, TrangThaiQuyenHoatDong (TenDonVi)",
+      "filter": "—",
+      "purpose": "SUC13.01 moDanhSach: lọc NCC theo trạng thái"
+    },
+    {
+      "name": "IX_QuyetDinhQuyen_NhaCungCap",
+      "table": "QuyetDinhQuyenHoatDong",
+      "columns": "MaNhaCungCap, ThoiDiem DESC",
+      "filter": "—",
+      "purpose": "SUC13.01 xemChiTiet: lịch sử quyết định; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_GiaiTrinh_QuyetDinh",
+      "table": "GiaiTrinhNhaCungCap",
+      "columns": "MaQuyetDinh",
+      "filter": "—",
+      "purpose": "Giải trình theo quyết định; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_GiaiTrinh_ChoXemXet",
+      "table": "GiaiTrinhNhaCungCap",
+      "columns": "ThoiDiemGui (MaQuyetDinh)",
+      "filter": "TrangThai = 'ChoXemXet'",
+      "purpose": "SUC13.01: giải trình chờ Admin xem xét"
+    },
+    {
+      "name": "IX_TaiLieuGiaiTrinh_GiaiTrinh",
+      "table": "TaiLieuGiaiTrinh",
+      "columns": "MaGiaiTrinh",
+      "filter": "—",
+      "purpose": "Chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_DiaDiem_TimKiem",
+      "table": "DiaDiemDuLich",
+      "columns": "KhuVuc, LoaiDiaDiem (TenDiaDiem)",
+      "filter": "DangHienThi = 1",
+      "purpose": "SUC01.01 traCuu: địa điểm theo khu vực, loại"
+    },
+    {
+      "name": "IX_DichVu_TimKiem",
+      "table": "DichVuDuLich",
+      "columns": "KhuVucPhucVu, LoaiDichVu (TenDichVu, GiaThamKhao, TrangThaiTiepNhan, MaNhaCungCap)",
+      "filter": "TrangThaiCongBo = 'DaDuyet'",
+      "purpose": "SUC01.01 traCuu, SUC07.01: dịch vụ đã duyệt theo khu vực, loại, giá"
+    },
+    {
+      "name": "IX_DichVu_NhaCungCap",
+      "table": "DichVuDuLich",
+      "columns": "MaNhaCungCap, TrangThaiCongBo",
+      "filter": "—",
+      "purpose": "SUC06.01 danh sách dịch vụ của NCC; GD-14 cập nhật mọi dịch vụ của NCC; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_DichVu_QuyetDinh",
+      "table": "DichVuDuLich",
+      "columns": "MaQuyetDinhKhongTiepNhan",
+      "filter": "MaQuyetDinhKhongTiepNhan IS NOT NULL",
+      "purpose": "SUC13.01 A1: dịch vụ bị khóa tiếp nhận bởi một quyết định; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_DichVu_DiaDiem",
+      "table": "DichVuDuLich",
+      "columns": "MaDiaDiem",
+      "filter": "MaDiaDiem IS NOT NULL",
+      "purpose": "SUC01.01 xemChiTiet địa điểm: dịch vụ tại địa điểm; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_BanCapNhat_HangDoi",
+      "table": "BanCapNhatDichVu",
+      "columns": "ThoiDiemGui (MaDichVu, SoPhienBan)",
+      "filter": "TrangThaiDuyet = 'ChoDuyet'",
+      "purpose": "SUC06.02 moDanhSachChoDuyet"
+    },
+    {
+      "name": "IX_BanCapNhat_DiaDiem",
+      "table": "BanCapNhatDichVu",
+      "columns": "MaDiaDiem",
+      "filter": "MaDiaDiem IS NOT NULL",
+      "purpose": "Chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_KeHoach_TaiKhoan",
+      "table": "KeHoachChuyenDi",
+      "columns": "MaTaiKhoan, NgayBatDau DESC (TenKeHoach, NoiDen, TrangThai)",
+      "filter": "—",
+      "purpose": "SUC02.01, SUC05.01: kế hoạch của tôi; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_HoatDong_KeHoach",
+      "table": "HoatDongLichTrinh",
+      "columns": "MaKeHoach, Ngay, ThuTu",
+      "filter": "—",
+      "purpose": "SUC02.01: lịch trình theo ngày; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_HoatDong_DiaDiem",
+      "table": "HoatDongLichTrinh",
+      "columns": "MaDiaDiem",
+      "filter": "MaDiaDiem IS NOT NULL",
+      "purpose": "Chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_HoatDong_DichVu",
+      "table": "HoatDongLichTrinh",
+      "columns": "MaDichVu",
+      "filter": "MaDichVu IS NOT NULL",
+      "purpose": "Chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_TinhHuong_KeHoach",
+      "table": "TinhHuongPhatSinh",
+      "columns": "MaKeHoach, ThoiDiemGhiNhan DESC",
+      "filter": "—",
+      "purpose": "SUC05.01: tình huống của kế hoạch; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_TinhHuongHoatDong_HoatDong",
+      "table": "TinhHuongHoatDong",
+      "columns": "MaHoatDong",
+      "filter": "—",
+      "purpose": "Tình huống ảnh hưởng một hoạt động; chỉ mục khóa ngoại thứ hai"
+    },
+    {
+      "name": "IX_PhuongAn_TinhHuong",
+      "table": "PhuongAnXuLy",
+      "columns": "MaTinhHuong, ThoiDiemChon DESC",
+      "filter": "—",
+      "purpose": "Lịch sử phương án; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_NhuCau_TimKiem",
+      "table": "NhuCauDongHanh",
+      "columns": "DiemDen, NgayBatDau (NgayKetThuc, PhamViChiaSe, MaTaiKhoan)",
+      "filter": "TrangThaiCongBo = 'DangCongBo'",
+      "purpose": "SUC03.01 timNhuCau: nhu cầu đang công bố theo điểm đến, thời gian"
+    },
+    {
+      "name": "IX_NhuCau_TaiKhoan",
+      "table": "NhuCauDongHanh",
+      "columns": "MaTaiKhoan, TrangThaiCongBo",
+      "filter": "—",
+      "purpose": "SUC03.02, GD-15: nhu cầu của tài khoản; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_DeNghiKetNoi_NhuCau",
+      "table": "DeNghiKetNoiDongHanh",
+      "columns": "MaNhuCau, TrangThai (MaNguoiGui, ThoiDiemGui)",
+      "filter": "—",
+      "purpose": "SUC04.01: đề nghị gửi tới nhu cầu của tôi; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_DeNghiKetNoi_NguoiGui",
+      "table": "DeNghiKetNoiDongHanh",
+      "columns": "MaNguoiGui, ThoiDiemGui DESC",
+      "filter": "—",
+      "purpose": "SUC04.01: đề nghị tôi đã gửi (UX lọc không dùng được vì có điều kiện)"
+    },
+    {
+      "name": "IX_YeuCau_TaiKhoan",
+      "table": "YeuCauDatDichVu",
+      "columns": "MaTaiKhoan, ThoiDiemGui DESC (MaDichVu, TrangThai)",
+      "filter": "—",
+      "purpose": "SUC07.01: yêu cầu của khách"
+    },
+    {
+      "name": "IX_YeuCau_DichVu",
+      "table": "YeuCauDatDichVu",
+      "columns": "MaDichVu, TrangThai (ThoiDiemGui)",
+      "filter": "—",
+      "purpose": "SUC07.01, SUC13.01: yêu cầu tới dịch vụ của NCC; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_DeNghiDieuChinh_YeuCau",
+      "table": "DeNghiDieuChinhDichVu",
+      "columns": "MaYeuCau, ThoiDiemGui DESC",
+      "filter": "—",
+      "purpose": "SUC08.01: lịch sử đề nghị; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_KetQua_ChoKiemTra",
+      "table": "KetQuaCungCapDichVu",
+      "columns": "ThoiDiemPhanAnh (MaYeuCau)",
+      "filter": "TrangThaiKiemTra = 'ChoKiemTra'",
+      "purpose": "SUC09.01: kết quả có phản ánh chờ kiểm tra"
+    },
+    {
+      "name": "IX_ThongBao_NguoiNhan",
+      "table": "ThongBao",
+      "columns": "MaNguoiNhan, DaDoc, ThoiDiemTao DESC (LoaiThongBao)",
+      "filter": "—",
+      "purpose": "Đếm và liệt kê thông báo chưa đọc; chỉ mục khóa ngoại"
+    },
+    {
+      "name": "IX_NhatKy_ThoiDiem",
+      "table": "NhatKyThaoTac",
+      "columns": "ThoiDiem DESC (LoaiSuKien, MaTaiKhoan)",
+      "filter": "—",
+      "purpose": "4.4.5: xem nhật ký theo thời gian"
+    },
+    {
+      "name": "IX_NhatKy_DoiTuong",
+      "table": "NhatKyThaoTac",
+      "columns": "DoiTuong, MaDoiTuong, ThoiDiem DESC",
+      "filter": "DoiTuong IS NOT NULL",
+      "purpose": "Lịch sử thao tác trên một đối tượng"
+    },
+    {
+      "name": "IX_NhatKy_TaiKhoan",
+      "table": "NhatKyThaoTac",
+      "columns": "MaTaiKhoan, ThoiDiem DESC",
+      "filter": "MaTaiKhoan IS NOT NULL",
+      "purpose": "Thao tác của một tài khoản; chỉ mục khóa ngoại"
+    }
+  ],
+  "views": [
+    {
+      "name": "vw_DeNghiKetNoi_NguoiNhan",
+      "purpose": "Đề nghị kết nối kèm người nhận (S1.maNguoiNhan dẫn xuất)",
+      "sql": "SELECT d.MaDeNghi, d.MaNhuCau, d.MaNguoiGui, n.MaTaiKhoan AS MaNguoiNhan, d.TrangThai, d.ThoiDiemGui, d.ThoiDiemPhanHoi FROM dbo.DeNghiKetNoiDongHanh AS d JOIN dbo.NhuCauDongHanh AS n ON n.MaNhuCau = d.MaNhuCau"
+    },
+    {
+      "name": "vw_TinhHuong_NguoiGhi",
+      "purpose": "Tình huống kèm người ghi (E06.maTaiKhoan dẫn xuất)",
+      "sql": "SELECT t.MaTinhHuong, t.MaKeHoach, k.MaTaiKhoan AS MaNguoiGhi, t.LoaiTinhHuong, t.TrangThaiXuLy, t.ThoiDiemGhiNhan FROM dbo.TinhHuongPhatSinh AS t JOIN dbo.KeHoachChuyenDi AS k ON k.MaKeHoach = t.MaKeHoach"
+    },
+    {
+      "name": "vw_GiaiTrinh_NhaCungCap",
+      "purpose": "Giải trình kèm nhà cung cấp (S5.maNhaCungCap dẫn xuất)",
+      "sql": "SELECT g.MaGiaiTrinh, g.MaQuyetDinh, q.MaNhaCungCap, g.TrangThai, g.ThoiDiemGui FROM dbo.GiaiTrinhNhaCungCap AS g JOIN dbo.QuyetDinhQuyenHoatDong AS q ON q.MaQuyetDinh = g.MaQuyetDinh"
+    },
+    {
+      "name": "vw_YeuCau_NhaCungCap",
+      "purpose": "Yêu cầu kèm nhà cung cấp và tài khoản NCC (kiểm tra quyền đối tượng 4.4.3)",
+      "sql": "SELECT y.MaYeuCau, y.MaTaiKhoan AS MaKhach, y.MaDichVu, d.MaNhaCungCap, c.MaTaiKhoan AS MaTaiKhoanNCC, y.TrangThai, y.ThoiDiemGui FROM dbo.YeuCauDatDichVu AS y JOIN dbo.DichVuDuLich AS d ON d.MaDichVu = y.MaDichVu JOIN dbo.NhaCungCapDichVu AS c ON c.MaNhaCungCap = d.MaNhaCungCap"
+    }
+  ],
+  "actions": [
+    {
+      "controller": "TraCuuThongTinController",
+      "action": "MoTimKiem",
+      "method": "GET",
+      "route": "/thong-tin/mo-tim-kiem",
+      "query": "",
+      "policy": "Công khai"
+    },
+    {
+      "controller": "TraCuuThongTinController",
+      "action": "TraCuu",
+      "method": "GET",
+      "route": "/thong-tin/tra-cuu",
+      "query": "tuKhoa&khuVuc&loai&giaTu&giaDen&trang",
+      "policy": "Công khai"
+    },
+    {
+      "controller": "XemChiTietThongTinController",
+      "action": "XemChiTiet",
+      "method": "GET",
+      "route": "/thong-tin/xem-chi-tiet",
+      "query": "loai&maMuc",
+      "policy": "Công khai"
+    },
+    {
+      "controller": "DanhSachKeHoachController",
+      "action": "DanhSach",
+      "method": "GET",
+      "route": "/ke-hoach",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "DanhSachKeHoachController",
+      "action": "XemKeHoach",
+      "method": "GET",
+      "route": "/ke-hoach/{maKeHoach}",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "KhoiTaoKeHoachController",
+      "action": "MoKeHoachMoi",
+      "method": "GET",
+      "route": "/ke-hoach/mo-ke-hoach-moi",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "KhoiTaoKeHoachController",
+      "action": "KhoiTaoKeHoach",
+      "method": "POST",
+      "route": "/ke-hoach/khoi-tao-ke-hoach",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "KhoiTaoKeHoachController",
+      "action": "CapNhatThongTin",
+      "method": "POST",
+      "route": "/ke-hoach/cap-nhat-thong-tin",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "QuanLyLichTrinhController",
+      "action": "ThemHoatDong",
+      "method": "POST",
+      "route": "/ke-hoach/them-hoat-dong",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "QuanLyLichTrinhController",
+      "action": "SuaHoatDong",
+      "method": "POST",
+      "route": "/ke-hoach/sua-hoat-dong",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "QuanLyLichTrinhController",
+      "action": "XoaHoatDong",
+      "method": "POST",
+      "route": "/ke-hoach/xoa-hoat-dong",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "XacNhanKeHoachController",
+      "action": "ChapNhan",
+      "method": "POST",
+      "route": "/ke-hoach/chap-nhan",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "XacNhanKeHoachController",
+      "action": "LuuNhap",
+      "method": "POST",
+      "route": "/ke-hoach/luu-nhap",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "GhiNhanTinhHuongController",
+      "action": "MoGhiNhan",
+      "method": "GET",
+      "route": "/ke-hoach/{maKeHoach}/tinh-huong/mo-ghi-nhan",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "GhiNhanTinhHuongController",
+      "action": "GhiNhanTinhHuong",
+      "method": "POST",
+      "route": "/ke-hoach/{maKeHoach}/tinh-huong/ghi-nhan-tinh-huong",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "TheoDoiTinhHuongController",
+      "action": "DanhSach",
+      "method": "GET",
+      "route": "/ke-hoach/{maKeHoach}/tinh-huong",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "TheoDoiTinhHuongController",
+      "action": "XemTinhHuong",
+      "method": "GET",
+      "route": "/ke-hoach/{maKeHoach}/tinh-huong/{maTinhHuong}",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "XuLyPhuongAnController",
+      "action": "GhiPhuongAn",
+      "method": "POST",
+      "route": "/ke-hoach/{maKeHoach}/tinh-huong/ghi-phuong-an",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "XuLyPhuongAnController",
+      "action": "GhiKetQua",
+      "method": "POST",
+      "route": "/ke-hoach/{maKeHoach}/tinh-huong/ghi-ket-qua",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "TimNhuCauController",
+      "action": "MoTimKiem",
+      "method": "GET",
+      "route": "/dong-hanh/tim-kiem/mo-tim-kiem",
+      "query": "",
+      "policy": "Công khai"
+    },
+    {
+      "controller": "TimNhuCauController",
+      "action": "TimNhuCau",
+      "method": "GET",
+      "route": "/dong-hanh/tim-kiem/tim-nhu-cau",
+      "query": "noiDen&tuNgay&denNgay&nganSachToiDa&hinhThucDi&trang",
+      "policy": "Công khai"
+    },
+    {
+      "controller": "XemNhuCauChiaSeController",
+      "action": "XemChiTiet",
+      "method": "GET",
+      "route": "/dong-hanh/tim-kiem/xem-chi-tiet/{maNhuCau}",
+      "query": "",
+      "policy": "Công khai"
+    },
+    {
+      "controller": "SoanNhuCauController",
+      "action": "MoBieuMau",
+      "method": "GET",
+      "route": "/dong-hanh/nhu-cau/mo-bieu-mau",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "SoanNhuCauController",
+      "action": "XemTruoc",
+      "method": "POST",
+      "route": "/dong-hanh/nhu-cau/xem-truoc",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "CongBoNhuCauController",
+      "action": "CongBo",
+      "method": "POST",
+      "route": "/dong-hanh/nhu-cau/cong-bo",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "GuiDeNghiKetNoiController",
+      "action": "MoDeNghi",
+      "method": "GET",
+      "route": "/dong-hanh/de-nghi/mo-de-nghi",
+      "query": "maNhuCau",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "GuiDeNghiKetNoiController",
+      "action": "GuiDeNghi",
+      "method": "POST",
+      "route": "/dong-hanh/de-nghi/gui-de-nghi",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "PhanHoiDeNghiController",
+      "action": "DanhSach",
+      "method": "GET",
+      "route": "/dong-hanh/de-nghi",
+      "query": "loai=nhan|gui&trang",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "PhanHoiDeNghiController",
+      "action": "XemDeNghi",
+      "method": "GET",
+      "route": "/dong-hanh/de-nghi/xem-de-nghi/{maDeNghi}",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "PhanHoiDeNghiController",
+      "action": "PhanHoi",
+      "method": "POST",
+      "route": "/dong-hanh/de-nghi/phan-hoi",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "LapThoaThuanController",
+      "action": "MoTaoThoaThuan",
+      "method": "GET",
+      "route": "/dong-hanh/thoa-thuan/mo-tao-thoa-thuan",
+      "query": "maKetNoi",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "LapThoaThuanController",
+      "action": "GuiDeNghiThoaThuan",
+      "method": "POST",
+      "route": "/dong-hanh/thoa-thuan/gui-de-nghi-thoa-thuan",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "XacNhanThoaThuanController",
+      "action": "XemDeNghi",
+      "method": "GET",
+      "route": "/dong-hanh/thoa-thuan/xem-de-nghi/{maThoaThuan}",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "XacNhanThoaThuanController",
+      "action": "XacNhan",
+      "method": "POST",
+      "route": "/dong-hanh/thoa-thuan/xac-nhan",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "KetThucThoaThuanController",
+      "action": "Rut",
+      "method": "POST",
+      "route": "/dong-hanh/thoa-thuan/rut",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "KetThucThoaThuanController",
+      "action": "DeNghiNgung",
+      "method": "POST",
+      "route": "/dong-hanh/thoa-thuan/de-nghi-ngung",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "DanhSachDichVuController",
+      "action": "DanhSach",
+      "method": "GET",
+      "route": "/nha-cung-cap/dich-vu",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "DanhSachDichVuController",
+      "action": "XemDichVu",
+      "method": "GET",
+      "route": "/nha-cung-cap/dich-vu/{maDichVu}",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "DangDichVuController",
+      "action": "MoBieuMau",
+      "method": "GET",
+      "route": "/nha-cung-cap/dich-vu/mo-bieu-mau",
+      "query": "maDichVu",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "DangDichVuController",
+      "action": "GuiDang",
+      "method": "POST",
+      "route": "/nha-cung-cap/dich-vu/gui-dang",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "CapNhatDichVuController",
+      "action": "CapNhatDichVu",
+      "method": "POST",
+      "route": "/nha-cung-cap/dich-vu/cap-nhat-dich-vu",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "DanhSachChoDuyetController",
+      "action": "MoDanhSachChoDuyet",
+      "method": "GET",
+      "route": "/quan-tri/xet-duyet-dich-vu/mo-danh-sach-cho-duyet",
+      "query": "",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "DanhSachChoDuyetController",
+      "action": "XemNoiDung",
+      "method": "GET",
+      "route": "/quan-tri/xet-duyet-dich-vu/xem-noi-dung/{maBanCapNhat}",
+      "query": "",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "QuyetDinhDuyetController",
+      "action": "Duyet",
+      "method": "POST",
+      "route": "/quan-tri/xet-duyet-dich-vu/duyet",
+      "query": "",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "GuiYeuCauDatController",
+      "action": "MoDatDichVu",
+      "method": "GET",
+      "route": "/yeu-cau/mo-dat-dich-vu",
+      "query": "maDichVu",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "GuiYeuCauDatController",
+      "action": "KiemTraTruocGui",
+      "method": "POST",
+      "route": "/yeu-cau/kiem-tra-truoc-gui",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "GuiYeuCauDatController",
+      "action": "GuiYeuCau",
+      "method": "POST",
+      "route": "/yeu-cau/gui-yeu-cau",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "TheoDoiYeuCauController",
+      "action": "DanhSachCuaToi",
+      "method": "GET",
+      "route": "/yeu-cau/cua-toi",
+      "query": "trangThai&trang",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "TheoDoiYeuCauController",
+      "action": "ChiTiet",
+      "method": "GET",
+      "route": "/yeu-cau/{maYeuCau}",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "TheoDoiYeuCauController",
+      "action": "PhanHoiDeXuat",
+      "method": "POST",
+      "route": "/yeu-cau/phan-hoi-de-xuat",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "XuLyYeuCauDatController",
+      "action": "DanhSachNCC",
+      "method": "GET",
+      "route": "/nha-cung-cap/yeu-cau",
+      "query": "trangThai&trang",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "XuLyYeuCauDatController",
+      "action": "XemYeuCau",
+      "method": "GET",
+      "route": "/nha-cung-cap/yeu-cau/{maYeuCau}",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "XuLyYeuCauDatController",
+      "action": "ChapNhan",
+      "method": "POST",
+      "route": "/yeu-cau/chap-nhan",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "GuiDeNghiDieuChinhController",
+      "action": "MoThayDoi",
+      "method": "GET",
+      "route": "/yeu-cau/{maYeuCau}/dieu-chinh/mo-thay-doi",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "GuiDeNghiDieuChinhController",
+      "action": "GuiDeNghi",
+      "method": "POST",
+      "route": "/yeu-cau/{maYeuCau}/dieu-chinh/gui-de-nghi",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "GuiDeNghiDieuChinhController",
+      "action": "PhanHoiDeXuat",
+      "method": "POST",
+      "route": "/yeu-cau/{maYeuCau}/dieu-chinh/phan-hoi-de-xuat",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "XuLyDeNghiDieuChinhController",
+      "action": "XemDeNghi",
+      "method": "GET",
+      "route": "/yeu-cau/{maYeuCau}/dieu-chinh/xem-de-nghi/{maDeNghi}",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "XuLyDeNghiDieuChinhController",
+      "action": "PhanHoi",
+      "method": "POST",
+      "route": "/yeu-cau/{maYeuCau}/dieu-chinh/phan-hoi",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "GhiNhanKetQuaController",
+      "action": "MoGhiNhan",
+      "method": "GET",
+      "route": "/yeu-cau/{maYeuCau}/ket-qua/mo-ghi-nhan",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "GhiNhanKetQuaController",
+      "action": "LuuKetQua",
+      "method": "POST",
+      "route": "/yeu-cau/{maYeuCau}/ket-qua/luu-ket-qua",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "PhanAnhKetQuaController",
+      "action": "XemKetQua",
+      "method": "GET",
+      "route": "/yeu-cau/{maYeuCau}/ket-qua/xem-ket-qua",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "PhanAnhKetQuaController",
+      "action": "GuiPhanAnh",
+      "method": "POST",
+      "route": "/yeu-cau/{maYeuCau}/ket-qua/gui-phan-anh",
+      "query": "",
+      "policy": "LaKhachDuLich"
+    },
+    {
+      "controller": "DangKyTaiKhoanController",
+      "action": "MoDangKy",
+      "method": "GET",
+      "route": "/tai-khoan/dang-ky/mo-dang-ky",
+      "query": "",
+      "policy": "Ẩn danh"
+    },
+    {
+      "controller": "DangKyTaiKhoanController",
+      "action": "ChonVaiTro",
+      "method": "POST",
+      "route": "/tai-khoan/dang-ky/chon-vai-tro",
+      "query": "",
+      "policy": "Ẩn danh"
+    },
+    {
+      "controller": "DangKyTaiKhoanController",
+      "action": "DangKy",
+      "method": "POST",
+      "route": "/tai-khoan/dang-ky/dang-ky",
+      "query": "",
+      "policy": "Ẩn danh"
+    },
+    {
+      "controller": "XetHoSoXacMinhController",
+      "action": "MoDanhSach",
+      "method": "GET",
+      "route": "/quan-tri/xac-minh/mo-danh-sach",
+      "query": "tab=cho|bo-sung",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "XetHoSoXacMinhController",
+      "action": "XemHoSo",
+      "method": "GET",
+      "route": "/quan-tri/xac-minh/xem-ho-so/{maHoSo}",
+      "query": "",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "XetHoSoXacMinhController",
+      "action": "XacMinh",
+      "method": "POST",
+      "route": "/quan-tri/xac-minh/xac-minh",
+      "query": "",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "BoSungHoSoController",
+      "action": "HoSoCuaToi",
+      "method": "GET",
+      "route": "/nha-cung-cap/ho-so-xac-minh",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "BoSungHoSoController",
+      "action": "NhanBoSung",
+      "method": "POST",
+      "route": "/quan-tri/xac-minh/nhan-bo-sung",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "XacThucDangNhapController",
+      "action": "MoDangNhap",
+      "method": "GET",
+      "route": "/tai-khoan/dang-nhap/mo-dang-nhap",
+      "query": "returnUrl",
+      "policy": "Ẩn danh"
+    },
+    {
+      "controller": "XacThucDangNhapController",
+      "action": "DangNhap",
+      "method": "POST",
+      "route": "/tai-khoan/dang-nhap/dang-nhap",
+      "query": "",
+      "policy": "Ẩn danh"
+    },
+    {
+      "controller": "QuanLyPhienController",
+      "action": "DangXuat",
+      "method": "POST",
+      "route": "/tai-khoan/dang-xuat",
+      "query": "",
+      "policy": "DaXacThuc"
+    },
+    {
+      "controller": "QuanLyPhienController",
+      "action": "DoiMatKhau",
+      "method": "POST",
+      "route": "/tai-khoan/doi-mat-khau",
+      "query": "",
+      "policy": "DaXacThuc"
+    },
+    {
+      "controller": "CapNhatHoSoController",
+      "action": "XemHoSo",
+      "method": "GET",
+      "route": "/ho-so/xem-ho-so",
+      "query": "",
+      "policy": "DaXacThuc"
+    },
+    {
+      "controller": "CapNhatHoSoController",
+      "action": "LuuThayDoi",
+      "method": "POST",
+      "route": "/ho-so/luu-thay-doi",
+      "query": "",
+      "policy": "DaXacThuc"
+    },
+    {
+      "controller": "TraCuuNhaCungCapController",
+      "action": "MoDanhSach",
+      "method": "GET",
+      "route": "/quan-tri/quyen-hoat-dong/mo-danh-sach",
+      "query": "loc&trang",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "TraCuuNhaCungCapController",
+      "action": "XemChiTiet",
+      "method": "GET",
+      "route": "/quan-tri/quyen-hoat-dong/xem-chi-tiet/{maNCC}",
+      "query": "",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "QuyetDinhQuyenHoatDongController",
+      "action": "XemHeQua",
+      "method": "GET",
+      "route": "/quan-tri/quyen-hoat-dong/xem-he-qua",
+      "query": "maNCC&thaoTac",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "QuyetDinhQuyenHoatDongController",
+      "action": "TamDinhChi",
+      "method": "POST",
+      "route": "/quan-tri/quyen-hoat-dong/tam-dinh-chi",
+      "query": "",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "QuyetDinhQuyenHoatDongController",
+      "action": "KhoiPhuc",
+      "method": "POST",
+      "route": "/quan-tri/quyen-hoat-dong/khoi-phuc",
+      "query": "",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "QuyetDinhQuyenHoatDongController",
+      "action": "ThuHoi",
+      "method": "POST",
+      "route": "/quan-tri/quyen-hoat-dong/thu-hoi",
+      "query": "",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "QuyetDinhQuyenHoatDongController",
+      "action": "XemXetGiaiTrinh",
+      "method": "POST",
+      "route": "/quan-tri/quyen-hoat-dong/xem-xet-giai-trinh",
+      "query": "",
+      "policy": "LaQuanTriVien"
+    },
+    {
+      "controller": "GiaiTrinhController",
+      "action": "QuyenCuaToi",
+      "method": "GET",
+      "route": "/nha-cung-cap/quyen-hoat-dong",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "GiaiTrinhController",
+      "action": "NhanGiaiTrinh",
+      "method": "POST",
+      "route": "/quan-tri/quyen-hoat-dong/nhan-giai-trinh",
+      "query": "",
+      "policy": "LaNhaCungCap"
+    },
+    {
+      "controller": "KiemTraDieuKienNgungController",
+      "action": "MoNgung",
+      "method": "GET",
+      "route": "/tai-khoan/ngung-su-dung/mo-ngung",
+      "query": "",
+      "policy": "LaKhachHoacNCC"
+    },
+    {
+      "controller": "KiemTraDieuKienNgungController",
+      "action": "XacThucLai",
+      "method": "POST",
+      "route": "/tai-khoan/ngung-su-dung/xac-thuc-lai",
+      "query": "",
+      "policy": "LaKhachHoacNCC"
+    },
+    {
+      "controller": "ThucHienNgungController",
+      "action": "NgungTaiKhoan",
+      "method": "POST",
+      "route": "/tai-khoan/ngung-su-dung/ngung-tai-khoan",
+      "query": "",
+      "policy": "LaKhachHoacNCC"
+    },
+    {
+      "controller": "ThongBaoController",
+      "action": "DanhSachThongBao",
+      "method": "GET",
+      "route": "/thong-bao",
+      "query": "trang",
+      "policy": "DaXacThuc"
+    },
+    {
+      "controller": "ThongBaoController",
+      "action": "MoThongBao",
+      "method": "POST",
+      "route": "/thong-bao/{maThongBao}/mo",
+      "query": "",
+      "policy": "DaXacThuc"
+    },
+    {
+      "controller": "TepController",
+      "action": "TaiTep",
+      "method": "GET",
+      "route": "/tep/{loai}/{maTaiLieu}",
+      "query": "",
+      "policy": "DaXacThuc"
+    }
+  ],
+  "errors": [
+    {
+      "code": "0101-01",
+      "http": "400",
+      "message": "Tiêu chí tìm kiếm không hợp lệ",
+      "source": "SUC01.01 traCuu"
+    },
+    {
+      "code": "0101-02",
+      "http": "500",
+      "message": "Chưa thể tải dữ liệu, vui lòng thử lại",
+      "source": "SUC01.01 traCuu"
+    },
+    {
+      "code": "0101-03",
+      "http": "404",
+      "message": "Mục này không còn được công bố hoặc chưa thể truy cập",
+      "source": "SUC01.01 xemChiTiet"
+    },
+    {
+      "code": "0201-01",
+      "http": "400",
+      "message": "Thông tin kế hoạch chưa hợp lệ",
+      "source": "SUC02.01 khoiTaoKeHoach"
+    },
+    {
+      "code": "0201-02",
+      "http": "404",
+      "message": "Không tìm thấy kế hoạch",
+      "source": "SUC02.01 xemKeHoach"
+    },
+    {
+      "code": "0201-03",
+      "http": "422",
+      "message": "Ngày hoạt động nằm ngoài khoảng ngày của chuyến đi",
+      "source": "SUC02.01 themHoatDong"
+    },
+    {
+      "code": "0201-04",
+      "http": "422",
+      "message": "Mục đã chọn không còn được công bố",
+      "source": "SUC02.01 themHoatDong"
+    },
+    {
+      "code": "0201-05",
+      "http": "409",
+      "message": "Kế hoạch đã được thay đổi ở phiên khác, vui lòng tải lại",
+      "source": "SUC02.01 themHoatDong"
+    },
+    {
+      "code": "0201-06",
+      "http": "422",
+      "message": "Hoạt động đã gắn với tình huống phát sinh nên không thể bỏ",
+      "source": "SUC02.01 xoaHoatDong"
+    },
+    {
+      "code": "0201-07",
+      "http": "422",
+      "message": "Có hoạt động nằm ngoài khoảng ngày mới; hãy sửa hoạt động trước",
+      "source": "SUC02.01 capNhatThongTin"
+    },
+    {
+      "code": "0301-01",
+      "http": "400",
+      "message": "Khoảng ngày không hợp lệ",
+      "source": "SUC03.01 timNhuCau"
+    },
+    {
+      "code": "0301-02",
+      "http": "404",
+      "message": "Nhu cầu không còn hiển thị",
+      "source": "SUC03.01 xemChiTiet"
+    },
+    {
+      "code": "0302-01",
+      "http": "400",
+      "message": "Nội dung nhu cầu chưa hợp lệ",
+      "source": "SUC03.02 congBo"
+    },
+    {
+      "code": "0401-01",
+      "http": "422",
+      "message": "Nhu cầu không còn công bố hoặc người đăng đã ngừng sử dụng tài khoản",
+      "source": "SUC04.01 moDeNghi"
+    },
+    {
+      "code": "0401-02",
+      "http": "422",
+      "message": "Không thể gửi đề nghị cho nhu cầu của chính bạn",
+      "source": "SUC04.01 moDeNghi"
+    },
+    {
+      "code": "0401-03",
+      "http": "409",
+      "message": "Bạn đã có đề nghị đang chờ phản hồi cho nhu cầu này",
+      "source": "SUC04.01 moDeNghi"
+    },
+    {
+      "code": "0401-04",
+      "http": "409",
+      "message": "Hai bạn đã được kết nối cho nhu cầu này",
+      "source": "SUC04.01 moDeNghi"
+    },
+    {
+      "code": "0401-05",
+      "http": "404",
+      "message": "Không tìm thấy đề nghị",
+      "source": "SUC04.01 xemDeNghi"
+    },
+    {
+      "code": "0401-06",
+      "http": "403",
+      "message": "Bạn không được thực hiện thao tác này với đề nghị",
+      "source": "SUC04.01 phanHoi"
+    },
+    {
+      "code": "0401-07",
+      "http": "409",
+      "message": "Đề nghị đã được xử lý trước đó",
+      "source": "SUC04.01 phanHoi"
+    },
+    {
+      "code": "0401-08",
+      "http": "422",
+      "message": "Một bên đã ngừng sử dụng tài khoản, đề nghị không còn hiệu lực",
+      "source": "SUC04.01 phanHoi"
+    },
+    {
+      "code": "0402-01",
+      "http": "404",
+      "message": "Không tìm thấy kết nối",
+      "source": "SUC04.02 moTaoThoaThuan"
+    },
+    {
+      "code": "0402-02",
+      "http": "422",
+      "message": "Thỏa thuận đã kết thúc, không thể đề xuất nội dung mới",
+      "source": "SUC04.02 moTaoThoaThuan"
+    },
+    {
+      "code": "0402-03",
+      "http": "409",
+      "message": "Đang có đề nghị cùng ngừng chờ xác nhận, hãy phản hồi đề nghị đó trước",
+      "source": "SUC04.02 moTaoThoaThuan"
+    },
+    {
+      "code": "0402-04",
+      "http": "400",
+      "message": "Nội dung thỏa thuận chưa hợp lệ",
+      "source": "SUC04.02 guiDeNghiThoaThuan"
+    },
+    {
+      "code": "0402-05",
+      "http": "422",
+      "message": "Tài khoản của một bên không còn hoạt động",
+      "source": "SUC04.02 guiDeNghiThoaThuan"
+    },
+    {
+      "code": "0402-06",
+      "http": "409",
+      "message": "Thỏa thuận vừa có phiên bản mới, hãy xem phiên bản mới nhất",
+      "source": "SUC04.02 guiDeNghiThoaThuan"
+    },
+    {
+      "code": "0402-07",
+      "http": "422",
+      "message": "Nội dung đề xuất trùng với thỏa thuận đang hiệu lực",
+      "source": "SUC04.02 guiDeNghiThoaThuan"
+    },
+    {
+      "code": "0402-08",
+      "http": "403",
+      "message": "Bạn không thể tự xác nhận đề xuất của mình",
+      "source": "SUC04.02 xacNhan"
+    },
+    {
+      "code": "0402-09",
+      "http": "400",
+      "message": "Vui lòng nhập lý do từ chối",
+      "source": "SUC04.02 xacNhan"
+    },
+    {
+      "code": "0402-10",
+      "http": "409",
+      "message": "Không còn thỏa thuận đang hiệu lực để rút",
+      "source": "SUC04.02 rut"
+    },
+    {
+      "code": "0402-11",
+      "http": "409",
+      "message": "Đang có đề xuất chờ xác nhận, hãy xử lý đề xuất đó trước",
+      "source": "SUC04.02 deNghiNgung"
+    },
+    {
+      "code": "0501-01",
+      "http": "404",
+      "message": "Không tìm thấy kế hoạch hoặc tình huống",
+      "source": "SUC05.01 danhSach"
+    },
+    {
+      "code": "0501-02",
+      "http": "400",
+      "message": "Vui lòng chọn loại tình huống và nhập mô tả",
+      "source": "SUC05.01 ghiNhanTinhHuong"
+    },
+    {
+      "code": "0501-03",
+      "http": "400",
+      "message": "Hoạt động được chọn không thuộc kế hoạch này",
+      "source": "SUC05.01 ghiNhanTinhHuong"
+    },
+    {
+      "code": "0501-04",
+      "http": "422",
+      "message": "Tình huống đã kết thúc, không thể cập nhật",
+      "source": "SUC05.01 ghiPhuongAn"
+    },
+    {
+      "code": "0501-05",
+      "http": "409",
+      "message": "Tình huống vừa được cập nhật ở phiên khác",
+      "source": "SUC05.01 ghiPhuongAn"
+    },
+    {
+      "code": "0501-06",
+      "http": "400",
+      "message": "Vui lòng mô tả kết quả thực tế",
+      "source": "SUC05.01 ghiKetQua"
+    },
+    {
+      "code": "0601-01",
+      "http": "422",
+      "message": "Nhà cung cấp chưa đủ điều kiện gửi đăng dịch vụ",
+      "source": "SUC06.01 moBieuMau"
+    },
+    {
+      "code": "0601-02",
+      "http": "404",
+      "message": "Không tìm thấy dịch vụ",
+      "source": "SUC06.01 moBieuMau"
+    },
+    {
+      "code": "0601-03",
+      "http": "400",
+      "message": "Thời gian tạm ngừng không hợp lệ",
+      "source": "SUC06.01 guiDang"
+    },
+    {
+      "code": "0601-04",
+      "http": "400",
+      "message": "Thông tin dịch vụ chưa hợp lệ",
+      "source": "SUC06.01 guiDang"
+    },
+    {
+      "code": "0601-05",
+      "http": "409",
+      "message": "Dịch vụ đang có bản cập nhật chờ duyệt",
+      "source": "SUC06.01 capNhatDichVu"
+    },
+    {
+      "code": "0601-06",
+      "http": "422",
+      "message": "Không có thay đổi so với nội dung hiện tại",
+      "source": "SUC06.01 capNhatDichVu"
+    },
+    {
+      "code": "0601-07",
+      "http": "409",
+      "message": "Dịch vụ vừa thay đổi ở phiên khác, vui lòng tải lại",
+      "source": "SUC06.01 capNhatDichVu"
+    },
+    {
+      "code": "0602-01",
+      "http": "404",
+      "message": "Không tìm thấy nội dung",
+      "source": "SUC06.02 xemNoiDung"
+    },
+    {
+      "code": "0602-02",
+      "http": "400",
+      "message": "Vui lòng nhập lý do từ chối hoặc nội dung cần sửa",
+      "source": "SUC06.02 duyet"
+    },
+    {
+      "code": "0602-03",
+      "http": "409",
+      "message": "Phiên bản đã được xử lý hoặc nhà cung cấp đã gửi bản mới hơn",
+      "source": "SUC06.02 duyet"
+    },
+    {
+      "code": "0602-04",
+      "http": "422",
+      "message": "Nhà cung cấp không còn hoạt động, chỉ có thể từ chối hoặc yêu cầu sửa",
+      "source": "SUC06.02 duyet"
+    },
+    {
+      "code": "0701-01",
+      "http": "422",
+      "message": "Dịch vụ không còn được công bố, không thể gửi yêu cầu mới",
+      "source": "SUC07.01 moDatDichVu"
+    },
+    {
+      "code": "0701-02",
+      "http": "422",
+      "message": "Dịch vụ hiện không tiếp nhận yêu cầu mới",
+      "source": "SUC07.01 moDatDichVu"
+    },
+    {
+      "code": "0701-03",
+      "http": "400",
+      "message": "Điều kiện đặt chưa hợp lệ",
+      "source": "SUC07.01 kiemTraTruocGui"
+    },
+    {
+      "code": "0701-04",
+      "http": "404",
+      "message": "Không tìm thấy yêu cầu",
+      "source": "SUC07.01 chiTiet"
+    },
+    {
+      "code": "0701-05",
+      "http": "409",
+      "message": "Yêu cầu đã thay đổi (khách đã sửa, rút hoặc đã được xử lý)",
+      "source": "SUC07.01 chapNhan"
+    },
+    {
+      "code": "0701-06",
+      "http": "400",
+      "message": "Vui lòng nhập lý do từ chối",
+      "source": "SUC07.01 chapNhan"
+    },
+    {
+      "code": "0701-07",
+      "http": "422",
+      "message": "Điều kiện đề xuất trùng với yêu cầu hiện tại",
+      "source": "SUC07.01 chapNhan"
+    },
+    {
+      "code": "0801-01",
+      "http": "404",
+      "message": "Không tìm thấy yêu cầu",
+      "source": "SUC08.01 moThayDoi"
+    },
+    {
+      "code": "0801-02",
+      "http": "422",
+      "message": "Yêu cầu/thỏa thuận không còn ở trạng thái được sửa hoặc hủy",
+      "source": "SUC08.01 moThayDoi"
+    },
+    {
+      "code": "0801-03",
+      "http": "409",
+      "message": "Yêu cầu vừa thay đổi, vui lòng tải lại",
+      "source": "SUC08.01 guiDeNghi"
+    },
+    {
+      "code": "0801-04",
+      "http": "409",
+      "message": "Đã có một đề nghị đang chờ trên thỏa thuận này",
+      "source": "SUC08.01 guiDeNghi"
+    },
+    {
+      "code": "0801-05",
+      "http": "400",
+      "message": "Điều kiện mới chưa hợp lệ",
+      "source": "SUC08.01 guiDeNghi"
+    },
+    {
+      "code": "0801-06",
+      "http": "409",
+      "message": "Đề nghị hoặc thỏa thuận đã thay đổi",
+      "source": "SUC08.01 phanHoi"
+    },
+    {
+      "code": "0801-07",
+      "http": "400",
+      "message": "Vui lòng nhập lý do từ chối",
+      "source": "SUC08.01 phanHoi"
+    },
+    {
+      "code": "0901-01",
+      "http": "404",
+      "message": "Không tìm thấy thỏa thuận",
+      "source": "SUC09.01 moGhiNhan"
+    },
+    {
+      "code": "0901-02",
+      "http": "422",
+      "message": "Thỏa thuận không còn ở trạng thái Đã xác nhận",
+      "source": "SUC09.01 moGhiNhan"
+    },
+    {
+      "code": "0901-03",
+      "http": "422",
+      "message": "Chưa đến thời điểm phục vụ, chưa thể ghi nhận kết quả",
+      "source": "SUC09.01 moGhiNhan"
+    },
+    {
+      "code": "0901-04",
+      "http": "409",
+      "message": "Thỏa thuận vừa thay đổi, vui lòng tải lại",
+      "source": "SUC09.01 luuKetQua"
+    },
+    {
+      "code": "0901-05",
+      "http": "400",
+      "message": "Vui lòng chọn kết quả cho mọi hạng mục",
+      "source": "SUC09.01 luuKetQua"
+    },
+    {
+      "code": "0901-06",
+      "http": "422",
+      "message": "Kết quả đã ghi nhận không được ghi đè",
+      "source": "SUC09.01 luuKetQua"
+    },
+    {
+      "code": "0901-07",
+      "http": "422",
+      "message": "Hạng mục đã có phản ánh hoặc đã hết hạn phản ánh",
+      "source": "SUC09.01 guiPhanAnh"
+    },
+    {
+      "code": "1001-01",
+      "http": "400",
+      "message": "Loại tài khoản không hợp lệ",
+      "source": "SUC10.01 chonVaiTro"
+    },
+    {
+      "code": "1001-02",
+      "http": "400",
+      "message": "Thông tin đăng ký chưa hợp lệ",
+      "source": "SUC10.01 dangKy"
+    },
+    {
+      "code": "1001-03",
+      "http": "400",
+      "message": "Mật khẩu chưa đạt yêu cầu hoặc xác nhận không khớp",
+      "source": "SUC10.01 dangKy"
+    },
+    {
+      "code": "1001-04",
+      "http": "409",
+      "message": "Email hoặc số điện thoại đã được dùng cho tài khoản khác",
+      "source": "SUC10.01 dangKy"
+    },
+    {
+      "code": "1001-05",
+      "http": "400",
+      "message": "Tệp không hợp lệ (chỉ PDF, JPG, PNG, tối đa 5 MB/tệp, 5 tệp)",
+      "source": "SUC10.01 dangKy"
+    },
+    {
+      "code": "1002-01",
+      "http": "404",
+      "message": "Không tìm thấy hồ sơ",
+      "source": "SUC10.02 xemHoSo"
+    },
+    {
+      "code": "1002-02",
+      "http": "400",
+      "message": "Vui lòng nhập lý do",
+      "source": "SUC10.02 xacMinh"
+    },
+    {
+      "code": "1002-03",
+      "http": "409",
+      "message": "Hồ sơ đã được xử lý hoặc vừa thay đổi",
+      "source": "SUC10.02 xacMinh"
+    },
+    {
+      "code": "1002-04",
+      "http": "422",
+      "message": "Tài khoản nhà cung cấp đã ngừng sử dụng",
+      "source": "SUC10.02 xacMinh"
+    },
+    {
+      "code": "1002-05",
+      "http": "422",
+      "message": "Hồ sơ hiện không ở trạng thái cần bổ sung hoặc nộp lại",
+      "source": "SUC10.02 nhanBoSung"
+    },
+    {
+      "code": "1101-01",
+      "http": "400",
+      "message": "Vui lòng nhập đủ tên đăng nhập và mật khẩu",
+      "source": "SUC11.01 dangNhap"
+    },
+    {
+      "code": "1101-02",
+      "http": "400",
+      "message": "Thông tin đăng nhập không đúng",
+      "source": "SUC11.01 dangNhap"
+    },
+    {
+      "code": "1101-03",
+      "http": "422",
+      "message": "Tài khoản không còn hoạt động",
+      "source": "SUC11.01 dangNhap"
+    },
+    {
+      "code": "1201-01",
+      "http": "400",
+      "message": "Thông tin hồ sơ chưa hợp lệ",
+      "source": "SUC12.01 luuThayDoi"
+    },
+    {
+      "code": "1201-02",
+      "http": "409",
+      "message": "Số điện thoại đã được tài khoản khác sử dụng",
+      "source": "SUC12.01 luuThayDoi"
+    },
+    {
+      "code": "1201-03",
+      "http": "409",
+      "message": "Hồ sơ vừa được cập nhật ở phiên khác",
+      "source": "SUC12.01 luuThayDoi"
+    },
+    {
+      "code": "1301-01",
+      "http": "404",
+      "message": "Không tìm thấy nhà cung cấp",
+      "source": "SUC13.01 xemChiTiet"
+    },
+    {
+      "code": "1301-02",
+      "http": "400",
+      "message": "Vui lòng nhập đủ lý do và căn cứ",
+      "source": "SUC13.01 tamDinhChi"
+    },
+    {
+      "code": "1301-03",
+      "http": "409",
+      "message": "Trạng thái nhà cung cấp vừa thay đổi, vui lòng xem lại",
+      "source": "SUC13.01 tamDinhChi"
+    },
+    {
+      "code": "1301-04",
+      "http": "409",
+      "message": "Nhà cung cấp đã ngừng sử dụng tài khoản",
+      "source": "SUC13.01 tamDinhChi"
+    },
+    {
+      "code": "1301-05",
+      "http": "422",
+      "message": "Thao tác không phù hợp với trạng thái hiện hành của nhà cung cấp",
+      "source": "SUC13.01 xemHeQua"
+    },
+    {
+      "code": "1301-06",
+      "http": "409",
+      "message": "Giải trình đã được xem xét",
+      "source": "SUC13.01 xemXetGiaiTrinh"
+    },
+    {
+      "code": "1301-07",
+      "http": "422",
+      "message": "Chỉ gửi giải trình khi đang bị tạm đình chỉ hoặc thu hồi",
+      "source": "SUC13.01 nhanGiaiTrinh"
+    },
+    {
+      "code": "1301-08",
+      "http": "409",
+      "message": "Bạn đã có giải trình đang chờ xem xét",
+      "source": "SUC13.01 nhanGiaiTrinh"
+    },
+    {
+      "code": "1401-01",
+      "http": "400",
+      "message": "Xác thực lại không thành công",
+      "source": "SUC14.01 xacThucLai"
+    },
+    {
+      "code": "1401-02",
+      "http": "409",
+      "message": "Phiên xác nhận đã hết hạn, vui lòng xác thực lại",
+      "source": "SUC14.01 ngungTaiKhoan"
+    },
+    {
+      "code": "1401-03",
+      "http": "422",
+      "message": "Còn nghĩa vụ chưa xử lý, chưa thể ngừng tài khoản",
+      "source": "SUC14.01 ngungTaiKhoan"
+    },
+    {
+      "code": "1401-04",
+      "http": "500",
+      "message": "Không thể cập nhật đồng bộ, tài khoản vẫn hoạt động; vui lòng thử lại",
+      "source": "SUC14.01 ngungTaiKhoan"
+    }
+  ]
+}

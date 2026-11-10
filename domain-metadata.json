@@ -1,0 +1,1673 @@
+{
+  "entities": [
+    {
+      "name": "TaiKhoan",
+      "props": [
+        {
+          "name": "MaTaiKhoan",
+          "type": "long"
+        },
+        {
+          "name": "Email",
+          "type": "string"
+        },
+        {
+          "name": "SoDienThoai",
+          "type": "string?"
+        },
+        {
+          "name": "MatKhauBam",
+          "type": "string"
+        },
+        {
+          "name": "VaiTro",
+          "type": "VaiTro"
+        },
+        {
+          "name": "TrangThai",
+          "type": "TrangThaiTaiKhoan"
+        },
+        {
+          "name": "DauPhien",
+          "type": "Guid"
+        },
+        {
+          "name": "PhaiDoiMatKhau",
+          "type": "bool"
+        },
+        {
+          "name": "ThoiDiemTao",
+          "type": "DateTime"
+        },
+        {
+          "name": "ThoiDiemDangNhapCuoi",
+          "type": "DateTime?"
+        },
+        {
+          "name": "ThoiDiemNgung",
+          "type": "DateTime?"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaTaiKhoan",
+          "pk": true
+        }
+      ]
+    },
+    {
+      "name": "HoSoNguoiDung",
+      "props": [
+        {
+          "name": "MaHoSo",
+          "type": "long"
+        },
+        {
+          "name": "MaTaiKhoan",
+          "type": "long"
+        },
+        {
+          "name": "TenHienThi",
+          "type": "string"
+        },
+        {
+          "name": "AnhDaiDien",
+          "type": "string?"
+        },
+        {
+          "name": "GioiThieu",
+          "type": "string?"
+        },
+        {
+          "name": "NoiSinhSong",
+          "type": "string?"
+        },
+        {
+          "name": "SoThich",
+          "type": "string?"
+        },
+        {
+          "name": "ThongTinChiaSe",
+          "type": "ThongTinChiaSe"
+        },
+        {
+          "name": "ThoiDiemCapNhat",
+          "type": "DateTime"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaHoSo",
+          "pk": true
+        },
+        {
+          "name": "MaTaiKhoan",
+          "pk": false,
+          "fk": "TaiKhoan"
+        }
+      ]
+    },
+    {
+      "name": "NhaCungCapDichVu",
+      "props": [
+        {
+          "name": "MaNhaCungCap",
+          "type": "long"
+        },
+        {
+          "name": "MaTaiKhoan",
+          "type": "long"
+        },
+        {
+          "name": "TenDonVi",
+          "type": "string"
+        },
+        {
+          "name": "LoaiHinh",
+          "type": "string"
+        },
+        {
+          "name": "NguoiLienHe",
+          "type": "string"
+        },
+        {
+          "name": "DiaChi",
+          "type": "string"
+        },
+        {
+          "name": "SoDienThoai",
+          "type": "string"
+        },
+        {
+          "name": "EmailLienHe",
+          "type": "string"
+        },
+        {
+          "name": "TrangThaiXacMinh",
+          "type": "TrangThaiXacMinh"
+        },
+        {
+          "name": "TrangThaiQuyenHoatDong",
+          "type": "TrangThaiQuyenHoatDong?"
+        },
+        {
+          "name": "ThoiDiemTao",
+          "type": "DateTime"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaNhaCungCap",
+          "pk": true
+        },
+        {
+          "name": "MaTaiKhoan",
+          "pk": false,
+          "fk": "TaiKhoan"
+        }
+      ]
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap",
+      "props": [
+        {
+          "name": "MaHoSo",
+          "type": "long"
+        },
+        {
+          "name": "MaNhaCungCap",
+          "type": "long"
+        },
+        {
+          "name": "NoiDungDangKy",
+          "type": "string"
+        },
+        {
+          "name": "NguoiDaiDien",
+          "type": "string"
+        },
+        {
+          "name": "ThoiDiemNop",
+          "type": "DateTime"
+        },
+        {
+          "name": "SoLanBoSung",
+          "type": "int"
+        },
+        {
+          "name": "TrangThaiXuLy",
+          "type": "TrangThaiHoSoXacMinh"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaHoSo",
+          "pk": true
+        },
+        {
+          "name": "MaNhaCungCap",
+          "pk": false,
+          "fk": "NhaCungCapDichVu"
+        }
+      ]
+    },
+    {
+      "name": "QuyetDinhXacMinh",
+      "props": [
+        {
+          "name": "MaQuyetDinh",
+          "type": "long"
+        },
+        {
+          "name": "MaHoSo",
+          "type": "long"
+        },
+        {
+          "name": "LanXuLy",
+          "type": "int"
+        },
+        {
+          "name": "KetQua",
+          "type": "KetQuaXacMinh"
+        },
+        {
+          "name": "KetQuaXacMinh",
+          "type": "string?"
+        },
+        {
+          "name": "LyDo",
+          "type": "string?"
+        },
+        {
+          "name": "MaAdminDuyet",
+          "type": "long"
+        },
+        {
+          "name": "ThoiDiemDuyet",
+          "type": "DateTime"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaQuyetDinh",
+          "pk": true
+        },
+        {
+          "name": "MaHoSo",
+          "pk": false,
+          "fk": "HoSoXacMinhNhaCungCap"
+        },
+        {
+          "name": "MaAdminDuyet",
+          "pk": false,
+          "fk": "TaiKhoan"
+        }
+      ]
+    },
+    {
+      "name": "TaiLieuXacMinh",
+      "props": [
+        {
+          "name": "MaTaiLieu",
+          "type": "long"
+        },
+        {
+          "name": "MaHoSo",
+          "type": "long"
+        },
+        {
+          "name": "TenTepGoc",
+          "type": "string"
+        },
+        {
+          "name": "DuongDan",
+          "type": "string"
+        },
+        {
+          "name": "LoaiTep",
+          "type": "LoaiTep"
+        },
+        {
+          "name": "KichThuoc",
+          "type": "int"
+        },
+        {
+          "name": "LanNop",
+          "type": "int"
+        },
+        {
+          "name": "ThoiDiemTai",
+          "type": "DateTime"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaTaiLieu",
+          "pk": true
+        },
+        {
+          "name": "MaHoSo",
+          "pk": false,
+          "fk": "HoSoXacMinhNhaCungCap"
+        }
+      ]
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong",
+      "props": [
+        {
+          "name": "MaQuyetDinh",
+          "type": "long"
+        },
+        {
+          "name": "MaNhaCungCap",
+          "type": "long"
+        },
+        {
+          "name": "TrangThaiTruoc",
+          "type": "TrangThaiQuyenHoatDong"
+        },
+        {
+          "name": "TrangThaiSau",
+          "type": "TrangThaiQuyenHoatDong"
+        },
+        {
+          "name": "LyDo",
+          "type": "string"
+        },
+        {
+          "name": "CanCu",
+          "type": "string"
+        },
+        {
+          "name": "ThoiHan",
+          "type": "DateOnly?"
+        },
+        {
+          "name": "MaAdmin",
+          "type": "long"
+        },
+        {
+          "name": "ThoiDiem",
+          "type": "DateTime"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaQuyetDinh",
+          "pk": true
+        },
+        {
+          "name": "MaNhaCungCap",
+          "pk": false,
+          "fk": "NhaCungCapDichVu"
+        },
+        {
+          "name": "MaAdmin",
+          "pk": false,
+          "fk": "TaiKhoan"
+        }
+      ]
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap",
+      "props": [
+        {
+          "name": "MaGiaiTrinh",
+          "type": "long"
+        },
+        {
+          "name": "MaQuyetDinh",
+          "type": "long"
+        },
+        {
+          "name": "NoiDung",
+          "type": "string"
+        },
+        {
+          "name": "ThoiDiemGui",
+          "type": "DateTime"
+        },
+        {
+          "name": "TrangThai",
+          "type": "TrangThaiGiaiTrinh"
+        },
+        {
+          "name": "KetQuaXemXet",
+          "type": "string?"
+        },
+        {
+          "name": "MaAdminXemXet",
+          "type": "long?"
+        },
+        {
+          "name": "ThoiDiemXemXet",
+          "type": "DateTime?"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaGiaiTrinh",
+          "pk": true
+        },
+        {
+          "name": "MaQuyetDinh",
+          "pk": false,
+          "fk": "QuyetDinhQuyenHoatDong"
+        },
+        {
+          "name": "MaAdminXemXet",
+          "pk": false,
+          "fk": "TaiKhoan"
+        }
+      ]
+    },
+    {
+      "name": "TaiLieuGiaiTrinh",
+      "props": [
+        {
+          "name": "MaTaiLieu",
+          "type": "long"
+        },
+        {
+          "name": "MaGiaiTrinh",
+          "type": "long"
+        },
+        {
+          "name": "TenTepGoc",
+          "type": "string"
+        },
+        {
+          "name": "DuongDan",
+          "type": "string"
+        },
+        {
+          "name": "LoaiTep",
+          "type": "LoaiTep"
+        },
+        {
+          "name": "KichThuoc",
+          "type": "int"
+        },
+        {
+          "name": "ThoiDiemTai",
+          "type": "DateTime"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaTaiLieu",
+          "pk": true
+        },
+        {
+          "name": "MaGiaiTrinh",
+          "pk": false,
+          "fk": "GiaiTrinhNhaCungCap"
+        }
+      ]
+    },
+    {
+      "name": "DiaDiemDuLich",
+      "props": [
+        {
+          "name": "MaDiaDiem",
+          "type": "long"
+        },
+        {
+          "name": "TenDiaDiem",
+          "type": "string"
+        },
+        {
+          "name": "LoaiDiaDiem",
+          "type": "string"
+        },
+        {
+          "name": "KhuVuc",
+          "type": "string"
+        },
+        {
+          "name": "DiaChi",
+          "type": "string?"
+        },
+        {
+          "name": "MoTa",
+          "type": "string?"
+        },
+        {
+          "name": "DangHienThi",
+          "type": "bool"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaDiaDiem",
+          "pk": true
+        }
+      ]
+    },
+    {
+      "name": "DichVuDuLich",
+      "props": [
+        {
+          "name": "MaDichVu",
+          "type": "long"
+        },
+        {
+          "name": "MaNhaCungCap",
+          "type": "long"
+        },
+        {
+          "name": "TenDichVu",
+          "type": "string"
+        },
+        {
+          "name": "LoaiDichVu",
+          "type": "string"
+        },
+        {
+          "name": "MoTa",
+          "type": "string?"
+        },
+        {
+          "name": "KhuVucPhucVu",
+          "type": "string"
+        },
+        {
+          "name": "MaDiaDiem",
+          "type": "long?"
+        },
+        {
+          "name": "GiaThamKhao",
+          "type": "decimal?"
+        },
+        {
+          "name": "ThoiGianPhucVu",
+          "type": "string?"
+        },
+        {
+          "name": "DieuKienPhucVu",
+          "type": "string?"
+        },
+        {
+          "name": "TamNgungTu",
+          "type": "DateOnly?"
+        },
+        {
+          "name": "TamNgungDen",
+          "type": "DateOnly?"
+        },
+        {
+          "name": "LyDoTamNgung",
+          "type": "string?"
+        },
+        {
+          "name": "TrangThaiCongBo",
+          "type": "TrangThaiCongBo"
+        },
+        {
+          "name": "TrangThaiTiepNhan",
+          "type": "TrangThaiTiepNhan"
+        },
+        {
+          "name": "MaQuyetDinhKhongTiepNhan",
+          "type": "long?"
+        },
+        {
+          "name": "PhienBanCongBo",
+          "type": "int?"
+        },
+        {
+          "name": "ThoiDiemTao",
+          "type": "DateTime"
+        },
+        {
+          "name": "ThoiDiemCapNhat",
+          "type": "DateTime"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaDichVu",
+          "pk": true
+        },
+        {
+          "name": "MaNhaCungCap",
+          "pk": false,
+          "fk": "NhaCungCapDichVu"
+        },
+        {
+          "name": "MaDiaDiem",
+          "pk": false,
+          "fk": "DiaDiemDuLich"
+        },
+        {
+          "name": "MaQuyetDinhKhongTiepNhan",
+          "pk": false,
+          "fk": "QuyetDinhQuyenHoatDong"
+        }
+      ]
+    },
+    {
+      "name": "BanCapNhatDichVu",
+      "props": [
+        {
+          "name": "MaBanCapNhat",
+          "type": "long"
+        },
+        {
+          "name": "MaDichVu",
+          "type": "long"
+        },
+        {
+          "name": "SoPhienBan",
+          "type": "int"
+        },
+        {
+          "name": "TenDichVu",
+          "type": "string"
+        },
+        {
+          "name": "LoaiDichVu",
+          "type": "string"
+        },
+        {
+          "name": "MoTa",
+          "type": "string?"
+        },
+        {
+          "name": "KhuVucPhucVu",
+          "type": "string"
+        },
+        {
+          "name": "MaDiaDiem",
+          "type": "long?"
+        },
+        {
+          "name": "GiaThamKhao",
+          "type": "decimal?"
+        },
+        {
+          "name": "ThoiGianPhucVu",
+          "type": "string?"
+        },
+        {
+          "name": "DieuKienPhucVu",
+          "type": "string?"
+        },
+        {
+          "name": "TamNgungTu",
+          "type": "DateOnly?"
+        },
+        {
+          "name": "TamNgungDen",
+          "type": "DateOnly?"
+        },
+        {
+          "name": "LyDoTamNgung",
+          "type": "string?"
+        },
+        {
+          "name": "TrangThaiDuyet",
+          "type": "TrangThaiDuyet"
+        },
+        {
+          "name": "LyDo",
+          "type": "string?"
+        },
+        {
+          "name": "MaAdminDuyet",
+          "type": "long?"
+        },
+        {
+          "name": "ThoiDiemGui",
+          "type": "DateTime"
+        },
+        {
+          "name": "ThoiDiemDuyet",
+          "type": "DateTime?"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaBanCapNhat",
+          "pk": true
+        },
+        {
+          "name": "MaDichVu",
+          "pk": false,
+          "fk": "DichVuDuLich"
+        },
+        {
+          "name": "MaDiaDiem",
+          "pk": false,
+          "fk": "DiaDiemDuLich"
+        },
+        {
+          "name": "MaAdminDuyet",
+          "pk": false,
+          "fk": "TaiKhoan"
+        }
+      ]
+    },
+    {
+      "name": "KeHoachChuyenDi",
+      "props": [
+        {
+          "name": "MaKeHoach",
+          "type": "long"
+        },
+        {
+          "name": "MaTaiKhoan",
+          "type": "long"
+        },
+        {
+          "name": "TenKeHoach",
+          "type": "string"
+        },
+        {
+          "name": "NoiDen",
+          "type": "string"
+        },
+        {
+          "name": "NgayBatDau",
+          "type": "DateOnly"
+        },
+        {
+          "name": "NgayKetThuc",
+          "type": "DateOnly"
+        },
+        {
+          "name": "NganSachDuKien",
+          "type": "decimal?"
+        },
+        {
+          "name": "TrangThai",
+          "type": "TrangThaiKeHoach"
+        },
+        {
+          "name": "ThoiDiemTao",
+          "type": "DateTime"
+        },
+        {
+          "name": "ThoiDiemCapNhat",
+          "type": "DateTime"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaKeHoach",
+          "pk": true
+        },
+        {
+          "name": "MaTaiKhoan",
+          "pk": false,
+          "fk": "TaiKhoan"
+        }
+      ]
+    },
+    {
+      "name": "HoatDongLichTrinh",
+      "props": [
+        {
+          "name": "MaHoatDong",
+          "type": "long"
+        },
+        {
+          "name": "MaKeHoach",
+          "type": "long"
+        },
+        {
+          "name": "Ngay",
+          "type": "DateOnly"
+        },
+        {
+          "name": "Gio",
+          "type": "TimeOnly?"
+        },
+        {
+          "name": "ThuTu",
+          "type": "int"
+        },
+        {
+          "name": "MaDiaDiem",
+          "type": "long?"
+        },
+        {
+          "name": "MaDichVu",
+          "type": "long?"
+        },
+        {
+          "name": "NoiDung",
+          "type": "string"
+        },
+        {
+          "name": "ChiPhiDuKien",
+          "type": "decimal?"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaHoatDong",
+          "pk": true
+        },
+        {
+          "name": "MaKeHoach",
+          "pk": false,
+          "fk": "KeHoachChuyenDi"
+        },
+        {
+          "name": "MaDiaDiem",
+          "pk": false,
+          "fk": "DiaDiemDuLich"
+        },
+        {
+          "name": "MaDichVu",
+          "pk": false,
+          "fk": "DichVuDuLich"
+        }
+      ]
+    },
+    {
+      "name": "TinhHuongPhatSinh",
+      "props": [
+        {
+          "name": "MaTinhHuong",
+          "type": "long"
+        },
+        {
+          "name": "MaKeHoach",
+          "type": "long"
+        },
+        {
+          "name": "LoaiTinhHuong",
+          "type": "string"
+        },
+        {
+          "name": "MoTa",
+          "type": "string"
+        },
+        {
+          "name": "ViTri",
+          "type": "string?"
+        },
+        {
+          "name": "ThoiDiemGhiNhan",
+          "type": "DateTime"
+        },
+        {
+          "name": "TrangThaiXuLy",
+          "type": "TrangThaiXuLyTinhHuong"
+        },
+        {
+          "name": "KetQuaXuLy",
+          "type": "string?"
+        },
+        {
+          "name": "ThoiDiemCapNhat",
+          "type": "DateTime"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaTinhHuong",
+          "pk": true
+        },
+        {
+          "name": "MaKeHoach",
+          "pk": false,
+          "fk": "KeHoachChuyenDi"
+        }
+      ]
+    },
+    {
+      "name": "TinhHuongHoatDong",
+      "props": [
+        {
+          "name": "MaTinhHuong",
+          "type": "long"
+        },
+        {
+          "name": "MaHoatDong",
+          "type": "long"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaTinhHuong",
+          "pk": true,
+          "fk": "TinhHuongPhatSinh"
+        },
+        {
+          "name": "MaHoatDong",
+          "pk": true,
+          "fk": "HoatDongLichTrinh"
+        }
+      ]
+    },
+    {
+      "name": "PhuongAnXuLy",
+      "props": [
+        {
+          "name": "MaPhuongAn",
+          "type": "long"
+        },
+        {
+          "name": "MaTinhHuong",
+          "type": "long"
+        },
+        {
+          "name": "NoiDung",
+          "type": "string"
+        },
+        {
+          "name": "ThoiDiemChon",
+          "type": "DateTime"
+        },
+        {
+          "name": "LaHienHanh",
+          "type": "bool"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaPhuongAn",
+          "pk": true
+        },
+        {
+          "name": "MaTinhHuong",
+          "pk": false,
+          "fk": "TinhHuongPhatSinh"
+        }
+      ]
+    },
+    {
+      "name": "NhuCauDongHanh",
+      "props": [
+        {
+          "name": "MaNhuCau",
+          "type": "long"
+        },
+        {
+          "name": "MaTaiKhoan",
+          "type": "long"
+        },
+        {
+          "name": "NoiDung",
+          "type": "string"
+        },
+        {
+          "name": "DiemDen",
+          "type": "string"
+        },
+        {
+          "name": "NgayBatDau",
+          "type": "DateOnly"
+        },
+        {
+          "name": "NgayKetThuc",
+          "type": "DateOnly"
+        },
+        {
+          "name": "NganSachDuKien",
+          "type": "decimal?"
+        },
+        {
+          "name": "HinhThucDi",
+          "type": "string?"
+        },
+        {
+          "name": "MongMuonDongHanh",
+          "type": "string?"
+        },
+        {
+          "name": "PhamViChiaSe",
+          "type": "PhamViChiaSe"
+        },
+        {
+          "name": "ThoiDiemDang",
+          "type": "DateTime"
+        },
+        {
+          "name": "TrangThaiCongBo",
+          "type": "TrangThaiNhuCau"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaNhuCau",
+          "pk": true
+        },
+        {
+          "name": "MaTaiKhoan",
+          "pk": false,
+          "fk": "TaiKhoan"
+        }
+      ]
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh",
+      "props": [
+        {
+          "name": "MaDeNghi",
+          "type": "long"
+        },
+        {
+          "name": "MaNhuCau",
+          "type": "long"
+        },
+        {
+          "name": "MaNguoiGui",
+          "type": "long"
+        },
+        {
+          "name": "LoiGioiThieu",
+          "type": "string?"
+        },
+        {
+          "name": "ThoiDiemGui",
+          "type": "DateTime"
+        },
+        {
+          "name": "ThoiDiemPhanHoi",
+          "type": "DateTime?"
+        },
+        {
+          "name": "TrangThai",
+          "type": "TrangThaiDeNghiKetNoi"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaDeNghi",
+          "pk": true
+        },
+        {
+          "name": "MaNhuCau",
+          "pk": false,
+          "fk": "NhuCauDongHanh"
+        },
+        {
+          "name": "MaNguoiGui",
+          "pk": false,
+          "fk": "TaiKhoan"
+        }
+      ]
+    },
+    {
+      "name": "ThoaThuanDongHanh",
+      "props": [
+        {
+          "name": "MaThoaThuan",
+          "type": "long"
+        },
+        {
+          "name": "MaDeNghi",
+          "type": "long"
+        },
+        {
+          "name": "PhienBan",
+          "type": "int"
+        },
+        {
+          "name": "NgayDi",
+          "type": "DateOnly"
+        },
+        {
+          "name": "NgayVe",
+          "type": "DateOnly"
+        },
+        {
+          "name": "NoiDen",
+          "type": "string"
+        },
+        {
+          "name": "NganSach",
+          "type": "decimal?"
+        },
+        {
+          "name": "PhamViDiCung",
+          "type": "string?"
+        },
+        {
+          "name": "MaNguoiDeXuat",
+          "type": "long"
+        },
+        {
+          "name": "ThoiDiemDeXuat",
+          "type": "DateTime"
+        },
+        {
+          "name": "MaNguoiXacNhan",
+          "type": "long?"
+        },
+        {
+          "name": "ThoiDiemXacNhan",
+          "type": "DateTime?"
+        },
+        {
+          "name": "LoaiPhienBan",
+          "type": "LoaiPhienBan"
+        },
+        {
+          "name": "TrangThai",
+          "type": "TrangThaiThoaThuan"
+        },
+        {
+          "name": "LyDo",
+          "type": "string?"
+        },
+        {
+          "name": "MaNguoiKetThuc",
+          "type": "long?"
+        },
+        {
+          "name": "ThoiDiemKetThuc",
+          "type": "DateTime?"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaThoaThuan",
+          "pk": true
+        },
+        {
+          "name": "MaDeNghi",
+          "pk": false,
+          "fk": "DeNghiKetNoiDongHanh"
+        },
+        {
+          "name": "MaNguoiDeXuat",
+          "pk": false,
+          "fk": "TaiKhoan"
+        },
+        {
+          "name": "MaNguoiXacNhan",
+          "pk": false,
+          "fk": "TaiKhoan"
+        },
+        {
+          "name": "MaNguoiKetThuc",
+          "pk": false,
+          "fk": "TaiKhoan"
+        }
+      ]
+    },
+    {
+      "name": "YeuCauDatDichVu",
+      "props": [
+        {
+          "name": "MaYeuCau",
+          "type": "long"
+        },
+        {
+          "name": "MaTaiKhoan",
+          "type": "long"
+        },
+        {
+          "name": "MaDichVu",
+          "type": "long"
+        },
+        {
+          "name": "NgayBatDau",
+          "type": "DateOnly"
+        },
+        {
+          "name": "NgayKetThuc",
+          "type": "DateOnly?"
+        },
+        {
+          "name": "ThoiGianDenDi",
+          "type": "string?"
+        },
+        {
+          "name": "SoNguoi",
+          "type": "int"
+        },
+        {
+          "name": "SoLuong",
+          "type": "int"
+        },
+        {
+          "name": "NoiDungLuaChon",
+          "type": "string?"
+        },
+        {
+          "name": "GhiChu",
+          "type": "string?"
+        },
+        {
+          "name": "ChiPhiDuKien",
+          "type": "decimal?"
+        },
+        {
+          "name": "DieuKienDeXuat",
+          "type": "string?"
+        },
+        {
+          "name": "PhienBan",
+          "type": "int"
+        },
+        {
+          "name": "ThoiDiemGui",
+          "type": "DateTime"
+        },
+        {
+          "name": "ThoiDiemPhanHoi",
+          "type": "DateTime?"
+        },
+        {
+          "name": "LyDo",
+          "type": "string?"
+        },
+        {
+          "name": "TrangThai",
+          "type": "TrangThaiYeuCau"
+        },
+        {
+          "name": "MaLuotGui",
+          "type": "Guid"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaYeuCau",
+          "pk": true
+        },
+        {
+          "name": "MaTaiKhoan",
+          "pk": false,
+          "fk": "TaiKhoan"
+        },
+        {
+          "name": "MaDichVu",
+          "pk": false,
+          "fk": "DichVuDuLich"
+        }
+      ]
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu",
+      "props": [
+        {
+          "name": "MaDeNghi",
+          "type": "long"
+        },
+        {
+          "name": "MaYeuCau",
+          "type": "long"
+        },
+        {
+          "name": "LoaiDeNghi",
+          "type": "LoaiDeNghi"
+        },
+        {
+          "name": "DieuKienCu",
+          "type": "string"
+        },
+        {
+          "name": "NgayBatDauMoi",
+          "type": "DateOnly?"
+        },
+        {
+          "name": "NgayKetThucMoi",
+          "type": "DateOnly?"
+        },
+        {
+          "name": "SoNguoiMoi",
+          "type": "int?"
+        },
+        {
+          "name": "SoLuongMoi",
+          "type": "int?"
+        },
+        {
+          "name": "DieuKienMoi",
+          "type": "string?"
+        },
+        {
+          "name": "LyDo",
+          "type": "string"
+        },
+        {
+          "name": "ThoiDiemGui",
+          "type": "DateTime"
+        },
+        {
+          "name": "QuyetDinh",
+          "type": "string?"
+        },
+        {
+          "name": "DieuKienDeXuat",
+          "type": "string?"
+        },
+        {
+          "name": "ThoiDiemPhanHoi",
+          "type": "DateTime?"
+        },
+        {
+          "name": "TrangThai",
+          "type": "TrangThaiDeNghiDieuChinh"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaDeNghi",
+          "pk": true
+        },
+        {
+          "name": "MaYeuCau",
+          "pk": false,
+          "fk": "YeuCauDatDichVu"
+        }
+      ]
+    },
+    {
+      "name": "KetQuaCungCapDichVu",
+      "props": [
+        {
+          "name": "MaKetQua",
+          "type": "long"
+        },
+        {
+          "name": "MaYeuCau",
+          "type": "long"
+        },
+        {
+          "name": "HangMuc",
+          "type": "string"
+        },
+        {
+          "name": "KetQuaThucHien",
+          "type": "KetQuaThucHien"
+        },
+        {
+          "name": "GhiChu",
+          "type": "string?"
+        },
+        {
+          "name": "ThoiDiemGhi",
+          "type": "DateTime"
+        },
+        {
+          "name": "NoiDungPhanAnh",
+          "type": "string?"
+        },
+        {
+          "name": "ThoiDiemPhanAnh",
+          "type": "DateTime?"
+        },
+        {
+          "name": "TrangThaiKiemTra",
+          "type": "TrangThaiKiemTra"
+        },
+        {
+          "name": "ThoiDiemKiemTra",
+          "type": "DateTime?"
+        },
+        {
+          "name": "RowVersion",
+          "type": "byte[]"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaKetQua",
+          "pk": true
+        },
+        {
+          "name": "MaYeuCau",
+          "pk": false,
+          "fk": "YeuCauDatDichVu"
+        }
+      ]
+    },
+    {
+      "name": "ThongBao",
+      "props": [
+        {
+          "name": "MaThongBao",
+          "type": "long"
+        },
+        {
+          "name": "MaNguoiNhan",
+          "type": "long"
+        },
+        {
+          "name": "LoaiThongBao",
+          "type": "string"
+        },
+        {
+          "name": "NoiDung",
+          "type": "string"
+        },
+        {
+          "name": "DuongDan",
+          "type": "string?"
+        },
+        {
+          "name": "DaDoc",
+          "type": "bool"
+        },
+        {
+          "name": "ThoiDiemTao",
+          "type": "DateTime"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaThongBao",
+          "pk": true
+        },
+        {
+          "name": "MaNguoiNhan",
+          "pk": false,
+          "fk": "TaiKhoan"
+        }
+      ]
+    },
+    {
+      "name": "NhatKyThaoTac",
+      "props": [
+        {
+          "name": "MaNhatKy",
+          "type": "long"
+        },
+        {
+          "name": "MaTaiKhoan",
+          "type": "long?"
+        },
+        {
+          "name": "LoaiSuKien",
+          "type": "string"
+        },
+        {
+          "name": "DoiTuong",
+          "type": "string?"
+        },
+        {
+          "name": "MaDoiTuong",
+          "type": "long?"
+        },
+        {
+          "name": "TrangThaiTruoc",
+          "type": "string?"
+        },
+        {
+          "name": "TrangThaiSau",
+          "type": "string?"
+        },
+        {
+          "name": "LyDo",
+          "type": "string?"
+        },
+        {
+          "name": "DiaChiIP",
+          "type": "string?"
+        },
+        {
+          "name": "ThoiDiem",
+          "type": "DateTime"
+        }
+      ],
+      "keys": [
+        {
+          "name": "MaNhatKy",
+          "pk": true
+        },
+        {
+          "name": "MaTaiKhoan",
+          "pk": false,
+          "fk": "TaiKhoan"
+        }
+      ]
+    }
+  ],
+  "enums": {
+    "KetQuaThucHien": [
+      "DayDu",
+      "MotPhan",
+      "KhongThucHien",
+      "KhachKhongDen",
+      "ChuaXacDinh"
+    ],
+    "KetQuaXacMinh": [
+      "CanBoSung",
+      "DaXacMinh",
+      "TuChoi"
+    ],
+    "LoaiDeNghi": [
+      "ThayDoi",
+      "Huy"
+    ],
+    "LoaiPhienBan": [
+      "NoiDung",
+      "DeNghiNgung"
+    ],
+    "LoaiTep": [
+      "pdf",
+      "jpg",
+      "png"
+    ],
+    "PhamViChiaSe": [
+      "CongKhai",
+      "DaDangNhap",
+      "KhiKetNoi"
+    ],
+    "ThongTinChiaSe": [
+      "CongKhai",
+      "KhiKetNoi",
+      "RiengTu"
+    ],
+    "TrangThaiCongBo": [
+      "Nhap",
+      "ChoDuyet",
+      "DaDuyet",
+      "TuChoi",
+      "CanSua",
+      "NgungCongBo"
+    ],
+    "TrangThaiDeNghiDieuChinh": [
+      "ChoPhanHoi",
+      "DeXuatKhac",
+      "ChapNhan",
+      "TuChoi",
+      "DaRut"
+    ],
+    "TrangThaiDeNghiKetNoi": [
+      "ChoPhanHoi",
+      "DaChapNhan",
+      "TuChoi",
+      "DaRut",
+      "HetHieuLuc"
+    ],
+    "TrangThaiDuyet": [
+      "ChoDuyet",
+      "DaDuyet",
+      "TuChoi",
+      "CanSua"
+    ],
+    "TrangThaiGiaiTrinh": [
+      "ChoXemXet",
+      "DaXemXet"
+    ],
+    "TrangThaiHoSoXacMinh": [
+      "ChoXacMinh",
+      "CanBoSung",
+      "DaXacMinh",
+      "TuChoi"
+    ],
+    "TrangThaiKeHoach": [
+      "Nhap",
+      "DaChapNhan"
+    ],
+    "TrangThaiKiemTra": [
+      "DaGhiNhan",
+      "ChoKiemTra",
+      "DaKiemTra"
+    ],
+    "TrangThaiNhuCau": [
+      "DangCongBo",
+      "DungCongBo"
+    ],
+    "TrangThaiQuyenHoatDong": [
+      "DangHoatDong",
+      "TamDinhChi",
+      "DaThuHoi"
+    ],
+    "TrangThaiTaiKhoan": [
+      "HoatDong",
+      "DaNgung"
+    ],
+    "TrangThaiThoaThuan": [
+      "ChoXacNhan",
+      "DaXacNhan",
+      "TuChoi",
+      "DaThayThe",
+      "DaNgung",
+      "MotBenDaRut"
+    ],
+    "TrangThaiTiepNhan": [
+      "TiepNhan",
+      "KhongTiepNhanMoi"
+    ],
+    "TrangThaiXacMinh": [
+      "ChoXacMinh",
+      "CanBoSung",
+      "DaXacMinh",
+      "TuChoi",
+      "DaThuHoi"
+    ],
+    "TrangThaiXuLyTinhHuong": [
+      "ChuaGiaiQuyet",
+      "DaChonPhuongAn",
+      "GiaiQuyetMotPhan",
+      "DaGiaiQuyet",
+      "DungXuLy"
+    ],
+    "TrangThaiYeuCau": [
+      "ChoPhanHoi",
+      "DeXuatKhac",
+      "DaXacNhan",
+      "TuChoi",
+      "KhongTiepTuc",
+      "DaHuy",
+      "HoanThanh",
+      "ThucHienMotPhan",
+      "KhongThucHien",
+      "ChoKiemTra"
+    ],
+    "VaiTro": [
+      "KHACH_DU_LICH",
+      "NHA_CUNG_CAP",
+      "QUAN_TRI_VIEN"
+    ]
+  }
+}

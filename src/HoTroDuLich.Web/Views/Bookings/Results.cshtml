@@ -1,0 +1,9 @@
+@model List<YeuCauDatDichVu>
+@inject TravelService Travel
+@{ViewData["Title"]="Kết quả phục vụ";var names=(Dictionary<long,string>)ViewBag.ServiceNames;}
+<div class="container-wide"><div class="page-head"><div><h1>@ViewData["Title"]</h1><p>Ghi nhận kết quả cung cấp dịch vụ và theo dõi phản ánh sau phục vụ.</p></div></div>
+<partial name="_BookingWorkspaceTabs"/>
+@if(Model.Count==0){<div class="empty">@Ui.Icon("ticket")<h2>Chưa có dịch vụ phù hợp</h2><p>Dịch vụ đã xác nhận hoặc đã ghi nhận kết quả sẽ xuất hiện tại đây.</p><a class="btn btn-outline" href="/Bookings">Xem yêu cầu đặt dịch vụ</a></div>}
+else{<div class="panel table-wrap"><table class="table booking-table" role="table"><thead><tr><th>Dịch vụ</th><th>Ngày sử dụng</th><th>Trạng thái đặt dịch vụ</th><th></th></tr></thead><tbody>
+@foreach(var y in Model){<tr><td><b>@names.GetValueOrDefault(y.MaYeuCau,"Dịch vụ du lịch")</b><span class="help">Yêu cầu #@y.MaYeuCau</span></td><td><span class="mobile-cell-label" aria-hidden="true">Ngày sử dụng</span>@y.NgayBatDau.ToString("dd/MM/yyyy")</td><td><span class="mobile-cell-label" aria-hidden="true">Trạng thái</span><span class="badge @Labels.Badge(y.TrangThai.ToString())">@Labels.Status(y.TrangThai.ToString())</span></td><td><a href="/Bookings/Outcome/@y.MaYeuCau">Xem kết quả @Ui.Icon("chevron")</a></td></tr>}
+</tbody></table></div>}</div>

@@ -1,0 +1,393 @@
+{
+  "passed": true,
+  "checks": 90,
+  "observations": [
+    {
+      "name": "Expected isolated database",
+      "passed": true
+    },
+    {
+      "name": "Guest cannot open /Saved: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot open /Saved: HTTP 403, expected 403 ",
+      "passed": true
+    },
+    {
+      "name": "Guest cannot open /Preparation?planId=1: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot open /Preparation?planId=1: HTTP 403, expected 403 ",
+      "passed": true
+    },
+    {
+      "name": "Guest cannot open /Expenses?planId=1: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot open /Expenses?planId=1: HTTP 403, expected 403 ",
+      "passed": true
+    },
+    {
+      "name": "Foreign preparation page denied: HTTP 404, expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Foreign expenses page denied: HTTP 404, expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Save a service: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Saved page renders: HTTP 200, expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Saved item uses published name",
+      "passed": true
+    },
+    {
+      "name": "Repeated save is safe: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Repeated saves do not duplicate records",
+      "passed": true
+    },
+    {
+      "name": "Save second service: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Save a place: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Compare two owned services: HTTP 200, expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Comparison includes both services",
+      "passed": true
+    },
+    {
+      "name": "Comparison requires two services: HTTP 400, expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "Foreign saved comparison denied: HTTP 404, expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Place cannot masquerade as a service comparison: HTTP 404, expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Ambiguous saved item rejected: HTTP 400, expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "Unpublished service cannot be saved: HTTP 404, expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "External return redirect rejected",
+      "passed": true
+    },
+    {
+      "name": "Cannot remove someone else saved choice: HTTP 404, expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Saved removal requires CSRF: HTTP 400, expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "Owner can remove saved choice: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Removed saved choice is no longer listed",
+      "passed": true
+    },
+    {
+      "name": "Preparation empty page renders: HTTP 200, expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "New preparation form does not submit an empty concurrency token",
+      "passed": true
+    },
+    {
+      "name": "Add suggested preparation: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Add suggested preparation repeatedly: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Template does not duplicate tasks",
+      "passed": true
+    },
+    {
+      "name": "Preparation validates title: HTTP 400, expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "Preparation validation retains date and category",
+      "passed": true
+    },
+    {
+      "name": "Reminder requires due date: HTTP 422, expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "Unknown preparation category rejected: HTTP 400, expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "Save personal preparation task: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Complete preparation task: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Completed state stored",
+      "passed": true
+    },
+    {
+      "name": "Stale preparation change denied: HTTP 409, expected 409 ",
+      "passed": true
+    },
+    {
+      "name": "Reopen preparation task: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Cannot change foreign preparation: HTTP 404, expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Edit preparation prefilled",
+      "passed": true
+    },
+    {
+      "name": "Edit preparation task: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Expense empty page renders: HTTP 200, expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "New expense form does not submit an empty concurrency token",
+      "passed": true
+    },
+    {
+      "name": "Negative expense rejected: HTTP 400, expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "Expense validation retains input",
+      "passed": true
+    },
+    {
+      "name": "Future date cannot be recorded as actual expense: HTTP 422, expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "Unknown expense category rejected: HTTP 400, expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "More than two decimal places rejected: HTTP 422, expected 422 ",
+      "passed": true
+    },
+    {
+      "name": "Comma cannot silently become a different amount: HTTP 400, expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "Thousands separators rejected by the expense API: HTTP 400, expected 400 ",
+      "passed": true
+    },
+    {
+      "name": "Record actual expense: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Repeat same expense submission: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Duplicate submission charges once",
+      "passed": true
+    },
+    {
+      "name": "Edit actual expense: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Stale expense update rejected: HTTP 409, expected 409 ",
+      "passed": true
+    },
+    {
+      "name": "Cannot delete foreign expense: HTTP 404, expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Record small fractional amount: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Decimal point is parsed independently of Vietnamese display culture",
+      "passed": true
+    },
+    {
+      "name": "Owner can remove mistaken expense: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Deleted expense no longer contributes to totals",
+      "passed": true
+    },
+    {
+      "name": "Expense page shows updated actual amount",
+      "passed": true
+    },
+    {
+      "name": "Trip hub renders extended data: HTTP 200, expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Hub shows real preparation and actual expenses",
+      "passed": true
+    },
+    {
+      "name": "Provider can enter service details: HTTP 200, expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Provider form accepts photo uploads",
+      "passed": true
+    },
+    {
+      "name": "Submit service details and real photo for review: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Revision stores the approved branch, price unit and uploaded photo",
+      "passed": true
+    },
+    {
+      "name": "Pending service remains private: HTTP 404, expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Pending service photo is not public: HTTP 404, expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Traveler cannot read review photos: HTTP 403, expected 403 ",
+      "passed": true
+    },
+    {
+      "name": "Owner can review uploaded image: HTTP 200, expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Admin sees extended review: HTTP 200, expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Admin can compare submitted address and price unit",
+      "passed": true
+    },
+    {
+      "name": "Approve exact service revision: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Approved details are public: HTTP 200, expected 200 ",
+      "passed": true
+    },
+    {
+      "name": "Public detail shows approved information and image label",
+      "passed": true
+    },
+    {
+      "name": "Approved photo served with image MIME",
+      "passed": true
+    },
+    {
+      "name": "Submit an updated description with an attempted service address override: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Existing photos and branch-owned address resist direct overrides",
+      "passed": true
+    },
+    {
+      "name": "Pending edit leaves the public branch address and description intact",
+      "passed": true
+    },
+    {
+      "name": "Schema has only declared added tables",
+      "passed": true
+    },
+    {
+      "name": "Invalid image index rejected: HTTP 404, expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Anonymous review photo requires login: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Register second provider through public workflow: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Provider cannot read another provider revision photos: HTTP 404, expected 404 ",
+      "passed": true
+    },
+    {
+      "name": "Product migration is repeatable without changing costs",
+      "passed": true
+    }
+  ],
+  "fixture": {
+    "stamp": 1794220669651,
+    "saved": 1,
+    "task": 6,
+    "cost": 3,
+    "service": 9,
+    "revision": {
+      "MaBanCapNhat": 10,
+      "MaDichVu": 9,
+      "SoPhienBan": 1,
+      "TenDichVu": "Trải nghiệm địa phương 1794220669651",
+      "LoaiDichVu": "HoatDong",
+      "MoTa": "Mô tả để kiểm tra xét duyệt",
+      "KhuVucPhucVu": "Đà Lạt",
+      "GiaThamKhao": 120000,
+      "ThoiGianPhucVu": "08:00–17:00",
+      "DieuKienPhucVu": "Xác nhận khả năng phục vụ khi phản hồi",
+      "TrangThaiDuyet": "ChoDuyet",
+      "ThoiDiemGui": "2026-11-09T10:37:53",
+      "DonViGia": "người/lượt",
+      "ChinhSachHuy": "Báo trước 24 giờ để đổi lịch",
+      "AnhJson": "[\"2026/71813b45-abf9-4272-ba17-fb880fd671eb.png\"]"
+    }
+  },
+  "database": "HoTroDuLich_Branches_Audit_20261109054153",
+  "base": "http://127.0.0.1:5236",
+  "date": "2026-11-09T10:37:54.414Z"
+}

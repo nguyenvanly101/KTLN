@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "suite": "product-features",
+      "checks": 90,
+      "passed": true
+    },
+    {
+      "suite": "product-contract",
+      "checks": 1807,
+      "passed": true
+    },
+    {
+      "suite": "product-schema",
+      "checks": 1629,
+      "passed": true
+    },
+    {
+      "suite": "product-main-schema",
+      "checks": 1629,
+      "passed": true
+    },
+    {
+      "suite": "trip-workflow",
+      "checks": 82,
+      "passed": true
+    },
+    {
+      "suite": "navigation-redesign",
+      "checks": 102,
+      "passed": true
+    },
+    {
+      "suite": "fulltext-smoke",
+      "checks": 41,
+      "passed": true
+    },
+    {
+      "suite": "product-browser",
+      "checks": 108,
+      "passed": true
+    },
+    {
+      "suite": "preparation-reminder",
+      "checks": 3,
+      "passed": true
+    },
+    {
+      "suite": "product-database-permissions",
+      "checks": 22,
+      "passed": true
+    },
+    {
+      "suite": "product-upgrade-rehearsal",
+      "checks": 80,
+      "passed": true
+    },
+    {
+      "suite": "product-upgrade",
+      "checks": 63,
+      "passed": true
+    },
+    {
+      "suite": "product-startup",
+      "checks": 14,
+      "passed": true
+    }
+  ],
+  "details": "docs/MO_RONG_SAN_PHAM_2026-11-05.md"
+}

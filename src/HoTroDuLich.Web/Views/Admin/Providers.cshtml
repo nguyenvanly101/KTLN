@@ -1,0 +1,15 @@
+@model FilteredPage<NhaCungCapDichVu>
+@{ViewData["Title"]="Quyền hoạt động";}
+<div class="container-wide">
+ <div class="page-head"><div><span class="eyebrow">QUẢN LÝ NHÀ CUNG CẤP</span><h1>Quyền hoạt động</h1><p>Xem trạng thái hoạt động, lịch sử quyết định và giải trình của từng nhà cung cấp.</p></div><span class="count-pill">@Model.Total nhà cung cấp</span></div>
+ <form action="/Admin/Providers" method="get" class="list-filters panel">
+  <div class="field"><label for="provider-query">Tìm tên đơn vị hoặc email</label><input class="form-control" id="provider-query" name="q" value="@Model.Query" maxlength="100" placeholder="Nhập tên hoặc email…"/></div>
+  <div class="field"><label for="provider-status">Quyền hoạt động</label><select class="form-select" id="provider-status" name="status"><option value="" selected="@(Model.Status=="")">Tất cả trạng thái</option>@foreach(var s in new[]{"DangHoatDong","TamDinhChi","DaThuHoi"}){<option value="@s" selected="@(Model.Status==s)">@Labels.Status(s)</option>}<option value="CanXemXet" selected="@(Model.Status=="CanXemXet")">Cần xem xét hoạt động</option></select></div>
+  <button class="btn btn-dark" type="submit">@Ui.Icon("filter") Lọc kết quả</button><a class="filter-reset" href="/Admin/Providers">Đặt lại</a>
+ </form>
+ @if(Model.Items.Count==0){<div class="empty">@Ui.Icon("users")<h2>Không có nhà cung cấp phù hợp</h2><p>Thử thay đổi từ khóa hoặc trạng thái hoạt động.</p></div>}
+ else{<div class="panel table-wrap"><table class="table"><thead><tr><th>Nhà cung cấp</th><th>Xác minh</th><th>Quyền hoạt động</th><th></th></tr></thead><tbody>
+ @foreach(var p in Model.Items){<tr><td><b>@p.TenDonVi</b><span class="help">@p.EmailLienHe</span></td><td><span class="badge @Labels.Badge(p.TrangThaiXacMinh.ToString())">@Labels.Status(p.TrangThaiXacMinh.ToString())</span></td><td><span class="badge @Labels.Badge(p.TrangThaiQuyenHoatDong.ToString())">@(p.TrangThaiQuyenHoatDong.ToString()==null?"Cần xem xét":Labels.Status(p.TrangThaiQuyenHoatDong.ToString()))</span></td><td><a href="/Admin/Provider/@p.MaNhaCungCap">Quản lý quyền @Ui.Icon("chevron")</a></td></tr>}
+ </tbody></table></div>}
+ <partial name="_PageNavigation" model="Model.Navigation"/>
+</div>

@@ -1,0 +1,4 @@
+@model object
+@inject DiscoveryService Discovery
+@{long? entryId=null;if(Model is DiaDiemDuLich place)entryId=await Discovery.LegacyId(place:place.MaDiaDiem);else if(Model is DichVuDuLich service)entryId=await Discovery.LegacyId(service:service.MaDichVu);}
+@if(entryId!=null){<div class="ds-note"><strong>Tìm hiểu thêm trước khi chọn.</strong> <a href="@DiscoveryText.Link(entryId.Value)">Xem thông tin thực tế, tiện ích, vị trí và hỏi đáp tại đây @Ui.Icon("arrow")</a></div>}

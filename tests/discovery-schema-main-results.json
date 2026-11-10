@@ -1,0 +1,2996 @@
+{
+  "passed": true,
+  "checks": 747,
+  "observations": [
+    {
+      "name": "12 extension tables",
+      "passed": true
+    },
+    {
+      "name": "143 explicit columns",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Id exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Id type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Id nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Id identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Slug exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Slug type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Slug nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Slug identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Slug width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Kind exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Kind type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Kind nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Kind identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Kind width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ParentId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ParentId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ParentId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ParentId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PlaceId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PlaceId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PlaceId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PlaceId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ServiceId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ServiceId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ServiceId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ServiceId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Title exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Title type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Title nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Title identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Title width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Region exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Region type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Region nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Region identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Region width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Summary exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Summary type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Summary nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Summary identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Summary width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Body exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Body type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Body nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Body identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Body width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Address exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Address type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Address nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Address identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Address width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Latitude exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Latitude type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Latitude nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Latitude identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Latitude precision",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Longitude exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Longitude type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Longitude nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Longitude identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Longitude precision",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.LocationNote exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.LocationNote type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.LocationNote nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.LocationNote identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.LocationNote width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceName exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceName type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceName nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceName identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceName width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceStamp exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceStamp type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceStamp nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceStamp identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceStamp width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceUrl exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceUrl type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceUrl nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceUrl identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.SourceUrl width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.CheckedOn exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.CheckedOn type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.CheckedOn nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.CheckedOn identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ValidFrom exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ValidFrom type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ValidFrom nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ValidFrom identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ValidTo exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ValidTo type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ValidTo nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.ValidTo identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceFrom exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceFrom type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceFrom nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceFrom identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceFrom precision",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceTo exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceTo type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceTo nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceTo identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceTo precision",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceUnit exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceUnit type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceUnit nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceUnit identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.PriceUnit width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Includes exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Includes type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Includes nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Includes identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Includes width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Excludes exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Excludes type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Excludes nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Excludes identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Excludes width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Hours exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Hours type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Hours nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Hours identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Hours width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.OpenDays exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.OpenDays type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.OpenDays nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.OpenDays identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.OpenDays width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.OpenTime exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.OpenTime type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.OpenTime nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.OpenTime identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.CloseTime exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.CloseTime type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.CloseTime nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.CloseTime identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.DurationMinutes exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.DurationMinutes type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.DurationMinutes nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.DurationMinutes identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Tags exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Tags type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Tags nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Tags identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Tags width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.TransportMode exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.TransportMode type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.TransportMode nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.TransportMode identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.TransportMode width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Origin exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Origin type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Origin nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Origin identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Origin width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Destination exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Destination type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Destination nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Destination identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Destination width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Contact exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Contact type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Contact nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Contact identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Contact width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Status exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Status type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Status nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Status identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.Status width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.CreatedBy exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.CreatedBy type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.CreatedBy nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.CreatedBy identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.UpdatedBy exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.UpdatedBy type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.UpdatedBy nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.UpdatedBy identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.UpdatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.UpdatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.UpdatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.UpdatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.RowVersion exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.RowVersion type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.RowVersion nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry.RowVersion identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryEntry primary key",
+      "passed": true
+    },
+    {
+      "name": "CK_DS_Kind active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DS_Link active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DS_Coord active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DS_Price active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DS_Dates active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DS_Duration active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DS_Status active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DS_Title active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DS_Self active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DS_Hours active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryEntry_ParentId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryEntry_ParentId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryEntry_PlaceId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryEntry_PlaceId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryEntry_ServiceId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryEntry_ServiceId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryEntry_CreatedBy trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryEntry_CreatedBy columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryEntry_UpdatedBy trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryEntry_UpdatedBy columns",
+      "passed": true
+    },
+    {
+      "name": "UX_DS_Slug definition",
+      "passed": true
+    },
+    {
+      "name": "UX_DS_Place definition",
+      "passed": true
+    },
+    {
+      "name": "UX_DS_Service definition",
+      "passed": true
+    },
+    {
+      "name": "IX_DS_Search definition",
+      "passed": true
+    },
+    {
+      "name": "IX_DS_Parent definition",
+      "passed": true
+    },
+    {
+      "name": "IX_DS_Dates definition",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.EntryId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.EntryId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.EntryId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.EntryId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.Code exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.Code type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.Code nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.Code identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.Code width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.State exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.State type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.State nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.State identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.State width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.Note exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.Note type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.Note nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.Note identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature.Note width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFeature primary key",
+      "passed": true
+    },
+    {
+      "name": "CK_DSF_State active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DSF_Code active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryFeature_EntryId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryFeature_EntryId columns",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Id exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Id type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Id nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Id identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.EntryId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.EntryId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.EntryId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.EntryId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Label exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Label type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Label nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Label identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Label width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Amount exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Amount type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Amount nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Amount identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Amount precision",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Unit exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Unit type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Unit nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Unit identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Unit width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Conditions exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Conditions type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Conditions nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Conditions identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Conditions width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Included exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Included type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Included nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Included identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Included width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Extra exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Extra type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Extra nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Extra identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Extra width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Active exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Active type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Active nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Active identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.From exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.From type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.From nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.From identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Until exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Until type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Until nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice.Until identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryPrice primary key",
+      "passed": true
+    },
+    {
+      "name": "CK_DSP_Amount active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DSP_Dates active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryPrice_EntryId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryPrice_EntryId columns",
+      "passed": true
+    },
+    {
+      "name": "IX_DSP_Entry definition",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Id exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Id type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Id nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Id identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.EntryId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.EntryId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.EntryId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.EntryId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.OwnerId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.OwnerId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.OwnerId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.OwnerId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Question exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Question type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Question nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Question identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Question width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Answer exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Answer type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Answer nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Answer identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Answer width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnswerSource exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnswerSource type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnswerSource nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnswerSource identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnswerSource width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnsweredBy exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnsweredBy type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnsweredBy nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnsweredBy identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnsweredAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnsweredAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnsweredAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.AnsweredAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Status exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Status type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Status nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Status identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.Status width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.SubmissionId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.SubmissionId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.SubmissionId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.SubmissionId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.CreatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.CreatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.CreatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.CreatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.UpdatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.UpdatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.UpdatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.UpdatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.RowVersion exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.RowVersion type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.RowVersion nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion.RowVersion identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryQuestion primary key",
+      "passed": true
+    },
+    {
+      "name": "CK_DSQ_Status active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DSQ_Answer active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryQuestion_EntryId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryQuestion_EntryId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryQuestion_OwnerId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryQuestion_OwnerId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryQuestion_AnsweredBy trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryQuestion_AnsweredBy columns",
+      "passed": true
+    },
+    {
+      "name": "IX_DSQ_Entry definition",
+      "passed": true
+    },
+    {
+      "name": "UX_DSQ_Send definition",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Id exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Id type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Id nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Id identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.EntryId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.EntryId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.EntryId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.EntryId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.OwnerId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.OwnerId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.OwnerId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.OwnerId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Title exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Title type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Title nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Title identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Title width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Body exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Body type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Body nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Body identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Body width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Topics exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Topics type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Topics nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Topics identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Topics width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.VisitedOn exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.VisitedOn type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.VisitedOn nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.VisitedOn identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Rating exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Rating type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Rating nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Rating identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Status exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Status type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Status nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Status identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.Status width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.ModeratedBy exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.ModeratedBy type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.ModeratedBy nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.ModeratedBy identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.ModerationNote exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.ModerationNote type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.ModerationNote nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.ModerationNote identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.ModerationNote width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.SubmissionId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.SubmissionId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.SubmissionId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.SubmissionId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.CreatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.CreatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.CreatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.CreatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.UpdatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.UpdatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.UpdatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.UpdatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.RowVersion exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.RowVersion type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.RowVersion nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience.RowVersion identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryExperience primary key",
+      "passed": true
+    },
+    {
+      "name": "CK_DSE_Status active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DSE_Rating active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryExperience_EntryId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryExperience_EntryId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryExperience_OwnerId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryExperience_OwnerId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryExperience_ModeratedBy trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryExperience_ModeratedBy columns",
+      "passed": true
+    },
+    {
+      "name": "IX_DSE_Entry definition",
+      "passed": true
+    },
+    {
+      "name": "UX_DSE_Send definition",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Id exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Id type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Id nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Id identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.EntryId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.EntryId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.EntryId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.EntryId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.OwnerId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.OwnerId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.OwnerId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.OwnerId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Category exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Category type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Category nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Category identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Category width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Body exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Body type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Body nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Body identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Body width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.EvidenceUrl exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.EvidenceUrl type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.EvidenceUrl nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.EvidenceUrl identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.EvidenceUrl width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Status exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Status type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Status nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Status identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Status width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Response exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Response type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Response nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Response identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.Response width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.HandledBy exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.HandledBy type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.HandledBy nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.HandledBy identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.SubmissionId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.SubmissionId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.SubmissionId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.SubmissionId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.CreatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.CreatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.CreatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.CreatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.UpdatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.UpdatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.UpdatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.UpdatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.RowVersion exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.RowVersion type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.RowVersion nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport.RowVersion identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryReport primary key",
+      "passed": true
+    },
+    {
+      "name": "CK_DSR_Status active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DSR_Category active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "CK_DSR_Response active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryReport_EntryId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryReport_EntryId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryReport_OwnerId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryReport_OwnerId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryReport_HandledBy trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryReport_HandledBy columns",
+      "passed": true
+    },
+    {
+      "name": "IX_DSR_Status definition",
+      "passed": true
+    },
+    {
+      "name": "UX_DSR_Send definition",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.EntryId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.EntryId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.EntryId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.EntryId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.OwnerId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.OwnerId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.OwnerId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.OwnerId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.Active exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.Active type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.Active nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.Active identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.UpdatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.UpdatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.UpdatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.UpdatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.RowVersion exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.RowVersion type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.RowVersion nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow.RowVersion identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryFollow primary key",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryFollow_EntryId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryFollow_EntryId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryFollow_OwnerId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryFollow_OwnerId columns",
+      "passed": true
+    },
+    {
+      "name": "IX_DSF_Owner definition",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Id exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Id type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Id nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Id identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.EntryId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.EntryId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.EntryId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.EntryId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.ActorId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.ActorId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.ActorId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.ActorId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.BeforeJson exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.BeforeJson type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.BeforeJson nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.BeforeJson identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.BeforeJson width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.AfterJson exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.AfterJson type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.AfterJson nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.AfterJson identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.AfterJson width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Summary exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Summary type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Summary nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Summary identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Summary width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Public exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Public type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Public nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.Public identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.CreatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.CreatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.CreatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision.CreatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRevision primary key",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryRevision_EntryId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryRevision_EntryId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryRevision_ActorId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryRevision_ActorId columns",
+      "passed": true
+    },
+    {
+      "name": "IX_DSRevision_Entry definition",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Id exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Id type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Id nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Id identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.EntryId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.EntryId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.EntryId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.EntryId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.OwnerId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.OwnerId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.OwnerId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.OwnerId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.BaseVersion exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.BaseVersion type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.BaseVersion nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.BaseVersion identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.BaseVersion width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Payload exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Payload type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Payload nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Payload identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Payload width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Status exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Status type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Status nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Status identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Status width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Reason exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Reason type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Reason nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Reason identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.Reason width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.ReviewedBy exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.ReviewedBy type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.ReviewedBy nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.ReviewedBy identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.SubmissionId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.SubmissionId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.SubmissionId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.SubmissionId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.CreatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.CreatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.CreatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.CreatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.UpdatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.UpdatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.UpdatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.UpdatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.RowVersion exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.RowVersion type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.RowVersion nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal.RowVersion identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryProposal primary key",
+      "passed": true
+    },
+    {
+      "name": "CK_DSProposal_Status active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryProposal_EntryId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryProposal_EntryId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryProposal_OwnerId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryProposal_OwnerId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryProposal_ReviewedBy trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryProposal_ReviewedBy columns",
+      "passed": true
+    },
+    {
+      "name": "IX_DSProposal_Status definition",
+      "passed": true
+    },
+    {
+      "name": "UX_DSProposal_Send definition",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Id exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Id type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Id nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Id identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.OwnerId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.OwnerId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.OwnerId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.OwnerId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Name exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Name type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Name nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Name identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Name width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Note exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Note type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Note nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Note identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Note width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Archived exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Archived type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Archived nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.Archived identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.UpdatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.UpdatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.UpdatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.UpdatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.RowVersion exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.RowVersion type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.RowVersion nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection.RowVersion identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollection primary key",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryCollection_OwnerId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryCollection_OwnerId columns",
+      "passed": true
+    },
+    {
+      "name": "IX_DSCollection_Owner definition",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.CollectionId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.CollectionId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.CollectionId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.CollectionId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.EntryId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.EntryId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.EntryId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.EntryId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.Note exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.Note type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.Note nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.Note identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.Note width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.Removed exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.Removed type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.Removed nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.Removed identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.UpdatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.UpdatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.UpdatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.UpdatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.RowVersion exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.RowVersion type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.RowVersion nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem.RowVersion identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryCollectionItem primary key",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryCollectionItem_CollectionId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryCollectionItem_CollectionId columns",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryCollectionItem_EntryId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryCollectionItem_EntryId columns",
+      "passed": true
+    },
+    {
+      "name": "IX_DSCollectionItem_Entry definition",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Id exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Id type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Id nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Id identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.OwnerId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.OwnerId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.OwnerId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.OwnerId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Name exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Name type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Name nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Name identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Name width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.PointsJson exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.PointsJson type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.PointsJson nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.PointsJson identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.PointsJson width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Mode exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Mode type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Mode nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Mode identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Mode width",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Archived exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Archived type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Archived nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.Archived identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.SubmissionId exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.SubmissionId type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.SubmissionId nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.SubmissionId identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.UpdatedAt exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.UpdatedAt type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.UpdatedAt nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.UpdatedAt identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.RowVersion exists",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.RowVersion type",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.RowVersion nullability",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute.RowVersion identity",
+      "passed": true
+    },
+    {
+      "name": "DiscoveryRoute primary key",
+      "passed": true
+    },
+    {
+      "name": "CK_DSRoute_Mode active/trusted definition",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryRoute_OwnerId trusted NO ACTION",
+      "passed": true
+    },
+    {
+      "name": "FK_DiscoveryRoute_OwnerId columns",
+      "passed": true
+    },
+    {
+      "name": "IX_DSRoute_Owner definition",
+      "passed": true
+    },
+    {
+      "name": "UX_DSRoute_Send definition",
+      "passed": true
+    },
+    {
+      "name": "46 original + 12 extension tables",
+      "passed": true
+    }
+  ],
+  "database": "HoTroDuLich",
+  "date": "2026-11-08T07:19:29.027Z"
+}

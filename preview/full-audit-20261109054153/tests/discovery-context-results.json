@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "checks": 29,
+  "observations": [
+    {
+      "name": "Question lookup separates price from target: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Structured price answer uses published fact",
+      "passed": true
+    },
+    {
+      "name": "Specific target retained",
+      "passed": true
+    },
+    {
+      "name": "Infer region/category/confirmed indoor: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Intent-based result contains confirmed indoor place",
+      "passed": true
+    },
+    {
+      "name": "Visible removable inferred conditions",
+      "passed": true
+    },
+    {
+      "name": "Common lodging query: 200 ",
+      "passed": true
+    },
+    {
+      "name": "External sourced lodging appears in appropriate category",
+      "passed": true
+    },
+    {
+      "name": "Published event requires explicit date range: 422 ",
+      "passed": true
+    },
+    {
+      "name": "Publish one-day event: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Event on chosen date: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Event included on actual day",
+      "passed": true
+    },
+    {
+      "name": "Event excluded outside announced day",
+      "passed": true
+    },
+    {
+      "name": "Missing event coordinates never invented",
+      "passed": true
+    },
+    {
+      "name": "Cannot compare different content kinds: 400 ",
+      "passed": true
+    },
+    {
+      "name": "Edit private collection note: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Notes remain private",
+      "passed": true
+    },
+    {
+      "name": "Stale private note rejected: 409 ",
+      "passed": true
+    },
+    {
+      "name": "Duplicate import allowed without double counting: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Repeated duplicate import idempotent: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Original search route serves new interface: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Canonical search has integrated map",
+      "passed": true
+    },
+    {
+      "name": "Legacy detail bridge /Explore/Place/2: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Legacy detail links expanded information",
+      "passed": true
+    },
+    {
+      "name": "Legacy detail bridge /Explore/Detail/1: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Legacy detail links expanded information",
+      "passed": true
+    },
+    {
+      "name": "Enrichment cannot overwrite original published fields: 302 ",
+      "passed": true
+    },
+    {
+      "name": "Original name/price untouched",
+      "passed": true
+    },
+    {
+      "name": "Public source fields stay authoritative",
+      "passed": true
+    }
+  ],
+  "date": "2026-11-09T10:54:43.126Z"
+}

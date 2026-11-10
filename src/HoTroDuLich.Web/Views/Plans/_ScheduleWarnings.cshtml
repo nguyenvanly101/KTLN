@@ -1,0 +1,7 @@
+@model List<HoatDongLichTrinh>
+@{var warnings=ViewData["ScheduleWarnings"] as List<ScheduleWarning>??JourneyService.Warnings(Model);var missing=Model.Count(x=>x.Gio==null||x.ThoiLuongPhut==null);}
+<section class="schedule-check panel" aria-label="Kiểm tra thời gian lịch trình"><span class="eyebrow">NHỊP ĐI VỪA SỨC</span><h3>Thời gian giữa các điểm dừng</h3>
+@if(warnings.Count>0){<ul class="schedule-warning-list">@foreach(var warning in warnings){<li><a href="#activity-@warning.ActivityId">@warning.Message</a></li>}</ul>}
+else if(Model.Count>0&&missing==0){<p>Chưa phát hiện xung đột theo thời lượng và di chuyển đã nhập.</p>}
+@if(missing>0){<p class="help">@missing hoạt động chưa có đủ giờ hoặc thời lượng để kiểm tra. Mở “Sửa” để bổ sung.</p>}
+<p class="help">Thời gian di chuyển do bạn ước tính, tính trước khi bắt đầu điểm dừng. Kiểm tra lại tuyến đường và điều kiện thực tế khi đi.</p></section>

@@ -1,0 +1,5 @@
+{
+  "ConnectionString": "Server=(localdb)\\MSSQLLocalDB;Database=HoTroDuLich_Discovery_20261108;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True",
+  "Server": "(localdb)\\MSSQLLocalDB",
+  "Fallback": false
+}

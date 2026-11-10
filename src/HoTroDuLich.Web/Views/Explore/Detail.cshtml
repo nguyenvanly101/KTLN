@@ -1,0 +1,33 @@
+@model DichVuDuLich
+@{
+ ViewData["Title"] = Model.TenDichVu;
+ var provider = (NhaCungCapDichVu)ViewBag.Provider;
+ var trip = ViewBag.TripPlan as KeHoachChuyenDi;
+ var canPlan = User.Identity?.IsAuthenticated != true || User.IsInRole(TravelService.Traveler);
+ var existingActivities = ViewBag.Activities as List<HoatDongLichTrinh> ?? [];
+}
+<div class="container-wide">
+ <a class="back" asp-controller="Explore" asp-action="Index" asp-route-planId="@trip?.MaKeHoach" asp-route-region="@trip?.NoiDen">← Khám phá dịch vụ</a>
+ <partial name="_TripContext"/><partial name="/Views/Places/_ServiceBranches.cshtml" model="Model"/><partial name="/Views/Discovery/_LegacyLink.cshtml" model="Model"/>
+ <div class="detail-grid"><article>
+  <div class="detail-gallery"><img src="@Ui.ServiceImage(Model)" alt="@Ui.ServiceImageLabel(Model) · @Model.TenDichVu" class="detail-cover" width="900" height="600"/><span>@Ui.ServiceImageLabel(Model)</span></div>
+  @if(Ui.ServicePhotos(Model.AnhJson).Length>1){<div class="service-photo-grid">@for(var photo=1;photo<Ui.ServicePhotos(Model.AnhJson).Length;photo++){<img src="/service-photos/@Model.MaDichVu/@photo" alt="Ảnh dịch vụ @(photo+1)" loading="lazy" width="400" height="300"/>}</div>}
+  <span class="eyebrow">@DanhMuc.Ten(Model.LoaiDichVu) · @Model.KhuVucPhucVu</span><h1 class="detail-title">@Model.TenDichVu</h1><p class="prose">@Model.MoTa</p>
+  <div class="panel"><h2>Thông tin dịch vụ</h2><dl class="facts"><div><dt>Thời gian phục vụ</dt><dd>@Model.ThoiGianPhucVu</dd></div><div><dt>Tình trạng tiếp nhận</dt><dd><span class="badge @Labels.Badge(Model.TrangThaiTiepNhan.ToString())">@Labels.Status(Model.TrangThaiTiepNhan.ToString())</span></dd></div><div><dt>Khu vực phục vụ</dt><dd>@Model.KhuVucPhucVu</dd></div></dl>
+   
+   <partial name="/Views/Shared/_ServicePublicDetails.cshtml" model="Model"/><h3>Điều kiện phục vụ</h3><p class="prose">@Model.DieuKienPhucVu</p>
+   @if(Model.TamNgungTu != null){<div class="notice warning">Tạm ngừng từ @Model.TamNgungTu đến @(Model.TamNgungDen?.ToString() ?? "khi có thông báo") · @Model.LyDoTamNgung</div>}
+  </div>
+ <a class="btn btn-outline" href="@("/Availability?serviceId="+Model.MaDichVu+(trip!=null?"&planId="+trip.MaKeHoach:""))">@Ui.Icon("calendar") Xem lịch phục vụ</a><partial name="/Views/Shared/_ServiceReviewSummary.cshtml" model="Model"/>
+ </article><aside class="sticky-panel"><div class="panel"><span class="eyebrow">GIÁ THAM KHẢO</span><h2>@Labels.Money(Model.GiaThamKhao)</h2><p class="price-unit">/ @(Model.DonViGia??"đơn vị giá chưa được công bố")</p><p class="help">Nhà cung cấp sẽ xác nhận giá và khả năng phục vụ khi phản hồi yêu cầu.</p>
+  <partial name="_SaveChoice" model="@(new SavedInput{ServiceId=Model.MaDichVu,ReturnUrl=Context.Request.Path+Context.Request.QueryString})"/>
+  @if(canPlan){
+   @if(Model.TrangThaiTiepNhan == TrangThaiTiepNhan.TiepNhan && provider.TrangThaiQuyenHoatDong == TrangThaiQuyenHoatDong.DangHoatDong){<a class="btn btn-dark w-100 mt-3" asp-controller="Bookings" asp-action="Create" asp-route-branchId="@Context.Request.Query["branchId"]" asp-route-id="@Model.MaDichVu" asp-route-planId="@trip?.MaKeHoach" asp-route-activityId="@(existingActivities.FirstOrDefault()?.MaHoatDong)">Yêu cầu đặt dịch vụ @Ui.Icon("arrow")</a>}
+   else {<div class="notice warning">Dịch vụ hiện không tiếp nhận yêu cầu mới.</div>}
+   @if(trip != null){<a class="btn btn-outline w-100 mt-3" href="/Plans/Activity/@trip.MaKeHoach?serviceId=@Model.MaDichVu">@Ui.Icon("plus") Thêm vào chuyến này</a>}
+   else {<a class="btn btn-outline w-100 mt-3" href="/Plans/Select?serviceId=@Model.MaDichVu">@Ui.Icon("plus") Thêm vào lịch trình</a>}
+   @if(existingActivities.Count > 0){<p class="help mt-3">Dịch vụ đã có trong lịch trình. Bạn vẫn có thể thêm vào ngày khác.</p>}
+   <div class="notice">Thêm vào lịch trình để dự kiến hoạt động. Gửi yêu cầu đặt khi bạn muốn nhà cung cấp xác nhận.</div>
+  }
+ </div><div class="panel"><span class="eyebrow">NHÀ CUNG CẤP</span><h3>@provider.TenDonVi</h3><span class="badge @Labels.Badge(provider.TrangThaiXacMinh.ToString())">@Labels.Status(provider.TrangThaiXacMinh.ToString())</span><p class="help mt-3">Địa chỉ đăng ký đối tác: @provider.DiaChi</p><p class="help">@provider.SoDienThoai · @provider.EmailLienHe</p></div></aside></div>
+</div>

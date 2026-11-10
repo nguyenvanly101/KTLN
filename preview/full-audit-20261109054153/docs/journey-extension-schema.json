@@ -1,0 +1,368 @@
+{
+  "version": 1,
+  "tables": {
+    "ChiaSeChuyenDi": [
+      {
+        "name": "MaChiaSe",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "rules": "PK",
+        "default": null
+      },
+      {
+        "name": "MaKeHoach",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "rules": "FK → KeHoachChuyenDi",
+        "default": null
+      },
+      {
+        "name": "TokenHash",
+        "sqlType": "CHAR(64)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "SnapshotJson",
+        "sqlType": "NVARCHAR(max)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "HanSuDung",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "DaThuHoi",
+        "sqlType": "BIT",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "ChiaSeNganSach",
+        "sqlType": "BIT",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "ChiaSeDichVu",
+        "sqlType": "BIT",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "ThoiDiemTao",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      }
+    ],
+    "DanhGiaDichVu": [
+      {
+        "name": "MaDanhGia",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "rules": "PK",
+        "default": null
+      },
+      {
+        "name": "MaYeuCau",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "rules": "FK → YeuCauDatDichVu",
+        "default": null
+      },
+      {
+        "name": "SoSao",
+        "sqlType": "INT",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "NoiDung",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "TrangThai",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "LyDoKiemDuyet",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "PhanHoiNCC",
+        "sqlType": "NVARCHAR(2000)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "TrangThaiPhanHoi",
+        "sqlType": "VARCHAR(30)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "LyDoPhanHoi",
+        "sqlType": "NVARCHAR(500)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "ThoiDiemTao",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "ThoiDiemCapNhat",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      }
+    ],
+    "LichPhucVuDichVu": [
+      {
+        "name": "MaLich",
+        "sqlType": "BIGINT IDENTITY",
+        "nullable": "",
+        "rules": "PK",
+        "default": null
+      },
+      {
+        "name": "MaDichVu",
+        "sqlType": "BIGINT",
+        "nullable": "",
+        "rules": "FK → DichVuDuLich",
+        "default": null
+      },
+      {
+        "name": "Ngay",
+        "sqlType": "DATE",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "TiepNhan",
+        "sqlType": "BIT",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "SoLuongThamKhao",
+        "sqlType": "INT",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "GhiChu",
+        "sqlType": "NVARCHAR(300)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "ThoiDiemCapNhat",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "RowVersion",
+        "sqlType": "ROWVERSION",
+        "nullable": "",
+        "rules": "",
+        "default": null
+      }
+    ]
+  },
+  "additionalColumns": {
+    "HoatDongLichTrinh": [
+      {
+        "name": "ThoiLuongPhut",
+        "sqlType": "INT",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "DiChuyenTruocPhut",
+        "sqlType": "INT",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      },
+      {
+        "name": "HoanThanhLuc",
+        "sqlType": "DATETIME2(0)",
+        "nullable": "x",
+        "rules": "",
+        "default": null
+      }
+    ]
+  },
+  "checks": [
+    {
+      "table": "HoatDongLichTrinh",
+      "name": "CK_HoatDong_ThoiLuong",
+      "expression": "ThoiLuongPhut IS NULL OR ThoiLuongPhut BETWEEN 1 AND 1440"
+    },
+    {
+      "table": "HoatDongLichTrinh",
+      "name": "CK_HoatDong_DiChuyen",
+      "expression": "DiChuyenTruocPhut IS NULL OR DiChuyenTruocPhut BETWEEN 0 AND 720"
+    },
+    {
+      "table": "ChiaSeChuyenDi",
+      "name": "CK_ChiaSe_Han",
+      "expression": "HanSuDung>ThoiDiemTao"
+    },
+    {
+      "table": "ChiaSeChuyenDi",
+      "name": "CK_ChiaSe_Snapshot",
+      "expression": "ISJSON(SnapshotJson)=1"
+    },
+    {
+      "table": "DanhGiaDichVu",
+      "name": "CK_DanhGia_Sao",
+      "expression": "SoSao BETWEEN 1 AND 5"
+    },
+    {
+      "table": "DanhGiaDichVu",
+      "name": "CK_DanhGia_TrangThai",
+      "expression": "TrangThai IN ('ChoDuyet','DaDuyet','An')"
+    },
+    {
+      "table": "DanhGiaDichVu",
+      "name": "CK_DanhGia_PhanHoi",
+      "expression": "TrangThaiPhanHoi IN ('ChoDuyet','DaDuyet','An')"
+    },
+    {
+      "table": "DanhGiaDichVu",
+      "name": "CK_DanhGia_PhanHoiRong",
+      "expression": "PhanHoiNCC IS NOT NULL OR TrangThaiPhanHoi='ChoDuyet'"
+    },
+    {
+      "table": "LichPhucVuDichVu",
+      "name": "CK_LichPhucVu_SoLuong",
+      "expression": "SoLuongThamKhao IS NULL OR SoLuongThamKhao BETWEEN 1 AND 10000"
+    }
+  ],
+  "indexes": [
+    {
+      "table": "ChiaSeChuyenDi",
+      "name": "UX_ChiaSe_Token",
+      "unique": true,
+      "keys": [
+        [
+          "TokenHash",
+          false
+        ]
+      ]
+    },
+    {
+      "table": "ChiaSeChuyenDi",
+      "name": "IX_ChiaSe_KeHoach",
+      "keys": [
+        [
+          "MaKeHoach",
+          false
+        ],
+        [
+          "ThoiDiemTao",
+          true
+        ]
+      ]
+    },
+    {
+      "table": "DanhGiaDichVu",
+      "name": "UX_DanhGia_YeuCau",
+      "unique": true,
+      "keys": [
+        [
+          "MaYeuCau",
+          false
+        ]
+      ]
+    },
+    {
+      "table": "DanhGiaDichVu",
+      "name": "IX_DanhGia_TrangThai",
+      "keys": [
+        [
+          "TrangThai",
+          false
+        ],
+        [
+          "ThoiDiemCapNhat",
+          true
+        ]
+      ]
+    },
+    {
+      "table": "LichPhucVuDichVu",
+      "name": "UX_LichPhucVu_Ngay",
+      "unique": true,
+      "keys": [
+        [
+          "MaDichVu",
+          false
+        ],
+        [
+          "Ngay",
+          false
+        ]
+      ]
+    }
+  ],
+  "counts": {
+    "tables": 31,
+    "columns": 335,
+    "foreignKeys": 47,
+    "checks": 132,
+    "uniqueIndexes": 25,
+    "queryIndexes": 40
+  }
+}

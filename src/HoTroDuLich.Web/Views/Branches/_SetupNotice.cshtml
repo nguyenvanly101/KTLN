@@ -1,0 +1,5 @@
+@model List<DichVuDuLich>
+@inject HoTroDuLich.Web.Data.AppDbContext BranchDb
+@using Microsoft.EntityFrameworkCore
+@{var ids=Model.Select(x=>x.MaDichVu).ToArray();var linked=await BranchDb.Set<DichVuCoSo>().Where(x=>ids.Contains(x.ServiceId)).Select(x=>x.ServiceId).Distinct().ToListAsync();var missing=Model.Count(x=>!linked.Contains(x.MaDichVu));}
+<div class="notice"><strong>Cơ sở & chi nhánh trên bản đồ</strong><p>Thêm từng địa chỉ bạn quản lý, gửi duyệt cơ sở, rồi chọn cơ sở khi đăng dịch vụ.</p><a class="text-link" href="/nha-cung-cap/co-so">Quản lý cơ sở & chi nhánh @Ui.Icon("arrow")</a>@if(missing>0){<p class="help">@missing dịch vụ hiện chưa gắn cơ sở. Mở từng dịch vụ để chọn cơ sở áp dụng; thông tin đang công bố được giữ đến khi bản cập nhật được duyệt.</p>}</div>

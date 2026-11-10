@@ -1,0 +1,247 @@
+{
+  "expectedTables": 25,
+  "actualTables": 25,
+  "expectedColumns": 267,
+  "actualColumns": 267,
+  "foreignKeys": 38,
+  "checks": 117,
+  "uniqueIndexes": 18,
+  "normalIndexes": 26,
+  "views": 0,
+  "columnsMissing": {},
+  "typesDifferent": {
+    "TaiKhoan": [
+      {
+        "column": "ThoiDiemTao",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      },
+      {
+        "column": "ThoiDiemDangNhapCuoi",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NULL"
+      },
+      {
+        "column": "ThoiDiemNgung",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NULL"
+      }
+    ],
+    "HoSoNguoiDung": [
+      {
+        "column": "ThoiDiemCapNhat",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "NhaCungCapDichVu": [
+      {
+        "column": "ThoiDiemTao",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "HoSoXacMinhNhaCungCap": [
+      {
+        "column": "ThoiDiemNop",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "QuyetDinhXacMinh": [
+      {
+        "column": "ThoiDiemDuyet",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "TaiLieuXacMinh": [
+      {
+        "column": "ThoiDiemTai",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "QuyetDinhQuyenHoatDong": [
+      {
+        "column": "ThoiDiem",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "GiaiTrinhNhaCungCap": [
+      {
+        "column": "ThoiDiemGui",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      },
+      {
+        "column": "ThoiDiemXemXet",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NULL"
+      }
+    ],
+    "TaiLieuGiaiTrinh": [
+      {
+        "column": "ThoiDiemTai",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "DichVuDuLich": [
+      {
+        "column": "ThoiDiemTao",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      },
+      {
+        "column": "ThoiDiemCapNhat",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "BanCapNhatDichVu": [
+      {
+        "column": "ThoiDiemGui",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      },
+      {
+        "column": "ThoiDiemDuyet",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NULL"
+      }
+    ],
+    "KeHoachChuyenDi": [
+      {
+        "column": "ThoiDiemTao",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      },
+      {
+        "column": "ThoiDiemCapNhat",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "HoatDongLichTrinh": [
+      {
+        "column": "Gio",
+        "expected": "TIME(0)",
+        "actual": "time NULL"
+      }
+    ],
+    "TinhHuongPhatSinh": [
+      {
+        "column": "ThoiDiemGhiNhan",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      },
+      {
+        "column": "ThoiDiemCapNhat",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "PhuongAnXuLy": [
+      {
+        "column": "ThoiDiemChon",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "NhuCauDongHanh": [
+      {
+        "column": "ThoiDiemDang",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "DeNghiKetNoiDongHanh": [
+      {
+        "column": "ThoiDiemGui",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      },
+      {
+        "column": "ThoiDiemPhanHoi",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NULL"
+      }
+    ],
+    "ThoaThuanDongHanh": [
+      {
+        "column": "ThoiDiemDeXuat",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      },
+      {
+        "column": "ThoiDiemXacNhan",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NULL"
+      },
+      {
+        "column": "ThoiDiemKetThuc",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NULL"
+      }
+    ],
+    "YeuCauDatDichVu": [
+      {
+        "column": "ThoiDiemGui",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      },
+      {
+        "column": "ThoiDiemPhanHoi",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NULL"
+      }
+    ],
+    "DeNghiDieuChinhDichVu": [
+      {
+        "column": "ThoiDiemGui",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      },
+      {
+        "column": "ThoiDiemPhanHoi",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NULL"
+      }
+    ],
+    "KetQuaCungCapDichVu": [
+      {
+        "column": "ThoiDiemGhi",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      },
+      {
+        "column": "ThoiDiemPhanAnh",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NULL"
+      },
+      {
+        "column": "ThoiDiemKiemTra",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NULL"
+      }
+    ],
+    "ThongBao": [
+      {
+        "column": "ThoiDiemTao",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ],
+    "NhatKyThaoTac": [
+      {
+        "column": "ThoiDiem",
+        "expected": "DATETIME2(0)",
+        "actual": "datetime2 NOT NULL"
+      }
+    ]
+  },
+  "defaultClauses": 0,
+  "filteredIndexes": 8
+}

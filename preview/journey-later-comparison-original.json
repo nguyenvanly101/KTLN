@@ -1,0 +1,120 @@
+{
+  "passed": false,
+  "checks": 28,
+  "observations": [
+    {
+      "name": "BanCapNhatDichVu",
+      "passed": true
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu",
+      "passed": true
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh",
+      "passed": true
+    },
+    {
+      "name": "DiaDiemDuLich",
+      "passed": true
+    },
+    {
+      "name": "DichVuDuLich",
+      "passed": true
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap",
+      "passed": true
+    },
+    {
+      "name": "HoatDongLichTrinh",
+      "passed": true
+    },
+    {
+      "name": "HoSoNguoiDung",
+      "passed": true
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap",
+      "passed": false
+    },
+    {
+      "name": "KeHoachChuyenDi",
+      "passed": true
+    },
+    {
+      "name": "KetQuaCungCapDichVu",
+      "passed": true
+    },
+    {
+      "name": "KhoanChiChuyenDi",
+      "passed": true
+    },
+    {
+      "name": "LuaChonDaLuu",
+      "passed": false
+    },
+    {
+      "name": "MucChuanBi",
+      "passed": true
+    },
+    {
+      "name": "NhaCungCapDichVu",
+      "passed": false
+    },
+    {
+      "name": "NhatKyThaoTac",
+      "passed": false
+    },
+    {
+      "name": "NhuCauDongHanh",
+      "passed": true
+    },
+    {
+      "name": "PhuongAnXuLy",
+      "passed": true
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong",
+      "passed": false
+    },
+    {
+      "name": "QuyetDinhXacMinh",
+      "passed": false
+    },
+    {
+      "name": "TaiKhoan",
+      "passed": false
+    },
+    {
+      "name": "TaiLieuGiaiTrinh",
+      "passed": true
+    },
+    {
+      "name": "TaiLieuXacMinh",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongHoatDong",
+      "passed": true
+    },
+    {
+      "name": "TinhHuongPhatSinh",
+      "passed": true
+    },
+    {
+      "name": "ThoaThuanDongHanh",
+      "passed": true
+    },
+    {
+      "name": "ThongBao",
+      "passed": false
+    },
+    {
+      "name": "YeuCauDatDichVu",
+      "passed": true
+    }
+  ],
+  "date": "2026-11-05T06:45:20.384Z",
+  "note": "Read-only comparison through the active SQL pipe after the user opened a separate dotnet run process."
+}

@@ -1,0 +1,16 @@
+-- Run with sqlcmd or SSMS SQLCMD mode from the Database folder.
+IF DB_ID(N'HoTroDuLichTuTuc') IS NULL
+    CREATE DATABASE [HoTroDuLichTuTuc] COLLATE Vietnamese_100_CI_AS_SC;
+GO
+ALTER DATABASE [HoTroDuLichTuTuc] SET READ_COMMITTED_SNAPSHOT ON;
+ALTER DATABASE [HoTroDuLichTuTuc] SET ALLOW_SNAPSHOT_ISOLATION OFF;
+ALTER DATABASE [HoTroDuLichTuTuc] SET RECOVERY FULL;
+ALTER DATABASE [HoTroDuLichTuTuc] SET PAGE_VERIFY CHECKSUM;
+ALTER DATABASE [HoTroDuLichTuTuc] SET AUTO_CLOSE OFF;
+GO
+USE [HoTroDuLichTuTuc];
+GO
+:r schema.sql
+:r Quyen_CSDL.sql
+
+:r KiemTra_FullText.sql

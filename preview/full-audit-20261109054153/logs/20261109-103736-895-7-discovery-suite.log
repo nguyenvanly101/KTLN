@@ -1,0 +1,69 @@
+PASS 54 information-search checks
+AssertionError [ERR_ASSERTION]: Enrichment cannot overwrite original published fields: 400  
+ 
+ 
+       
+  Bổ sung thông tin tra cứu · Hành Trình 
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ Đến nội dung chính 
+ 
+         Hành Trình ĐI ĐỂ CÓ CHUYỆN KỂ   
+  
+        Khám phá Việt Nam 
+        Tìm bạn đồng hành 
+  
+  
+        
+     Q  Quản trị viên        Quản trị viên       Thông tin cá nhân       Thông báo         Đăng xuất    
+       
+  
+ 
+ 
+  
+    Không gian quản trị  Vận hành hệ thống  
+   
+         Tổng quan 
+          Duyệt & xác minh        Xét duyệt dịch vụ  Xét duyệt cơ sở  Địa điểm & cửa vào  Xác minh nhà cung cấp  Đánh giá trải nghiệm  Báo cáo đồng hành   
+         Quyền nhà cung cấp 
+         Nhật ký hoạt động 
+      Thông tin tra cứu      
+          Tài khoản        Thông tin cá nhân  Thông báo   Đổi mật khẩu   
+   
+          Còn nhiều nơi để khám phá.  Tìm cảm hứng cho hành trình tiếp theo.  Khám phá Việt Nam       
+    Q   Quản trị viên  Quản trị viên   
+  
+ 
+   Không gian quản trị  /  Thông tin tra cứu  /  Bổ sung thông tin tra cứu        09.11.2026      ← Quản lý thông tin    THÔNG TIN RÕ RÀNG. LỰA CHỌN DỄ HƠN.  Bổ sung thông tin tra cứu  Kiểm tra nguồn, vị trí và thời gian áp dụng trước khi công bố.   
+ 
+         The Nội dung field is required. 
+  
+   Nội dung chính  Các trường gốc chỉ đọc. Đổi tên/mô tả/giá/giờ dịch vụ tại Quản lý dịch vụ theo luồng công bố hiện có. Tại đây bổ sung hướng dẫn, vị trí, tiện ích, bảng giá chi tiết và nguồn.    Loại thông tin   Điểm đến  Khu vực  Tham quan  Dịch vụ  Cẩm nang  Di chuyển  Sự kiện  Tiện ích     Khu vực     Tiêu đề   Thuộc điểm đến / khu vực   Không gắn mục cha  Đà Lạt · Điểm đến  Hội An · Điểm đến  Khu phố cổ Hội An · Khu vực   Tóm tắt giúp khách quyết định  
+Không được ghi đè mô tả gốc  Thông tin thực tế / hướng dẫn  
+  Chủ đề và tên gọi khác   Ví dụ: đi b
+    at check (D:\KLTN\preview\full-audit-20261109054153\tests\discovery-context.cjs:2:32)
+    at status (D:\KLTN\preview\full-audit-20261109054153\tests\discovery-context.cjs:2:123)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D:\KLTN\preview\full-audit-20261109054153\tests\discovery-context.cjs:18:384
+    at async D:\KLTN\preview\full-audit-20261109054153\tests\discovery-suite.cjs:5:135 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+Error: Không đạt: ./discovery-context.cjs
+    at D:\KLTN\preview\full-audit-20261109054153\tests\discovery-suite.cjs:5:183
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)

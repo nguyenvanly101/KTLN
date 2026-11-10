@@ -1,0 +1,273 @@
+{
+  "passed": true,
+  "checks": 58,
+  "database": "HoTroDuLich_Journey_20261105",
+  "backup": "D:\\KLTN\\preview\\backups\\HoTroDuLich_before_journey_20261105_023055.bak",
+  "before": [
+    {
+      "name": "BanCapNhatDichVu",
+      "rows": 6,
+      "sha256": "D99FB82CDC18BCEE160D9D54AED4A8B819DBB337152388FFC9D172B31EE0B1DA"
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu",
+      "rows": 0
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh",
+      "rows": 1,
+      "sha256": "1EA1D7FC087561BCB906606FE5996631F95F2AB93BAC7A10B08DC057ACF89D61"
+    },
+    {
+      "name": "DiaDiemDuLich",
+      "rows": 3,
+      "sha256": "42C2829284DD6E26D803C48585AFD95ED23BCDBCC4A030D0D040D86BFAF348C2"
+    },
+    {
+      "name": "DichVuDuLich",
+      "rows": 6,
+      "sha256": "B354A1C82004B39274DBA6ABDDBA57BE0359A2DC6F545BE944391BDD80FA1E82"
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap",
+      "rows": 0
+    },
+    {
+      "name": "HoatDongLichTrinh",
+      "rows": 2,
+      "sha256": "7C3D320F2C190D6D96A8B611D41C189F7C6DE0E2A9D3173DBAFF914DF3B5DD9D"
+    },
+    {
+      "name": "HoSoNguoiDung",
+      "rows": 5,
+      "sha256": "E0039C5DFD8E4EEAFA0360A8FE448CC96C935A986D6537C937F0238D6B7C31EF"
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap",
+      "rows": 2,
+      "sha256": "B8CD3A4B51309A36EAA57BD0B5789F7AE3D67FF4A60839326A7A298C3406DEA9"
+    },
+    {
+      "name": "KeHoachChuyenDi",
+      "rows": 2,
+      "sha256": "D3EE5EEF26590B9760EBECF42AEF7744429E0AF57000ED47058716C66DCD6BC4"
+    },
+    {
+      "name": "KetQuaCungCapDichVu",
+      "rows": 0
+    },
+    {
+      "name": "KhoanChiChuyenDi",
+      "rows": 0
+    },
+    {
+      "name": "LuaChonDaLuu",
+      "rows": 0
+    },
+    {
+      "name": "MucChuanBi",
+      "rows": 0
+    },
+    {
+      "name": "NhaCungCapDichVu",
+      "rows": 2,
+      "sha256": "653700E962534B52CDF72C616DF375446211BD3DE073E03369E1DB13DA3F9A9B"
+    },
+    {
+      "name": "NhatKyThaoTac",
+      "rows": 47,
+      "sha256": "505D1306BAD4E17272A757748A866DF9D469763654AC5751A67A3148A9ADBDAF"
+    },
+    {
+      "name": "NhuCauDongHanh",
+      "rows": 1,
+      "sha256": "1CAB5CBEC2E90FE5BAF97746F5782DC605194C1CF3A78D3918D9CB448B244DD0"
+    },
+    {
+      "name": "PhuongAnXuLy",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhXacMinh",
+      "rows": 1,
+      "sha256": "224E691769D08577A6EFC59A552DD65C486C6A7F5EC57B39C93514D78A4E22F5"
+    },
+    {
+      "name": "TaiKhoan",
+      "rows": 5,
+      "sha256": "DC246F49813AFFB26000816AEC8F67B750CB6F5B59BA2ACCCB714E94FC07F70E"
+    },
+    {
+      "name": "TaiLieuGiaiTrinh",
+      "rows": 0
+    },
+    {
+      "name": "TaiLieuXacMinh",
+      "rows": 1,
+      "sha256": "1C43DFD6B91398E49C2E648F02FE3331E44FBA69DD08ED3BB6BC288D5B39B045"
+    },
+    {
+      "name": "TinhHuongHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "TinhHuongPhatSinh",
+      "rows": 1,
+      "sha256": "4842DFAFA98BAE26F782115BB51AD4A6097C0D698F7DE0D74D842C90877E699C"
+    },
+    {
+      "name": "ThoaThuanDongHanh",
+      "rows": 1,
+      "sha256": "5BE936EDEC74592FF7CBA46F28B739D4E482E073C41C104751CE8E784B08DDCA"
+    },
+    {
+      "name": "ThongBao",
+      "rows": 7,
+      "sha256": "7FAF6E08AD0AD4AEE39F26268A2A75E9297DEB635B4A2BED9A788F1C91AEDF00"
+    },
+    {
+      "name": "YeuCauDatDichVu",
+      "rows": 0
+    }
+  ],
+  "after": [
+    {
+      "name": "BanCapNhatDichVu",
+      "rows": 6,
+      "sha256": "D99FB82CDC18BCEE160D9D54AED4A8B819DBB337152388FFC9D172B31EE0B1DA"
+    },
+    {
+      "name": "DeNghiDieuChinhDichVu",
+      "rows": 0
+    },
+    {
+      "name": "DeNghiKetNoiDongHanh",
+      "rows": 1,
+      "sha256": "1EA1D7FC087561BCB906606FE5996631F95F2AB93BAC7A10B08DC057ACF89D61"
+    },
+    {
+      "name": "DiaDiemDuLich",
+      "rows": 3,
+      "sha256": "42C2829284DD6E26D803C48585AFD95ED23BCDBCC4A030D0D040D86BFAF348C2"
+    },
+    {
+      "name": "DichVuDuLich",
+      "rows": 6,
+      "sha256": "B354A1C82004B39274DBA6ABDDBA57BE0359A2DC6F545BE944391BDD80FA1E82"
+    },
+    {
+      "name": "GiaiTrinhNhaCungCap",
+      "rows": 0
+    },
+    {
+      "name": "HoatDongLichTrinh",
+      "rows": 2,
+      "sha256": "7C3D320F2C190D6D96A8B611D41C189F7C6DE0E2A9D3173DBAFF914DF3B5DD9D"
+    },
+    {
+      "name": "HoSoNguoiDung",
+      "rows": 5,
+      "sha256": "E0039C5DFD8E4EEAFA0360A8FE448CC96C935A986D6537C937F0238D6B7C31EF"
+    },
+    {
+      "name": "HoSoXacMinhNhaCungCap",
+      "rows": 2,
+      "sha256": "B8CD3A4B51309A36EAA57BD0B5789F7AE3D67FF4A60839326A7A298C3406DEA9"
+    },
+    {
+      "name": "KeHoachChuyenDi",
+      "rows": 2,
+      "sha256": "D3EE5EEF26590B9760EBECF42AEF7744429E0AF57000ED47058716C66DCD6BC4"
+    },
+    {
+      "name": "KetQuaCungCapDichVu",
+      "rows": 0
+    },
+    {
+      "name": "KhoanChiChuyenDi",
+      "rows": 0
+    },
+    {
+      "name": "LuaChonDaLuu",
+      "rows": 0
+    },
+    {
+      "name": "MucChuanBi",
+      "rows": 0
+    },
+    {
+      "name": "NhaCungCapDichVu",
+      "rows": 2,
+      "sha256": "653700E962534B52CDF72C616DF375446211BD3DE073E03369E1DB13DA3F9A9B"
+    },
+    {
+      "name": "NhatKyThaoTac",
+      "rows": 47,
+      "sha256": "505D1306BAD4E17272A757748A866DF9D469763654AC5751A67A3148A9ADBDAF"
+    },
+    {
+      "name": "NhuCauDongHanh",
+      "rows": 1,
+      "sha256": "1CAB5CBEC2E90FE5BAF97746F5782DC605194C1CF3A78D3918D9CB448B244DD0"
+    },
+    {
+      "name": "PhuongAnXuLy",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhQuyenHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "QuyetDinhXacMinh",
+      "rows": 1,
+      "sha256": "224E691769D08577A6EFC59A552DD65C486C6A7F5EC57B39C93514D78A4E22F5"
+    },
+    {
+      "name": "TaiKhoan",
+      "rows": 5,
+      "sha256": "DC246F49813AFFB26000816AEC8F67B750CB6F5B59BA2ACCCB714E94FC07F70E"
+    },
+    {
+      "name": "TaiLieuGiaiTrinh",
+      "rows": 0
+    },
+    {
+      "name": "TaiLieuXacMinh",
+      "rows": 1,
+      "sha256": "1C43DFD6B91398E49C2E648F02FE3331E44FBA69DD08ED3BB6BC288D5B39B045"
+    },
+    {
+      "name": "TinhHuongHoatDong",
+      "rows": 0
+    },
+    {
+      "name": "TinhHuongPhatSinh",
+      "rows": 1,
+      "sha256": "4842DFAFA98BAE26F782115BB51AD4A6097C0D698F7DE0D74D842C90877E699C"
+    },
+    {
+      "name": "ThoaThuanDongHanh",
+      "rows": 1,
+      "sha256": "5BE936EDEC74592FF7CBA46F28B739D4E482E073C41C104751CE8E784B08DDCA"
+    },
+    {
+      "name": "ThongBao",
+      "rows": 7,
+      "sha256": "7FAF6E08AD0AD4AEE39F26268A2A75E9297DEB635B4A2BED9A788F1C91AEDF00"
+    },
+    {
+      "name": "YeuCauDatDichVu",
+      "rows": 0
+    }
+  ],
+  "totals": {
+    "tables": 31,
+    "columns": 335
+  },
+  "date": "2026-11-04T19:39:22.633Z"
+}

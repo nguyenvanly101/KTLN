@@ -1,0 +1,14 @@
+Dong du lieu: 10571 (bo 34 dong tieu de tinh)
+Ma xa moi 05941 co nhieu ten, chon ten pho bien nhat: {'Xã Điềm Thụy': 1, 'Xã Điềm Thuỵ': 3}
+Sua nhan tinh sai trong nguon: 'Quảng Trị (44)' -> 'Tỉnh Quảng Trị (45)' (huyen Con Co)
+Huyen 794 (Thành phố Tân An) co nhan tinh khong thong nhat {'80': 12, '82': 1} -> chon 80 (da bo phieu da so)
+Huyen 900 (Thành phố Hà Tiên) co nhan tinh khong thong nhat {'91': 6, '89': 1} -> chon 91 (da bo phieu da so)
+Xa Xã Đặng Xá (huyen 018) co nhieu ma {'00556': 1, '00553': 1} -> chon 00556
+CAN DOI CHIEU: xa Xã Mỹ Hưng (huyen 049) trung ma nguon 01615 voi xa khac -> ma tam 01615X
+CAN DOI CHIEU: xa Xã Phú Thịnh (huyen 075) trung ma nguon 02485 voi xa khac -> ma tam 02485X
+Thieu tien to loai, mac dinh 'Xã Xuân Quang 3': Cu 22108 'Xuân Quang 3'
+Thieu tien to loai, mac dinh 'Xã Xuân Phước': Cu 22111 'Xuân Phước'
+Cu: tinh=63 huyen=696 xa/phuong/dac khu=10035
+Moi: tinh=34 huyen=0 xa/phuong/dac khu=3321
+Do dai lon nhat: ten=23, ten day du=31
+Anh xa cu->moi: 10571 cap

@@ -1,0 +1,11 @@
+@model DiscoveryCard
+@{var e=Model.Entry;}
+<article class="ds-card" data-entry-card="@e.Id">
+ <a class="ds-card-photo" href="@DiscoveryText.Link(e.Id)"><img src="@Ui.DestinationImage(e.Region)" alt="Ảnh minh họa khu vực @e.Region" width="480" height="320" loading="lazy"/><span>@DiscoveryText.Kind(e.Kind)</span><small>Ảnh minh họa</small></a>
+ <div class="ds-card-copy"><span class="ds-location">@Ui.Icon("pin") @e.Region</span><h3><a href="@DiscoveryText.Link(e.Id)">@e.Title</a></h3><p>@e.Summary</p>
+  @if(e.PriceFrom!=null){<div class="ds-card-price">@Labels.Money(e.PriceFrom) <small>/ @(e.PriceUnit??"chưa công bố đơn vị")</small></div>}
+  @if(Model.ExtraMinutes!=null){<span class="ds-fact">Đi thêm khoảng @Math.Ceiling(Model.ExtraMinutes.Value) phút</span>}else if(Model.DistanceKm!=null){<span class="ds-fact">Cách mốc @Model.DistanceKm.Value.ToString("0.0") km theo vị trí</span>}
+  <small class="ds-source">@(e.CheckedOn!=null?"Kiểm tra nguồn "+e.CheckedOn.Value.ToString("dd/MM/yyyy"):"Chưa có ngày kiểm tra nguồn")</small>
+  <div class="ds-card-actions"><button type="button" class="ds-quiet" data-ds-save="@e.Id" data-title="@e.Title">@Ui.Icon("plus") Lưu</button><label class="ds-compare"><input type="checkbox" data-ds-compare="@e.Id" data-kind="@e.Kind"/> So sánh</label>@if(e.Latitude!=null){<button type="button" class="ds-quiet" data-ds-pin="@e.Id" aria-label="Xem @e.Title trên bản đồ">@Ui.Icon("pin") Bản đồ</button>}</div>
+ </div>
+</article>

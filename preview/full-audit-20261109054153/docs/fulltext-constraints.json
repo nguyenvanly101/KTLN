@@ -1,0 +1,361 @@
+{
+  "checks": [
+    {
+      "name": "CK_KeHoachChuyenDi_Ngay",
+      "expression": "NgayKetThuc >= NgayBatDau",
+      "rule": "RB-M03"
+    },
+    {
+      "name": "CK_NhuCauDongHanh_Ngay",
+      "expression": "NgayKetThuc >= NgayBatDau",
+      "rule": "RB-M03"
+    },
+    {
+      "name": "CK_YeuCauDatDichVu_Ngay",
+      "expression": "NgayKetThuc IS NULL OR NgayKetThuc >= NgayBatDau",
+      "rule": "RB-M03"
+    },
+    {
+      "name": "CK_ThoaThuanDongHanh_Ngay",
+      "expression": "NgayVe >= NgayDi",
+      "rule": "RB-M03"
+    },
+    {
+      "name": "CK_DichVuDuLich_TamNgung",
+      "expression": "(TamNgungTu IS NULL AND TamNgungDen IS NULL AND LyDoTamNgung IS NULL) OR (TamNgungTu IS NOT NULL AND (TamNgungDen IS NULL OR TamNgungDen >= TamNgungTu))",
+      "rule": "RB-M03"
+    },
+    {
+      "name": "CK_BanCapNhatDichVu_TamNgung",
+      "expression": "(TamNgungTu IS NULL AND TamNgungDen IS NULL AND LyDoTamNgung IS NULL) OR (TamNgungTu IS NOT NULL AND (TamNgungDen IS NULL OR TamNgungDen >= TamNgungTu))",
+      "rule": "RB-M03"
+    },
+    {
+      "name": "CK_QuyetDinhXacMinh_LyDo",
+      "expression": "KetQua = 'DaXacMinh' OR (LyDo IS NOT NULL AND LEN(LTRIM(LyDo)) > 0)",
+      "rule": "RB-M04"
+    },
+    {
+      "name": "CK_BanCapNhatDichVu_LyDo",
+      "expression": "TrangThaiDuyet NOT IN ('TuChoi', 'CanSua') OR (LyDo IS NOT NULL AND LEN(LTRIM(LyDo)) > 0)",
+      "rule": "RB-M04"
+    },
+    {
+      "name": "CK_ThoaThuanDongHanh_LyDo",
+      "expression": "TrangThai <> 'TuChoi' OR (LyDo IS NOT NULL AND LEN(LTRIM(LyDo)) > 0)",
+      "rule": "RB-M04"
+    },
+    {
+      "name": "CK_YeuCauDatDichVu_LyDo",
+      "expression": "TrangThai <> 'TuChoi' OR (LyDo IS NOT NULL AND LEN(LTRIM(LyDo)) > 0)",
+      "rule": "RB-M04"
+    },
+    {
+      "name": "CK_QuyetDinhQuyenHoatDong_LyDoCanCu",
+      "expression": "(LyDo IS NOT NULL AND LEN(LTRIM(LyDo)) > 0) AND (CanCu IS NOT NULL AND LEN(LTRIM(CanCu)) > 0)",
+      "rule": "RB-M04"
+    },
+    {
+      "name": "CK_DeNghiDieuChinhDichVu_LyDo",
+      "expression": "(LyDo IS NOT NULL AND LEN(LTRIM(LyDo)) > 0)",
+      "rule": "RB-M04"
+    },
+    {
+      "name": "CK_TinhHuongPhatSinh_KetQua",
+      "expression": "TrangThaiXuLy <> 'DaGiaiQuyet' OR (KetQuaXuLy IS NOT NULL AND LEN(LTRIM(KetQuaXuLy)) > 0)",
+      "rule": "RB-M05"
+    },
+    {
+      "name": "CK_DeNghiDieuChinhDichVu_DieuKienMoi",
+      "expression": "LoaiDeNghi <> 'ThayDoi' OR NgayBatDauMoi IS NOT NULL OR NgayKetThucMoi IS NOT NULL OR SoNguoiMoi IS NOT NULL OR SoLuongMoi IS NOT NULL OR (DieuKienMoi IS NOT NULL AND LEN(LTRIM(DieuKienMoi)) > 0)",
+      "rule": "RB-M06"
+    },
+    {
+      "name": "CK_DeNghiDieuChinhDichVu_Huy",
+      "expression": "LoaiDeNghi <> 'Huy' OR (NgayBatDauMoi IS NULL AND NgayKetThucMoi IS NULL AND SoNguoiMoi IS NULL AND SoLuongMoi IS NULL)",
+      "rule": "RB-M06"
+    },
+    {
+      "name": "CK_DeNghiDieuChinhDichVu_NgayMoi",
+      "expression": "NgayBatDauMoi IS NULL OR NgayKetThucMoi IS NULL OR NgayKetThucMoi >= NgayBatDauMoi",
+      "rule": "RB-M03"
+    },
+    {
+      "name": "CK_DeNghiDieuChinhDichVu_DeXuat",
+      "expression": "TrangThai <> 'DeXuatKhac' OR (DieuKienDeXuat IS NOT NULL AND LEN(LTRIM(DieuKienDeXuat)) > 0)",
+      "rule": "RB-M12"
+    },
+    {
+      "name": "CK_DeNghiDieuChinhDichVu_TuChoi",
+      "expression": "TrangThai <> 'TuChoi' OR (QuyetDinh IS NOT NULL AND LEN(LTRIM(QuyetDinh)) > 0)",
+      "rule": "RB-M04"
+    },
+    {
+      "name": "CK_HoatDongLichTrinh_MotMuc",
+      "expression": "MaDiaDiem IS NULL OR MaDichVu IS NULL",
+      "rule": "RB-M07"
+    },
+    {
+      "name": "CK_ThoaThuanDongHanh_HaiBen",
+      "expression": "MaNguoiXacNhan IS NULL OR MaNguoiXacNhan <> MaNguoiDeXuat",
+      "rule": "RB-M08"
+    },
+    {
+      "name": "CK_NhaCungCapDichVu_TrangThai",
+      "expression": "(TrangThaiXacMinh IN ('ChoXacMinh', 'CanBoSung', 'TuChoi') AND TrangThaiQuyenHoatDong IS NULL) OR (TrangThaiXacMinh = 'DaXacMinh' AND TrangThaiQuyenHoatDong IS NOT NULL AND TrangThaiQuyenHoatDong IN ('DangHoatDong', 'TamDinhChi')) OR (TrangThaiXacMinh = 'DaThuHoi' AND TrangThaiQuyenHoatDong IS NOT NULL AND TrangThaiQuyenHoatDong = 'DaThuHoi')",
+      "rule": "RB-M09"
+    },
+    {
+      "name": "CK_QuyetDinhQuyenHoatDong_DoiTrangThai",
+      "expression": "TrangThaiTruoc <> TrangThaiSau",
+      "rule": "RB-M09"
+    },
+    {
+      "name": "CK_QuyetDinhQuyenHoatDong_ThoiHan",
+      "expression": "ThoiHan IS NULL OR TrangThaiSau = 'TamDinhChi'",
+      "rule": "RB-M09"
+    },
+    {
+      "name": "CK_BanCapNhatDichVu_Duyet",
+      "expression": "(TrangThaiDuyet = 'ChoDuyet' AND MaAdminDuyet IS NULL AND ThoiDiemDuyet IS NULL) OR (TrangThaiDuyet <> 'ChoDuyet' AND MaAdminDuyet IS NOT NULL AND ThoiDiemDuyet IS NOT NULL)",
+      "rule": "RB-M10"
+    },
+    {
+      "name": "CK_DichVuDuLich_CongBo",
+      "expression": "TrangThaiCongBo <> 'DaDuyet' OR PhienBanCongBo IS NOT NULL",
+      "rule": "RB-M11"
+    },
+    {
+      "name": "CK_DeNghiKetNoiDongHanh_PhanHoi",
+      "expression": "(TrangThai = 'ChoPhanHoi' AND ThoiDiemPhanHoi IS NULL) OR (TrangThai <> 'ChoPhanHoi' AND ThoiDiemPhanHoi IS NOT NULL)",
+      "rule": "RB-M12"
+    },
+    {
+      "name": "CK_DeNghiDieuChinhDichVu_PhanHoi",
+      "expression": "(TrangThai = 'ChoPhanHoi' AND ThoiDiemPhanHoi IS NULL) OR (TrangThai <> 'ChoPhanHoi' AND ThoiDiemPhanHoi IS NOT NULL)",
+      "rule": "RB-M12"
+    },
+    {
+      "name": "CK_YeuCauDatDichVu_PhanHoi",
+      "expression": "TrangThai NOT IN ('DeXuatKhac', 'DaXacNhan', 'TuChoi') OR ThoiDiemPhanHoi IS NOT NULL",
+      "rule": "RB-M12"
+    },
+    {
+      "name": "CK_YeuCauDatDichVu_DeXuat",
+      "expression": "TrangThai <> 'DeXuatKhac' OR (DieuKienDeXuat IS NOT NULL AND LEN(LTRIM(DieuKienDeXuat)) > 0)",
+      "rule": "RB-M12"
+    },
+    {
+      "name": "CK_ThoaThuanDongHanh_XacNhan",
+      "expression": "(MaNguoiXacNhan IS NULL AND ThoiDiemXacNhan IS NULL) OR (MaNguoiXacNhan IS NOT NULL AND ThoiDiemXacNhan IS NOT NULL)",
+      "rule": "RB-M12"
+    },
+    {
+      "name": "CK_ThoaThuanDongHanh_DaXacNhan",
+      "expression": "TrangThai <> 'DaXacNhan' OR MaNguoiXacNhan IS NOT NULL",
+      "rule": "RB-M12"
+    },
+    {
+      "name": "CK_TaiKhoan_Ngung",
+      "expression": "(TrangThai = 'DaNgung' AND ThoiDiemNgung IS NOT NULL) OR (TrangThai = 'HoatDong' AND ThoiDiemNgung IS NULL)",
+      "rule": "BS4.8"
+    },
+    {
+      "name": "CK_KetQuaCungCapDichVu_PhanAnh",
+      "expression": "(NoiDungPhanAnh IS NULL AND ThoiDiemPhanAnh IS NULL) OR (NoiDungPhanAnh IS NOT NULL AND ThoiDiemPhanAnh IS NOT NULL)",
+      "rule": "BS4.8"
+    },
+    {
+      "name": "CK_KetQuaCungCapDichVu_ChoKiemTra",
+      "expression": "TrangThaiKiemTra <> 'ChoKiemTra' OR NoiDungPhanAnh IS NOT NULL OR KetQuaThucHien = 'ChuaXacDinh'",
+      "rule": "BS4.8"
+    },
+    {
+      "name": "CK_KetQuaCungCapDichVu_ChuaXacDinh",
+      "expression": "KetQuaThucHien <> 'ChuaXacDinh' OR TrangThaiKiemTra = 'ChoKiemTra'",
+      "rule": "BS4.9"
+    },
+    {
+      "name": "CK_KetQuaCungCapDichVu_DaKiemTra",
+      "expression": "(TrangThaiKiemTra = 'DaKiemTra' AND ThoiDiemKiemTra IS NOT NULL) OR (TrangThaiKiemTra <> 'DaKiemTra' AND ThoiDiemKiemTra IS NULL)",
+      "rule": "BS4.9"
+    },
+    {
+      "name": "CK_GiaiTrinhNhaCungCap_XemXet",
+      "expression": "(TrangThai = 'ChoXemXet' AND MaAdminXemXet IS NULL AND ThoiDiemXemXet IS NULL) OR (TrangThai = 'DaXemXet' AND MaAdminXemXet IS NOT NULL AND ThoiDiemXemXet IS NOT NULL AND KetQuaXemXet IS NOT NULL AND LEN(LTRIM(KetQuaXemXet)) > 0)",
+      "rule": "BS4.9"
+    },
+    {
+      "name": "CK_ThoaThuanDongHanh_Rut",
+      "expression": "TrangThai <> 'MotBenDaRut' OR (MaNguoiKetThuc IS NOT NULL AND ThoiDiemKetThuc IS NOT NULL)",
+      "rule": "BS4.9"
+    },
+    {
+      "name": "CK_ThoaThuanDongHanh_Ngung",
+      "expression": "TrangThai <> 'DaNgung' OR ThoiDiemKetThuc IS NOT NULL",
+      "rule": "BS4.9"
+    },
+    {
+      "name": "CK_DichVuDuLich_KhongTiepNhan",
+      "expression": "MaQuyetDinhKhongTiepNhan IS NULL OR TrangThaiTiepNhan = 'KhongTiepNhanMoi'",
+      "rule": "BS4.9"
+    },
+    {
+      "name": "CK_ThoaThuanDongHanh_DeNghiNgung",
+      "expression": "LoaiPhienBan = 'NoiDung' OR TrangThai IN ('ChoXacNhan', 'TuChoi', 'DaNgung', 'DaThayThe')",
+      "rule": "BS4.9"
+    }
+  ],
+  "uniqueIndexes": [
+    {
+      "name": "UX_TaiKhoan_Email",
+      "table": "TaiKhoan",
+      "columns": [
+        "Email"
+      ],
+      "filter": ""
+    },
+    {
+      "name": "UX_TaiKhoan_SoDienThoai",
+      "table": "TaiKhoan",
+      "columns": [
+        "SoDienThoai"
+      ],
+      "filter": "SoDienThoai IS NOT NULL"
+    },
+    {
+      "name": "UX_HoSoNguoiDung_MaTaiKhoan",
+      "table": "HoSoNguoiDung",
+      "columns": [
+        "MaTaiKhoan"
+      ],
+      "filter": ""
+    },
+    {
+      "name": "UX_NhaCungCapDichVu_MaTaiKhoan",
+      "table": "NhaCungCapDichVu",
+      "columns": [
+        "MaTaiKhoan"
+      ],
+      "filter": ""
+    },
+    {
+      "name": "UX_BanCapNhatDichVu_PhienBan",
+      "table": "BanCapNhatDichVu",
+      "columns": [
+        "MaDichVu",
+        "SoPhienBan"
+      ],
+      "filter": ""
+    },
+    {
+      "name": "UX_ThoaThuanDongHanh_PhienBan",
+      "table": "ThoaThuanDongHanh",
+      "columns": [
+        "MaDeNghi",
+        "PhienBan"
+      ],
+      "filter": ""
+    },
+    {
+      "name": "UX_KetQuaCungCapDichVu_HangMuc",
+      "table": "KetQuaCungCapDichVu",
+      "columns": [
+        "MaYeuCau",
+        "HangMuc"
+      ],
+      "filter": ""
+    },
+    {
+      "name": "UX_QuyetDinhXacMinh_LanXuLy",
+      "table": "QuyetDinhXacMinh",
+      "columns": [
+        "MaHoSo",
+        "LanXuLy"
+      ],
+      "filter": ""
+    },
+    {
+      "name": "UX_YeuCauDatDichVu_LuotGui",
+      "table": "YeuCauDatDichVu",
+      "columns": [
+        "MaTaiKhoan",
+        "MaLuotGui"
+      ],
+      "filter": ""
+    },
+    {
+      "name": "UX_DeNghiKetNoiDongHanh_HieuLuc",
+      "table": "DeNghiKetNoiDongHanh",
+      "columns": [
+        "MaNguoiGui",
+        "MaNhuCau"
+      ],
+      "filter": "TrangThai IN ('ChoPhanHoi', 'DaChapNhan')"
+    },
+    {
+      "name": "UX_DeNghiDieuChinhDichVu_Cho",
+      "table": "DeNghiDieuChinhDichVu",
+      "columns": [
+        "MaYeuCau"
+      ],
+      "filter": "TrangThai IN ('ChoPhanHoi', 'DeXuatKhac')"
+    },
+    {
+      "name": "UX_HoSoXacMinh_DangXuLy",
+      "table": "HoSoXacMinhNhaCungCap",
+      "columns": [
+        "MaNhaCungCap"
+      ],
+      "filter": "TrangThaiXuLy IN ('ChoXacMinh', 'CanBoSung')"
+    },
+    {
+      "name": "UX_PhuongAnXuLy_HienHanh",
+      "table": "PhuongAnXuLy",
+      "columns": [
+        "MaTinhHuong"
+      ],
+      "filter": "LaHienHanh = 1"
+    },
+    {
+      "name": "UX_TaiLieuXacMinh_DuongDan",
+      "table": "TaiLieuXacMinh",
+      "columns": [
+        "DuongDan"
+      ],
+      "filter": ""
+    },
+    {
+      "name": "UX_TaiLieuGiaiTrinh_DuongDan",
+      "table": "TaiLieuGiaiTrinh",
+      "columns": [
+        "DuongDan"
+      ],
+      "filter": ""
+    },
+    {
+      "name": "UX_ThoaThuanDongHanh_DaXacNhan",
+      "table": "ThoaThuanDongHanh",
+      "columns": [
+        "MaDeNghi"
+      ],
+      "filter": "TrangThai = 'DaXacNhan'"
+    },
+    {
+      "name": "UX_ThoaThuanDongHanh_ChoXacNhan",
+      "table": "ThoaThuanDongHanh",
+      "columns": [
+        "MaDeNghi"
+      ],
+      "filter": "TrangThai = 'ChoXacNhan'"
+    },
+    {
+      "name": "UX_BanCapNhatDichVu_ChoDuyet",
+      "table": "BanCapNhatDichVu",
+      "columns": [
+        "MaDichVu"
+      ],
+      "filter": "TrangThaiDuyet = 'ChoDuyet'"
+    }
+  ]
+}

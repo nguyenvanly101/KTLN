@@ -1,0 +1,5 @@
+@model DichVuDuLich
+@inject HoTroDuLich.Web.Data.AppDbContext BranchDb
+@using Microsoft.EntityFrameworkCore
+@{var hasBranches=await BranchDb.Set<DichVuCoSo>().AnyAsync(x=>x.ServiceId==Model.MaDichVu); }
+<section class="published-details"><h3>Vị trí & chính sách đã công bố</h3><dl class="facts"><div><dt>Địa chỉ phục vụ</dt><dd>@(hasBranches?"Xem đúng cơ sở áp dụng ở phần địa chỉ cơ sở.":Model.DiaChiPhucVu??"Chưa công bố địa chỉ cụ thể. Hãy xác nhận với nhà cung cấp.")</dd></div><div><dt>Đơn vị giá</dt><dd>@(Model.DonViGia??"Chưa công bố")</dd></div></dl>@if(!string.IsNullOrWhiteSpace(Model.DiaChiPhucVu)){<a class="text-link" href="@Ui.Directions(Model.DiaChiPhucVu+", "+Model.KhuVucPhucVu+", Việt Nam")" target="_blank" rel="noopener noreferrer">@Ui.Icon("pin") Chỉ đường đến địa chỉ phục vụ<span class="sr-only"> (mở Google Maps ở tab mới)</span></a>}<h3>Thay đổi / hủy</h3><p class="prose">@(Model.ChinhSachHuy??"Chính sách riêng chưa được công bố. Kiểm tra điều kiện phục vụ và thống nhất với nhà cung cấp trước khi xác nhận.")</p></section>

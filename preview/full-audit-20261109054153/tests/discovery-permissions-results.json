@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "checks": 61,
+  "rows": [
+    {
+      "name": "DiscoveryCollection",
+      "CanRead": 1,
+      "CanInsert": 1,
+      "CanUpdate": 1,
+      "CanDelete": 0,
+      "CanAlter": 0
+    },
+    {
+      "name": "DiscoveryCollectionItem",
+      "CanRead": 1,
+      "CanInsert": 1,
+      "CanUpdate": 1,
+      "CanDelete": 0,
+      "CanAlter": 0
+    },
+    {
+      "name": "DiscoveryEntry",
+      "CanRead": 1,
+      "CanInsert": 1,
+      "CanUpdate": 1,
+      "CanDelete": 0,
+      "CanAlter": 0
+    },
+    {
+      "name": "DiscoveryExperience",
+      "CanRead": 1,
+      "CanInsert": 1,
+      "CanUpdate": 1,
+      "CanDelete": 0,
+      "CanAlter": 0
+    },
+    {
+      "name": "DiscoveryFeature",
+      "CanRead": 1,
+      "CanInsert": 1,
+      "CanUpdate": 1,
+      "CanDelete": 0,
+      "CanAlter": 0
+    },
+    {
+      "name": "DiscoveryFollow",
+      "CanRead": 1,
+      "CanInsert": 1,
+      "CanUpdate": 1,
+      "CanDelete": 0,
+      "CanAlter": 0
+    },
+    {
+      "name": "DiscoveryPrice",
+      "CanRead": 1,
+      "CanInsert": 1,
+      "CanUpdate": 1,
+      "CanDelete": 0,
+      "CanAlter": 0
+    },
+    {
+      "name": "DiscoveryProposal",
+      "CanRead": 1,
+      "CanInsert": 1,
+      "CanUpdate": 1,
+      "CanDelete": 0,
+      "CanAlter": 0
+    },
+    {
+      "name": "DiscoveryQuestion",
+      "CanRead": 1,
+      "CanInsert": 1,
+      "CanUpdate": 1,
+      "CanDelete": 0,
+      "CanAlter": 0
+    },
+    {
+      "name": "DiscoveryReport",
+      "CanRead": 1,
+      "CanInsert": 1,
+      "CanUpdate": 1,
+      "CanDelete": 0,
+      "CanAlter": 0
+    },
+    {
+      "name": "DiscoveryRevision",
+      "CanRead": 1,
+      "CanInsert": 1,
+      "CanUpdate": 0,
+      "CanDelete": 0,
+      "CanAlter": 0
+    },
+    {
+      "name": "DiscoveryRoute",
+      "CanRead": 1,
+      "CanInsert": 1,
+      "CanUpdate": 1,
+      "CanDelete": 0,
+      "CanAlter": 0
+    }
+  ],
+  "date": "2026-11-09T10:32:57.222Z"
+}

@@ -1,0 +1,3 @@
+@model YeuCauDatDichVu
+@if(User.IsInRole(TravelService.Traveler) && Model.MaKeHoach is long tripId){<a class="text-link" href="/Plans/Detail/@tripId">@Ui.Icon("calendar") Về chuyến đi của yêu cầu @Ui.Icon("arrow")</a>}
+<nav class="tabs booking-tabs" aria-label="Nghiệp vụ của yêu cầu"><a class="@(ViewData["BookingSection"]?.ToString()=="request"?"active":"")" href="/Bookings/Detail/@Model.MaYeuCau">Thông tin đặt dịch vụ</a><a class="@(ViewData["BookingSection"]?.ToString()=="changes"?"active":"")" href="/Bookings/Changes/@Model.MaYeuCau">Thay đổi / hủy</a><a class="@(ViewData["BookingSection"]?.ToString()=="outcome"?"active":"")" href="/Bookings/Outcome/@Model.MaYeuCau">Kết quả phục vụ</a></nav>

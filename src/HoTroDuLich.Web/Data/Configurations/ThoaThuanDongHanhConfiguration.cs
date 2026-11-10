@@ -1,0 +1,57 @@
+using HoTroDuLich.Web.Domain;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+namespace HoTroDuLich.Web.Data.Configurations;
+public sealed class ThoaThuanDongHanhConfiguration : IEntityTypeConfiguration<ThoaThuanDongHanh> {
+ public void Configure(EntityTypeBuilder<ThoaThuanDongHanh> e) {
+ e.ToTable("ThoaThuanDongHanh");
+ e.HasKey(x => x.MaThoaThuan);
+ e.HasOne(x=>x.DeNghiKetNoiDongHanh).WithMany(x=>x.ThoaThuanDongHanh).HasForeignKey(x => x.MaDeNghi).OnDelete(DeleteBehavior.Restrict);
+ e.HasOne(x=>x.NguoiDeXuat).WithMany(x=>x.ThoaThuanDongHanh_NguoiDeXuat).HasForeignKey(x => x.MaNguoiDeXuat).OnDelete(DeleteBehavior.Restrict);
+ e.HasOne(x=>x.NguoiXacNhan).WithMany(x=>x.ThoaThuanDongHanh_NguoiXacNhan).HasForeignKey(x => x.MaNguoiXacNhan).OnDelete(DeleteBehavior.Restrict);
+ e.HasOne(x=>x.NguoiKetThuc).WithMany(x=>x.ThoaThuanDongHanh_NguoiKetThuc).HasForeignKey(x => x.MaNguoiKetThuc).OnDelete(DeleteBehavior.Restrict);
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_PhienBan", "[PhienBan] >= 1"));
+ e.Property(x => x.NoiDen).HasMaxLength(200);
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_NoiDen_KhongRong", "LEN(LTRIM([NoiDen])) > 0"));
+ e.Property(x => x.NganSach).HasPrecision(18,2);
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_NganSach", "[NganSach] >= 0"));
+ e.Property(x => x.PhamViDiCung).HasMaxLength(1000);
+ e.Property(x => x.LoaiPhienBan).HasMaxLength(30).IsUnicode(false);
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_LoaiPhienBan", "[LoaiPhienBan] IN ('NoiDung','DeNghiNgung')"));
+ e.Property(x => x.TrangThai).HasMaxLength(30).IsUnicode(false);
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_TrangThai", "[TrangThai] IN ('ChoXacNhan','DaXacNhan','TuChoi','DaThayThe','DaNgung','MotBenDaRut')"));
+ e.Property(x => x.LyDo).HasMaxLength(500);
+ e.Property(x => x.RowVersion).IsRowVersion();
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_Ngay", "NgayVe >= NgayDi"));
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_LyDo", "TrangThai <> 'TuChoi' OR (LyDo IS NOT NULL AND LEN(LTRIM(LyDo)) > 0)"));
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_HaiBen", "MaNguoiXacNhan IS NULL OR MaNguoiXacNhan <> MaNguoiDeXuat"));
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_XacNhan", "(MaNguoiXacNhan IS NULL AND ThoiDiemXacNhan IS NULL) OR (MaNguoiXacNhan IS NOT NULL AND ThoiDiemXacNhan IS NOT NULL)"));
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_DaXacNhan", "TrangThai <> 'DaXacNhan' OR MaNguoiXacNhan IS NOT NULL"));
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_Rut", "TrangThai <> 'MotBenDaRut' OR (MaNguoiKetThuc IS NOT NULL AND ThoiDiemKetThuc IS NOT NULL)"));
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_Ngung", "TrangThai <> 'DaNgung' OR ThoiDiemKetThuc IS NOT NULL"));
+ e.ToTable(t => t.HasCheckConstraint("CK_ThoaThuanDongHanh_DeNghiNgung", "LoaiPhienBan = 'NoiDung' OR TrangThai IN ('ChoXacNhan', 'TuChoi', 'DaNgung', 'DaThayThe')"));
+ e.HasIndex(x => new { x.MaDeNghi, x.PhienBan }, "UX_ThoaThuanDongHanh_PhienBan").IsUnique().HasDatabaseName("UX_ThoaThuanDongHanh_PhienBan");
+ e.HasIndex(x => x.MaDeNghi, "UX_ThoaThuanDongHanh_DaXacNhan").IsUnique().HasDatabaseName("UX_ThoaThuanDongHanh_DaXacNhan").HasFilter("TrangThai = 'DaXacNhan'");
+ e.HasIndex(x => x.MaDeNghi, "UX_ThoaThuanDongHanh_ChoXacNhan").IsUnique().HasDatabaseName("UX_ThoaThuanDongHanh_ChoXacNhan").HasFilter("TrangThai = 'ChoXacNhan'");
+ e.Property(x=>x.MaThoaThuan).HasColumnType("bigint");
+ e.Property(x=>x.MaDeNghi).HasColumnType("bigint");
+ e.Property(x=>x.PhienBan).HasColumnType("int");
+ e.Property(x=>x.NgayDi).HasColumnType("date");
+ e.Property(x=>x.NgayVe).HasColumnType("date");
+ e.Property(x=>x.NoiDen).HasColumnType("nvarchar(200)");
+ e.Property(x=>x.NganSach).HasColumnType("decimal(18,2)");
+ e.Property(x=>x.PhamViDiCung).HasColumnType("nvarchar(1000)");
+ e.Property(x=>x.MaNguoiDeXuat).HasColumnType("bigint");
+ e.Property(x=>x.ThoiDiemDeXuat).HasColumnType("datetime2(0)");
+ e.Property(x=>x.ThoiDiemDeXuat).HasDefaultValueSql("SYSUTCDATETIME()", "DF_ThoaThuanDongHanh_ThoiDiemDeXuat");
+ e.Property(x=>x.MaNguoiXacNhan).HasColumnType("bigint");
+ e.Property(x=>x.ThoiDiemXacNhan).HasColumnType("datetime2(0)");
+ e.Property(x=>x.LoaiPhienBan).HasColumnType("varchar(30)");
+ e.Property(x=>x.LoaiPhienBan).HasDefaultValueSql("'NoiDung'", "DF_ThoaThuanDongHanh_LoaiPhienBan");
+ e.Property(x=>x.TrangThai).HasColumnType("varchar(30)");
+ e.Property(x=>x.TrangThai).HasDefaultValueSql("'ChoXacNhan'", "DF_ThoaThuanDongHanh_TrangThai");
+ e.Property(x=>x.LyDo).HasColumnType("nvarchar(500)");
+ e.Property(x=>x.MaNguoiKetThuc).HasColumnType("bigint");
+ e.Property(x=>x.ThoiDiemKetThuc).HasColumnType("datetime2(0)");
+ }
+}

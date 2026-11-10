@@ -1,0 +1,1895 @@
+{
+  "PrivateFiles": {
+    "Files": [
+      {
+        "Sha256": "325EE9E5D20F91955D6225E4F8B9974698FA0B4EB07F71DDA5EFF9A63065DA22",
+        "Path": "keys/key-396d8644-0ccb-4a66-abfe-70bf549b901c.xml"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/03453df9-1943-4ebe-8ee0-f0b0e66c4a6a.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/43bdcfc2-f358-4d60-8008-56f3045b0081.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/88abde1a-076a-4ff1-858b-3b3ff2fb8f32.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/9825db54-b691-4802-a979-b819518e402c.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/1410e7ad-9072-402d-99b0-615226d1c042.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/33b536b3-bbf8-46a9-9b19-aeb7ec0223fa.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/3f09de9c-cd9f-42e9-b0f5-fb20dca5f67b.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/4091425a-89c8-4580-8266-480254d3c6fe.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/5bc1d799-b65e-42d3-9dc1-84e04019d8bc.pdf"
+      },
+      {
+        "Sha256": "23E3373AF4130EA0BC3208E80E51631A260E42BE1E0CC9E9E52FEC2C99439BD1",
+        "Path": "uploads/2026/63482b64-b763-45e0-9d8c-ecdc8a853c12.jpg"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/79386205-3bd8-4590-969c-e3e09473a7f5.pdf"
+      },
+      {
+        "Sha256": "6B1048F8A6D40BAC0B2954C18FEFA40C4EA7A96120FC2E54B7317C0E43C2BBEC",
+        "Path": "uploads/2026/a196902f-ea96-4ff3-b5d4-e19405b2963f.png"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/a2ecd618-7b7d-4eaa-a689-44e076912b94.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/a6be5b7c-4506-4fe7-8fbc-25ef6acdf29a.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/adf2c18d-3a64-47d2-bf86-d26623e40604.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/b19b1f4c-8814-40da-a73f-2bc111a7aa90.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/c2cb6a0c-1813-4f07-8d17-58f0d3c2f794.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/d1ab6386-2e14-4f1b-91ee-016b0a3fee99.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/db70ba52-9733-489c-87fa-9518d14e4a5c.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "uploads/2026/fa51f94a-6e32-4ed8-9956-1b8f807ae2f9.pdf"
+      }
+    ],
+    "Path": "D:\\KLTN\\preview\\backups\\App_Data_before_workflow_20261108_151914.zip",
+    "Verified": true
+  },
+  "Source": {
+    "Files": [
+      {
+        "Sha256": "73F95F9E0CEB205FC1C4DC50C07697FCFA29D7087868C2AEF1D504CB38C771EC",
+        "Path": "HoTroDuLich.Web/appsettings.Development.json"
+      },
+      {
+        "Sha256": "331E4C3143717D7ADF77F750B24F44457D22669BE7E5DBC14AF07AF5D4F9E87F",
+        "Path": "HoTroDuLich.Web/appsettings.json"
+      },
+      {
+        "Sha256": "9288120280CD0E1E223E9BF4DE444F74ECC0523FA17ACF53255F9FC3122DEFC8",
+        "Path": "HoTroDuLich.Web/appsettings.Production.json"
+      },
+      {
+        "Sha256": "B1436E57B94BAAA8ED22599154E45BB09916AEB23AED2E5268EEAC1AAB7CA8CC",
+        "Path": "HoTroDuLich.Web/HoTroDuLich.Web.csproj"
+      },
+      {
+        "Sha256": "0C7733C8B7FA0112030A1991EA6C786AF1DC402827F88EE52D4D8C2BDB71120A",
+        "Path": "HoTroDuLich.Web/Program.cs"
+      },
+      {
+        "Sha256": "325EE9E5D20F91955D6225E4F8B9974698FA0B4EB07F71DDA5EFF9A63065DA22",
+        "Path": "HoTroDuLich.Web/App_Data/keys/key-396d8644-0ccb-4a66-abfe-70bf549b901c.xml"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/03453df9-1943-4ebe-8ee0-f0b0e66c4a6a.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/43bdcfc2-f358-4d60-8008-56f3045b0081.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/88abde1a-076a-4ff1-858b-3b3ff2fb8f32.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/9825db54-b691-4802-a979-b819518e402c.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/1410e7ad-9072-402d-99b0-615226d1c042.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/33b536b3-bbf8-46a9-9b19-aeb7ec0223fa.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/3f09de9c-cd9f-42e9-b0f5-fb20dca5f67b.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/4091425a-89c8-4580-8266-480254d3c6fe.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/5bc1d799-b65e-42d3-9dc1-84e04019d8bc.pdf"
+      },
+      {
+        "Sha256": "23E3373AF4130EA0BC3208E80E51631A260E42BE1E0CC9E9E52FEC2C99439BD1",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/63482b64-b763-45e0-9d8c-ecdc8a853c12.jpg"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/79386205-3bd8-4590-969c-e3e09473a7f5.pdf"
+      },
+      {
+        "Sha256": "6B1048F8A6D40BAC0B2954C18FEFA40C4EA7A96120FC2E54B7317C0E43C2BBEC",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/a196902f-ea96-4ff3-b5d4-e19405b2963f.png"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/a2ecd618-7b7d-4eaa-a689-44e076912b94.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/a6be5b7c-4506-4fe7-8fbc-25ef6acdf29a.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/adf2c18d-3a64-47d2-bf86-d26623e40604.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/b19b1f4c-8814-40da-a73f-2bc111a7aa90.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/c2cb6a0c-1813-4f07-8d17-58f0d3c2f794.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/d1ab6386-2e14-4f1b-91ee-016b0a3fee99.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/db70ba52-9733-489c-87fa-9518d14e4a5c.pdf"
+      },
+      {
+        "Sha256": "4F1949E95440AF0ECE666EBD5F399C1D77D22DE639950784D349FA5FEB47DCA5",
+        "Path": "HoTroDuLich.Web/App_Data/uploads/2026/fa51f94a-6e32-4ed8-9956-1b8f807ae2f9.pdf"
+      },
+      {
+        "Sha256": "AFDA26FA29F2F766FA5ACB82350F8D910E2E32BD5437D450B3779AA310777D12",
+        "Path": "HoTroDuLich.Web/Controllers/AccountController.cs"
+      },
+      {
+        "Sha256": "616850742B74E3AA5F08582AF2E00114A805799EE62DE865C7A63223A070294D",
+        "Path": "HoTroDuLich.Web/Controllers/AdminController.cs"
+      },
+      {
+        "Sha256": "3FB8F6E0355FEC62A2B4161666D55BB551E129B937C47020F3DFAA1C47CEB238",
+        "Path": "HoTroDuLich.Web/Controllers/AppController.cs"
+      },
+      {
+        "Sha256": "4102898F372911838F41EAD241844DCEB3A7E3BCEA93AE6FFE53CE1270DC94F5",
+        "Path": "HoTroDuLich.Web/Controllers/AvatarController.cs"
+      },
+      {
+        "Sha256": "8451E188AC9D773198335AC4E2270EB22F4BF1A31996205EFE1AD5F98CD09881",
+        "Path": "HoTroDuLich.Web/Controllers/BookingsController.cs"
+      },
+      {
+        "Sha256": "A9DA830DE1F73086E364E91614F917C2DB9DEE3C55EC02E3BD35C7BDA96FFE3D",
+        "Path": "HoTroDuLich.Web/Controllers/CompanionsController.cs"
+      },
+      {
+        "Sha256": "B76A4EDDF888E7CF08636613667AFE7A2C48BAC9C4F92186E3FC6F723CCF298C",
+        "Path": "HoTroDuLich.Web/Controllers/DiscoveryApiController.cs"
+      },
+      {
+        "Sha256": "BBD5EA58982823E342995F3C9D32B8B66CD814759B793761631EEA65FED6B7F0",
+        "Path": "HoTroDuLich.Web/Controllers/DiscoveryController.cs"
+      },
+      {
+        "Sha256": "82810C7D3D5B1549A356A24E9D4F4DCA7426D9E8D260B574D012CFE6DF877F7C",
+        "Path": "HoTroDuLich.Web/Controllers/ExploreController.cs"
+      },
+      {
+        "Sha256": "DD36CD7FDC20D15D822BF80B2B06F1AAD01A04C0699B921A81D7F2A0162A80B8",
+        "Path": "HoTroDuLich.Web/Controllers/FullTextController.cs"
+      },
+      {
+        "Sha256": "15D3098FB41B76DF21D9E18B6F3886A8195FFB08529EC2E7C792AF11E0F5508D",
+        "Path": "HoTroDuLich.Web/Controllers/HomeController.cs"
+      },
+      {
+        "Sha256": "CFC1010BE27FE73C6CFF38853D9C67D75B191E410EA92545CFF6674F42F30500",
+        "Path": "HoTroDuLich.Web/Controllers/JourneyControllers.cs"
+      },
+      {
+        "Sha256": "06EC9FA252488A2996B078A9D48028EDA04D460B52A5C19F503F2A7F21BAE729",
+        "Path": "HoTroDuLich.Web/Controllers/PlansController.cs"
+      },
+      {
+        "Sha256": "D7E6EBAF58E6A378AB313C6BE9BCF5400EB05D9047883593C1DACC2802B91CC1",
+        "Path": "HoTroDuLich.Web/Controllers/ProductControllers.cs"
+      },
+      {
+        "Sha256": "712BCF0BAC7458C143DCF60100069F8EB0FBB207BE9D7DD3A9BBD9006D9F8B67",
+        "Path": "HoTroDuLich.Web/Controllers/ProviderController.cs"
+      },
+      {
+        "Sha256": "E1784B31082D1AC8C74E8EBA02F453E2D6C5BDEE9E9E0993E70FF8502B628ACE",
+        "Path": "HoTroDuLich.Web/Controllers/ReviewControllers.cs"
+      },
+      {
+        "Sha256": "9A1D46788EA56D54914D047D00EC3A10DF4E9AD586156FE9D0FC2CD9CC01CCFA",
+        "Path": "HoTroDuLich.Web/Controllers/ServicePhotosController.cs"
+      },
+      {
+        "Sha256": "6DAE477C1D792607E7EAF2829D3FF40A1F37CE8F6CEEBE60FF235923F9673FF6",
+        "Path": "HoTroDuLich.Web/Controllers/SupportController.cs"
+      },
+      {
+        "Sha256": "9215124B3C80E55304AAB86B18CC7333383175F56407604DDCCCFC1C52536DFE",
+        "Path": "HoTroDuLich.Web/Controllers/TogetherController.cs"
+      },
+      {
+        "Sha256": "1762F8C84309A14CFDFC56AA6EA13A60E40F1612A7D3B1E06E1E176547F4834C",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/BoSungHoSoController.cs"
+      },
+      {
+        "Sha256": "19C9822CE2BDFB90838472C996189E1CE7E64083A6160FBF2C9D0BE454414C3E",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/CapNhatDichVuController.cs"
+      },
+      {
+        "Sha256": "49D7DB34D9FA157E91AC6CC509B19DE0F9BB4BBF2E0BC95F77FE08D8C1A39C96",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/CapNhatHoSoController.cs"
+      },
+      {
+        "Sha256": "3DC81291220140FECD901E05873205C79928CA89EF8BBFFE5CF99528ED5C68A1",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/CongBoNhuCauController.cs"
+      },
+      {
+        "Sha256": "E2E15494869C9C91ED7277C2B45E5921102687C9E1200BDBB125E46623C76374",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/DangDichVuController.cs"
+      },
+      {
+        "Sha256": "8531F1F574DD4400F9BE91957989D23D416EF420AA95BC0600ED1F575F430EA7",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/DangKyTaiKhoanController.cs"
+      },
+      {
+        "Sha256": "AC03E67F5327E0845CD7A31DBCB5829817F1E2D00A2AFC064BC0DE65EAD724C7",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/DanhSachChoDuyetController.cs"
+      },
+      {
+        "Sha256": "F0B01A2C5DBC419E003534C5C69EBC87FD5A0B32115BCC903B3E10FBC4AEA2B9",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/DanhSachDichVuController.cs"
+      },
+      {
+        "Sha256": "FDA29E9C0802D9F5579B393038EB20BDE10BF08C3F2CF860333C221F094B7F12",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/DanhSachKeHoachController.cs"
+      },
+      {
+        "Sha256": "7A4486B882BA6AFA6A1B946E9B78F9AAF8D2EBA3AF9FC0A3AAE044CD1C85DD8C",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/GhiNhanKetQuaController.cs"
+      },
+      {
+        "Sha256": "170EAA5A7AD8D7025F2ADE183A6C568067343F172E33C161ED240A2AD9A78486",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/GhiNhanTinhHuongController.cs"
+      },
+      {
+        "Sha256": "33F089DA027DD45F1A86D776E7C61D173AA2E47FE7819E79A0B406825D559879",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/GiaiTrinhController.cs"
+      },
+      {
+        "Sha256": "3976D95C9C5F36A252E955186B3E63D85587B8610210F4874E156590DA95ADE2",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/GuiDeNghiDieuChinhController.cs"
+      },
+      {
+        "Sha256": "E30EAE80446B6CD35ADF94324CA6A01B297DDE282042F8114AE2BE00BAED1A4E",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/GuiDeNghiKetNoiController.cs"
+      },
+      {
+        "Sha256": "322798B821935AC0B7636900DF660EE5F804A31BC624B2DD78157A59DB9A9B7D",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/GuiYeuCauDatController.cs"
+      },
+      {
+        "Sha256": "78C9F57EF7243FE156A73E5C7095237B2F0641B85C1DACB1788860D880B80988",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/KetThucThoaThuanController.cs"
+      },
+      {
+        "Sha256": "D1365763627CD80670FBD8682D396152E1EB3610F6CCE02B1F0C6FB4C0C6C7D1",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/KhoiTaoKeHoachController.cs"
+      },
+      {
+        "Sha256": "39C0EC793132AF87B105A71AF6B1165496F0D6D56BF234F20769CCC13F3DF733",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/KiemTraDieuKienNgungController.cs"
+      },
+      {
+        "Sha256": "125CE154906DC3B21E4DFCEF378D088D2E573070343AB180CC68E40B6AB49673",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/LapThoaThuanController.cs"
+      },
+      {
+        "Sha256": "B8B8987EBAAA2C84962D4CCEA403250FC01930FA99C6317596B0636DA56EE732",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/PhanAnhKetQuaController.cs"
+      },
+      {
+        "Sha256": "70892B169EF692E9CB18668BF898D8DCB28DFBF076755F35B804A4219C6D4D46",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/PhanHoiDeNghiController.cs"
+      },
+      {
+        "Sha256": "ADA6FFCE51C0C9FB6B0679E365DBB1739731878E8F01341D798698192B9D4F4D",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/QuanLyLichTrinhController.cs"
+      },
+      {
+        "Sha256": "00C9EBA7B5EDB89EED64D08C43D07EE7BC3486E763A551788B149C081367AC48",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/QuanLyPhienController.cs"
+      },
+      {
+        "Sha256": "F9D1915A0150F4202EA8273267E11C81113190C4B6E5D7044C69E60701FF5B62",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/QuyetDinhDuyetController.cs"
+      },
+      {
+        "Sha256": "E693AF0D8D22D0A523468EB652133EA9CA7AF384B354A50600EAE8A83D4D5851",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/QuyetDinhQuyenHoatDongController.cs"
+      },
+      {
+        "Sha256": "72E9B1455BF1322CCB3AF3B1FAC3E75B4620BFE586F8F1312F70A768EB155688",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/SoanNhuCauController.cs"
+      },
+      {
+        "Sha256": "924EC803A4AFB4EBBF25E5001B4EF717B6B8DF8D7D64A40726938F65988D3454",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/TepController.cs"
+      },
+      {
+        "Sha256": "F85649B08ADD50258A3B163892E4B4221C20DE2922600D588B789DA9B03ED4F6",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/TheoDoiTinhHuongController.cs"
+      },
+      {
+        "Sha256": "F8666C86ABC53CF8CB31C5D9D56575A6E6707A99554E787524333B6C046C6738",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/TheoDoiYeuCauController.cs"
+      },
+      {
+        "Sha256": "F93D5822DDD8E1229786338732D13711900D60D90BD5CF0CA3A441CA446EF5F2",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/ThongBaoController.cs"
+      },
+      {
+        "Sha256": "9464EA6C1B242F993AD987C72C90263CC3771E7878DA5A4BF9C35EBDEEF451E9",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/ThucHienNgungController.cs"
+      },
+      {
+        "Sha256": "C6DD4E921D0B7C4FF28F6BE4B029ED9CDFFC67E7D3B9F719263D46D4F059C032",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/TimNhuCauController.cs"
+      },
+      {
+        "Sha256": "0AE82133575473C4E5CB3C74D555DB0DB03E54D00EBD053E8FFC7256D71371BF",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/TraCuuNhaCungCapController.cs"
+      },
+      {
+        "Sha256": "F0D9A0CC074FE878EC98C7BFB56F96C23D22E0490C36F97D0C7E1F9EA27DB682",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/TraCuuThongTinController.cs"
+      },
+      {
+        "Sha256": "D748931C38AD8A89585F00FC344E724EC3EF0B3C7B54B32A9001C2C3F39AEA6E",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/XacNhanKeHoachController.cs"
+      },
+      {
+        "Sha256": "AAB821739A7C719A430047AD61EDC911149436D1B026AC382E95AD9EAEC1447B",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/XacNhanThoaThuanController.cs"
+      },
+      {
+        "Sha256": "08058E64C2251E307EA2B1B0A4D7664061E1560F2B483EF3223F52D4E82E91C3",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/XacThucDangNhapController.cs"
+      },
+      {
+        "Sha256": "18EA5164FB2DCDDAA382AD6B7864F7072AA0484E992EEDE358BCD378485FE876",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/XemChiTietThongTinController.cs"
+      },
+      {
+        "Sha256": "0B0193555E1B03D6D2C6FB3860DDF6F840DAD0804CA16E2DD44407A9516B93A2",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/XemNhuCauChiaSeController.cs"
+      },
+      {
+        "Sha256": "E679FAB10432A5624564EBC7049A1E8938F02933FA0F22177BDE16419C0BFBA8",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/XetHoSoXacMinhController.cs"
+      },
+      {
+        "Sha256": "D6E7FC78E83E232A55E88CEB26432B9AE37C1AEABB39D3090103457458A3AFA3",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/XuLyDeNghiDieuChinhController.cs"
+      },
+      {
+        "Sha256": "1E68D46E9812B795D84C2822E91CC190364202A0D34323D28862C2642C9389BB",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/XuLyPhuongAnController.cs"
+      },
+      {
+        "Sha256": "437FA0B7194067FDC2794957708A33D4A0C9E2A73BEDB5336E1BC6DD25AB0515",
+        "Path": "HoTroDuLich.Web/Controllers/FullText/XuLyYeuCauDatController.cs"
+      },
+      {
+        "Sha256": "3220BADC1707F9A408A9E3C76604E8EF9D8CE69AC9EB92C50797A6731497570A",
+        "Path": "HoTroDuLich.Web/Data/AppDbContext.cs"
+      },
+      {
+        "Sha256": "37C5E31B04E70FB38FE93679CC1875E4818B60E5CC705C94D55DDD05218B2D82",
+        "Path": "HoTroDuLich.Web/Data/SchemaDatabase.cs"
+      },
+      {
+        "Sha256": "298B721A72EA2F6B53CA6CFF54453FEEFDF1CCB6C454AAD85AD8EA58E672AB5C",
+        "Path": "HoTroDuLich.Web/Data/Seed.cs"
+      },
+      {
+        "Sha256": "0B879C933F584F49852410EE3E71ADDB9AD63BD4A6DEBF3C9556592ED97C9784",
+        "Path": "HoTroDuLich.Web/Data/Configurations/BanCapNhatDichVuConfiguration.cs"
+      },
+      {
+        "Sha256": "1C8A1CC91FD8A78F134A937A7C07472AD84327B1D4FEA760D7B25D49E304B62A",
+        "Path": "HoTroDuLich.Web/Data/Configurations/CompanionConfiguration.cs"
+      },
+      {
+        "Sha256": "B7F7183F9215E914D8CE8A657C2E6F658907958F1E7ACC0F4D51613217162D40",
+        "Path": "HoTroDuLich.Web/Data/Configurations/DeNghiDieuChinhDichVuConfiguration.cs"
+      },
+      {
+        "Sha256": "7911B7A4EB11BA452843C3942D25ECC86FCC9E31C0A48FABD3BDD68507A2F426",
+        "Path": "HoTroDuLich.Web/Data/Configurations/DeNghiKetNoiDongHanhConfiguration.cs"
+      },
+      {
+        "Sha256": "BE5733797E707AEE5B37D14BCE5AE8CA41CD4CF46C77A4ED1114CCB8C15838C4",
+        "Path": "HoTroDuLich.Web/Data/Configurations/DiaDiemDuLichConfiguration.cs"
+      },
+      {
+        "Sha256": "F46204EBB433DCFB55095F9A8BBCE47F96A0306519CEDDCE148CCD54AAFF4571",
+        "Path": "HoTroDuLich.Web/Data/Configurations/DichVuDuLichConfiguration.cs"
+      },
+      {
+        "Sha256": "A56E96C3D8CF5CC4414E5112541619295476510E692046E5BC1D710D619F01AA",
+        "Path": "HoTroDuLich.Web/Data/Configurations/DiscoveryConfiguration.cs"
+      },
+      {
+        "Sha256": "606FC7AC2CBBBE71ECEA04C5C477675E7BE29C1A62BBABF8CF781996C73536D9",
+        "Path": "HoTroDuLich.Web/Data/Configurations/GiaiTrinhNhaCungCapConfiguration.cs"
+      },
+      {
+        "Sha256": "B1485480C444BE699CF035E08C1F4C172AFD2E18DCF9D24CD09A2BDE9A7A237B",
+        "Path": "HoTroDuLich.Web/Data/Configurations/HoatDongLichTrinhConfiguration.cs"
+      },
+      {
+        "Sha256": "D2D77FEA7CD2FD330160B7027F3D343932B2B4B63386F9890534ACA3B995308F",
+        "Path": "HoTroDuLich.Web/Data/Configurations/HoSoNguoiDungConfiguration.cs"
+      },
+      {
+        "Sha256": "1918EA6B29B24C83DA8D0C3E7C5BFBC29D75270AC1DC3C7BFB3300D289AD59FA",
+        "Path": "HoTroDuLich.Web/Data/Configurations/HoSoXacMinhNhaCungCapConfiguration.cs"
+      },
+      {
+        "Sha256": "4491CAC0F082F23CFF8C8D6442BE17A6AFB53C8D7979503FEAFA07950BD1FCE5",
+        "Path": "HoTroDuLich.Web/Data/Configurations/JourneyConfiguration.cs"
+      },
+      {
+        "Sha256": "F1F3AEBC8DF9C2EB3CA125CB3481B71DF8825E64B42DF051C1C83768E580FC3C",
+        "Path": "HoTroDuLich.Web/Data/Configurations/KeHoachChuyenDiConfiguration.cs"
+      },
+      {
+        "Sha256": "E4C188825FE78E04124D845C0061A269F071DDA847829EA75479F001D8A0A4B4",
+        "Path": "HoTroDuLich.Web/Data/Configurations/KetQuaCungCapDichVuConfiguration.cs"
+      },
+      {
+        "Sha256": "823117448BAC2218BC754E1DE72F4F490E647C8E46DA2968746C904B1911377E",
+        "Path": "HoTroDuLich.Web/Data/Configurations/NhaCungCapDichVuConfiguration.cs"
+      },
+      {
+        "Sha256": "D12A89B2AD71F7EF4F8601DAF958E2B6B532CC886570BB9A005A0733D775E78E",
+        "Path": "HoTroDuLich.Web/Data/Configurations/NhatKyThaoTacConfiguration.cs"
+      },
+      {
+        "Sha256": "5405C804E3192ADA208A5084E92681ECE365C627BA6D037813F15BD4614C60AD",
+        "Path": "HoTroDuLich.Web/Data/Configurations/NhuCauDongHanhConfiguration.cs"
+      },
+      {
+        "Sha256": "40AAEA2D70AD5B1B94ED664DBCF17F6BCFE051814D970E95E7A61FE55E786CB6",
+        "Path": "HoTroDuLich.Web/Data/Configurations/PhuongAnXuLyConfiguration.cs"
+      },
+      {
+        "Sha256": "FF881B399A7C5A831ED4F30E2655D2F014BA21681372AC75F29FAA4E51043738",
+        "Path": "HoTroDuLich.Web/Data/Configurations/ProductConfiguration.cs"
+      },
+      {
+        "Sha256": "37C114B6B1B7CC9C2CDC6F09F5F2EB380DA336B7C8E9A72D9279CAC94EA890D8",
+        "Path": "HoTroDuLich.Web/Data/Configurations/QuyetDinhQuyenHoatDongConfiguration.cs"
+      },
+      {
+        "Sha256": "92488874E649479AC07F3BA0381E143BEF0608FD12127427888F2F5FF7F94345",
+        "Path": "HoTroDuLich.Web/Data/Configurations/QuyetDinhXacMinhConfiguration.cs"
+      },
+      {
+        "Sha256": "93DD6085E2AE6FAF6B4BA886080141D9111FD9D5CB678265C1D6CD17CE621317",
+        "Path": "HoTroDuLich.Web/Data/Configurations/ServiceDetailsConfiguration.cs"
+      },
+      {
+        "Sha256": "8D8BD071044F99059516FFA7C2A1EDF4DEAF9BFC98BC13404A4247B7D901E36A",
+        "Path": "HoTroDuLich.Web/Data/Configurations/TaiKhoanConfiguration.cs"
+      },
+      {
+        "Sha256": "2A22C24339DBD3CC936310A7F89CF863B41190EE1BE23267E3E92880CED50747",
+        "Path": "HoTroDuLich.Web/Data/Configurations/TaiLieuGiaiTrinhConfiguration.cs"
+      },
+      {
+        "Sha256": "D8C8745CC04DED8615DA8F60E394F57FA8E89421AFE72543032688E9134ED6ED",
+        "Path": "HoTroDuLich.Web/Data/Configurations/TaiLieuXacMinhConfiguration.cs"
+      },
+      {
+        "Sha256": "C1A2DF238F636026FADF8A3A325CFE5C61106D8998565DD1028CCB7600A5D586",
+        "Path": "HoTroDuLich.Web/Data/Configurations/ThoaThuanDongHanhConfiguration.cs"
+      },
+      {
+        "Sha256": "9B1C57D1006F2031C6F00A210A0D2B5ABBC76936F9FF34146B1FB78C5BF9144D",
+        "Path": "HoTroDuLich.Web/Data/Configurations/ThongBaoConfiguration.cs"
+      },
+      {
+        "Sha256": "5E218E30D613250BB1BE322CC97258DFD97D20F94A8D2EE38D994AC6910086FE",
+        "Path": "HoTroDuLich.Web/Data/Configurations/TinhHuongHoatDongConfiguration.cs"
+      },
+      {
+        "Sha256": "DABFBEF03B27606AF2D028FBE1672FBCC619AC71D21940BC9352D4B89BC162F8",
+        "Path": "HoTroDuLich.Web/Data/Configurations/TinhHuongPhatSinhConfiguration.cs"
+      },
+      {
+        "Sha256": "5A6648E3FCA842F33402B4B999B30BC5C9AF19E52E4F80946B53B56CD7FD2B5E",
+        "Path": "HoTroDuLich.Web/Data/Configurations/YeuCauDatDichVuConfiguration.cs"
+      },
+      {
+        "Sha256": "BC1F0B4D3AB91C4C4B6C3445C52B02295C3FFE8CF24904615B3F43DE17FC589F",
+        "Path": "HoTroDuLich.Web/Database/001_CanChinh_FullText.sql"
+      },
+      {
+        "Sha256": "F3FE46DEAF50E7AD6F2CBECE89AA3E2773C2D87CD802750429E411D759CE392A",
+        "Path": "HoTroDuLich.Web/Database/002_LienKetYeuCauChuyenDi.sql"
+      },
+      {
+        "Sha256": "99B2F1DE996DA2990F57AED170C6B3907975B8F4753C31A444F327A8C721C95D",
+        "Path": "HoTroDuLich.Web/Database/003_ChuanBi_ChiTieu_LuaChon.sql"
+      },
+      {
+        "Sha256": "60F6ADEDAB1633920F3DDA4FC2038027EEF32150054CB1DB3F58F6BDA6C07AD0",
+        "Path": "HoTroDuLich.Web/Database/004_HanhTrinh_ChiaSe_DanhGia_LichPhucVu.sql"
+      },
+      {
+        "Sha256": "45811C66C08FEFA5CEA32D13BC3688664CC24C8F8C65FE9C609C193BF0B11114",
+        "Path": "HoTroDuLich.Web/Database/005_KhongGianDongHanh.sql"
+      },
+      {
+        "Sha256": "7442CDB19B9B208BEFFCD204602B5D99219A867C807ACC356107E5A463492C09",
+        "Path": "HoTroDuLich.Web/Database/006_TraCuuThongTin.sql"
+      },
+      {
+        "Sha256": "16A329044C9A47EB42E6111158B6D0ADCEEB8875E19368C5DD3A4751A3846C11",
+        "Path": "HoTroDuLich.Web/Database/CSDL_HoTroDuLichTuTuc.sql"
+      },
+      {
+        "Sha256": "155E780F6B0F6BE861AD282C4E708270A5E7FF4AFFE3CF00964664E00CDAB60D",
+        "Path": "HoTroDuLich.Web/Database/KiemTra_FullText.sql"
+      },
+      {
+        "Sha256": "E5CAC65E03FFF30970E5B4FF462EDDA5819C31D8F18001301B054B4DF4B7832C",
+        "Path": "HoTroDuLich.Web/Database/Quyen_CSDL.sql"
+      },
+      {
+        "Sha256": "6D76072DC531413C3CAF1606ABBCE1CCA55B87A179A4A14E43C4C849C6D2A29E",
+        "Path": "HoTroDuLich.Web/Database/SaoLuu_PhucHoi.sql"
+      },
+      {
+        "Sha256": "EB321EC8D6297F90B675617DC3C9838175EDCEC239773F42BAD485348FE9F9CE",
+        "Path": "HoTroDuLich.Web/Database/schema.sql"
+      },
+      {
+        "Sha256": "8DD780F5FEB9614A4D9F5B60B52F21701A38EF712D27E24184A4EE803C51D26E",
+        "Path": "HoTroDuLich.Web/Domain/CompanionEntities.cs"
+      },
+      {
+        "Sha256": "F07E8FCAF784ACED84CEAC98091F827FDA3CE92D99970EAD7CE754CA0FBCF648",
+        "Path": "HoTroDuLich.Web/Domain/DiscoveryEntities.cs"
+      },
+      {
+        "Sha256": "F961474887651A2F2BB52884AE927A3D0180E366202C42D98237A5853F438DC2",
+        "Path": "HoTroDuLich.Web/Domain/Entities.cs"
+      },
+      {
+        "Sha256": "7160BD154295736CC2B9C7C55E9DDC740B85028D9D4DE7E5B2CA9958E4C57828",
+        "Path": "HoTroDuLich.Web/Domain/Enums.cs"
+      },
+      {
+        "Sha256": "BA768197B28348CAD5D43BB7F6B215A34B3AAE9F78D605AD9A4F9AEF50E19468",
+        "Path": "HoTroDuLich.Web/Domain/JourneyEntities.cs"
+      },
+      {
+        "Sha256": "ED0C1C416B51A78AC8D7EF3DB472C23045FAAF541958177182D16A831B4189D2",
+        "Path": "HoTroDuLich.Web/Domain/ProductEntities.cs"
+      },
+      {
+        "Sha256": "24013FE0D8FD6850D2F13793A27171AEF44E308A428D33178AB5474701533529",
+        "Path": "HoTroDuLich.Web/Domain/Relationships.cs"
+      },
+      {
+        "Sha256": "A61CF2A241D8941C4B91AE5DE0F0A81A4E537F24439E0358CE41D626FC0EBE88",
+        "Path": "HoTroDuLich.Web/Domain/ServiceDetails.cs"
+      },
+      {
+        "Sha256": "2D6433F0F044A0376C1BBD16B95FB49B0CA3777A445E0D6A13D37177A6E6171D",
+        "Path": "HoTroDuLich.Web/Models/CompanionBudgetBinder.cs"
+      },
+      {
+        "Sha256": "8F79C07DB551AA489ADACBDAE55B2911122058940C4FB2E8FBDF46F46148763A",
+        "Path": "HoTroDuLich.Web/Models/CompanionModels.cs"
+      },
+      {
+        "Sha256": "0D8A042512B96BED893DC11559D65931560FCBF5D4D9B53F5AA8C3401F668AD0",
+        "Path": "HoTroDuLich.Web/Models/DeactivationReview.cs"
+      },
+      {
+        "Sha256": "F864B524C0A770156D7149804359E224E00625AAD990E5F10F90CA0E824356D6",
+        "Path": "HoTroDuLich.Web/Models/DiscoveryModels.cs"
+      },
+      {
+        "Sha256": "B15FF13A20CB9ACC7F959DEB047D365667A8D0DEF7BEFB6ED28631C956C417C2",
+        "Path": "HoTroDuLich.Web/Models/ErrorViewModel.cs"
+      },
+      {
+        "Sha256": "09A2DE8FA8B2CC6F077C62C7731139B280BE804F9766C66D09805B1EA5707735",
+        "Path": "HoTroDuLich.Web/Models/ExpenseAmountBinder.cs"
+      },
+      {
+        "Sha256": "5E6E2A2C478061D976A7260B42EED39B7BCD8CC34DED22FC50F34AFFBB648C79",
+        "Path": "HoTroDuLich.Web/Models/FullTextValueProvider.cs"
+      },
+      {
+        "Sha256": "737967CD9DF8EC6FB194E5E429028A0796B5E5F2726F79730840F763CE01E90C",
+        "Path": "HoTroDuLich.Web/Models/FullTextViewModels.cs"
+      },
+      {
+        "Sha256": "67B2DAB962FADC58A433A53522586E84B859A0542CF3B5224ABFF3B10BEB58D7",
+        "Path": "HoTroDuLich.Web/Models/FunctionPages.cs"
+      },
+      {
+        "Sha256": "963997459CE6472DDBB6569C3A677C6A35B61085DCB96580ADF72F064FE5ACEF",
+        "Path": "HoTroDuLich.Web/Models/Inputs.cs"
+      },
+      {
+        "Sha256": "A98929B503563C1B10600D7F3034E20FCB1A9F755A7CAF3EAE11843EE4790F48",
+        "Path": "HoTroDuLich.Web/Models/JourneyModels.cs"
+      },
+      {
+        "Sha256": "3CE62F05A079ABF0B7EF2D8DED17410D216C2368BE54F42ECD801A57C90296F3",
+        "Path": "HoTroDuLich.Web/Models/ProductModels.cs"
+      },
+      {
+        "Sha256": "C73EB1A60B00620D98338D00DD12832A84C117478FAE4CCF07629F815D745CDD",
+        "Path": "HoTroDuLich.Web/Models/ProviderAssessment.cs"
+      },
+      {
+        "Sha256": "1700306247A3395A06F5B894BC8EA980A1B8BA3E8272D8824096871016B6E67B",
+        "Path": "HoTroDuLich.Web/Models/RightsConsequences.cs"
+      },
+      {
+        "Sha256": "B8CB94B0A68E840044FC31B6D4E05D0C5767797B94F4C5216E09381912DBD3BE",
+        "Path": "HoTroDuLich.Web/Models/SharedPerson.cs"
+      },
+      {
+        "Sha256": "80B3DCE1E3496F79288FA9A797BBBDB176E153C1735F122FD7D10FD574CA8132",
+        "Path": "HoTroDuLich.Web/Models/TripWorkspace.cs"
+      },
+      {
+        "Sha256": "32DF9208E859EA871D52930140D406154E7B762AE648B9FAA4A1E10090AAB91B",
+        "Path": "HoTroDuLich.Web/Models/VietnameseMetadataProvider.cs"
+      },
+      {
+        "Sha256": "CFAF4ACF5DD3DC2FF66FBFE0472D802EC1E3CC02D6438302B0EFDD7614D1FC8C",
+        "Path": "HoTroDuLich.Web/Properties/launchSettings.json"
+      },
+      {
+        "Sha256": "5EE8AE3C66BF5E6D98789012D1B2206BF949C9DD935BF7706D38F1D454B1AEC1",
+        "Path": "HoTroDuLich.Web/Services/AvailabilityService.cs"
+      },
+      {
+        "Sha256": "2371B5982CC2F078CF25DF8A28649667259A0A1317DFB0B15722C1A739158D23",
+        "Path": "HoTroDuLich.Web/Services/BusinessException.cs"
+      },
+      {
+        "Sha256": "96C62F4D40E82B57B2AF7343874E4D42C07AF1AD89F32DDA322744D5970EFAE3",
+        "Path": "HoTroDuLich.Web/Services/CompanionCollaboration.cs"
+      },
+      {
+        "Sha256": "0DAEC442E7D45289E8E95A6D311FEB242E14AF02CB70C33A44A775B1911D4B42",
+        "Path": "HoTroDuLich.Web/Services/CompanionFinance.cs"
+      },
+      {
+        "Sha256": "3CE8BCFDFB0BD8993190DF065B086240CB2246898DCE8B446CD80EA4153C2D50",
+        "Path": "HoTroDuLich.Web/Services/CompanionMembership.cs"
+      },
+      {
+        "Sha256": "A1CF252E56B0B8C5F3E69175E7FCAAC514A0C5E38EA904C954A53606BC3F2269",
+        "Path": "HoTroDuLich.Web/Services/CompanionModeration.cs"
+      },
+      {
+        "Sha256": "F3E86790841EB770E1AAE6E9D799B5955473D381B889497F731D596997C8B950",
+        "Path": "HoTroDuLich.Web/Services/CompanionService.cs"
+      },
+      {
+        "Sha256": "8F221920B8E6E64FEAA440729C1013D1740022BB2D492861A9528DC41A38220A",
+        "Path": "HoTroDuLich.Web/Services/ComponentRegistration.cs"
+      },
+      {
+        "Sha256": "28A1626B54EF010276B5370824169DB3619748F0F537535549BD50E59EC4C30B",
+        "Path": "HoTroDuLich.Web/Services/ContractRegistration.cs"
+      },
+      {
+        "Sha256": "ACFE05F8994F92EE8DBE4DAF1E374884A7E66800675F4CDE6DF845B53ACCA2C3",
+        "Path": "HoTroDuLich.Web/Services/DanhMuc.cs"
+      },
+      {
+        "Sha256": "3F0D5A95FBAF03D5F2EA5F98307E122D78FE120487D34ADCB5CF2F16C90BB4E0",
+        "Path": "HoTroDuLich.Web/Services/DiscoveryCommunity.cs"
+      },
+      {
+        "Sha256": "417369462ADB89A0C1DBA336D1768A5160DAA2CAE759FD30B12E72E8FF2CB641",
+        "Path": "HoTroDuLich.Web/Services/DiscoveryContent.cs"
+      },
+      {
+        "Sha256": "7F355689099D53FF2A610AA50EF47FAAC687F31164C82AA4EF0EFD14F90AACAC",
+        "Path": "HoTroDuLich.Web/Services/DiscoveryIndexWorker.cs"
+      },
+      {
+        "Sha256": "C195B74B36E40ECE4C7E022A45F446EB1C47F381A8F0ABECAFDA4DE23CB27F93",
+        "Path": "HoTroDuLich.Web/Services/DiscoveryRouting.cs"
+      },
+      {
+        "Sha256": "F4ED9BF4034B6D9F078E8512DA011AA69CBF91A45F68EAE255DFC7D59CEFA657",
+        "Path": "HoTroDuLich.Web/Services/DiscoveryService.cs"
+      },
+      {
+        "Sha256": "AABBB486BF1507C08C6CD7E348FBC908E5467F904DB13CA2BACD84602CF107A1",
+        "Path": "HoTroDuLich.Web/Services/Infrastructure.cs"
+      },
+      {
+        "Sha256": "F372530AADB28B231B20147466DD389E63DCF9FEABC1A41D300F9A55E2B4C3D6",
+        "Path": "HoTroDuLich.Web/Services/JourneyService.cs"
+      },
+      {
+        "Sha256": "C84B561292EC3EE89B44FC21D2F60657E8FAB823ED77F02C85352CCAAE9DCF7B",
+        "Path": "HoTroDuLich.Web/Services/Labels.cs"
+      },
+      {
+        "Sha256": "98BB26CC8849902B7FA07131378D825BDD785CC698A97E293745C26380DE6352",
+        "Path": "HoTroDuLich.Web/Services/MaLoi.cs"
+      },
+      {
+        "Sha256": "C103A9D3EAE0CF2F3CC0AD3E4A4B0F059B2534CAB9987543165BC7C3C1EE1B1C",
+        "Path": "HoTroDuLich.Web/Services/NghiepVuService.cs"
+      },
+      {
+        "Sha256": "5725081B336DC27EDF7390380B0370C50024BAB8AAD5623C422BBDB0A2594BD8",
+        "Path": "HoTroDuLich.Web/Services/NhacDenHanDinhChiService.cs"
+      },
+      {
+        "Sha256": "C2B0BFBF17ADD047B558C1D056178FED4710843BEC67F3F80CC5EE4EA70B59FA",
+        "Path": "HoTroDuLich.Web/Services/NhatKyBaoMat.cs"
+      },
+      {
+        "Sha256": "A84B22DC34213F121B958782CBEDF08F0CEF6CCDA794C97AFDB1AAA16B516F9B",
+        "Path": "HoTroDuLich.Web/Services/PreparationReminderService.cs"
+      },
+      {
+        "Sha256": "D50A47D6F9538B533F2F1955B9CA35E0F147CB59929281488FB5813D58E6A257",
+        "Path": "HoTroDuLich.Web/Services/ProductService.cs"
+      },
+      {
+        "Sha256": "5CB3C406D4E4D8F83025AC4CC2D74365B4455869D145774C4CE097C15278B530",
+        "Path": "HoTroDuLich.Web/Services/ReviewService.cs"
+      },
+      {
+        "Sha256": "2C91A51841AC27BF8B8F2F8F2BC0064BCEF2FFCFA4A41DC7D94A62664C656652",
+        "Path": "HoTroDuLich.Web/Services/SessionAuthentication.cs"
+      },
+      {
+        "Sha256": "14C0805749085C75F5644A61B2C2C0BD8A29404C92772910F5ACE1CC9BC6551D",
+        "Path": "HoTroDuLich.Web/Services/SucAccess.cs"
+      },
+      {
+        "Sha256": "D270F7F3E14AF324A8B7E48238D2E242D319C27B111F07195D7C6B02ED6192C4",
+        "Path": "HoTroDuLich.Web/Services/TravelService.cs"
+      },
+      {
+        "Sha256": "E029C7C62B38313F7900B1B7AB7FBB3E22133DB2EC8AF54800440EF12B77C46C",
+        "Path": "HoTroDuLich.Web/Services/TripWorkspaceService.cs"
+      },
+      {
+        "Sha256": "416E9818C55DE9597BA2AB6FC0A544EC56D12AD582637CE201D301CB4A0B3E27",
+        "Path": "HoTroDuLich.Web/Services/Ui.cs"
+      },
+      {
+        "Sha256": "FABDDBF85D335885877C21BF7A111E33B938B548F62B11151C73C59D1292229D",
+        "Path": "HoTroDuLich.Web/Services/Components/BookingIdempotency.cs"
+      },
+      {
+        "Sha256": "5A9CFD869ABF2125624BDF842D7EABD3717E0810503FECCA2C392AEBF802CE76",
+        "Path": "HoTroDuLich.Web/Services/Components/ComponentQueries.cs"
+      },
+      {
+        "Sha256": "35B6B4D9EE33444799469BF444A7BA13198255F23F6A3AADCE46719F17618669",
+        "Path": "HoTroDuLich.Web/Services/Components/CongBoNhuCauService.cs"
+      },
+      {
+        "Sha256": "F684213C6AC7DA76AFF845670E46E5DDC82562644D34B5D355C734AB9D0549F3",
+        "Path": "HoTroDuLich.Web/Services/Components/DangKyService.cs"
+      },
+      {
+        "Sha256": "2C927DD5CCCCF5351B2760094B432C81310937957837B2E83C39D15C8C796C65",
+        "Path": "HoTroDuLich.Web/Services/Components/DangNhapService.cs"
+      },
+      {
+        "Sha256": "0270A7BE6CB0310D5B1B231FD6EF29E4ABC4F3B95383709122A70F3502CC839B",
+        "Path": "HoTroDuLich.Web/Services/Components/DanhMucService.cs"
+      },
+      {
+        "Sha256": "480553CA9F5D85D0B12E57F445A71FE9C0F426C9BDBEE21FE755723876C3025F",
+        "Path": "HoTroDuLich.Web/Services/Components/DatDichVuService.cs"
+      },
+      {
+        "Sha256": "5E1DA0B196C2A151289E2FEC60E1602B8E7C70638DBC18CD10D61E0AD4ACB764",
+        "Path": "HoTroDuLich.Web/Services/Components/DieuChinhDichVuService.cs"
+      },
+      {
+        "Sha256": "507CD433738726CE4A60ADA3853892F416F2B48CCC8922E5576C0370916D2D5C",
+        "Path": "HoTroDuLich.Web/Services/Components/FullTextActions.cs"
+      },
+      {
+        "Sha256": "4D4091D1F40F48701E6E2FB671B777D0D6030084D96C9C123CE9532EA9E792B7",
+        "Path": "HoTroDuLich.Web/Services/Components/HoSoNguoiDungService.cs"
+      },
+      {
+        "Sha256": "16A8A08C13F31AE3D7FCFA90572D3BEBC7543FC9B7036C53FA7161C42171C5AD",
+        "Path": "HoTroDuLich.Web/Services/Components/KetNoiDongHanhService.cs"
+      },
+      {
+        "Sha256": "38D42D694E85520F1B3EA8052C1F9C1879A5617FDDD2025C6210B86A412F42B5",
+        "Path": "HoTroDuLich.Web/Services/Components/KetQuaDichVuService.cs"
+      },
+      {
+        "Sha256": "51037E9251C739B0D488EC7B84FAD1F310011092638916519B8DD716FDE7AB25",
+        "Path": "HoTroDuLich.Web/Services/Components/LapKeHoachService.cs"
+      },
+      {
+        "Sha256": "8D71441024E438ED3F31EA233B29A0AB911ED7624E13EA45CE420D12EB57D775",
+        "Path": "HoTroDuLich.Web/Services/Components/LuuTepService.cs"
+      },
+      {
+        "Sha256": "418D764435A38D7FAD38F27A96513D058A8CBDE0BC6682A1BFD5B56A892D6D4F",
+        "Path": "HoTroDuLich.Web/Services/Components/LuuTepStore.cs"
+      },
+      {
+        "Sha256": "E0171D78D8D51E6914B671AE7113194431DE01C3B9CF49A90E2FAB6F7DEA3DF2",
+        "Path": "HoTroDuLich.Web/Services/Components/NgungTaiKhoanService.cs"
+      },
+      {
+        "Sha256": "8218707A9F18B6E9ADA862F9833B28CD189CC1F39ED255E5BE79A206A4864711",
+        "Path": "HoTroDuLich.Web/Services/Components/NhatKyService.cs"
+      },
+      {
+        "Sha256": "32292BA67B033376FF6803D9182687E8131BED902D0C731B87874F5701B54FD3",
+        "Path": "HoTroDuLich.Web/Services/Components/ProviderAssessment.cs"
+      },
+      {
+        "Sha256": "075F52CEAE50E59475DDB2258A4F90E920F5D046BA216830C010E3B5A9ECB6FF",
+        "Path": "HoTroDuLich.Web/Services/Components/QuanLyDichVuService.cs"
+      },
+      {
+        "Sha256": "BD71C1DA22DC7AA111E27E2F732B8165B69AA73F52A9115908482836C345A376",
+        "Path": "HoTroDuLich.Web/Services/Components/QuyenHoatDongService.cs"
+      },
+      {
+        "Sha256": "FD14E7051E86546CF4EF196A15CE1B817834294776C754DEC2A75CCEAD0FD5A6",
+        "Path": "HoTroDuLich.Web/Services/Components/ThoaThuanDongHanhService.cs"
+      },
+      {
+        "Sha256": "6BE18B36835CD65CAFD4283D1EF183CDDA41C08A679E750A78F6355486A41FBF",
+        "Path": "HoTroDuLich.Web/Services/Components/ThongBaoService.cs"
+      },
+      {
+        "Sha256": "ADB2479370F579CC27AEE91E685B7A17964AADD980B55D7017F013A3ABB055EB",
+        "Path": "HoTroDuLich.Web/Services/Components/TimKiemThongTinService.cs"
+      },
+      {
+        "Sha256": "BD27FDE734F93F9F411D39E30E93FB129E6FE2724A622E2B44C491B774C75C33",
+        "Path": "HoTroDuLich.Web/Services/Components/TimNguoiDongHanhService.cs"
+      },
+      {
+        "Sha256": "66F2013684DB16A4BFBC268836AC87A5E6BFFA1495102961174720F2B6E89B39",
+        "Path": "HoTroDuLich.Web/Services/Components/XacMinhNhaCungCapService.cs"
+      },
+      {
+        "Sha256": "D1D990AA3867562302DDF2C6C385E712CDD6CB09E58967D40164588AFF9A061F",
+        "Path": "HoTroDuLich.Web/Services/Components/XetDuyetDichVuService.cs"
+      },
+      {
+        "Sha256": "ED6D602573FE6D93C3FC3A6589D279E0343C0DADD61BD25F8616D5A714ADE4AC",
+        "Path": "HoTroDuLich.Web/Services/Components/XuLyTinhHuongService.cs"
+      },
+      {
+        "Sha256": "AB3799D7CFBE0765BC0F1A222025E2BBFE5E9B7489A4255399D6776D29DAA122",
+        "Path": "HoTroDuLich.Web/Services/Contracts/ComponentContracts.cs"
+      },
+      {
+        "Sha256": "E4559BB4C64A8B9D01F71949BB577FE32FD5DB3108438EFBAB04BEB4B92B3F18",
+        "Path": "HoTroDuLich.Web/Services/Contracts/ICongBoNhuCauService.cs"
+      },
+      {
+        "Sha256": "9F3BBBAC266FA0C93689B2D8420F353144818D4A43A41BFEFE681CB33232678A",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IDangKyService.cs"
+      },
+      {
+        "Sha256": "177E6E9CBA1E86D65C73927D7FE276196DD646D016AEDED5194BABD026ABA87E",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IDangNhapService.cs"
+      },
+      {
+        "Sha256": "FF6EB4C1982E7375716B0E3AC1A2AFDBC4EAA9AE0A593F6B475D93871383CD18",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IDanhMucService.cs"
+      },
+      {
+        "Sha256": "CC38DBDE803A519AD2A61169AE97ADB3ECE6DFAD28D3BAA51D33176E75BD5D3A",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IDatDichVuService.cs"
+      },
+      {
+        "Sha256": "5440DD1221F5EA73E3FAF01FB8F06484BACE5DC6ADAC4B48C4D14EF955BCEA3C",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IDieuChinhDichVuService.cs"
+      },
+      {
+        "Sha256": "94C8FC42AAB471D211AE7804D95B3EF06BF41A4DE5387E58367FDEDD6C3F0E36",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IHoSoNguoiDungService.cs"
+      },
+      {
+        "Sha256": "F807C70A7FD3812497CE7A45DFEA585AEA40CDA25C21B61DF8F7E8EDE4E2B6FF",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IKetNoiDongHanhService.cs"
+      },
+      {
+        "Sha256": "5B7D076C77D541EEEF0908AD6CF04D44DED412F60D47E66FA2BBD5E62E9A6A25",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IKetQuaDichVuService.cs"
+      },
+      {
+        "Sha256": "AECB02A01CB7AEC6F61502DB2A3C39FB446BE7858C87C00A951CD06B1A4106DC",
+        "Path": "HoTroDuLich.Web/Services/Contracts/ILapKeHoachService.cs"
+      },
+      {
+        "Sha256": "E18845D1069B9B81A624F550E9E2464D04BE736FFAA6774201240B6337089A14",
+        "Path": "HoTroDuLich.Web/Services/Contracts/ILuuTepService.cs"
+      },
+      {
+        "Sha256": "B60C35B0E2DAD36EB5CECCD275AB21791C75B7A9EB9C252AD23DB8C0E5B6309E",
+        "Path": "HoTroDuLich.Web/Services/Contracts/INgungTaiKhoanService.cs"
+      },
+      {
+        "Sha256": "3F2852A9EA41DE6797A3CC14DE4C923D4D97FC2B75A880DC8767A50C2F5837AA",
+        "Path": "HoTroDuLich.Web/Services/Contracts/INhatKyService.cs"
+      },
+      {
+        "Sha256": "4712FE0EC582E8E9401A5D544B3FA9169768FF07714542CD42CEA747AC659731",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IQuanLyDichVuService.cs"
+      },
+      {
+        "Sha256": "A7CC554612AE90D1B44EE6FBC3D88B0C59ABE5D0A24A559183FAA29F6F5183ED",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IQuyenHoatDongService.cs"
+      },
+      {
+        "Sha256": "F9FADC012317FAF4EB2A6F17A4CEE600DEF2CF0DE08C7FD3EAA0A72A2BB1876F",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IThoaThuanDongHanhService.cs"
+      },
+      {
+        "Sha256": "557D037B6FCA01D01F3A24C0B9A56ADD98F0747455F5695E89D428A11AB5D6C0",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IThongBaoService.cs"
+      },
+      {
+        "Sha256": "0D6CC84EA967FAB70D1B36A7087C1EF86A43DB1385ABD119B2CB75D81EF1433C",
+        "Path": "HoTroDuLich.Web/Services/Contracts/ITimKiemThongTinService.cs"
+      },
+      {
+        "Sha256": "2CF8F2AFB2F1BF2FB406259542F12C4B4233FB12C564C538A62BC51E26363D8D",
+        "Path": "HoTroDuLich.Web/Services/Contracts/ITimNguoiDongHanhService.cs"
+      },
+      {
+        "Sha256": "3F297C5B1DC8B3F1C62C025AFE174DAAC73BE9C838FAE2D4764AFD1BD9401893",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IXacMinhNhaCungCapService.cs"
+      },
+      {
+        "Sha256": "4E7521221A68B1322A751C739B4910802553C7C56D133196D50B3D20FC45F453",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IXetDuyetDichVuService.cs"
+      },
+      {
+        "Sha256": "F5380BA9CE37E8E20BD1675F6BD6E84E64737D748D13D55916DC11203280A932",
+        "Path": "HoTroDuLich.Web/Services/Contracts/IXuLyTinhHuongService.cs"
+      },
+      {
+        "Sha256": "05EBA1EDE5531F0C4ACB49FD56EACBDB10A80FE4494593D1E42FD4B890BE10B9",
+        "Path": "HoTroDuLich.Web/Views/_ViewImports.cshtml"
+      },
+      {
+        "Sha256": "1B8496D15708E5D6554B607ECCA4E226D9797FFDF6DC97FF10C137AE5F5FCCF4",
+        "Path": "HoTroDuLich.Web/Views/_ViewStart.cshtml"
+      },
+      {
+        "Sha256": "E35A0F2B740DCA3877374FE24FA7F40214739CA7C6DF78C5CB1A7C84E88E3163",
+        "Path": "HoTroDuLich.Web/Views/Account/Deactivate.cshtml"
+      },
+      {
+        "Sha256": "8EB0B0170536A450451D85E414983E69166C13CB2E0859D4E88D18FAA78EC7F8",
+        "Path": "HoTroDuLich.Web/Views/Account/DeactivateReview.cshtml"
+      },
+      {
+        "Sha256": "94650C3983AD4B620AE1EC81F0421C5B9B4605FB03FA165FC0D16DF7DC8D8CAD",
+        "Path": "HoTroDuLich.Web/Views/Account/Login.cshtml"
+      },
+      {
+        "Sha256": "41DC037BE5EF3C473B09EB48681D29A9A920D88D147270E9579CB7FBF5874CA4",
+        "Path": "HoTroDuLich.Web/Views/Account/Notifications.cshtml"
+      },
+      {
+        "Sha256": "7AD74E830E3730E8FEA0144E18959462AC4C1073C6D7C0EE7E7854F6C3904EC0",
+        "Path": "HoTroDuLich.Web/Views/Account/Password.cshtml"
+      },
+      {
+        "Sha256": "1893B582A0EEC8E6502D21D7AD3349062A9282270BD9A4F4CB45700157D0E74F",
+        "Path": "HoTroDuLich.Web/Views/Account/Profile.cshtml"
+      },
+      {
+        "Sha256": "8B67B67D410DEE2E0B192F3EBEDC31FF5064F7880B0DB218D1F5C1DE26B5B592",
+        "Path": "HoTroDuLich.Web/Views/Account/Register.cshtml"
+      },
+      {
+        "Sha256": "F4D432B1353A5418E6F8DA27F5EC06E563F811A6F79DFE77D760C0AE3A54186B",
+        "Path": "HoTroDuLich.Web/Views/Admin/_ProviderAssessment.cshtml"
+      },
+      {
+        "Sha256": "CFFC963CD2D8CCE295555876D01767321AFB94DEAC008615DCCFB26D44327444",
+        "Path": "HoTroDuLich.Web/Views/Admin/_ServiceDetailsReview.cshtml"
+      },
+      {
+        "Sha256": "8B80AACD1F1848DF415803B752E84D7EFB81AAB560E0874F11232AA773C76776",
+        "Path": "HoTroDuLich.Web/Views/Admin/Audit.cshtml"
+      },
+      {
+        "Sha256": "F9B5AD66FF4B29EEBBF648C6FB322251CBA305E08118ADE6FCAA2D8D2D6A4387",
+        "Path": "HoTroDuLich.Web/Views/Admin/Consequences.cshtml"
+      },
+      {
+        "Sha256": "AE03F35731EFD29AC1666B44AA0B14CB3691B3973C7286F0D8DD7DC8ABFB7B8E",
+        "Path": "HoTroDuLich.Web/Views/Admin/Index.cshtml"
+      },
+      {
+        "Sha256": "779D6A21CB7FF03267D700970AA53621AECD5AFA45B74943B3C8D7D555F4B67F",
+        "Path": "HoTroDuLich.Web/Views/Admin/Provider.cshtml"
+      },
+      {
+        "Sha256": "AA47D0788DC75AB76EB45066091D25CF4EAAE1BB06D9A4C60785D30578FCC189",
+        "Path": "HoTroDuLich.Web/Views/Admin/Providers.cshtml"
+      },
+      {
+        "Sha256": "38CEA617846C9D7F9AA1EE8BBD43753406B3114BAD0769BD6C58821325C9D21D",
+        "Path": "HoTroDuLich.Web/Views/Admin/Review.cshtml"
+      },
+      {
+        "Sha256": "655E48F446C84BAC9DFAAABAE011A982EC4C17E56B65E25ABBB6527DA8A04E58",
+        "Path": "HoTroDuLich.Web/Views/Admin/ServiceReviews.cshtml"
+      },
+      {
+        "Sha256": "45646B0405427BF5DBDABCC643B809F83282AE262BE03C367DA2D40007EFF0D6",
+        "Path": "HoTroDuLich.Web/Views/Admin/Verification.cshtml"
+      },
+      {
+        "Sha256": "7711E1E883DE859E9000E53E5FEDB5131F17D8BE06561B328257B98B789FA2D2",
+        "Path": "HoTroDuLich.Web/Views/Admin/Verifications.cshtml"
+      },
+      {
+        "Sha256": "D5CF99740A5431611266CFC3E33F4132F88E130D9924358DE9EC2F6AE95DA0EC",
+        "Path": "HoTroDuLich.Web/Views/Availability/Index.cshtml"
+      },
+      {
+        "Sha256": "FC27BE56427BFAA68EBE677ACE14F49E7F02AE7858D674805181F3A76F64FBAD",
+        "Path": "HoTroDuLich.Web/Views/Bookings/_BookingFields.cshtml"
+      },
+      {
+        "Sha256": "D40D96B3C4C77E718B5DAC6B360CE923ED9A8E78794F973E533568B1546D70CD",
+        "Path": "HoTroDuLich.Web/Views/Bookings/_BookingTabs.cshtml"
+      },
+      {
+        "Sha256": "176DB4F99B71929D9D8F53AC2A5BF2376F6ED674003712970B725FEBF76D9389",
+        "Path": "HoTroDuLich.Web/Views/Bookings/_TripAssignment.cshtml"
+      },
+      {
+        "Sha256": "64F4CB80B53FFEB12148FFC88F1B0ECC475FB0DEA1CF45EA9BF370F6B81590BA",
+        "Path": "HoTroDuLich.Web/Views/Bookings/Adjustments.cshtml"
+      },
+      {
+        "Sha256": "9E6EC13E094D6EAFB7B5674D6237BC63A26A1489E24A01A0D46483E19D9DA062",
+        "Path": "HoTroDuLich.Web/Views/Bookings/Change.cshtml"
+      },
+      {
+        "Sha256": "115D4CA372F6A7F9A0F4A6A1FD7AAC7130B61A15FE7E16AB4F257D38457ECF0E",
+        "Path": "HoTroDuLich.Web/Views/Bookings/Changes.cshtml"
+      },
+      {
+        "Sha256": "67C3904AC28D90D9FD1F0207CF1043FFA3CF03E747F6CEB96C9CC66A7FD75C0F",
+        "Path": "HoTroDuLich.Web/Views/Bookings/Create.cshtml"
+      },
+      {
+        "Sha256": "1910D234F10FE38C4178384EC6D51E3668AD2C36F823B025DBF5814576133478",
+        "Path": "HoTroDuLich.Web/Views/Bookings/Detail.cshtml"
+      },
+      {
+        "Sha256": "321FD972BCBE7D29D3FC15D86B621981C7799AC351B07CB027244C777FBCD58D",
+        "Path": "HoTroDuLich.Web/Views/Bookings/Edit.cshtml"
+      },
+      {
+        "Sha256": "261C5AAAA5486688185406405A2AE6E26C6CDB66EBEB1E0636DC9AFB60B9B1A7",
+        "Path": "HoTroDuLich.Web/Views/Bookings/Index.cshtml"
+      },
+      {
+        "Sha256": "45A5A85066A07768645492245CB74E489235F96543F3B4F4E5FF9658DB6ABD90",
+        "Path": "HoTroDuLich.Web/Views/Bookings/Outcome.cshtml"
+      },
+      {
+        "Sha256": "F121283B418B14E5BD19A90BDA819B0553A8671AB436BC7CBA64B4B64870D3B2",
+        "Path": "HoTroDuLich.Web/Views/Bookings/Preview.cshtml"
+      },
+      {
+        "Sha256": "9B88C54186468E4E99BF9C54060C69849377D9F2973909C8DCED59D9EA8A8095",
+        "Path": "HoTroDuLich.Web/Views/Bookings/Results.cshtml"
+      },
+      {
+        "Sha256": "12A758B8ECA141F3CB575791AFE129E549FF57402C67A3CEA98803FF2FC96271",
+        "Path": "HoTroDuLich.Web/Views/Companions/Agreement.cshtml"
+      },
+      {
+        "Sha256": "2232D82B7E9E21E07C64419FBFCDF32C6902D698A041908C4B556758CBA61DF5",
+        "Path": "HoTroDuLich.Web/Views/Companions/Connection.cshtml"
+      },
+      {
+        "Sha256": "58F5848E084807BE6AE29135CE1C7E05920907DD87DEBAFEE8DC4B4194955646",
+        "Path": "HoTroDuLich.Web/Views/Companions/Connections.cshtml"
+      },
+      {
+        "Sha256": "685A7A1553CA3AE408B0E44793736ECE6F84B24585E7761F86E83AB62158722B",
+        "Path": "HoTroDuLich.Web/Views/Companions/Detail.cshtml"
+      },
+      {
+        "Sha256": "AFD3E8B027638CB2162A98EC4963C6356550B7C6E0D809679FAF73D4DF31266C",
+        "Path": "HoTroDuLich.Web/Views/Companions/Edit.cshtml"
+      },
+      {
+        "Sha256": "87A5674E531F28045BC209E6C19D4E585C021A6F120BDBE4B8E5DBF0A3D781B5",
+        "Path": "HoTroDuLich.Web/Views/Companions/Index.cshtml"
+      },
+      {
+        "Sha256": "E3E7685FAA97044C2A1341F925BC5F453AE32080EBE1308345F67B41D174BF0C",
+        "Path": "HoTroDuLich.Web/Views/Companions/Mine.cshtml"
+      },
+      {
+        "Sha256": "75CB689E4EB4BA6657502001820F9BF76E591F859AC698E02054FB2BBAE29B57",
+        "Path": "HoTroDuLich.Web/Views/Companions/Preview.cshtml"
+      },
+      {
+        "Sha256": "7D00C091A7F13EC55DB5DB6D505E630F3E38DDD5A86C7A8E2F70E120EC153EF9",
+        "Path": "HoTroDuLich.Web/Views/Companions/Propose.cshtml"
+      },
+      {
+        "Sha256": "478F5C29868CCEF1D587DA1FCE985856D0B2801E2DB8D586A58370215145971D",
+        "Path": "HoTroDuLich.Web/Views/Discovery/_Card.cshtml"
+      },
+      {
+        "Sha256": "14D7936C3DF2D7E8C0650E6BDF23D70AF4886EA7E8C859CD5E60D22A1ADF7D57",
+        "Path": "HoTroDuLich.Web/Views/Discovery/_LegacyLink.cshtml"
+      },
+      {
+        "Sha256": "8D9DB9CB8FA59579722715A2599FCF0267D388F64C08FA07B2069C03EAE0F517",
+        "Path": "HoTroDuLich.Web/Views/Discovery/Compare.cshtml"
+      },
+      {
+        "Sha256": "A5181868492F21C9ACD3242DA022C50D4FEA5619782EF02FB3D9AC441B44E69F",
+        "Path": "HoTroDuLich.Web/Views/Discovery/Edit.cshtml"
+      },
+      {
+        "Sha256": "35C7111EC21EDC265660DA27E05E80B5996B00D1446C64649E0E9F73F1993A0B",
+        "Path": "HoTroDuLich.Web/Views/Discovery/Entry.cshtml"
+      },
+      {
+        "Sha256": "DA1F5AD7805B1D9289A6D3BD33D8C935EB84B4DBA886B1DA30B4EF4BB42BF1FD",
+        "Path": "HoTroDuLich.Web/Views/Discovery/Library.cshtml"
+      },
+      {
+        "Sha256": "84D99557DB06FFE2C4BD40FE9B1B41BE398DD3A8865E4DE781F241ACDDDAB2A1",
+        "Path": "HoTroDuLich.Web/Views/Discovery/Manage.cshtml"
+      },
+      {
+        "Sha256": "06A7F0B457091AA360F8B8F28E97905E1555B700F911340F994D7E83D9A6744D",
+        "Path": "HoTroDuLich.Web/Views/Discovery/Search.cshtml"
+      },
+      {
+        "Sha256": "DF071E7A859628EE5C0E9A9FF1426236D3DA7998A1BCC7BA23A2A69B8E42DEC7",
+        "Path": "HoTroDuLich.Web/Views/Expenses/_ExpenseForm.cshtml"
+      },
+      {
+        "Sha256": "26E4028084C7192399D040CD1CCB526C69BB3E2BDF704FC4D31354D2056D22D1",
+        "Path": "HoTroDuLich.Web/Views/Expenses/Index.cshtml"
+      },
+      {
+        "Sha256": "AFDDDC3A3D35CDD4AE361ED96D43F2716ECD051464973601A93CC9C29BADDA83",
+        "Path": "HoTroDuLich.Web/Views/Explore/Detail.cshtml"
+      },
+      {
+        "Sha256": "CA2B8F2F90694D3A2E8FEBEE2D9110E7C16DCCC2A11725D83C79AED90A6105E7",
+        "Path": "HoTroDuLich.Web/Views/Explore/Index.cshtml"
+      },
+      {
+        "Sha256": "658B2CCABC48E361FD8900F4D8ED794A0B46D98967D4F3F48650EA5FC0AE98ED",
+        "Path": "HoTroDuLich.Web/Views/Explore/Place.cshtml"
+      },
+      {
+        "Sha256": "846CDD62939CF7C0B6CB7F44BA22F437D748211AF42B47BE24BFD056FF5830E5",
+        "Path": "HoTroDuLich.Web/Views/Home/Index.cshtml"
+      },
+      {
+        "Sha256": "09379415E9301D9BD5FE1EB7B563E7B9B7FA42F001B9BEED5CC38EDD88887C36",
+        "Path": "HoTroDuLich.Web/Views/Home/Privacy.cshtml"
+      },
+      {
+        "Sha256": "972F951CD3767AE76218ECA910B95DAC202509D63322C0239261EE1A2A1B6F43",
+        "Path": "HoTroDuLich.Web/Views/Journey/Share.cshtml"
+      },
+      {
+        "Sha256": "71FD72EDC9DFEC170774017BCAADB57673F72262FD494C9FCF7A2114F018EEDE",
+        "Path": "HoTroDuLich.Web/Views/Journey/SharedTrip.cshtml"
+      },
+      {
+        "Sha256": "D18B2E96173B3B972E4E54FE5A0CA3C8A128F7B65767DA2B488D487FAB054BC5",
+        "Path": "HoTroDuLich.Web/Views/Journey/Today.cshtml"
+      },
+      {
+        "Sha256": "88300439072AC2494FC0AE3B6BEFA4BEFB8D437AD1804CDEE1ADE9F0BC705E2F",
+        "Path": "HoTroDuLich.Web/Views/Plans/_ScheduleWarnings.cshtml"
+      },
+      {
+        "Sha256": "5028B94B962F3A25F18FC6DBB218B85E9085DC43751A5DC70471D9224C7B91CE",
+        "Path": "HoTroDuLich.Web/Views/Plans/_TripProductShortcuts.cshtml"
+      },
+      {
+        "Sha256": "B25238EBB3DEACD84D573401F05FACD8FBC0BC30A4C24CCF31FEA25E1C716A82",
+        "Path": "HoTroDuLich.Web/Views/Plans/Activity.cshtml"
+      },
+      {
+        "Sha256": "77CF70865E09320BEC8B1EC4A2B3C60E9C7AF1CE652127D52C3CE93C45D7CB75",
+        "Path": "HoTroDuLich.Web/Views/Plans/Detail.cshtml"
+      },
+      {
+        "Sha256": "2CE98DB68D42AF57B04EA558FE685645C45258F76AB1CB76D1905D95456B20AB",
+        "Path": "HoTroDuLich.Web/Views/Plans/Edit.cshtml"
+      },
+      {
+        "Sha256": "BA64FB1374AAF634B1043A62425611BE7BE5D269099DEB73CF2D45C3DF446A65",
+        "Path": "HoTroDuLich.Web/Views/Plans/Index.cshtml"
+      },
+      {
+        "Sha256": "6DCC452A361F738A11F36931EF39A9559942F18135B63302551870D738533AE9",
+        "Path": "HoTroDuLich.Web/Views/Plans/Select.cshtml"
+      },
+      {
+        "Sha256": "AE5C3D4D782FEDAED4F59DC0F6E76B393801BA3B9BF1AF47E66BBAD685707431",
+        "Path": "HoTroDuLich.Web/Views/Preparation/_ChecklistForm.cshtml"
+      },
+      {
+        "Sha256": "C9A1DD12DFB262227AADA492C1D73EB71E3A4F20673B43D3B25BC7FB5FA6EF8D",
+        "Path": "HoTroDuLich.Web/Views/Preparation/Index.cshtml"
+      },
+      {
+        "Sha256": "C542801E0726CA107B0114B8FF2215E930EB55524B144D3721B8CAFF693F5F95",
+        "Path": "HoTroDuLich.Web/Views/Provider/_ServiceDetailsForm.cshtml"
+      },
+      {
+        "Sha256": "50BFD1837D1256FC790B85FF9712062CF8FC971E79F0137052056C28B7DF94FC",
+        "Path": "HoTroDuLich.Web/Views/Provider/_ServiceRevisionDetails.cshtml"
+      },
+      {
+        "Sha256": "0258A27E50F1496778F01C0EBECE0A9B5F3978EA4D5BF6F90D34B439DC090176",
+        "Path": "HoTroDuLich.Web/Views/Provider/Edit.cshtml"
+      },
+      {
+        "Sha256": "A6D38BC9EC00E352ED3B08811F3EE855617FFE4956E8DC76B4DB2B18EDDB21B7",
+        "Path": "HoTroDuLich.Web/Views/Provider/Index.cshtml"
+      },
+      {
+        "Sha256": "AA165EB99E05E1F6E863A5C4C38C12F6E4CD068571811DC47BB3526CFC54D744",
+        "Path": "HoTroDuLich.Web/Views/Provider/Rights.cshtml"
+      },
+      {
+        "Sha256": "447A06EB5BB4F6EF8FFE6C8915926403BA8E2F03DA872AC8E3360057B29F5BDF",
+        "Path": "HoTroDuLich.Web/Views/Provider/Verification.cshtml"
+      },
+      {
+        "Sha256": "935886E369ED0FDD240A5FE45B532D22C1B6A04B762CBCA9794156E486CC05CB",
+        "Path": "HoTroDuLich.Web/Views/Reviews/_PublicReviews.cshtml"
+      },
+      {
+        "Sha256": "71E82009259703CA6B7FBA7035A3BA60D4B964114B23169D14357E34C7274FE9",
+        "Path": "HoTroDuLich.Web/Views/Reviews/Manage.cshtml"
+      },
+      {
+        "Sha256": "9467573C23E9EE83E0C8A11FC851D3E38F104F2C492EE520B79FDFC2159F3045",
+        "Path": "HoTroDuLich.Web/Views/Reviews/Mine.cshtml"
+      },
+      {
+        "Sha256": "D2C41B52B5AAE02C53395B866202E01873888EC9FF63F5AB2E49B630E40886E7",
+        "Path": "HoTroDuLich.Web/Views/Reviews/Service.cshtml"
+      },
+      {
+        "Sha256": "6DCA46209E1E24FA0C57355B425C7EE671B7A9BE77B872F68342175DC5A7B739",
+        "Path": "HoTroDuLich.Web/Views/Reviews/Write.cshtml"
+      },
+      {
+        "Sha256": "D1285280A5EEAAF79AD47C473B93F71B81F06533C93DFE7FDB8EF2B99DF35F0C",
+        "Path": "HoTroDuLich.Web/Views/Saved/Compare.cshtml"
+      },
+      {
+        "Sha256": "A6FBD89CE250399D362A1B6222D3F9AE4FE4D217A91DF45EB2419CFBF22AC927",
+        "Path": "HoTroDuLich.Web/Views/Saved/Index.cshtml"
+      },
+      {
+        "Sha256": "111010B378C0354FAFE2BF60755BB6A08D9BDC48832697BA1FFAB53F53CBCC36",
+        "Path": "HoTroDuLich.Web/Views/Shared/_BookingWorkspaceTabs.cshtml"
+      },
+      {
+        "Sha256": "89D45C1906483D627D34D300CF722B68BC4C578859DC397B2EC298437F8B431E",
+        "Path": "HoTroDuLich.Web/Views/Shared/_JourneyErrors.cshtml"
+      },
+      {
+        "Sha256": "C78246EB493484DA18DDB21EA94A6CDA9B4C77E9AB75E72B3C45DBD8B793CA2B",
+        "Path": "HoTroDuLich.Web/Views/Shared/_Layout.cshtml"
+      },
+      {
+        "Sha256": "A50AD1AF0709E4A2CCA3FED34A257FAD983E2D8A8C344F2B417D6B0C8BA27532",
+        "Path": "HoTroDuLich.Web/Views/Shared/_Layout.cshtml.css"
+      },
+      {
+        "Sha256": "9C0503C2E5FAC4DD160623355DE3CE037A27E9DD25E341FB9080D25CA4DE34D9",
+        "Path": "HoTroDuLich.Web/Views/Shared/_PageNavigation.cshtml"
+      },
+      {
+        "Sha256": "E6FA1850FBD27E8D4E730CE727CED70C50AECAB10A8AAFBE2A95BE0C83E87C88",
+        "Path": "HoTroDuLich.Web/Views/Shared/_ProductValidation.cshtml"
+      },
+      {
+        "Sha256": "F883E732CE6E8E1B8F3C8317E07984826969BD5755EBF4B1B640A76042CC506C",
+        "Path": "HoTroDuLich.Web/Views/Shared/_SaveChoice.cshtml"
+      },
+      {
+        "Sha256": "EE5DDD333D6D3555FC6B962F2E4258AD889D43DDDF9E49465E600C0C2350243E",
+        "Path": "HoTroDuLich.Web/Views/Shared/_ServiceCard.cshtml"
+      },
+      {
+        "Sha256": "96C740BCCD2F9F75DAC92D6C94800C3BC22CAD9F3B044F73051356D7F5B2C4D6",
+        "Path": "HoTroDuLich.Web/Views/Shared/_ServicePublicDetails.cshtml"
+      },
+      {
+        "Sha256": "CC7E9778636013295F7B005354177F4165427356F54E339C41300F98070D55E6",
+        "Path": "HoTroDuLich.Web/Views/Shared/_ServiceReviewSummary.cshtml"
+      },
+      {
+        "Sha256": "ABCE1941058F425A5B592BFE401BBE7A68B214DDFB4E5130F521918CCF2D0AF3",
+        "Path": "HoTroDuLich.Web/Views/Shared/_SimplePager.cshtml"
+      },
+      {
+        "Sha256": "3FAD385DA2F80C15198341AAB4F20B1109418D7BBB23DFCD23341C45D17BD595",
+        "Path": "HoTroDuLich.Web/Views/Shared/_TripContext.cshtml"
+      },
+      {
+        "Sha256": "B482A2B05DFF66DC0B55ACFF3126C39C6AC25661EBA4F0DB4E912BC5B977374A",
+        "Path": "HoTroDuLich.Web/Views/Shared/_ValidationScriptsPartial.cshtml"
+      },
+      {
+        "Sha256": "6DABEC8518733A106C67494B6CC5F307B67C8C47C404B1AB90191773EF684101",
+        "Path": "HoTroDuLich.Web/Views/Shared/Error.cshtml"
+      },
+      {
+        "Sha256": "C9E01E513F04982FFD5F5113CF72B788BA42F81009D844A9A07DC0A346592B36",
+        "Path": "HoTroDuLich.Web/Views/Shared/Failure.cshtml"
+      },
+      {
+        "Sha256": "CF5293624834BF8C4018714F11800AF84675105697CBC8A57DFFC2C6F6D8A05D",
+        "Path": "HoTroDuLich.Web/Views/Support/Create.cshtml"
+      },
+      {
+        "Sha256": "5697F1969571F4D0C0C0AE82141397BE6B75A26C6F0CB0BE1A636CDB66E301A4",
+        "Path": "HoTroDuLich.Web/Views/Support/Detail.cshtml"
+      },
+      {
+        "Sha256": "6F1800780BCD2BFD795F6F0EE7DE6E63B0855B84F3CDB4A24D42A45FCC2D4172",
+        "Path": "HoTroDuLich.Web/Views/Support/Index.cshtml"
+      },
+      {
+        "Sha256": "6FE8CDCC5EC09A15F2729ACE8A4ED1883DC366AA8034070BFA3408BF5F57E8C5",
+        "Path": "HoTroDuLich.Web/Views/Together/_Chat.cshtml"
+      },
+      {
+        "Sha256": "8E67708414892D71479EE91F114176F4626C6704E283D2A447870824A153646A",
+        "Path": "HoTroDuLich.Web/Views/Together/_Errors.cshtml"
+      },
+      {
+        "Sha256": "A99BB052CC9FF65E203E5D0C737C05F89C4D0F4730A4527D345742EE05BE395B",
+        "Path": "HoTroDuLich.Web/Views/Together/_Expenses.cshtml"
+      },
+      {
+        "Sha256": "571699D4CC97DFE1EA45AC04D2D18569F4D3F9DC03F6194576DBA2C77F5A6D3D",
+        "Path": "HoTroDuLich.Web/Views/Together/_GroupForm.cshtml"
+      },
+      {
+        "Sha256": "D5DC025E44B78C58211B7C565EF2A367A184FE51D9EFF53F52A32BCE1A580A2D",
+        "Path": "HoTroDuLich.Web/Views/Together/_Members.cshtml"
+      },
+      {
+        "Sha256": "5E0598F8407868BFEEB05465BD971854D5EC6FA486BD55BD8210530B7EB80D7B",
+        "Path": "HoTroDuLich.Web/Views/Together/_Nav.cshtml"
+      },
+      {
+        "Sha256": "A55FCB86335FA6BD039D02B3D64E78C7F8B5005F7369951E40279C28979D5758",
+        "Path": "HoTroDuLich.Web/Views/Together/_Overview.cshtml"
+      },
+      {
+        "Sha256": "2866105F58D0487658A149E2AAC3972AC94417F717CB91BD9C7FBD45DCA53234",
+        "Path": "HoTroDuLich.Web/Views/Together/_Schedule.cshtml"
+      },
+      {
+        "Sha256": "E5ED1350E0395280A9DF547792974C029F4C05B8C2EEA56E2095DBEED61A296C",
+        "Path": "HoTroDuLich.Web/Views/Together/_Tasks.cshtml"
+      },
+      {
+        "Sha256": "448EF5E468A136A46F21C4416239D452690A02FEEFEB8AD2A9EA97CD6FB04ABF",
+        "Path": "HoTroDuLich.Web/Views/Together/Detail.cshtml"
+      },
+      {
+        "Sha256": "F0277D36676F2C99809F6D2E49EEB92276182262F5C1D945970740752AD89744",
+        "Path": "HoTroDuLich.Web/Views/Together/Edit.cshtml"
+      },
+      {
+        "Sha256": "585BF27F36FB6DA25CA41307803C78810829736A3BDEEF414B9DC8A91471ECBF",
+        "Path": "HoTroDuLich.Web/Views/Together/Group.cshtml"
+      },
+      {
+        "Sha256": "0EF9607F31D71E3924FDCEC619BB047910A871BD352BC733A7F0C4399D3437E1",
+        "Path": "HoTroDuLich.Web/Views/Together/Index.cshtml"
+      },
+      {
+        "Sha256": "FFDB65BBD80BA40EC1DA19B1F74659D34F7221A18526FE0BA49C4F8E8ACB8F4E",
+        "Path": "HoTroDuLich.Web/Views/Together/Mine.cshtml"
+      },
+      {
+        "Sha256": "8EC1D27E8B1D39BDDE77BA15CFBBA2D6D019576C65D11C051656AD3B717E454E",
+        "Path": "HoTroDuLich.Web/Views/Together/Moderation.cshtml"
+      },
+      {
+        "Sha256": "249A9F37E1C2B1B89D3321AAB722D0936ED22E3A65FF4CD2B79530E4791237E8",
+        "Path": "HoTroDuLich.Web/Views/Together/Profile.cshtml"
+      },
+      {
+        "Sha256": "926901155CE831220B395BEC31ED6E84CE64C621224E991183369116FC2BB9A9",
+        "Path": "HoTroDuLich.Web/Views/Together/Report.cshtml"
+      },
+      {
+        "Sha256": "26DC5FF4BFB9213291735808465E156D4A4691135F3815E3613761243E1F69C3",
+        "Path": "HoTroDuLich.Web/wwwroot/favicon.ico"
+      },
+      {
+        "Sha256": "46959D388F2A468513E2583D81F33C6F1D495A6A119980CF80967EC57C426CE4",
+        "Path": "HoTroDuLich.Web/wwwroot/css/companion-features.css"
+      },
+      {
+        "Sha256": "343F730A783A52EA02F4C4A7BB9C260A6B285B1A8E200AFC92E5F51E0882EFD8",
+        "Path": "HoTroDuLich.Web/wwwroot/css/discovery.css"
+      },
+      {
+        "Sha256": "B7D46CAC6255077B1148F4B7BDC991F8ED6200D095741F5A3991B02EE0E6B8DF",
+        "Path": "HoTroDuLich.Web/wwwroot/css/experience.css"
+      },
+      {
+        "Sha256": "577FB02BA15D0934407A1AC7F0E0759F4606B1FC5A7B6A2A336CA51104E7E392",
+        "Path": "HoTroDuLich.Web/wwwroot/css/fonts.css"
+      },
+      {
+        "Sha256": "1E93558774AA0CF60C464B23866CAE78C2C9AAC3CB6F000ECCD4153E01DD4269",
+        "Path": "HoTroDuLich.Web/wwwroot/css/function-pages.css"
+      },
+      {
+        "Sha256": "A7F695F70E75A0427600A071F7A1D38CFBAF5DF7A25F989651650A2A3A317E1A",
+        "Path": "HoTroDuLich.Web/wwwroot/css/journey-features.css"
+      },
+      {
+        "Sha256": "AD00DCF07F8E43A09A4E120CF5D05702FE7C300CB7CD65A6174827E66E4788B5",
+        "Path": "HoTroDuLich.Web/wwwroot/css/product-features.css"
+      },
+      {
+        "Sha256": "43A02D010AB2891783EBB1322D6BA3AC17EBCB4E9001704DD55DB34ABB1C4F28",
+        "Path": "HoTroDuLich.Web/wwwroot/css/site.css"
+      },
+      {
+        "Sha256": "F1E95DB0B9E168BED81AB21DCA90BB9CC14732D9AC3919DED73189FEDC391519",
+        "Path": "HoTroDuLich.Web/wwwroot/css/trip-workspace.css"
+      },
+      {
+        "Sha256": "F711B79A9E4BDDC8E3F2D8B77C18AC7BF482571CD15804A7866B2AF2D7F1AFEE",
+        "Path": "HoTroDuLich.Web/wwwroot/images/bay.svg"
+      },
+      {
+        "Sha256": "4C277E40E3F2C160F6950D1488BBC033228174B736EEEF64E040CC1A07890D4B",
+        "Path": "HoTroDuLich.Web/wwwroot/images/CREDITS.md"
+      },
+      {
+        "Sha256": "ACFD982282D8EEFF3D95CBC7A449FB3A7BBFE7DD29CFF0C73BF69A8F502DB6FD",
+        "Path": "HoTroDuLich.Web/wwwroot/images/dalat.jpg"
+      },
+      {
+        "Sha256": "A4632EF26C48E4548D0131B6A6B69C09BB41C517A3C1E47AAA182E6A42C00C54",
+        "Path": "HoTroDuLich.Web/wwwroot/images/food.jpg"
+      },
+      {
+        "Sha256": "D16276A2342ABC2720D974753BC4B1B9488CF3C426395DF6E63C45863F174EA4",
+        "Path": "HoTroDuLich.Web/wwwroot/images/hoian.jpg"
+      },
+      {
+        "Sha256": "778B6741CCFDBC089BF4022F63E6C26CAEA023DD2D1A108B47732C339F03E68E",
+        "Path": "HoTroDuLich.Web/wwwroot/images/hoian.svg"
+      },
+      {
+        "Sha256": "FA15E7502C16AA6FF106D0DE39E51F68FE0222DAC92E059613E88EB1026D5A19",
+        "Path": "HoTroDuLich.Web/wwwroot/images/icons.svg"
+      },
+      {
+        "Sha256": "96A57B70D528ED985B3AD2580B94326DCB075EC0B7F67B1BE905B75E965BD90A",
+        "Path": "HoTroDuLich.Web/wwwroot/images/landscape.svg"
+      },
+      {
+        "Sha256": "181048CC416CCA1DBA4836E73FDBF5CBB6690308FF4FB0779C475452C8BE49A0",
+        "Path": "HoTroDuLich.Web/wwwroot/images/stay.jpg"
+      },
+      {
+        "Sha256": "0DAFAA3C8259CDC96082E5B6FCEBC1C06A094B12A2C7895074D0E7E46A979D4B",
+        "Path": "HoTroDuLich.Web/wwwroot/images/vietnam-bay.jpg"
+      },
+      {
+        "Sha256": "A184188BEC00A8576FC2C8B3DF910BF49F9426F4A8AB95471F6F82BE2CE067A0",
+        "Path": "HoTroDuLich.Web/wwwroot/js/companion-features.js"
+      },
+      {
+        "Sha256": "95C64573A1F279DFFFB0A1C6A526E27C1768BC340B17A180B7040B7F6D1223AA",
+        "Path": "HoTroDuLich.Web/wwwroot/js/discovery.js"
+      },
+      {
+        "Sha256": "B8003A44EB986B7C273F5F1A578C3106C13CA913EFFCE1B11FFA0834B3608F80",
+        "Path": "HoTroDuLich.Web/wwwroot/js/journey-features.js"
+      },
+      {
+        "Sha256": "A043483BD58006B27FE2F671C05C39580067DAA5C7038319ADE1880255127641",
+        "Path": "HoTroDuLich.Web/wwwroot/js/site.js"
+      },
+      {
+        "Sha256": "647EA903A052C7A7EE1D9BDD68AA61D43C1427E55262294888442EF22967BEA9",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/LICENSE"
+      },
+      {
+        "Sha256": "632E7F841A919A6536309D532B03F6697A133BAF8E8F3ACB98922C0B65B2E07F",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css"
+      },
+      {
+        "Sha256": "C404FE9F6E4513986F3A38F67C6E1874EC2BD5B97822500904D83A3DB84B4F61",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map"
+      },
+      {
+        "Sha256": "E670C73068B27D91E5DD45DE3EE84B0D047D9DC3DF051D4725E64B5F224D576E",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css"
+      },
+      {
+        "Sha256": "9202FEC7056633C20EB35E659E81EDF5D691D8B44C8811BF7188143DC290398E",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
+      },
+      {
+        "Sha256": "099C6817CCE368B97256472F5420E573C09E411D70D5132BBE0631DF472CF243",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
+      },
+      {
+        "Sha256": "FEC890500F325FCDF48FE70BE1A98A1D8DF206D9F79FCCF7120F95675E5FF749",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
+      },
+      {
+        "Sha256": "BCCC5372F902E0BCBB2E2013DC6F32132F44A53AFB1607B849CCD6A74EFFA779",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
+      },
+      {
+        "Sha256": "EC674E970ED4FF083269E52D166C4FCF9FCCA6176F5523ED54E3A54E7F5CDF74",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
+      },
+      {
+        "Sha256": "968F5823CD8E174DEFA2376EF97391DFE0D1ACB229321A7364D9876CCE420CC0",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css"
+      },
+      {
+        "Sha256": "45727F4198817C75E83ED5D1D84802F9B168DA97B71AD6D93BBDB646D88B1B34",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
+      },
+      {
+        "Sha256": "97CBEDE68A33BFDE7C78C77D4C5B0F016825F4924AF5829F6D54ACF2672143CE",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
+      },
+      {
+        "Sha256": "D1EA954FADA4A912C987DA13A8B7881F852742C92A56389BF219767D7C65E258",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
+      },
+      {
+        "Sha256": "57CA6C9C7A094BF30F9425D6C1CFC9DED1ADA7D7378061519AAB08420A67F868",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
+      },
+      {
+        "Sha256": "3A8415C21EC0AE9EDB5682B66624F1D92FFF2AB9CFAD23F33D9F770AA08C85EF",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
+      },
+      {
+        "Sha256": "FFC8E1F217043052B24BA8285AA9CDBBBB7713364F0867506603BAB02908F2D2",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
+      },
+      {
+        "Sha256": "F75D33C3EACC75C8342ECE3C013A7AE6F127F2B7791EF3F138A9B6C77FC20482",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
+      },
+      {
+        "Sha256": "D81B9B80D50F950485FF4C0B15C45743F623CE4F6FB146C301E2B640CFA1FB2A",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css"
+      },
+      {
+        "Sha256": "35F8EB73852BF45BF6A0112CC10588C819CD0CFF7DABE2E12FECFDE79DCED1C6",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
+      },
+      {
+        "Sha256": "2B213DC5B28EF42B98C741D7A482A0B1622F5E401F213B62435EF68F6EB0991B",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
+      },
+      {
+        "Sha256": "AC70E68A9E09673B9A18E71243541242B21B1B411BDD98DAF7086A485D736085",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
+      },
+      {
+        "Sha256": "1FAC2405B4B08EE6B6BDE2684E1268E2ECB5EB58E9F833A2653968525719EAA4",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
+      },
+      {
+        "Sha256": "A74055AB955EFDDA2104875F6EB66CA1036ED36252B0A875834C1BCA242251A5",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
+      },
+      {
+        "Sha256": "18052E9BA163C10F07AD719AA054671D3A9040BA658D719ABD3EE6057F04F6A5",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
+      },
+      {
+        "Sha256": "A3C5CADF699C63F15F70E4350F61C9BD5B99D184D74944590CB5C22B47E741E0",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
+      },
+      {
+        "Sha256": "18A105D7CB38E01E5ED0CA255C092992A2E211B39594A7FA57262BFC6FC4EA9C",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.css"
+      },
+      {
+        "Sha256": "2B3355477A7B51919B6BDE1D9C2B6573A8D78CAE6EAD23E267F78D9CA4E60E4C",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map"
+      },
+      {
+        "Sha256": "3C8F27E6009CCFD710A905E6DCF12D0EE3C6F2AC7DA05B0572D3E0D12E736FC8",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css"
+      },
+      {
+        "Sha256": "F12338536350A422C64D02D6E43FF1DEA493C3156AD823FE19761CDD5D56C05B",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map"
+      },
+      {
+        "Sha256": "8F91385C88F5A7590D9C38B4C75B5E5FD457A21D7F14D94FBC230BF589918764",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css"
+      },
+      {
+        "Sha256": "DDB61652289560C65FBF6C2AE499D722C1E540A8122ACFD57118AF823819D61A",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
+      },
+      {
+        "Sha256": "879944ECD9BC4A4788A411C763137DF6CA4FDD5B8614A97935982CA1C8A5EF39",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
+      },
+      {
+        "Sha256": "AD3CD79677A971BFEF80502207E53B3834007CE9492DF337818E8853B78800D9",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
+      },
+      {
+        "Sha256": "9A4A11A15DB88D5FAB08F59C1C34796B03F1F15BB3CC928DD226E1C59F7F59A3",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js"
+      },
+      {
+        "Sha256": "5AAE1A596D6B41D27EEA8020CB525073D2018C72FD4F730A7D74C136A3AFD367",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
+      },
+      {
+        "Sha256": "0833B2E9C3A26C258476C46266E6877FC75218625162E0460BE9A3A098A61C6C",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+      },
+      {
+        "Sha256": "5E3E0763164143BAAA1CA0706B6100BA0452F911D6CE9713B48E3DBE07B35125",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
+      },
+      {
+        "Sha256": "7B189764D243C2E7177EE8DEDC26D73DBB92EBE12BCB7CFDB0FFA9826BE1F270",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js"
+      },
+      {
+        "Sha256": "10F44B829A9691A84BC449FA0948DD33BE91218230D71747C136DE1ECB2E8FFE",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map"
+      },
+      {
+        "Sha256": "4197454F564D765CB8AE681406D5E65C54BD054D454DAFAC3DEEA1EFDE2C1514",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js"
+      },
+      {
+        "Sha256": "4EC6EFF33E9594D815113F31BF3FF22E8FEFE622474C08F62788648633F5AC73",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
+      },
+      {
+        "Sha256": "F945BCD36C2055F9E36926DDC321CB954EC056995BD164E83A5BCDD429F321A7",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.js"
+      },
+      {
+        "Sha256": "F56AFB1F17BC802243A081E1E713F6F65757BC2DE43761A489F423F5CF2F631E",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map"
+      },
+      {
+        "Sha256": "DE040986D9A3ED89D5D5F9AD6D5727015E9E238C2CD13AF8F1B55909386D0864",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js"
+      },
+      {
+        "Sha256": "648D357BF9ECE3BDC62AF0021B831C82025DC6F15F148C38C6CA704221BC61EE",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map"
+      },
+      {
+        "Sha256": "86320192F9A0C505DB3572B707D610DEDD3A4702EE4124330BF769BEE07F94C9",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery/LICENSE.txt"
+      },
+      {
+        "Sha256": "78A85ACA2F0B110C29E0D2B137E09F0A1FB7A8E554B499F740D6744DC8962CFE",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery/dist/jquery.js"
+      },
+      {
+        "Sha256": "FC9A93DD241F6B045CBFF0481CF4E1901BECD0E12FB45166A8F17F95823F0B1A",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery/dist/jquery.min.js"
+      },
+      {
+        "Sha256": "CF74D51C62D299189989130EBB423B30453532FDC8988D8E2B71B1B9165A80B8",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery/dist/jquery.min.map"
+      },
+      {
+        "Sha256": "520BEF37CBC19203B496E3D2525DACF13225392611A061405F88E50889BD01D7",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery/dist/jquery.slim.js"
+      },
+      {
+        "Sha256": "9261EFB3407E3A9096E4654750D8EFF6B3A663422F48845C7FBCC65034C340CF",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery/dist/jquery.slim.min.js"
+      },
+      {
+        "Sha256": "F45626720B71F2A668D4E3CF88FB7F049FECCF4108F1244D518B052D90C412DE",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery/dist/jquery.slim.min.map"
+      },
+      {
+        "Sha256": "81E1C4930FD618F75A1D0311AB91EE358F6C9E588DCD4FF2D8E5BCC9C9E1197C",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery-validation/LICENSE.md"
+      },
+      {
+        "Sha256": "5CBEB239FE2C7C6DA0D795BC681EF8E13E0295B8831B820C1A5DA68B4B5BCEED",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery-validation/dist/additional-methods.js"
+      },
+      {
+        "Sha256": "8E1BCA471668E9E5BF3F209EFB8AE304BCEA7AC26513CAE7C901848E4F25DA4F",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery-validation/dist/additional-methods.min.js"
+      },
+      {
+        "Sha256": "9112FCDB7EF6BABE58AD54E3156A7D9AE6A8F72794F00A0B889C526F97A49878",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery-validation/dist/jquery.validate.js"
+      },
+      {
+        "Sha256": "BA66D3685C4FDF516FE8ED62B692D2FF7FAFE5F3805832CE533966BCE19A295E",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js"
+      },
+      {
+        "Sha256": "D7A68596AB69B06F51CA278A6545148E4269A9381C26D597C13DF5D88E08CF5B",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt"
+      },
+      {
+        "Sha256": "C0941A2745F29C11367EAE827B15D78712AEEDFB2D56641CED5D8C1CD4E8F964",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"
+      },
+      {
+        "Sha256": "6096BB5BC12241D429924F778861238E72D25164694496D27F37D4461D64C73E",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"
+      },
+      {
+        "Sha256": "A7837102824184820DFA198D1EBCD109FF6D0FF9A2672A074B9A1B4D147D04C6",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/leaflet/leaflet.css"
+      },
+      {
+        "Sha256": "DB49D009C841F5CA34A888C96511AE936FD9F5533E90D8B2C4D57596F4E5641A",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/leaflet/leaflet.js"
+      },
+      {
+        "Sha256": "53E8DC25862014E4324741CA18FBE3611E11D42EF69F59F86EA8C5389647D4CB",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/leaflet/LICENSE"
+      },
+      {
+        "Sha256": "066DACA850D8FFBEF007AF00B06EAC0015728DEE279C51F3CB6C716DF7C42EDF",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/leaflet/images/layers-2x.png"
+      },
+      {
+        "Sha256": "1DBBE9D028E292F36FCBA8F8B3A28D5E8932754FC2215B9AC69E4CDECF5107C6",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/leaflet/images/layers.png"
+      },
+      {
+        "Sha256": "00179C4C1EE830D3A108412AE0D294F55776CFEB085C60129A39AA6FC4AE2528",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/leaflet/images/marker-icon-2x.png"
+      },
+      {
+        "Sha256": "574C3A5CCA85F4114085B6841596D62F00D7C892C7B03F28CBFA301DEB1DC437",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/leaflet/images/marker-icon.png"
+      },
+      {
+        "Sha256": "264F5C640339F042DD729062CFC04C17F8EA0F29882B538E3848ED8F10EDB4DA",
+        "Path": "HoTroDuLich.Web/wwwroot/lib/leaflet/images/marker-shadow.png"
+      }
+    ],
+    "Path": "D:\\KLTN\\preview\\backups\\source_before_workflow_20261108_151914.zip",
+    "Verified": true
+  },
+  "Sql": {
+    "Verified": true,
+    "Path": "D:\\KLTN\\preview\\backups\\HoTroDuLich_before_workflow_20261108_151914.bak"
+  },
+  "Date": "2026-11-08T08:19:24.6673000Z"
+}

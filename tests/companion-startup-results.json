@@ -1,0 +1,92 @@
+{
+  "modes": {
+    "normal": {
+      "passed": true,
+      "checks": 7,
+      "observations": [
+        {
+          "path": "/",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "path": "/Together",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "path": "/css/companion-features.css",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "path": "/js/companion-features.js",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "path": "/Together/Mine",
+          "status": 302,
+          "passed": true
+        },
+        {
+          "path": "/Together/Profile",
+          "status": 302,
+          "passed": true
+        },
+        {
+          "path": "/Together/Moderation",
+          "status": 302,
+          "passed": true
+        }
+      ],
+      "date": "2026-11-05T17:11:02.649Z"
+    },
+    "dev": {
+      "passed": true,
+      "checks": 7,
+      "observations": [
+        {
+          "path": "/",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "path": "/Together",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "path": "/css/companion-features.css",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "path": "/js/companion-features.js",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "path": "/Together/Mine",
+          "status": 302,
+          "passed": true
+        },
+        {
+          "path": "/Together/Profile",
+          "status": 302,
+          "passed": true
+        },
+        {
+          "path": "/Together/Moderation",
+          "status": 302,
+          "passed": true
+        }
+      ],
+      "date": "2026-11-05T17:13:47.167Z"
+    }
+  },
+  "passed": true,
+  "checks": 14,
+  "base": "http://localhost:5216",
+  "database": "HoTroDuLich"
+}

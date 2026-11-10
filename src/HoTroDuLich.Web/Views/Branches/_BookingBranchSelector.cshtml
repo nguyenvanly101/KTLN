@@ -1,0 +1,6 @@
+@model BookingInput
+@inject HoTroDuLich.Web.Data.AppDbContext BranchDb
+@inject BranchService Branches
+@using Microsoft.EntityFrameworkCore
+@{var ids=BranchDb.Set<DichVuCoSo>().Where(x=>x.ServiceId==Model.ServiceId).Select(x=>x.BranchId);var choices=await Branches.PublicBranches().AsNoTracking().Where(x=>ids.Contains(x.Id)).OrderBy(x=>x.Name).ToListAsync();var selected=Model.BranchId??(long.TryParse(Context.Request.Query["branchId"],out var fromQuery)?fromQuery:0);}
+@if(choices.Count>0){<div class="field"><label for="BookingBranchId">Cơ sở bạn muốn sử dụng dịch vụ</label><select class="form-select" id="BookingBranchId" name="BranchId" required><option value="">Chọn đúng chi nhánh</option>@foreach(var b in choices){<option value="@b.Id" selected="@(b.Id==selected||(selected==0&&choices.Count==1))">@b.Name · @b.Address</option>}</select><span asp-validation-for="BranchId"></span><small>Yêu cầu được gửi cho cơ sở bạn chọn; địa chỉ được giữ trong yêu cầu.</small></div>}

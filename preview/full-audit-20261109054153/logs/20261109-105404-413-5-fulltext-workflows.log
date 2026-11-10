@@ -1,0 +1,8 @@
+PHASE authentication, validation, plan and incidents
+PHASE companion visibility, connections and agreement versions
+PHASE provider registration, verification, drafts and publication
+PHASE booking previews, idempotency and structured negotiation
+PHASE per-item results, aggregate status and complaint review
+PHASE provider rights consequences, explanations and re-verification
+PHASE reauthentication, token binding and atomic account deactivation
+PASS: FullText end-to-end workflow suite

@@ -1,0 +1,10 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{execFileSync}=require('node:child_process'),{randomUUID}=require('node:crypto');
+const database=process.env.BRANCH_TEST_DB||'HoTroDuLich_Branches_20261108';
+assert.match(database,/^HoTroDuLich_Branches_[A-Za-z0-9_]+$/);
+const allowed=new Set([database,'master','HoTroDuLich']);
+const literal=v=>"N'"+String(v).replaceAll("'","''")+"'";
+function sql(db,query){assert.ok(allowed.has(db));const file=path.resolve('preview/branch-query-'+randomUUID()+'.sql');fs.writeFileSync(file,query);try{return execFileSync('sqlcmd',['-S',process.env.BRANCH_SQL_SERVER||'(localdb)\\MSSQLLocalDB','-d',db,'-E','-C','-I','-b','-l','15','-t','180','-y','0','-w','65535','-f','65001','-i',file],{encoding:'utf8',maxBuffer:24*1024*1024});}finally{fs.unlinkSync(file);}}
+function json(db,query){const raw=sql(db,'SET NOCOUNT ON; '+query);const start=raw.indexOf('[');return start<0?[]:JSON.parse(raw.slice(start,raw.lastIndexOf(']')+1).replace(/[\r\n]/g,''));}
+function catalog(db){return json(db,"SELECT t.name,JSON_QUERY((SELECT c.name FROM sys.columns c WHERE c.object_id=t.object_id ORDER BY c.column_id FOR JSON PATH)) Columns,JSON_QUERY((SELECT c.name FROM sys.indexes i JOIN sys.index_columns ic ON i.object_id=ic.object_id AND i.index_id=ic.index_id JOIN sys.columns c ON c.object_id=ic.object_id AND c.column_id=ic.column_id WHERE i.object_id=t.object_id AND i.is_primary_key=1 ORDER BY ic.key_ordinal FOR JSON PATH)) Keys FROM sys.tables t WHERE t.is_ms_shipped=0 ORDER BY t.name FOR JSON PATH;");}
+function snapshot(db,tables){return json(db,'SELECT * FROM ('+tables.map(t=>`SELECT ${literal(t.name)} name,(SELECT COUNT_BIG(*) FROM dbo.[${t.name}]) rows,CONVERT(varchar(64),HASHBYTES('SHA2_256',(SELECT ${t.Columns.map(c=>'['+c.name+']').join(',')} FROM dbo.[${t.name}] ORDER BY ${t.Keys.map(c=>'['+c.name+']').join(',')} FOR JSON PATH,INCLUDE_NULL_VALUES)),2) sha256`).join(' UNION ALL ')+') s ORDER BY name FOR JSON PATH;');}
+module.exports={database,literal,sql,json,catalog,snapshot};

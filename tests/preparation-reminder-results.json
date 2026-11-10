@@ -1,0 +1,37 @@
+{
+  "database": "HoTroDuLich_Product_20261105",
+  "task": 15,
+  "snapshots": [
+    {
+      "phase": "before",
+      "MaMuc": 15,
+      "NhacHan": true,
+      "DaHoanThanh": false,
+      "HanHoanThanh": "2026-11-05",
+      "Notifications": 0,
+      "date": "2026-11-04T19:04:25.962Z"
+    },
+    {
+      "phase": "first-restart",
+      "MaMuc": 15,
+      "NgayDaNhac": "2026-11-05",
+      "NhacHan": true,
+      "DaHoanThanh": false,
+      "HanHoanThanh": "2026-11-05",
+      "Notifications": 1,
+      "date": "2026-11-04T19:04:55.949Z"
+    },
+    {
+      "phase": "second-restart",
+      "MaMuc": 15,
+      "NgayDaNhac": "2026-11-05",
+      "NhacHan": true,
+      "DaHoanThanh": false,
+      "HanHoanThanh": "2026-11-05",
+      "Notifications": 1,
+      "date": "2026-11-04T19:09:50.654Z"
+    }
+  ],
+  "passed": true,
+  "checks": 3
+}

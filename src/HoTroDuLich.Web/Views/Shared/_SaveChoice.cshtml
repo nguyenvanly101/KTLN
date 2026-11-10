@@ -1,0 +1,4 @@
+@model SavedInput
+@if(User.IsInRole(TravelService.Traveler)){
+ <form class="save-choice" action="/Saved/Add" method="post">@Html.AntiForgeryToken()<input type="hidden" name="ServiceId" value="@Model.ServiceId"/><input type="hidden" name="PlaceId" value="@Model.PlaceId"/><input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl"/><button class="btn btn-outline btn-small" type="submit">@Ui.Icon("plus") Lưu lựa chọn</button></form>
+}else if(User.Identity?.IsAuthenticated != true){<a class="text-link" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">Đăng nhập để lưu lựa chọn @Ui.Icon("arrow")</a>}

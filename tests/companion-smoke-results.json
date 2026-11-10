@@ -1,0 +1,212 @@
+{
+  "passed": true,
+  "checks": 41,
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/thong-tin/mo-tim-kiem",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/thong-tin/tra-cuu?loai=LuuTru",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/thong-tin/xem-chi-tiet?loai=DiaDiem&maMuc=1",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/thong-tin/xem-chi-tiet?loai=DichVu&maMuc=1",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/dong-hanh/tim-kiem/mo-tim-kiem",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/dong-hanh/tim-kiem/tim-nhu-cau",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/dong-hanh/tim-kiem/xem-chi-tiet/1",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/tai-khoan/dang-ky/mo-dang-ky",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/ke-hoach",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/ke-hoach/1",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/ke-hoach/mo-ke-hoach-moi",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/ke-hoach/1/tinh-huong",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/ke-hoach/1/tinh-huong/mo-ghi-nhan",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/dong-hanh/nhu-cau/mo-bieu-mau",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/dong-hanh/de-nghi",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/yeu-cau/mo-dat-dich-vu?maDichVu=1",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/yeu-cau/cua-toi",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/ho-so/xem-ho-so",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/thong-bao",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/tai-khoan/ngung-su-dung/mo-ngung",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/nha-cung-cap/dich-vu",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/nha-cung-cap/dich-vu/1",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/nha-cung-cap/dich-vu/mo-bieu-mau",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/nha-cung-cap/ho-so-xac-minh",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/nha-cung-cap/quyen-hoat-dong",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/nha-cung-cap/yeu-cau",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/ho-so/xem-ho-so",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/thong-tin/mo-tim-kiem",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/dong-hanh/tim-kiem/mo-tim-kiem",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/quan-tri/xet-duyet-dich-vu/mo-danh-sach-cho-duyet",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/quan-tri/xet-duyet-dich-vu/xem-noi-dung/1",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/quan-tri/xac-minh/mo-danh-sach",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/quan-tri/xac-minh/xem-ho-so/1",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/quan-tri/quyen-hoat-dong/mo-danh-sach",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/quan-tri/quyen-hoat-dong/xem-chi-tiet/1",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/quan-tri/quyen-hoat-dong/xem-he-qua?maNCC=1&thaoTac=TamDinhChi",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/ho-so/xem-ho-so",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/ke-hoach",
+      "status": 403,
+      "expected": 403
+    },
+    {
+      "path": "/nha-cung-cap/dich-vu",
+      "status": 403,
+      "expected": 403
+    },
+    {
+      "path": "/quan-tri/xac-minh/mo-danh-sach",
+      "status": 403,
+      "expected": 403
+    }
+  ],
+  "date": "2026-11-05T17:05:43.005Z"
+}

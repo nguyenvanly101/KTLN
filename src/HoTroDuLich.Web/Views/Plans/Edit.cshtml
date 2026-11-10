@@ -1,0 +1,21 @@
+@model PlanInput
+@{ViewData["Title"]=Model.Id==0?"Tạo chuyến đi":"Chỉnh sửa chuyến đi";}
+<div class="container-narrow">
+ <a class="back" href="/ke-hoach">← Chuyến đi của tôi</a>
+ <div class="page-head"><div><h1>@ViewData["Title"]</h1><p>Bắt đầu với điểm đến và thời gian. Bạn có thể bổ sung hoạt động rồi xác nhận lịch trình ở bước tiếp theo.</p></div></div>
+ @if(Model.ContinueServiceId != null || Model.ContinuePlaceId != null){<div class="notice">Lựa chọn của bạn đã được giữ. Sau khi tạo chuyến đi, bạn sẽ chọn ngày cho trải nghiệm này.</div>}
+ <div class="panel"><form action="@(Model.Id==0?"/ke-hoach/khoi-tao-ke-hoach":"/ke-hoach/cap-nhat-thong-tin")" method="post">
+  @Html.AntiForgeryToken()<div asp-validation-summary="All" role="alert" tabindex="-1"></div>
+  <input type="hidden" asp-for="Id"/>@if(Model.Id>0){<input type="hidden" asp-for="Version"/>}
+  <input type="hidden" asp-for="ContinueServiceId"/><input type="hidden" asp-for="ContinuePlaceId"/>
+  <div class="form-grid">
+   <div class="field"><label asp-for="Name">Tên chuyến đi</label><input class="form-control" asp-for="Name" maxlength="150"/><span asp-validation-for="Name"></span></div>
+   <div class="field"><label asp-for="Destination">Nơi đến</label><input class="form-control" asp-for="Destination" maxlength="200"/><span asp-validation-for="Destination"></span></div>
+   <div class="field"><label asp-for="Start">Ngày bắt đầu</label><input class="form-control" asp-for="Start" type="date"/><span asp-validation-for="Start"></span></div>
+   <div class="field"><label asp-for="End">Ngày kết thúc</label><input class="form-control" asp-for="End" type="date"/><span asp-validation-for="End"></span></div>
+   <div class="field"><label asp-for="Budget">Ngân sách dự kiến (₫)</label><input class="form-control" asp-for="Budget" type="number" min="0" max="1000000000" step="1000"/><span asp-validation-for="Budget"></span></div>
+  </div>
+  <p class="help">Thay đổi thông tin sẽ lưu chuyến đi về bản nháp để bạn kiểm tra và xác nhận lại.</p>
+  <div class="form-actions"><button class="btn btn-dark" type="submit">@(Model.ContinueServiceId != null || Model.ContinuePlaceId != null ? "Tạo chuyến đi và xếp trải nghiệm" : "Lưu và xem chuyến đi") @Ui.Icon("arrow")</button></div>
+ </form></div>
+</div>

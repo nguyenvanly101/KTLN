@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "checks": 13,
+  "observations": [
+    {
+      "name": "Trip hub layout 375x812",
+      "passed": true,
+      "h1": 1,
+      "scroll": 360,
+      "sections": true,
+      "viewport": 375
+    },
+    {
+      "name": "Trip hub layout 768x1024",
+      "passed": true,
+      "h1": 1,
+      "scroll": 753,
+      "sections": true,
+      "viewport": 768
+    },
+    {
+      "name": "Trip hub layout 1024x768",
+      "passed": true,
+      "h1": 1,
+      "scroll": 1009,
+      "sections": true,
+      "viewport": 1024
+    },
+    {
+      "name": "Trip hub layout 812x375",
+      "passed": true,
+      "h1": 1,
+      "scroll": 797,
+      "sections": true,
+      "viewport": 812
+    },
+    {
+      "name": "Trip hub layout 1280x720",
+      "passed": true,
+      "h1": 1,
+      "scroll": 1265,
+      "sections": true,
+      "viewport": 1280
+    },
+    {
+      "name": "Activity request prefilled with trip and dates",
+      "passed": true
+    },
+    {
+      "name": "Main preview names the selected trip",
+      "passed": true
+    },
+    {
+      "name": "Main revise form retains entered information and trip",
+      "passed": true
+    },
+    {
+      "name": "Service detail keeps a direct return to its trip",
+      "passed": true
+    },
+    {
+      "name": "Updated main trip hub renders all sections at 375px",
+      "passed": true,
+      "scrollWidth": 360,
+      "sections": true,
+      "width": 375
+    },
+    {
+      "name": "Updated main trip hub desktop hierarchy and layout",
+      "passed": true,
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "name": "Published-location map links have explicit external targets",
+      "passed": true
+    },
+    {
+      "name": "No browser console errors or warnings in observed main workflow",
+      "passed": true
+    }
+  ],
+  "date": "2026-11-04T17:49:38.503Z",
+  "mainUrl": "http://localhost:5216"
+}

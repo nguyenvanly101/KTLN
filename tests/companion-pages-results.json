@@ -1,0 +1,914 @@
+{
+  "passed": true,
+  "checks": 222,
+  "observations": [
+    {
+      "name": "Page renders: /Together",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together #region",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together #kind",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together #start",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together #end",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together #budget",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Detail/20002",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Detail/20002",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Detail/20002",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Detail/20002",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Detail/20002",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Detail/20002",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Image text alternative exists: /Together/Mine",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Profile",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Profile",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Profile",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Profile",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Profile #Style",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Profile #Pace",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Profile #Budget",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Profile #Bio",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Profile",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Profile",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Profile",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Edit",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Edit",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Edit",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Edit",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #Name",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #Description",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #Kind",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #Region",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #Start",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #End",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #Capacity",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #Budget",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #Style",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #Pace",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #Meeting",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #MeetTime",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit #PlanId",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Edit",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Edit",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Edit",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Edit/20002",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Edit/20002",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Edit/20002",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Edit/20002",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit/20002 #Name",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit/20002 #Description",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit/20002 #Kind",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit/20002 #Region",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit/20002 #Start",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit/20002 #End",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit/20002 #Capacity",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit/20002 #Budget",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit/20002 #Style",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit/20002 #Pace",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit/20002 #Meeting",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Edit/20002 #MeetTime",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Edit/20002",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Edit/20002",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Edit/20002",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Group/20002?tab=overview",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Group/20002?tab=overview",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Group/20002?tab=overview",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Group/20002?tab=overview",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Group/20002?tab=overview",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=overview",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=overview",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=overview",
+      "passed": true
+    },
+    {
+      "name": "Private group is not cached: /Together/Group/20002?tab=overview",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Group/20002?tab=members",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Group/20002?tab=members",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Group/20002?tab=members",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Group/20002?tab=members",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Group/20002?tab=members",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=members",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=members",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=members",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=members",
+      "passed": true
+    },
+    {
+      "name": "Private group is not cached: /Together/Group/20002?tab=members",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Group/20002?tab=chat",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Group/20002?tab=chat",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Group/20002?tab=chat",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Group/20002?tab=chat",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=chat #Content",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Group/20002?tab=chat",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=chat",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=chat",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=chat",
+      "passed": true
+    },
+    {
+      "name": "Private group is not cached: /Together/Group/20002?tab=chat",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #activity-content-10003",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #activity-date-10003",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #activity-time-10003",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #activity-content-10002",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #activity-date-10002",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #activity-time-10002",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #Title",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #Options",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #Deadline",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #Content",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #Date",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #Time",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=schedule #SourceActivityId",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "Private group is not cached: /Together/Group/20002?tab=schedule",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Group/20002?tab=tasks",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Group/20002?tab=tasks",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Group/20002?tab=tasks",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Group/20002?tab=tasks",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=tasks #task-title-20002",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=tasks #task-person-20002",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=tasks #task-due-20002",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=tasks #Title",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=tasks #AssigneeId",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=tasks #Due",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Group/20002?tab=tasks",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=tasks",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=tasks",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=tasks",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=tasks",
+      "passed": true
+    },
+    {
+      "name": "Private group is not cached: /Together/Group/20002?tab=tasks",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Group/20002?tab=expenses",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Group/20002?tab=expenses",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Group/20002?tab=expenses",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Group/20002?tab=expenses",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=expenses #Title",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=expenses #Amount",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=expenses #Date",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=expenses #Equal",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=expenses #share-amount-1",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Group/20002?tab=expenses #share-amount-20002",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Group/20002?tab=expenses",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=expenses",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=expenses",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Group/20002?tab=expenses",
+      "passed": true
+    },
+    {
+      "name": "Private group is not cached: /Together/Group/20002?tab=expenses",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Report?groupId=20002",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Report?groupId=20002",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Report?groupId=20002",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Report?groupId=20002",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Report?groupId=20002 #Category",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Report?groupId=20002 #Description",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Report?groupId=20002",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Report?groupId=20002",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Report?groupId=20002",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Reports",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Reports",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Reports",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Reports",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Reports",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Reports",
+      "passed": true
+    },
+    {
+      "name": "Page renders: /Together/Moderation?status=",
+      "passed": true
+    },
+    {
+      "name": "One main heading: /Together/Moderation?status=",
+      "passed": true
+    },
+    {
+      "name": "No rendering exception: /Together/Moderation?status=",
+      "passed": true
+    },
+    {
+      "name": "Unique element IDs: /Together/Moderation?status=",
+      "passed": true
+    },
+    {
+      "name": "Label target exists: /Together/Moderation?status= #report-status",
+      "passed": true
+    },
+    {
+      "name": "Forms have matching closing tags: /Together/Moderation?status=",
+      "passed": true
+    },
+    {
+      "name": "POST form includes CSRF: /Together/Moderation?status=",
+      "passed": true
+    },
+    {
+      "name": "Local asset exists: /images/dalat.jpg",
+      "passed": true
+    },
+    {
+      "name": "Local asset exists: /lib/bootstrap/dist/css/bootstrap.min.css",
+      "passed": true
+    },
+    {
+      "name": "Local asset exists: /css/site.css",
+      "passed": true
+    },
+    {
+      "name": "Local asset exists: /css/function-pages.css",
+      "passed": true
+    },
+    {
+      "name": "Local asset exists: /css/experience.css",
+      "passed": true
+    },
+    {
+      "name": "Local asset exists: /css/trip-workspace.css",
+      "passed": true
+    },
+    {
+      "name": "Local asset exists: /css/product-features.css",
+      "passed": true
+    },
+    {
+      "name": "Local asset exists: /css/journey-features.css",
+      "passed": true
+    },
+    {
+      "name": "Local asset exists: /css/companion-features.css",
+      "passed": true
+    },
+    {
+      "name": "Local asset exists: /js/site.js",
+      "passed": true
+    },
+    {
+      "name": "Local asset exists: /js/journey-features.js",
+      "passed": true
+    },
+    {
+      "name": "Local asset exists: /js/companion-features.js",
+      "passed": true
+    },
+    {
+      "name": "Report form does not reveal a hidden message",
+      "passed": true
+    }
+  ],
+  "pages": [
+    "/Together",
+    "/Together/Detail/20002",
+    "/Together/Mine",
+    "/Together/Profile",
+    "/Together/Edit",
+    "/Together/Edit/20002",
+    "/Together/Group/20002?tab=overview",
+    "/Together/Group/20002?tab=members",
+    "/Together/Group/20002?tab=chat",
+    "/Together/Group/20002?tab=schedule",
+    "/Together/Group/20002?tab=tasks",
+    "/Together/Group/20002?tab=expenses",
+    "/Together/Report?groupId=20002",
+    "/Together/Reports",
+    "/Together/Moderation?status="
+  ],
+  "base": "http://localhost:5223",
+  "scope": "HTTP and server-rendered HTML; no browser interaction or viewport verification",
+  "date": "2026-11-05T17:03:20.592Z"
+}

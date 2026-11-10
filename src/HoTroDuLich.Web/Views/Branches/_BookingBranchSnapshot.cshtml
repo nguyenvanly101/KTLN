@@ -1,0 +1,5 @@
+@model YeuCauDatDichVu
+@inject HoTroDuLich.Web.Data.AppDbContext BranchDb
+@using Microsoft.EntityFrameworkCore
+@{var snapshot=await BranchDb.Set<YeuCauDatCoSo>().AsNoTracking().SingleOrDefaultAsync(x=>x.RequestId==Model.MaYeuCau);}
+@if(snapshot!=null){<section class="panel"><span class="eyebrow">CƠ SỞ TRONG YÊU CẦU</span><h2>@snapshot.BranchName</h2><p>@snapshot.Address</p><a href="@PlaceText.GoogleUrl(snapshot.BranchName,snapshot.GooglePlaceId,snapshot.ProviderLatitude!=null&&snapshot.ProviderLongitude!=null?new(snapshot.ProviderLatitude.Value,snapshot.ProviderLongitude.Value):null)" target="_blank" rel="noopener noreferrer">Địa chỉ đã ghi nhận trên Google Maps @Ui.Icon("arrow")</a><p class="help">Tên và địa chỉ được ghi nhận khi gửi yêu cầu, giữ nguyên khi hồ sơ cơ sở được cập nhật.</p></section>}

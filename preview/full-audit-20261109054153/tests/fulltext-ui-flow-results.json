@@ -1,0 +1,148 @@
+{
+  "passed": true,
+  "checks": 35,
+  "observations": [
+    {
+      "name": "login page",
+      "passed": true
+    },
+    {
+      "name": "Razor rendered",
+      "passed": true
+    },
+    {
+      "name": "identifier allows email or phone in browser",
+      "passed": true
+    },
+    {
+      "name": "guest can read public service",
+      "passed": true
+    },
+    {
+      "name": "guest plan action matches role",
+      "passed": true
+    },
+    {
+      "name": "guest booking action matches role",
+      "passed": true
+    },
+    {
+      "name": "guest can search companions",
+      "passed": true
+    },
+    {
+      "name": "guest publish action matches role",
+      "passed": true
+    },
+    {
+      "name": "companion form targets search action from guest page",
+      "passed": true
+    },
+    {
+      "name": "traveler can read public service",
+      "passed": true
+    },
+    {
+      "name": "traveler plan action matches role",
+      "passed": true
+    },
+    {
+      "name": "traveler booking action matches role",
+      "passed": true
+    },
+    {
+      "name": "traveler can search companions",
+      "passed": true
+    },
+    {
+      "name": "traveler publish action matches role",
+      "passed": true
+    },
+    {
+      "name": "companion form targets search action from traveler page",
+      "passed": true
+    },
+    {
+      "name": "provider can read public service",
+      "passed": true
+    },
+    {
+      "name": "provider plan action matches role",
+      "passed": true
+    },
+    {
+      "name": "provider booking action matches role",
+      "passed": true
+    },
+    {
+      "name": "provider can search companions",
+      "passed": true
+    },
+    {
+      "name": "provider publish action matches role",
+      "passed": true
+    },
+    {
+      "name": "companion form targets search action from provider page",
+      "passed": true
+    },
+    {
+      "name": "admin can read public service",
+      "passed": true
+    },
+    {
+      "name": "admin plan action matches role",
+      "passed": true
+    },
+    {
+      "name": "admin booking action matches role",
+      "passed": true
+    },
+    {
+      "name": "admin can search companions",
+      "passed": true
+    },
+    {
+      "name": "admin publish action matches role",
+      "passed": true
+    },
+    {
+      "name": "companion form targets search action from admin page",
+      "passed": true
+    },
+    {
+      "name": "canonical companion filter",
+      "passed": true
+    },
+    {
+      "name": "destination retained after search",
+      "passed": true
+    },
+    {
+      "name": "budget retained after search",
+      "passed": true
+    },
+    {
+      "name": "dates retained after search",
+      "passed": true
+    },
+    {
+      "name": "travel style retained after search",
+      "passed": true
+    },
+    {
+      "name": "new plan uses designed command",
+      "passed": true
+    },
+    {
+      "name": "plan confirmation is a separate action",
+      "passed": true
+    },
+    {
+      "name": "opening a notification posts to mark it read",
+      "passed": true
+    }
+  ],
+  "date": "2026-11-09T10:37:41.540Z",
+  "base": "http://127.0.0.1:5236"
+}

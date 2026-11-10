@@ -1,0 +1,9 @@
+@model ServiceInput
+@inject BranchService Branches
+@{var choices=await Branches.Choices();}
+<fieldset class="pl-branch-picker"><legend>Dịch vụ được cung cấp tại cơ sở nào?</legend>
+ <p class="help">Chọn cơ sở đã duyệt của bạn. Nếu giá hoặc điều kiện khác nhau giữa các chi nhánh, đăng dịch vụ riêng cho từng chi nhánh.</p>
+ @if(choices.Count==0){<div class="notice warning">Bạn chưa có cơ sở được công bố. <a href="/nha-cung-cap/co-so/them">Thêm cơ sở và xác định vị trí trên bản đồ</a> trước khi gửi đăng dịch vụ. Bạn vẫn có thể lưu nháp.</div>}
+ <div class="pl-choice-grid">@foreach(var branch in choices){<label class="pl-branch-option"><input type="checkbox" name="BranchIds" value="@branch.Id" checked="@Model.BranchIds.Contains(branch.Id)"/><span><strong>@branch.Name</strong><small>@branch.Address</small></span></label>}</div>
+ <span asp-validation-for="BranchIds"></span><a class="text-link" href="/nha-cung-cap/co-so">Quản lý cơ sở & chi nhánh @Ui.Icon("arrow")</a>
+</fieldset>

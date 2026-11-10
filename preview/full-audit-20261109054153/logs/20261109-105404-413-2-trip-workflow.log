@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: Search context checks trip ownership: HTTP 302 expected 404 
+    at check (D:\KLTN\preview\full-audit-20261109054153\tests\trip-workflow.cjs:8:35)
+    at response (D:\KLTN\preview\full-audit-20261109054153\tests\trip-workflow.cjs:16:73)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D:\KLTN\preview\full-audit-20261109054153\tests\trip-workflow.cjs:91:2 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
