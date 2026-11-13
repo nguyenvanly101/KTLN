@@ -100,7 +100,7 @@ public sealed partial class DiscoveryService(AppDbContext db,TravelService trave
   categoryWords.UnionWith(new[]{"noi","dia","diem","gan","nhat"});if(mentioned.Count==1)categoryWords.UnionWith(DiscoveryText.Words(mentioned[0]));
   var serviceType=false;string[] groupCodes=[];
   if(!string.IsNullOrEmpty(f.Group)){Need(ServiceKinds.Groups.Any(g=>g.Key==f.Group),"Nhóm không hợp lệ.",400);groupCodes=ServiceKinds.All.Where(k=>k.Active&&k.Group==f.Group).Select(k=>k.Code).ToArray();serviceType=true;}
-  if(!string.IsNullOrEmpty(f.Type)){var type=DanhMuc.ChuanHoa(f.Type);if(type=="DiaDiem")f.Kind="Place";else if(DanhMuc.LoaiDichVu.Contains(type))serviceType=true;else Need(false,"Loại dịch vụ không hợp lệ.",400);}
+  if(!string.IsNullOrEmpty(f.Type)){var type=DanhMuc.ChuanHoa(f.Type);if(type=="DiaDiem")f.Kind="Place";else if(ServiceKinds.Get(type)!=null)serviceType=true;else Need(false,"Loại dịch vụ không hợp lệ.",400);}
   Need(string.IsNullOrEmpty(f.Kind)||DiscoveryText.Kinds.ContainsKey(f.Kind),"Loại thông tin không hợp lệ.",400);Need(new[]{"relevance","updated","distance","price"}.Contains(f.Sort),"Cách sắp xếp không hợp lệ.",400);
   var wanted=(f.Features??"").Split(',',StringSplitOptions.RemoveEmptyEntries|StringSplitOptions.TrimEntries).Distinct().ToArray();Need(wanted.Length<=12&&wanted.All(DiscoveryText.Features.ContainsKey),"Tiện ích tìm kiếm không hợp lệ.",400);
   Need((f.Lat==null)==(f.Lng==null)&&(f.Lat==null||(f.Lat>=-90&&f.Lat<=90&&f.Lng>=-180&&f.Lng<=180))&&f.RadiusKm is >=.1 and <=200,"Vị trí hoặc phạm vi tìm kiếm không hợp lệ.",400);

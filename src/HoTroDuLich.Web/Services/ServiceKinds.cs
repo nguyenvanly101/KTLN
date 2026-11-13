@@ -12,7 +12,7 @@ public sealed record KindInfo(string Code,string Label,string Group,int Sort,boo
 /// <summary>Danh muc loai dich vu dung chung cho dich vu, co so, thong tin kham pha. Them loai moi = them mot dong trong bang LoaiDichVu (khong sua ma nguon).</summary>
 public static class ServiceKinds
 {
- public static readonly (string Key,string Label)[] Groups=[("Place","Tham quan"),("Eat","Ăn uống"),("Stay","Lưu trú"),("Move","Di chuyển"),("Experience","Trải nghiệm"),("Info","Thông tin"),("Local","Dịch vụ địa phương"),("Other","Khác")];
+ public static readonly (string Key,string Label)[] Groups=[("Place","Tham quan"),("Eat","Ăn uống"),("Stay","Lưu trú"),("Move","Di chuyển"),("Experience","Trải nghiệm"),("Info","Thông tin"),("Local","Dịch vụ địa phương"),("Health","Y tế và an toàn"),("Utility","Tiện ích và mua sắm"),("Other","Khác")];
  public static readonly string[] FieldKinds=["select","multi","text","number","time","date","list"];
  static string[] O(params string[] v)=>v;
  static TemplateField[] Spec(string code)=>code switch
@@ -113,6 +113,34 @@ public static class ServiceKinds
   K("HuongDanVien","Hướng dẫn viên","Local",100,true,true,false,true,false,false,false),
   K("MuaSam","Mua sắm & đặc sản","Local",110,false,true,true,true,true,true,false),
   K("DichVuHoTro","Dịch vụ hỗ trợ","Local",120,true,true,true,true,true,true,false),
+  K("CaPhe","Cà phê & đồ uống","Eat",21,true,true,true,true,true,true,false),
+  K("QuanChay","Quán chay","Eat",22,true,true,true,true,true,true,false),
+  K("ChoAmThuc","Chợ & ẩm thực đường phố","Eat",23,false,false,false,false,true,true,false),
+  K("NhaNghi","Nhà nghỉ","Stay",31,true,true,true,true,true,true,false),
+  K("CamTrai","Cắm trại","Stay",32,true,true,true,true,true,true,false),
+  K("BenXe","Bến xe & nhà xe","Move",41,true,true,true,true,true,true,false),
+  K("ThueXe","Thuê xe","Move",42,true,true,true,true,true,true,false),
+  K("SanBay","Sân bay","Move",43,false,false,false,false,true,true,false),
+  K("GaTau","Ga tàu hỏa","Move",44,false,false,false,false,true,true,false),
+  K("BenTau","Bến tàu & phà","Move",45,false,false,false,false,true,true,false),
+  K("TramXang","Trạm xăng","Move",46,false,false,false,true,true,true,false),
+  K("SuaXe","Sửa xe","Move",47,false,true,true,true,true,true,false),
+  K("BaiDoXe","Bãi đỗ xe","Move",48,false,true,true,true,true,true,false),
+  K("BenhVien","Bệnh viện","Health",130,false,false,false,false,true,true,false),
+  K("PhongKham","Phòng khám","Health",131,false,true,true,true,true,true,false),
+  K("NhaThuoc","Nhà thuốc","Health",132,false,true,true,true,true,true,false),
+  K("CongAn","Công an","Health",133,false,false,false,false,true,true,false),
+  K("CuuHo","Cứu hộ & cứu nạn","Health",134,false,false,false,false,true,true,false),
+  K("Atm","ATM & ngân hàng","Utility",140,false,false,false,false,true,true,false),
+  K("DoiTien","Đổi tiền","Utility",141,false,true,true,true,true,true,false),
+  K("BuuDien","Bưu điện","Utility",142,false,false,false,false,true,true,false),
+  K("SieuThi","Siêu thị & cửa hàng tiện lợi","Utility",143,false,true,true,true,true,true,false),
+  K("TrungTamTM","Trung tâm thương mại","Utility",144,false,false,false,false,true,true,false),
+  K("GiatUi","Giặt ủi","Utility",145,true,true,true,true,true,true,false),
+  K("NhaVeSinh","Nhà vệ sinh công cộng","Utility",146,false,false,false,false,true,true,false),
+  K("SimWifi","SIM & Wi-Fi","Utility",147,false,true,true,true,true,true,false),
+  K("GuiHanhLy","Gửi hành lý","Utility",148,true,true,true,true,true,true,false),
+  K("QuaLuuNiem","Quà lưu niệm","Utility",149,false,true,true,true,true,true,false),
   K("Khac","Khác","Other",999,true,true,true,true,true,true,false)];
 
  static volatile KindInfo[] items=Defaults();

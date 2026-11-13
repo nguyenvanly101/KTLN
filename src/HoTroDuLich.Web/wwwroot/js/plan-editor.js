@@ -9,9 +9,9 @@
   var st = JSON.parse(root.dataset.draft); st.items = (st.items || []).map(function (i, n) { i.k = 'k' + n; return i; });
   var noteMap = {}; (st.notes || []).forEach(function (n) { noteMap[n.day] = n.text; }); st.notes = noteMap;
   st.dests = (st.destination || '').split(' · ').map(function (x) { return x.trim(); }).filter(Boolean).map(function (n) { return { name: n, areaId: null }; });
-  var seq = st.items.length, cur = 1, dirty = false, mode = 'add', swapKey = null, picked = null, pickTimer = null, pickGroup = '', pickPage = 1, pickTotal = 0;
+  var seq = st.items.length, cur = 1, dirty = false, mode = 'add', swapKey = null, picked = null, pickTimer = null, pickGroup = '', pickKind = '', pickPage = 1, pickTotal = 0;
   var SLOTS = [['Sáng', '08:00'], ['Trưa', '12:00'], ['Chiều', '15:00'], ['Tối', '19:00']];
-  var GROUPS = { Stay: 'Lưu trú', Eat: 'Ăn uống', Place: 'Tham quan', Move: 'Di chuyển', Experience: 'Trải nghiệm', Info: 'Thông tin', Local: 'Dịch vụ địa phương', Other: 'Khác' };
+  var GROUPS = { Stay: 'Lưu trú', Eat: 'Ăn uống', Place: 'Tham quan', Move: 'Di chuyển', Experience: 'Trải nghiệm', Info: 'Thông tin', Local: 'Dịch vụ địa phương', Health: 'Y tế và an toàn', Utility: 'Tiện ích và mua sắm', Other: 'Khác' };
   var local = function (d) { var m = d.getMonth() + 1, dd = d.getDate(); return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (dd < 10 ? '0' : '') + dd; };
   var shift = function (iso, n) { var d = new Date(iso + 'T00:00:00'); d.setDate(d.getDate() + n); return local(d); };
   var fmt = function (iso) { return new Date(iso + 'T00:00:00').toLocaleDateString('vi-VN', { weekday: 'short', day: '2-digit', month: '2-digit' }); };
@@ -232,7 +232,7 @@
   var styleMarker = function (mk, on) { mk.setStyle({ color: on ? COL_SEL : '#fff', fillColor: on ? COL_SEL : mk.baseColor, fillOpacity: .95, weight: on ? 3 : 2, radius: on ? 12 : 9 }); };
   var buildQuery = function (page) {
     var p = new URLSearchParams(); var q = $('pe-pick-q').value.trim(); if (q) p.set('Q', q);
-    if (pickGroup) p.set('Group', pickGroup);
+    if (pickKind) p.set('Type', pickKind); else if (pickGroup) p.set('Group', pickGroup);
     var di = $('pe-pick-dest').value; if (di !== '' && st.dests[+di]) { var d = st.dests[+di]; if (d.areaId) p.set('Area', d.areaId); else p.set('Region', d.name); }
     if ($('pe-f-min').value) p.set('Min', $('pe-f-min').value); if ($('pe-f-max').value) p.set('Max', $('pe-f-max').value);
     var sort = $('pe-f-sort').value; if (sort && sort !== 'relevance') p.set('Sort', sort);
@@ -240,7 +240,14 @@
     if ($('pe-f-saved').checked) p.set('daLuu', 'true');
     p.set('Page', page); return p.toString();
   };
-  $('pe-groups').addEventListener('click', function (e) { var b = e.target.closest('[data-group]'); if (!b) return; pickGroup = b.dataset.group; [].forEach.call($('pe-groups').children, function (c) { c.classList.toggle('on', c === b); }); loadPick(true); });
+  $('pe-groups').addEventListener('click', function (e) { var b = e.target.closest('[data-group]'); if (!b) return; pickGroup = b.dataset.group; pickKind = ''; [].forEach.call($('pe-groups').children, function (c) { c.classList.toggle('on', c === b); }); renderKinds(); loadPick(true); });
+  var allKinds = []; try { allKinds = JSON.parse($('pe-kinds').dataset.kinds || '[]'); } catch (x) { allKinds = []; }
+  var renderKinds = function () {
+    var box = $('pe-kinds'), list = pickGroup ? allKinds.filter(function (k) { return k.group === pickGroup; }) : [];
+    box.hidden = list.length < 2; if (box.hidden) { box.innerHTML = ''; return; }
+    box.innerHTML = '<button type="button" class="pe-chip on" data-kind="">Tất cả loại</button>' + list.map(function (k) { return '<button type="button" class="pe-chip" data-kind="' + esc(k.code) + '">' + esc(k.label) + '</button>'; }).join('');
+  };
+  $('pe-kinds').addEventListener('click', function (e) { var b = e.target.closest('[data-kind]'); if (!b) return; pickKind = b.dataset.kind; [].forEach.call($('pe-kinds').children, function (c) { c.classList.toggle('on', c === b); }); loadPick(true); });
   $('pe-pick-q').addEventListener('input', function () { clearTimeout(pickTimer); pickTimer = setTimeout(function () { loadPick(true); }, 350); });
   ['pe-pick-dest', 'pe-f-min', 'pe-f-max', 'pe-f-sort', 'pe-f-saved'].forEach(function (id) { $(id).addEventListener('change', function () { loadPick(true); }); });
   $('pe-f-view').addEventListener('change', function () { loadPick(true, true); });
@@ -256,7 +263,7 @@
     if ($('pe-f-saved').checked) return;
     var q = $('pe-pick-q').value.trim(), di = $('pe-pick-dest').value, dest = di !== '' && st.dests[+di] ? st.dests[+di].name : '';
     if (q.length < 2 && !pickGroup) return;
-    plain('/api/lapkehoach/goong-goi-y?group=' + encodeURIComponent(pickGroup) + '&destination=' + encodeURIComponent(dest) + '&q=' + encodeURIComponent(q)).then(function (rows) {
+    plain('/api/lapkehoach/goong-goi-y?group=' + encodeURIComponent(pickGroup) + '&kind=' + encodeURIComponent(pickKind) + '&destination=' + encodeURIComponent(dest) + '&q=' + encodeURIComponent(q)).then(function (rows) {
       if (!rows || !rows.length || $('pe-pick-q').value.trim() !== q) return;
       var box = $('pe-pick-list'), h = '<h4 class="pe-pick-sec goong" data-sec="goong">Gợi ý từ bản đồ Goong (chưa có trong dữ liệu website, thêm như hoạt động tự nhập)</h4>';
       rows.forEach(function (g) {

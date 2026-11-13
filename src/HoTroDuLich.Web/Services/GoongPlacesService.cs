@@ -43,7 +43,8 @@ public sealed class GoongPlacesService(HttpClient http,IConfiguration configurat
   return list;
  }
 
- static string? Keyword(string? group)=>group switch{"Stay"=>"khách sạn","Eat"=>"nhà hàng","Place"=>"khu du lịch","Move"=>"bến xe","Experience"=>"trải nghiệm",_=>null};
+ static readonly Dictionary<string,string> KindKeywords=new(StringComparer.OrdinalIgnoreCase){["HoatDong"]="khu du lịch",["AnUong"]="nhà hàng",["LuuTru"]="khách sạn",["PhuongTien"]="bến xe",["Tour"]="công ty du lịch",["GiaiTri"]="khu vui chơi",["SucKhoe"]="spa",["MuaSam"]="chợ",["DichVuHoTro"]="dịch vụ",["CaPhe"]="quán cà phê",["QuanChay"]="quán chay",["ChoAmThuc"]="chợ",["NhaNghi"]="nhà nghỉ",["CamTrai"]="khu cắm trại",["BenXe"]="bến xe",["ThueXe"]="thuê xe máy",["SanBay"]="sân bay",["GaTau"]="ga tàu",["BenTau"]="bến tàu",["TramXang"]="trạm xăng",["SuaXe"]="sửa xe",["BaiDoXe"]="bãi đỗ xe",["BenhVien"]="bệnh viện",["PhongKham"]="phòng khám",["NhaThuoc"]="nhà thuốc",["CongAn"]="công an",["CuuHo"]="cứu hộ",["Atm"]="ATM",["DoiTien"]="đổi tiền",["BuuDien"]="bưu điện",["SieuThi"]="siêu thị",["TrungTamTM"]="trung tâm thương mại",["GiatUi"]="giặt ủi",["NhaVeSinh"]="nhà vệ sinh công cộng",["SimWifi"]="cửa hàng sim",["GuiHanhLy"]="gửi hành lý",["QuaLuuNiem"]="quà lưu niệm"};
+ static string? Keyword(string? group,string? kind=null)=>!string.IsNullOrWhiteSpace(kind)?(KindKeywords.TryGetValue(kind,out var k)?k:ServiceKinds.Get(kind)?.Label.ToLowerInvariant()):group switch{"Stay"=>"khách sạn","Eat"=>"nhà hàng","Place"=>"khu du lịch","Move"=>"bến xe","Experience"=>"trải nghiệm","Health"=>"bệnh viện","Utility"=>"siêu thị",_=>null};
  /// <summary>Chi tiet mot dia diem (toa do, dia chi), luu dem 24 gio.</summary>
  async Task<GoongPoi?> Detail(string placeId,CancellationToken ct)
  {
@@ -76,10 +77,10 @@ public sealed class GoongPlacesService(HttpClient http,IConfiguration configurat
   return 2*r*Math.Asin(Math.Sqrt(a));
  }
  /// <summary>Goi y dia diem truc tiep tu Goong cho nhom dich vu va diem den, kem toa do de ve ghim. Khong luu vao co so du lieu; chi luu dem trong bo nho.</summary>
- public async Task<List<GoongPoi>> Nearby(string? group,string? destination,string? q,CancellationToken ct)
+ public async Task<List<GoongPoi>> Nearby(string? group,string? destination,string? q,CancellationToken ct,string? kind=null)
  {
   if(!Enabled)return [];
-  var term=(q??"").Trim();var kw=Keyword(group);var dest=(destination??"").Trim();if(dest.Length>80)dest=dest[..80];
+  var term=(q??"").Trim();var kw=Keyword(group,kind);var dest=(destination??"").Trim();if(dest.Length>80)dest=dest[..80];
   var text=term.Length>=2?(dest.Length>0&&!term.Contains(dest,StringComparison.OrdinalIgnoreCase)?term+" "+dest:term):kw==null?"":(kw+(dest.Length>0?" "+dest:""));
   if(text.Length<2)return [];
   var cacheKey="goong.nb."+text.ToLowerInvariant();

@@ -27,7 +27,7 @@ public sealed class PlanBoardController(TravelService travel,PlanBoardService bo
 
  [HttpGet("/api/lapkehoach/dia-diem"),EnableRateLimiting("discovery")] public async Task<IActionResult> OtherPlaces(string? q,CancellationToken ct)=>await Api(()=>goong.Autocomplete(q,ct));
  /// <summary>Goi y dia diem truc tiep tu Goong theo nhom dich vu va diem den, kem toa do (khong luu vao co so du lieu).</summary>
- [HttpGet("/api/lapkehoach/goong-goi-y"),EnableRateLimiting("discovery")] public async Task<IActionResult> GoongSuggest(string? group,string? destination,string? q,CancellationToken ct)=>await Api(()=>goong.Nearby(group,destination,q,ct));
+ [HttpGet("/api/lapkehoach/goong-goi-y"),EnableRateLimiting("discovery")] public async Task<IActionResult> GoongSuggest(string? group,string? kind,string? destination,string? q,CancellationToken ct)=>await Api(()=>goong.Nearby(group,destination,q,ct,kind));
  /// <summary>Doi vi tri bam tren ban do thanh ten khu vuc (chi trong khung Viet Nam).</summary>
  [HttpGet("/api/lapkehoach/dia-chi"),EnableRateLimiting("discovery")] public async Task<IActionResult> AddressAt(double lat,double lng,CancellationToken ct)
  {
