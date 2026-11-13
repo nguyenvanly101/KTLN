@@ -4,7 +4,7 @@ public static class DanhMuc
 {
     /// <summary>Ma cac loai dich vu nha cung cap duoc dang (lay tu danh muc ServiceKinds).</summary>
     public static string[] LoaiDichVu => ServiceKinds.ServiceCodes;
-    public static readonly string[] LoaiTinhHuong = ["DiemDenKhongPhucVu", "ThoiTiet", "DichVuCoVanDe", "Khac"];
+    public static readonly string[] LoaiTinhHuong = ["DiemDenKhongPhucVu", "ThoiTiet", "DichVuCoVanDe", "DiChuyenGapSuCo", "LuuTruCoVanDe", "SucKhoeCaNhan", "MatGiayToTaiSan", "AnToanCaNhan", "NhomDiCung", "HetTienNganSach", "Khac"];
     public static readonly string[] HinhThucDi = ["TuTuc", "Phuot", "NghiDuong", "Khac"];
     public const int KichThuocTrang = 20;
     public static string ChuanHoa(string? value) => value?.Trim() switch
@@ -23,7 +23,7 @@ public static class DanhMuc
     {
         "LuuTru" => "Lưu trú", "AnUong" => "Ăn uống", "PhuongTien" => "Phương tiện",
         "HoatDong" => "Hoạt động", "DiaDiem" => "Địa điểm", "ThoiTiet" => "Thời tiết",
-        "DichVuCoVanDe" => "Dịch vụ có vấn đề", "DiemDenKhongPhucVu" => "Điểm đến không phục vụ",
+        "DichVuCoVanDe" => "Dịch vụ có vấn đề", "DiChuyenGapSuCo" => "Sự cố di chuyển", "LuuTruCoVanDe" => "Chỗ ở có vấn đề", "SucKhoeCaNhan" => "Sức khỏe, tai nạn", "MatGiayToTaiSan" => "Mất giấy tờ, tiền, đồ đạc", "AnToanCaNhan" => "An toàn cá nhân", "NhomDiCung" => "Nhóm đi cùng", "HetTienNganSach" => "Hết tiền, vượt ngân sách", "DiemDenKhongPhucVu" => "Điểm đến không phục vụ",
         "TuTuc" => "Tự túc", "Phuot" => "Phượt", "NghiDuong" => "Nghỉ dưỡng", "Khac" => "Khác", _ => value ?? ""
     };
 }

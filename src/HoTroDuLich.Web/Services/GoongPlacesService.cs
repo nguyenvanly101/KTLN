@@ -95,6 +95,24 @@ public sealed class GoongPlacesService(HttpClient http,IConfiguration configurat
   return list;
  }
 
+ /// <summary>Dia diem theo loai quanh mot toa do (trong 10 km), xep theo khoang cach; dung khi khach can giup ngay.</summary>
+ public async Task<List<GoongPoi>> Around(string? kind,double lat,double lng,CancellationToken ct)
+ {
+  if(!Enabled||lat is < 5.0 or > 24.0||lng is < 101.5 or > 118.5)return [];
+  var kw=Keyword(null,kind);if(kw==null)return [];
+  var cacheKey=$"goong.ar.{kw}.{lat:0.00},{lng:0.00}";
+  if(cache.TryGetValue(cacheKey,out List<GoongPoi>? hit)&&hit!=null)return hit;
+  var loc=lat.ToString("0.#####",System.Globalization.CultureInfo.InvariantCulture)+","+lng.ToString("0.#####",System.Globalization.CultureInfo.InvariantCulture);
+  using var doc=await Get("v2/place/autocomplete?input="+Uri.EscapeDataString(kw)+"&location="+loc+"&radius=10",ct);
+  var ids=new List<string>();
+  if(doc!=null&&doc.RootElement.TryGetProperty("predictions",out var arr)&&arr.ValueKind==JsonValueKind.Array)
+   foreach(var p in arr.EnumerateArray().Take(8))if(p.TryGetProperty("place_id",out var pid)&&pid.ValueKind==JsonValueKind.String)ids.Add(pid.GetString()!);
+  var details=await Task.WhenAll(ids.Select(i=>Detail(i,ct)));
+  var list=details.Where(d=>d!=null&&Km(lat,lng,d.Lat,d.Lng)<=10).Select(d=>d!).GroupBy(d=>d.PlaceId).Select(g=>g.First()).OrderBy(d=>Km(lat,lng,d.Lat,d.Lng)).ToList();
+  if(doc!=null)cache.Set(cacheKey,list,TimeSpan.FromMinutes(15));
+  return list;
+ }
+
  /// <summary>Doi toa do (trong khung Viet Nam) thanh ten khu vuc gan nhat.</summary>
  public async Task<GoongPlace?> Reverse(double lat,double lng,CancellationToken ct)
  {

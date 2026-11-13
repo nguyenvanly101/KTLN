@@ -47,6 +47,15 @@ public sealed class PlanBoardService(AppDbContext context,IHttpContextAccessor a
  static readonly string[] Junk=["Theo cơ sở","kiểm thử","Xã ","Huyện ","Phường "];
 
  // ------------------------------------------------------------ tai ban nhap
+ /// <summary>Nhom dich vu (Stay, Eat, Move...) cua tung hoat dong gan dich vu trong chuyen di, de goi y ly do su co dung loai.</summary>
+ public async Task<Dictionary<long,string>> ActivityGroups(long planId)
+ {
+  var acts=await Travel.Activities(planId);
+  var ids=acts.Where(a=>a.MaDichVu!=null).Select(a=>a.MaDichVu!.Value).Distinct().ToList();
+  if(ids.Count==0)return new();
+  var kinds=await db.DichVuDuLich.AsNoTracking().Where(d=>ids.Contains(d.MaDichVu)).ToDictionaryAsync(d=>d.MaDichVu,d=>d.LoaiDichVu);
+  return acts.Where(a=>a.MaDichVu!=null&&kinds.ContainsKey(a.MaDichVu.Value)).ToDictionary(a=>a.MaHoatDong,a=>ServiceKinds.Get(kinds[a.MaDichVu!.Value])?.Group??"Other");
+ }
  public async Task<PlanEditor> Load(long id)
  {
   RoleRequired(Traveler);

@@ -15,6 +15,7 @@
  var share = await Context.RequestServices.GetRequiredService<TripShareService>().Members(plan.MaKeHoach);
  var isOwner = share.IsOwner;
  var dayNotes = await Context.RequestServices.GetRequiredService<PlanBoardService>().Notes(plan.MaKeHoach);
+ var actGroups = await Context.RequestServices.GetRequiredService<PlanBoardService>().ActivityGroups(plan.MaKeHoach);
  var groupId = await Context.RequestServices.GetRequiredService<ChatService>().TripGroupFor(plan.MaKeHoach);
 }
 <div class="container-wide trip-workspace">
@@ -28,13 +29,15 @@
  <div class="trip-scroll" tabindex="0" aria-label="Lịch trình và thành viên">
  <section id="itinerary" aria-labelledby="trip-itinerary-title">
   <h2 id="trip-itinerary-title" class="trip-sec-title">Lịch trình</h2>
+  @{ViewData["PlanId"]=plan.MaKeHoach;ViewData["Dest"]=plan.NoiDen;ViewData["GroupId"]=groupId;ViewData["OnTrip"]=TravelService.Today>=plan.NgayBatDau&&TravelService.Today<=plan.NgayKetThuc;ViewData["DayNo"]=TravelService.Today>=plan.NgayBatDau&&TravelService.Today<=plan.NgayKetThuc?(int?)(TravelService.Today.DayNumber-plan.NgayBatDau.DayNumber+1):null;}
+  <partial name="/Views/Plans/_TripHelp.cshtml"/>
   <div class="itinerary-layout"><div class="itinerary-main">
    @if(activities.Count == 0){<div class="empty">@Ui.Icon("calendar")<h3>Điểm dừng đầu tiên đang chờ bạn</h3><p>Bấm Sửa để thêm chỗ ở, nơi tham quan, quán ăn và phương tiện vào từng ngày.</p></div>}
    else {
     @if(days > 31){<p class="help">Chuyến đi dài hiển thị những ngày đã có hoạt động và ngày bắt đầu.</p>}
     @foreach(var day in visibleDays){var items = activities.Where(x => x.Ngay == day).ToList();<section class="timeline-day"><div class="day-marker">NGÀY<b>@(day.DayNumber - plan.NgayBatDau.DayNumber + 1)</b>@day.ToString("dd/MM")</div><div class="day-activities">@if(dayNotes.TryGetValue(day.DayNumber - plan.NgayBatDau.DayNumber + 1, out var dayNote)){<p class="trip-day-note">@dayNote</p>}
      @if(items.Count == 0){<p class="help">Một ngày còn để ngỏ. Nghỉ ngơi hoặc thêm điểm dừng khi bạn muốn.</p>}
-     @for(var index = 0; index < items.Count; index++){var activity = items[index];<article class="timeline-item" id="activity-@activity.MaHoatDong"><div class="trip-activity-copy"><time>@Ui.Icon("clock") @(activity.Gio?.ToString("HH:mm") ?? "Chưa đặt giờ")</time><h3>@activity.NoiDung</h3><p class="help">@(activity.ThoiLuongPhut is int duration?duration+" phút hoạt động":"Chưa nhập thời lượng") @(activity.DiChuyenTruocPhut is int transfer?" · "+transfer+" phút di chuyển trước điểm dừng":"") @(activity.HoanThanhLuc!=null?" · Đã hoàn thành":"")</p><span class="help">Chi phí dự kiến: @Labels.Money(activity.ChiPhiDuKien)</span><div class="trip-activity-links">
+     @for(var index = 0; index < items.Count; index++){var activity = items[index];<article class="timeline-item" id="activity-@activity.MaHoatDong"><div class="trip-activity-copy"><time>@Ui.Icon("clock") @(activity.Gio?.ToString("HH:mm") ?? "Chưa đặt giờ")</time><h3>@activity.NoiDung</h3><button type="button" class="trip-issue-btn" data-act="@activity.MaHoatDong" data-group="@(actGroups.TryGetValue(activity.MaHoatDong,out var ag)?ag:"")" data-name="@activity.NoiDung" data-service="@activity.MaDichVu" data-booking="@(activity.MaDichVu!=null?Model.Bookings.Where(b=>b.MaDichVu==activity.MaDichVu).OrderByDescending(b=>b.MaYeuCau).Select(b=>(long?)b.MaYeuCau).FirstOrDefault():null)">Có vấn đề</button><p class="help">@(activity.ThoiLuongPhut is int duration?duration+" phút hoạt động":"Chưa nhập thời lượng") @(activity.DiChuyenTruocPhut is int transfer?" · "+transfer+" phút di chuyển trước điểm dừng":"") @(activity.HoanThanhLuc!=null?" · Đã hoàn thành":"")</p><span class="help">Chi phí dự kiến: @Labels.Money(activity.ChiPhiDuKien)</span><div class="trip-activity-links">
       @if(activity.MaDichVu != null){var bk=Model.Bookings.Where(b=>b.MaDichVu==activity.MaDichVu).OrderByDescending(b=>b.MaYeuCau).FirstOrDefault();if(bk!=null){<a class="badge @Labels.Badge(bk.TrangThai.ToString())" href="/Bookings/Detail/@bk.MaYeuCau">@Labels.Status(bk.TrangThai.ToString())</a>if(bk.TrangThai is TrangThaiYeuCau.HoanThanh or TrangThaiYeuCau.ThucHienMotPhan){<a class="text-link" href="/Reviews/Write?bookingId=@bk.MaYeuCau">Đánh giá dịch vụ @Ui.Icon("arrow")</a>}}}
       @if(activity.MaDichVu != null){<a class="text-link" asp-controller="Explore" asp-action="Detail" asp-route-id="@activity.MaDichVu" asp-route-planId="@plan.MaKeHoach">Xem dịch vụ @Ui.Icon("arrow")</a>@if(Model.RequestableServices.Contains(activity.MaDichVu.Value)){<a class="text-link" asp-controller="Bookings" asp-action="Create" asp-route-id="@activity.MaDichVu" asp-route-planId="@plan.MaKeHoach" asp-route-activityId="@activity.MaHoatDong">Yêu cầu đặt @Ui.Icon("ticket")</a>}}else{<a class="text-link" href="/Plans/Activity/@plan.MaKeHoach?activityId=@activity.MaHoatDong">@Ui.Icon("plus") Thêm dịch vụ</a>}
       @if(Model.Locations.TryGetValue(activity.MaHoatDong, out var location)){<a class="text-link" href="@(location.HasAddress ? Ui.Directions(location.Query) : Ui.MapSearch(location.Query))" target="_blank" rel="noopener noreferrer">@Ui.Icon("pin") @(location.HasAddress ? "Chỉ đường" : "Tìm trên bản đồ")<span class="sr-only"> (mở Google Maps ở tab mới)</span></a>}
@@ -54,3 +57,5 @@
  <section id="trip-help" class="trip-help-section" aria-labelledby="trip-help-title"><div><span class="eyebrow">LINH HOẠT TRÊN ĐƯỜNG ĐI</span><h2 id="trip-help-title">Khi kế hoạch thay đổi</h2><p>Ghi lại sự cố, chọn hoạt động bị ảnh hưởng và theo dõi cách xử lý.</p><div class="actions"><a class="btn btn-outline" href="/Support/Create?planId=@plan.MaKeHoach">Ghi nhận tình huống</a><a class="text-link" href="/Support?planId=@plan.MaKeHoach">Xem @Model.Incidents.Count tình huống @Ui.Icon("arrow")</a></div></div><span class="trip-help-count"><strong>@openIssues</strong> tình huống đang xử lý</span></section>
  </details>
 </div>
+
+@section Scripts{<script src="~/js/trip-help.js" asp-append-version="true"></script>}

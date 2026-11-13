@@ -1,0 +1,13 @@
+@{
+ var planId=(long)ViewData["PlanId"]!;var dest=(string?)ViewData["Dest"]??"";var groupId=(long?)ViewData["GroupId"];var onTrip=(bool)ViewData["OnTrip"]!;var dayNo=(int?)ViewData["DayNo"];
+}
+<div class="trip-sos" role="region" aria-label="Hỗ trợ khi đang đi">
+ <div><strong>@(onTrip?"Bạn đang trong chuyến đi"+(dayNo!=null?" · Ngày "+dayNo:""):"Khi đang trên đường")</strong><span>Gặp chuyện bất ngờ hay cần tìm nơi giúp? Bấm vào đây, không cần rời trang.</span></div>
+ <button type="button" class="btn btn-danger-soft" data-help-open="need">Gặp sự cố, cần giúp</button>
+</div>
+@Html.AntiForgeryToken()
+<dialog class="th-dialog" id="th-dialog" data-plan="@planId" data-dest="@dest" data-group="@groupId" aria-labelledby="th-title">
+ <div class="th-head"><h2 id="th-title">Cần giúp gì?</h2><button type="button" class="th-close" data-help-close aria-label="Đóng">×</button></div>
+ <div class="th-urgent">Nguy hiểm đến tính mạng? Gọi ngay <a href="tel:115">115</a> (cấp cứu), <a href="tel:113">113</a> (công an), <a href="tel:114">114</a> (cứu hỏa), hoặc <a href="tel:112">112</a>.</div>
+ <div id="th-body"></div>
+</dialog>

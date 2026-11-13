@@ -27,6 +27,10 @@ public sealed class PlanBoardController(TravelService travel,PlanBoardService bo
 
  [HttpGet("/api/lapkehoach/dia-diem"),EnableRateLimiting("discovery")] public async Task<IActionResult> OtherPlaces(string? q,CancellationToken ct)=>await Api(()=>goong.Autocomplete(q,ct));
  /// <summary>Goi y dia diem truc tiep tu Goong theo nhom dich vu va diem den, kem toa do (khong luu vao co so du lieu).</summary>
+ /// <summary>Ghi nhanh một sự cố vào chuyến đi từ khung hỗ trợ khi đang đi.</summary>
+ [HttpPost("/api/lapkehoach/su-co")] public async Task<IActionResult> Incident([FromBody]Models.IncidentInput i)=>await Api(async()=>{await travel.CreateIncident(i);return new{planId=i.PlanId};});
+ /// <summary>Nơi giúp theo loại quanh vị trí hiện tại của khách (bệnh viện, nhà thuốc, ATM...).</summary>
+ [HttpGet("/api/lapkehoach/gan-day"),EnableRateLimiting("discovery")] public async Task<IActionResult> Around(string? kind,double lat,double lng,CancellationToken ct)=>await Api(()=>goong.Around(kind,lat,lng,ct));
  [HttpGet("/api/lapkehoach/goong-goi-y"),EnableRateLimiting("discovery")] public async Task<IActionResult> GoongSuggest(string? group,string? kind,string? destination,string? q,CancellationToken ct)=>await Api(()=>goong.Nearby(group,destination,q,ct,kind));
  /// <summary>Doi vi tri bam tren ban do thanh ten khu vuc (chi trong khung Viet Nam).</summary>
  [HttpGet("/api/lapkehoach/dia-chi"),EnableRateLimiting("discovery")] public async Task<IActionResult> AddressAt(double lat,double lng,CancellationToken ct)
