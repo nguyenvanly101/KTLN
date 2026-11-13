@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "checks": 216,
+  "checks": 217,
   "observations": [
     {
       "name": "Page renders: /Together",
@@ -855,6 +855,10 @@
       "passed": true
     },
     {
+      "name": "Local asset exists: /js/map-base.js",
+      "passed": true
+    },
+    {
       "name": "Local asset exists: /js/chat-badge.js",
       "passed": true
     },
@@ -886,5 +890,5 @@
   ],
   "base": "http://localhost:5223",
   "scope": "HTTP and server-rendered HTML; no browser interaction or viewport verification",
-  "date": "2026-11-13T03:58:34.267Z"
+  "date": "2026-11-13T10:01:36.720Z"
 }

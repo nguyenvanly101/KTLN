@@ -220,9 +220,9 @@
     }
   ],
   "fixtures": {
-    "entryId": 90030,
-    "seed": "DISCOVERY af4ab715"
+    "entryId": 100030,
+    "seed": "DISCOVERY 1a56f672"
   },
   "database": "HoTroDuLich_Discovery_20261108",
-  "date": "2026-11-13T05:59:09.118Z"
+  "date": "2026-11-13T09:21:01.208Z"
 }
