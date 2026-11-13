@@ -7,7 +7,7 @@ namespace HoTroDuLich.Web.Controllers;
 
 /// <summary>Lap ke hoach mot trang: /lapkehoach (tao moi) va /lapkehoach/{id} (sua). Luu ca chuyen di mot lan qua API.</summary>
 [Authorize(Roles=TravelService.Traveler)]
-public sealed class PlanBoardController(TravelService travel,PlanBoardService board):AppController(travel)
+public sealed class PlanBoardController(TravelService travel,PlanBoardService board,GoongPlacesService goong):AppController(travel)
 {
  [HttpGet("/lapkehoach")] public IActionResult Create(string? diemDen)
  {
@@ -24,6 +24,14 @@ public sealed class PlanBoardController(TravelService travel,PlanBoardService bo
  [HttpGet("/api/lapkehoach/chi-tiet/{entryId:long}"),EnableRateLimiting("discovery")] public async Task<IActionResult> EntryDetail(long entryId)=>await Api(()=>board.EntryDetail(entryId));
  [HttpGet("/api/lapkehoach/diem-den"),EnableRateLimiting("discovery")] public async Task<IActionResult> Destinations(string? q)=>await Api(()=>board.DestinationSearch(q));
  [HttpGet("/api/lapkehoach/ban-do"),EnableRateLimiting("discovery")] public async Task<IActionResult> Map()=>await Api(()=>board.MapPoints());
+
+ [HttpGet("/api/lapkehoach/dia-diem"),EnableRateLimiting("discovery")] public async Task<IActionResult> OtherPlaces(string? q,CancellationToken ct)=>await Api(()=>goong.Autocomplete(q,ct));
+ /// <summary>Doi vi tri bam tren ban do thanh ten khu vuc (chi trong khung Viet Nam).</summary>
+ [HttpGet("/api/lapkehoach/dia-chi"),EnableRateLimiting("discovery")] public async Task<IActionResult> AddressAt(double lat,double lng,CancellationToken ct)
+ {
+  if(lat<7.5||lat>24.0||lng<101.5||lng>110.5)return StatusCode(422,new{message="Vị trí nằm ngoài khu vực hỗ trợ."});
+  return await Api(async()=>(object?)await goong.Reverse(lat,lng,ct)??new{});
+ }
 
  [HttpPost("/Plans/Delete")] public async Task<IActionResult> Delete(long id){await board.DeletePlan(id);return Done("/Plans","Đã xóa chuyến đi.");}
 

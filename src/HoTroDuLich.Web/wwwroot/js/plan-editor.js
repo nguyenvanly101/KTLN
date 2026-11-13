@@ -58,13 +58,14 @@
   // goi y khi go
   var sugTimer = null, sugData = [];
   var LEVEL = { 1: 'Tỉnh / Thành phố', 2: 'Quận / Huyện / Thị xã', 3: 'Phường / Xã' };
-  var levelLabel = function (r) { return r.source === 'area' ? (LEVEL[r.level] || 'Khu vực') : r.source === 'destination' ? 'Điểm đến du lịch' : 'Khu du lịch / địa điểm'; };
+  var levelLabel = function (r) { return r.source === 'goong' ? 'Địa điểm khác' : r.source === 'area' ? (LEVEL[r.level] || 'Khu vực') : r.source === 'destination' ? 'Điểm đến du lịch' : 'Khu du lịch / địa điểm'; };
   var hideSug = function () { $('pe-dest-sug').hidden = true; $('pe-dest').setAttribute('aria-expanded', 'false'); };
   $('pe-dest').addEventListener('input', function () {
     clearTimeout(sugTimer); var q = this.value.trim(); if (q.length < 1) return hideSug();
     sugTimer = setTimeout(function () {
-      plain('/api/lapkehoach/diem-den?q=' + encodeURIComponent(q)).then(function (rows) {
-        sugData = rows.slice(0, 10);
+      Promise.all([plain('/api/lapkehoach/diem-den?q=' + encodeURIComponent(q)), plain('/api/lapkehoach/dia-diem?q=' + encodeURIComponent(q)).catch(function () { return []; })]).then(function (both) {
+        var rows = both[0].slice(0, 8).concat((both[1] || []).slice(0, 5).map(function (g) { return { name: g.name, path: g.secondary || g.description, source: 'goong', level: 0 }; }));
+        sugData = rows;
         $('pe-dest-sug').innerHTML = sugData.length ? sugData.map(function (r, n) { return '<li role="option" data-n="' + n + '"><b>' + esc(r.name) + '</b><small>' + esc(levelLabel(r)) + ' · ' + esc(r.path || '') + '</small></li>'; }).join('') : '<li class="none">Không có gợi ý. Bấm Enter để dùng nguyên chữ vừa gõ.</li>';
         $('pe-dest-sug').hidden = false; $('pe-dest').setAttribute('aria-expanded', 'true');
       }).catch(hideSug);
@@ -115,6 +116,17 @@
       var b = [];
       pts.forEach(function (p) { var m = L.marker([p.lat, p.lng]).addTo(dmap); m.bindTooltip(p.name + ' · ' + p.title); m.on('click', function () { addDest({ name: p.name }); toast('Đã thêm “' + p.name + '”.'); }); b.push([p.lat, p.lng]); });
       if (b.length) dmap.fitBounds(b, { padding: [30, 30], maxZoom: 9 });
+      dmap.on('click', function (ev) {
+        var pop = L.popup({ minWidth: 200 }).setLatLng(ev.latlng).setContent('<div class="pe-pop">Đang tìm tên khu vực…</div>').openOn(dmap);
+        plain('/api/lapkehoach/dia-chi?lat=' + ev.latlng.lat.toFixed(5) + '&lng=' + ev.latlng.lng.toFixed(5)).then(function (r) {
+          var name = (r && (r.commune || r.province)) || '', path = r && r.province && r.commune ? r.province : '';
+          if (!name) { pop.setContent('<div class="pe-pop">Không tìm được tên khu vực ở đây.</div>'); return; }
+          var box = document.createElement('div'); box.className = 'pe-pop';
+          box.innerHTML = '<b>' + esc(name) + '</b>' + (path ? '<br><small>' + esc(path) + '</small>' : '') + '<br><button type="button" class="btn btn-dark" style="margin-top:6px">Thêm điểm đến này</button>';
+          box.querySelector('button').onclick = function () { addDest({ name: name, path: path }); dmap.closePopup(); toast('Đã thêm “' + name + '”.'); };
+          pop.setContent(box);
+        }).catch(function (e) { pop.setContent('<div class="pe-pop">' + esc(e.message) + '</div>'); });
+      });
       setTimeout(function () { dmap.invalidateSize(); limitToVn(dmap); }, 80);
     }).catch(function (e) { $('pe-map-canvas').textContent = e.message; });
   });
@@ -240,6 +252,20 @@
       (s.summary ? '<p>' + esc(s.summary) + '</p>' : '') + (s.hours ? '<small>Giờ: ' + esc(s.hours) + '</small>' : '') + (s.address ? '<small>Địa chỉ: ' + esc(s.address) + '</small>' : '') + (s.contact ? '<small>Liên hệ: ' + esc(s.contact) + '</small>' : '') + '<b>' + price + '</b>' +
       '<div class="pe-detail" hidden></div></div><div class="pe-card-act"><button type="button" class="btn btn-dark" data-pick="' + n + '">Chọn</button><button type="button" class="btn btn-outline" data-detail="' + n + '">Chi tiết</button></div></article>';
   };
+  var loadOther = function () {
+    var q = $('pe-pick-q').value.trim(); if (q.length < 2 || $('pe-f-saved').checked) return;
+    var di = $('pe-pick-dest').value, ctx = di !== '' && st.dests[+di] ? ' ' + st.dests[+di].name : '';
+    plain('/api/lapkehoach/dia-diem?q=' + encodeURIComponent(q + ctx)).then(function (rows) {
+      if (!rows || !rows.length || $('pe-pick-q').value.trim() !== q) return;
+      var box = $('pe-pick-list'), h = '<h4 class="pe-pick-sec" data-sec="goong">Địa điểm khác (chưa có trong dữ liệu, thêm như hoạt động tự nhập)</h4>';
+      rows.slice(0, 5).forEach(function (g) {
+        var item = { entryId: null, serviceId: null, placeId: null, name: g.name + (g.secondary ? ' · ' + g.secondary : ''), kind: 'Place', kindLabel: 'Địa điểm', group: 'Other', region: g.secondary || '', summary: g.description || null, address: null, hours: null, contact: null, priceFrom: null, priceTo: null, unit: null, photo: null, lat: null, lng: null, rating: null, reviews: 0, saved: false, url: null };
+        pickData.push(item); var n = pickData.length - 1;
+        h += '<article class="pe-card-sm" data-n="' + n + '"><div class="pe-card-body"><strong>' + esc(g.name) + '</strong><small>' + esc(g.secondary || g.description || '') + '</small></div><div class="pe-card-act"><button type="button" class="btn btn-outline" data-pick="' + n + '">Chọn</button></div></article>';
+      });
+      box.insertAdjacentHTML('beforeend', h);
+    }).catch(function () { });
+  };
   var loadPick = function (reset, keepView) {
     var box = $('pe-pick-list'); var page = reset ? 1 : pickPage + 1;
     if (reset) { box.innerHTML = '<p class="help">Đang tải…</p>'; pickData = []; }
@@ -258,6 +284,7 @@
       $('pe-pick-count').textContent = pickData.length ? pickData.length + ' kết quả' + (res.hasMore ? '+' : '') : '';
       $('pe-pick-more').hidden = !res.hasMore;
       drawPins(keepView);
+      if (reset) loadOther();
     }).catch(function (e) { box.innerHTML = '<p class="help">' + esc(e.message) + '</p>'; });
   };
   var drawPins = function (keepView) {

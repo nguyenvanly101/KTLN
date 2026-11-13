@@ -8,6 +8,7 @@ const user = label => fixture.users.find(x => x.label === label);
 const results = []; const check = (ok, n) => { assert.ok(ok, n); results.push(n); };
 const day = n => new Date(Date.now() + n * 864e5).toISOString().slice(0, 10);
 const stamp = Date.now().toString().slice(-7);
+const guestForApi = () => ({ cookies: new Map() });
 const form = (token, values) => { const f = new FormData(); f.append('__RequestVerificationToken', token); for (const [k, v] of Object.entries(values)) if (v != null) f.append(k, String(v)); return f; };
 const api = async (c, token, path, method = 'GET', body) => {
   const r = await fetch(base + path, { method, redirect: 'manual', headers: { cookie: [...c.cookies].map(([k, v]) => k + '=' + v).join('; '), RequestVerificationToken: token, ...(body ? { 'content-type': 'application/json' } : {}) }, body: body ? JSON.stringify(body) : undefined });
@@ -89,6 +90,8 @@ const api = async (c, token, path, method = 'GET', body) => {
   check(dst.status === 200 && dst.body.length > 0 && dst.body.some(d => d.name === 'Hội An' || d.name.includes('Hội An')), 'Diem den: co khu du lich va dia diem cua Kham pha');
   const area = await api(t, tk, '/api/lapkehoach/diem-den?q=' + encodeURIComponent('Hà Nội'));
   check(area.status === 200 && area.body.some(d => d.source === 'area' && d.areaId > 0), 'Diem den: tim duoc don vi hanh chinh (co ma khu vuc)');
+  check((await api(t, tk, '/api/lapkehoach/dia-diem?q=')).status === 200 && Array.isArray((await api(t, tk, '/api/lapkehoach/dia-diem?q=a')).body), 'Dia diem khac (Goong): chuoi ngan tra ve danh sach rong, khong goi ngoai');
+  check((await api(t, tk, '/api/lapkehoach/dia-chi?lat=0&lng=0')).status === 422 && (await api(guestForApi(), '', '/api/lapkehoach/dia-chi?lat=16&lng=106')).status >= 300, 'Dia chi tu toa do: ngoai khung Viet Nam bi tu choi, khach chua dang nhap khong goi duoc');
   const mp = await api(t, tk, '/api/lapkehoach/ban-do');
   check(mp.status === 200 && Array.isArray(mp.body) && mp.body.every(p => typeof p.lat === 'number' && p.name), 'Ban do tra ve cac ghim co ten khu vuc');
 

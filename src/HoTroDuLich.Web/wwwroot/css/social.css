@@ -477,3 +477,5 @@ dialog[open].pe-picker.pe-narrow{height:auto;max-height:90vh;width:min(560px,cal
 .trip-hero-compact{padding:16px 20px!important}.trip-hero-compact h1{font-size:26px!important}
 .trip-scroll{max-height:max(340px,calc(100vh - 120px))}
 @media(max-height:700px){.pe-picker .pe-confirm #pe-c-slots{display:none}.pe-picker .pe-confirm small{display:none}}
+
+.pe-pop{font-size:14px;line-height:1.4}.pe-pop small{color:#5c667b}

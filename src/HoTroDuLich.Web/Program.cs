@@ -52,6 +52,7 @@ builder.Services.AddScoped<TripShareService>();
 builder.Services.AddScoped<GuideService>();
 builder.Services.AddScoped<TripSplitService>();
 builder.Services.AddScoped<PlanBoardService>();
+builder.Services.AddHttpClient<GoongPlacesService>(c=>{c.BaseAddress=new Uri("https://rsapi.goong.io/");c.Timeout=TimeSpan.FromSeconds(6);});
 builder.Services.AddScoped<QaService>();
 builder.Services.AddScoped<ServiceKindAdminService>();
 builder.Services.AddScoped<PlaceSearchService>();

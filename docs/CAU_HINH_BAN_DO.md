@@ -36,3 +36,16 @@ Các bản đồ bị giới hạn trong phần đất liền và ven biển Vi�
 - VietMap: khóa thử nghiệm (11/2026) trả lỗi 423 "Your request is limited" ở phần ảnh bản đồ dù kiểu bản đồ tải được; cần kiểm tra hạn mức/dịch vụ trong trang quản lý VietMap.
 - Goong: trang tạo khóa lỗi (`script.js` trả về HTML) vào ngày 13/11/2026.
 - Không có hai nhà cung cấp cùng lúc: nhà cung cấp đứng trước trong danh sách thắng.
+
+## Goong REST API (tìm địa điểm, đổi vị trí thành tên khu vực)
+
+Khác với khóa **Maptiles** (vẽ bản đồ), khóa **REST API** của Goong **không** vẽ được bản đồ (ảnh bản đồ trả 403) nhưng dùng cho tra cứu. Website dùng nó ở máy chủ, trình duyệt không thấy khóa:
+
+```bash
+dotnet user-secrets set "Discovery:Goong:RestKey" "KHOA_REST" --project src/HoTroDuLich.Web
+```
+
+- `GET /api/lapkehoach/dia-diem?q=`: gợi ý địa điểm khắp Việt Nam (Goong Autocomplete). Hiện trong ô gõ điểm đến ("Địa điểm khác") và cuối danh sách Thêm dịch vụ (thêm như hoạt động tự nhập).
+- `GET /api/lapkehoach/dia-chi?lat=&lng=`: đổi vị trí bấm trên bản đồ thành tên khu vực (Goong Geocode). Chỉ trong khung Việt Nam (vĩ độ 7,5–24, kinh độ 101,5–110,5), ngoài khung trả 422.
+- Kết quả được lưu đệm trong bộ nhớ (30 phút cho gợi ý, 6 giờ cho đổi vị trí) và có giới hạn tần suất như các API Khám phá. Không có khóa hoặc Goong lỗi thì các API trả danh sách rỗng, trang vẫn dùng bình thường.
+- Tên khu vực của Goong theo địa giới mới (ví dụ "Hội An, Đà Nẵng"), khác hệ cũ trong danh mục địa giới của website nên các điểm đến lấy từ Goong không có mã khu vực.
