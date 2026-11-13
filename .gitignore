@@ -5,3 +5,18 @@
 *.user
 *.suo
 tests/last-results.json
+
+# Du lieu thu, ban sao luu va tep sinh ra khi chay thu: khong dua vao git
+preview/backups/
+preview/sql-data/
+preview/branches-db/
+preview/geo-test-*/
+preview/*.log
+preview/*.bak
+preview/*.zip
+preview/branch-query-*.sql
+*.mdf
+*.ldf
+*.bak
+**/obj/
+**/bin/
