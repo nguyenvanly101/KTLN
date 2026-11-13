@@ -17,14 +17,19 @@ const branchCards = html => [...html.matchAll(/<h3><a href="(\/co-so\/\d+)">([^<
 
 (async () => {
   const provinces = await get('/api/dia-gioi/tinh');
-  let province = null, shown = [];
+  let province = null, shown = [], absentType = null;
   for (const p of provinces.json.items) { // tinh dau tien co co so da duyet trong chi muc
     const page = await get(`/Discovery?Area=${p.id}`);
     shown = branchCards(page.text);
     if (page.status === 200 && shown.length) {
-      // chon tinh co quan an va khong co co so luu tru de phep thu "khac loai" khong phu thuoc du lieu cua cac bo khac
-      const eat = branchCards((await get(`/Discovery?Area=${p.id}&Type=AnUong`)).text).length, stay = branchCards((await get(`/Discovery?Area=${p.id}&Type=LuuTru`)).text).length;
-      if (eat >= 1 && stay === 0) { province = p; break; }
+      // chon tinh co quan an va it nhat mot loai khac khong co co so (de thu "khac loai"); neu khong co thi dung tinh co quan an dau tien
+      const cnt = async t => branchCards((await get(`/Discovery?Area=${p.id}&Type=${t}`)).text).length;
+      const eat = await cnt('AnUong');
+      if (eat >= 1) {
+        const absent = (await cnt('LuuTru')) === 0 ? 'LuuTru' : (await cnt('PhuongTien')) === 0 ? 'PhuongTien' : null;
+        if (!province || (absent && !absentType)) { province = p; absentType = absent; }
+        if (absentType) break;
+      }
     }
   }
   check(!!province, 'Co it nhat mot co so da duyet nam trong danh sach tra cuu chung: ' + (province && province.fullName));
@@ -34,7 +39,8 @@ const branchCards = html => [...html.matchAll(/<h3><a href="(\/co-so\/\d+)">([^<
   check(branchCards(typed.text).length >= 1, 'Loc Quan an giu lai co so quan an');
   const mapLink = decode((typed.text.match(/class="ds-map-link"><a href="([^"]*)"/) || [])[1] || '');
   check(mapLink.startsWith('/kham-pha?') && mapLink.includes(`Area=${province.id}`) && mapLink.includes('Category=AnUong'), 'Co lien ket sang ban do kem khu vuc va loai');
-  check(branchCards((await get(`/Discovery?Area=${province.id}&Type=LuuTru`)).text).length === 0, 'Khac loai thi khong hien co so');
+  if (absentType) check(branchCards((await get(`/Discovery?Area=${province.id}&Type=${absentType}`)).text).length === 0, 'Khac loai thi khong hien co so');
+  else results.push('(bo qua: moi loai deu co co so trong tinh duoc chon)');
   const hanoi = provinces.json.items.find(p => p.id !== province.id && p.name === 'Hà Nội');
   check(branchCards((await get('/Discovery?Area=' + hanoi.id)).text).length === 0, 'Khu vuc khac khong co co so thi khong hien');
 
