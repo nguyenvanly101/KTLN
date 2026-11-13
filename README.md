@@ -6,6 +6,40 @@ Luồng mới đặt chuyến đi làm trung tâm: tổng quan việc cần xử
 
 Phần **Không gian đồng hành — 005**, hoàn thiện ngày 06/11/2026, bổ sung phong cách/gợi ý, lời rủ hoạt động, nhóm và lời mời, trao đổi/thông báo, bình chọn/lịch chung, việc chuẩn bị, chia chi phí/đối chiếu hoàn trả, điểm hẹn và chặn/báo cáo. Mở **Đồng hành → Lời rủ đi cùng** hoặc [trang đồng hành](http://localhost:5216/Together). [Thiết kế, API, hàm và hướng dẫn dùng](docs/KHONG_GIAN_DONG_HANH_2026-11-05.md). Database chính đã nâng cấp 005: **46 bảng/473 cột**; 31 bảng cũ giữ nguyên dữ liệu qua cửa sổ nâng cấp. Dữ liệu kiểm thử nằm riêng.
 
+## Tổng quan hiện tại (tháng 11/2026)
+
+Mục tiêu: **giúp khách du lịch tìm thông tin**, và mọi liên hệ giữa các bên đi qua **một hộp thư chung** (kiểu Messenger).
+
+| Nhóm | Có gì | Tài liệu |
+|---|---|---|
+| Tìm kiếm và địa giới | 63 tỉnh/huyện/xã cũ + 34 tỉnh/xã mới, tìm theo điểm đến/loại/giá/giờ mở cửa, bản đồ Leaflet (nền cấu hình, xem docs/CAU_HINH_BAN_DO.md) | `docs/GOI1_DIA_GIOI.md` §1–6d |
+| Nhà cung cấp | Trang "Cơ sở của tôi", biểu mẫu 4 phần (ảnh, giờ, giá, vị trí), độ hoàn thiện, duyệt phiên bản | §6e |
+| Hộp thư chung `/tin-nhan` | Khách ↔ cơ sở, khách ↔ khách, nhóm; khung chat nổi; trả lời/sửa/thu hồi/biểu cảm/vị trí/PDF; thông báo; báo cáo | §6f, "Chat đủ dùng", "Chat bền vững" |
+| Đặt dịch vụ | Thẻ yêu cầu trong chat, tạm tính, đặt cọc ghi nhận, nhiều phương án, nhắc lịch, mời đánh giá | "Đặt dịch vụ hoàn chỉnh" |
+| Tìm bạn đồng hành | Gợi ý phù hợp (có lý do), lời rủ trong chat, thỏa thuận đi cùng, nhóm chat chuyến đi | "Tìm bạn đồng hành hoàn chỉnh" |
+| Mạng xã hội | Kết bạn, hồ sơ, bài viết, bình luận, thích, chat nhóm | "Mạng xã hội kiểu Facebook" |
+
+Kế hoạch và lộ trình: `docs/KE_HOACH_HOAN_THIEN.md`. Các script cơ sở dữ liệu `Database/008…018` chạy tự động khi khởi động (idempotent); `Database/Quyen_CSDL.sql` cấp quyền cho các bảng mới.
+
+**Kiểm thử tự động** (`tests/`, Node, cần máy chủ chạy trên database kiểm thử riêng): `geography-features`, `discovery-*`, `search-merge`, `branches-*`, `provider-flow`, `chat-flow`, `chat-booking`, `chat-people`, `chat-connect`, `social`, `chat-group`, `chat-apps`, `chat-dock`, `chat-messages`, `booking-m3`, `chat-m4`, `chat-m5`, `navigation-redesign`, `fulltext-smoke`, `companion-pages`. Máy chủ kiểm thử nên đặt `Chat__ReminderIntervalSeconds=5` và `Chat__RetentionMonths=1` (cần cho `booking-m3`, `chat-m5`). Các test dùng chung database nên **chạy tuần tự**; dữ liệu kiểm thử tích lũy có thể làm lệch kết quả tìm kiếm gần (ẩn các cơ sở "QA…" cũ trước khi chạy lại).
+
+**Cấu hình chat** (`appsettings`): `Chat:ReminderIntervalSeconds` (mặc định 900) chu kỳ nhắc lịch/mời đánh giá; `Chat:RetentionMonths` (mặc định 0 = giữ mãi) thu hồi tin cũ.
+
+## Đợt mở rộng 11/2026 (đến 13/11)
+
+| Nhóm | Có gì | Tài liệu / mã |
+|---|---|---|
+| Lập kế hoạch một trang | Tạo/sửa trên một trang, trang xem chỉ đọc, danh sách chỉ Xem chi tiết/Sửa/Xóa, ghi chú theo ngày, thành viên cùng sửa, nhóm chat tự tạo | [LAP_KE_HOACH_MOT_TRANG](docs/LAP_KE_HOACH_MOT_TRANG.md) |
+| Bản đồ | Nền vector TrackAsia/Goong/VietMap theo khóa, tự quay về ảnh bản đồ cấu hình sẵn, khung nhìn giới hạn trong Việt Nam | [CAU_HINH_BAN_DO](docs/CAU_HINH_BAN_DO.md) |
+| Khu du lịch mẫu | 102 địa điểm nổi tiếng cả nước kèm tọa độ gần đúng | [DU_LIEU_KHU_DU_LICH](docs/DU_LIEU_KHU_DU_LICH.md) |
+| Khuôn dịch vụ thống nhất | Danh mục loại dịch vụ do quản trị quản lý (`/quan-tri/loai-dich-vu`), thuộc tính riêng theo loại, loại có hạn (sự kiện) | `Services/ServiceKinds.cs`, `Database/025_LoaiDichVu.sql` |
+| Cẩm nang du lịch | Lịch trình mẫu theo điểm đến và chép về kế hoạch, trang khẩn cấp, "Hôm nay" trong chuyến đi | `Services/GuideService.cs`, `Database/026` |
+| Chia tiền nhóm | Ghi khoản chi, chia đều, tính ai trả ai ít lần chuyển nhất (chỉ ghi nhận, không xử lý tiền) | `Services/TripSplitService.cs`, `Database/027` |
+| Hỏi đáp và báo sai | Hỏi đáp theo điểm đến, báo sai thông tin cơ sở | `Services/QaService.cs`, `Database/028` |
+| Bảng tin kiểu Facebook | Bài viết nhiều loại, cảm xúc, lưu, theo dõi cơ sở, báo cáo bài | `Services/PostService.cs`, `Database/020…024` |
+
+Script cơ sở dữ liệu mới: `Database/020…030` (chạy tự động khi khởi động, idempotent). Thêm bộ kiểm thử `tests/flow-v2…v10.cjs`, `service-easy`, `post-kinds`, `provider-easy`. Khi chạy chung phải dọn dữ liệu thử giữa các lượt (bộ sưu tập/tuyến khám phá tối đa 30, liên kết nhóm chat chuyến đi trước khi xóa cuộc trò chuyện).
+
 ## Địa điểm cụ thể, cơ sở và bản đồ — 007
 
 Luồng tìm kiếm chính hiện là **chọn mốc cụ thể → tìm cơ sở quanh mốc → xem dịch vụ tại đúng cơ sở**. Nhà cung cấp quản lý nhiều quán/chi nhánh; mỗi cơ sở có địa chỉ/vị trí riêng và được xét duyệt. Dịch vụ chọn cơ sở áp dụng, yêu cầu dịch vụ giữ tên/địa chỉ chi nhánh lúc gửi. Mở [Địa điểm & dịch vụ](http://localhost:5216/kham-pha), NCC dùng **Cơ sở & chi nhánh**, admin dùng **Xét duyệt cơ sở** và **Địa điểm & cửa vào**.
@@ -148,5 +182,6 @@ Các script nằm ở `src/HoTroDuLich.Web/Database/`:
 | `SaoLuu_PhucHoi.sql` | Các khối mẫu full backup, log backup, CHECKDB và phục hồi tách biệt |
 
 Hướng dẫn và trạng thái triển khai: [VAN_HANH.md](docs/VAN_HANH.md). Bản hiện hành chạy Development trên localhost. Cấu hình Production tắt dữ liệu mẫu, yêu cầu chuỗi kết nối và thông tin Admin ban đầu từ môi trường, bật HTTPS/HSTS/cookie Secure và Windows Event Log. Có thể cấu hình `UploadFiles__ThuMuc` và `DataProtection__ThuMucKhoa`; mặc định cục bộ là `App_Data/uploads` và `App_Data/keys`.
-#   K T L N  
+#   K T L N 
+ 
  
