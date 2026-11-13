@@ -39,9 +39,10 @@
 
  function openMap(element, position, zoom) {
   if (!window.L) throw new Error('Chưa tải được trình hiển thị bản đồ.');
-  const vnBounds = L.latLngBounds([[7.5, 101.5], [24.0, 110.5]]);
+  const vnBounds = L.latLngBounds(window.htVnBounds || [[7.5, 101.5], [24.0, 110.5]]);
   const map = L.map(element, {scrollWheelZoom:false, maxBounds:vnBounds, maxBoundsViscosity:1}).setView(position || centerOfVietnam, position ? zoom : 6);
   const base = window.htBaseMap ? window.htBaseMap(map) : null;
+  if (window.htMapMinZoom) map.setMinZoom(window.htMapMinZoom);
   const fit = points => map.fitBounds(points, {padding:[40,40],maxZoom:17});
   if (base) base.whenReady(ok => element.dispatchEvent(new Event(ok ? 'ht-tiles-ready' : 'ht-tiles-unavailable')));
   else {

@@ -51,6 +51,7 @@ builder.Services.AddScoped<TravelerAdminService>();
 builder.Services.AddScoped<TripShareService>();
 builder.Services.AddScoped<GuideService>();
 builder.Services.AddScoped<TripSplitService>();
+builder.Services.AddSingleton<MapSettings>();
 builder.Services.AddScoped<PlanBoardService>();
 builder.Services.AddHttpClient<GoongPlacesService>(c=>{c.BaseAddress=new Uri("https://rsapi.goong.io/");c.Timeout=TimeSpan.FromSeconds(6);});
 builder.Services.AddScoped<QaService>();
@@ -130,7 +131,7 @@ app.Use(async (c, next) =>
     c.Response.Headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=(self)";
     var discoveryTiles=builder.Configuration["Discovery:Map:TileUrl"]??"https://tile.openstreetmap.de/{z}/{x}/{y}.png";
     var discoveryTileOrigin=Uri.TryCreate(discoveryTiles,UriKind.Absolute,out var tileUri)&&tileUri.Scheme=="https"?tileUri.GetLeftPart(UriPartial.Authority):"https://tile.openstreetmap.de";
-    var vectorOrigins=(string.IsNullOrWhiteSpace(builder.Configuration["Discovery:Map:TrackAsiaKey"])?"":"https://maps.track-asia.com https://tiles.track-asia.com ")+(string.IsNullOrWhiteSpace(builder.Configuration["Discovery:Map:VietMapKey"])?"":"https://maps.vietmap.vn ")+(string.IsNullOrWhiteSpace(builder.Configuration["Discovery:Map:GoongKey"])?"":"https://tiles.goong.io https://*.goong.io ");
+    var vectorOrigins=c.RequestServices.GetRequiredService<MapSettings>().Origins;
     var mapsNonce=Convert.ToBase64String(System.Security.Cryptography.RandomNumberGenerator.GetBytes(24));
     c.Items["MapsNonce"]=mapsNonce;
     c.Response.Headers["Content-Security-Policy"] = "default-src 'self'; img-src 'self' data: blob: "+vectorOrigins+discoveryTileOrigin+" https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.googleusercontent.com; connect-src 'self' "+vectorOrigins+"https://*.googleapis.com https://*.google.com https://*.gstatic.com; style-src 'self' 'nonce-"+mapsNonce+"' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; script-src 'self' 'nonce-"+mapsNonce+"' https://maps.googleapis.com https://maps.gstatic.com; font-src 'self' https://fonts.gstatic.com; worker-src 'self' blob:; frame-src 'self' https://www.google.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'";

@@ -25,8 +25,8 @@
   var touch = function () { dirty = true; };
   var toast = function (m) { var t = document.createElement('div'); t.className = 'pe-toast'; t.textContent = m; document.body.appendChild(t); setTimeout(function () { t.remove(); }, 2600); };
   var undoBar = function (msg, fn) { var t = document.createElement('div'); t.className = 'pe-toast'; t.innerHTML = esc(msg) + ' <button type="button">Hoàn tác</button>'; document.body.appendChild(t); t.querySelector('button').onclick = function () { fn(); t.remove(); }; setTimeout(function () { t.remove(); }, 6500); };
-  var VN_BOUNDS = L.latLngBounds([[7.5, 101.5], [24.0, 110.5]]);
-  var limitToVn = function (m) { try { m.setMinZoom(Math.max(5, Math.min(7, m.getBoundsZoom(VN_BOUNDS, false)))); } catch (e) { } };
+  var VN_BOUNDS = L.latLngBounds(window.htVnBounds || [[7.5, 101.5], [24.0, 110.5]]);
+  var limitToVn = function (m) { try { m.setMinZoom(Math.max(window.htMapMinZoom || 0, 5, Math.min(7, m.getBoundsZoom(VN_BOUNDS, false)))); } catch (e) { } };
   var addTiles = function (m) { if (window.htBaseMap) return window.htBaseMap(m); var url = (document.querySelector('meta[name="ds-tile-url"]') || {}).content || 'https://tile.openstreetmap.de/{z}/{x}/{y}.png'; return L.tileLayer(url, { maxZoom: 19, maxNativeZoom: 16, referrerPolicy: 'strict-origin-when-cross-origin' }).addTo(m); };
 
   // ---------- gio

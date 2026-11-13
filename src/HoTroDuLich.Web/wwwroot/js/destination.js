@@ -12,9 +12,9 @@
   var maxNative = (function (u) { try { return new URL(u, location.href).hostname === 'tile.openstreetmap.de' ? 16 : 19; } catch (e) { return 19; } })(url);
   var colors = { 'tham-quan': '#2447e8', 'an-uong': '#d9480f', 'luu-tru': '#2b8a3e', 'di-chuyen': '#7048e8', khac: '#495057' };
 
-  var VN = L.latLngBounds([[7.5, 101.5], [24.0, 110.5]]);
+  var VN = L.latLngBounds(window.htVnBounds || [[7.5, 101.5], [24.0, 110.5]]);
   var map = L.map(el, { scrollWheelZoom: false, maxBounds: VN, maxBoundsViscosity: 1 });
-  try { map.setMinZoom(Math.max(5, Math.min(7, map.getBoundsZoom(VN, false)))); } catch (e) { }
+  try { map.setMinZoom(Math.max(window.htMapMinZoom || 0, 5, Math.min(7, map.getBoundsZoom(VN, false)))); } catch (e) { }
   if (window.htBaseMap) window.htBaseMap(map); else L.tileLayer(url, { maxZoom: 19, maxNativeZoom: maxNative, referrerPolicy: 'strict-origin-when-cross-origin', attribution: attribution }).addTo(map);
 
   var markers = {};

@@ -30,7 +30,7 @@ Kế hoạch và lộ trình: `docs/KE_HOACH_HOAN_THIEN.md`. Các script cơ s�
 | Nhóm | Có gì | Tài liệu / mã |
 |---|---|---|
 | Lập kế hoạch một trang | Tạo/sửa trên một trang, trang xem chỉ đọc, danh sách chỉ Xem chi tiết/Sửa/Xóa, ghi chú theo ngày, thành viên cùng sửa, nhóm chat tự tạo | [LAP_KE_HOACH_MOT_TRANG](docs/LAP_KE_HOACH_MOT_TRANG.md) |
-| Bản đồ | Nền vector TrackAsia/Goong/VietMap theo khóa, tự quay về ảnh bản đồ cấu hình sẵn, khung nhìn giới hạn trong Việt Nam | [CAU_HINH_BAN_DO](docs/CAU_HINH_BAN_DO.md) |
+| Bản đồ | Nền vector Goong (ưu tiên)/TrackAsia/VietMap theo khóa, Goong REST gợi ý địa điểm, tự quay về ảnh bản đồ cấu hình sẵn | [CAU_HINH_BAN_DO](docs/CAU_HINH_BAN_DO.md) |
 | Khu du lịch mẫu | 102 địa điểm nổi tiếng cả nước kèm tọa độ gần đúng | [DU_LIEU_KHU_DU_LICH](docs/DU_LIEU_KHU_DU_LICH.md) |
 | Khuôn dịch vụ thống nhất | Danh mục loại dịch vụ do quản trị quản lý (`/quan-tri/loai-dich-vu`), thuộc tính riêng theo loại, loại có hạn (sự kiện) | `Services/ServiceKinds.cs`, `Database/025_LoaiDichVu.sql` |
 | Cẩm nang du lịch | Lịch trình mẫu theo điểm đến và chép về kế hoạch, trang khẩn cấp, "Hôm nay" trong chuyến đi | `Services/GuideService.cs`, `Database/026` |

@@ -29,7 +29,7 @@ public sealed class PlanBoardController(TravelService travel,PlanBoardService bo
  /// <summary>Doi vi tri bam tren ban do thanh ten khu vuc (chi trong khung Viet Nam).</summary>
  [HttpGet("/api/lapkehoach/dia-chi"),EnableRateLimiting("discovery")] public async Task<IActionResult> AddressAt(double lat,double lng,CancellationToken ct)
  {
-  if(lat<7.5||lat>24.0||lng<101.5||lng>110.5)return StatusCode(422,new{message="Vị trí nằm ngoài khu vực hỗ trợ."});
+  if(lat<5.0||lat>24.0||lng<101.5||lng>118.5)return StatusCode(422,new{message="Vị trí nằm ngoài khu vực hỗ trợ."});
   return await Api(async()=>(object?)await goong.Reverse(lat,lng,ct)??new{});
  }
 

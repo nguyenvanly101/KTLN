@@ -3,6 +3,8 @@
   'use strict';
   var meta = function (n) { return (document.querySelector('meta[name="' + n + '"]') || {}).content || ''; };
   var styleUrl = meta('ds-map-style-url');
+  window.htVnBounds = (function () { var v = (meta('ds-map-bounds') || '7.5,101.5,24.0,110.5').split(',').map(Number); return v.length === 4 && v.every(isFinite) ? [[v[0], v[1]], [v[2], v[3]]] : [[7.5, 101.5], [24.0, 110.5]]; })();
+  window.htMapMinZoom = styleUrl ? (parseInt(meta('ds-map-minzoom'), 10) || 0) : 0;
   var libs = null;
   var hasWebGL = function () { try { var c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl'))); } catch (e) { return false; } };
   var script = function (src) { return new Promise(function (ok, fail) { var s = document.createElement('script'); s.src = src; s.async = false; s.onload = ok; s.onerror = function () { fail(new Error('Không tải được ' + src)); }; document.head.appendChild(s); }); };

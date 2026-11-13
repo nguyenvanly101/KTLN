@@ -6,11 +6,7 @@
  var placeMap=(route=="Places"&&action is "Index" or "Branch" or "Landmark" or "LandmarkEdit")||(route=="Branches"&&action=="Edit");
  var tileUrl=Context.RequestServices.GetRequiredService<IConfiguration>()["Discovery:Map:TileUrl"]??"https://tile.openstreetmap.de/{z}/{x}/{y}.png";
  var tileAttribution="&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>";
- var mapCfg=Context.RequestServices.GetRequiredService<IConfiguration>();
- var trackAsiaKey=mapCfg["Discovery:Map:TrackAsiaKey"];var goongKey=mapCfg["Discovery:Map:GoongKey"];var vietmapKey=mapCfg["Discovery:Map:VietMapKey"];
- var mapStyleUrl=!string.IsNullOrWhiteSpace(trackAsiaKey)?"https://maps.track-asia.com/styles/v2/streets.json?key="+Uri.EscapeDataString(trackAsiaKey)
-  :!string.IsNullOrWhiteSpace(goongKey)?"https://tiles.goong.io/assets/goong_map_web.json?api_key="+Uri.EscapeDataString(goongKey)
-  :!string.IsNullOrWhiteSpace(vietmapKey)?"https://maps.vietmap.vn/maps/styles/"+(mapCfg["Discovery:Map:VietMapStyle"]??"tm")+"/style.json?apikey="+Uri.EscapeDataString(vietmapKey):"";
+ var mapSettings=Context.RequestServices.GetRequiredService<MapSettings>();var mapStyleUrl=mapSettings.StyleUrl;
  var tileAttributionOverride=Context.RequestServices.GetRequiredService<IConfiguration>()["Discovery:Map:Attribution"];
  if(Uri.TryCreate(tileUrl,UriKind.Absolute,out var tileUri)&&tileUri.Host=="tile.openstreetmap.de")
   tileAttribution+=" · <a href=\"https://tile.openstreetmap.de/\">FOSSGIS</a> · <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC BY-SA</a>";
@@ -43,7 +39,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
- <meta name="ds-auth" content="@(signed?"true":"false")"/><meta name="ds-tile-url" content="@tileUrl"/>@if(!string.IsNullOrWhiteSpace(mapStyleUrl)){<meta name="ds-map-style-url" content="@mapStyleUrl"/>}<meta name="ds-tile-attribution" content="@tileAttribution"/><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#2447e8"/>
+ <meta name="ds-auth" content="@(signed?"true":"false")"/><meta name="ds-tile-url" content="@tileUrl"/>@if(!string.IsNullOrWhiteSpace(mapStyleUrl)){<meta name="ds-map-style-url" content="@mapStyleUrl"/><meta name="ds-map-minzoom" content="@mapSettings.MinZoom"/><meta name="ds-map-bounds" content="@mapSettings.Bounds"/>}<meta name="ds-tile-attribution" content="@tileAttribution"/><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#2447e8"/>
  <title>@ViewData["Title"] · Hành Trình</title>
  <meta name="maps-nonce" content="@Context.Items["MapsNonce"]"/><style nonce="@Context.Items["MapsNonce"]"></style>
  <link rel="stylesheet" href="~/css/places.css" asp-append-version="true"/>
