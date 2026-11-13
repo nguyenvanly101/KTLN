@@ -1,0 +1,6 @@
+@model (string Type,string? Json)
+@{var described=BranchTemplates.Describe(DanhMuc.ChuanHoa(Model.Type),Model.Json);}
+@if(described.Count>0)
+{
+ <dl class="facts pv-facts pv-attrs">@foreach(var (label,items) in described){<div><dt>@label</dt><dd>@if(items.Count==1){@items[0]}else{<ul class="pv-attr-list">@foreach(var item in items){<li>@item</li>}</ul>}</dd></div>}</dl>
+}

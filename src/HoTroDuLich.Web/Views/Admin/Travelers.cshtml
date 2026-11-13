@@ -1,0 +1,15 @@
+@model TravelerPage
+@{ViewData["Title"]="Khách du lịch";}
+<div class="container-wide">
+ <div class="page-head"><div><span class="eyebrow">QUẢN LÝ TÀI KHOẢN</span><h1>Khách du lịch</h1><p>Tìm tài khoản, xem hoạt động và khóa khi vi phạm. Khóa sẽ hủy phiên đăng nhập hiện tại.</p></div><span class="count-pill">@Model.Total tài khoản</span></div>
+ <form action="/quan-tri/khach-du-lich" method="get" class="list-filters panel">
+  <div class="field"><label for="tv-q">Tìm theo tên, email, số điện thoại</label><input class="form-control" id="tv-q" name="q" value="@Model.Query" maxlength="100"/></div>
+  <div class="field"><label for="tv-status">Trạng thái</label><select class="form-select" id="tv-status" name="status"><option value="" selected="@(Model.Status=="")">Tất cả</option><option value="HoatDong" selected="@(Model.Status=="HoatDong")">Đang hoạt động</option><option value="DaNgung" selected="@(Model.Status=="DaNgung")">Đã khóa</option></select></div>
+  <button class="btn btn-dark" type="submit">Lọc</button><a class="filter-reset" href="/quan-tri/khach-du-lich">Đặt lại</a>
+ </form>
+ @if(Model.Items.Count==0){<div class="empty"><h2>Không có tài khoản phù hợp</h2></div>}
+ else{<div class="panel table-wrap"><table class="table"><thead><tr><th>Khách</th><th>Liên hệ</th><th>Tham gia</th><th>Bài viết</th><th>Báo cáo</th><th>Trạng thái</th><th></th></tr></thead><tbody>
+ @foreach(var t in Model.Items){<tr><td><b>@t.Name</b><span class="help">#@t.Id</span></td><td>@t.Email<span class="help">@t.Phone</span></td><td>@Ui.LocalTime(t.CreatedAt).ToString("dd/MM/yyyy")</td><td>@t.Posts</td><td>@t.Reports</td><td><span class="badge">@(t.Active?"Hoạt động":"Đã khóa")</span></td>
+  <td><form action="/quan-tri/khach-du-lich/trang-thai" method="post">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@t.Id"/><input type="hidden" name="active" value="@((!t.Active).ToString().ToLowerInvariant())"/>@if(t.Active){<input class="form-control" name="reason" maxlength="300" placeholder="Lý do khóa" required aria-label="Lý do khóa"/>}<button class="btn btn-outline" type="submit">@(t.Active?"Khóa":"Mở khóa")</button></form></td></tr>}
+ </tbody></table></div>}
+</div>

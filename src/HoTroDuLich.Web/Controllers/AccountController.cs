@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.RateLimiting;
 using System.Security.Claims;
 
 namespace HoTroDuLich.Web.Controllers;
-public class AccountController(TravelService s, IConfiguration config) : AppController(s)
+public class AccountController(TravelService s, IConfiguration config, BranchService branchService) : AppController(s)
 {
     [SucAuthorize(SucAccess.Login), HttpGet]
     public IActionResult Login(string? returnUrl)
@@ -22,6 +22,8 @@ public class AccountController(TravelService s, IConfiguration config) : AppCont
     {
         var a = await S.Authenticate(i);
         await SessionAuthentication.SignIn(HttpContext, a);
+        if (!a.PhaiDoiMatKhau && string.IsNullOrEmpty(i.ReturnUrl) && a.VaiTro.ToString() == TravelService.ProviderRole && !await branchService.HasAnyBranch(a.MaTaiKhoan))
+            return LocalRedirect("/nha-cung-cap/co-so/them");
         return LocalRedirect(a.PhaiDoiMatKhau ? "/tai-khoan/doi-mat-khau" : Url.IsLocalUrl(i.ReturnUrl) ? i.ReturnUrl! : SucAccess.Home((a.VaiTro).ToString()));
     }
 
@@ -31,7 +33,7 @@ public class AccountController(TravelService s, IConfiguration config) : AppCont
     public async Task<IActionResult> Register(RegisterInput i)
     {
         await S.Register(i);
-        return Done("/Account/Login", "Đăng ký thành công. Bạn có thể đăng nhập; nhà cung cấp cần chờ xác minh để gửi dịch vụ.");
+        return Done("/Account/Login", "Đăng ký thành công. Hãy đăng nhập; nhà cung cấp sẽ được dẫn tới bước khai cơ sở đầu tiên và chờ xác minh để công bố.");
     }
 
     [Authorize, HttpPost]

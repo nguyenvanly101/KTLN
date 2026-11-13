@@ -1,0 +1,117 @@
+@model PlanEditor
+@using System.Text.Json
+@{
+ var d=Model.Draft;var isNew=d.Id==0;
+ ViewData["Title"]=isNew?"Lập kế hoạch chuyến đi":"Sửa kế hoạch · "+d.Name;
+ var json=JsonSerializer.Serialize(d,new JsonSerializerOptions{PropertyNamingPolicy=JsonNamingPolicy.CamelCase});
+ var today=TravelService.Today.ToString("yyyy-MM-dd");
+ var dis=Model.IsOwner?"":"disabled";
+}
+<link rel="stylesheet" href="~/lib/leaflet/leaflet.css" asp-append-version="true"/>
+<div class="container-wide pe-page" id="pe" data-draft="@json" data-owner="@(Model.IsOwner?"1":"0")" data-today="@today" data-new="@(isNew?"1":"0")">
+ <a class="back" href="@(isNew?"/Plans":"/Plans/Detail/"+d.Id)">← @(isNew?"Chuyến đi của tôi":d.Name)</a>
+ <header class="pe-head"><div><span class="eyebrow">@(isNew?"LẬP KẾ HOẠCH MỚI":"SỬA KẾ HOẠCH")</span><h1>@(isNew?"Lập kế hoạch chuyến đi":"Sửa kế hoạch")</h1></div></header>
+ @if(!Model.IsOwner){<div class="notice">Bạn là thành viên của chuyến đi này. Bạn sửa được lịch trình; tên, điểm đến, ngày và ngân sách do trưởng nhóm đổi.</div>}
+ <div class="pe-error" id="pe-error" role="alert" hidden></div>
+
+ <section class="pe-card" aria-labelledby="pe-h-info">
+  <h2 id="pe-h-info">Thông tin chuyến đi</h2>
+  <div class="field"><label for="pe-name">Tên chuyến đi <b class="req">*</b></label><input class="form-control" id="pe-name" maxlength="150" autocomplete="off" placeholder="Ví dụ: Cuối tuần ở Hội An" @dis/>
+   <div class="pe-chips" id="pe-name-suggest" hidden><button type="button" class="pe-chip" id="pe-name-chip"></button></div></div>
+  <div class="field"><label for="pe-dest">Điểm đến <b class="req">*</b></label>
+   <div class="pe-destchips" id="pe-destchips" aria-live="polite"></div>
+   <div class="pe-dest"><div class="pe-dest-input"><input class="form-control" id="pe-dest" maxlength="100" autocomplete="off" placeholder="Gõ tỉnh, quận/huyện, phường/xã hoặc khu du lịch" role="combobox" aria-expanded="false" aria-controls="pe-dest-sug" @dis/><ul class="pe-dest-sug" id="pe-dest-sug" role="listbox" hidden></ul></div>
+    <button type="button" class="btn btn-outline" id="pe-open-dest" @dis>Chọn chi tiết</button><button type="button" class="btn btn-outline" id="pe-open-map" @dis>Chọn trên bản đồ</button></div>
+   <small class="help">Chọn nhiều điểm đến (tối đa 5) ở mọi cấp: tỉnh/thành, quận/huyện, phường/xã hoặc khu du lịch.</small></div>
+  <div class="pe-row">
+   <div class="field"><label for="pe-start">Ngày đi <b class="req">*</b></label><input class="form-control" id="pe-start" type="date" @dis/>
+    <div class="pe-chips" id="pe-start-chips"></div></div>
+   <div class="field"><label for="pe-days">Số ngày <b class="req">*</b></label><div class="pe-stepper"><button type="button" id="pe-days-minus" aria-label="Bớt một ngày" @dis>−</button><input class="form-control" id="pe-days" type="number" min="1" max="30" inputmode="numeric" @dis/><button type="button" id="pe-days-plus" aria-label="Thêm một ngày" @dis>+</button></div><small class="help" id="pe-range"></small></div>
+  </div>
+  <div class="field"><label>Ngân sách</label><div class="pe-chips" id="pe-budget-chips" role="group" aria-label="Ngân sách"></div>
+   <input class="form-control pe-budget-other" id="pe-budget" type="number" min="0" max="1000000000" step="1000" placeholder="Nhập số tiền (₫)" hidden/></div>
+ </section>
+
+ <section class="pe-card" aria-labelledby="pe-h-days">
+  <div class="pe-card-head"><h2 id="pe-h-days">Lịch trình theo ngày</h2><span class="help">Mỗi ngày: thêm dịch vụ, thêm hoạt động tự nhập, hoặc viết ghi chú.</span></div>
+  <div id="pe-days-list" class="pe-days-list"></div>
+ </section>
+
+ @if(!isNew)
+ {
+  <section class="pe-card" aria-labelledby="pe-h-members"><h2 id="pe-h-members">Người cùng lên kế hoạch</h2>
+   <p class="help">Thành viên đã tham gia đều sửa được lịch trình. @(Model.MemberNames.Count>1?"Nhóm chat của chuyến đi được tạo tự động.":"Khi có người tham gia, nhóm chat của chuyến đi sẽ tự tạo.")</p>
+   <ul class="pe-members">@for(var i=0;i<Model.MemberNames.Count;i++){<li><span class="avatar">@Ui.Initial(Model.MemberNames[i])</span><span><strong>@Model.MemberNames[i]</strong><small>@(i==0?"Trưởng nhóm":"Thành viên")</small></span></li>}</ul>
+   @if(Model.GroupId!=null){<a class="btn btn-outline" href="/tin-nhan/@Model.GroupId">Mở nhóm chat</a>}
+  </section>
+ }
+ <div class="pe-bar" id="pe-bar">
+  <div class="pe-sum"><div><small>Tạm tính</small><strong id="pe-total">0 ₫</strong><small id="pe-of"></small></div><div class="pe-meter"><span id="pe-meter-fill"></span></div></div>
+  <button type="button" class="pe-warnbtn" id="pe-warnbtn" aria-expanded="false" hidden></button>
+  <div class="pe-actions"><a class="btn btn-outline" id="pe-cancel" href="@(isNew?"/Plans":"/Plans/Detail/"+d.Id)">Hủy</a><button type="button" class="btn btn-dark" id="pe-save">Lưu</button></div>
+  <ul class="pe-warnlist" id="pe-warnlist" hidden></ul>
+ </div>
+ @Html.AntiForgeryToken()
+</div>
+
+<dialog class="pe-dialog pe-picker" id="pe-picker" aria-labelledby="pe-picker-title">
+ <div class="pe-dlg-head"><h3 id="pe-picker-title">Thêm dịch vụ</h3><button type="button" class="pe-x" data-close aria-label="Đóng">✕</button></div>
+ <div class="pe-pick-grid" id="pe-pick-grid">
+  <div class="pe-pick-left">
+   <div class="pe-pick-top"><input class="form-control" id="pe-pick-q" type="search" placeholder="Gõ tên dịch vụ hoặc địa điểm" aria-label="Tìm dịch vụ hoặc địa điểm" autocomplete="off"/><select class="form-select" id="pe-pick-dest" aria-label="Điểm đến để tìm"></select></div>
+   <div class="pe-chips" id="pe-groups"><button type="button" class="pe-chip on" data-group="">Tất cả</button><button type="button" class="pe-chip" data-group="Stay">Lưu trú</button><button type="button" class="pe-chip" data-group="Eat">Ăn uống</button><button type="button" class="pe-chip" data-group="Place">Tham quan</button><button type="button" class="pe-chip" data-group="Move">Di chuyển</button><button type="button" class="pe-chip" data-group="Experience">Trải nghiệm</button><button type="button" class="pe-chip" data-group="Local">Dịch vụ địa phương</button><button type="button" class="pe-chip" data-group="Info">Thông tin</button><button type="button" class="pe-chip" data-group="Other">Khác</button></div>
+   <details class="pe-filters"><summary>Bộ lọc nâng cao</summary><div class="pe-filters-body">
+    <div class="pe-row2"><label>Giá từ (₫)<input class="form-control" id="pe-f-min" type="number" min="0" step="1000"/></label><label>Giá đến (₫)<input class="form-control" id="pe-f-max" type="number" min="0" step="1000"/></label></div>
+    <label>Sắp xếp<select class="form-select" id="pe-f-sort"><option value="relevance">Phù hợp nhất</option><option value="price">Giá thấp đến cao</option><option value="updated">Mới cập nhật</option></select></label>
+    <label class="pe-check"><input type="checkbox" id="pe-f-view"/> Chỉ trong vùng bản đồ đang xem</label>
+    <label class="pe-check"><input type="checkbox" id="pe-f-saved"/> Chỉ mục đã lưu của tôi</label>
+   </div></details>
+   <p class="pe-pick-count" id="pe-pick-count" aria-live="polite"></p>
+   <div id="pe-pick-list-wrap"><div class="pe-pick-list" id="pe-pick-list" aria-live="polite"></div><button type="button" class="btn btn-outline pe-more-btn" id="pe-pick-more" hidden>Xem thêm kết quả</button></div>
+   <div class="pe-confirm" id="pe-confirm" hidden>
+    <strong id="pe-c-name"></strong><small id="pe-c-meta"></small>
+    <div class="pe-row"><div class="field"><label for="pe-c-day">Ngày</label><select class="form-select" id="pe-c-day"></select></div><div class="field"><label for="pe-c-time">Giờ</label><select class="form-select pe-time" id="pe-c-time"></select></div><div class="field"><label for="pe-c-cost">Chi phí (₫)</label><input class="form-control" id="pe-c-cost" type="number" min="0" max="1000000000" step="1000"/></div></div>
+    <div class="pe-chips" id="pe-c-slots"></div>
+    <div class="pe-dlg-foot"><button type="button" class="btn btn-outline" id="pe-c-back">Bỏ chọn</button><button type="button" class="btn btn-dark" id="pe-c-add">Thêm</button></div>
+   </div>
+  </div>
+  <div class="pe-pick-mapwrap"><div class="pe-pick-map" id="pe-pick-map"></div><p class="pe-pick-nomap" id="pe-pick-nomap" hidden>Các kết quả này chưa có vị trí trên bản đồ, bạn vẫn chọn được từ danh sách.</p><p class="pe-legend"><span class="d saved"></span> Đã lưu <span class="d explore"></span> Khám phá</p></div>
+ </div>
+ <form id="pe-manual" class="pe-manual" hidden>
+  <div class="field"><label for="pe-m-name">Tên hoạt động <b class="req">*</b></label><input class="form-control" id="pe-m-name" maxlength="300" autocomplete="off" placeholder="Ví dụ: Dạo phố cổ buổi tối"/></div>
+  <div class="pe-row"><div class="field"><label for="pe-m-time">Giờ</label><select class="form-select pe-time" id="pe-m-time"></select></div><div class="field"><label for="pe-m-cost">Chi phí (₫)</label><input class="form-control" id="pe-m-cost" type="number" min="0" max="1000000000" step="1000"/></div></div>
+  <div class="pe-chips" id="pe-m-costchips"></div>
+  <div class="pe-dlg-foot"><button type="submit" class="btn btn-dark">Thêm</button></div>
+ </form>
+</dialog>
+
+<dialog class="pe-dialog" id="pe-edit" aria-labelledby="pe-edit-title">
+ <div class="pe-dlg-head"><h3 id="pe-edit-title">Sửa hạng mục</h3><button type="button" class="pe-x" data-close aria-label="Đóng">✕</button></div>
+ <form id="pe-edit-form">
+  <div class="field"><label for="pe-e-name">Tên hạng mục</label><input class="form-control" id="pe-e-name" maxlength="300"/><small class="help" id="pe-e-note"></small></div>
+  <div class="pe-row"><div class="field"><label for="pe-e-day">Ngày</label><select class="form-select" id="pe-e-day"></select></div><div class="field"><label for="pe-e-time">Giờ</label><select class="form-select pe-time" id="pe-e-time"></select></div><div class="field"><label for="pe-e-cost">Chi phí (₫)</label><input class="form-control" id="pe-e-cost" type="number" min="0" max="1000000000" step="1000"/></div></div>
+  <div class="pe-dlg-foot"><button type="button" class="btn btn-outline" id="pe-e-swap">Đổi dịch vụ khác</button><button type="submit" class="btn btn-dark">Cập nhật</button></div>
+ </form>
+</dialog>
+
+<dialog class="pe-dialog" id="pe-destdlg" aria-labelledby="pe-destdlg-title">
+ <div class="pe-dlg-head"><h3 id="pe-destdlg-title">Chọn điểm đến</h3><button type="button" class="pe-x" data-close aria-label="Đóng">✕</button></div>
+ <div class="pe-tabs" id="pe-dest-tabs" role="tablist"><button type="button" class="on" data-dtab="admin">Theo khu vực hành chính</button><button type="button" data-dtab="places">Khu du lịch và địa điểm</button></div>
+ <div id="pe-dtab-admin">
+  <p class="help">Chọn từ tỉnh/thành đến quận/huyện, phường/xã. Có thể dừng ở cấp nào cũng được.</p>
+  <div class="pe-row"><label class="field">Tỉnh / Thành phố<select class="form-select" id="pe-d-prov"><option value="">Chọn…</option></select></label><label class="field">Quận / Huyện / Thị xã<select class="form-select" id="pe-d-dist" disabled><option value="">Chọn…</option></select></label><label class="field">Phường / Xã<select class="form-select" id="pe-d-ward" disabled><option value="">Chọn…</option></select></label></div>
+  <div class="pe-dlg-foot"><span class="help" id="pe-d-picked"></span><button type="button" class="btn btn-dark" id="pe-d-add" disabled>Thêm điểm đến này</button></div>
+ </div>
+ <div id="pe-dtab-places" hidden>
+  <input class="form-control" id="pe-places-q" type="search" placeholder="Tìm khu du lịch, địa điểm, điểm đến" aria-label="Tìm khu du lịch"/>
+  <div class="pe-places-grid" id="pe-places-grid"></div>
+ </div>
+</dialog>
+
+<dialog class="pe-dialog pe-wide" id="pe-map" aria-labelledby="pe-map-title">
+ <div class="pe-dlg-head"><h3 id="pe-map-title">Chọn điểm đến trên bản đồ</h3><button type="button" class="pe-x" data-close aria-label="Đóng">✕</button></div>
+ <p class="help">Bấm vào một ghim để thêm khu vực đó làm điểm đến.</p>
+ <div id="pe-map-canvas" class="pe-map-canvas"></div>
+</dialog>
+
+@section Scripts{<script src="~/lib/leaflet/leaflet.js"></script><script src="~/js/plan-editor.js" asp-append-version="true"></script>}

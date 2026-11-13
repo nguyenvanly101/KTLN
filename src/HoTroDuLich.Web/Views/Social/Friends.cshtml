@@ -1,0 +1,16 @@
+@model string
+@{ViewData["Title"]="Bạn bè";}
+<div class="container-wide soc-page">
+ <div class="page-head"><div><span class="eyebrow">BẠN BÈ</span><h1>Bạn bè</h1><p>Kết bạn với những người cùng đi, nhắn tin và xem bài viết của nhau.</p></div></div>
+ @Html.AntiForgeryToken()
+ <div class="soc-tabs" role="tablist" data-soc-tabs data-tab="@Model">
+  <button type="button" role="tab" data-tab="ban-be">Bạn bè</button>
+  <button type="button" role="tab" data-tab="loi-moi">Lời mời <span class="soc-count" data-count="loi-moi"></span></button>
+  <button type="button" role="tab" data-tab="goi-y">Gợi ý</button>
+  <button type="button" role="tab" data-tab="tim">Tìm người</button>
+ </div>
+ <div class="soc-search" data-soc-search hidden><input class="form-control" type="search" placeholder="Nhập tên để tìm…" aria-label="Tìm người" data-soc-q/></div>
+ <div class="soc-sections" data-soc-sections></div>
+ <p class="soc-empty" data-soc-empty hidden></p>
+</div>
+@section Scripts{<script src="~/js/social.js" asp-append-version="true"></script>}

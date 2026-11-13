@@ -45,12 +45,15 @@ public partial class QuanLyDichVuService(AppDbContext context, IHttpContextAcces
         RoleRequired(ProviderRole);
         i.Type = DanhMuc.ChuanHoa(i.Type);
         var serviceProvider=await MyProvider();
+        i.DonViId=null;
         await Resolve<BranchService>().ValidateServiceBranches(serviceProvider.MaNhaCungCap,i.BranchIds,i.Operation=="GuiDang");
         if(i.BranchIds.Count>0)
         {
             var providerRecord=await MyProvider();
             var locations=await Resolve<BranchService>().PublicBranches().Where(x=>i.BranchIds.Contains(x.Id)&&x.ProviderId==providerRecord.MaNhaCungCap).Select(x=>x.Region).Distinct().ToListAsync();
             i.Region=string.Join(" · ",locations);if(i.Region.Length>200)i.Region="Theo cơ sở áp dụng";
+            var branchUnits=await Resolve<BranchService>().PublicBranches().Where(x=>i.BranchIds.Contains(x.Id)&&x.ProviderId==providerRecord.MaNhaCungCap).Select(x=>x.DonViId).ToListAsync();
+            if(branchUnits.Count>0&&branchUnits.All(u=>u!=null))i.DonViId=await Resolve<DiaGioiService>().CommonAncestor(branchUnits.Select(u=>u!.Value));
             i.Address=null;
         }
         i.Name = i.Name.Trim();
@@ -60,7 +63,9 @@ public partial class QuanLyDichVuService(AppDbContext context, IHttpContextAcces
         i.PriceUnit=string.IsNullOrWhiteSpace(i.PriceUnit)?null:i.PriceUnit.Trim();
         i.CancellationPolicy=string.IsNullOrWhiteSpace(i.CancellationPolicy)?null:i.CancellationPolicy.Trim();
         Validate(i, "0601-04");
+        i.Type = DanhMuc.ChuanHoa(i.Type);
         Ensure(DanhMuc.LoaiDichVu.Contains(i.Type), "0601-04", "Type");
+        ServiceKinds.ValidateService(ServiceKinds.Get(i.Type)!, i);
         var noPause = i.PauseFrom == null && i.PauseTo == null && string.IsNullOrWhiteSpace(i.PauseReason);
         Ensure(noPause || (i.PauseFrom != null && !string.IsNullOrWhiteSpace(i.PauseReason) && (i.PauseTo == null || (i.PauseTo >= i.PauseFrom && i.PauseTo >= HomNay))), "0601-03");
         if (noPause)
@@ -103,6 +108,14 @@ public partial class QuanLyDichVuService(AppDbContext context, IHttpContextAcces
                     await PreparePhotos(i,(string?)previous.GetType().GetProperty("AnhJson")!.GetValue(previous));
                     var currentBranches=await branches.ServiceBranches(s.MaDichVu,previous is BanCapNhatDichVu oldRevision?oldRevision.MaBanCapNhat:null);
                     Ensure(!SameService(previous, i)||!currentBranches.Order().SequenceEqual(i.BranchIds.Order()), "0601-06");
+                    // Thay doi "nhe" (gia, gio, dieu kien, tam ngung) cua dich vu da cong bo: co hieu luc ngay, khong cho duyet.
+                    string[] heavy=["TenDichVu","LoaiDichVu","KhuVucPhucVu","DonViId","MoTa","MaDiaDiem","AnhJson"];
+                    var heavyChanged=ServiceFields.Where(f=>heavy.Contains(f.Domain)).Any(f=>!Equals(f.Domain=="LoaiDichVu"?DanhMuc.ChuanHoa((string?)previous.GetType().GetProperty(f.Domain)!.GetValue(previous)):previous.GetType().GetProperty(f.Domain)!.GetValue(previous),typeof(ServiceInput).GetProperty(f.Input)!.GetValue(i)));
+                    if(ReferenceEquals(previous,s)&&s.TrangThaiCongBo==HoTroDuLich.Web.Domain.TrangThaiCongBo.DaDuyet&&!heavyChanged&&currentBranches.Order().SequenceEqual(i.BranchIds.Order()))
+                    {
+                        foreach(var f in ServiceFields.Where(f=>!heavy.Contains(f.Domain)))s.GetType().GetProperty(f.Domain)!.SetValue(s,typeof(ServiceInput).GetProperty(f.Input)!.GetValue(i));
+                        s.ThoiDiemCapNhat=Clock.BayGioUtc;await db.SaveChangesAsync();i.AppliedNow=true;return;
+                    }
                 }
             }
 

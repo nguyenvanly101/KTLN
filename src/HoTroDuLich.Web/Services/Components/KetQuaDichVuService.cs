@@ -63,7 +63,7 @@ public partial class KetQuaDichVuService(AppDbContext context, IHttpContextAcces
             await db.SaveChangesAsync();
             await AggregateResults(y);
             y.PhienBan++;
-            serviceThongBao.Tao(y.MaTaiKhoan,"KetQuaDaGhiNhan","Kết quả từng hạng mục dịch vụ đã được ghi nhận.","/yeu-cau/" + i.Id + "/ket-qua/xem-ket-qua");
+            serviceThongBao.Tao(y.MaTaiKhoan,"KetQuaDaGhiNhan","Kết quả dịch vụ đã được ghi nhận. Hãy xem lại và đánh giá để giúp những người đi sau.","/yeu-cau/" + i.Id + "/ket-qua/xem-ket-qua");
         });
     }
 

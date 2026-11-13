@@ -1,0 +1,18 @@
+@model DiscoveryEditInput
+@{
+ var current=BranchTemplates.Parse(Model.AttributesJson);var selected=ServiceKinds.ForDiscoveryKind(Model.Kind);
+ var map=new Dictionary<string,string>{["Guide"]="CamNang",["Event"]="SuKien",["Transport"]="PhuongTien",["Place"]="HoatDong",["Amenity"]="DichVuHoTro"};
+}
+<section class="ds-panel" data-kind-map="@System.Text.Json.JsonSerializer.Serialize(map)" aria-label="Thông tin riêng theo loại">
+ <h2>Thông tin riêng theo loại</h2>
+ <p class="help">Phần này đổi theo "Loại thông tin" ở trên (cẩm nang, sự kiện, di chuyển, tham quan…) và dùng chung khuôn với dịch vụ.</p>
+ @foreach(var kind in ServiceKinds.All.Where(k=>map.Values.Contains(k.Code)))
+ {
+  <partial name="/Views/Shared/_KindFieldset.cshtml" model='(kind,current,selected,"")'/>
+ }
+</section>
+<script nonce="@Context.Items["MapsNonce"]">
+(function(){var sec=document.querySelector('[data-kind-map]');if(!sec)return;var map=JSON.parse(sec.dataset.kindMap);var sel=document.querySelector('select[name="Kind"]');
+ function sync(){var code=sel?map[sel.value]:null;sec.querySelectorAll('[data-kind-fields]').forEach(function(f){f.hidden=f.dataset.kindFields!==code});sec.hidden=!code;}
+ if(sel){sel.addEventListener('change',sync);}sync();})();
+</script>

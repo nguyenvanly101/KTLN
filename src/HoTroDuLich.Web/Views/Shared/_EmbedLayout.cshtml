@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+ <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <title>@ViewData["Title"] · Hành Trình</title>
+ <base target="_top"/>
+ <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+ <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+ <link rel="stylesheet" href="~/css/chat.css" asp-append-version="true"/>
+ <link rel="stylesheet" href="~/css/social.css" asp-append-version="true"/>
+</head>
+<body class="is-embed">
+ <main id="main-content">@RenderBody()</main>
+ <script src="~/js/chat-badge.js" asp-append-version="true"></script>
+ @await RenderSectionAsync("Scripts",required:false)
+</body>
+</html>

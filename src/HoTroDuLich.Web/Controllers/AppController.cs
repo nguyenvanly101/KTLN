@@ -51,7 +51,7 @@ public abstract class AppController(TravelService service):Controller
     case DeactivationInput i:return V("Account/Deactivate",i);
     case ProfileInput i:ViewBag.Account=await S.Find<TaiKhoan>(S.UserId);if(S.Role==TravelService.ProviderRole)ViewBag.Provider=await S.MyProvider();return V("Account/Profile",i);
     case PlanInput i:return V("Plans/Edit",i);
-    case ActivityInput i:ViewBag.Plan=await S.OwnPlan(i.PlanId);return V("Plans/Activity",i);
+    case ActivityInput i:ViewBag.Plan=await S.SharedPlan(i.PlanId);return V("Plans/Activity",i);
     case NeedInput i:return V("Companions/Edit",i);
     case AgreementInput i:return V("Companions/Propose",i);
     case ServiceInput i:ViewBag.CanSubmit=await S.CanSubmitService();ViewBag.Places=await S.VisiblePlaces();if(i.Id>0){var serviceHistory=await S.ServiceHistory(i.Id);ViewBag.History=serviceHistory;var liveService=await S.OwnService(i.Id);var lastRevision=serviceHistory.FirstOrDefault();i.PhotoPaths=lastRevision!=null&&new[]{TrangThaiDuyet.CanSua,TrangThaiDuyet.TuChoi}.Contains(lastRevision.TrangThaiDuyet)?lastRevision.AnhJson:liveService.AnhJson;}return V("Provider/Edit",i);

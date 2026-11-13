@@ -1,0 +1,26 @@
+@model ServiceKindInput
+@{ViewData["Title"]=Model.IsNew?"Thêm loại dịch vụ":"Sửa loại dịch vụ";}
+<div class="container-narrow">
+ <a class="back" href="/quan-tri/loai-dich-vu">← Loại dịch vụ</a>
+ <div class="page-head"><div><h1>@ViewData["Title"]</h1><p>Khuôn của loại này quyết định form nhà cung cấp điền, cách kiểm tra dữ liệu và thông tin hiển thị cho khách.</p></div></div>
+ <div class="panel"><form action="/quan-tri/loai-dich-vu/luu" method="post">@Html.AntiForgeryToken()<div asp-validation-summary="All"></div><input type="hidden" name="IsNew" value="@Model.IsNew.ToString().ToLowerInvariant()"/>
+  <div class="form-grid">
+   <div class="field"><label for="k-code">Mã loại</label>@if(Model.IsNew){<input class="form-control" id="k-code" name="Code" value="@Model.Code" maxlength="20" required placeholder="Ví dụ: ThueXe"/>}else{<input class="form-control" id="k-code" value="@Model.Code" disabled/><input type="hidden" name="Code" value="@Model.Code"/>}</div>
+   <div class="field"><label for="k-label">Tên hiển thị</label><input class="form-control" id="k-label" name="Label" value="@Model.Label" maxlength="60" required/></div>
+   <div class="field"><label for="k-group">Nhóm</label><select class="form-select" id="k-group" name="Group">@foreach(var g in ServiceKinds.Groups){<option value="@g.Key" selected="@(g.Key==Model.Group)">@g.Label</option>}</select></div>
+   <div class="field"><label for="k-sort">Thứ tự</label><input class="form-control" id="k-sort" name="Sort" type="number" min="0" max="10000" value="@Model.Sort"/></div>
+   <fieldset class="field full"><legend>Khả năng</legend><div class="pv-checks">
+    <label><input type="checkbox" name="ProviderPostable" value="true" checked="@Model.ProviderPostable"/> Nhà cung cấp được đăng</label>
+    <label><input type="checkbox" name="Bookable" value="true" checked="@Model.Bookable"/> Khách gửi yêu cầu đặt</label>
+    <label><input type="checkbox" name="ForBranch" value="true" checked="@Model.ForBranch"/> Dùng làm loại cơ sở</label>
+    <label><input type="checkbox" name="HasPrice" value="true" checked="@Model.HasPrice"/> Có giá</label>
+    <label><input type="checkbox" name="HasHours" value="true" checked="@Model.HasHours"/> Có giờ phục vụ</label>
+    <label><input type="checkbox" name="HasLocation" value="true" checked="@Model.HasLocation"/> Có vị trí bản đồ</label>
+    <label><input type="checkbox" name="TimeBound" value="true" checked="@Model.TimeBound"/> Có thời hạn (hết hạn tự ẩn)</label>
+    <label><input type="checkbox" name="Active" value="true" checked="@Model.Active"/> Đang bật</label></div>
+    <input type="hidden" name="ProviderPostable" value="false"/><input type="hidden" name="Bookable" value="false"/><input type="hidden" name="ForBranch" value="false"/><input type="hidden" name="HasPrice" value="false"/><input type="hidden" name="HasHours" value="false"/><input type="hidden" name="HasLocation" value="false"/><input type="hidden" name="TimeBound" value="false"/><input type="hidden" name="Active" value="false"/></fieldset>
+   <div class="field full"><label for="k-fields">Bộ trường riêng</label><textarea class="form-control" id="k-fields" name="FieldsText" rows="14" maxlength="20000">@Model.FieldsText</textarea>
+    <small class="help">Mỗi dòng một trường: <code>khóa | nhãn | kiểu | lựa chọn (a;b;c) | tối đa | gợi ý | x</code>. Kiểu: <code>select</code>, <code>multi</code>, <code>text</code>, <code>number</code>, <code>time</code>, <code>date</code>, <code>list</code> (mỗi dòng "tên | giá"). Cột cuối <code>x</code> nghĩa là dùng làm từ khóa tìm kiếm. Ví dụ: <code>ngonngu | Ngôn ngữ | multi | Tiếng Việt;Tiếng Anh | | | x</code></small></div>
+  </div>
+  <div class="form-actions"><button class="btn btn-dark" type="submit">Lưu loại dịch vụ</button></div></form></div>
+</div>

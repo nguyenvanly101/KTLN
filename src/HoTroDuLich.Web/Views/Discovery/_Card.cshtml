@@ -1,8 +1,15 @@
 @model DiscoveryCard
-@{var e=Model.Entry;}
+@{
+ var e=Model.Entry;
+ // Chi dung anh that khi he thong co anh dung noi; con lai dung khoi mau theo loai, tranh hien anh cua noi khac.
+ var photo=e.ImagePath??Ui.DestinationPhoto(e.Region+" "+e.Title);
+ var tone=e.Kind=="Transport"?"move":e.Tags.Contains("Ăn uống")?"eat":e.Tags.Contains("Lưu trú")?"stay":e.Kind is "Place" or "Area" or "Destination"?"see":"info";
+ var icon=tone switch{"move"=>"car","eat"=>"food","stay"=>"bed","see"=>"pin",_=>"compass"};
+}
 <article class="ds-card" data-entry-card="@e.Id">
- <a class="ds-card-photo" href="@DiscoveryText.Link(e.Id)"><img src="@Ui.DestinationImage(e.Region)" alt="Ảnh minh họa khu vực @e.Region" width="480" height="320" loading="lazy"/><span>@DiscoveryText.Kind(e.Kind)</span><small>Ảnh minh họa</small></a>
- <div class="ds-card-copy"><span class="ds-location">@Ui.Icon("pin") @e.Region</span><h3><a href="@DiscoveryText.Link(e.Id)">@e.Title</a></h3><p>@e.Summary</p>
+ <a class="ds-card-photo" href="@DiscoveryText.LinkTo(e)">@if(photo!=null){<img src="@photo" alt="@(e.ImagePath!=null?"Ảnh thực tế: "+e.Title:"")" width="480" height="320" loading="lazy"/>@if(e.ImagePath==null){<small>Ảnh minh họa</small>}}else{<span class="ds-card-blank ds-tone-@tone" aria-hidden="true">@Ui.Icon(icon)</span>}<span>@DiscoveryText.Kind(e.Kind)</span></a>
+ <div class="ds-card-copy"><span class="ds-location">@Ui.Icon("pin") @e.Region</span><h3><a href="@DiscoveryText.LinkTo(e)">@e.Title</a></h3><p>@e.Summary</p>
+  @if(e.ServiceId!=null){<partial name="/Views/Shared/_Rating.cshtml" model="e.ServiceId"/>}
   @if(e.PriceFrom!=null){<div class="ds-card-price">@Labels.Money(e.PriceFrom) <small>/ @(e.PriceUnit??"chưa công bố đơn vị")</small></div>}
   @if(Model.ExtraMinutes!=null){<span class="ds-fact">Đi thêm khoảng @Math.Ceiling(Model.ExtraMinutes.Value) phút</span>}else if(Model.DistanceKm!=null){<span class="ds-fact">Cách mốc @Model.DistanceKm.Value.ToString("0.0") km theo vị trí</span>}
   <small class="ds-source">@(e.CheckedOn!=null?"Kiểm tra nguồn "+e.CheckedOn.Value.ToString("dd/MM/yyyy"):"Chưa có ngày kiểm tra nguồn")</small>

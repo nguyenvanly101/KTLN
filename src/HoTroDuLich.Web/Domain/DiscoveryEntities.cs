@@ -10,6 +10,9 @@ public sealed class DiscoveryEntry
     public long? ServiceId { get; set; }
     public string Title { get; set; } = "";
     public string Region { get; set; } = "";
+    public long? DonViId { get; set; }
+    public long? BranchId { get; set; }
+    public string? ImagePath { get; set; }
     public string Summary { get; set; } = "";
     public string Body { get; set; } = "";
     public string? Address { get; set; }
@@ -37,6 +40,7 @@ public sealed class DiscoveryEntry
     public string? Origin { get; set; }
     public string? Destination { get; set; }
     public string? Contact { get; set; }
+    public string? AttributesJson { get; set; }
     public string Status { get; set; } = "";
     public long? CreatedBy { get; set; }
     public long? UpdatedBy { get; set; }

@@ -1,0 +1,34 @@
+@model ChatSettingsDto
+@inject ChatService Chat
+@{
+ ViewData["Title"]="Cài đặt tin nhắn";
+ var mine=await Chat.MyBranches();
+ var waits=new[]{("Minutes","Vài phút"),("Hour","Trong vòng 1 giờ"),("Day","Trong ngày")};
+}
+<div class="container-wide pl-manage chat-settings">
+ <a class="back" href="/nha-cung-cap/tin-nhan">← Hộp thư</a>
+ <div class="page-head"><div><span class="eyebrow">TIN NHẮN</span><h1>Cài đặt tin nhắn</h1><p>Khách thấy cơ sở thường trả lời trong bao lâu. Tin tự động và tin mẫu giúp bạn trả lời nhanh hơn.</p></div></div>
+ @if(mine.Count>1){<form method="get" class="panel chat-pick"><label for="chat-branch">Cơ sở</label><select class="form-select" id="chat-branch" name="coSo">@foreach(var b in mine){<option value="@b.Id" selected="@(b.Id==Model.BranchId)">@b.Name</option>}</select><button class="btn btn-outline">Chọn</button></form>}
+ <section class="panel pv-section"><h2>Hiệu quả 30 ngày gần nhất</h2><p>@Model.Requests yêu cầu đặt qua tin nhắn · @Model.Confirmed đã chốt@(Model.Requests>0?" ("+(Model.Confirmed*100/Model.Requests)+"%)":"")@(Model.Actual!=null?" · "+Model.Actual:"")</p></section>
+ <div asp-validation-summary="All"></div>
+ <form method="post" action="/nha-cung-cap/tin-nhan/cai-dat" class="panel pv-section">@Html.AntiForgeryToken()<input type="hidden" name="BranchId" value="@Model.BranchId"/>
+  <h2>@Model.BranchName</h2>
+  <div class="field"><label class="pv-check"><input type="checkbox" name="Accepting" value="true" checked="@Model.Accepting"/> Nhận tin nhắn từ khách</label><input type="hidden" name="Accepting" value="false"/><small>Tắt khi cơ sở nghỉ dài ngày. Khách vẫn thấy số điện thoại trên trang cơ sở.</small></div>
+  <div class="field"><label for="chat-eta">Thường trả lời</label><select class="form-select" id="chat-eta" name="ReplyWithin">@foreach(var w in waits){<option value="@w.Item1" selected="@(w.Item1==Model.ReplyWithin)">@w.Item2</option>}</select><small>Hiện cho khách trước khi nhắn. Hệ thống còn hiện thời gian trả lời thực tế của 30 ngày gần nhất.</small></div>
+  <div class="field"><label for="chat-greet">Lời chào trong khung chat (tùy chọn)</label><textarea class="form-control" id="chat-greet" name="Greeting" maxlength="300" rows="2" placeholder="Chào bạn! Bạn muốn hỏi gì về quán?">@Model.Greeting</textarea></div>
+  <div class="field"><label for="chat-auto">Tin trả lời tự động (tùy chọn)</label><textarea class="form-control" id="chat-auto" name="AutoReply" maxlength="500" rows="3" placeholder="Cảm ơn bạn đã nhắn. Chúng tôi sẽ trả lời sớm nhất có thể.">@Model.AutoReply</textarea>
+   <label class="pv-check"><input type="checkbox" name="AutoReplyOffHours" value="true" checked="@Model.AutoReplyOffHours"/> Chỉ gửi khi cơ sở đang đóng cửa hoặc chưa khai giờ mở cửa</label><input type="hidden" name="AutoReplyOffHours" value="false"/></div>
+  <div class="form-actions"><button class="btn btn-dark" type="submit">Lưu cài đặt</button></div>
+ </form>
+ <section class="panel pv-section"><h2>Tin mẫu</h2><p class="help">Bấm tin mẫu trong khung chat để chèn nhanh (địa chỉ, giờ mở cửa, cách đặt bàn…). Tối đa 20.</p>
+  @foreach(var quick in Model.Quick)
+  {
+   <form method="post" action="/nha-cung-cap/tin-nhan/mau" class="chat-quick-form">@Html.AntiForgeryToken()<input type="hidden" name="BranchId" value="@Model.BranchId"/><input type="hidden" name="Id" value="@quick.Id"/>
+    <input class="form-control" name="Title" value="@quick.Title" maxlength="40" aria-label="Tiêu đề tin mẫu"/><textarea class="form-control" name="Body" maxlength="1000" rows="2" aria-label="Nội dung tin mẫu">@quick.Body</textarea>
+    <div class="form-actions"><button class="btn btn-outline" type="submit">Lưu</button><button class="btn btn-outline" type="submit" name="Delete" value="true">Xóa</button></div></form>
+  }
+  <form method="post" action="/nha-cung-cap/tin-nhan/mau" class="chat-quick-form new">@Html.AntiForgeryToken()<input type="hidden" name="BranchId" value="@Model.BranchId"/>
+   <input class="form-control" name="Title" maxlength="40" placeholder="Tiêu đề (ví dụ: Giờ mở cửa)" aria-label="Tiêu đề tin mẫu mới"/><textarea class="form-control" name="Body" maxlength="1000" rows="2" placeholder="Nội dung tin mẫu" aria-label="Nội dung tin mẫu mới"></textarea>
+   <div class="form-actions"><button class="btn btn-dark" type="submit">Thêm tin mẫu</button></div></form>
+ </section>
+</div>

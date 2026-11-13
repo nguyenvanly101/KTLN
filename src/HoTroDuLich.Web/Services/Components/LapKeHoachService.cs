@@ -22,9 +22,16 @@ public partial class LapKeHoachService(AppDbContext context, IHttpContextAccesso
         return await db.KeHoachChuyenDi.SingleOrDefaultAsync(x => x.MaKeHoach == id && x.MaTaiKhoan == UserId) ?? throw new BusinessException(MaLoi.TatCa["0201-02"].Message, 404, "0201-02");
     }
 
+    /// <summary>Chu chuyen di hoac thanh vien da chap nhan (chuyen di chung).</summary>
+    public async Task<KeHoachChuyenDi> XemKeHoachChungAsync(long id)
+    {
+        RoleRequired(Traveler);
+        return await db.KeHoachChuyenDi.SingleOrDefaultAsync(x => x.MaKeHoach == id && (x.MaTaiKhoan == UserId || db.Set<ThanhVienChuyenDi>().Any(m => m.PlanId == id && m.AccountId == UserId && m.Status == "Accepted"))) ?? throw new BusinessException(MaLoi.TatCa["0201-02"].Message, 404, "0201-02");
+    }
+
     public async Task<List<HoatDongLichTrinh>> LayHoatDong(long id)
     {
-        await XemKeHoachAsync(id);
+        await XemKeHoachChungAsync(id);
         return await db.HoatDongLichTrinh.Where(x => x.MaKeHoach == id).OrderBy(x => x.Ngay).ThenBy(x => x.ThuTu).ThenBy(x => x.MaHoatDong).ToListAsync();
     }
 
@@ -88,7 +95,7 @@ public partial class LapKeHoachService(AppDbContext context, IHttpContextAccesso
         Validate(i, "0201-01");
         await Execute(async () =>
         {
-            var p = await XemKeHoachAsync(i.PlanId);
+            var p = await XemKeHoachChungAsync(i.PlanId);
             CheckVersion(p, i.Version, "0201-05");
             Ensure(i.Date >= p.NgayBatDau && i.Date <= p.NgayKetThuc, "0201-03", "Date");
             Require(i.PlaceId == null || i.ServiceId == null, "Chỉ chọn một địa điểm hoặc dịch vụ.", 400);
@@ -128,7 +135,7 @@ public partial class LapKeHoachService(AppDbContext context, IHttpContextAccesso
         await Execute(async () =>
         {
             var a = await Find<HoatDongLichTrinh>(i.Id);
-            var p = await XemKeHoachAsync(a.MaKeHoach);
+            var p = await XemKeHoachChungAsync(a.MaKeHoach);
             CheckVersion(p, i.Version, "0201-05");
             var items = await db.HoatDongLichTrinh.Where(x => x.MaKeHoach == p.MaKeHoach && x.Ngay == a.Ngay).OrderBy(x => x.ThuTu).ThenBy(x => x.MaHoatDong).ToListAsync();
             var index = items.IndexOf(a);
@@ -147,7 +154,7 @@ public partial class LapKeHoachService(AppDbContext context, IHttpContextAccesso
         await Execute(async () =>
         {
             var a = await Find<HoatDongLichTrinh>(i.Id);
-            var p = await XemKeHoachAsync(a.MaKeHoach);
+            var p = await XemKeHoachChungAsync(a.MaKeHoach);
             CheckVersion(p, i.Version, "0201-05");
             Ensure(!await db.TinhHuongHoatDong.AnyAsync(x => x.MaHoatDong == i.Id), "0201-06");
             db.Remove(a);

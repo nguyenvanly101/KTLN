@@ -4,33 +4,46 @@
  var route=ViewData["UiController"]?.ToString()??ViewContext.RouteData.Values["controller"]?.ToString()??"Explore";
  var action=ViewData["UiAction"]?.ToString()??ViewContext.RouteData.Values["action"]?.ToString()??"Index";
  var placeMap=(route=="Places"&&action is "Index" or "Branch" or "Landmark" or "LandmarkEdit")||(route=="Branches"&&action=="Edit");
- var tileUrl=Context.RequestServices.GetRequiredService<IConfiguration>()["Discovery:Map:TileUrl"]??"https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+ var tileUrl=Context.RequestServices.GetRequiredService<IConfiguration>()["Discovery:Map:TileUrl"]??"https://tile.openstreetmap.de/{z}/{x}/{y}.png";
  var tileAttribution="&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>";
+ var mapCfg=Context.RequestServices.GetRequiredService<IConfiguration>();
+ var trackAsiaKey=mapCfg["Discovery:Map:TrackAsiaKey"];var goongKey=mapCfg["Discovery:Map:GoongKey"];var vietmapKey=mapCfg["Discovery:Map:VietMapKey"];
+ var mapStyleUrl=!string.IsNullOrWhiteSpace(trackAsiaKey)?"https://maps.track-asia.com/styles/v2/streets.json?key="+Uri.EscapeDataString(trackAsiaKey)
+  :!string.IsNullOrWhiteSpace(goongKey)?"https://tiles.goong.io/assets/goong_map_web.json?api_key="+Uri.EscapeDataString(goongKey)
+  :!string.IsNullOrWhiteSpace(vietmapKey)?"https://maps.vietmap.vn/maps/styles/"+(mapCfg["Discovery:Map:VietMapStyle"]??"tm")+"/style.json?apikey="+Uri.EscapeDataString(vietmapKey):"";
+ var tileAttributionOverride=Context.RequestServices.GetRequiredService<IConfiguration>()["Discovery:Map:Attribution"];
  if(Uri.TryCreate(tileUrl,UriKind.Absolute,out var tileUri)&&tileUri.Host=="tile.openstreetmap.de")
   tileAttribution+=" · <a href=\"https://tile.openstreetmap.de/\">FOSSGIS</a> · <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC BY-SA</a>";
+ if(!string.IsNullOrWhiteSpace(tileAttributionOverride))tileAttribution=tileAttributionOverride;
  var signed=User.Identity?.IsAuthenticated==true;
  var unread=signed?await Travel.UnreadCount():0;
+ var friendRequests=signed&&role==TravelService.Traveler?await Context.RequestServices.GetRequiredService<FriendService>().IncomingCount():0;
+ var chatUnread=signed&&(role==TravelService.Traveler||role==TravelService.ProviderRole)?await Context.RequestServices.GetRequiredService<ChatService>().Unread():0;
  var profile=signed?await Travel.Profile():null;
  var name=profile?.TenHienThi??"Tài khoản";
  var traveler=role==TravelService.Traveler;
  var provider=role==TravelService.ProviderRole;
  var admin=role==TravelService.AdminRole;
  var canPlan=!signed||traveler;
+ var branchSvc=signed&&provider?Context.RequestServices.GetRequiredService<BranchService>():null;
+ var provBranch=branchSvc!=null?await branchSvc.CurrentBranch():null;
+ var provAll=branchSvc!=null?await branchSvc.OwnedBranches():new List<BranchService.OwnedBranch>();
  var canProfile=SucAccess.Allows(User,SucAccess.Profile);
- var home=provider?"/Provider":admin?"/Admin":"/";
- var workspaceHome=provider?"/Provider":admin?"/Admin":"/Plans";
+ var home=provider?"/bang-tin":admin?"/Admin":traveler?"/bang-tin":"/";
+ var workspaceHome=provider?"/bang-tin":admin?"/Admin":"/bang-tin";
  var workspace=signed&&(provider||admin||new[]{"Plans","Bookings","Support","Preparation","Expenses","Saved","Journey","Reviews","Availability"}.Contains(route)||(route=="Account"&&!new[]{"Login","Register"}.Contains(action))||((route=="Companions"||route=="Together")&&!new[]{"Index","Detail"}.Contains(action)));
- workspace=workspace||(signed&&new[]{"Branches","BranchAdmin","Landmarks"}.Contains(route));
+ workspace=workspace||(signed&&new[]{"Branches","BranchAdmin","Landmarks","Chat","Social"}.Contains(route));
  workspace=workspace||(signed&&route=="Discovery"&&new[]{"Library","Manage","Edit"}.Contains(action));
+ workspace=workspace||(signed&&traveler&&route is "Discovery" or "Explore" or "Places" or "TripSplit");
  var tripArea=new[]{"Plans","Bookings","Support","Preparation","Expenses","Journey","Reviews"}.Contains(route);
  var companionArea=route is "Companions" or "Together";
- var roleName=admin?"Không gian quản trị":provider?"Không gian đối tác":"Không gian của bạn";
- var pageSection=route switch {"Branches"=>"Cơ sở & chi nhánh","BranchAdmin"=>"Xét duyệt cơ sở","Landmarks"=>"Địa điểm & cửa vào","Places"=>"Địa điểm & dịch vụ","Discovery"=>"Thông tin tra cứu","Journey"=>"Hành trình","Reviews"=>"Đánh giá","Availability"=>"Lịch phục vụ","Preparation"=>"Chuẩn bị","Expenses"=>"Chi tiêu","Saved"=>"Đã lưu","Plans"=>"Chuyến đi","Bookings"=>"Đặt dịch vụ","Support"=>"Hỗ trợ chuyến đi","Companions"=>"Đồng hành","Together"=>"Đồng hành","Account"=>"Tài khoản","Provider"=>"Đối tác","Admin"=>"Quản trị",_=>"Khám phá"};
+ var roleName=admin?"Không gian quản trị":provider?"Nhà cung cấp":"Không gian của bạn";
+ var pageSection=route switch {"Chat"=>"Tin nhắn","Social"=>"Bảng tin","Branches"=>"Cơ sở của tôi","BranchAdmin"=>"Xét duyệt cơ sở","TravelerAdmin"=>"Khách du lịch","ServiceKinds"=>"Loại dịch vụ","GuideAdmin"=>"Lịch trình mẫu","Landmarks"=>"Địa điểm & cửa vào","Places"=>"Địa điểm & dịch vụ","Discovery"=>"Thông tin tra cứu","Journey"=>"Hành trình","Reviews"=>"Đánh giá","Availability"=>"Lịch phục vụ","Preparation"=>"Chuẩn bị","Expenses"=>"Chi tiêu","Saved"=>"Đã lưu","Plans"=>"Chuyến đi","Bookings"=>"Đặt dịch vụ","Support"=>"Hỗ trợ chuyến đi","Companions"=>"Đồng hành","Together"=>"Đồng hành","Account"=>"Tài khoản","Provider"=>"Đối tác","Admin"=>"Quản trị",_=>"Khám phá"};
 }
 <!DOCTYPE html>
 <html lang="vi">
 <head>
- <meta name="ds-auth" content="@(signed?"true":"false")"/><meta name="ds-tile-url" content="@tileUrl"/><meta name="ds-tile-attribution" content="@tileAttribution"/><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#2447e8"/>
+ <meta name="ds-auth" content="@(signed?"true":"false")"/><meta name="ds-tile-url" content="@tileUrl"/>@if(!string.IsNullOrWhiteSpace(mapStyleUrl)){<meta name="ds-map-style-url" content="@mapStyleUrl"/>}<meta name="ds-tile-attribution" content="@tileAttribution"/><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#2447e8"/>
  <title>@ViewData["Title"] · Hành Trình</title>
  <meta name="maps-nonce" content="@Context.Items["MapsNonce"]"/><style nonce="@Context.Items["MapsNonce"]"></style>
  <link rel="stylesheet" href="~/css/places.css" asp-append-version="true"/>
@@ -43,6 +56,9 @@
  <link rel="stylesheet" href="~/css/journey-features.css" asp-append-version="true"/>
  <link rel="stylesheet" href="~/css/companion-features.css" asp-append-version="true"/>
  <link rel="stylesheet" href="~/css/discovery.css" asp-append-version="true"/>
+ <link rel="stylesheet" href="~/css/dia-gioi.css" asp-append-version="true"/>
+ <link rel="stylesheet" href="~/css/chat.css" asp-append-version="true"/>
+ <link rel="stylesheet" href="~/css/social.css" asp-append-version="true"/>
  @if(route=="Discovery"||placeMap){<link rel="stylesheet" href="~/lib/leaflet/leaflet.css" asp-append-version="true"/>}
 </head>
 <body class="@(workspace?"is-workspace":"is-public") experience-refresh">
@@ -51,29 +67,19 @@
  <a class="brand" href="@home" aria-label="Hành Trình — Trang chủ"><span class="brandmark">@Ui.Icon("compass")</span><span>Hành Trình<span class="brand-sub">ĐI ĐỂ CÓ CHUYỆN KỂ</span></span></a>
  <nav class="mainnav" id="main-navigation" aria-label="Điều hướng chính">
  @if(workspace){
-  <a class="@((route is "Explore" or "Discovery")?"active":"")" href="/">@Ui.Icon("compass") Khám phá Việt Nam</a>
-  <a class="@(route=="Companions"&&action=="Index"?"active":"")" href="/Companions">@Ui.Icon("users") Tìm bạn đồng hành</a>
+  @if(traveler||provider){<a class="@(route=="Social"?"active":"")" href="/bang-tin">@Ui.Icon("grid") Bảng tin</a>}
+  @if(!provider&&!admin){<a class="@((route is "Explore" or "Discovery")?"active":"")" href="/Discovery">@Ui.Icon("compass") Khám phá Việt Nam</a>}
  }else{
-  <details class="nav-disclosure @((route is "Explore" or "Discovery")?"active":"")" data-header-menu>
-   <summary>Khám phá @Ui.Icon("chevron")</summary>
-   <div class="nav-dropdown"><span class="dropdown-label">TÌM CẢM HỨNG LÊN ĐƯỜNG</span>@if(canPlan){<a href="/Discovery/Library">@Ui.Icon("compass")<span>Thư viện tra cứu<small>Danh sách, tuyến đã lưu và cập nhật</small></span></a>}<a href="/kham-pha">@Ui.Icon("pin")<span>Địa điểm & bản đồ<small>Chọn mốc, tìm cơ sở quanh đây</small></span></a><a href="/?type=LuuTru">@Ui.Icon("bed")<span>Lưu trú<small>Tìm một nơi dừng chân</small></span></a><a href="/?type=AnUong">@Ui.Icon("food")<span>Ăn uống & trải nghiệm<small>Khám phá hương vị địa phương</small></span></a><a href="/kham-pha?Category=PhuongTien">@Ui.Icon("car")<span>Thuê xe & di chuyển<small>Tìm đúng điểm giao nhận</small></span></a><a href="/Discovery?kind=Guide">@Ui.Icon("compass")<span>Cẩm nang & hỏi đáp<small>Thông tin cần biết trước khi chọn</small></span></a></div>
-  </details>
-  @if(canPlan){
-   <details class="nav-disclosure @(tripArea?"active":"")" data-header-menu>
-    <summary>Chuyến đi @Ui.Icon("chevron")</summary>
-    <div class="nav-dropdown"><span class="dropdown-label">TỪ Ý TƯỞNG ĐẾN LÊN ĐƯỜNG</span><a href="/Plans">@Ui.Icon("calendar")<span>Chuyến đi của tôi<small>Ngày đi, hoạt động và ngân sách</small></span></a><a href="/Bookings">@Ui.Icon("ticket")<span>Đặt dịch vụ<small>Yêu cầu, thay đổi và kết quả</small></span></a><a href="/Support">@Ui.Icon("help")<span>Hỗ trợ chuyến đi<small>Theo dõi và xử lý tình huống</small></span></a></div>
-   </details>
-  }
-  <details class="nav-disclosure @(companionArea?"active":"")" data-header-menu>
-   <summary>Đồng hành @Ui.Icon("chevron")</summary>
-   <div class="nav-dropdown"><span class="dropdown-label">CÙNG ĐI, THÊM KẾT NỐI</span><a href="/Companions">@Ui.Icon("search")<span>Tìm người đồng hành<small>Chọn một lời rủ hợp với bạn</small></span></a>@if(canPlan){<a href="/Together">Lời rủ đi cùng</a><a href="/Together/Mine">Nhóm đồng hành của tôi</a><a href="/Companions/Mine">@Ui.Icon("grid")<span>Bài đăng của tôi<small>Quản lý những lời rủ lên đường</small></span></a><a href="/Companions/Connections">@Ui.Icon("users")<span>Kết nối của tôi<small>Lời mời và thỏa thuận cùng đi</small></span></a>}</div>
-  </details>
+  @if(traveler||provider){<a class="@(route=="Social"?"active":"")" href="/bang-tin">Bảng tin</a>}
+  @if(!provider){<a class="@((route is "Explore" or "Discovery" or "Places")?"active":"")" href="@(traveler?"/Discovery":"/")">Khám phá</a>}
+  @if(canPlan){<a class="@(tripArea?"active":"")" href="/Plans">Chuyến đi</a>}
  }
  </nav>
  <div class="account-nav">
  @if(signed){
+  @if(traveler||provider){<a class="icon-button chat-link @(route=="Chat"?"active":"")" href="@(provider?"/nha-cung-cap/tin-nhan":"/tin-nhan")" aria-label="Tin nhắn">@Ui.Icon("chat")<span class="chat-badge" data-chat-badge @(chatUnread>0?"":"hidden")>@(chatUnread>99?"99+":chatUnread.ToString())</span></a>}
   <a class="icon-button notification-link" href="/thong-bao" aria-label="Thông báo, @unread chưa đọc">@Ui.Icon("bell")@if(unread>0){<span class="notification-count">@(unread>99?"99+":unread.ToString())</span>}</a>
-  <details class="account-menu" data-header-menu><summary aria-label="Menu tài khoản của @name"><span class="avatar">@Ui.Initial(name)</span><span class="account-name">@name</span>@Ui.Icon("chevron")</summary><div class="account-dropdown"><span class="dropdown-label">@Labels.Status(role)</span>@if(canProfile){<a href="/Account/Profile">@Ui.Icon("user") Thông tin cá nhân</a>}<a href="/Account/Notifications">@Ui.Icon("bell") Thông báo</a><form action="/Account/Logout" method="post">@Html.AntiForgeryToken()<button type="submit">@Ui.Icon("logout") Đăng xuất</button></form></div></details>
+  <details class="account-menu" data-header-menu><summary aria-label="Menu tài khoản của @name"><span class="avatar">@Ui.Initial(name)</span><span class="account-name">@name</span>@Ui.Icon("chevron")</summary><div class="account-dropdown"><span class="dropdown-label">@Labels.Status(role)</span>@if(canProfile){<a href="/Account/Profile">@Ui.Icon("user") Thông tin cá nhân</a>}<a href="/Account/Notifications">@Ui.Icon("bell") Thông báo</a><a href="/Account/Password">@Ui.Icon("shield") Đổi mật khẩu</a><form action="/Account/Logout" method="post">@Html.AntiForgeryToken()<button type="submit">@Ui.Icon("logout") Đăng xuất</button></form></div></details>
  }else{<a class="login-link" href="/Account/Login">Đăng nhập</a><a class="btn btn-dark signup-link" href="/Account/Register">Bắt đầu @Ui.Icon("arrow")</a>}
  <button type="button" class="menu-toggle icon-button" aria-label="Mở menu điều hướng" aria-controls="@(workspace?"workspace-navigation":"main-navigation")" aria-expanded="false">@Ui.Icon("menu")</button>
  </div>
@@ -82,37 +88,44 @@
 @if(workspace){
  <aside class="workspace-sidebar" id="workspace-navigation" aria-label="Menu @roleName">
   <div class="sidebar-intro"><span class="sidebar-eyebrow">@roleName</span><strong>@(provider?"Quản lý & phát triển":admin?"Vận hành hệ thống":"Hành trình của riêng bạn")</strong></div>
-  @if(traveler){<a class="btn btn-dark sidebar-create" href="/Plans/Edit">@Ui.Icon("plus") Tạo chuyến đi mới</a>}
+  @if(provider&&provAll.Count>0)
+  {
+   <details class="branch-switch" data-header-menu><summary><small>Đang quản lý cơ sở</small><strong>@(provBranch?.Name??"Chọn cơ sở")</strong>@Ui.Icon("chevron")</summary>
+    <div class="branch-switch-list">@foreach(var ob in provAll){<form action="/nha-cung-cap/co-so/chon" method="post">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@ob.Id"/><input type="hidden" name="returnUrl" value="@Context.Request.Path"/><button type="submit" class="@(provBranch?.Id==ob.Id?"active":"")">@ob.Name@if(ob.Status!="Approved"){<small> · @PlaceText.State(ob.Status)</small>}</button></form>}<a href="/nha-cung-cap/co-so/them">@Ui.Icon("plus") Đăng ký thêm cơ sở</a></div></details>
+  }
+  @if(traveler){<a class="btn btn-dark sidebar-create" href="/lapkehoach">@Ui.Icon("plus") Tạo chuyến đi mới</a>}
   <nav class="sidebar-nav" aria-label="Chức năng theo nhóm">
   @if(traveler){
-   <details class="sidebar-group" open="@(route=="Saved")"><summary>@Ui.Icon("compass")<span>Khám phá</span>@Ui.Icon("chevron")</summary><div class="sidebar-subnav"><a href="/">Tìm thông tin & bản đồ</a><a href="/Discovery/Library">Thư viện tra cứu</a><a class="@(route=="Saved"?"active":"")" href="/Saved">Lựa chọn đã lưu</a></div></details>
-   <details class="sidebar-group" open="@tripArea">
-    <summary class="@(tripArea?"group-active":"")">@Ui.Icon("calendar")<span>Chuyến đi</span>@Ui.Icon("chevron")</summary>
-    <div class="sidebar-subnav"><a class="@(route=="Plans"?"active":"")" href="/Plans">Chuyến đi của tôi</a><a class="@(route=="Bookings"||route=="Reviews"?"active":"")" href="/Bookings">Đặt dịch vụ</a><a class="@(route=="Support"?"active":"")" href="/Support">Hỗ trợ chuyến đi</a></div>
-   </details>
-   <details class="sidebar-group" open="@companionArea">
-    <summary class="@(companionArea?"group-active":"")">@Ui.Icon("users")<span>Đồng hành</span>@Ui.Icon("chevron")</summary>
-    <div class="sidebar-subnav"><a class="@(route=="Together"&&action=="Index"?"active":"")" href="/Together">Lời rủ đi cùng</a><a class="@(route=="Together"&&action is "Mine" or "Group" or "Edit"?"active":"")" href="/Together/Mine">Nhóm của tôi</a><a class="@(route=="Together"&&action=="Profile"?"active":"")" href="/Together/Profile">Phong cách &amp; riêng tư</a><a class="@(route=="Companions"&&new[]{"Index","Detail","Propose"}.Contains(action)?"active":"")" href="/Companions">Tìm người đồng hành</a><a class="@(route=="Companions"&&new[]{"Mine","Edit","Preview"}.Contains(action)?"active":"")" href="/Companions/Mine">Bài đăng của tôi</a><a class="@(route=="Companions"&&new[]{"Connections","Connection","Agreement"}.Contains(action)?"active":"")" href="/Companions/Connections">Kết nối của tôi</a></div>
-   </details>
+   <a class="sidebar-direct @(route=="Social"?"active":"")" href="/bang-tin">@Ui.Icon("grid") Bảng tin @if(friendRequests>0){<span class="chat-badge">@friendRequests</span>}</a>
+   <a class="sidebar-direct @((route is "Explore" or "Discovery" or "Places" or "Saved")?"active":"")" href="/Discovery">@Ui.Icon("compass") Khám phá</a>
+   <a class="sidebar-direct @(route=="Plans"?"active":"")" href="/Plans">@Ui.Icon("calendar") Chuyến đi</a>
   }else if(provider){
-   <details class="sidebar-group" open="@(route=="Branches"||route=="Bookings"||route=="Availability"||route=="Reviews"||(route=="Provider"&&new[]{"Index","Edit","Reception"}.Contains(action)))"><summary>@Ui.Icon("grid")<span>Dịch vụ & đặt chỗ</span>@Ui.Icon("chevron")</summary><div class="sidebar-subnav"><a class="@(route=="Branches"?"active":"")" href="/nha-cung-cap/co-so">Cơ sở & chi nhánh</a><a class="@(route=="Provider"&&new[]{"Index","Edit","Reception"}.Contains(action)?"active":"")" href="/Provider">Dịch vụ của tôi</a><a class="@(route=="Bookings"?"active":"")" href="/Bookings">Yêu cầu đặt dịch vụ</a></div></details>
-   <details class="sidebar-group" open="@(route=="Provider"&&new[]{"Verification","Rights"}.Contains(action))"><summary>@Ui.Icon("shield")<span>Hồ sơ đối tác</span>@Ui.Icon("chevron")</summary><div class="sidebar-subnav"><a class="@(route=="Provider"&&action=="Verification"?"active":"")" href="/Provider/Verification">Hồ sơ xác minh</a><a class="@(route=="Provider"&&action=="Rights"?"active":"")" href="/Provider/Rights">Quyền hoạt động</a></div></details>
+   <a class="sidebar-direct @(route=="Social"?"active":"")" href="/bang-tin">@Ui.Icon("grid") Bảng tin</a>
+   <a class="sidebar-direct @(route=="Provider"&&new[]{"Index","Edit","Reception"}.Contains(action)?"active":"")" href="/Provider">@Ui.Icon("ticket") Dịch vụ</a>
+   <a class="sidebar-direct @(route=="Bookings"?"active":"")" href="/Bookings">@Ui.Icon("clock") Yêu cầu đặt dịch vụ</a>
+   <div class="sidebar-divider"></div>
+   <a class="sidebar-direct @(route=="Branches"?"active":"")" href="/nha-cung-cap/co-so">@Ui.Icon("pin") Cơ sở của tôi</a>
   }else if(admin){
    <a class="sidebar-direct @(route=="Admin"&&action=="Index"?"active":"")" href="/Admin">@Ui.Icon("grid") Tổng quan</a>
-   <details class="sidebar-group" open="@(route=="BranchAdmin"||route=="Landmarks"||(route=="Together"&&action=="Moderation")||route=="Reviews"||(route=="Admin"&&new[]{"ServiceReviews","Review","Verifications","Verification"}.Contains(action)))"><summary>@Ui.Icon("check")<span>Duyệt & xác minh</span>@Ui.Icon("chevron")</summary><div class="sidebar-subnav"><a class="@(new[]{"ServiceReviews","Review"}.Contains(action)?"active":"")" href="/Admin/ServiceReviews">Xét duyệt dịch vụ</a><a class="@(route=="BranchAdmin"?"active":"")" href="/quan-tri/co-so">Xét duyệt cơ sở</a><a class="@(route=="Landmarks"?"active":"")" href="/quan-tri/moc-dia-diem">Địa điểm & cửa vào</a><a class="@(new[]{"Verifications","Verification"}.Contains(action)?"active":"")" href="/Admin/Verifications">Xác minh nhà cung cấp</a><a class="@(route=="Reviews"?"active":"")" href="/Reviews/Moderation">Đánh giá trải nghiệm</a><a class="@(route=="Together"?"active":"")" href="/Together/Moderation">Báo cáo đồng hành</a></div></details>
-   <a class="sidebar-direct @(new[]{"Providers","Provider","Consequences"}.Contains(action)?"active":"")" href="/Admin/Providers">@Ui.Icon("users") Quyền nhà cung cấp</a>
+   <details class="sidebar-group" open="@(route=="BranchAdmin"||route=="Landmarks"||(route=="Together"&&action=="Moderation")||route=="Reviews"||(route=="Admin"&&new[]{"ServiceReviews","Review","Verifications","Verification"}.Contains(action)))"><summary>@Ui.Icon("check")<span>Duyệt & xác minh</span>@Ui.Icon("chevron")</summary><div class="sidebar-subnav"><a class="@(new[]{"ServiceReviews","Review"}.Contains(action)?"active":"")" href="/Admin/ServiceReviews">Xét duyệt dịch vụ</a><a class="@(route=="BranchAdmin"?"active":"")" href="/quan-tri/co-so">Xét duyệt cơ sở</a><a class="@(route=="Landmarks"?"active":"")" href="/quan-tri/moc-dia-diem">Địa điểm & cửa vào</a><a class="@(route=="Chat"?"active":"")" href="/quan-tri/bao-cao-chat">Báo cáo tin nhắn</a><a class="@(new[]{"Verifications","Verification"}.Contains(action)?"active":"")" href="/Admin/Verifications">Xác minh nhà cung cấp</a><a class="@(route=="Reviews"?"active":"")" href="/Reviews/Moderation">Đánh giá trải nghiệm</a><a class="@(route=="Together"?"active":"")" href="/Together/Moderation">Báo cáo đồng hành</a></div></details>
+   <a class="sidebar-direct @(route=="GuideAdmin"?"active":"")" href="/quan-tri/lich-mau">@Ui.Icon("compass") Lịch trình mẫu</a>
+   <a class="sidebar-direct @(route=="ServiceKinds"?"active":"")" href="/quan-tri/loai-dich-vu">@Ui.Icon("grid") Loại dịch vụ</a>
+   <a class="sidebar-direct @(route=="TravelerAdmin"?"active":"")" href="/quan-tri/khach-du-lich">@Ui.Icon("users") Khách du lịch</a>
+   <a class="sidebar-direct @(new[]{"Providers","Provider","Consequences"}.Contains(action)?"active":"")" href="/Admin/Providers">@Ui.Icon("shield") Nhà cung cấp</a>
+   <a class="sidebar-direct @((route=="Chat"||(route=="Together"&&action=="Moderation")||route=="Reviews")?"active":"")" href="/quan-tri/bao-cao-bai-viet">@Ui.Icon("bell") Báo cáo bài viết</a>
+   <a class="sidebar-direct @(route=="Chat"?"active":"")" href="/quan-tri/bao-cao-chat">@Ui.Icon("bell") Báo cáo tin nhắn</a>
    <a class="sidebar-direct @(action=="Audit"?"active":"")" href="/Admin/Audit">@Ui.Icon("clock") Nhật ký hoạt động</a>
   }
-   @if(admin||provider){<a class="sidebar-direct @(route=="Discovery"?"active":"")" href="/Discovery/Manage">@Ui.Icon("compass") Thông tin tra cứu</a>}
+   @if(admin){<a class="sidebar-direct @(route=="Discovery"?"active":"")" href="/Discovery/Manage">@Ui.Icon("compass") Thông tin tra cứu</a>}
    <div class="sidebar-divider"></div>
-   <details class="sidebar-group" open="@(route=="Account")"><summary>@Ui.Icon("user")<span>Tài khoản</span>@Ui.Icon("chevron")</summary><div class="sidebar-subnav">@if(canProfile){<a class="@(route=="Account"&&action=="Profile"?"active":"")" href="/Account/Profile">Thông tin cá nhân</a>}<a class="@(route=="Account"&&action=="Notifications"?"active":"")" href="/Account/Notifications">Thông báo @if(unread>0){<span class="nav-count">@unread</span>}</a><a class="@(route=="Account"&&action=="Password"?"active":"")" href="/Account/Password">Đổi mật khẩu</a></div></details>
+   <a class="sidebar-direct @(route=="Account"?"active":"")" href="@(canProfile?"/Account/Profile":"/Account/Notifications")">@Ui.Icon("user") Tài khoản @if(unread>0){<span class="nav-count">@unread</span>}</a>
   </nav>
-  <div class="sidebar-explore"><span class="mini-compass">@Ui.Icon("compass")</span><strong>Còn nhiều nơi để khám phá.</strong><p>Tìm cảm hứng cho hành trình tiếp theo.</p><a href="/">Khám phá Việt Nam @Ui.Icon("arrow")</a></div>
+  @if(traveler){<div class="sidebar-explore"><span class="mini-compass">@Ui.Icon("compass")</span><strong>Còn nhiều nơi để khám phá.</strong><p>Tìm cảm hứng cho hành trình tiếp theo.</p><a href="/">Khám phá Việt Nam @Ui.Icon("arrow")</a></div>}
   <div class="sidebar-user"><span class="avatar">@Ui.Initial(name)</span><span><strong>@name</strong><small>@Labels.Status(role)</small></span></div>
  </aside>
 }
 <div class="app-content">
- @if(workspace){<div class="workspace-topline"><nav aria-label="Vị trí hiện tại"><a href="@workspaceHome">@roleName</a><span class="crumb-separator">/</span><span>@pageSection</span>@if(ViewData["Title"]?.ToString()!=pageSection){<span class="crumb-separator">/</span><b>@ViewData["Title"]</b>}</nav><span class="workspace-date">@Ui.Icon("calendar") @TravelService.Today.ToString("dd.MM.yyyy")</span></div>}
+ @if(workspace){<div class="workspace-topline"><nav aria-label="Vị trí hiện tại"><a href="@workspaceHome">@roleName</a>@if(provBranch!=null){<span class="crumb-separator">&gt;</span><b>@provBranch.Name</b>}<span class="crumb-separator">/</span><span>@pageSection</span>@if(ViewData["Title"]?.ToString()!=pageSection){<span class="crumb-separator">/</span><b>@ViewData["Title"]</b>}</nav><span class="workspace-date">@Ui.Icon("calendar") @TravelService.Today.ToString("dd.MM.yyyy")</span></div>}
  <main id="main-content">@if(TempData["Success"] is string success){<div class="toast-message" role="status">@Ui.Icon("check")<span>@success</span><button type="button" class="dismiss" aria-label="Đóng thông báo">×</button></div>}@RenderBody()<partial name="_SimplePager"/></main>
  @if(!workspace){
   <footer class="site-footer"><div class="footer-invitation"><span class="eyebrow">CÓ MỘT VIỆT NAM ĐANG CHỜ BẠN</span><h2>Chuyến đi hay bắt đầu<br/>từ một ý tưởng.</h2><a class="btn btn-lime" href="@(canPlan?"/Plans/Edit":"/")">@(canPlan?"Lên kế hoạch của bạn":"Khám phá Việt Nam") @Ui.Icon("arrow")</a></div><div class="footer-main"><div><a class="brand" href="/">@Ui.Icon("compass") Hành Trình</a><p>Đi theo cách của bạn.<br/>Kết nối những trải nghiệm mới.</p></div><div><h3>Khám phá</h3><a href="/?type=DiaDiem">Điểm đến</a><a href="/">Dịch vụ du lịch</a><a href="/Companions">Tìm người đồng hành</a></div><div><h3>Hành trình của bạn</h3>@if(canPlan){<a href="/Plans">Chuyến đi của tôi</a><a href="/Bookings">Đặt dịch vụ</a><a href="/Support">Hỗ trợ chuyến đi</a>}@if(!signed){<a href="/Account/Register?accountType=provider">Trở thành đối tác</a>}</div></div><div class="footer-bottom"><span>© @DateTime.Now.Year Hành Trình</span><span><a href="/dieu-khoan-su-dung">Điều khoản sử dụng</a> · <a href="/chinh-sach-bao-mat">Quyền riêng tư</a></span><span>Ảnh điểm đến và dịch vụ mang tính minh họa.</span><span>KHÁM PHÁ · KẾ HOẠCH · ĐỒNG HÀNH</span></div></footer>
@@ -124,7 +137,7 @@
  <script src="~/js/google-maps.js" asp-append-version="true"></script>
  <script src="~/js/places.js" asp-append-version="true"></script>
 }
-<script src="~/js/site.js" asp-append-version="true"></script>
-<script src="~/js/journey-features.js" asp-append-version="true"></script><script src="~/js/companion-features.js" asp-append-version="true"></script>@await RenderSectionAsync("Scripts",required:false)
+<script src="~/js/site.js" asp-append-version="true"></script><script src="~/js/dia-gioi.js" asp-append-version="true"></script>@if(signed&&(traveler||provider)){<script src="~/js/chat-badge.js" asp-append-version="true"></script><script src="~/js/chat-dock.js" asp-append-version="true"></script>}
+<script src="~/js/journey-features.js" asp-append-version="true"></script><script src="~/js/companion-features.js" asp-append-version="true"></script><script src="~/js/map-base.js" asp-append-version="true"></script>@await RenderSectionAsync("Scripts",required:false)
 </body></html>
 

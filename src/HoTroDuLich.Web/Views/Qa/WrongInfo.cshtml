@@ -1,0 +1,18 @@
+@model (CoSoDichVu Branch,List<WrongInfoRow> Items)
+@{ViewData["Title"]="Thông tin khách báo chưa đúng";var fields=QaService.WrongFields.ToDictionary(f=>f.Key,f=>f.Label);}
+<div class="container-narrow">
+ <a class="back" href="/nha-cung-cap/co-so">← Cơ sở của tôi</a>
+ <div class="page-head"><div><span class="eyebrow">@Model.Branch.Name</span><h1>Khách báo thông tin chưa đúng</h1><p>Kiểm tra, chỉnh thông tin cơ sở nếu cần, rồi phản hồi để khách biết.</p></div></div>
+ @if(Model.Items.Count==0){<div class="empty"><h2>Chưa có báo cáo nào</h2></div>}
+ @foreach(var r in Model.Items)
+ {
+  <article class="panel"><span class="badge">@(r.Report.Status=="Open"?"Đang chờ":r.Report.Status=="Fixed"?"Đã chỉnh":"Giữ nguyên")</span><h2>@fields.GetValueOrDefault(r.Report.Field,r.Report.Field)</h2><p class="prose">@r.Report.Detail</p><small class="help">@r.Reporter · @Ui.LocalTime(r.Report.CreatedAt).ToString("dd/MM/yyyy")</small>
+   @if(!string.IsNullOrEmpty(r.Report.ResponseNote)){<p class="help">Phản hồi: @r.Report.ResponseNote</p>}
+   @if(r.Report.Status=="Open")
+   {
+    <form action="/nha-cung-cap/co-so/@Model.Branch.Id/bao-sai/@r.Report.Id" method="post">@Html.AntiForgeryToken()<div class="field"><label for="note-@r.Report.Id">Ghi chú gửi khách (không bắt buộc)</label><input class="form-control" id="note-@r.Report.Id" name="note" maxlength="300"/></div>
+     <div class="actions"><button class="btn btn-dark" name="fixedIt" value="true" type="submit">Đã chỉnh lại</button><button class="btn btn-outline" name="fixedIt" value="false" type="submit">Thông tin vẫn đúng</button><a class="text-link" href="/nha-cung-cap/co-so/@Model.Branch.Id">Sửa thông tin cơ sở</a></div></form>
+   }
+  </article>
+ }
+</div>

@@ -17,6 +17,7 @@ public partial interface ILapKeHoachService
 {
     Task<List<KeHoachChuyenDi>> DanhSachAsync();
     Task<KeHoachChuyenDi> XemKeHoachAsync(long id);
+    Task<KeHoachChuyenDi> XemKeHoachChungAsync(long id);
     Task<List<HoatDongLichTrinh>> LayHoatDong(long id);
     Task<long> CapNhatThongTinAsync(PlanInput i);
     Task ChapNhanAsync(CommandInput i);

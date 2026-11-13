@@ -95,12 +95,12 @@ public static class Seed
             db.Add(new DiaDiemDuLich { TenDiaDiem = name, LoaiDiaDiem = type, KhuVuc = region, MoTa = desc, DangHienThi = true });
         var items = new[]
         {
-            ("Mây trong thung lũng", "Lưu trú", "Đà Lạt", 650000m, "Một căn phòng nhỏ, cửa sổ lớn và khoảng xanh thật yên. Lưu trú giữa vườn thông, cách trung tâm 15 phút.", "Nhận phòng 14:00 · Trả phòng 12:00"),
-            ("Săn mây đón bình minh", "Hoạt động", "Đà Lạt", 350000m, "Cùng hướng dẫn viên địa phương đón những tia nắng đầu tiên trên đồi. Bao gồm di chuyển và bữa sáng nhẹ.", "04:30–08:00"),
-            ("Bếp nhà phố Hội", "Ăn uống", "Hội An", 180000m, "Một bữa cơm Quảng, một khoảng sân yên. Thưởng thức món ăn địa phương theo thực đơn theo mùa.", "11:00–21:00"),
-            ("Một ngày trên vịnh Lan Hạ", "Hoạt động", "Hải Phòng", 890000m, "Đi thuyền, chèo kayak và ngắm các đảo đá trong hành trình một ngày cùng người bản địa.", "08:00–16:00"),
-            ("Xe máy khám phá Đà Lạt", "Phương tiện", "Đà Lạt", 150000m, "Thuê xe theo ngày, nhận xe tại trung tâm. Nhà cung cấp sẽ xác nhận loại xe và điều kiện khi phản hồi.", "07:00–20:00"),
-            ("An Nhiên bên sông", "Lưu trú", "Hội An", 720000m, "Không gian nghỉ ngơi ấm áp bên sông, có xe đạp để bạn thong thả khám phá phố cổ.", "Nhận phòng 14:00 · Trả phòng 12:00")
+            ("Mây trong thung lũng", "LuuTru", "Đà Lạt", 650000m, "Một căn phòng nhỏ, cửa sổ lớn và khoảng xanh thật yên. Lưu trú giữa vườn thông, cách trung tâm 15 phút.", "Nhận phòng 14:00 · Trả phòng 12:00"),
+            ("Săn mây đón bình minh", "HoatDong", "Đà Lạt", 350000m, "Cùng hướng dẫn viên địa phương đón những tia nắng đầu tiên trên đồi. Bao gồm di chuyển và bữa sáng nhẹ.", "04:30–08:00"),
+            ("Bếp nhà phố Hội", "AnUong", "Hội An", 180000m, "Một bữa cơm Quảng, một khoảng sân yên. Thưởng thức món ăn địa phương theo thực đơn theo mùa.", "11:00–21:00"),
+            ("Một ngày trên vịnh Lan Hạ", "HoatDong", "Hải Phòng", 890000m, "Đi thuyền, chèo kayak và ngắm các đảo đá trong hành trình một ngày cùng người bản địa.", "08:00–16:00"),
+            ("Xe máy khám phá Đà Lạt", "PhuongTien", "Đà Lạt", 150000m, "Thuê xe theo ngày, nhận xe tại trung tâm. Nhà cung cấp sẽ xác nhận loại xe và điều kiện khi phản hồi.", "07:00–20:00"),
+            ("An Nhiên bên sông", "LuuTru", "Hội An", 720000m, "Không gian nghỉ ngơi ấm áp bên sông, có xe đạp để bạn thong thả khám phá phố cổ.", "Nhận phòng 14:00 · Trả phòng 12:00")
         };
         foreach (var(name, type, region, price, desc, hours)in items)
         {

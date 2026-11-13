@@ -7,11 +7,20 @@ public sealed class CoSoDichVu
  public string Name { get; set; } = "";
  public string Type { get; set; } = "";
  public string Region { get; set; } = "";
+ public long? DonViId { get; set; }
  public string Address { get; set; } = "";
  public string? Summary { get; set; }
  public string? Phone { get; set; }
  public string? Website { get; set; }
  public string? Hours { get; set; }
+ public decimal? PriceFrom { get; set; }
+ public decimal? PriceTo { get; set; }
+ public string? PriceUnit { get; set; }
+ public string? OpenDays { get; set; }
+ public TimeOnly? OpenTime { get; set; }
+ public TimeOnly? CloseTime { get; set; }
+ public string? PhotosJson { get; set; }
+ public string? AttributesJson { get; set; }
  public bool? Parking { get; set; }
  public bool? VegetarianOptions { get; set; }
  public bool? VeganOnly { get; set; }
@@ -35,11 +44,20 @@ public sealed class BanCapNhatCoSo
  public string Name { get; set; } = "";
  public string Type { get; set; } = "";
  public string Region { get; set; } = "";
+ public long? DonViId { get; set; }
  public string Address { get; set; } = "";
  public string? Summary { get; set; }
  public string? Phone { get; set; }
  public string? Website { get; set; }
  public string? Hours { get; set; }
+ public decimal? PriceFrom { get; set; }
+ public decimal? PriceTo { get; set; }
+ public string? PriceUnit { get; set; }
+ public string? OpenDays { get; set; }
+ public TimeOnly? OpenTime { get; set; }
+ public TimeOnly? CloseTime { get; set; }
+ public string? PhotosJson { get; set; }
+ public string? AttributesJson { get; set; }
  public bool? Parking { get; set; }
  public bool? VegetarianOptions { get; set; }
  public bool? VeganOnly { get; set; }
@@ -74,6 +92,7 @@ public sealed class MocDiaDiem
  public string Name { get; set; } = "";
  public string Type { get; set; } = "";
  public string Region { get; set; } = "";
+ public long? DonViId { get; set; }
  public string Address { get; set; } = "";
  public string? Summary { get; set; }
  public string? Hours { get; set; }

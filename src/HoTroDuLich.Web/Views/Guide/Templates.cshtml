@@ -1,0 +1,18 @@
+@model List<TemplateCard>
+@{
+ ViewData["Title"]="Lịch trình mẫu";
+ var units=ViewBag.Units as System.Collections.IEnumerable;
+ var f=((long? Dest,string? Style,int? Days))ViewBag.Filter;
+}
+<partial name="/Views/Shared/_ExploreTabs.cshtml" model='"templates"'/>
+<div class="container-wide">
+ <div class="page-head"><div><span class="eyebrow">KHÁM PHÁ / LỊCH TRÌNH MẪU</span><h1>Lịch trình mẫu</h1><p>Chọn một lịch có sẵn, chép về kế hoạch của mình rồi chỉnh theo ý.</p></div></div>
+ <form action="/lich-mau" method="get" class="list-filters panel">
+  <div class="field"><label for="tpl-dest">Điểm đến</label><select class="form-select" id="tpl-dest" name="diemDen"><option value="">Tất cả</option>@foreach(dynamic u in units){<option value="@u.Id" selected="@(f.Dest==(long)u.Id)">@u.Name</option>}</select></div>
+  <div class="field"><label for="tpl-style">Phong cách</label><select class="form-select" id="tpl-style" name="phongCach"><option value="">Tất cả</option>@foreach(var s in GuideService.Styles){<option value="@s.Key" selected="@(f.Style==s.Key)">@s.Label</option>}</select></div>
+  <div class="field"><label for="tpl-days">Số ngày</label><select class="form-select" id="tpl-days" name="soNgay"><option value="">Bất kỳ</option>@foreach(var d in new[]{1,2,3,4,5,7}){<option value="@d" selected="@(f.Days==d)">@d ngày</option>}</select></div>
+  <button class="btn btn-dark" type="submit">Lọc</button><a class="filter-reset" href="/lich-mau">Đặt lại</a>
+ </form>
+ @if(Model.Count==0){<div class="empty"><h2>Chưa có lịch trình mẫu phù hợp</h2><p>Thử bỏ bớt bộ lọc, hoặc tự lên kế hoạch ở mục Chuyến đi.</p></div>}
+ <div class="tpl-grid tpl-grid-wide">@foreach(var c in Model){<a class="tpl-card" href="/lich-mau/@c.Template.Id"><span class="eyebrow">@c.Destination</span><strong>@c.Template.Title</strong><p>@c.Template.Summary</p><small>@c.Template.Days ngày · @(GuideService.Styles.First(x=>x.Key==c.Template.Style).Label)@(c.Template.Uses>0?" · "+c.Template.Uses+" lượt dùng":"")</small></a>}</div>
+</div>

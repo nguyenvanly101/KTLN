@@ -1,0 +1,479 @@
+/* Mang xa hoi: ban be, ho so, bang tin, bai viet, binh luan */
+.soc-page .soc-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 16px}
+.soc-tabs button{border:1px solid var(--line,#e5e7eb);background:#fff;border-radius:999px;padding:6px 16px;cursor:pointer;font-weight:600}
+.soc-tabs button.active{background:#173f35;color:#fff;border-color:#173f35}
+.soc-count{display:inline-flex;min-width:18px;height:18px;padding:0 5px;margin-left:4px;border-radius:9px;background:#c0392b;color:#fff;font-size:12px;align-items:center;justify-content:center}
+.soc-count:empty{display:none}
+.soc-search{margin-bottom:16px;max-width:420px}
+.soc-search[hidden]{display:none}
+.soc-h2{font-size:18px;margin:18px 0 10px}
+.soc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.soc-card{display:flex;flex-direction:column;gap:10px;padding:14px}
+.soc-card-main{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
+.soc-card-main small{display:block;opacity:.7}
+.soc-bio{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:210px}
+.soc-card-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.soc-avatar{width:48px;height:48px;border-radius:50%;background:#173f35;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;overflow:hidden;flex:none}
+.soc-avatar img{width:100%;height:100%;object-fit:cover}
+.soc-avatar.small{width:36px;height:36px;font-size:14px}
+.soc-empty{opacity:.7;padding:24px 0}
+.soc-empty[hidden]{display:none}
+.soc-meta{opacity:.75;font-size:14px;display:flex;gap:12px;flex-wrap:wrap;margin:4px 0}
+.soc-cover{display:flex;gap:20px;align-items:center;flex-wrap:wrap;padding:20px}
+.soc-cover-main{flex:1;min-width:220px}
+.soc-avatar-big{width:120px;height:120px;border-radius:50%;background:#173f35;color:#fff;font-size:44px;font-weight:700;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.soc-avatar-big img{width:100%;height:100%;object-fit:cover}
+.soc-actions{display:flex;gap:8px;flex-wrap:wrap}
+.soc-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1b1f1d;color:#fff;padding:10px 18px;border-radius:10px;z-index:80}
+.soc-toast[hidden]{display:none}
+.soc-profile-body{margin-top:16px;max-width:720px}
+.soc-feed{max-width:680px;margin:0 auto}
+
+/* Bai viet */
+.post-composer{padding:14px;display:grid;gap:10px;margin-bottom:16px}
+.post-composer-top{display:flex;gap:12px;align-items:flex-start}
+.post-composer textarea{flex:1;resize:vertical;min-height:64px}
+.post-composer-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.post-previews{display:flex;gap:8px;flex-wrap:wrap}
+.post-previews img{width:84px;height:84px;object-fit:cover;border-radius:8px}
+.post{padding:14px;margin-bottom:14px;display:grid;gap:10px}
+.post-head{display:flex;gap:10px;align-items:center}
+.post-head-main{flex:1;min-width:0}
+.post-head-main a{font-weight:700;text-decoration:none;color:inherit}
+.post-head-main small{display:block;opacity:.65}
+.post-menu{position:relative}
+.post-menu-list{position:absolute;right:0;top:100%;background:#fff;border:1px solid var(--line,#e5e7eb);border-radius:10px;min-width:150px;z-index:20;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.post-menu-list[hidden]{display:none}
+.post-menu-list button{display:block;width:100%;text-align:left;border:0;background:none;padding:8px 14px;cursor:pointer}
+.post-menu-list button:hover{background:#f3f6f4}
+.post-body{white-space:pre-wrap;word-break:break-word;margin:0}
+.post-photos{display:grid;gap:4px;grid-template-columns:repeat(2,1fr)}
+.post-photos.one{grid-template-columns:1fr}
+.post-photos img{width:100%;max-height:420px;object-fit:cover;border-radius:10px}
+.post-stats{display:flex;justify-content:space-between;font-size:14px;opacity:.75}
+.post-actions{display:flex;gap:4px;border-top:1px solid var(--line,#eef0f2);border-bottom:1px solid var(--line,#eef0f2);padding:2px 0}
+.post-actions button{flex:1;border:0;background:none;padding:8px;cursor:pointer;border-radius:8px;font-weight:600}
+.post-actions button:hover{background:#f3f6f4}
+.post-actions button.on{color:#173f35;background:#e6f0ea}
+.post-comments{display:grid;gap:8px}
+.comment{display:flex;gap:8px;align-items:flex-start}
+.comment-bubble{background:#f1f3f2;border-radius:14px;padding:8px 12px;max-width:100%;word-break:break-word}
+.comment-bubble strong{display:block;font-size:13px}
+.comment-bubble p{margin:0;white-space:pre-wrap}
+.comment-meta{display:flex;gap:10px;font-size:12px;opacity:.7;margin:2px 8px;flex-wrap:wrap}
+.comment-meta button{border:0;background:none;padding:0;cursor:pointer;font-size:12px;font-weight:600}
+.comment-meta button.on{color:#173f35}
+.comment-replies{margin-left:44px;display:grid;gap:8px}
+.comment-form{display:flex;gap:8px;align-items:center}
+.comment-form input{flex:1}
+.post-more{width:100%;margin:8px 0}
+@media (max-width:560px){.soc-grid{grid-template-columns:1fr}.soc-cover{flex-direction:column;align-items:flex-start}}
+
+/* Chat nhom */
+.chat-sender{font-size:12px;opacity:.7;margin:0 8px 2px}
+.chat-group-create{padding:20px;display:grid;gap:12px;overflow:auto}
+.chat-group-create[hidden]{display:none}
+.chat-checks{display:grid;gap:4px;max-height:260px;overflow:auto}
+.chat-check{display:flex;gap:8px;align-items:center;padding:4px 0}
+.chat-members{padding:10px 16px;border-bottom:1px solid var(--line,#e5e7eb);display:grid;gap:8px;background:#fafbfa}
+.chat-members[hidden]{display:none}
+.chat-members-row{display:flex;gap:8px}
+.chat-members-list{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.chat-member{display:flex;justify-content:space-between;gap:8px}
+.chat-leave{color:#b42318;justify-self:start}
+
+/* Ung dung chat: ngu canh co so, tam tinh dat cho, ban dong hanh phu hop */
+.chat-context{display:flex;gap:12px;align-items:center;padding:8px 16px;border-bottom:1px solid var(--line,#e5e7eb);background:#fafbfa}
+.chat-context[hidden]{display:none}
+.chat-context img{width:56px;height:56px;object-fit:cover;border-radius:10px}
+.chat-context small{display:block;opacity:.75}
+.chat-pending{margin-top:4px;font-size:12px;font-weight:700;color:#8a5a00;background:#fff3d6;border-radius:6px;padding:2px 8px;display:inline-block}
+.chat-book-check{display:grid;gap:4px;font-size:14px}
+.chat-check-est{margin:0;font-weight:700}
+.chat-check-warn{margin:0;background:#fff6e5;border-radius:8px;padding:4px 10px}
+.chat-check-bad{margin:0;background:#fbe9e7;color:#b42318;border-radius:8px;padding:4px 10px}
+.companion-card-wrap{display:grid;gap:8px}
+.companion-card-actions{display:flex;gap:8px;flex-wrap:wrap}
+.match-section{margin:16px 0;padding:16px}
+.match-section h2{margin:0 0 4px;font-size:20px}
+.match-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:12px}
+.match-card{border:1px solid var(--line,#e5e7eb);border-radius:12px;padding:12px;display:grid;gap:6px;background:#fff}
+.match-card small{opacity:.75;display:block}
+
+/* Khung chat noi o moi trang + che do nhung */
+.chat-toolbar{display:flex;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line,#e5e7eb);flex-wrap:wrap}
+.chat-compose{padding:8px 12px;border-bottom:1px solid var(--line,#e5e7eb);display:grid;gap:6px}
+.chat-compose[hidden]{display:none}
+.chat-compose-results{display:grid;gap:2px;max-height:240px;overflow:auto}
+.chat-compose-item{display:grid;padding:6px 8px;border-radius:8px;text-decoration:none;color:inherit}
+.chat-compose-item:hover{background:#f3f6f4}
+.chat-compose-item small{opacity:.7}
+.chat-dock-bubble{position:fixed;right:20px;bottom:20px;z-index:70;width:56px;height:56px;border-radius:50%;border:0;background:#173f35;color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.chat-dock-bubble .icon{width:26px;height:26px}
+.chat-dock-bubble .chat-badge{position:absolute;top:-4px;right:-4px;margin:0}
+.chat-dock-bubble[hidden]{display:none}
+.chat-dock{position:fixed;right:20px;bottom:20px;z-index:70;width:400px;max-width:calc(100vw - 24px);height:min(640px,calc(100vh - 40px));background:#fff;border:1px solid var(--line,#d5dad7);border-radius:14px;box-shadow:0 10px 36px rgba(0,0,0,.28);display:flex;flex-direction:column;overflow:hidden}
+.chat-dock[hidden]{display:none}
+.chat-dock-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:#173f35;color:#fff}
+.chat-dock-head button{border:0;background:none;color:#fff;cursor:pointer;font-size:14px;padding:2px 8px;border-radius:6px}
+.chat-dock-head button:hover{background:rgba(255,255,255,.15)}
+.chat-dock iframe{flex:1;border:0;width:100%}
+.is-embed{background:#fff}
+.is-embed #main-content{padding:0}
+.is-embed .chat-page,.is-embed .container-wide{padding:0;max-width:none;margin:0}
+.is-embed .chat-app{height:100vh;max-height:none;min-height:0;gap:0;grid-template-columns:1fr}
+.is-embed .chat-app .panel{border-radius:0;border:0;box-shadow:none}
+.is-embed .chat-app .chat-thread{display:none}
+.is-embed .chat-app.chat-open .chat-thread{display:flex}
+.is-embed .chat-app.chat-open .chat-list{display:none}
+.is-embed .chat-back{display:inline-block}
+@media (max-width:560px){.chat-dock{right:0;bottom:0;width:100vw;max-width:100vw;height:100vh;border-radius:0}}
+
+/* Thao tac voi tin nhan */
+.chat-msg{position:relative}
+.chat-msg-tools{position:absolute;top:-14px;display:none;gap:2px;background:#fff;border:1px solid var(--line,#d5dad7);border-radius:999px;padding:2px 4px;box-shadow:0 2px 8px rgba(0,0,0,.12);z-index:5}
+.chat-msg.mine .chat-msg-tools{right:0}
+.chat-msg.theirs .chat-msg-tools{left:0}
+.chat-msg:hover .chat-msg-tools,.chat-msg:focus-within .chat-msg-tools{display:flex}
+.chat-msg-tools button{border:0;background:none;cursor:pointer;font-size:15px;padding:2px 6px;border-radius:6px;color:#1b1f1d}
+.chat-msg-tools button:hover{background:#eef2ef}
+.chat-react-pop{position:absolute;bottom:100%;display:flex;gap:2px;background:#fff;border:1px solid var(--line,#d5dad7);border-radius:999px;padding:4px 6px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.chat-react-pop[hidden]{display:none}
+.chat-quote{display:grid;text-align:left;border:0;border-left:3px solid #8bb59f;background:rgba(0,0,0,.06);border-radius:6px;padding:4px 8px;margin-bottom:4px;cursor:pointer;color:inherit;max-width:100%}
+.chat-quote strong{font-size:12px}
+.chat-quote span{font-size:13px;opacity:.8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chat-msg.mine .chat-quote{background:rgba(255,255,255,.18)}
+.chat-gone{font-style:italic;opacity:.6;background:transparent!important;border:1px dashed var(--line,#c9cfcb);color:inherit!important}
+.chat-reacts{display:flex;gap:4px;margin:2px 4px 0}
+.chat-reacts button{border:1px solid var(--line,#d5dad7);background:#fff;border-radius:999px;padding:0 8px;font-size:13px;cursor:pointer}
+.chat-reacts button.on{background:#e6f0ea;border-color:#8bb59f}
+.chat-geo,.chat-pdf{display:block;margin-top:4px;color:inherit;text-decoration:underline}
+.chat-flash .chat-bubble{outline:3px solid #f3c969}
+.chat-replybar{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:6px 16px;background:#f3f6f4;font-size:13px;border-top:1px solid var(--line,#e5e7eb)}
+.chat-replybar[hidden]{display:none}
+.chat-replybar button{border:0;background:none;cursor:pointer}
+.chat-emoji-pop{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;padding:6px 16px;border-top:1px solid var(--line,#e5e7eb);background:#fff}
+.chat-emoji-pop[hidden]{display:none}
+.chat-emoji-pop button{border:0;background:none;font-size:20px;cursor:pointer;border-radius:6px}
+.chat-emoji-pop button:hover{background:#eef2ef}
+button.chat-attach{border:0;background:none;font-size:18px}
+@media (hover:none){.chat-msg-tools{display:flex;position:static;margin-top:2px;box-shadow:none}}
+
+/* Dat coc, phuong an, goi y tin mau */
+.chat-card-deposit{margin:0;white-space:pre-wrap;background:#fff6e5;border-radius:8px;padding:6px 10px;font-size:14px}
+.chat-options{display:grid;gap:8px}
+.chat-option{display:grid;gap:4px}
+.chat-chip.suggest{border-color:#173f35;background:#e6f0ea;font-weight:600}
+
+.match-reasons{margin:0;padding-left:18px;font-size:13px;opacity:.85}
+
+.chat-lightbox{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:90;display:flex;align-items:center;justify-content:center;cursor:zoom-out}
+.chat-lightbox img{max-width:94vw;max-height:92vh;border-radius:8px}
+
+/* Thong tin rieng theo loai co so */
+.pv-typefields{border:1px solid var(--line,#e5e7eb);border-radius:12px;padding:12px 16px;margin:12px 0}
+.pv-typefields[hidden]{display:none}
+.pv-typefields .field-wide{grid-column:1/-1}
+.pv-checks{display:flex;flex-wrap:wrap;gap:6px 16px}
+.pv-checks label{display:inline-flex;gap:6px;align-items:center;font-weight:400}
+.pv-label{display:block;font-weight:600;margin-bottom:4px}
+.pv-attrs{margin-top:8px}
+.pv-attr-list{margin:0;padding-left:18px}
+
+/* Loai bai viet */
+.post-badge{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;background:var(--surface-2,#eef2ff);font-size:.75rem;font-weight:600}
+.post-trip{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;margin:8px 0}
+.post-trip[hidden]{display:none}
+.post-trip-info{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0;font-weight:600}
+@media(max-width:640px){.post-trip{grid-template-columns:1fr}}
+
+/* Chuyen doi co so (nha cung cap) */
+.branch-switch{margin:8px 0 12px;border:1px solid var(--line,#e5e7eb);border-radius:12px;background:var(--surface,#fff)}
+.branch-switch>summary{display:grid;grid-template-columns:1fr auto;gap:0 8px;padding:8px 12px;cursor:pointer;list-style:none}
+.branch-switch>summary small{grid-column:1/-1;color:var(--muted,#6b7280)}
+.branch-switch-list{display:grid;border-top:1px solid var(--line,#e5e7eb)}
+.branch-switch-list form{margin:0}
+.branch-switch-list button,.branch-switch-list a{display:block;width:100%;text-align:left;padding:8px 12px;border:0;background:none;font:inherit;color:inherit;text-decoration:none;cursor:pointer}
+.branch-switch-list button:hover,.branch-switch-list a:hover{background:var(--surface-2,#f3f4f6)}
+.branch-switch-list button.active{font-weight:700}
+
+.explore-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:12px auto 0;max-width:1180px;padding:0 16px}
+.explore-tabs a{display:inline-flex;gap:6px;align-items:center;padding:8px 14px;border-radius:999px;text-decoration:none;color:inherit;border:1px solid var(--line,#e5e7eb);background:var(--surface,#fff)}
+.explore-tabs a.active{background:var(--ink,#111827);color:#fff;border-color:transparent}
+
+/* Bang tin kieu Facebook: 3 cot */
+.fb-layout{display:grid;grid-template-columns:260px minmax(0,1fr) 300px;gap:16px;align-items:start}
+.fb-left,.fb-right{position:sticky;top:76px;display:grid;gap:12px}
+.fb-card{padding:14px;display:grid;gap:8px}
+.fb-links{padding:6px;display:grid}
+.fb-links a{display:flex;gap:10px;align-items:center;padding:10px;border-radius:10px;text-decoration:none;color:inherit}
+.fb-links a:hover{background:var(--surface-2,#f3f4f6)}
+.fb-person{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:4px 0}
+.fb-person a{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:1100px){.fb-layout{grid-template-columns:minmax(0,1fr) 280px}.fb-left{display:none}}
+@media(max-width:760px){.fb-layout{grid-template-columns:1fr}.fb-right{display:none}}
+
+/* Dich vu trong hang muc ke hoach */
+.activity-service{margin-bottom:16px;display:grid;gap:10px}
+.activity-service-card{display:grid;gap:8px;padding:12px;border:1px solid var(--line,#e5e7eb);border-radius:12px}
+.activity-saved-list{display:grid;gap:6px;margin-top:8px}
+.activity-saved-list a{display:grid;padding:10px;border:1px solid var(--line,#e5e7eb);border-radius:10px;text-decoration:none;color:inherit}
+.activity-saved-list a:hover{background:var(--surface-2,#f3f4f6)}
+
+.post-tag{display:inline-block;padding:2px 10px;border-radius:999px;background:var(--surface-2,#eef2ff);text-decoration:none;color:inherit;font-weight:600}
+
+/* Chuyen di chung */
+.trip-members{margin:16px 0;display:grid;gap:10px}
+.trip-member-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.trip-member-list li{display:flex;gap:10px;align-items:center}
+.trip-member-list li>span:nth-child(2){flex:1;display:grid}
+.trip-invite-form{display:flex;gap:8px;align-items:end;flex-wrap:wrap}
+.trip-invites{margin:12px 0;display:grid;gap:8px}
+.trip-invite{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.trip-invite>span{flex:1;min-width:220px}
+
+/* Khung dang bai gon: cac nut va o chon nam tren mot hang */
+.post-composer-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.post-composer-bar .soc-card-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.post-composer .form-select,.post-composer-bar .form-select{width:auto;max-width:220px}
+.post-composer-top{display:flex;gap:10px;align-items:flex-start}
+.post-composer-top textarea{flex:1;min-width:0}
+.post-composer>select.form-select{width:100%;max-width:none;margin-top:8px}
+
+.fb-checklist{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.fb-checklist li a{display:flex;gap:8px;align-items:center;text-decoration:none;color:inherit;padding:6px 8px;border-radius:8px}
+.fb-checklist li.done a{color:var(--muted,#6b7280);text-decoration:line-through}
+.fb-checklist li a:hover{background:var(--surface-2,#f3f4f6)}
+
+/* ===== Bang tin nang cao (kieu Facebook) ===== */
+.post-stats{align-items:center;padding:6px 0}
+.post-stats-right{display:flex;gap:12px}
+.post-react-sum{border:0;background:none;padding:2px 6px;border-radius:999px;cursor:pointer;font:inherit;display:inline-flex;align-items:center;gap:2px}
+.post-react-sum:hover{background:var(--surface-2,#f3f4f6)}
+.react-icons{display:inline-flex}.react-icons span{margin-right:-4px;font-size:16px;background:#fff;border-radius:50%}
+.post-actions{position:relative}
+.post-actions .react-wrap{flex:1;display:flex;position:relative}
+.post-actions .react-wrap>button{flex:1}
+.react-picker{position:absolute;left:0;bottom:calc(100% + 6px);display:flex;gap:2px;padding:6px 8px;background:var(--surface,#fff);border:1px solid var(--line,#e5e7eb);border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.16);z-index:20}
+.react-picker[hidden]{display:none}
+.react-opt{border:0;background:none;font-size:26px;line-height:1;padding:2px 5px;cursor:pointer;transition:transform .12s}
+.react-opt:hover,.react-opt:focus-visible{transform:scale(1.35) translateY(-4px)}
+.post-photos{display:grid;gap:3px;border-radius:12px;overflow:hidden}
+.post-photos.n1{grid-template-columns:1fr}
+.post-photos.n2{grid-template-columns:1fr 1fr}
+.post-photos.n3{grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr}
+.post-photos.n3 .photo-cell:first-child{grid-row:1/3}
+.post-photos.n4{grid-template-columns:1fr 1fr}
+.photo-cell{position:relative;overflow:hidden;cursor:zoom-in;background:#eef0f2;aspect-ratio:4/3}
+.post-photos.n1 .photo-cell{aspect-ratio:auto;max-height:560px}
+.photo-cell img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-more{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.5);color:#fff;font-size:28px;font-weight:700}
+.lb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.86);z-index:1000;display:grid;place-items:center;padding:16px}
+.lb-img{max-width:min(96vw,1200px);max-height:90vh;object-fit:contain;border-radius:8px}
+.lb-close{position:fixed;top:12px;right:16px;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:30px;width:44px;height:44px;border-radius:50%;cursor:pointer}
+.lb-close.inline{position:static;background:var(--surface-2,#f3f4f6);color:inherit;width:36px;height:36px;font-size:24px}
+.lb-nav{position:fixed;top:50%;transform:translateY(-50%);border:0;background:rgba(255,255,255,.14);color:#fff;font-size:40px;width:48px;height:64px;border-radius:12px;cursor:pointer}
+.lb-prev{left:12px}.lb-next{right:12px}
+.lb-count{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);color:#fff;background:rgba(0,0,0,.5);padding:2px 12px;border-radius:999px}
+.fb-modal{background:var(--surface,#fff);color:inherit;border-radius:14px;width:min(520px,94vw);max-height:80vh;overflow:auto;padding:16px;display:grid;gap:12px}
+.fb-modal-head{display:flex;justify-content:space-between;align-items:center}
+.fb-reactors{display:grid;gap:4px}
+.fb-share{display:grid;gap:10px}
+.post-embed{border:1px solid var(--line,#e5e7eb);border-radius:12px;padding:10px 12px;margin:8px 0;display:grid;gap:4px}
+.post-new-banner{position:sticky;top:70px;z-index:5;margin:0 auto 10px;display:block}
+.post-follow{margin-left:auto;margin-right:6px}
+.post-sentinel{height:1px}
+.fb-contact{display:flex;gap:8px;align-items:center;padding:4px 0}
+.fb-contact>a:first-of-type{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:none;color:inherit;font-weight:600}
+
+.post-actions button{white-space:nowrap;font-size:14px;padding:8px 6px}
+.fb-contact .btn{padding:4px 10px;font-size:13px;min-height:0;width:auto}
+.fb-person .btn{padding:4px 10px;font-size:13px;min-height:0;width:auto}
+
+/* ===== Trang ca nhan kieu Facebook ===== */
+.fb-profile-head{padding:0;overflow:hidden}
+.fb-cover{height:240px;background:linear-gradient(135deg,#1f6f5c,#2447e8 60%,#7c9cff);background-size:cover;background-position:center;position:relative}
+.fb-cover-edit{position:absolute;right:14px;bottom:14px;background:rgba(255,255,255,.92)}
+.fb-profile-bar{display:flex;gap:16px;align-items:flex-end;padding:0 20px 12px;margin-top:-48px;flex-wrap:wrap}
+.fb-profile-bar .soc-avatar-big{border:4px solid var(--surface,#fff);border-radius:50%;background:var(--surface,#fff)}
+.fb-profile-id{flex:1;min-width:200px;padding-bottom:6px}
+.fb-profile-id h1{margin:0;font-size:1.6rem}
+.fb-profile-tabs{display:flex;gap:4px;border-top:1px solid var(--line,#e5e7eb);padding:0 12px;overflow-x:auto}
+.fb-profile-tabs button{border:0;background:none;padding:14px 16px;font:inherit;font-weight:600;cursor:pointer;color:var(--muted,#6b7280);border-bottom:3px solid transparent;white-space:nowrap}
+.fb-profile-tabs button.active{color:var(--ink,#111827);border-bottom-color:var(--accent,#2447e8)}
+.fb-profile-cols{display:grid;grid-template-columns:340px minmax(0,1fr);gap:16px;margin-top:16px;align-items:start}
+.fb-about-card{position:sticky;top:76px;padding:16px;display:grid;gap:8px}
+.fb-about-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.fb-friend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.fb-friend-card{display:grid;gap:6px;justify-items:center;padding:12px;border:1px solid var(--line,#e5e7eb);border-radius:12px;text-decoration:none;color:inherit;text-align:center}
+.fb-photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.fb-photo-cell{border:0;padding:0;aspect-ratio:1;overflow:hidden;border-radius:8px;cursor:zoom-in;background:#eef0f2}
+.fb-photo-cell img{width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.fb-profile-cols{grid-template-columns:1fr}.fb-about-card{position:static}.fb-cover{height:160px}}
+
+.fb-profile-bar{position:relative;z-index:2}
+.fb-profile-bar .soc-avatar-big{width:120px;height:120px;display:grid;place-items:center;overflow:hidden;font-size:3rem;font-weight:700;background:#173f35;color:#fff;flex:none}
+.fb-profile-bar .soc-avatar-big img{width:100%;height:100%;object-fit:cover}
+
+/* Diem danh gia */
+.rating-chip{display:inline-flex;gap:4px;align-items:center;padding:2px 10px;border-radius:999px;background:#fff7e0;color:#8a5a00;text-decoration:none;font-size:14px;width:fit-content}
+.rating-star{color:#f5a800}
+.rating-chip small{opacity:.75}
+
+/* Cam nang + lich mau + khan cap */
+.handbook{display:grid;gap:12px}
+.handbook-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.hb-card{border:1px solid var(--line,#e5e7eb);border-radius:12px;padding:14px;display:grid;gap:6px;align-content:start}
+.hb-card h3{margin:0;font-size:1rem}
+.hb-card ul{margin:0;padding-left:18px}
+.hb-budget{list-style:none;padding:0!important;display:grid;gap:4px}
+.hb-budget li{display:flex;justify-content:space-between}
+.hb-emergency{background:#fff5f5;border-color:#f3c4c4}
+.tpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.tpl-grid-wide{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.tpl-card{display:grid;gap:4px;padding:14px;border:1px solid var(--line,#e5e7eb);border-radius:12px;text-decoration:none;color:inherit;background:var(--surface,#fff)}
+.tpl-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.tpl-use{display:flex;gap:16px;align-items:end;justify-content:space-between;flex-wrap:wrap;margin:12px 0}
+.tpl-use-form{display:flex;gap:10px;align-items:end;flex-wrap:wrap}
+.tpl-day{margin:10px 0}.tpl-day ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.tpl-day li{display:grid;grid-template-columns:56px 1fr auto;gap:10px;align-items:baseline}
+.tpl-day time{font-weight:700;color:var(--muted,#6b7280)}
+.emg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0}
+.emg-card{display:grid;gap:4px;text-decoration:none;color:inherit;padding:16px}
+.emg-card strong{font-size:1.8rem;color:#c92a2a}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-block;padding:5px 12px;border-radius:999px;border:1px solid var(--line,#e5e7eb);text-decoration:none;color:inherit;font-size:14px;background:var(--surface,#fff)}
+.chip:hover{background:var(--surface-2,#f3f4f6)}
+.emergency-card{background:#fff5f5;border-color:#f3c4c4;display:grid;gap:8px}
+.emergency-card a{color:#c92a2a}
+
+/* Chia tien nhom */
+.split-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-bottom:16px}
+.split-transfers{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:8px}
+.split-transfers li{padding:10px 12px;border:1px solid var(--line,#e5e7eb);border-radius:10px}
+.split-amount{font-weight:700;white-space:nowrap}
+.split-plus{color:#2f9e44;font-weight:600}.split-minus{color:#c92a2a;font-weight:600}
+.split-expense{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line,#e5e7eb)}
+.split-expense>div{flex:1;display:grid}
+@media(max-width:860px){.split-grid{grid-template-columns:1fr}}
+
+/* Hoi dap + bao sai */
+.qa-row{display:flex;gap:12px;align-items:center;justify-content:space-between;text-decoration:none;color:inherit;padding:10px 0;border-top:1px solid var(--line,#e5e7eb)}
+.panel.qa-row{padding:14px 16px;margin:8px 0;border:1px solid var(--line,#e5e7eb)}
+.qa-row>div{display:grid;flex:1}
+.qa-accepted{border-color:#2f9e44;background:#f4fbf5}
+.qa-answer .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.badge-success{background:#e6f4ea;color:#1e7e34}
+.wrong-info summary{cursor:pointer;font-weight:600}
+
+.ds-groups{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.ds-groups a{padding:6px 14px;border-radius:999px;border:1px solid var(--line,#e5e7eb);text-decoration:none;color:inherit;background:var(--surface,#fff);font-size:14px}
+.ds-groups a.active{background:var(--ink,#111827);color:#fff;border-color:transparent}
+
+/* ===== Lap ke hoach nhanh (PlanBoard) ===== */
+.pb-page{padding-top:28px;padding-bottom:70px}
+.pb-steps{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 20px}.pb-steps button,.pb-steps span{border:1px solid #dce2ee;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#5c667b;min-height:40px;cursor:pointer}.pb-steps span{cursor:default}.pb-steps .on{background:#16213e;color:#fff;border-color:#16213e;font-weight:700}.pb-steps .done{border-color:#2447e8;color:#2447e8}.pb-steps button:disabled{opacity:.6;cursor:default}
+.pb-create{max-width:640px;margin:0 auto;padding:30px}.pb-create h1{font-size:32px;margin:6px 0}
+.pb-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.pb-chip{border:1px solid #dce2ee;background:#f5f7fc;border-radius:999px;padding:8px 14px;min-height:40px;font-size:14px;cursor:pointer}.pb-chip:hover{border-color:#2447e8;color:#2447e8}
+.pb-stepper{display:flex;gap:8px;align-items:center;max-width:220px}.pb-stepper button{width:46px;height:46px;border:1px solid #dce2ee;background:#fff;border-radius:12px;font-size:22px;cursor:pointer}.pb-stepper input{text-align:center}
+.pb-more summary{cursor:pointer;min-height:44px;padding:10px 0;color:#5c667b}
+.pb-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;flex-wrap:wrap}.pb-head h1{font-size:30px;margin:0}
+.pb-total{text-align:right}.pb-total strong{display:block;font-size:24px}.pb-total .over{color:#b3261e}
+.pb-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#16213e;color:#fff;padding:12px 18px;border-radius:12px;z-index:50;max-width:90vw;box-shadow:0 8px 24px rgba(0,0,0,.25)}.pb-toast[hidden]{display:none}.pb-undo{margin-left:10px;background:none;border:0;color:#9db4ff;font-weight:700;cursor:pointer;text-decoration:underline}
+.pb-step{margin-top:18px}.pb-step[hidden]{display:none}
+.pb-split{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}.pb-side{position:sticky;top:90px}
+.pb-days{display:grid;gap:16px}.pb-day{border:1px solid #dce2ee;border-radius:14px;padding:14px;background:#fff}.pb-day header{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.pb-day h3{font-size:17px;margin:0;flex:1}.pb-day h3 small{color:#5c667b;font-weight:400}
+.pb-day ul{list-style:none;margin:10px 0;padding:0;display:grid;gap:6px}.pb-day li{display:grid;grid-template-columns:54px minmax(0,1fr) auto auto auto;gap:8px;align-items:center;padding:8px 10px;background:#f5f7fc;border-radius:10px}.pb-day li time{font-variant-numeric:tabular-nums;color:#2447e8;font-weight:700}.pb-c{overflow-wrap:anywhere}.pb-svc{font-size:12px;margin-left:6px}.pb-empty{display:block!important;color:#5c667b;background:none!important}
+.pb-mv{border:1px solid #dce2ee;border-radius:8px;min-height:36px;background:#fff;max-width:64px}.pb-x{border:0;background:none;color:#b3261e;min-width:36px;min-height:36px;cursor:pointer;font-size:15px}
+.pb-slots{display:flex;gap:6px;margin-bottom:8px}.pb-slots button{border:1px solid #dce2ee;background:#fff;border-radius:999px;padding:6px 14px;min-height:36px;cursor:pointer}.pb-slots .on{background:#2447e8;color:#fff;border-color:#2447e8}
+.pb-quick{display:flex;gap:8px}.pb-quick input{flex:1;min-width:0}.pb-quick .btn{white-space:nowrap}
+.pb-copy summary{cursor:pointer;font-size:14px;color:#2447e8}.pb-copy{font-size:14px}
+.pb-pick{display:block;margin:8px 0;font-size:14px}.pb-pick select{margin-top:4px}
+.pb-tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}.pb-tabs button{border:1px solid #dce2ee;background:#fff;border-radius:999px;padding:7px 14px;min-height:38px;cursor:pointer}.pb-tabs .on{background:#16213e;color:#fff}
+.pb-cards{display:grid;gap:10px;margin:10px 0}.pb-card{display:flex;justify-content:space-between;gap:12px;border:1px solid #dce2ee;border-radius:12px;padding:12px;background:#fff}.pb-card strong{display:block}.pb-card small{display:block;color:#5c667b}.pb-card b{display:block;margin-top:4px}.pb-card-act{display:grid;gap:6px;text-align:center;align-content:start;font-size:13px}
+.pb-nav{display:flex;justify-content:space-between;gap:10px;margin-top:16px;flex-wrap:wrap}
+.pb-checks{list-style:none;padding:0;display:grid;gap:10px}.pb-checks li{padding:12px 14px;border-radius:10px;background:#f5f7fc}.pb-checks .ok span{color:#1b7a3d}.pb-checks .warn{background:#fff6e5}.pb-checks .warn span{color:#b36b00}.pb-link{border:0;background:none;color:#2447e8;text-decoration:underline;cursor:pointer}
+.pb-final{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+@media(max-width:860px){.pb-split{grid-template-columns:1fr}.pb-side{position:static}.pb-day li{grid-template-columns:48px minmax(0,1fr) auto auto}.pb-day li b{grid-column:2}.pb-create{padding:20px}}
+
+/* ===== Lap ke hoach mot trang (PlanEditor) ===== */
+.pe-page{padding-top:28px;padding-bottom:140px}.pe-head h1{font-size:30px;margin:4px 0 14px}
+.pe-card{background:#fff;border:1px solid #dce2ee;border-radius:14px;padding:20px;margin-bottom:16px}.pe-card h2{font-size:19px;margin:0 0 14px}.pe-card-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.pe-error{background:#fff0ef;border:1px solid #e4b3b0;color:#8a1f17;padding:12px 14px;border-radius:10px;margin-bottom:14px}.pe-error[hidden]{display:none}
+.req{color:#b3261e}.pe-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.pe-dest{display:flex;gap:8px;flex-wrap:wrap}.pe-dest .form-control{flex:1;min-width:200px}
+.pe-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.pe-chips[hidden]{display:none}.pe-chip{border:1px solid #dce2ee;background:#f5f7fc;border-radius:999px;padding:7px 14px;min-height:38px;font-size:14px;cursor:pointer}.pe-chip.on{background:#16213e;color:#fff;border-color:#16213e}.pe-chip:disabled{opacity:.5;cursor:default}
+.pe-stepper{display:flex;gap:8px;align-items:center;max-width:220px}.pe-stepper button{width:46px;height:46px;border:1px solid #dce2ee;background:#fff;border-radius:12px;font-size:22px;cursor:pointer}.pe-stepper input{text-align:center}.pe-budget-other{max-width:260px;margin-top:10px}
+.pe-daytabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:12px}.pe-daytabs button{flex:0 0 auto;border:1px solid #dce2ee;background:#fff;border-radius:12px;padding:8px 14px;text-align:left;cursor:pointer;min-height:52px}.pe-daytabs button b{display:block;font-weight:700}.pe-daytabs button small{color:#5c667b}.pe-daytabs .on{background:#16213e;color:#fff;border-color:#16213e}.pe-daytabs .on small{color:#cfd6ea}
+.pe-day-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.pe-items{list-style:none;margin:0;padding:0;display:grid;gap:8px}.pe-items li{display:grid;grid-template-columns:56px minmax(0,1fr) auto auto auto;gap:10px;align-items:center;padding:10px 12px;background:#f5f7fc;border-radius:10px}.pe-items time{color:#2447e8;font-weight:700;font-variant-numeric:tabular-nums}.pe-c{overflow-wrap:anywhere}.pe-c em{display:inline-block;margin-left:8px;font-style:normal;font-size:12px;color:#5c667b;background:#e7ebf6;border-radius:999px;padding:1px 8px}.pe-cost{font-weight:600;white-space:nowrap}
+.pe-ib{border:1px solid #dce2ee;background:#fff;border-radius:8px;padding:6px 12px;min-height:36px;cursor:pointer}.pe-del{color:#b3261e}
+.pe-empty{color:#5c667b;padding:14px 0}.pe-more{margin-top:12px}.pe-more summary{cursor:pointer;min-height:40px;padding:8px 0;color:#2447e8}.pe-more-body{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pe-members{list-style:none;margin:10px 0;padding:0;display:grid;gap:10px}.pe-members li{display:flex;gap:12px;align-items:center}.pe-members small{display:block;color:#5c667b}
+.pe-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:#fff;border-top:1px solid #dce2ee;padding:10px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;box-shadow:0 -4px 16px rgba(20,30,60,.08)}
+.pe-sum{display:flex;align-items:center;gap:12px;flex:1;min-width:220px}.pe-sum small{display:block;color:#5c667b}.pe-sum strong{font-size:20px}.pe-meter{flex:1;height:8px;background:#e7ebf6;border-radius:6px;min-width:80px}.pe-meter span{display:block;height:8px;background:#1b7a3d;border-radius:6px}.pe-meter .over{background:#b3261e}
+.pe-warnbtn{border:1px solid #e6c47a;background:#fff6e5;color:#7a4b00;border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer}.pe-warnbtn[hidden]{display:none}
+.pe-warnlist{position:absolute;left:20px;right:20px;bottom:100%;margin:0 0 8px;list-style:none;padding:10px;background:#fff;border:1px solid #e6c47a;border-radius:12px;display:grid;gap:6px;max-height:40vh;overflow:auto}.pe-warnlist[hidden]{display:none}.pe-warnlist li{padding:8px 10px;background:#fff6e5;border-radius:8px;cursor:pointer}
+.pe-actions{display:flex;gap:8px}
+.pe-dialog{border:0;border-radius:16px;padding:20px;max-width:640px;width:calc(100% - 28px);box-shadow:0 20px 60px rgba(0,0,0,.3)}.pe-dialog::backdrop{background:rgba(10,15,35,.5)}.pe-wide{max-width:900px}
+.pe-dlg-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.pe-dlg-head h3{margin:0;font-size:19px}.pe-x{border:0;background:none;font-size:18px;cursor:pointer;min-width:40px;min-height:40px}
+.pe-dlg-foot{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
+.pe-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.pe-tabs button{border:1px solid #dce2ee;background:#fff;border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer}.pe-tabs .on{background:#16213e;color:#fff}.pe-tabs button[hidden]{display:none}
+.pe-pick-list{display:grid;gap:10px;margin-top:10px;max-height:46vh;overflow:auto}.pe-card-sm{display:flex;justify-content:space-between;gap:12px;align-items:center;border:1px solid #dce2ee;border-radius:12px;padding:12px}.pe-card-sm small{display:block;color:#5c667b}.pe-card-sm b{display:block;margin-top:4px}
+.pe-confirm{display:grid;gap:8px}.pe-confirm[hidden],#pe-pick-list-wrap[hidden],.pe-manual[hidden]{display:none}.pe-confirm small{color:#5c667b}
+.pe-places-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:12px;max-height:56vh;overflow:auto}.pe-place{border:1px solid #dce2ee;background:#fff;border-radius:12px;padding:14px;text-align:left;cursor:pointer}.pe-place:hover{border-color:#2447e8}.pe-place small{display:block;color:#5c667b;margin-top:4px}
+.pe-map-canvas{height:min(60vh,480px);border-radius:12px;background:#eef1f8}
+.pe-toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#16213e;color:#fff;padding:11px 16px;border-radius:12px;z-index:60;max-width:90vw}.pe-toast button{margin-left:10px;background:none;border:0;color:#9db4ff;font-weight:700;text-decoration:underline;cursor:pointer}
+@media(max-width:700px){.pe-items li{grid-template-columns:48px minmax(0,1fr) auto}.pe-cost{grid-column:2}.pe-ib{grid-row:auto}.pe-bar{padding:8px 12px}.pe-dialog{padding:14px}}
+.plan-card-actions{display:flex;gap:8px;margin-top:12px;align-items:center}.plan-card-actions form{margin:0}
+.trip-actionbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.trip-inline-form{margin:0;display:inline}
+.trip-scroll{max-height:72vh;overflow-y:auto;border:1px solid #dce2ee;border-radius:14px;padding:16px;margin:18px 0;background:#fff;scroll-behavior:smooth}.trip-scroll:focus-visible{outline:3px solid #2447e8;outline-offset:2px}
+.pe-actions{margin-right:72px}@media(max-width:700px){.pe-actions{margin-right:60px}}
+.trip-hero-compact{display:block!important;padding:22px 24px!important;min-height:0!important}.trip-hero-compact .trip-hero-copy{max-width:none}.trip-hero-compact h1{font-size:30px;margin:0 0 6px}.trip-hero-money{margin:6px 0 12px}
+.trip-sec-title{font-size:18px;margin:0 0 10px}.trip-extra{margin:16px 0}.trip-extra>summary{cursor:pointer;min-height:44px;padding:10px 4px;font-weight:600}
+.pe-days-list{display:grid;gap:14px}.pe-daycard{border:1px solid #dce2ee;border-radius:14px;padding:14px 16px;background:#fff;scroll-margin-top:90px}.pe-daycard header{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px}.pe-daycard h3{margin:0;font-size:17px}.pe-daycard h3 small{color:#5c667b;font-weight:400;font-size:14px;margin-left:6px}.pe-daytotal{color:#5c667b;font-size:14px}
+.pe-note-wrap{margin:10px 0}.pe-note-wrap[hidden]{display:none}.pe-note{background:#fffbe8;border-color:#ecd98b}
+.pe-dayacts{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}.pe-dayacts .pe-more{margin:0}
+.trip-day-note{background:#fffbe8;border:1px solid #ecd98b;border-radius:10px;padding:10px 12px;margin:0 0 10px;white-space:pre-wrap;overflow-wrap:anywhere}
+.pe-picker{max-width:1100px}.pe-picker.pe-narrow{max-width:560px}
+.pe-pick-grid{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:14px;align-items:start}.pe-pick-grid[hidden]{display:none}
+.pe-pick-left{min-width:0}.pe-pick-left .pe-pick-list{max-height:52vh}
+.pe-pick-mapwrap{position:relative}.pe-pick-map{height:min(64vh,560px);border-radius:12px;background:#eef1f8}
+.pe-pick-nomap{position:absolute;left:10px;right:10px;top:10px;margin:0;background:#fff6e5;border:1px solid #e6c47a;border-radius:8px;padding:8px 10px;font-size:13px;z-index:500}.pe-pick-nomap[hidden]{display:none}
+.pe-legend{margin:6px 0 0;font-size:13px;color:#5c667b}.pe-legend .d{display:inline-block;width:11px;height:11px;border-radius:50%;margin:0 4px 0 10px;vertical-align:-1px}.pe-legend .d.saved{background:#e67e22}.pe-legend .d.explore{background:#2447e8}
+.pe-pick-sec{font-size:13px;text-transform:none;color:#5c667b;margin:10px 0 2px;font-weight:700}.pe-pick-sec.saved{color:#b45309}
+.pe-card-sm.saved{border-color:#f0c38a;background:#fffaf2}
+@media(max-width:860px){.pe-pick-grid{grid-template-columns:1fr}.pe-pick-map{height:300px}.pe-pick-left .pe-pick-list{max-height:40vh}}
+/* destination chips, suggestions, richer picker */
+.pe-destchips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}.pe-destchip{display:inline-flex;align-items:center;gap:8px;background:#eef2ff;border:1px solid #c9d4fb;border-radius:12px;padding:6px 10px}.pe-destchip small{color:#5c667b}.pe-destchip button{border:0;background:none;cursor:pointer;color:#5c667b;min-width:28px;min-height:28px}
+.pe-dest-input{position:relative;flex:1;min-width:240px}.pe-dest-input .form-control{width:100%}.pe-dest-sug{position:absolute;z-index:30;left:0;right:0;top:100%;margin:4px 0 0;padding:4px;list-style:none;background:#fff;border:1px solid #dce2ee;border-radius:10px;box-shadow:0 10px 30px rgba(20,30,60,.15);max-height:300px;overflow:auto}.pe-dest-sug[hidden]{display:none}.pe-dest-sug li{padding:8px 10px;border-radius:8px;cursor:pointer}.pe-dest-sug li:hover{background:#f0f3fb}.pe-dest-sug li small{display:block;color:#5c667b}.pe-dest-sug .none{color:#5c667b;cursor:default}
+.pe-pick-row{margin:8px 0}.pe-pick-row label{display:flex;gap:8px;align-items:center;font-size:14px}.pe-pick-row select{flex:1}
+.pe-filters{margin:10px 0}.pe-filters summary{cursor:pointer;min-height:40px;padding:8px 0;color:#2447e8}.pe-filters-body{display:grid;gap:10px}.pe-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pe-filters label{font-size:14px;display:grid;gap:4px}.pe-check{display:flex!important;gap:8px;align-items:center}
+.pe-pick-count{margin:6px 0;color:#5c667b;font-size:13px}.pe-more-btn{width:100%;margin-top:10px}.pe-more-btn[hidden]{display:none}
+.pe-card-sm{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start}.pe-card-sm:not(:has(.pe-thumb)){grid-template-columns:minmax(0,1fr) auto}.pe-thumb{width:72px;height:72px;object-fit:cover;border-radius:10px}.pe-card-body p{margin:4px 0;font-size:13px;color:#39435a}.pe-card-body small{display:block}.pe-card-act{display:grid;gap:6px}.pe-detail{margin-top:8px;padding:8px 10px;background:#f5f7fc;border-radius:8px;font-size:13px}.pe-detail p{margin:4px 0}.pe-detail ul{margin:4px 0 4px 18px;padding:0}
+.pe-place{display:grid;gap:4px}.pe-place img{width:100%;height:84px;object-fit:cover;border-radius:8px}.pe-place span{font-size:12px;color:#39435a}
+
+/* picker: tim kiem tren cung, danh sach rong rai, thanh xac nhan luon thay duoc */
+dialog[open].pe-picker{display:flex;flex-direction:column;height:90vh;max-height:90vh;width:min(1100px,calc(100% - 28px));max-width:none}
+dialog[open].pe-picker.pe-narrow{height:auto;max-height:90vh;width:min(560px,calc(100% - 28px))}
+.pe-picker .pe-pick-grid{flex:1;min-height:0;grid-template-rows:minmax(0,1fr);align-items:stretch}
+.pe-picker .pe-pick-left{display:flex;flex-direction:column;min-height:0;gap:8px}
+.pe-picker #pe-pick-list-wrap{flex:1;min-height:0;overflow:auto;padding-right:4px}
+.pe-picker .pe-pick-left .pe-pick-list{max-height:none;margin-top:0}
+.pe-pick-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,150px);gap:8px}
+.pe-picker #pe-groups{flex-wrap:nowrap;overflow-x:auto;margin-top:0;padding-bottom:4px}.pe-picker #pe-groups .pe-chip{flex:0 0 auto}
+.pe-picker .pe-filters{margin:0}.pe-picker .pe-pick-count{margin:0}
+.pe-picker .pe-confirm{border-top:1px solid #dce2ee;padding-top:10px;background:#fff}
+.pe-picker .pe-confirm .pe-row{grid-template-columns:1fr 1fr 1fr;gap:8px}.pe-picker .pe-confirm .field{margin-bottom:0}.pe-picker .pe-confirm .pe-dlg-foot{margin-top:6px}
+.pe-picker .pe-pick-mapwrap{display:flex;flex-direction:column;min-height:0}.pe-picker .pe-pick-map{flex:1;height:auto;min-height:240px}
+.pe-card-sm.picked{border-color:#c0392b;box-shadow:0 0 0 2px #f3c2bd}
+@media(max-width:860px){dialog[open].pe-picker{height:auto;max-height:92vh;overflow:auto}.pe-picker .pe-pick-map{min-height:240px;flex:none;height:260px}.pe-picker #pe-pick-list-wrap{max-height:42vh}.pe-picker .pe-confirm .pe-row{grid-template-columns:1fr}}
+.pe-picker .pe-card-body p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pe-picker .pe-card-sm{padding:10px}.pe-picker .pe-thumb{width:60px;height:60px}
+
+/* gon hon: nut cua moi ngay dang chu, ngan hon; lop cuon cua trang xem vua man hinh */
+.pe-dayacts .btn{border:0;background:#f1f4fb;min-height:38px;padding:6px 14px;font-size:14px;font-weight:600;color:#1f3fcc}.pe-dayacts .btn:hover{background:#e3e9fb}
+.pe-daycard:not(:has(.pe-items)) .pe-dayacts{margin-top:4px}
+.trip-hero-compact{padding:16px 20px!important}.trip-hero-compact h1{font-size:26px!important}
+.trip-scroll{max-height:max(340px,calc(100vh - 120px))}
+@media(max-height:700px){.pe-picker .pe-confirm #pe-c-slots{display:none}.pe-picker .pe-confirm small{display:none}}

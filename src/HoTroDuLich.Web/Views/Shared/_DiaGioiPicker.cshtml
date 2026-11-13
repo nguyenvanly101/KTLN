@@ -1,0 +1,12 @@
+@model DiaGioiPickerModel
+@inject DiaGioiService Geo
+@{var uid="dg"+Guid.NewGuid().ToString("N")[..8];var moi=Geo.Regime=="Moi";}
+<div class="dg-picker" data-dg data-dg-leaf="@(Model.LeafOnly?"1":"0")" data-dg-initial="@Model.Value">
+ <input type="hidden" name="@Model.Name" value="@Model.Value" data-dg-value/>
+ <div class="dg-row">
+  <div class="field"><label for="@(uid)a">Tỉnh / thành phố</label><select id="@(uid)a" data-dg-level="0"><option value="">Chọn tỉnh / thành phố</option></select></div>
+  @if(!moi){<div class="field"><label for="@(uid)b">Quận / huyện / thị xã</label><select id="@(uid)b" data-dg-level="1" disabled><option value="">Chọn quận / huyện / thị xã</option></select></div>}
+  <div class="field"><label for="@(uid)c">Xã / phường / thị trấn</label><select id="@(uid)c" data-dg-level="@(moi?1:2)" disabled><option value="">Chọn xã / phường / thị trấn</option></select></div>
+ </div>
+ <p class="help" data-dg-status role="status" aria-live="polite">@(Model.Hint??(Model.LeafOnly?"Chọn đến cấp xã / phường để người dùng tìm đúng nơi.":"Chọn tỉnh; có thể thu hẹp đến quận / huyện hoặc xã / phường."))</p>
+</div>

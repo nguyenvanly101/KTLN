@@ -1,13 +1,71 @@
 @model BranchEditPage
-@{ViewData["Title"]=Model.Input.Id==0?"Thêm cơ sở":"Quản lý cơ sở";var i=Model.Input;var pending=Model.History.Any(x=>x.Status=="Pending");}
-<div class="container-wide pl-manage"><a class="back" href="/nha-cung-cap/co-so">← Cơ sở & chi nhánh</a><div class="page-head"><div><span class="eyebrow">MỘT ĐỊA CHỈ. MỘT HỒ SƠ RIÊNG.</span><h1>@ViewData["Title"]</h1><p>Đăng thông tin đúng chi nhánh để khách tìm được dịch vụ và đường đến.</p></div>@if(Model.Current?.Status=="Approved"){<a class="btn btn-outline" href="/co-so/@i.Id">Xem trang công bố @Ui.Icon("arrow")</a>}</div>
+@inject TravelService Travel
+@{
+ ViewData["Title"]=Model.Input.Id==0?"Thêm cơ sở":"Thông tin cơ sở";
+ var i=Model.Input;var pending=Model.History.Any(x=>x.Status=="Pending");
+ var c=Model.Completeness??new BranchCompleteness(0,[]);
+ var quick=i.Id==0;
+ var unverified=(await Travel.MyProvider()).TrangThaiXacMinh!=TrangThaiXacMinh.DaXacMinh;
+ var existingPhotos=Ui.ServicePhotos(i.PhotosJson).Length;
+ var roles=new[]{"Chủ cơ sở","Quản lý cơ sở","Nhân viên được ủy quyền"};
+ var role=roles.FirstOrDefault(r=>(i.OwnershipEvidence??"").StartsWith(r))??i.OwnershipRole;
+ var note=role!=null&&(i.OwnershipEvidence??"").StartsWith(role)?(i.OwnershipEvidence??"")[role.Length..].TrimStart(':',' '):(i.OwnershipEvidence??"");
+ var days=new[]{("1","T2"),("2","T3"),("3","T4"),("4","T5"),("5","T6"),("6","T7"),("7","CN")};
+ var units=new[]{"người","phòng/đêm","suất","lượt","giờ","ngày","món"};
+}
+<div class="container-wide pl-manage pv-edit">
+ <a class="back" href="/nha-cung-cap/co-so">← Cơ sở của tôi</a>
+ <div class="page-head"><div><span class="eyebrow">ĐĂNG THÔNG TIN CHO KHÁCH</span><h1>@ViewData["Title"]</h1><p>Điền đủ bốn phần. Khách sẽ thấy ảnh, giờ mở cửa, giá và vị trí ngay trên trang của cơ sở.</p></div>@if(Model.Current?.Status=="Approved"){<a class="btn btn-outline" href="/co-so/@i.Id">Xem như khách @Ui.Icon("arrow")</a>}</div>
  @if(!Model.CanSubmit){<div class="notice warning">Nhà cung cấp cần được xác minh và có quyền hoạt động để gửi cơ sở.</div>}
  @if(pending){<div class="notice">Cơ sở đang có phiên bản chờ duyệt. Bạn có thể xem nội dung đã gửi trong lịch sử bên dưới.</div>}
- <form method="post" action="/nha-cung-cap/co-so/luu" class="panel pl-editor">@Html.AntiForgeryToken()<div asp-validation-summary="All"></div><input type="hidden" name="Id" value="@i.Id"/><input type="hidden" name="Version" value="@i.Version"/>
- <fieldset disabled="@(pending||!Model.CanSubmit)"><legend class="sr-only">Thông tin cơ sở</legend><partial name="/Views/Branches/_MapLocationForm.cshtml" model="i"/>
- <div class="form-grid"><div class="field"><label for="branch-type">Loại cơ sở chính</label><select class="form-select" id="branch-type" name="Type">@foreach(var type in DanhMuc.LoaiDichVu){<option value="@type" selected="@(type==i.Type)">@DanhMuc.Ten(type)</option>}</select></div><div class="field"><label for="branch-phone">Số liên hệ cơ sở</label><input class="form-control" id="branch-phone" name="Phone" value="@i.Phone" maxlength="30" type="tel"/></div><div class="field"><label for="branch-website">Website cơ sở (HTTPS)</label><input class="form-control" id="branch-website" name="Website" value="@i.Website" maxlength="500" type="url"/></div><div class="field"><label for="branch-hours">Giờ phục vụ do bạn công bố</label><input class="form-control" id="branch-hours" name="Hours" value="@i.Hours" maxlength="300" placeholder="Khung giờ, ngày nghỉ, giờ nhận khách cuối…"/></div><div class="field full"><label for="branch-summary">Giới thiệu cơ sở / chi nhánh</label><textarea class="form-control" id="branch-summary" name="Summary" maxlength="2000">@i.Summary</textarea></div></div>
- <fieldset class="pl-facts-editor"><legend>Tiện ích của đúng cơ sở này</legend><p class="help">Chọn “Chưa công bố” khi chưa có đủ thông tin.</p><div class="form-grid">@foreach(var field in new[]{("Parking","Có chỗ đỗ ô tô",i.Parking),("VegetarianOptions","Có lựa chọn món chay",i.VegetarianOptions),("VeganOnly","Quán thuần chay",i.VeganOnly),("AccessibleEntrance","Lối vào không có bậc thang",i.AccessibleEntrance)}){<div class="field"><label for="@field.Item1">@field.Item2</label><select class="form-select" name="@field.Item1" id="@field.Item1"><option value="" selected="@(field.Item3==null)">Chưa công bố</option><option value="true" selected="@(field.Item3==true)">Có</option><option value="false" selected="@(field.Item3==false)">Không</option></select></div>}</div></fieldset>
- <div class="field"><label for="ownership">Căn cứ bạn được quản lý cơ sở</label><textarea class="form-control" id="ownership" name="OwnershipEvidence" maxlength="2000" placeholder="Vai trò tại cơ sở, cách đối chiếu quyền quản lý, kênh liên hệ để xác nhận…">@i.OwnershipEvidence</textarea><small>Chỉ nhà cung cấp và quản trị viên xem phần này. Liên kết Google Maps không tự xác nhận quyền quản lý.</small></div>
- <div class="form-actions"><button class="btn btn-dark" name="Operation" value="Submit" type="submit">Gửi cơ sở xét duyệt @Ui.Icon("arrow")</button>@if(Model.Current?.PublishedVersion==null){<button class="btn btn-outline" name="Operation" value="Draft" type="submit">Lưu bản nháp</button>}</div></fieldset></form>
- @if(Model.History.Count>0){<section class="pl-history"><h2>Lịch sử xét duyệt</h2>@foreach(var r in Model.History){<details class="panel"><summary>Phiên bản @r.Number · @PlaceText.State(r.Status) · @Ui.LocalTime(r.SubmittedAt).ToString("dd/MM/yyyy HH:mm")</summary><h3>@r.Name</h3><p>@r.Address</p><p class="prose">@r.Summary</p><p>Giờ phục vụ: @(r.Hours??"Chưa công bố")</p><p class="prose">Căn cứ quản lý: @r.OwnershipEvidence</p>@if(r.Reason!=null){<div class="notice">@r.Reason</div>}</details>}</section>}
+ <form method="post" action="/nha-cung-cap/co-so/luu" enctype="multipart/form-data" class="pv-form" data-pv-form>@Html.AntiForgeryToken()<div asp-validation-summary="All"></div><input type="hidden" name="Id" value="@i.Id"/><input type="hidden" name="Version" value="@i.Version"/>
+ <fieldset disabled="@(pending||!Model.CanSubmit)" class="pv-fieldset"><legend class="sr-only">Thông tin cơ sở</legend>
+  <div class="pv-layout">
+   <div class="pv-main">
+    @if(unverified){<section class="panel pv-section" id="pv-docs"><h2><span>★</span> Giấy tờ xác minh</h2><p class="help">Cơ sở đầu tiên được duyệt cũng là xác minh nhà cung cấp. Đính kèm giấy phép kinh doanh hoặc ảnh cửa hàng (PDF, JPG, PNG, tối đa 5 tệp) để quản trị viên kiểm tra nhanh hơn.</p><div class="field"><label for="branch-docs">Tài liệu</label><input class="form-control" id="branch-docs" name="Documents" type="file" multiple accept=".pdf,.jpg,.jpeg,.png"/></div></section>}
+    <section class="panel pv-section" id="pv-s1"><h2><span>1</span> Cơ sở này ở đâu?</h2>
+     <partial name="/Views/Branches/_MapLocationForm.cshtml" model="i"/>
+     @if(quick){<p class="help">Chỉ cần tên, vị trí và loại. Sau khi lưu, bạn bổ sung giờ mở cửa, giá, ảnh và thông tin riêng theo loại ở các bước tiếp theo.</p>}
+     <div class="field"><label for="branch-type">Loại cơ sở</label><select class="form-select" id="branch-type" name="Type">@foreach(var grp in ServiceKinds.Groups){var inGroup=ServiceKinds.All.Where(k=>k.Active&&k.ForBranch&&k.Group==grp.Key).ToList();if(inGroup.Count==0)continue;<optgroup label="@grp.Label">@foreach(var kind in inGroup){<option value="@kind.Code" selected="@(kind.Code==i.Type)">@kind.Label</option>}</optgroup>}</select></div>
+    @if(quick){<div class="form-actions"><button class="btn btn-dark" name="Operation" value="Draft" type="submit">Lưu và tiếp tục @Ui.Icon("arrow")</button></div>}
+    </section>
+
+    <section class="panel pv-section" id="pv-s2" hidden="@quick"><h2><span>2</span> Khách cần biết gì?</h2>
+     <div class="field"><label for="branch-summary">Giới thiệu ngắn</label><textarea class="form-control" id="branch-summary" name="Summary" maxlength="2000" rows="4" placeholder="Nơi này có gì đặc biệt, phù hợp với ai, nên thử gì…" data-pv-summary>@i.Summary</textarea><small><span data-pv-summary-count>0</span> ký tự · nên viết từ 40 ký tự</small></div>
+     <fieldset class="pv-hours"><legend>Giờ mở cửa</legend>
+      <div class="pv-days">@foreach(var d in days){<label><input type="checkbox" name="OpenDayList" value="@d.Item1" checked="@(i.OpenDays?.Contains(d.Item1[0])==true)" data-pv-day/> <span>@d.Item2</span></label>}</div>
+      <div class="pv-timerow"><div class="field"><label for="branch-open">Giờ mở</label><input class="form-control" id="branch-open" type="time" name="OpenTime" value="@i.OpenTime?.ToString("HH:mm")" data-pv-open/></div><div class="field"><label for="branch-close">Giờ đóng</label><input class="form-control" id="branch-close" type="time" name="CloseTime" value="@i.CloseTime?.ToString("HH:mm")"/></div></div>
+      <div class="field"><label for="branch-hours">Ghi chú giờ (nếu có)</label><input class="form-control" id="branch-hours" name="Hours" value="@i.Hours" maxlength="300" placeholder="Nghỉ trưa 12:00–13:30, nghỉ lễ…"/></div>
+      <small>Điền ngày và giờ để khách lọc được “đang mở cửa”. Để trống cả ba nếu chưa xác nhận.</small>
+     </fieldset>
+     <fieldset class="pv-price"><legend>Giá tham khảo</legend>
+      <div class="pv-timerow"><div class="field"><label for="branch-pfrom">Từ (₫)</label><input class="form-control" id="branch-pfrom" type="number" min="0" max="1000000000" step="1000" name="PriceFrom" value="@i.PriceFrom?.ToString("0")" data-pv-price/></div><div class="field"><label for="branch-pto">Đến (₫, tùy chọn)</label><input class="form-control" id="branch-pto" type="number" min="0" max="1000000000" step="1000" name="PriceTo" value="@i.PriceTo?.ToString("0")"/></div><div class="field"><label for="branch-punit">Tính theo</label><input class="form-control" id="branch-punit" name="PriceUnit" value="@i.PriceUnit" maxlength="50" list="pv-units" placeholder="người, phòng/đêm…"/><datalist id="pv-units">@foreach(var u in units){<option value="@u"></option>}</datalist></div></div>
+      <small>Là giá tham khảo, không phải cam kết. Để trống nếu chưa muốn công bố.</small>
+     </fieldset>
+     <partial name="/Views/Branches/_TypeFields.cshtml" model="i"/>
+     <div class="form-grid"><div class="field"><label for="branch-phone">Số điện thoại</label><input class="form-control" id="branch-phone" name="Phone" value="@i.Phone" maxlength="30" type="tel" data-pv-contact/></div><div class="field"><label for="branch-website">Website (HTTPS)</label><input class="form-control" id="branch-website" name="Website" value="@i.Website" maxlength="500" type="url" data-pv-contact/></div></div>
+     <fieldset class="pl-facts-editor"><legend>Tiện ích của đúng cơ sở này</legend><p class="help">Chọn “Chưa công bố” khi chưa có đủ thông tin; hệ thống không tự suy ra.</p><div class="form-grid">@foreach(var field in new[]{("Parking","Có chỗ đỗ ô tô",i.Parking),("VegetarianOptions","Có lựa chọn món chay",i.VegetarianOptions),("VeganOnly","Quán thuần chay",i.VeganOnly),("AccessibleEntrance","Lối vào không có bậc thang",i.AccessibleEntrance)}){<div class="field"><label for="@field.Item1">@field.Item2</label><select class="form-select" name="@field.Item1" id="@field.Item1"><option value="" selected="@(field.Item3==null)">Chưa công bố</option><option value="true" selected="@(field.Item3==true)">Có</option><option value="false" selected="@(field.Item3==false)">Không</option></select></div>}</div></fieldset>
+    </section>
+
+    <section class="panel pv-section" id="pv-s3" hidden="@quick"><h2><span>3</span> Ảnh thực tế</h2>
+     @if(existingPhotos>0){<div class="pv-gallery">@for(var n=0;n<existingPhotos;n++){<img src="/co-so/@i.Id/anh/@n" alt="Ảnh @(n+1) hiện có" width="160" height="110" loading="lazy"/>}</div><label class="pv-check"><input type="checkbox" name="RemovePhotos" value="true"/> Xóa bộ ảnh hiện có (nếu không tải ảnh mới)</label>}
+     <div class="field"><label for="branch-photos">Chọn ảnh (tối đa 5)</label><input class="form-control" id="branch-photos" type="file" name="Photos" accept="image/jpeg,image/png" multiple data-pv-photos data-existing="@existingPhotos"/><small>JPG hoặc PNG, mỗi ảnh tối đa 5 MB. Chỉ tải ảnh bạn có quyền sử dụng. Tải ảnh mới sẽ thay bộ ảnh hiện có. Nên có từ 3 ảnh: mặt tiền, không gian, sản phẩm.</small></div>
+    </section>
+
+    <section class="panel pv-section" id="pv-s4" hidden="@quick"><h2><span>4</span> Gửi duyệt</h2>
+     <div class="field"><label for="ownership-role">Vai trò của bạn tại cơ sở</label><select class="form-select" id="ownership-role" name="OwnershipRole"><option value="">Chọn vai trò…</option>@foreach(var r in roles){<option value="@r" selected="@(r==role)">@r</option>}</select></div>
+     <div class="field"><label for="ownership">Ghi chú để quản trị viên đối chiếu (tùy chọn)</label><textarea class="form-control" id="ownership" name="OwnershipEvidence" maxlength="1900" rows="2" placeholder="Cách đối chiếu quyền quản lý, kênh liên hệ để xác nhận…">@note</textarea><small>Chỉ nhà cung cấp và quản trị viên xem phần này.</small></div>
+     <div class="form-actions"><button class="btn btn-dark" name="Operation" value="Submit" type="submit">Gửi cơ sở xét duyệt @Ui.Icon("arrow")</button>@if(Model.Current?.PublishedVersion==null){<button class="btn btn-outline" name="Operation" value="Draft" type="submit">Lưu bản nháp</button>}</div>
+    </section>
+   </div>
+
+   <aside class="pv-side" aria-label="Độ hoàn thiện">
+    <div class="panel pv-score" data-pv-score><div class="pv-score-top"><strong data-pv-percent>@c.Percent%</strong><span>thông tin đã hoàn thiện</span></div><div class="pv-meter"><div><i data-pv-bar style="width:@(c.Percent)%"></i></div></div>
+     <p class="pv-score-title">Còn thiếu</p><ul class="pv-missing-list" data-pv-missing>@foreach(var m in c.Missing){<li>@m</li>}</ul><p class="pv-ok" data-pv-ok hidden>Hồ sơ đầy đủ. Khách sẽ thấy đủ thông tin cần thiết.</p>
+     <small>Có thể gửi duyệt khi chưa đủ 100%, nhưng hồ sơ càng đầy đủ càng dễ được khách chọn.</small></div>
+   </aside>
+  </div>
+ </fieldset></form>
+ @if(Model.History.Count>0){<section class="pl-history"><h2>Lịch sử xét duyệt</h2>@foreach(var r in Model.History){<details class="panel"><summary>Phiên bản @r.Number · @PlaceText.State(r.Status) · @Ui.LocalTime(r.SubmittedAt).ToString("dd/MM/yyyy HH:mm")</summary><h3>@r.Name</h3><p>@r.Address</p><p class="prose">@r.Summary</p><partial name="/Views/Branches/_BranchFacts.cshtml" model="BranchFactsModel.From(r)"/><p class="prose">Căn cứ quản lý: @r.OwnershipEvidence</p>@if(r.Reason!=null){<div class="notice">@r.Reason</div>}</details>}</section>}
 </div>
+@section Scripts{<script src="~/js/provider-branch.js" asp-append-version="true"></script>}

@@ -159,7 +159,7 @@ public abstract class NghiepVuService(AppDbContext context, IHttpContextAccessor
     public static bool ValidPassword(string value, string email) => value.Length is >= 8 and <= 100 && value.Any(char.IsLetter) && value.Any(char.IsDigit) && !value.Contains(email, StringComparison.OrdinalIgnoreCase);
     protected ITimeLimitedDataProtector DeactivationProtector => http.HttpContext!.RequestServices.GetRequiredService<IDataProtectionProvider>().CreateProtector("HoTroDuLich.NgungTaiKhoan.v1").ToTimeLimitedDataProtector();
 
-    protected static readonly (string Domain, string Input)[] ServiceFields = [("DiaChiPhucVu", "Address"), ("DonViGia", "PriceUnit"), ("ChinhSachHuy", "CancellationPolicy"), ("AnhJson", "PhotoPaths"), ("TenDichVu", "Name"), ("LoaiDichVu", "Type"), ("KhuVucPhucVu", "Region"), ("MoTa", "Description"), ("MaDiaDiem", "PlaceId"), ("GiaThamKhao", "Price"), ("ThoiGianPhucVu", "Hours"), ("DieuKienPhucVu", "Terms"), ("TamNgungTu", "PauseFrom"), ("TamNgungDen", "PauseTo"), ("LyDoTamNgung", "PauseReason")];
+    protected static readonly (string Domain, string Input)[] ServiceFields = [("DiaChiPhucVu", "Address"), ("DonViGia", "PriceUnit"), ("ChinhSachHuy", "CancellationPolicy"), ("AnhJson", "PhotoPaths"), ("TenDichVu", "Name"), ("LoaiDichVu", "Type"), ("KhuVucPhucVu", "Region"), ("DonViId", "DonViId"), ("MoTa", "Description"), ("MaDiaDiem", "PlaceId"), ("GiaThamKhao", "Price"), ("ThoiGianPhucVu", "Hours"), ("DieuKienPhucVu", "Terms"), ("TamNgungTu", "PauseFrom"), ("TamNgungDen", "PauseTo"), ("LyDoTamNgung", "PauseReason"), ("AttributesJson", "AttributesJson")];
     protected static void CopyServiceInput(object target, ServiceInput input)
     {
         foreach (var field in ServiceFields)

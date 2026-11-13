@@ -1,10 +1,13 @@
 @model PlaceSearchPage
 @using System.Text.Json
 @{ViewData["Title"]="Địa điểm & dịch vụ quanh đây";var f=Model.Filter;var planId=(ViewBag.TripPlan as KeHoachChuyenDi)?.MaKeHoach;var mapName=Model.MapsReady?"Google Maps":"OpenStreetMap";var jsonOptions=new JsonSerializerOptions{PropertyNamingPolicy=JsonNamingPolicy.CamelCase};}
+<partial name="/Views/Shared/_ExploreTabs.cshtml" model='"map"'/>
 <div class="pl-page" data-place-search>
  <section class="pl-hero"><div><span class="eyebrow">ĐỊA ĐIỂM · CƠ SỞ · DỊCH VỤ</span><h1>Chọn một mốc.<br/><em>Tìm điều bạn cần quanh đó.</em></h1><p>Tìm đúng cửa vào, quán ăn, khách sạn và điểm phục vụ. Xem vị trí cùng thông tin của từng cơ sở.</p></div><div class="pl-hero-note">@Ui.Icon("pin")<span><strong>Mốc tìm kiếm luôn rõ ràng</strong><small>Địa điểm đang xem hoặc vị trí bạn chủ động chọn.</small></span></div></section>
  <partial name="_TripContext"/>
  <div class="pl-search-panel"><form method="get" action="/kham-pha" data-place-search-form>
+  <p class="pl-switch"><a href="/Discovery?Q=@Uri.EscapeDataString(f.Q??"")&Area=@f.Area">Xem thông tin và hướng dẫn cho tìm kiếm này</a></p>
+  <div class="pl-where"><label>Khu vực</label><partial name="_DiaGioiPicker" model='new DiaGioiPickerModel("Area", f.Area, false, "Lọc theo khu vực (không bắt buộc).")'/></div>
   @if(planId!=null){<input type="hidden" name="PlanId" value="@planId"/>}
   <input type="hidden" name="AnchorKind" value="@f.AnchorKind"/><input type="hidden" name="AnchorId" value="@f.AnchorId"/><input type="hidden" name="GooglePlaceId" value="@f.GooglePlaceId"/><input type="hidden" name="AnchorName" value="@f.AnchorName"/><input type="hidden" name="Lat" value="@f.Lat?.ToString(System.Globalization.CultureInfo.InvariantCulture)"/><input type="hidden" name="Lng" value="@f.Lng?.ToString(System.Globalization.CultureInfo.InvariantCulture)"/>
   <div class="pl-search-grid"><div class="pl-autocomplete" data-autocomplete="anchor"><label for="anchor-query">Bạn muốn tìm gần đâu?</label><div class="pl-input-icon">@Ui.Icon("pin")<input id="anchor-query" class="form-control" type="search" value="@Model.Anchor?.Name" maxlength="200" placeholder="Tên điểm tham quan, cửa vào, khách sạn…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list"/></div><div class="pl-suggestions" role="listbox" hidden></div><p class="help" data-autocomplete-status role="status"></p></div>

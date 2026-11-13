@@ -39,17 +39,22 @@
 
  function openMap(element, position, zoom) {
   if (!window.L) throw new Error('Chưa tải được trình hiển thị bản đồ.');
-  const map = L.map(element, {scrollWheelZoom:false}).setView(position || centerOfVietnam, position ? zoom : 6);
-  const url = document.querySelector('meta[name="ds-tile-url"]')?.content || 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
-  const attribution = document.querySelector('meta[name="ds-tile-attribution"]')?.content;
-  const maxNativeZoom = new URL(url, location.href).hostname === 'tile.openstreetmap.de' ? 16 : 19;
-  const tiles = L.tileLayer(url, {maxZoom:19, maxNativeZoom, updateWhenZooming:false, referrerPolicy:'strict-origin-when-cross-origin',
-   attribution}).addTo(map);
+  const vnBounds = L.latLngBounds([[7.5, 101.5], [24.0, 110.5]]);
+  const map = L.map(element, {scrollWheelZoom:false, maxBounds:vnBounds, maxBoundsViscosity:1}).setView(position || centerOfVietnam, position ? zoom : 6);
+  const base = window.htBaseMap ? window.htBaseMap(map) : null;
   const fit = points => map.fitBounds(points, {padding:[40,40],maxZoom:17});
-  tiles.on('load', () => {
-   const hasImage = [...element.querySelectorAll('img.leaflet-tile-loaded')].some(tile => tile.naturalWidth > 0);
-   element.dispatchEvent(new Event(hasImage ? 'ht-tiles-ready' : 'ht-tiles-unavailable'));
-  });
+  if (base) base.whenReady(ok => element.dispatchEvent(new Event(ok ? 'ht-tiles-ready' : 'ht-tiles-unavailable')));
+  else {
+    const url = document.querySelector('meta[name="ds-tile-url"]')?.content || 'https://tile.openstreetmap.de/{z}/{x}/{y}.png';
+    const attribution = document.querySelector('meta[name="ds-tile-attribution"]')?.content;
+    const maxNativeZoom = new URL(url, location.href).hostname === 'tile.openstreetmap.de' ? 16 : 19;
+    const tiles = L.tileLayer(url, {maxZoom:19, maxNativeZoom, updateWhenZooming:false, referrerPolicy:'strict-origin-when-cross-origin',
+     attribution}).addTo(map);
+      tiles.on('load', () => {
+     const hasImage = [...element.querySelectorAll('img.leaflet-tile-loaded')].some(tile => tile.naturalWidth > 0);
+     element.dispatchEvent(new Event(hasImage ? 'ht-tiles-ready' : 'ht-tiles-unavailable'));
+    });
+  }
   return {
    focus: (point, level) => map.setView(point, level),
    fit,

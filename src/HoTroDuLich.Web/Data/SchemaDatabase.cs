@@ -40,6 +40,36 @@ public static class SchemaDatabase
             await ExecuteScript(db, Path.Combine(root, "Database", "005_KhongGianDongHanh.sql"));
             await ExecuteScript(db, Path.Combine(root, "Database", "006_TraCuuThongTin.sql"));
             await ExecuteScript(db, Path.Combine(root, "Database", "007_CoSoDichVu_GoogleMaps.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "008_DiaGioiHanhChinh.sql"));
+            await using (var units = db.Database.GetDbConnection().CreateCommand())
+            {
+                units.CommandText = "SELECT COUNT(*) FROM dbo.DonViHanhChinh";
+                if (Convert.ToInt32(await units.ExecuteScalarAsync()) == 0)
+                    await ExecuteScript(db, Path.Combine(root, "Database", "008c_NapDiaGioi.sql"));
+            }
+            await ExecuteScript(db, Path.Combine(root, "Database", "008b_GanDonViChoKhuVucCu.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "009_CoSoVaoTraCuu.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "010_CoSoThongTinChoKhach.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "011_TinNhanCoSo.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "012_DatDichVuTrongChat.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "013_TinNhanGiuaMoiNguoi.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "014_KetNoiTrongChat.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "015_MangXaHoi.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "016_TinNhanNangCao.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "017_DatCocNhacLich.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "018_ThoaThuanBaoCao.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "019_ThuocTinhCoSo.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "020_LoaiBaiViet.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "021_TheBaiVietBaoCao.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "022_ChuyenDiChung.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "023_BangTinNangCao.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "024_AnhBiaHoSo.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "025_LoaiDichVu.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "026_LichTrinhMau.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "027_ChiaTienNhom.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "028_HoiDapBaoSai.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "029_NhomChatChuyenDi.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "030_GhiChuNgay.sql"));
         }
         finally { await db.Database.CloseConnectionAsync(); }
     }

@@ -1,0 +1,27 @@
+@model SplitPage
+@{ViewData["Title"]="Chia tiền nhóm";var plan=Model.Plan;var me=Context.RequestServices.GetRequiredService<TravelService>().UserId;}
+<div class="container-wide">
+ <a class="back" href="/Plans/Detail/@plan.MaKeHoach">← @plan.TenKeHoach</a>
+ <div class="page-head"><div><span class="eyebrow">CHUYẾN ĐI / CHI TIÊU NHÓM</span><h1>Chia tiền nhóm</h1><p>Ghi ai đã trả khoản gì và chia cho ai. Hệ thống tính ai cần gửi lại cho ai với ít lần chuyển nhất. Trang này chỉ ghi nhận, tiền do các bạn tự chuyển cho nhau.</p></div><span class="count-pill">Tổng @Labels.Money(Model.Total)</span></div>
+ <div class="split-grid">
+  <section class="panel"><h2>Ghi khoản chi</h2>
+   <form action="/Plans/Split/@plan.MaKeHoach" method="post">@Html.AntiForgeryToken()<div asp-validation-summary="All"></div>
+    <div class="field"><label for="sp-title">Nội dung</label><input class="form-control" id="sp-title" name="Title" maxlength="200" required placeholder="Ví dụ: Ăn tối hải sản"/></div>
+    <div class="form-grid"><div class="field"><label for="sp-amount">Số tiền (₫)</label><input class="form-control" id="sp-amount" name="Amount" type="number" min="1" max="1000000000" step="1" required/></div>
+     <div class="field"><label for="sp-date">Ngày chi</label><input class="form-control" id="sp-date" name="SpentOn" type="date" value="@TravelService.Today.ToString("yyyy-MM-dd")" required/></div></div>
+    <div class="field"><label for="sp-paid">Ai đã trả</label><select class="form-select" id="sp-paid" name="PaidBy">@foreach(var m in Model.People){<option value="@m.AccountId" selected="@(m.AccountId==me)">@m.Name@(m.AccountId==me?" (bạn)":"")</option>}</select></div>
+    <fieldset class="field"><legend>Chia cho</legend><div class="pv-checks">@foreach(var m in Model.People){<label><input type="checkbox" name="Participants" value="@m.AccountId" checked/> @m.Name</label>}</div><small class="help">Chia đều cho những người được chọn.</small></fieldset>
+    <div class="form-actions"><button class="btn btn-dark" type="submit">Ghi khoản chi</button></div></form>
+  </section>
+  <section class="panel"><h2>Ai cần gửi lại cho ai</h2>
+   @if(Model.Transfers.Count==0){<p class="help">@(Model.Expenses.Count==0?"Chưa có khoản chi nào.":"Mọi người đã cân bằng, không ai cần chuyển thêm.")</p>}
+   else{<ul class="split-transfers">@foreach(var t in Model.Transfers){<li><strong>@t.From</strong> gửi <strong>@t.To</strong> <span class="split-amount">@Labels.Money(t.Amount)</span></li>}</ul>}
+   <h3>Số dư từng người</h3>
+   <div class="table-wrap"><table class="table"><thead><tr><th>Người</th><th>Đã trả</th><th>Phải chịu</th><th>Chênh lệch</th></tr></thead><tbody>@foreach(var b in Model.Balances){<tr><td>@b.Name</td><td>@Labels.Money(b.Paid)</td><td>@Labels.Money(b.Owed)</td><td class="@(b.Net>0?"split-plus":b.Net<0?"split-minus":"")">@(b.Net>0?"+":"")@Labels.Money(b.Net)</td></tr>}</tbody></table></div>
+  </section>
+ </div>
+ <section class="panel"><h2>Các khoản chi</h2>
+  @if(Model.Expenses.Count==0){<p class="help">Chưa có khoản chi nào.</p>}
+  @foreach(var e in Model.Expenses){<article class="split-expense"><div><strong>@e.Title</strong><small class="help">@e.SpentOn.ToString("dd/MM/yyyy") · @e.PaidByName trả · chia @e.Shares.Count người (@string.Join(", ",e.Shares.Select(s=>s.Name+" "+Labels.Money(s.Share))))</small></div><span class="split-amount">@Labels.Money(e.Amount)</span>@if(e.CanDelete){<form action="/Plans/Split/@plan.MaKeHoach/xoa" method="post" onsubmit="return confirm('Xóa khoản chi này?')">@Html.AntiForgeryToken()<input type="hidden" name="expenseId" value="@e.Id"/><button class="btn btn-outline" type="submit">Xóa</button></form>}</article>}
+ </section>
+</div>

@@ -21,6 +21,7 @@ public sealed class HoSoNguoiDungConfiguration : IEntityTypeConfiguration<HoSoNg
  e.Property(x=>x.MaTaiKhoan).HasColumnType("bigint");
  e.Property(x=>x.TenHienThi).HasColumnType("nvarchar(100)");
  e.Property(x=>x.AnhDaiDien).HasColumnType("nvarchar(400)");
+ e.Property(x=>x.AnhBia).HasColumnType("nvarchar(400)").HasMaxLength(400);
  e.Property(x=>x.GioiThieu).HasColumnType("nvarchar(1000)");
  e.Property(x=>x.NoiSinhSong).HasColumnType("nvarchar(200)");
  e.Property(x=>x.SoThich).HasColumnType("nvarchar(500)");

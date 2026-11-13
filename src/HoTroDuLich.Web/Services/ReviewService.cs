@@ -37,6 +37,18 @@ public sealed class ReviewService(AppDbContext db,TravelService travel,IDongHo c
             await db.SaveChangesAsync();travel.Audit("GuiDanhGiaDichVu","DanhGiaDichVu",entry.MaDanhGia,before,JsonSerializer.Serialize(new{entry.SoSao,entry.NoiDung,entry.TrangThai}));
         });
     }
+    /// <summary>Diem trung binh va so danh gia da duyet cua moi dich vu (mot truy van, nho trong yeu cau hien tai).</summary>
+    public async Task<Dictionary<long,(double Average,int Count)>> Ratings()
+    {
+        var ctx=travel.HttpContextOrNull;
+        if(ctx!=null&&ctx.Items.TryGetValue("AllRatings",out var cached)&&cached is Dictionary<long,(double,int)> hit)return hit;
+        var rows=await (from review in db.DanhGiaDichVu.AsNoTracking() join booking in db.YeuCauDatDichVu.AsNoTracking() on review.MaYeuCau equals booking.MaYeuCau
+            where review.TrangThai=="DaDuyet"&&(booking.TrangThai==TrangThaiYeuCau.HoanThanh||booking.TrangThai==TrangThaiYeuCau.ThucHienMotPhan||booking.TrangThai==TrangThaiYeuCau.KhongThucHien)
+            group review by booking.MaDichVu into g select new{Id=g.Key,Avg=g.Average(x=>(double)x.SoSao),N=g.Count()}).ToListAsync();
+        var map=rows.ToDictionary(x=>x.Id,x=>(x.Avg,x.N));
+        if(ctx!=null)ctx.Items["AllRatings"]=map;
+        return map;
+    }
     public async Task<ReviewFeed> PublicFeed(long serviceId,int page=1)
     {
         var service=await travel.PublicService(serviceId);travel.Require(page is >=1 and <=100000,"Trang không hợp lệ.",400);

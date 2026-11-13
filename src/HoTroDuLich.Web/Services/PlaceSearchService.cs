@@ -25,10 +25,10 @@ public static class PlaceText
   QueryHelpers.AddQueryString("/kham-pha",new Dictionary<string,string?>{{"AnchorKind",kind},{"AnchorId",id?.ToString(CultureInfo.InvariantCulture)},
    {"GooglePlaceId",googleId},{"Category",category},{"Lat",position?.Lat.ToString(CultureInfo.InvariantCulture)},
    {"Lng",position?.Lng.ToString(CultureInfo.InvariantCulture)},{"AnchorName",name},{"PlanId",planId?.ToString(CultureInfo.InvariantCulture)}});
- public static string SearchUrl(PlaceSearchFilter f,int page=1)=>QueryHelpers.AddQueryString("/kham-pha",new Dictionary<string,string?>{{"Q",f.Q},{"Category",f.Category},{"AnchorKind",f.AnchorKind},{"AnchorId",f.AnchorId?.ToString(CultureInfo.InvariantCulture)},{"GooglePlaceId",f.GooglePlaceId},{"AnchorName",f.AnchorName},{"Lat",f.Lat?.ToString(CultureInfo.InvariantCulture)},{"Lng",f.Lng?.ToString(CultureInfo.InvariantCulture)},{"RadiusKm",f.RadiusKm.ToString(CultureInfo.InvariantCulture)},{"Mode",f.Mode},{"Parking",f.Parking.ToString()},{"VegetarianOptions",f.VegetarianOptions.ToString()},{"VeganOnly",f.VeganOnly.ToString()},{"AccessibleEntrance",f.AccessibleEntrance.ToString()},{"IncludeGoogle",f.IncludeGoogle.ToString()},{"Sort",f.Sort},{"Page",page.ToString(CultureInfo.InvariantCulture)},{"PlanId",f.PlanId?.ToString(CultureInfo.InvariantCulture)}});
+ public static string SearchUrl(PlaceSearchFilter f,int page=1)=>QueryHelpers.AddQueryString("/kham-pha",new Dictionary<string,string?>{{"Q",f.Q},{"Category",f.Category},{"AnchorKind",f.AnchorKind},{"AnchorId",f.AnchorId?.ToString(CultureInfo.InvariantCulture)},{"GooglePlaceId",f.GooglePlaceId},{"AnchorName",f.AnchorName},{"Lat",f.Lat?.ToString(CultureInfo.InvariantCulture)},{"Lng",f.Lng?.ToString(CultureInfo.InvariantCulture)},{"RadiusKm",f.RadiusKm.ToString(CultureInfo.InvariantCulture)},{"Mode",f.Mode},{"Parking",f.Parking.ToString()},{"VegetarianOptions",f.VegetarianOptions.ToString()},{"VeganOnly",f.VeganOnly.ToString()},{"AccessibleEntrance",f.AccessibleEntrance.ToString()},{"IncludeGoogle",f.IncludeGoogle.ToString()},{"Sort",f.Sort},{"Page",page.ToString(CultureInfo.InvariantCulture)},{"PlanId",f.PlanId?.ToString(CultureInfo.InvariantCulture)},{"Area",f.Area?.ToString(CultureInfo.InvariantCulture)}});
 }
 
-public sealed class PlaceSearchService(AppDbContext db,BranchService branches,TravelService travel,GoogleMapsClient google,OpenMapPlaces openPlaces)
+public sealed class PlaceSearchService(AppDbContext db,BranchService branches,TravelService travel,GoogleMapsClient google,OpenMapPlaces openPlaces,DiaGioiService geo)
 {
  public static double Distance(MapPosition a,MapPosition b)
  {
@@ -83,6 +83,7 @@ public sealed class PlaceSearchService(AppDbContext db,BranchService branches,Tr
   }
   if(anchor!=null){f.AnchorName=anchor.Name;f.GooglePlaceId=anchor.GooglePlaceId;f.AnchorId=anchor.Id;f.Lat=anchor.Position.Lat;f.Lng=anchor.Position.Lng;}
   var source=branches.PublicBranches().AsNoTracking();
+  if(f.Area is long areaId){var areaSub=geo.SubtreeQuery(areaId);source=source.Where(x=>x.DonViId!=null&&areaSub.Contains(x.DonViId.Value));}
   var baseSource=source;
   if(anchor?.Kind=="Branch")source=source.Where(x=>x.Id!=anchor.Id);
   if(anchor?.GooglePlaceId!=null)source=source.Where(x=>x.GooglePlaceId==null||x.GooglePlaceId!=anchor.GooglePlaceId);
@@ -160,6 +161,7 @@ public sealed class PlaceSearchService(AppDbContext db,BranchService branches,Tr
   if(missing>0)notices.Add(anchor==null?"Một số cơ sở đang cần xác nhận lại vị trí bản đồ.":"Cơ sở chưa có vị trí sử dụng được chưa được tính vào kết quả quanh mốc.");
   var ordered=f.Sort=="distance"&&anchor!=null?hits.OrderBy(x=>x.DistanceKm).ThenBy(x=>x.Name).ToList():hits.OrderBy(x=>x.Name).ToList();
   var landmarkQuery=branches.PublicLandmarks().AsNoTracking();
+  if(f.Area is long landmarkArea){var landmarkSub=geo.SubtreeQuery(landmarkArea);landmarkQuery=landmarkQuery.Where(x=>x.DonViId!=null&&landmarkSub.Contains(x.DonViId.Value));}
   if(f.Q!=null)
   {
    var q=PlaceText.Normalize(f.Q);

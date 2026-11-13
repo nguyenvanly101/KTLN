@@ -1,0 +1,17 @@
+@model QaListPage
+@{ViewData["Title"]="Hỏi đáp — "+Model.Unit.Name;var signed=User.Identity?.IsAuthenticated==true;}
+<div class="container-narrow">
+ <a class="back" href="/diem-den/@Model.Unit.Id">← @Model.Unit.FullName</a>
+ <div class="page-head"><div><span class="eyebrow">HỎI ĐÁP</span><h1>Hỏi đáp về @Model.Unit.Name</h1><p>Hỏi người đã đi hoặc người địa phương. Câu trả lời hữu ích do người hỏi chọn sẽ được đưa lên đầu.</p></div></div>
+ @if(signed)
+ {
+  <div class="panel"><form action="/hoi-dap/@Model.Unit.Id" method="post">@Html.AntiForgeryToken()<div asp-validation-summary="All"></div>
+   <div class="field"><label for="qa-title">Câu hỏi của bạn</label><input class="form-control" id="qa-title" name="title" minlength="8" maxlength="200" required placeholder="Ví dụ: Tháng 12 đi Sa Pa nên mặc gì?"/></div>
+   <div class="field"><label for="qa-body">Chi tiết (không bắt buộc)</label><textarea class="form-control" id="qa-body" name="body" rows="3" maxlength="2000"></textarea></div>
+   <div class="form-actions"><button class="btn btn-dark" type="submit">Đăng câu hỏi</button></div></form></div>
+ }
+ else{<div class="notice"><a href="/Account/Login?returnUrl=@Uri.EscapeDataString("/hoi-dap/"+Model.Unit.Id)">Đăng nhập</a> để đặt câu hỏi hoặc trả lời.</div>}
+ @if(Model.Items.Count==0){<div class="empty"><h2>Chưa có câu hỏi nào</h2><p>Hãy là người đầu tiên hỏi về @Model.Unit.Name.</p></div>}
+ @foreach(var r in Model.Items){<a class="panel qa-row" href="/hoi-dap/cau/@r.Question.Id"><div><strong>@r.Question.Title</strong><small class="help">@r.Author · @Ui.LocalTime(r.Question.CreatedAt).ToString("dd/MM/yyyy")</small></div><span class="badge @(r.Solved?"badge-success":"")">@(r.Solved?"Đã có câu trả lời hữu ích":r.Answers+" trả lời")</span></a>}
+ @if(Model.Total>QaService.PageSize){<p class="help">Hiển thị @Model.Items.Count / @Model.Total câu hỏi.</p>}
+</div>

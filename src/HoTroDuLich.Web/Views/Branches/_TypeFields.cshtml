@@ -1,0 +1,41 @@
+@model BranchInput
+@{var current=BranchTemplates.Parse(Model.AttributesJson);}
+@foreach(var type in BranchTemplates.Types)
+{
+ <fieldset class="pv-typefields" data-type-fields="@type" hidden>
+  <legend>Thông tin riêng của @DanhMuc.Ten(type).ToLowerInvariant()</legend>
+  <p class="help">Khách sẽ thấy các thông tin này ngay trên trang cơ sở. Để trống những mục chưa chắc chắn.</p>
+  <div class="form-grid">
+  @foreach(var f in BranchTemplates.For(type))
+  {
+   var name=BranchTemplates.Name(type,f.Key);var values=type==Model.Type?BranchTemplates.Current(current,f):new List<string>();
+   <div class="field@(f.Kind is "multi" or "list"?" field-wide":"")">
+    @switch(f.Kind)
+    {
+     case "select":
+      <label for="@name">@f.Label</label><select class="form-select" id="@name" name="@name"><option value="">Chưa công bố</option>@foreach(var o in f.Options!){<option value="@o" selected="@(values.Contains(o))">@o</option>}</select>
+      break;
+     case "multi":
+      <span class="pv-label">@f.Label</span><div class="pv-checks">@foreach(var o in f.Options!){<label><input type="checkbox" name="@name" value="@o" checked="@(values.Contains(o))"/> @o</label>}</div>
+      break;
+     case "number":
+      <label for="@name">@f.Label</label><input class="form-control" id="@name" name="@name" type="number" min="1" max="@f.Max" value="@(values.FirstOrDefault())"/>
+      break;
+     case "time":
+      <label for="@name">@f.Label</label><input class="form-control" id="@name" name="@name" type="time" value="@(values.FirstOrDefault())"/>
+      break;
+     case "date":
+      <label for="@name">@f.Label</label><input class="form-control" id="@name" name="@name" type="date" value="@(values.FirstOrDefault())"/>
+      break;
+     case "list":
+      <label for="@name">@f.Label</label><textarea class="form-control" id="@name" name="@name" rows="4" placeholder="@f.Hint">@string.Join("\n",values)</textarea><small>@f.Hint (tối đa @f.Max dòng)</small>
+      break;
+     default:
+      <label for="@name">@f.Label</label><input class="form-control" id="@name" name="@name" maxlength="@f.Max" value="@(values.FirstOrDefault())"/>
+      break;
+    }
+   </div>
+  }
+  </div>
+ </fieldset>
+}

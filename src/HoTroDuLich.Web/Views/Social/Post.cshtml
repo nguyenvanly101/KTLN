@@ -1,0 +1,8 @@
+@model long
+@{ViewData["Title"]="Bài viết";}
+<div class="container-wide soc-page">
+ <a class="back" href="/bang-tin">← Bảng tin</a>
+ @Html.AntiForgeryToken()
+ <section class="soc-feed" data-soc-single data-post="@Model"></section>
+</div>
+@section Scripts{<script src="~/js/social.js" asp-append-version="true"></script><script src="~/js/posts.js" asp-append-version="true"></script>}

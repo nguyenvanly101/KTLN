@@ -1,0 +1,8 @@
+@model long
+@inject QaService Qa
+@{var recent=await Qa.Recent(Model,3);}
+<section class="ds-panel qa-box" aria-labelledby="qa-box-title">
+ <div class="section-head"><div><span class="eyebrow">HỎI ĐÁP</span><h2 id="qa-box-title">Câu hỏi từ du khách</h2></div><a class="btn btn-outline" href="/hoi-dap/@Model">Hỏi hoặc xem tất cả</a></div>
+ @if(recent.Count==0){<p class="help">Chưa có câu hỏi nào. Bạn muốn biết điều gì trước khi đi?</p>}
+ @foreach(var r in recent){<a class="qa-row" href="/hoi-dap/cau/@r.Question.Id"><strong>@r.Question.Title</strong><span class="badge @(r.Solved?"badge-success":"")">@(r.Solved?"Đã có câu trả lời hữu ích":r.Answers+" trả lời")</span></a>}
+</section>

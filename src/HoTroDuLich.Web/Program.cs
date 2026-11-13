@@ -40,6 +40,20 @@ builder.Services.AddScoped<AvailabilityService>();
 builder.Services.AddScoped<CompanionService>();
 builder.Services.AddScoped<DiscoveryService>();
 builder.Services.AddScoped<BranchService>();
+builder.Services.AddScoped<DiaGioiService>();
+builder.Services.AddSingleton<ChatBroker>();
+builder.Services.AddScoped<ChatService>();
+builder.Services.AddScoped<ChatReminderService>();
+builder.Services.AddHostedService<ChatReminderWorker>();
+builder.Services.AddScoped<FriendService>();
+builder.Services.AddScoped<PostService>();
+builder.Services.AddScoped<TravelerAdminService>();
+builder.Services.AddScoped<TripShareService>();
+builder.Services.AddScoped<GuideService>();
+builder.Services.AddScoped<TripSplitService>();
+builder.Services.AddScoped<PlanBoardService>();
+builder.Services.AddScoped<QaService>();
+builder.Services.AddScoped<ServiceKindAdminService>();
 builder.Services.AddScoped<PlaceSearchService>();
 builder.Services.AddSingleton<GoogleMapsClient>();
 builder.Services.AddHttpClient("GoogleMaps",c=>c.Timeout=TimeSpan.FromSeconds(12));
@@ -92,6 +106,7 @@ builder.Services.AddRateLimiter(o =>
     o.AddPolicy("maps",c=>RateLimitPartition.GetFixedWindowLimiter(c.Connection.RemoteIpAddress?.ToString()??"local",_=>new FixedWindowRateLimiterOptions{PermitLimit=12,Window=TimeSpan.FromMinutes(1),QueueLimit=0}));
     o.AddPolicy("maps-lookup",c=>RateLimitPartition.GetFixedWindowLimiter(c.Connection.RemoteIpAddress?.ToString()??"local",_=>new FixedWindowRateLimiterOptions{PermitLimit=40,Window=TimeSpan.FromMinutes(1),QueueLimit=0}));
     o.AddPolicy("maps-search",c=>RateLimitPartition.GetFixedWindowLimiter(c.Connection.RemoteIpAddress?.ToString()??"local",_=>new FixedWindowRateLimiterOptions{PermitLimit=30,Window=TimeSpan.FromMinutes(1),QueueLimit=0}));
+    o.AddPolicy("chat",c=>RateLimitPartition.GetFixedWindowLimiter(c.Connection.RemoteIpAddress?.ToString()??"local",_=>new FixedWindowRateLimiterOptions{PermitLimit=240,Window=TimeSpan.FromMinutes(1),QueueLimit=0}));
     o.AddPolicy("auth", c => RateLimitPartition.GetFixedWindowLimiter(c.Connection.RemoteIpAddress?.ToString() ?? "local", _ => new FixedWindowRateLimiterOptions { PermitLimit = 10, Window = TimeSpan.FromMinutes(1), QueueLimit = 0 }));
 });
 builder.Services.AddHostedService<NhacDenHanDinhChiService>();
@@ -109,14 +124,15 @@ if (!app.Environment.IsDevelopment())
 app.Use(async (c, next) =>
 {
     c.Response.Headers["X-Content-Type-Options"] = "nosniff";
-    c.Response.Headers["X-Frame-Options"] = "DENY";
+    c.Response.Headers["X-Frame-Options"] = "SAMEORIGIN";
     c.Response.Headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
     c.Response.Headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=(self)";
-    var discoveryTiles=builder.Configuration["Discovery:Map:TileUrl"]??"https://tile.openstreetmap.org/{z}/{x}/{y}.png";
-    var discoveryTileOrigin=Uri.TryCreate(discoveryTiles,UriKind.Absolute,out var tileUri)&&tileUri.Scheme=="https"?tileUri.GetLeftPart(UriPartial.Authority):"https://tile.openstreetmap.org";
+    var discoveryTiles=builder.Configuration["Discovery:Map:TileUrl"]??"https://tile.openstreetmap.de/{z}/{x}/{y}.png";
+    var discoveryTileOrigin=Uri.TryCreate(discoveryTiles,UriKind.Absolute,out var tileUri)&&tileUri.Scheme=="https"?tileUri.GetLeftPart(UriPartial.Authority):"https://tile.openstreetmap.de";
+    var vectorOrigins=(string.IsNullOrWhiteSpace(builder.Configuration["Discovery:Map:TrackAsiaKey"])?"":"https://maps.track-asia.com https://tiles.track-asia.com ")+(string.IsNullOrWhiteSpace(builder.Configuration["Discovery:Map:VietMapKey"])?"":"https://maps.vietmap.vn ")+(string.IsNullOrWhiteSpace(builder.Configuration["Discovery:Map:GoongKey"])?"":"https://tiles.goong.io https://*.goong.io ");
     var mapsNonce=Convert.ToBase64String(System.Security.Cryptography.RandomNumberGenerator.GetBytes(24));
     c.Items["MapsNonce"]=mapsNonce;
-    c.Response.Headers["Content-Security-Policy"] = "default-src 'self'; img-src 'self' data: blob: "+discoveryTileOrigin+" https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.googleusercontent.com; connect-src 'self' https://*.googleapis.com https://*.google.com https://*.gstatic.com; style-src 'self' 'nonce-"+mapsNonce+"' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; script-src 'self' 'nonce-"+mapsNonce+"' https://maps.googleapis.com https://maps.gstatic.com; font-src 'self' https://fonts.gstatic.com; worker-src 'self' blob:; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'";
+    c.Response.Headers["Content-Security-Policy"] = "default-src 'self'; img-src 'self' data: blob: "+vectorOrigins+discoveryTileOrigin+" https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.googleusercontent.com; connect-src 'self' "+vectorOrigins+"https://*.googleapis.com https://*.google.com https://*.gstatic.com; style-src 'self' 'nonce-"+mapsNonce+"' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; script-src 'self' 'nonce-"+mapsNonce+"' https://maps.googleapis.com https://maps.gstatic.com; font-src 'self' https://fonts.gstatic.com; worker-src 'self' blob:; frame-src 'self' https://www.google.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'";
     await next();
 });
 app.UseMiddleware<NhatKyBaoMatMiddleware>();
@@ -163,9 +179,11 @@ if (args.Contains("--initialize") || app.Environment.IsDevelopment())
 {
     using var scope = app.Services.CreateScope();
     await Seed.Initialize(scope.ServiceProvider, app.Environment.ContentRootPath);
+    await DiaGioiBootstrap.Assign(scope.ServiceProvider);
     await DiscoveryIndexWorker.Initialize(scope.ServiceProvider);
     if (args.Contains("--initialize"))
         return;
 }
 
+try { using var kindScope = app.Services.CreateScope(); await ServiceKinds.LoadAsync(kindScope.ServiceProvider.GetRequiredService<AppDbContext>()); } catch (Exception) { /* chua co bang LoaiDichVu: dung bo mac dinh */ }
 app.Run();

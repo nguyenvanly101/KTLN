@@ -6,6 +6,10 @@
 --          khong khop -> hang cho (NoMatch). khop nhieu don vi -> hang cho (Ambiguous). Gia tri "Viet Nam" bi bo qua.
 -- Co the chay lai: chi xu ly ban ghi con DonViId IS NULL.
 -- Dung web truoc khi chay (cap nhat lam doi RowVersion cua dich vu/co so).
+-- Bat buoc QUOTED_IDENTIFIER ON khi tao thu tuc (database co chi muc loc); sqlcmd mac dinh la OFF.
+SET QUOTED_IDENTIFIER ON;
+SET ANSI_NULLS ON;
+GO
 CREATE OR ALTER PROCEDURE dbo.usp_GanDonViChoKhuVucCu @Regime varchar(4)='Cu'
 AS
 BEGIN

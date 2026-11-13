@@ -52,6 +52,13 @@ public partial class HoSoNguoiDungService(AppDbContext context, IHttpContextAcce
             files = await StoreFiles([i.Avatar]);
         }
 
+        var coverFiles = new List<(string Name, string Path, string Type, int Size)>();
+        if (i.Cover != null)
+        {
+            Ensure(new[] { ".jpg", ".jpeg", ".png" }.Contains(Path.GetExtension(i.Cover.FileName).ToLowerInvariant()), "1201-01", "Cover");
+            coverFiles = await StoreFiles([i.Cover]);
+        }
+        string? previousCover = null;
         string? previousAvatar = null;
         await Execute(async () =>
         {
@@ -71,6 +78,11 @@ public partial class HoSoNguoiDungService(AppDbContext context, IHttpContextAcce
                 previousAvatar = p.AnhDaiDien;
                 p.AnhDaiDien = files[0].Path;
             }
+            if (coverFiles.Count > 0)
+            {
+                previousCover = p.AnhBia;
+                p.AnhBia = coverFiles[0].Path;
+            }
 
             if (Role == ProviderRole)
             {
@@ -83,6 +95,12 @@ public partial class HoSoNguoiDungService(AppDbContext context, IHttpContextAcce
                 n.EmailLienHe = i.ContactEmail!.Trim().ToLowerInvariant();
             }
         });
+        if (previousCover != null && coverFiles.Count > 0)
+        {
+            var oldCover = serviceLuuTep.DuongDanAnToan(previousCover);
+            if (File.Exists(oldCover))
+                File.Delete(oldCover);
+        }
         if (previousAvatar != null && files.Count > 0)
         {
             var old = serviceLuuTep.DuongDanAnToan(previousAvatar);

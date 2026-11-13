@@ -22,7 +22,10 @@ public partial class TravelService(AppDbContext context, IHttpContextAccessor ac
     public Task<(List<DichVuDuLich> Services, List<DiaDiemDuLich> Places)> Explore(string? q, string? region, string? type, decimal? min, decimal? max, int page = 1) => Resolve<ITimKiemThongTinService>().TraCuuAsync(q, region, type, min, max, page);
     public Task<NhaCungCapDichVu> ServiceProvider(long id) => Resolve<ITimKiemThongTinService>().LayNhaCungCapAsync(id);
     public Task<List<KeHoachChuyenDi>> Plans() => Resolve<ILapKeHoachService>().DanhSachAsync();
+    public Microsoft.AspNetCore.Http.HttpContext? HttpContextOrNull => http.HttpContext;
     public Task<KeHoachChuyenDi> OwnPlan(long id) => Resolve<ILapKeHoachService>().XemKeHoachAsync(id);
+    /// <summary>Chuyen di cua toi hoac chuyen di chung toi da tham gia.</summary>
+    public Task<KeHoachChuyenDi> SharedPlan(long id) => Resolve<ILapKeHoachService>().XemKeHoachChungAsync(id);
     public Task<List<HoatDongLichTrinh>> Activities(long id) => Resolve<ILapKeHoachService>().LayHoatDong(id);
     public Task<long> SavePlan(PlanInput i) => Resolve<ILapKeHoachService>().CapNhatThongTinAsync(i);
     public Task PlanDecision(CommandInput i) => Resolve<ILapKeHoachService>().ChapNhanAsync(i);

@@ -1,3 +1,4 @@
 @{
-    Layout = "_Layout";
+    var embedded=Context.Request.Query["embed"]=="1"||Context.Request.Headers["Sec-Fetch-Dest"]=="iframe";
+    Layout = embedded ? "_EmbedLayout" : "_Layout";
 }

@@ -1,0 +1,19 @@
+@{ViewData["Title"]="Số điện thoại khẩn cấp";}
+<div class="container-narrow">
+ <div class="page-head"><div><span class="eyebrow">AN TOÀN KHI ĐI</span><h1>Số điện thoại khẩn cấp</h1><p>Lưu sẵn những số này. Bấm để gọi ngay trên điện thoại.</p></div></div>
+ <div class="emg-grid">
+  <a class="panel emg-card" href="tel:113"><strong>113</strong><span>Công an, an ninh, mất cắp</span></a>
+  <a class="panel emg-card" href="tel:114"><strong>114</strong><span>Cứu hỏa, cứu nạn</span></a>
+  <a class="panel emg-card" href="tel:115"><strong>115</strong><span>Cấp cứu y tế</span></a>
+  <a class="panel emg-card" href="tel:111"><strong>111</strong><span>Bảo vệ trẻ em</span></a>
+  <a class="panel emg-card" href="tel:18001560"><strong>1800 1560</strong><span>Đường dây nóng du lịch quốc gia (Tổng cục Du lịch)</span></a>
+ </div>
+ <section class="panel" data-share-location>
+  <h2>Chia sẻ vị trí của bạn</h2><p class="help">Gửi vị trí hiện tại cho người thân hoặc người đang đợi bạn. Trình duyệt sẽ hỏi quyền truy cập vị trí. Website không lưu vị trí này.</p>
+  <div class="actions"><button class="btn btn-dark" type="button" data-share-btn>Lấy vị trí của tôi</button></div>
+  <p class="help" data-share-status role="status"></p>
+  <div data-share-result hidden><input class="form-control" readonly data-share-link aria-label="Liên kết vị trí"/><div class="actions"><button class="btn btn-outline" type="button" data-share-copy>Sao chép liên kết</button><a class="btn btn-outline" data-share-sms href="#">Gửi tin nhắn</a></div></div>
+ </section>
+ <section class="panel"><h2>Khi gặp sự cố</h2><ul><li>Mất giấy tờ, tiền: báo công an địa phương, giữ biên bản; liên hệ ngân hàng khóa thẻ.</li><li>Ốm đau: gọi 115, hoặc tới cơ sở y tế gần nhất; giữ hóa đơn nếu có bảo hiểm.</li><li>Dịch vụ không đúng cam kết: nhắn nhà cung cấp trong mục Tin nhắn, rồi ghi nhận tình huống trong chuyến đi.</li></ul></section>
+</div>
+@section Scripts{<script src="~/js/guide.js" asp-append-version="true"></script>}

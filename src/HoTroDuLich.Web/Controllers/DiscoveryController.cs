@@ -10,14 +10,18 @@ public sealed class DiscoveryController(TravelService travel,DiscoveryService di
  public async Task<IActionResult> Index([FromQuery]DiscoveryFilter f)
  {
   await LoadTripContext(f.PlanId);
+  // Trang chu: khong co dieu kien tim kiem nao -> man hinh bat dau theo nhu cau; co dieu kien -> ket qua.
+  if(Request.Query.Keys.All(k=>k.Equals("PlanId",StringComparison.OrdinalIgnoreCase)))return V("Discovery/Home",await discovery.HomePage());
   return V("Discovery/Search",await discovery.Search(f));
  }
- [HttpGet] public async Task<IActionResult> Entry(long id,string? topic=null,long? planId=null){await LoadTripContext(planId);ViewData["ExperienceTopic"]=topic;return V("Discovery/Entry",await discovery.Detail(id,topic:topic));}
+ [HttpGet("/diem-den")] public async Task<IActionResult> Destinations(string? viec=null){ViewData["Viec"]=viec;return V("Discovery/DestinationIndex",await discovery.DestinationIndex());}
+ [HttpGet("/diem-den/{id:long}")] public async Task<IActionResult> Destination(long id,string? tab=null,string? q=null,long? area=null,long? planId=null){await LoadTripContext(planId);return V("Discovery/Destination",await discovery.Destination(id,tab,q,area));}
+ [HttpGet] public async Task<IActionResult> Entry(long id,string? topic=null,long? planId=null){await LoadTripContext(planId);ViewData["ExperienceTopic"]=topic;var page=await discovery.Detail(id,topic:topic);if(page.Entry.BranchId!=null)return LocalRedirect("/co-so/"+page.Entry.BranchId);return V("Discovery/Entry",page);}
  [HttpGet] public async Task<IActionResult> Compare([FromQuery]long[] ids)=>V("Discovery/Compare",await discovery.Compare(ids));
  [Authorize,HttpGet] public async Task<IActionResult> Library()=>V("Discovery/Library",await discovery.Library());
  [Authorize(Roles=TravelService.AdminRole+","+TravelService.ProviderRole),HttpGet]public async Task<IActionResult> Manage(string tab="entries")=>V("Discovery/Manage",await discovery.Manage(tab));
  [Authorize(Roles=TravelService.AdminRole+","+TravelService.ProviderRole),HttpGet]public async Task<IActionResult> Edit(long id=0){ViewBag.DsParents=await discovery.ParentChoices();return V("Discovery/Edit",await discovery.EditForm(id));}
- [Authorize(Roles=TravelService.AdminRole),HttpPost]public async Task<IActionResult> Save(DiscoveryEditInput i){var id=await discovery.Save(i);return Done(i.Status=="Published"?DiscoveryText.Link(id):"/Discovery/Manage","Đã lưu thông tin và lịch sử cập nhật.");}
+ [Authorize(Roles=TravelService.AdminRole),HttpPost]public async Task<IActionResult> Save(DiscoveryEditInput i){i.AttributesJson=BranchTemplates.Collect(Request.Form,ServiceKinds.ForDiscoveryKind(i.Kind));var id=await discovery.Save(i);return Done(i.Status=="Published"?DiscoveryText.Link(id):"/Discovery/Manage","Đã lưu thông tin và lịch sử cập nhật.");}
  [Authorize(Roles=TravelService.ProviderRole),HttpPost]public async Task<IActionResult> Propose(DiscoveryEditInput i){await discovery.Propose(i);return Done("/Discovery/Manage?tab=proposals","Đã gửi đề nghị bổ sung. Nội dung được công bố sau khi quản trị viên kiểm tra.");}
  [Authorize(Roles=TravelService.AdminRole),HttpPost]public async Task<IActionResult> ReviewProposal(DiscoveryCommand i){await discovery.ReviewProposal(i);return Done("/Discovery/Manage?tab=proposals");}
  [Authorize,HttpPost]public async Task<IActionResult> Ask(DiscoveryCommand i){await discovery.Ask(i);return Done(DiscoveryText.Link(i.EntryId)+"#questions","Đã gửi câu hỏi. Câu trả lời được công bố sau khi kiểm tra.");}

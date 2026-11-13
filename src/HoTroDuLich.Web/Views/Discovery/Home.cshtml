@@ -1,0 +1,45 @@
+@model List<HomeDestination>
+@{
+ ViewData["Title"]="Khám phá & tra cứu";
+ var intents=new (string Label,string Hint,string Icon,string Href)[]
+ {
+  ("Ăn gì","Món địa phương, quán ăn","food","/diem-den?viec=an-uong"),
+  ("Ở đâu","Khách sạn, homestay","bed","/diem-den?viec=luu-tru"),
+  ("Chơi ở đâu","Danh thắng, hoạt động","pin","/diem-den?viec=tham-quan"),
+  ("Đi lại","Sân bay, ga, thuê xe","car","/diem-den?viec=di-chuyen"),
+  ("Xem bản đồ","Mọi nơi trên một bản đồ","compass","/diem-den?viec=ban-do"),
+  ("Lên lịch trình","Gom lựa chọn thành chuyến đi","calendar","/Plans")
+ };
+}
+<partial name="/Views/Shared/_ExploreTabs.cshtml" model='"discover"'/>
+<div class="ds-page hm-page" data-discovery-search>
+ <section class="hm-hero">
+  <span class="eyebrow">TÌM HIỂU TRƯỚC. KHÁM PHÁ THEO CÁCH CỦA BẠN.</span>
+  <h1>Một nơi muốn đến.<br/><em>Nhiều điều muốn biết.</em></h1>
+  <p>Chọn nơi bạn muốn đi, rồi xem ăn gì, ở đâu, chơi gì và đi lại thế nào. Mọi thông tin có nguồn và ngày kiểm tra.</p>
+  <form method="get" action="/Discovery" class="hm-search" role="search" data-ds-search-form>
+   <label for="ds-q" class="sr-only">Tìm nơi, món ăn hoặc nơi ở</label>
+   <div class="ds-query-row">@Ui.Icon("search")<input id="ds-q" name="Q" maxlength="200" placeholder="Bạn muốn đi đâu? Ví dụ: Đà Nẵng, ăn gì ở Đà Nẵng…" autocomplete="off" aria-controls="ds-suggestions" aria-expanded="false" role="combobox" aria-autocomplete="list"/></div>
+   <button class="btn btn-dark" type="submit">Tìm @Ui.Icon("arrow")</button>
+   <div id="ds-suggestions" class="ds-suggestions" role="listbox" hidden></div>
+  </form>
+  @if(Model.Count>0){<div class="hm-quick" aria-label="Điểm đến gợi ý"><span>Gợi ý:</span>@foreach(var d in Model.Take(6)){<a href="/diem-den/@d.UnitId">@d.Name</a>}</div>}
+ </section>
+
+ <section class="hm-section" aria-labelledby="hm-intents">
+  <div class="ds-section-head"><div><span class="eyebrow">BẠN MUỐN LÀM GÌ?</span><h2 id="hm-intents">Bắt đầu từ điều bạn cần.</h2></div></div>
+  <ul class="hm-tiles">@foreach(var t in intents){<li><a href="@t.Href"><span class="hm-tile-icon">@Ui.Icon(t.Icon)</span><strong>@t.Label</strong><small>@t.Hint</small></a></li>}</ul>
+ </section>
+
+ <section class="hm-section" aria-labelledby="hm-dest">
+  <div class="ds-section-head"><div><span class="eyebrow">ĐIỂM ĐẾN</span><h2 id="hm-dest">Chọn nơi bạn muốn hiểu thêm.</h2></div><a class="dest-all" href="/diem-den">Xem tất cả điểm đến @Ui.Icon("arrow")</a></div>
+  @if(Model.Count==0){<p class="dest-empty">Chưa có điểm đến nào được công bố.</p>}
+  else
+  {
+   <div class="hm-dest-grid">@foreach(var d in Model){var photo=Ui.DestinationPhoto(d.Name);<a class="hm-dest" href="/diem-den/@d.UnitId">@if(photo!=null){<img src="@photo" alt="" width="600" height="400" loading="lazy"/>}else{<span class="hm-dest-blank" aria-hidden="true">@d.Name.Substring(0,1)</span>}<span class="hm-dest-copy"><strong>@d.Name</strong><small>@(d.Count>0?d.Count+" mục thông tin":"Chưa có thông tin")</small><em>@d.Summary</em></span></a>}</div>
+  }
+ </section>
+ <p class="hm-advanced"><a href="/Discovery?Sort=relevance">Tìm nâng cao với bộ lọc</a><span aria-hidden="true"> · </span><a href="/kham-pha">Bản đồ cơ sở quanh một mốc</a></p>
+ <div hidden data-ds-csrf>@Html.AntiForgeryToken()</div>
+</div>
+@section Scripts{<script src="~/js/discovery.js" asp-append-version="true"></script>}

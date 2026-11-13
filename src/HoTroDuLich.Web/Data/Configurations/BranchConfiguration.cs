@@ -25,6 +25,7 @@ public sealed class CoSoDichVuConfiguration : IEntityTypeConfiguration<CoSoDichV
   e.Property(x=>x.AccessibleEntrance).HasColumnType("bit");
   e.Property(x=>x.GooglePlaceId).HasColumnType("nvarchar(256)").UseCollation("Latin1_General_100_BIN2").HasMaxLength(256);
   e.Property(x=>x.Latitude).HasColumnType("decimal(9,6)");
+  e.Property(x=>x.PriceFrom).HasColumnType("decimal(18,0)");e.Property(x=>x.PriceTo).HasColumnType("decimal(18,0)");
   e.Property(x=>x.Longitude).HasColumnType("decimal(9,6)");
   e.Property(x=>x.LocationSource).HasColumnType("varchar(15)").HasMaxLength(15).IsUnicode(false).IsRequired();
   e.Property(x=>x.LocationExpiresAt).HasColumnType("datetime2(0)");
@@ -62,6 +63,7 @@ public sealed class BanCapNhatCoSoConfiguration : IEntityTypeConfiguration<BanCa
   e.Property(x=>x.AccessibleEntrance).HasColumnType("bit");
   e.Property(x=>x.GooglePlaceId).HasColumnType("nvarchar(256)").UseCollation("Latin1_General_100_BIN2").HasMaxLength(256);
   e.Property(x=>x.Latitude).HasColumnType("decimal(9,6)");
+  e.Property(x=>x.PriceFrom).HasColumnType("decimal(18,0)");e.Property(x=>x.PriceTo).HasColumnType("decimal(18,0)");
   e.Property(x=>x.Longitude).HasColumnType("decimal(9,6)");
   e.Property(x=>x.LocationSource).HasColumnType("varchar(15)").HasMaxLength(15).IsUnicode(false).IsRequired();
   e.Property(x=>x.LocationExpiresAt).HasColumnType("datetime2(0)");

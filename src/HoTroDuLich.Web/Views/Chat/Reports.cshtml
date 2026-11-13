@@ -1,0 +1,16 @@
+@model (string Status,List<ChatReportDto> Items)
+@{ViewData["Title"]="Báo cáo tin nhắn";}
+<div class="container-wide pl-manage">
+ <div class="page-head"><div><span class="eyebrow">KIỂM DUYỆT</span><h1>Báo cáo tin nhắn</h1><p>Chỉ hiển thị tin bị báo cáo và vài tin ngay trước đó. Nội dung cuộc trò chuyện khác không được mở.</p></div>
+  <div class="soc-tabs"><a class="btn @(Model.Status=="Open"?"btn-dark":"btn-outline")" href="/quan-tri/bao-cao-chat">Đang chờ</a> <a class="btn @(Model.Status=="Done"?"btn-dark":"btn-outline")" href="/quan-tri/bao-cao-chat?status=Done">Đã xử lý</a></div></div>
+ @if(Model.Items.Count==0){<div class="empty"><h3>Không có báo cáo nào</h3></div>}
+ @foreach(var r in Model.Items)
+ {
+  <article class="panel pv-section"><h2>#@r.Id · @r.Reason</h2>
+   <p><strong>@r.Reporter</strong> báo cáo @(r.Target??"cuộc trò chuyện") · @Ui.LocalTime(r.At).ToString("dd/MM/yyyy HH:mm")</p>
+   @if(!string.IsNullOrWhiteSpace(r.Note)){<p class="prose">Ghi chú: @r.Note</p>}
+   @if(r.Context.Count>0){<pre class="prose">@string.Join("\n",r.Context)</pre>}
+   @if(Model.Status=="Open"){<form method="post" action="/quan-tri/bao-cao-chat/xu-ly">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@r.Id"/><button class="btn btn-outline" type="submit">Đánh dấu đã xử lý</button></form>}
+  </article>
+ }
+</div>

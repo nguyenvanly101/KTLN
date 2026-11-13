@@ -2,7 +2,8 @@ namespace HoTroDuLich.Web.Services;
 
 public static class DanhMuc
 {
-    public static readonly string[] LoaiDichVu = ["LuuTru", "AnUong", "PhuongTien", "HoatDong", "Khac"];
+    /// <summary>Ma cac loai dich vu nha cung cap duoc dang (lay tu danh muc ServiceKinds).</summary>
+    public static string[] LoaiDichVu => ServiceKinds.ServiceCodes;
     public static readonly string[] LoaiTinhHuong = ["DiemDenKhongPhucVu", "ThoiTiet", "DichVuCoVanDe", "Khac"];
     public static readonly string[] HinhThucDi = ["TuTuc", "Phuot", "NghiDuong", "Khac"];
     public const int KichThuocTrang = 20;
@@ -15,7 +16,10 @@ public static class DanhMuc
         "Tự túc" => "TuTuc", "Phượt" => "Phuot", "Nghỉ dưỡng" => "NghiDuong", "Khác" => "Khac",
         _ => value?.Trim() ?? ""
     };
-    public static string Ten(string? value) => ChuanHoa(value) switch
+    /// <summary>Chuan hoa nhan cu (tieng Viet) ve ma; ma da dung thi giu nguyen.</summary>
+    public static string ChuanHoaMa(string? value) => ChuanHoa(value);
+    public static string Ten(string? value) => ServiceKinds.Get(value) is { } kind ? kind.Label : TenCu(value);
+    static string TenCu(string? value) => ChuanHoa(value) switch
     {
         "LuuTru" => "Lưu trú", "AnUong" => "Ăn uống", "PhuongTien" => "Phương tiện",
         "HoatDong" => "Hoạt động", "DiaDiem" => "Địa điểm", "ThoiTiet" => "Thời tiết",

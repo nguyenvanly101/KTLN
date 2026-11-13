@@ -1,0 +1,23 @@
+@model QuestionPage
+@{var q=Model.Question;ViewData["Title"]=q.Title;var signed=User.Identity?.IsAuthenticated==true;}
+<div class="container-narrow">
+ <a class="back" href="/hoi-dap/@Model.Unit.Id">← Hỏi đáp @Model.Unit.Name</a>
+ <article class="panel"><span class="eyebrow">@Model.Unit.FullName</span><h1>@q.Title</h1>@if(!string.IsNullOrWhiteSpace(q.Body)){<p class="prose">@q.Body</p>}<small class="help">@Model.Author · @Ui.LocalTime(q.CreatedAt).ToString("dd/MM/yyyy HH:mm")</small>
+  @if(Model.CanDelete){<form action="/hoi-dap/cau/@q.Id/xoa" method="post" onsubmit="return confirm('Xóa câu hỏi này?')">@Html.AntiForgeryToken()<input type="hidden" name="donViId" value="@q.DonViId"/><button class="btn btn-outline" type="submit">Xóa câu hỏi</button></form>}</article>
+ <h2>@Model.Answers.Count câu trả lời</h2>
+ @foreach(var a in Model.Answers)
+ {
+  <article class="panel qa-answer @(a.Accepted?"qa-accepted":"")">@if(a.Accepted){<span class="badge badge-success">Hữu ích nhất</span>}<p class="prose">@a.Answer.Body</p><small class="help">@a.Author · @Ui.LocalTime(a.Answer.CreatedAt).ToString("dd/MM/yyyy HH:mm")</small>
+   <div class="actions">
+    @if(signed){<form action="/hoi-dap/tra-loi/@a.Answer.Id/binh-chon" method="post">@Html.AntiForgeryToken()<input type="hidden" name="questionId" value="@q.Id"/><button class="btn btn-outline" type="submit">@(a.Voted?"Bỏ bình chọn":"Hữu ích") (@a.Votes)</button></form>}else{<span class="help">@a.Votes bình chọn</span>}
+    @if(Model.CanAccept){<form action="/hoi-dap/tra-loi/@a.Answer.Id/huu-ich" method="post">@Html.AntiForgeryToken()<input type="hidden" name="questionId" value="@q.Id"/><button class="btn btn-outline" type="submit">@(a.Accepted?"Bỏ chọn":"Chọn là hữu ích nhất")</button></form>}
+    @if(a.CanDelete){<form action="/hoi-dap/tra-loi/@a.Answer.Id/xoa" method="post" onsubmit="return confirm('Xóa câu trả lời này?')">@Html.AntiForgeryToken()<input type="hidden" name="questionId" value="@q.Id"/><button class="btn btn-outline" type="submit">Xóa</button></form>}
+   </div></article>
+ }
+ @if(Model.Answers.Count==0){<p class="help">Chưa có câu trả lời. Bạn biết thông tin này? Hãy trả lời giúp.</p>}
+ @if(signed)
+ {
+  <div class="panel"><form action="/hoi-dap/cau/@q.Id/tra-loi" method="post">@Html.AntiForgeryToken()<div class="field"><label for="qa-answer">Câu trả lời của bạn</label><textarea class="form-control" id="qa-answer" name="body" rows="4" minlength="2" maxlength="2000" required></textarea></div><div class="form-actions"><button class="btn btn-dark" type="submit">Gửi câu trả lời</button></div></form></div>
+ }
+ else{<div class="notice"><a href="/Account/Login?returnUrl=@Uri.EscapeDataString("/hoi-dap/cau/"+q.Id)">Đăng nhập</a> để trả lời.</div>}
+</div>

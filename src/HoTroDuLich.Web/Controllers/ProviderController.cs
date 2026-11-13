@@ -20,17 +20,30 @@ public class ProviderController(TravelService s,BranchService branches) : AppCon
     {
         ViewBag.Provider = await S.MyProvider();
         ViewBag.CanSubmit = await S.CanSubmitService();
-        return View(await S.MyServices());
+        ViewBag.Unlinked = await branches.UnlinkedServiceCount();
+        var all = await S.MyServices();
+        var current = await branches.CurrentBranch();
+        if (current == null) return View(all);
+        // Chi hien dich vu gan voi co so dang chon, khong hien moi dich vu cua tai khoan.
+        var linked = await branches.ServiceIdsOf(current.Id);
+        return View(all.Where(x => linked.Contains(x.MaDichVu)).ToList());
     }
 
     [SucAuthorize(SucAccess.ServiceManagement)]
     [HttpGet]
-    public async Task<IActionResult> Edit(long id = 0)
+    public async Task<IActionResult> Edit(long id = 0, long coSo = 0)
     {
         ViewBag.CanSubmit = await S.CanSubmitService();
         ViewBag.Places = await S.VisiblePlaces();
         if (id == 0)
-            return View(new ServiceInput());
+        {
+            // Dich vu moi: tu gan vao co so da duyet (hoac co so duoc chon san), khong bat chon lai.
+            var fresh = new ServiceInput();
+            var mine = (await branches.Choices()).Select(x => x.Id).ToList();
+            var current = await branches.CurrentBranch();
+            fresh.BranchIds = coSo > 0 && mine.Contains(coSo) ? [coSo] : current != null && mine.Contains(current.Id) ? [current.Id] : mine.Take(1).ToList();
+            return View(fresh);
+        }
         var d = await S.OwnService(id);
         var history = await S.ServiceHistory(id);
         ViewBag.History = history;
@@ -38,7 +51,7 @@ public class ProviderController(TravelService s,BranchService branches) : AppCon
         {
             Id = id,
             Version = TravelService.Token(d.RowVersion),
-            Address=d.DiaChiPhucVu,PriceUnit=d.DonViGia,CancellationPolicy=d.ChinhSachHuy,PhotoPaths=d.AnhJson,
+            Address=d.DiaChiPhucVu,PriceUnit=d.DonViGia,CancellationPolicy=d.ChinhSachHuy,PhotoPaths=d.AnhJson,AttributesJson=d.AttributesJson,
             Name = d.TenDichVu,
             Type = EnumType(d.LoaiDichVu),
             Region = d.KhuVucPhucVu,
@@ -58,7 +71,7 @@ public class ProviderController(TravelService s,BranchService branches) : AppCon
             HoTroDuLich.Web.Domain.TrangThaiDuyet.TuChoi
         }.Contains(last.TrangThaiDuyet))
         {
-            input.Address=last.DiaChiPhucVu;input.PriceUnit=last.DonViGia;input.CancellationPolicy=last.ChinhSachHuy;input.PhotoPaths=last.AnhJson;
+            input.Address=last.DiaChiPhucVu;input.PriceUnit=last.DonViGia;input.CancellationPolicy=last.ChinhSachHuy;input.PhotoPaths=last.AnhJson;input.AttributesJson=last.AttributesJson;
             input.Name = last.TenDichVu;
             input.Type = EnumType(last.LoaiDichVu);
             input.Region = last.KhuVucPhucVu;
@@ -81,8 +94,25 @@ public class ProviderController(TravelService s,BranchService branches) : AppCon
     [HttpPost]
     public async Task<IActionResult> Edit(ServiceInput i)
     {
+        i.AttributesJson = BranchTemplates.Collect(Request.Form, DanhMuc.ChuanHoa(i.Type));
         await S.SaveService(i);
-        return Done("/Provider", i.Operation == "LuuNhap" ? "Đã lưu bản nháp dịch vụ." : "Đã gửi phiên bản chờ duyệt. Nội dung đang công bố chỉ thay đổi sau khi Admin chấp thuận.");
+        return Done("/Provider", i.AppliedNow ? "Đã cập nhật ngay: giá, giờ phục vụ, điều kiện và tạm ngừng không cần chờ duyệt." : i.Operation == "LuuNhap" ? "Đã lưu bản nháp dịch vụ." : "Đã gửi phiên bản chờ duyệt. Nội dung đang công bố chỉ thay đổi sau khi Admin chấp thuận.");
+    }
+
+    [SucAuthorize(SucAccess.ServiceManagement)]
+    [HttpPost]
+    public async Task<IActionResult> AttachUnlinked()
+    {
+        var n = await branches.AttachUnlinkedServices();
+        return Done("/Provider", n > 0 ? "Đã gắn " + n + " dịch vụ vào cơ sở đang chọn." : "Không có dịch vụ nào cần gắn.");
+    }
+
+    [SucAuthorize(SucAccess.ServiceManagement)]
+    [HttpPost]
+    public async Task<IActionResult> Delete(long id)
+    {
+        var removed = await branches.DeleteService(id);
+        return Done("/Provider", removed ? "Đã xóa dịch vụ." : "Dịch vụ đã có yêu cầu của khách nên được gỡ khỏi danh mục khách thấy. Bạn có thể gửi lại sau.");
     }
 
     [SucAuthorize(SucAccess.ProviderVerification)]

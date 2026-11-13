@@ -10,7 +10,7 @@ public sealed class TripWorkspaceService(AppDbContext db, TravelService travel)
 {
     public async Task<TripWorkspace> Open(long id)
     {
-        var plan = await travel.OwnPlan(id);
+        var plan = await travel.SharedPlan(id);
         var activities = await travel.Activities(id);
         var bookings = await db.YeuCauDatDichVu.AsNoTracking()
             .Where(x => x.MaKeHoach == id && x.MaTaiKhoan == travel.UserId)
@@ -18,7 +18,7 @@ public sealed class TripWorkspaceService(AppDbContext db, TravelService travel)
         var serviceIds = bookings.Select(x => x.MaDichVu).Distinct().ToList();
         var names = await db.DichVuDuLich.Where(x => serviceIds.Contains(x.MaDichVu))
             .ToDictionaryAsync(x => x.MaDichVu, x => x.TenDichVu);
-        var incidents = await travel.Incidents(id);
+        var incidents = plan.MaTaiKhoan == travel.UserId ? await travel.Incidents(id) : new List<TinhHuongPhatSinh>();
         var tasks = new List<TripTask>();
         foreach (var booking in bookings.Where(x => x.TrangThai == TrangThaiYeuCau.DeXuatKhac))
             tasks.Add(new("Có điều kiện dịch vụ cần bạn xem lại", names[booking.MaDichVu],

@@ -24,7 +24,7 @@ public partial class DangKyService(AppDbContext context, IHttpContextAccessor ac
         var email = i.Email.Trim().ToLowerInvariant();
         Ensure(ValidPassword(i.Password, email) && i.Password == i.ConfirmPassword, "1001-03", "Password");
         Ensure(!await db.TaiKhoan.AnyAsync(x => x.Email == email || (i.Phone != null && x.SoDienThoai == i.Phone)), "1001-04");
-        var files = await StoreFiles(i.Role == ProviderRole ? i.Documents : []);
+        var files = await StoreFiles(i.Role == ProviderRole ? i.Documents.Take(5).ToList() : []);
         await Execute(async () =>
         {
             Ensure(!await db.TaiKhoan.AnyAsync(x => x.Email == email || (i.Phone != null && x.SoDienThoai == i.Phone)), "1001-04");
@@ -44,12 +44,12 @@ public partial class DangKyService(AppDbContext context, IHttpContextAccessor ac
                 var p = new NhaCungCapDichVu
                 {
                     MaTaiKhoan = a.MaTaiKhoan,
-                    TenDonVi = i.Organization!.Trim(),
-                    DiaChi = i.Address!.Trim(),
-                    SoDienThoai = i.ContactPhone!,
-                    EmailLienHe = i.ContactEmail!.Trim().ToLowerInvariant(),
-                    NguoiLienHe = i.ContactName!.Trim(),
-                    LoaiHinh = i.OrganizationType!.Trim(),
+                    TenDonVi = string.IsNullOrWhiteSpace(i.Organization) ? i.Name.Trim() : i.Organization.Trim(),
+                    DiaChi = string.IsNullOrWhiteSpace(i.Address) ? "Cập nhật khi tạo cơ sở" : i.Address.Trim(),
+                    SoDienThoai = i.ContactPhone ?? i.Phone!,
+                    EmailLienHe = string.IsNullOrWhiteSpace(i.ContactEmail) ? email : i.ContactEmail.Trim().ToLowerInvariant(),
+                    NguoiLienHe = string.IsNullOrWhiteSpace(i.ContactName) ? i.Name.Trim() : i.ContactName.Trim(),
+                    LoaiHinh = string.IsNullOrWhiteSpace(i.OrganizationType) ? "Chưa phân loại" : i.OrganizationType.Trim(),
                     TrangThaiXacMinh = HoTroDuLich.Web.Domain.TrangThaiXacMinh.ChoXacMinh
                 };
                 db.Add(p);
@@ -57,8 +57,8 @@ public partial class DangKyService(AppDbContext context, IHttpContextAccessor ac
                 var h = new HoSoXacMinhNhaCungCap
                 {
                     MaNhaCungCap = p.MaNhaCungCap,
-                    NguoiDaiDien = i.Representative!.Trim(),
-                    NoiDungDangKy = i.RegistrationDescription!.Trim(),
+                    NguoiDaiDien = string.IsNullOrWhiteSpace(i.Representative) ? i.Name.Trim() : i.Representative.Trim(),
+                    NoiDungDangKy = string.IsNullOrWhiteSpace(i.RegistrationDescription) ? "Đăng ký nhanh; xác minh cùng cơ sở đầu tiên." : i.RegistrationDescription.Trim(),
                     TrangThaiXuLy = HoTroDuLich.Web.Domain.TrangThaiHoSoXacMinh.ChoXacMinh
                 };
                 db.Add(h);

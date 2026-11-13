@@ -1,0 +1,86 @@
+@model ChatPageModel
+@{
+ var branch=Model.Me=="Branch";
+ ViewData["Title"]="Tin nhắn";
+ var embed=Layout=="_EmbedLayout";
+}
+<div class="container-wide chat-page">
+ @if(!embed){<div class="page-head"><div><span class="eyebrow">TIN NHẮN</span><h1>Tin nhắn</h1><p>@(branch?"Khách hỏi và đặt dịch vụ ngay tại đây. Trả lời nhanh để khách quyết định sớm.":"Trò chuyện với cơ sở và những người cùng đi. Hỏi, đặt dịch vụ và thỏa thuận ngay tại đây.")</p></div></div>}
+ @Html.AntiForgeryToken()
+ <div class="chat-app" data-chat-app data-me="@Model.Me" data-account="@User.FindFirstValue(ClaimTypes.NameIdentifier)" data-open="@Model.OpenId" data-filter-branch="@Model.BranchFilter" data-start-branch="@Model.Start?.BranchId">
+  <aside class="chat-list panel" aria-label="Danh sách cuộc trò chuyện">
+   <div class="chat-toolbar">@if(branch){<a class="btn btn-outline" href="/nha-cung-cap/tin-nhan/cai-dat">Cài đặt &amp; tin mẫu</a>}else{<button type="button" class="btn btn-outline" data-chat-notify hidden title="Nhận thông báo khi có tin nhắn mới lúc bạn đang ở tab khác">🔔 Bật thông báo</button><button type="button" class="btn btn-dark" data-chat-open-compose>@Ui.Icon("plus") Tin nhắn mới</button><button type="button" class="btn btn-outline" data-chat-open-create>@Ui.Icon("users") Tạo nhóm</button>}</div>
+   @if(!branch){<div class="chat-compose" data-chat-compose hidden><input class="form-control" type="search" placeholder="Gõ tên bạn bè hoặc cơ sở…" data-chat-compose-q aria-label="Tìm người hoặc cơ sở"/><div class="chat-compose-results" data-chat-compose-results></div></div>}
+   @if(branch)
+   {
+    <div class="chat-filters"><select class="form-select" data-chat-branch aria-label="Cơ sở"><option value="">Mọi cơ sở</option>@foreach(var b in Model.Branches){<option value="@b.Id" selected="@(Model.BranchFilter==b.Id)">@b.Name</option>}</select>
+     <div class="chat-tabs" role="tablist"><button type="button" class="active" data-chat-filter="">Tất cả</button><button type="button" data-chat-filter="unread">Chưa đọc</button><button type="button" data-chat-filter="open">Đang mở</button><button type="button" data-chat-filter="booking">Chờ xác nhận</button><button type="button" data-chat-filter="done">Đã xử lý</button></div>
+     <input class="form-control" type="search" placeholder="Tìm khách hoặc nội dung…" data-chat-search aria-label="Tìm trong tin nhắn"/></div>
+   }
+   <ul class="chat-items" data-chat-list></ul>
+   <p class="chat-empty" data-chat-list-empty hidden>@(branch?"Chưa có tin nhắn nào.":"Chưa có tin nhắn. Mở trang cơ sở hoặc lời rủ đi cùng rồi bấm “Nhắn tin”.")</p>
+  </aside>
+  <section class="chat-thread panel" data-chat-thread aria-live="polite">
+   <div class="chat-placeholder" data-chat-placeholder>@Ui.Icon("chat")<p>Chọn một cuộc trò chuyện để xem và trả lời.</p></div>
+   <div class="chat-group-create" data-chat-create-group hidden>
+    <h2>Tạo nhóm chat</h2><p class="help">Chọn bạn bè để cùng trò chuyện. Bạn là quản trị viên của nhóm.</p>
+    <label>Tên nhóm (tùy chọn)<input class="form-control" maxlength="100" data-chat-group-title placeholder="Ví dụ: Đà Lạt tháng 12"/></label>
+    <div class="chat-checks" data-chat-group-friends></div>
+    <div class="form-actions"><button type="button" class="btn btn-dark" data-chat-group-go>Tạo nhóm</button><button type="button" class="btn btn-outline" data-chat-create-close>Hủy</button></div>
+   </div>
+   <div class="chat-pane" data-chat-pane hidden>
+    <header class="chat-head"><button type="button" class="chat-back" data-chat-back aria-label="Quay lại danh sách">←</button><div class="chat-head-main"><strong data-chat-title></strong><small data-chat-sub></small></div>
+     <div class="chat-head-actions"><a class="text-link" data-chat-branch-link href="#" hidden>Xem cơ sở</a><button type="button" class="btn btn-outline" data-chat-state hidden></button><button type="button" class="text-link" data-chat-block hidden></button><button type="button" class="text-link" data-chat-report hidden>Báo cáo</button><button type="button" class="btn btn-outline" data-chat-members-toggle hidden>@Ui.Icon("users") Thành viên</button></div></header>
+    <div class="chat-context" data-chat-context hidden></div>
+    <div class="chat-members" data-chat-members hidden>
+     <div class="chat-members-row"><input class="form-control" maxlength="100" data-chat-rename aria-label="Tên nhóm"/><button type="button" class="btn btn-outline" data-chat-rename-go>Đổi tên</button></div>
+     <ul class="chat-members-list" data-chat-members-list></ul>
+     <details><summary>Thêm người vào nhóm</summary><div class="chat-checks" data-chat-add-box></div><button type="button" class="btn btn-dark" data-chat-add-go>Thêm</button></details>
+     <button type="button" class="text-link chat-leave" data-chat-leave>Rời nhóm</button>
+    </div>
+    <div class="chat-meta" data-chat-meta></div>
+    <div class="chat-messages" data-chat-messages tabindex="0"></div>
+    <div class="chat-typing" data-chat-typing hidden>Đang soạn tin…</div>
+    <div class="chat-blocked" data-chat-blocked hidden></div>
+    <div class="chat-quick" data-chat-quick hidden></div>
+    <form class="chat-book" data-chat-connect hidden>
+     <strong>Rủ đi cùng</strong><p class="help">Chọn chuyến bạn muốn cùng đi. Người nhận đồng ý ngay trong cuộc trò chuyện, sau đó hai bạn lập thỏa thuận đi cùng.</p>
+     <label>Chuyến đi<select class="form-select" data-connect="need"></select></label>
+     <label>Lời giới thiệu (tùy chọn)<textarea class="form-control" rows="2" maxlength="1000" data-connect="text" placeholder="Bạn là ai, thích đi kiểu nào, dự định ra sao…"></textarea></label>
+     <div class="form-actions"><button class="btn btn-dark" type="submit">Gửi lời rủ</button><button class="btn btn-outline" type="button" data-chat-connect-close>Đóng</button></div>
+    </form>
+    <form class="chat-book" data-chat-book hidden>
+     <strong>Gửi yêu cầu đặt dịch vụ</strong><p class="help">Cơ sở sẽ xem yêu cầu ngay trong cuộc trò chuyện. Hai bên cùng trao đổi và thống nhất tại đây.</p>
+     <div class="chat-book-grid">
+      <label>Dịch vụ<select class="form-select" data-book="service"></select></label>
+      <label>Ngày bắt đầu<input class="form-control" type="date" data-book="start"/></label>
+      <label>Ngày kết thúc (nếu có)<input class="form-control" type="date" data-book="end"/></label>
+      <label>Số người<input class="form-control" type="number" min="1" max="100" value="1" data-book="people"/></label>
+      <label>Số lượng<input class="form-control" type="number" min="1" max="100" value="1" data-book="quantity"/></label>
+      <label>Giờ đến/đi (tùy chọn)<input class="form-control" maxlength="100" placeholder="19:00 / 12:00" data-book="arrival"/></label>
+     </div>
+     <label>Ghi chú cho cơ sở<textarea class="form-control" rows="2" maxlength="1000" data-book="notes" placeholder="Yêu cầu riêng, dị ứng, cần thêm giường phụ…"></textarea></label>
+     <div class="chat-book-check" data-book-check aria-live="polite"></div>
+     <div class="form-actions"><button class="btn btn-dark" type="submit">Gửi yêu cầu</button><button class="btn btn-outline" type="button" data-chat-book-close>Đóng</button></div>
+    </form>
+    <div class="chat-replybar" data-chat-replybar hidden><span data-chat-reply-text></span><button type="button" data-chat-reply-cancel aria-label="Bỏ trả lời">✕</button></div>
+    <div class="chat-emoji-pop" data-chat-emoji-pop hidden></div>
+    <form class="chat-composer" data-chat-form>
+     <button type="button" class="btn btn-outline chat-book-toggle" data-chat-connect-toggle hidden>@Ui.Icon("users") Rủ đi cùng</button>
+     <button type="button" class="btn btn-outline chat-book-toggle" data-chat-book-toggle hidden>@Ui.Icon("ticket") Đặt dịch vụ</button>
+     <label class="chat-attach" title="Gửi ảnh">@Ui.Icon("image")<span class="sr-only">Gửi ảnh</span><input type="file" accept="image/jpeg,image/png" data-chat-image hidden/></label>
+     <label class="chat-attach" title="Gửi tệp PDF">📄<span class="sr-only">Gửi tệp PDF</span><input type="file" accept="application/pdf" data-chat-pdf hidden/></label>
+     <button type="button" class="chat-attach" title="Gửi vị trí của tôi" data-chat-location>📍<span class="sr-only">Gửi vị trí</span></button>
+     <button type="button" class="chat-attach" title="Biểu tượng cảm xúc" data-chat-emoji>😊<span class="sr-only">Biểu tượng cảm xúc</span></button>
+     <textarea class="form-control" rows="1" maxlength="2000" placeholder="Nhập tin nhắn…" data-chat-input aria-label="Nội dung tin nhắn"></textarea>
+     <button class="btn btn-dark" type="submit" data-chat-send>@Ui.Icon("send") <span>Gửi</span></button>
+    </form>
+    <div class="chat-file" data-chat-file hidden><span data-chat-file-name></span> <button type="button" class="text-link" data-chat-file-clear>Bỏ ảnh</button></div>
+    @if(branch){<div class="chat-note" data-chat-notebox hidden><label for="chat-note">Ghi chú nội bộ (khách không thấy)</label><textarea class="form-control" id="chat-note" rows="2" maxlength="500" data-chat-note></textarea><input class="form-control" maxlength="30" placeholder="Nhãn: đã đặt, hỏi giá…" data-chat-label aria-label="Nhãn cuộc trò chuyện"/></div>}
+    <p class="chat-error" data-chat-error role="alert" hidden></p>
+   </div>
+  </section>
+ </div>
+</div>
+@if(Model.Start is {} s){<script id="chat-start" type="application/json">@Html.Raw(System.Text.Json.JsonSerializer.Serialize(s,new System.Text.Json.JsonSerializerOptions{PropertyNamingPolicy=System.Text.Json.JsonNamingPolicy.CamelCase,Encoder=System.Text.Encodings.Web.JavaScriptEncoder.Default}))</script>}
+@section Scripts{<script src="~/js/chat.js" asp-append-version="true"></script>}

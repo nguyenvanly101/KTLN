@@ -1,0 +1,26 @@
+@model (CoSoDichVu Branch, List<BaiViet> Posts)
+@{
+ ViewData["Title"]="Tin giới thiệu — "+Model.Branch.Name;
+ var published=Model.Branch.Status=="Approved"&&Model.Branch.PublishedVersion!=null;
+}
+<div class="container-narrow pv-posts">
+ <a class="back" href="/nha-cung-cap/co-so">← Cơ sở của tôi</a>
+ <div class="page-head"><div><span class="eyebrow">ĐĂNG TIN</span><h1>Tin giới thiệu của @Model.Branch.Name</h1><p>Món mới, ưu đãi, sự kiện hay hình ảnh thực tế. Tin hiện trên bảng tin cộng đồng và trang cơ sở, không cần duyệt và không liên quan đến dịch vụ đặt chỗ.</p></div></div>
+ <div asp-validation-summary="All"></div>
+ @if(!published){<div class="notice warning">Cơ sở cần được duyệt và công bố trước khi đăng tin.</div>}
+ else
+ {
+  <div class="panel"><form action="/nha-cung-cap/co-so/@Model.Branch.Id/tin" method="post" enctype="multipart/form-data">@Html.AntiForgeryToken()
+   <div class="field"><label for="post-content">Nội dung tin</label><textarea class="form-control" id="post-content" name="Content" rows="4" maxlength="4000" required placeholder="Ví dụ: Thực đơn mùa hè đã có, giảm 10% cho nhóm từ 4 người…"></textarea></div>
+   <div class="field"><label for="post-photos">Ảnh (tối đa 4, JPG/PNG)</label><input class="form-control" id="post-photos" name="Photos" type="file" accept="image/jpeg,image/png" multiple/></div>
+   <div class="form-actions"><button class="btn btn-dark" type="submit">Đăng tin</button></div>
+  </form></div>
+ }
+ <h2>Tin đã đăng</h2>
+ @if(Model.Posts.Count==0){<div class="empty"><p>Chưa có tin nào.</p></div>}
+ @foreach(var p in Model.Posts)
+ {
+  <article class="panel"><small class="soc-meta">@Ui.LocalTime(p.CreatedAt).ToString("dd/MM/yyyy HH:mm")@(string.IsNullOrEmpty(p.PhotosJson)?"":" · có ảnh")</small><p class="post-body">@p.Content</p>
+   <form action="/nha-cung-cap/co-so/@Model.Branch.Id/tin/@p.Id/xoa" method="post" onsubmit="return confirm('Xóa tin này?')">@Html.AntiForgeryToken()<button class="btn btn-outline" type="submit">Xóa tin</button></form></article>
+ }
+</div>

@@ -24,11 +24,8 @@ public class RegisterInput : IValidatableObject {
  public IEnumerable<ValidationResult> Validate(ValidationContext context) {
   if(!Password.Any(char.IsLetter)||!Password.Any(char.IsDigit)||(!string.IsNullOrWhiteSpace(Email)&&Password.Contains(Email,StringComparison.OrdinalIgnoreCase)))
    yield return new("Mật khẩu phải có chữ và số, không chứa email.", [nameof(Password)]);
-  if(Role=="NHA_CUNG_CAP") {
-   foreach(var (name,value) in new[]{(nameof(Organization),Organization),(nameof(Address),Address),(nameof(OrganizationType),OrganizationType),(nameof(ContactName),ContactName),(nameof(ContactPhone),ContactPhone),(nameof(ContactEmail),ContactEmail),(nameof(RegistrationDescription),RegistrationDescription),(nameof(Representative),Representative)})
-    if(string.IsNullOrWhiteSpace(value))yield return new("Vui lòng nhập thông tin nhà cung cấp.",[name]);
-   if(Documents.Count is <1 or >5)yield return new("Hồ sơ cần từ 1 đến 5 tài liệu xác minh.",[nameof(Documents)]);
-  }
+  if(Role=="NHA_CUNG_CAP"&&string.IsNullOrWhiteSpace(Phone))
+   yield return new("Nhà cung cấp cần số điện thoại để khách liên hệ.",[nameof(Phone)]);
  }
 }
 public class CommandInput {
@@ -109,12 +106,15 @@ public class ServiceInput {
  [MaxLength(50)] [Display(Name="Đơn vị tính giá")] public string? PriceUnit {get;set;}
  [MaxLength(2000)] [Display(Name="Chính sách thay đổi/hủy")] public string? CancellationPolicy {get;set;}
  [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever] public string? PhotoPaths {get;set;}
+ [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever] public string? AttributesJson {get;set;}
  public List<IFormFile> Photos {get;set;}=[];
+ [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever] public bool AppliedNow {get;set;}
  public bool RemovePhotos {get;set;}
  public long Id {get;set;} public string Version {get;set;}="";
  [Required,MaxLength(200)] [Display(Name="Tên")] public string Name {get;set;}="";
  [Required,MaxLength(50)] [Display(Name="Loại hình")] public string Type {get;set;}="Lưu trú";
  [MaxLength(200)] [Display(Name="Khu vực")] public string? Region {get;set;}="";
+ [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever] public long? DonViId {get;set;}
  [MaxLength(4000)] [Display(Name="Mô tả")] public string? Description {get;set;}
  [Range(0,1000000000)] [Display(Name="Giá")] public decimal? Price {get;set;}
  [MaxLength(200)] [Display(Name="Thời gian phục vụ")] public string? Hours {get;set;}
@@ -165,6 +165,7 @@ public class ProfileInput {
  [MaxLength(500)] [Display(Name="Sở thích")] public string? Interests {get;set;}
  public string Privacy {get;set;}="RiengTu";
  public IFormFile? Avatar {get;set;}
+ public IFormFile? Cover {get;set;}
  public string ProviderVersion {get;set;}="";
  [MaxLength(100)] public string? ContactName {get;set;}
  [MaxLength(300)] public string? Address {get;set;}

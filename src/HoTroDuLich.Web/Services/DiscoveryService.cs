@@ -31,20 +31,42 @@ public static class DiscoveryText
   return(Words(input).Where(x=>!skip.Contains(x)).ToList(),intent);
  }
  public static string Fold(string? s)=>string.Concat((s??"").Normalize(NormalizationForm.FormD).Where(c=>CharUnicodeInfo.GetUnicodeCategory(c)!=UnicodeCategory.NonSpacingMark)).Replace('đ','d').Replace('Đ','D').ToLowerInvariant().Normalize(NormalizationForm.FormC);
- public static List<string> Words(string? s){var text=Fold(s);foreach(var pair in new[]{("khach san","luu tru"),("quan an","an uong"),("nha hang","an uong"),("tham quan","tham quan"),("xe buyt","buyt")})text=text.Replace(pair.Item1,pair.Item2);var stop="toi minh ban co nao nhung cac mot nhieu o tai la thi de duoc khong the nao can muon tim kiem thong tin ve gi voi va hay hoac khi cho cua tu den lam sao bao nhieu nhu the nao".Split(' ').ToHashSet();return Regex.Matches(text,@"[\p{L}\p{N}]+").Select(m=>m.Value).Where(w=>w.Length>1&&!stop.Contains(w)).Distinct().Take(10).ToList();}
+ static readonly (string From,string To)[] Synonyms=[("khach san","luu tru"),("nha nghi","luu tru"),("home stay","luu tru"),("homestay","luu tru"),("resort","luu tru"),("hostel","luu tru"),("biet thu","luu tru"),("villa","luu tru"),("can ho","luu tru"),("quan an","an uong"),("nha hang","an uong"),("quan com","an uong"),("mon an","an uong"),("an gi","an uong"),("do an","an uong"),("am thuc","an uong"),("quan cafe","an uong"),("ca phe","an uong"),("cafe","an uong"),("coffee","an uong"),("tra sua","an uong"),("xe buyt","buyt")];
+ /// <summary>Dua tu dong nghia ve cung mot cum (homestay, resort -> luu tru; an gi, am thuc -> an uong).</summary>
+ public static string Canon(string folded){foreach(var (from,to) in Synonyms)folded=Regex.Replace(folded,@"\b"+Regex.Escape(from)+@"\b",to);return folded;}
+ public static List<string> Words(string? s){var text=Canon(Fold(s));text=Regex.Replace(text,@"\b\d+\s*(ngay|dem)\b"," ");var stop="di choi ngay dem ghe toi minh ban co nao nhung cac mot nhieu o tai la thi de duoc khong the nao can muon tim kiem thong tin ve gi voi va hay hoac khi cho cua tu den lam sao bao nhieu nhu the nao".Split(' ').ToHashSet();return Regex.Matches(text,@"[\p{L}\p{N}]+").Select(m=>m.Value).Where(w=>w.Length>1&&!stop.Contains(w)).Distinct().Take(10).ToList();}
  public static double Distance(double a,double b,double c,double d){var r=Math.PI/180;var h=Math.Pow(Math.Sin((c-a)*r/2),2)+Math.Cos(a*r)*Math.Cos(c*r)*Math.Pow(Math.Sin((d-b)*r/2),2);return 6371*2*Math.Atan2(Math.Sqrt(h),Math.Sqrt(Math.Max(0,1-h)));}
  public static bool HttpUrl(string? s)=>string.IsNullOrWhiteSpace(s)||(Uri.TryCreate(s,UriKind.Absolute,out var u)&&u.Scheme=="https"&&!string.IsNullOrWhiteSpace(u.Host)&&u.UserInfo.Length==0);
  public static string Link(long id)=>"/Discovery/Entry/"+id;
+ public static string LinkTo(DiscoveryEntry e)=>e.BranchId!=null?"/co-so/"+e.BranchId:Link(e.Id);
+ /// <summary>"Thứ 2 – Chủ nhật · 07:00–21:00" tu ngay mo (1=thu 2 ... 7=chu nhat) va gio mo/dong; null khi chua co.</summary>
+ public static string? HoursLabel(string? days,TimeOnly? open,TimeOnly? close)
+ {
+  if(string.IsNullOrEmpty(days)||open==null||close==null)return null;
+  var names=new[]{"","Thứ 2","Thứ 3","Thứ 4","Thứ 5","Thứ 6","Thứ 7","Chủ nhật"};
+  var set=days.Select(c=>c-'0').Where(d=>d is >=1 and <=7).Distinct().OrderBy(d=>d).ToList();
+  string label;
+  if(set.Count==7)label="Mỗi ngày";
+  else if(set.Count>1&&set[^1]-set[0]==set.Count-1)label=names[set[0]]+" – "+names[set[^1]];
+  else label=string.Join(", ",set.Select(d=>names[d]));
+  return label+" · "+open.Value.ToString("HH:mm")+"–"+close.Value.ToString("HH:mm");
+ }
+ public static string? PriceLabel(decimal? from,decimal? to,string? unit)
+ {
+  if(from==null)return null;
+  var text=to!=null&&to!=from?Labels.Money(from)+" – "+Labels.Money(to):"Từ "+Labels.Money(from);
+  return text+(string.IsNullOrWhiteSpace(unit)?"":" / "+unit);
+ }
  public static bool ActiveOn(DiscoveryEntry e,DateOnly day)=> (e.ValidFrom==null||e.ValidFrom<=day)&&(e.ValidTo==null||e.ValidTo>=day);
  public static bool OpenAt(DiscoveryEntry e,DateOnly day,TimeOnly time){if(e.OpenDays==null||e.OpenTime==null||e.CloseTime==null)return false;var weekday=((int)day.DayOfWeek+6)%7+1;return e.OpenTime<=e.CloseTime?e.OpenDays.Contains(weekday.ToString())&&time>=e.OpenTime&&time<e.CloseTime:(e.OpenDays.Contains(weekday.ToString())&&time>=e.OpenTime)||(e.OpenDays.Contains((weekday==1?7:weekday-1).ToString())&&time<e.CloseTime);}
 }
 
-public sealed partial class DiscoveryService(AppDbContext db,TravelService travel,IDongHo clock,INhatKyService audit,IThongBaoService notices)
+public sealed partial class DiscoveryService(AppDbContext db,TravelService travel,IDongHo clock,INhatKyService audit,IThongBaoService notices,DiaGioiService geo,BranchService branches)
 {
  const string SearchCollation="Latin1_General_100_CI_AI";
  long Me=>travel.UserId;
  bool Admin=>travel.Role==TravelService.AdminRole;
- IQueryable<DiscoveryEntry> Public(){var services=travel.PublicServices();return db.Set<DiscoveryEntry>().Where(e=>e.Status=="Published"&&(e.PlaceId==null||db.DiaDiemDuLich.Any(p=>p.MaDiaDiem==e.PlaceId&&p.DangHienThi))&&(e.ServiceId==null||services.Any(s=>s.MaDichVu==e.ServiceId)));}
+ IQueryable<DiscoveryEntry> Public(){var services=travel.PublicServices();var publicBranches=branches.PublicBranches();return db.Set<DiscoveryEntry>().Where(e=>e.Status=="Published"&&(e.PlaceId==null||db.DiaDiemDuLich.Any(p=>p.MaDiaDiem==e.PlaceId&&p.DangHienThi))&&(e.ServiceId==null||services.Any(s=>s.MaDichVu==e.ServiceId))&&(e.BranchId==null||publicBranches.Any(b=>b.Id==e.BranchId)));}
  public async Task<DiscoveryEntry> PublicEntry(long id)=>await Public().AsNoTracking().SingleOrDefaultAsync(e=>e.Id==id)??throw new BusinessException("Thông tin này chưa được công bố hoặc đã được ẩn.",404);
  public async Task<long?> LegacyId(long? place=null,long? service=null)=>await Public().Where(x=>(place!=null&&x.PlaceId==place)||(service!=null&&x.ServiceId==service)).Select(x=>(long?)x.Id).FirstOrDefaultAsync();
  void Signed()=>travel.RoleRequired(TravelService.Traveler,TravelService.ProviderRole,TravelService.AdminRole);
@@ -56,14 +78,15 @@ public sealed partial class DiscoveryService(AppDbContext db,TravelService trave
   var pids=entries.Where(x=>x.PlaceId!=null).Select(x=>x.PlaceId!.Value).ToList();var sids=entries.Where(x=>x.ServiceId!=null).Select(x=>x.ServiceId!.Value).ToList();
   var places=await db.DiaDiemDuLich.AsNoTracking().Where(x=>pids.Contains(x.MaDiaDiem)).ToDictionaryAsync(x=>x.MaDiaDiem);
   var services=await travel.PublicServices().AsNoTracking().Where(x=>sids.Contains(x.MaDichVu)).ToDictionaryAsync(x=>x.MaDichVu);
-  foreach(var e in entries){if(e.PlaceId is long pid&&places.TryGetValue(pid,out var p)){e.Title=p.TenDiaDiem;e.Region=p.KhuVuc;e.Address=p.DiaChi??e.Address;e.Summary=p.MoTa??e.Summary;}if(e.ServiceId is long sid&&services.TryGetValue(sid,out var s)){e.Title=s.TenDichVu;e.Region=s.KhuVucPhucVu;e.Address=s.DiaChiPhucVu??e.Address;e.Summary=s.MoTa??e.Summary;e.PriceFrom=s.GiaThamKhao;e.PriceTo=null;e.PriceUnit=s.DonViGia;e.Hours=s.ThoiGianPhucVu??e.Hours;e.Includes=s.DieuKienPhucVu??e.Includes;e.Tags+=" "+DanhMuc.Ten(s.LoaiDichVu);}}
+  foreach(var e in entries){if(e.PlaceId is long pid&&places.TryGetValue(pid,out var p)){e.Title=p.TenDiaDiem;e.Region=p.KhuVuc;e.DonViId=p.DonViId;e.Address=p.DiaChi??e.Address;e.Summary=p.MoTa??e.Summary;}if(e.ServiceId is long sid&&services.TryGetValue(sid,out var s)){e.Title=s.TenDichVu;e.Region=s.KhuVucPhucVu;e.DonViId=s.DonViId;e.Address=s.DiaChiPhucVu??e.Address;e.Summary=s.MoTa??e.Summary;e.PriceFrom=s.GiaThamKhao;e.PriceTo=null;e.PriceUnit=s.DonViGia;e.Hours=s.ThoiGianPhucVu??e.Hours;e.Includes=s.DieuKienPhucVu??e.Includes;e.Tags+=" "+DanhMuc.Ten(s.LoaiDichVu);}}
  }
  public async Task<DiscoverySearchPage> Search(DiscoveryFilter f,bool map=false)
  {
   Need(f.Page is >=1 and <=100000&&(f.Q?.Length??0)<=200&&(f.Region?.Length??0)<=100&&(f.Min==null||f.Min>=0)&&(f.Max==null||f.Max>=0),"Điều kiện tìm kiếm không hợp lệ.",400);
   Need(f.Min==null||f.Max==null||f.Min<=f.Max,"Giá đến phải lớn hơn hoặc bằng giá từ.",400);
-  var phrase=DiscoveryText.Fold(f.Q);var knownRegions=await Public().Select(e=>e.Region).Distinct().ToListAsync();var mentioned=knownRegions.Where(r=>DiscoveryText.Fold(r)!="viet nam"&&Regex.IsMatch(phrase,@"\b"+Regex.Escape(DiscoveryText.Fold(r))+@"\b")).ToList();
-  if(string.IsNullOrWhiteSpace(f.Region)&&mentioned.Count==1)f.Region=mentioned[0];
+  var phrase=DiscoveryText.Canon(DiscoveryText.Fold(f.Q));var knownRegions=await Public().Select(e=>e.Region).Distinct().ToListAsync();var mentioned=knownRegions.Where(r=>DiscoveryText.Fold(r)!="viet nam"&&Regex.IsMatch(phrase,@"\b"+Regex.Escape(DiscoveryText.Fold(r))+@"\b")).ToList();
+  string? placeName=null;
+  if(f.Area==null&&string.IsNullOrWhiteSpace(f.Region)){if(await FindPlaceUnit(phrase) is var place&&place!=null){f.Area=place.Value.Id;placeName=place.Value.Name;}else if(mentioned.Count==1)f.Region=mentioned[0];}
   var categoryWords=new HashSet<string>();
   if(string.IsNullOrWhiteSpace(f.Kind)&&string.IsNullOrWhiteSpace(f.Type)){
    if(phrase.Contains("khach san")||phrase.Contains("luu tru")){f.Type="LuuTru";categoryWords.UnionWith(new[]{"luu","tru"});}
@@ -72,19 +95,35 @@ public sealed partial class DiscoveryService(AppDbContext db,TravelService trave
    else if(phrase.Contains("tham quan")){f.Kind="Place";categoryWords.UnionWith(new[]{"tham","quan"});}
   }
   if(phrase.Contains("trong nha")&&!phrase.Contains("khong")){f.Features=string.Join(',',((f.Features??"")+",Indoor").Split(',',StringSplitOptions.RemoveEmptyEntries).Distinct());categoryWords.UnionWith(new[]{"trong","nha"});}
+  var intentWords=new HashSet<string>(categoryWords);
+  if(placeName!=null)categoryWords.UnionWith(DiscoveryText.Words(placeName));
   categoryWords.UnionWith(new[]{"noi","dia","diem","gan","nhat"});if(mentioned.Count==1)categoryWords.UnionWith(DiscoveryText.Words(mentioned[0]));
-  if(!string.IsNullOrEmpty(f.Type)){var type=DanhMuc.ChuanHoa(f.Type);if(type=="DiaDiem")f.Kind="Place";else if(DanhMuc.LoaiDichVu.Contains(type))f.Kind="Service";else Need(false,"Loại dịch vụ không hợp lệ.",400);}
+  var serviceType=false;string[] groupCodes=[];
+  if(!string.IsNullOrEmpty(f.Group)){Need(ServiceKinds.Groups.Any(g=>g.Key==f.Group),"Nhóm không hợp lệ.",400);groupCodes=ServiceKinds.All.Where(k=>k.Active&&k.Group==f.Group).Select(k=>k.Code).ToArray();serviceType=true;}
+  if(!string.IsNullOrEmpty(f.Type)){var type=DanhMuc.ChuanHoa(f.Type);if(type=="DiaDiem")f.Kind="Place";else if(DanhMuc.LoaiDichVu.Contains(type))serviceType=true;else Need(false,"Loại dịch vụ không hợp lệ.",400);}
   Need(string.IsNullOrEmpty(f.Kind)||DiscoveryText.Kinds.ContainsKey(f.Kind),"Loại thông tin không hợp lệ.",400);Need(new[]{"relevance","updated","distance","price"}.Contains(f.Sort),"Cách sắp xếp không hợp lệ.",400);
   var wanted=(f.Features??"").Split(',',StringSplitOptions.RemoveEmptyEntries|StringSplitOptions.TrimEntries).Distinct().ToArray();Need(wanted.Length<=12&&wanted.All(DiscoveryText.Features.ContainsKey),"Tiện ích tìm kiếm không hợp lệ.",400);
   Need((f.Lat==null)==(f.Lng==null)&&(f.Lat==null||(f.Lat>=-90&&f.Lat<=90&&f.Lng>=-180&&f.Lng<=180))&&f.RadiusKm is >=.1 and <=200,"Vị trí hoặc phạm vi tìm kiếm không hợp lệ.",400);
   var bounds=new[]{f.South,f.West,f.North,f.East};Need(bounds.All(x=>x==null)||(bounds.All(x=>x!=null)&&f.South>=-90&&f.North<=90&&f.West>=-180&&f.East<=180&&f.South<f.North&&f.West<f.East),"Khung bản đồ không hợp lệ.",400);
   var query=Public().AsNoTracking();var question=DiscoveryText.Question(f.Q);var words=question.Words.Where(x=>!categoryWords.Contains(x)).ToList();var all=Public().AsNoTracking();
-  if(!string.IsNullOrWhiteSpace(f.Region)){var region=f.Region.Trim();query=query.Where(e=>EF.Functions.Collate(e.Region,SearchCollation)==region);}
+  string? unitPath=null;
+  if(f.Area is long unitId){unitPath=await geo.PathText(unitId);Need(unitPath.Length>0,"Khu vực đã chọn không tồn tại.",400);var subtree=geo.SubtreeQuery(unitId);query=query.Where(e=>e.DonViId!=null&&subtree.Contains(e.DonViId.Value));}
+  else if(!string.IsNullOrWhiteSpace(f.Region)){var region=f.Region.Trim();query=query.Where(e=>EF.Functions.Collate(e.Region,SearchCollation)==region);}
   if(!string.IsNullOrWhiteSpace(f.Kind))query=query.Where(e=>e.Kind==f.Kind);
-  if(!string.IsNullOrWhiteSpace(f.Type)&&f.Kind=="Service"){var type=DanhMuc.ChuanHoa(f.Type);var legacy=DanhMuc.Ten(type);query=query.Where(e=>(e.ServiceId==null&&e.Tags.Contains(legacy))||(e.ServiceId!=null&&db.DichVuDuLich.Any(s=>s.MaDichVu==e.ServiceId&&(s.LoaiDichVu==type||s.LoaiDichVu==legacy))));}
+  if(serviceType)
+  {
+   var codes=groupCodes.Length>0?groupCodes:[DanhMuc.ChuanHoa(f.Type!)];
+   static string OldLabel(string code)=>code switch{"PhuongTien"=>"Phương tiện","HoatDong"=>"Hoạt động",_=>""};
+   // Nhan hien tai va nhan cu (chi muc tim kiem tao truoc khi doi nhan van con nhan cu trong Tags).
+   var labels=codes.SelectMany(c=>new[]{DanhMuc.Ten(c),OldLabel(c)}).Where(x=>x.Length>0).Distinct().Take(8).ToList();
+   while(labels.Count<8)labels.Add("");
+   string l0=labels[0],l1=labels[1],l2=labels[2],l3=labels[3],l4=labels[4],l5=labels[5],l6=labels[6],l7=labels[7];
+   var legacyCodes=codes.Concat(labels).ToArray();
+   query=query.Where(e=>(e.Kind=="Service"&&((e.ServiceId==null&&(e.Tags.Contains(l0)||e.Tags.Contains(l1)||e.Tags.Contains(l2)||e.Tags.Contains(l3)||e.Tags.Contains(l4)||e.Tags.Contains(l5)||e.Tags.Contains(l6)||e.Tags.Contains(l7)))||(e.ServiceId!=null&&db.DichVuDuLich.Any(s=>s.MaDichVu==e.ServiceId&&legacyCodes.Contains(s.LoaiDichVu)))))||(e.Kind=="Guide"&&(e.Tags.Contains(l0)||e.Tags.Contains(l1)||e.Tags.Contains(l2)||e.Tags.Contains(l3)||e.Tags.Contains(l4)||e.Tags.Contains(l5)||e.Tags.Contains(l6)||e.Tags.Contains(l7))));
+  }
   foreach(var code in wanted)query=query.Where(e=>db.Set<DiscoveryFeature>().Any(a=>a.EntryId==e.Id&&a.Code==code&&a.State=="Yes"));
-  foreach(var word in words)query=query.Where(e=>EF.Functions.Collate((e.Title+" "+e.Region+" "+e.Summary+" "+e.Tags+" "+e.Body).Replace("đ","d").Replace("Đ","D"),SearchCollation).Contains(word)||db.Set<DiscoveryQuestion>().Any(a=>a.EntryId==e.Id&&a.Status=="Answered"&&EF.Functions.Collate((a.Question+" "+a.Answer).Replace("đ","d").Replace("Đ","D"),SearchCollation).Contains(word)));
-  if(f.Date is DateOnly date)query=query.Where(e=>(e.ValidFrom==null||e.ValidFrom<=date)&&(e.ValidTo==null||e.ValidTo>=date)&&(e.ServiceId==null||!db.DichVuDuLich.Any(s=>s.MaDichVu==e.ServiceId&&s.TamNgungTu!=null&&s.TamNgungTu<=date&&(s.TamNgungDen==null||s.TamNgungDen>=date))));
+  foreach(var word in words){var needle=word.Length<=3?" "+word+" ":" "+word;query=query.Where(e=>EF.Functions.Collate((" "+e.Title+" "+e.Region+" "+e.Summary+" "+e.Tags+" "+e.Body+" ").Replace("đ","d").Replace("Đ","D").Replace(","," ").Replace("."," ").Replace("-"," ").Replace("("," ").Replace(")"," ").Replace(":"," ").Replace("\n"," "),SearchCollation).Contains(needle)||db.Set<DiscoveryQuestion>().Any(a=>a.EntryId==e.Id&&a.Status=="Answered"&&EF.Functions.Collate((a.Question+" "+a.Answer).Replace("đ","d").Replace("Đ","D"),SearchCollation).Contains(word)));}
+  if(f.Date is DateOnly date)query=query.Where(e=>(e.ValidFrom==null||e.ValidFrom<=date)&&(e.ValidTo==null||e.ValidTo>=date)&&(e.ServiceId==null||!db.DichVuDuLich.Any(s=>s.MaDichVu==e.ServiceId&&s.TamNgungTu!=null&&s.TamNgungTu<=date&&(s.TamNgungDen==null||s.TamNgungDen>=date)))); else query=query.Where(e=>e.ValidTo==null||e.ValidTo>=TravelService.Today);
   // Published service prices remain owned by the original service, never by the enrichment copy.
   if(f.Min!=null)query=query.Where(e=>e.ServiceId!=null?db.DichVuDuLich.Any(s=>s.MaDichVu==e.ServiceId&&s.GiaThamKhao>=f.Min):e.PriceFrom>=f.Min);
   if(f.Max!=null)query=query.Where(e=>e.ServiceId!=null?db.DichVuDuLich.Any(s=>s.MaDichVu==e.ServiceId&&s.GiaThamKhao<=f.Max):e.PriceFrom<=f.Max);
@@ -98,17 +137,29 @@ public sealed partial class DiscoveryService(AppDbContext db,TravelService trave
   if(f.Lat!=null||f.At!=null||total<=1500)total=cards.Count;
   var mixed=cards.Where(c=>c.Entry.PriceFrom!=null).Select(c=>c.Entry.PriceUnit??"Chưa công bố").Distinct().Count()>1;
   if(f.Sort=="price")Need(!mixed,"Chọn cùng đơn vị giá trước khi sắp xếp theo giá.",400);
-  cards=f.Sort switch{"distance"=>cards.OrderBy(c=>c.DistanceKm??double.MaxValue).ThenBy(c=>c.Entry.Id).ToList(),"price"=>cards.OrderBy(c=>c.Entry.PriceFrom??decimal.MaxValue).ThenBy(c=>c.Entry.Id).ToList(),"updated"=>cards.OrderByDescending(c=>c.Entry.CheckedOn).ThenBy(c=>c.Entry.Id).ToList(),_=>cards.OrderByDescending(c=>DiscoveryText.Fold(c.Entry.Title)==DiscoveryText.Fold(f.Q)).ThenByDescending(c=>c.Entry.Kind=="Destination").ThenBy(c=>c.Entry.Title).ThenBy(c=>c.Entry.Id).ToList()};
+  cards=f.Sort switch{"distance"=>cards.OrderBy(c=>c.DistanceKm??double.MaxValue).ThenBy(c=>c.Entry.Id).ToList(),"price"=>cards.OrderBy(c=>c.Entry.PriceFrom??decimal.MaxValue).ThenBy(c=>c.Entry.Id).ToList(),"updated"=>cards.OrderByDescending(c=>c.Entry.CheckedOn).ThenBy(c=>c.Entry.Id).ToList(),_=>cards.OrderByDescending(c=>Relevance(c.Entry,f.Q,words)).ThenByDescending(c=>c.Entry.Kind=="Destination").ThenBy(c=>c.Entry.Title).ThenBy(c=>c.Entry.Id).ToList()};
   var answerQuery=db.Set<DiscoveryQuestion>().AsNoTracking().Where(a=>a.Status=="Answered"&&query.Any(e=>e.Id==a.EntryId));
   if(!string.IsNullOrWhiteSpace(f.Region))answerQuery=answerQuery.Where(a=>all.Any(e=>e.Id==a.EntryId&&e.Region==f.Region));
   foreach(var word in words)answerQuery=answerQuery.Where(a=>EF.Functions.Collate((a.Question+" "+a.Answer).Replace("đ","d").Replace("Đ","D"),SearchCollation).Contains(word));
   var snippets=new List<DiscoverySnippet>();
   if(!map&&question.Intent!=null){foreach(var card in cards.Take(3)){var e=card.Entry;string answer;if(question.Intent=="Price")answer=e.PriceFrom!=null?$"Giá tham khảo: {Labels.Money(e.PriceFrom)} / {e.PriceUnit??"chưa công bố đơn vị"}. Đối chiếu hạng mục và điều kiện áp dụng trước khi chọn.":"Chưa có mức giá xác nhận trong thông tin đang công bố. Bạn có thể hỏi đơn vị quản lý tại mục Hỏi đáp.";else if(question.Intent=="Hours")answer=e.Hours??"Chưa có giờ phục vụ đã được xác nhận. Kiểm tra nguồn hoặc gửi câu hỏi trước khi đến.";else if(question.Intent=="Address")answer=(e.Address??"Chưa công bố địa chỉ chi tiết.")+" "+e.LocationNote;else{var feature=await db.Set<DiscoveryFeature>().AsNoTracking().SingleOrDefaultAsync(x=>x.EntryId==e.Id&&x.Code==question.Intent);answer=DiscoveryText.Features[question.Intent]+": "+DiscoveryText.State(feature?.State??"Unknown")+". "+(feature?.Note??"Gửi câu hỏi tại địa điểm để làm rõ điều kiện cụ thể.");}snippets.Add(new(e.Id,e.Title,answer,e.ServiceId!=null?"Thông tin dịch vụ đang công bố":e.SourceName,e.ServiceId!=null?"/Explore/Detail/"+e.ServiceId:e.SourceUrl,e.ServiceId!=null?null:e.CheckedOn));}}
-  return new(f,cards.Skip(map?0:(f.Page-1)*20).Take(map?300:20).ToList(),Math.Min(total,1500),knownRegions.OrderBy(x=>x).ToList(),words,words.Count>0?await answerQuery.OrderByDescending(a=>a.AnsweredAt).Take(3).ToListAsync():[],await all.Where(e=>e.Kind=="Destination").OrderBy(e=>e.Title).Take(6).ToListAsync(),mixed,question.Intent,snippets,cards.Count==0?await all.Where(e=>e.Kind=="Guide"||e.Kind=="Transport").OrderBy(e=>e.Id).Take(3).ToListAsync():[]);
+  DestinationHint? hint=null;if(!map&&cards.Count==0)hint=await NearbyHint(f,phrase,intentWords);
+  return new(f,cards.Skip(map?0:(f.Page-1)*20).Take(map?300:20).ToList(),Math.Min(total,1500),knownRegions.OrderBy(x=>x).ToList(),words,words.Count>0?await answerQuery.OrderByDescending(a=>a.AnsweredAt).Take(3).ToListAsync():[],await all.Where(e=>e.Kind=="Destination").OrderBy(e=>e.Title).Take(6).ToListAsync(),mixed,question.Intent,snippets,cards.Count==0?await all.Where(e=>e.Kind=="Guide"||e.Kind=="Transport").OrderBy(e=>e.Id).Take(3).ToListAsync():[],unitPath,hint);
  }
  public async Task<object> Suggest(string? q)
  {
-  if(string.IsNullOrWhiteSpace(q)||q.Length<2||q.Length>100)return Array.Empty<object>();var word=DiscoveryText.Fold(q.Trim());var list=await Public().AsNoTracking().Where(e=>EF.Functions.Collate((e.Title+" "+e.Region+" "+e.Tags).Replace("đ","d").Replace("Đ","D"),SearchCollation).Contains(word)).OrderByDescending(e=>e.Kind=="Destination").ThenBy(e=>e.Title).Take(8).ToListAsync();await Hydrate(list);return list.Select(e=>new{id=e.Id,title=e.Title,kind=DiscoveryText.Kind(e.Kind),url=DiscoveryText.Link(e.Id),lat=e.Latitude,lng=e.Longitude});
+  if(string.IsNullOrWhiteSpace(q)||q.Length<2||q.Length>100)return Array.Empty<object>();
+  var word=DiscoveryText.Fold(q.Trim());
+  // Cot hep (khong keo Body/nvarchar(max)) de goi y nhanh, nhat la khi may thieu bo nho; khong dong bo lai tieu de tu dich vu/dia diem.
+  var rows=await Public().AsNoTracking()
+   .Where(e=>EF.Functions.Collate((e.Title+" "+e.Region+" "+e.Tags+" "+e.Summary).Replace("đ","d").Replace("Đ","D"),SearchCollation).Contains(word))
+   .Select(e=>new{e.Id,e.Title,e.Kind,e.DonViId,e.BranchId,e.Latitude,e.Longitude})
+   .OrderByDescending(e=>e.Kind=="Destination").ThenBy(e=>e.Title).Take(8).ToListAsync();
+  var items=new List<object>();
+  var areaHits=(await geo.Search(q,12)).Where(h=>h.Level<=2).Take(3).ToList();var areaIds=areaHits.Select(h=>h.Id).ToHashSet();
+  foreach(var h in areaHits)items.Add(new{id=h.Id,title=h.FullName,kind="Điểm đến · "+h.Path,url="/diem-den/"+h.Id,lat=(decimal?)null,lng=(decimal?)null});
+  items.AddRange(rows.Where(e=>!(e.Kind=="Destination"&&e.DonViId!=null&&areaIds.Contains(e.DonViId.Value))).Select(e=>(object)new{id=e.Id,title=e.Title,kind=DiscoveryText.Kind(e.Kind),url=e.BranchId!=null?"/co-so/"+e.BranchId:DiscoveryText.Link(e.Id),lat=e.Latitude,lng=e.Longitude}));
+  return items;
  }
  public async Task<DiscoveryDetailPage> Detail(long id,DiscoveryCommand? input=null,string? topic=null)
  {

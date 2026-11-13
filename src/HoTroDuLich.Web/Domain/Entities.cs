@@ -23,6 +23,7 @@ public partial class HoSoNguoiDung
     public long MaTaiKhoan { get; set; }
     public string TenHienThi { get; set; } = "";
     public string? AnhDaiDien { get; set; }
+    public string? AnhBia { get; set; }
     public string? GioiThieu { get; set; }
     public string? NoiSinhSong { get; set; }
     public string? SoThich { get; set; }
@@ -125,6 +126,7 @@ public partial class DiaDiemDuLich
     public string TenDiaDiem { get; set; } = "";
     public string LoaiDiaDiem { get; set; } = "";
     public string KhuVuc { get; set; } = "";
+    public long? DonViId { get; set; }
     public string? DiaChi { get; set; }
     public string? MoTa { get; set; }
     public bool DangHienThi { get; set; }
@@ -138,6 +140,7 @@ public partial class DichVuDuLich
     public string LoaiDichVu { get; set; } = "";
     public string? MoTa { get; set; }
     public string KhuVucPhucVu { get; set; } = "";
+    public long? DonViId { get; set; }
     public long? MaDiaDiem { get; set; }
     public decimal? GiaThamKhao { get; set; }
     public string? ThoiGianPhucVu { get; set; }
@@ -163,6 +166,7 @@ public partial class BanCapNhatDichVu
     public string LoaiDichVu { get; set; } = "";
     public string? MoTa { get; set; }
     public string KhuVucPhucVu { get; set; } = "";
+    public long? DonViId { get; set; }
     public long? MaDiaDiem { get; set; }
     public decimal? GiaThamKhao { get; set; }
     public string? ThoiGianPhucVu { get; set; }

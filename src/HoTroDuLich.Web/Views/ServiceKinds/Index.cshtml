@@ -1,0 +1,13 @@
+@model List<ServiceKindRow>
+@{ViewData["Title"]="Loại dịch vụ";}
+<div class="container-wide">
+ <div class="page-head"><div><span class="eyebrow">NỘI DUNG</span><h1>Loại dịch vụ</h1><p>Mỗi loại có bộ trường riêng và khả năng riêng. Thêm loại mới là có thêm một kiểu dịch vụ nhà cung cấp đăng được, không cần sửa mã nguồn.</p></div><a class="btn btn-dark" href="/quan-tri/loai-dich-vu/soan">+ Thêm loại</a></div>
+ <div class="panel table-wrap"><table class="table"><thead><tr><th>Loại</th><th>Nhóm</th><th>Khả năng</th><th>Trường riêng</th><th>Đang dùng</th><th></th></tr></thead><tbody>
+ @foreach(var r in Model){var k=r.Kind;<tr class="@(k.Active?"":"muted")">
+  <td><b>@k.Label</b><span class="help">@k.Code@(k.Builtin?" · có sẵn":"")@(k.Active?"":" · đã tắt")</span></td>
+  <td>@ServiceKinds.GroupLabel(k.Group)</td>
+  <td><small>@string.Join(" · ",new[]{k.Bookable?"đặt được":null,k.ProviderPostable?"nhà cung cấp đăng":"quản trị soạn",k.ForBranch?"cơ sở":null,k.HasPrice?"có giá":null,k.HasHours?"có giờ":null,k.HasLocation?"có vị trí":null,k.TimeBound?"theo thời hạn":null}.Where(x=>x!=null))</small></td>
+  <td>@k.Fields.Length trường</td><td>@r.Services dịch vụ · @r.Branches cơ sở</td>
+  <td class="actions"><a class="btn btn-outline" href="/quan-tri/loai-dich-vu/soan?code=@k.Code">Sửa</a>@if(!k.Builtin){<form action="/quan-tri/loai-dich-vu/xoa" method="post" onsubmit="return confirm('Xóa loại này?')">@Html.AntiForgeryToken()<input type="hidden" name="code" value="@k.Code"/><button class="btn btn-outline" type="submit">Xóa</button></form>}</td></tr>}
+ </tbody></table></div>
+</div>

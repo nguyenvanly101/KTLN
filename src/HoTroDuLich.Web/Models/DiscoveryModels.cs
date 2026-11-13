@@ -6,7 +6,9 @@ public class DiscoveryFilter
 {
  [MaxLength(200)] [Display(Name="Từ khóa")] public string? Q { get; set; }
  [MaxLength(100)] [Display(Name="Khu vực")] public string? Region { get; set; }
+ public long? Area { get; set; }
  [MaxLength(25)] [Display(Name="Loại thông tin")] public string? Kind { get; set; }
+ [MaxLength(12)] [Display(Name="Nhóm")] public string? Group { get; set; }
  [MaxLength(500)] [Display(Name="Tiện ích")] public string? Features { get; set; }
  [MaxLength(30)] [Display(Name="Chủ đề")] public string? Topic { get; set; }
  [Range(0,1000000000)] [Display(Name="Giá từ")] public decimal? Min { get; set; }
@@ -39,9 +41,11 @@ public class DiscoveryCommand : CommandInput
 public class DiscoveryEditInput : DiscoveryCommand
 {
  [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever] public string? LinkedKind { get; set; }
+ [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever] public string? AttributesJson { get; set; }
  [Required,MaxLength(200)] [Display(Name="Tiêu đề")] public string Title { get; set; }="";
  [Required,MaxLength(25)] [Display(Name="Loại thông tin")] public string Kind { get; set; }="Guide";
- [Required,MaxLength(100)] [Display(Name="Khu vực")] public string Region { get; set; }="";
+ [MaxLength(100)] [Display(Name="Khu vực")] public string? Region { get; set; }="";
+ public long? DonViId { get; set; }
  [MaxLength(700),Display(Name="Tóm tắt"),DisplayFormat(ConvertEmptyStringToNull=false)] public string Summary { get; set; }="";
  [MaxLength(20000),Display(Name="Nội dung"),DisplayFormat(ConvertEmptyStringToNull=false)] public string Content { get; set; }="";
  public long? ParentId { get; set; }
@@ -86,7 +90,8 @@ public record DiscoveryPoint(double Lat,double Lng,string? Name=null);
 public class DiscoveryRouteInput : DiscoveryCommand {public List<DiscoveryPoint> Points {get;set;}=[];public string Mode {get;set;}="car";[Range(.1,20)]public double CorridorKm {get;set;}=2;public double? MaxDetourMinutes {get;set;}public DiscoveryFilter Filter {get;set;}=new();}
 public record DiscoveryCard(DiscoveryEntry Entry, double? DistanceKm=null, double? ExtraMinutes=null);
 public record DiscoverySnippet(long EntryId,string Title,string Answer,string Source,string? SourceUrl,DateOnly? CheckedOn);
-public record DiscoverySearchPage(DiscoveryFilter Filter,List<DiscoveryCard> Items,int Total,List<string> Regions,List<string> Terms,List<DiscoveryQuestion> Answers,List<DiscoveryEntry> Destinations,bool PriceUnitsMixed=false,string? Intent=null,List<DiscoverySnippet>? Snippets=null,List<DiscoveryEntry>? HelpGuides=null);
+public record DestinationHint(long Id,string Path,int Count);
+public record DiscoverySearchPage(DiscoveryFilter Filter,List<DiscoveryCard> Items,int Total,List<string> Regions,List<string> Terms,List<DiscoveryQuestion> Answers,List<DiscoveryEntry> Destinations,bool PriceUnitsMixed=false,string? Intent=null,List<DiscoverySnippet>? Snippets=null,List<DiscoveryEntry>? HelpGuides=null,string? UnitPath=null,DestinationHint? Hint=null);
 public record DiscoveryDetailPage(DiscoveryEntry Entry,List<DiscoveryFeature> Features,List<DiscoveryPrice> Prices,List<DiscoveryCard> Related,List<DiscoveryQuestion> Questions,List<DiscoveryExperience> Experiences,Dictionary<long,string> Names,List<DiscoveryRevision> Updates,bool Following,DiscoveryCommand Input);
 public record DiscoveryLibraryPage(List<DiscoveryCollection> Collections,List<DiscoveryCollectionItem> Items,Dictionary<long,DiscoveryEntry> Entries,List<DiscoveryRoute> Routes,List<DiscoveryEntry> Followed,List<DiscoveryQuestion> Questions,List<DiscoveryReport> Reports,DiscoveryCommand Input,List<long>? UnavailableFollowed=null);
 public record DiscoveryManagePage(List<DiscoveryEntry> Entries,List<DiscoveryQuestion> Questions,List<DiscoveryExperience> Experiences,List<DiscoveryReport> Reports,List<DiscoveryProposal> Proposals,Dictionary<long,string> Names,Dictionary<long,DiscoveryEntry> References,string Tab,DiscoveryCommand Input);

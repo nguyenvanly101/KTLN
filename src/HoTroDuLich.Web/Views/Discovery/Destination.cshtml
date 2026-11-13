@@ -1,0 +1,98 @@
+@model DestinationPage
+@using System.Text.Json
+@{
+ var u=Model.Unit;ViewData["Title"]=u.FullName+" — điểm đến";
+ string TabUrl(string tab,string? q=null,long? area=null){var parts=new List<string>();if(tab!="tong-quan")parts.Add("tab="+tab);if(!string.IsNullOrEmpty(q))parts.Add("q="+Uri.EscapeDataString(q));if(area!=null)parts.Add("area="+area);return "/diem-den/"+u.Id+(parts.Count>0?"?"+string.Join("&",parts):"");}
+ var photo=Ui.DestinationPhoto(u.Name);
+ var isList=Model.Tab is "tham-quan" or "an-uong" or "luu-tru" or "di-chuyen";
+ var legend=new (string Key,string Label)[]{("tham-quan","Tham quan"),("an-uong","Ăn uống"),("luu-tru","Lưu trú"),("di-chuyen","Di chuyển")};
+ var tabLabel=DiscoveryService.DestinationTabs.First(t=>t.Key==Model.Tab).Label;
+}
+<div class="ds-page dest-page">
+ <nav class="dest-crumbs" aria-label="Vị trí"><a href="/diem-den">Điểm đến</a>@foreach(var p in Model.Path){<span aria-hidden="true">›</span>@if(p.Id==u.Id){<strong>@p.FullName</strong>}else{<a href="/diem-den/@p.Id">@p.FullName</a>}}</nav>
+ <section class="dest-hero dest-hero-compact">
+  <div>
+   <span class="eyebrow">ĐIỂM ĐẾN</span>
+   <h1>@u.FullName</h1>
+   <p>@(Model.Total>0?$"{Model.Total} mục thông tin đã công bố, gồm cả các khu vực nhỏ hơn bên trong.":"Chưa có thông tin nào được công bố cho khu vực này.")</p>
+  </div>
+  @if(photo!=null){<img src="@photo" alt="" width="420" height="280"/>}
+ </section>
+
+ <nav class="dest-tabs" aria-label="Xem theo nhu cầu">@foreach(var t in Model.Tabs){<a href="@TabUrl(t.Key)" class="@(t.Key==Model.Tab?"active":"")" aria-current="@(t.Key==Model.Tab?"page":null)">@t.Label@if(t.Key!="tong-quan"&&t.Count>0){<small>@t.Count</small>}</a>}</nav>
+
+ @if(Model.Tab=="tong-quan")
+ {
+  <partial name="/Views/Shared/_QaBox.cshtml" model="u.Id"/>
+  @if(Model.NewProvinces.Count>0)
+  {
+   <aside class="dest-note" role="note"><strong>Thay đổi hành chính từ 01/07/2025.</strong> Các xã/phường thuộc khu vực này nay thuộc: @string.Join("; ",Model.NewProvinces.Select(m=>$"{m.Province} ({m.Units} đơn vị)")). Dữ liệu theo bảng chuyển đổi của Tổng cục Thống kê.</aside>
+  }
+  @if(Model.Areas.Any(a=>a.Count>0))
+  {
+   <section class="dest-section" id="areas"><div class="ds-section-head"><div><span class="eyebrow">THU HẸP THEO KHU VỰC</span><h2>@(u.Level==1?"Các quận, huyện, thị xã":"Các xã, phường, thị trấn")</h2></div></div>
+    <ul class="dest-areas">@foreach(var a in Model.Areas.Where(a=>a.Count>0)){<li><a href="/diem-den/@a.Unit.Id"><strong>@a.Unit.FullName</strong><small>@a.Count mục thông tin</small></a></li>}</ul>
+   </section>
+  }
+  @if(Model.Zones.Count>0)
+  {
+   <section class="dest-section" id="zones"><div class="ds-section-head"><div><span class="eyebrow">KHU DU LỊCH</span><h2>Khu du lịch nổi bật</h2></div></div>
+    <ul class="dest-areas">@foreach(var z in Model.Zones){<li><a href="/Discovery?Q=@Uri.EscapeDataString(z.Name)&Area=@u.Id"><strong>@z.Name</strong><small>@z.Summary</small></a></li>}</ul>
+   </section>
+  }
+  @foreach(var s in Model.Sections)
+  {
+   <section class="dest-section" id="@s.Key">
+    <div class="ds-section-head"><div><h2>@s.Title</h2><small>@s.Total mục đã công bố</small></div>@if(s.Total>0){<a class="dest-all" href="@TabUrl(s.Tab)">Xem tất cả @Ui.Icon("arrow")</a>}</div>
+    @if(s.Items.Count==0){<p class="dest-empty">Chưa có thông tin được công bố ở mục này. Hệ thống không tự tạo giá, giờ hay đánh giá khi chưa có dữ liệu.</p>}
+    else{<div class="ds-card-grid">@foreach(var card in s.Items){<partial name="_Card" model="card"/>}</div>}
+   </section>
+  }
+  @if(Model.Guides.Count>0)
+  {
+   <section class="dest-section" id="guides"><div class="ds-section-head"><div><h2>Cẩm nang & sự kiện</h2></div></div>
+    <div class="ds-card-grid">@foreach(var g in Model.Guides){<partial name="_Card" model="new DiscoveryCard(g)"/>}</div>
+   </section>
+  }
+ }
+ else
+ {
+  <div class="dest-filters">
+   @if(Model.Areas.Any(a=>a.Count>0))
+   {
+    <div class="dest-chiprow" role="group" aria-label="Khu vực"><span>Khu vực:</span><a href="@TabUrl(Model.Tab,Model.Q)" class="@(Model.AreaId==null?"active":"")">Tất cả</a>@foreach(var a in Model.Areas.Where(a=>a.Count>0)){<a href="@TabUrl(Model.Tab,Model.Q,a.Unit.Id)" class="@(Model.AreaId==a.Unit.Id?"active":"")">@a.Unit.Name <small>@a.Count</small></a>}</div>
+   }
+   @if(Model.Chips.Length>0)
+   {
+    <div class="dest-chiprow" role="group" aria-label="Lọc nhanh"><span>Lọc nhanh:</span><a href="@TabUrl(Model.Tab,null,Model.AreaId)" class="@(string.IsNullOrEmpty(Model.Q)?"active":"")">Tất cả</a>@foreach(var c in Model.Chips){<a href="@TabUrl(Model.Tab,c,Model.AreaId)" class="@(string.Equals(Model.Q,c,StringComparison.OrdinalIgnoreCase)?"active":"")">@c</a>}</div>
+   }
+  </div>
+
+  @if(isList)
+  {
+   <div class="dest-split">
+    <div class="dest-list">
+     <p class="dest-count">@Model.ItemsTotal @tabLabel.ToLowerInvariant()@(Model.AreaName!=null?" · "+Model.AreaName:"")@(!string.IsNullOrEmpty(Model.Q)?" · “"+Model.Q+"”":"")</p>
+     @if(Model.Items.Count==0){<p class="dest-empty">Chưa có thông tin nào khớp. Thử bỏ bớt bộ lọc, hoặc <a href="@TabUrl(Model.Tab)">xem tất cả @tabLabel.ToLowerInvariant()</a>. Hệ thống không tự tạo thông tin khi chưa có dữ liệu.</p>}
+     else{<div class="dest-cards">@foreach(var card in Model.Items){<partial name="_Card" model="card"/>}</div>}
+    </div>
+    <aside class="dest-mapwrap" aria-label="Bản đồ @tabLabel.ToLowerInvariant()">
+     @if(Model.Points.Count>0){<div class="dest-map" id="dest-map" data-dest-map data-lat="@u.CenterLat" data-lng="@u.CenterLng" role="img" aria-label="Bản đồ các mục trong danh sách"></div>}else{<div class="dest-map-empty">Chưa có mục nào có vị trí để hiện trên bản đồ.</div>}
+     <p class="dest-maphint">@(Model.Points.Count>0?$"{Model.Points.Count} mục có vị trí trên bản đồ.":"Chưa mục nào trong danh sách có vị trí trên bản đồ.")@(Model.WithoutCoords>0?$" {Model.WithoutCoords} mục chưa có tọa độ nên không hiện ghim.":"")</p>
+    </aside>
+   </div>
+  }
+  else
+  {
+   <section class="dest-bigmap">
+    <div class="dest-legend" aria-label="Chú giải">@foreach(var l in legend){<span><i class="dot dot-@l.Key"></i>@l.Label</span>}</div>
+    @if(Model.Points.Count>0){<div class="dest-map dest-map-large" id="dest-map" data-dest-map data-lat="@u.CenterLat" data-lng="@u.CenterLng" role="img" aria-label="Bản đồ mọi nơi trong điểm đến"></div>}else{<div class="dest-map-empty">Chưa có nơi nào có vị trí để hiện trên bản đồ.</div>}
+    <p class="dest-maphint">@(Model.Points.Count>0?$"{Model.Points.Count} nơi có vị trí.":"Chưa nơi nào có vị trí trên bản đồ.")@(Model.WithoutCoords>0?$" {Model.WithoutCoords} mục chưa có tọa độ nên không hiện ghim; xem chúng ở các tab Tham quan, Ăn uống, Lưu trú, Di chuyển.":"")</p>
+   </section>
+  }
+  <script type="application/json" id="dest-points">@Html.Raw(JsonSerializer.Serialize(Model.Points.Select(p=>new{id=p.Id,t=p.Title,c=p.Category,k=p.Kind,u=p.Url,lat=p.Lat,lng=p.Lng})))</script>
+ }
+ <div class="ds-selection-bar" data-ds-selection hidden role="status"><span data-ds-selection-count></span><a class="btn btn-dark" data-ds-compare-link href="/Discovery/Compare">So sánh lựa chọn</a><button type="button" class="ds-quiet" data-ds-clear-compare>Xóa lựa chọn</button></div>
+ <div hidden data-ds-csrf>@Html.AntiForgeryToken()</div>
+</div>
+@section Scripts{<script src="~/lib/leaflet/leaflet.js"></script><script src="~/js/discovery.js" asp-append-version="true"></script><script src="~/js/destination.js" asp-append-version="true"></script>}

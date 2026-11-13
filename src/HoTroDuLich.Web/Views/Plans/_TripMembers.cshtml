@@ -1,0 +1,23 @@
+@model TripMembersPage
+@{var planId=(long)ViewData["PlanId"]!;var me=(long)ViewData["Me"]!;}
+<section id="trip-members" class="panel trip-members" aria-labelledby="trip-members-title">
+ <div class="section-head"><div><span class="eyebrow">CÙNG LÊN KẾ HOẠCH</span><h2 id="trip-members-title">Người cùng đi</h2><p>Người lập kế hoạch là trưởng nhóm. Thành viên đã tham gia đều sửa được kế hoạch, và nhóm chat của chuyến đi được tạo tự động khi có người tham gia.</p></div></div>
+ <ul class="trip-member-list">
+  @foreach(var m in Model.Members)
+  {
+   <li><span class="avatar">@Ui.Initial(m.Name)</span><span><strong>@m.Name</strong><small>@(m.IsOwner?"Trưởng nhóm":m.Accepted?"Thành viên":"Đã mời, chờ phản hồi")</small></span>
+    @if(!m.IsOwner&&(Model.IsOwner||m.AccountId==me)){<form action="/Plans/RemoveMember" method="post" onsubmit="return confirm('@(m.AccountId==me?"Rời chuyến đi này?":"Gỡ người này khỏi chuyến đi?")')">@Html.AntiForgeryToken()<input type="hidden" name="planId" value="@planId"/><input type="hidden" name="accountId" value="@m.AccountId"/><button class="btn btn-outline" type="submit">@(m.AccountId==me?"Rời chuyến đi":"Gỡ")</button></form>}
+   </li>
+  }
+ </ul>
+ @if(Model.IsOwner)
+ {
+  @if(Model.InvitableFriends.Count>0)
+  {
+   <form action="/Plans/Invite" method="post" class="trip-invite-form">@Html.AntiForgeryToken()<input type="hidden" name="planId" value="@planId"/>
+    <div class="field"><label for="trip-invite">Mời bạn bè</label><select class="form-select" id="trip-invite" name="accountId">@foreach(var f in Model.InvitableFriends){<option value="@f.Id">@f.Name</option>}</select></div>
+    <button class="btn btn-dark" type="submit">Gửi lời mời</button></form>
+  }
+  else{<p class="help">Chưa có bạn bè nào để mời. Kết bạn ở <a href="/ban-be">mục Bạn bè</a>, rồi quay lại đây.</p>}
+ }
+</section>

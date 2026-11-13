@@ -49,3 +49,26 @@ GO
 -- Discovery revisions are append-only; mutable catalog rows retain their audit history.
 IF OBJECT_ID(N'dbo.DiscoveryRevision',N'U') IS NOT NULL DENY UPDATE ON OBJECT::dbo.DiscoveryRevision TO [r_ungdung];
 GO
+
+-- Mang xa hoi va chat: cac bang ma ung dung xoa dong that (huy ket ban, bo cam xuc / phan ung tin).
+IF OBJECT_ID(N'dbo.KetBan',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.KetBan TO [r_ungdung];
+IF OBJECT_ID(N'dbo.CamXuc',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.CamXuc TO [r_ungdung];
+IF OBJECT_ID(N'dbo.PhanUngTin',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.PhanUngTin TO [r_ungdung];
+IF OBJECT_ID(N'dbo.TinMauChat',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.TinMauChat TO [r_ungdung];
+
+-- Chuyen di chung, luu bai viet, theo doi co so, go dich vu nhap: ung dung xoa dong that cua chinh nguoi dung (dich vu kiem tra quyen so huu).
+IF OBJECT_ID(N'dbo.ThanhVienChuyenDi',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.ThanhVienChuyenDi TO [r_ungdung];
+IF OBJECT_ID(N'dbo.BaiVietDaLuu',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.BaiVietDaLuu TO [r_ungdung];
+IF OBJECT_ID(N'dbo.TheoDoiCoSo',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.TheoDoiCoSo TO [r_ungdung];
+IF OBJECT_ID(N'dbo.DichVuCoSo',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.DichVuCoSo TO [r_ungdung];
+IF OBJECT_ID(N'dbo.DichVuDuLich',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.DichVuDuLich TO [r_ungdung];
+IF OBJECT_ID(N'dbo.LoaiDichVu',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.LoaiDichVu TO [r_ungdung];
+IF OBJECT_ID(N'dbo.LichTrinhMau',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.LichTrinhMau TO [r_ungdung];
+IF OBJECT_ID(N'dbo.LichTrinhMauMuc',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.LichTrinhMauMuc TO [r_ungdung];
+IF OBJECT_ID(N'dbo.KhoanChiChung',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.KhoanChiChung TO [r_ungdung];
+IF OBJECT_ID(N'dbo.KhoanChiChungChia',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.KhoanChiChungChia TO [r_ungdung];
+IF OBJECT_ID(N'dbo.KeHoachChuyenDi',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.KeHoachChuyenDi TO [r_ungdung];
+IF OBJECT_ID(N'dbo.NhomChatChuyenDi',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.NhomChatChuyenDi TO [r_ungdung];
+IF OBJECT_ID(N'dbo.GhiChuNgayChuyenDi',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.GhiChuNgayChuyenDi TO [r_ungdung];
+IF OBJECT_ID(N'dbo.ChiaSeChuyenDi',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.ChiaSeChuyenDi TO [r_ungdung];
+IF OBJECT_ID(N'dbo.BinhChonTraLoi',N'U') IS NOT NULL GRANT DELETE ON OBJECT::dbo.BinhChonTraLoi TO [r_ungdung];

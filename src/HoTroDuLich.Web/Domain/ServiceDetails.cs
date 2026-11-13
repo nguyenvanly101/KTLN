@@ -5,6 +5,7 @@ public partial class DichVuDuLich
     public string? DonViGia { get; set; }
     public string? ChinhSachHuy { get; set; }
     public string? AnhJson { get; set; }
+    public string? AttributesJson { get; set; }
 }
 public partial class BanCapNhatDichVu
 {
@@ -12,4 +13,5 @@ public partial class BanCapNhatDichVu
     public string? DonViGia { get; set; }
     public string? ChinhSachHuy { get; set; }
     public string? AnhJson { get; set; }
+    public string? AttributesJson { get; set; }
 }

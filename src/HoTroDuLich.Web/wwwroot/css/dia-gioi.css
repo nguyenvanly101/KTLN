@@ -1,0 +1,141 @@
+.dg-picker{display:grid;gap:.4rem}
+.dg-row{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.dg-row .field{margin:0}
+.dg-picker select{width:100%;min-height:44px}
+.dg-picker [data-dg-status].dg-error{color:#b42318}
+.dest-page{display:grid;gap:28px}
+.dest-crumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.9rem;color:var(--ds-muted,#5c667b)}
+.dest-crumbs a{color:inherit}
+.dest-hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:28px;align-items:center}
+.dest-hero h1{margin:.2em 0 .3em}
+.dest-hero img{width:100%;height:auto;border-radius:16px;object-fit:cover;aspect-ratio:14/9}
+.dest-hero-slim{grid-template-columns:1fr}
+.dest-actions{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+.dest-jump{display:flex;flex-wrap:wrap;gap:8px}
+.dest-jump a{padding:8px 14px;border:1px solid var(--ds-line,#dbe1ee);border-radius:999px;background:#fff;color:inherit;text-decoration:none;min-height:40px;display:inline-flex;gap:6px;align-items:center}
+.dest-note{padding:14px 18px;border-left:4px solid #2447e8;background:var(--ds-soft,#f3f6fc);border-radius:8px}
+.dest-areas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.dest-areas a{display:grid;gap:4px;padding:14px 16px;border:1px solid var(--ds-line,#dbe1ee);border-radius:12px;background:#fff;color:inherit;text-decoration:none;min-height:60px}
+.dest-areas a:hover,.dest-areas a:focus-visible{border-color:#2447e8}
+.dest-areas small{color:var(--ds-muted,#5c667b)}
+.dest-areas-compact{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.dest-areas-compact a{min-height:44px;padding:10px 14px}
+.dest-empty{padding:18px;border:1px dashed var(--ds-line,#dbe1ee);border-radius:12px;color:var(--ds-muted,#5c667b)}
+.dest-all{white-space:nowrap}
+.ds-dest-link{font-weight:600}
+@media(max-width:760px){.dest-hero{grid-template-columns:1fr}.dest-areas{grid-template-columns:1fr 1fr}}
+
+/* ---- Trang chu tra cuu: bat dau theo nhu cau ---- */
+.hm-page{display:grid;gap:36px}
+.hm-hero{display:grid;gap:14px;max-width:820px}
+.hm-hero h1{margin:.1em 0 0}
+.hm-search{position:relative;display:flex;gap:10px;align-items:stretch;flex-wrap:wrap}
+.hm-search .ds-query-row{flex:1 1 320px;min-height:56px}
+.hm-search .btn{min-height:56px;padding-inline:26px}
+.hm-search .ds-suggestions{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:30;background:#fff;border:1px solid var(--ds-line,#dbe1ee);border-radius:14px;box-shadow:0 12px 28px rgba(21,33,62,.14);max-height:360px;overflow:auto}
+.hm-quick{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--ds-muted,#5c667b)}
+.hm-quick a{padding:6px 14px;border:1px solid var(--ds-line,#dbe1ee);border-radius:999px;background:#fff;color:inherit;text-decoration:none;min-height:36px;display:inline-flex;align-items:center}
+.hm-quick a:hover,.hm-quick a:focus-visible{border-color:#2447e8;color:#2447e8}
+.hm-section{display:grid;gap:16px}
+.hm-tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.hm-tiles a{display:grid;gap:4px;justify-items:start;align-content:start;padding:18px 16px;border:1px solid var(--ds-line,#dbe1ee);border-radius:16px;background:#fff;color:inherit;text-decoration:none;min-height:132px;transition:border-color .15s,transform .15s}
+.hm-tiles a:hover,.hm-tiles a:focus-visible{border-color:#2447e8;transform:translateY(-2px)}
+.hm-tile-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--ds-soft,#f3f6fc);color:#2447e8;margin-bottom:6px}
+.hm-tiles small{color:var(--ds-muted,#5c667b)}
+.hm-dest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.hm-dest{display:grid;grid-template-rows:170px auto;border:1px solid var(--ds-line,#dbe1ee);border-radius:16px;overflow:hidden;background:#fff;color:inherit;text-decoration:none}
+.hm-dest:hover,.hm-dest:focus-visible{border-color:#2447e8}
+.hm-dest img{width:100%;height:170px;object-fit:cover}
+.hm-dest-blank{display:grid;place-items:center;height:170px;font-size:3rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#2447e8,#15213e)}
+.hm-dest-copy{display:grid;gap:4px;padding:14px 16px 16px}
+.hm-dest-copy small{color:var(--ds-muted,#5c667b)}
+.hm-dest-copy em{font-style:normal;color:var(--ds-muted,#5c667b);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hm-advanced{color:var(--ds-muted,#5c667b)}
+
+/* ---- Trang diem den: tab theo nhu cau, danh sach + ban do ---- */
+.dest-hero-compact{padding:0;gap:18px}
+.dest-hero-compact h1{margin:.1em 0 .2em}
+.dest-hero-compact img{max-width:320px;justify-self:end}
+.dest-tabs{display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid var(--ds-line,#dbe1ee);position:sticky;top:0;background:var(--bg,#fff);z-index:15;padding-top:6px}
+.dest-tabs a{display:inline-flex;gap:6px;align-items:center;white-space:nowrap;padding:12px 16px;min-height:48px;border-bottom:3px solid transparent;color:inherit;text-decoration:none;font-weight:600}
+.dest-tabs a small{padding:1px 8px;border-radius:999px;background:var(--ds-soft,#f3f6fc);color:var(--ds-muted,#5c667b);font-weight:500}
+.dest-tabs a.active{border-bottom-color:#2447e8;color:#2447e8}
+.dest-tabs a:hover,.dest-tabs a:focus-visible{background:var(--ds-soft,#f3f6fc)}
+.dest-filters{display:grid;gap:10px}
+.dest-chiprow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.dest-chiprow>span{color:var(--ds-muted,#5c667b);margin-right:4px}
+.dest-chiprow a{padding:6px 14px;border:1px solid var(--ds-line,#dbe1ee);border-radius:999px;background:#fff;color:inherit;text-decoration:none;min-height:36px;display:inline-flex;gap:6px;align-items:center}
+.dest-chiprow a small{color:var(--ds-muted,#5c667b)}
+.dest-chiprow a.active{background:#2447e8;border-color:#2447e8;color:#fff}
+.dest-chiprow a.active small{color:#dbe4ff}
+.dest-split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:22px;align-items:start}
+.dest-count{margin:0 0 10px;color:var(--ds-muted,#5c667b)}
+.dest-cards{display:grid;gap:16px}
+.dest-mapwrap{position:sticky;top:64px;display:grid;gap:8px}
+.dest-map{height:min(70vh,560px);min-height:360px;border-radius:16px;border:1px solid var(--ds-line,#dbe1ee);overflow:hidden;background:#e9eef7}
+.dest-map-large{height:min(75vh,640px)}
+.dest-maphint{margin:0;color:var(--ds-muted,#5c667b);font-size:.92rem}
+.dest-bigmap{display:grid;gap:10px}
+.dest-legend{display:flex;flex-wrap:wrap;gap:16px}
+.dest-legend span{display:inline-flex;gap:6px;align-items:center}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%}
+.dot-tham-quan{background:#2447e8}.dot-an-uong{background:#d9480f}.dot-luu-tru{background:#2b8a3e}.dot-di-chuyen{background:#7048e8}
+@media(max-width:1000px){.hm-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}.dest-split{grid-template-columns:1fr}.dest-mapwrap{position:static;order:-1}.dest-map{min-height:280px;height:300px}}
+@media(max-width:560px){.hm-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.hm-search .btn{width:100%}.dest-hero-compact img{display:none}}
+
+/* The muc tra cuu khong co anh that: khoi mau theo loai thay vi anh cua noi khac */
+.ds-card-photo .ds-card-blank{position:absolute;inset:0;width:auto;height:auto;margin:0;padding:0;border-radius:0;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#2447e8,#15213e)}
+.ds-card-photo .ds-card-blank svg{width:44px;height:44px;color:#fff}
+.ds-card-photo .ds-tone-eat{background:linear-gradient(135deg,#e8590c,#a8380a)}
+.ds-card-photo .ds-tone-stay{background:linear-gradient(135deg,#2f9e44,#1b6b2c)}
+.ds-card-photo .ds-tone-move{background:linear-gradient(135deg,#7048e8,#432a9e)}
+.ds-card-photo .ds-tone-info{background:linear-gradient(135deg,#495057,#212529)}
+.dest-map-empty{display:grid;place-items:center;min-height:200px;padding:20px;border:1px dashed var(--ds-line,#dbe1ee);border-radius:16px;color:var(--ds-muted,#5c667b);text-align:center}
+
+/* ---- Nha cung cap: dang thong tin cho khach ---- */
+.pv-steps-wrap{margin:18px 0}
+.pv-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.pv-steps li{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--ds-line,#dbe1ee);border-radius:14px;background:#fff}
+.pv-steps li.done{background:#f1f8f3;border-color:#b7dfc2}
+.pv-steps small{display:block;color:var(--ds-muted,#5c667b);margin-top:2px}
+.pv-steps a{color:inherit;text-decoration:none}
+.pv-step-no{display:grid;place-items:center;flex:0 0 32px;height:32px;border-radius:50%;background:#2447e8;color:#fff;font-weight:700}
+.pv-steps li.done .pv-step-no{background:#2b8a3e}
+.pv-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px;margin-top:18px}
+.pv-card{padding:0;overflow:hidden;display:grid;grid-template-rows:170px auto}
+.pv-card-photo{display:block;background:linear-gradient(135deg,#2447e8,#15213e);color:#fff}
+.pv-card-photo img{width:100%;height:170px;object-fit:cover;display:block}
+.pv-card-photo span{display:grid;place-items:center;height:170px;gap:4px;align-content:center}
+.pv-card-body{padding:16px;display:grid;gap:8px}
+.pv-card-body h2{margin:0;font-size:1.2rem}
+.pv-addr{margin:0;color:var(--ds-muted,#5c667b)}
+.pv-meter{display:flex;gap:10px;align-items:center}
+.pv-meter>div{flex:1;height:10px;border-radius:999px;background:#e4e9f4;overflow:hidden}
+.pv-meter i{display:block;height:100%;background:linear-gradient(90deg,#e8590c,#2b8a3e);border-radius:999px;transition:width .25s}
+.pv-missing{margin:0;color:var(--ds-muted,#5c667b);font-size:.92rem}
+.pv-missing.ok{color:#2b8a3e}
+.pv-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.pv-optional{margin-top:28px;padding:18px;border:1px dashed var(--ds-line,#dbe1ee);border-radius:14px}
+.pv-optional h2 small{font-weight:400;color:var(--ds-muted,#5c667b)}
+.pv-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start}
+.pv-main{display:grid;gap:18px}
+.pv-fieldset{border:0;padding:0;margin:0;min-width:0}
+.pv-section h2{display:flex;gap:10px;align-items:center;margin:0 0 14px}
+.pv-section h2 span{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#2447e8;color:#fff;font-size:.95rem}
+.pv-side{position:sticky;top:76px}
+.pv-score{display:grid;gap:8px}
+.pv-score-top{display:flex;gap:10px;align-items:baseline}
+.pv-score-top strong{font-size:2rem;color:#2447e8}
+.pv-score-title{margin:6px 0 0;font-weight:600}
+.pv-missing-list{margin:0;padding-left:18px;color:var(--ds-muted,#5c667b)}
+.pv-ok{color:#2b8a3e;font-weight:600;margin:0}
+.pv-days{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.pv-days label{display:inline-flex;gap:6px;align-items:center;padding:8px 12px;border:1px solid var(--ds-line,#dbe1ee);border-radius:10px;min-height:44px;cursor:pointer}
+.pv-timerow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.pv-hours,.pv-price{border:1px solid var(--ds-line,#dbe1ee);border-radius:12px;padding:14px;margin:14px 0}
+.pv-hours legend,.pv-price legend{padding:0 8px;font-weight:600;width:auto;font-size:1rem}
+.pv-gallery{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.pv-gallery img{width:160px;height:110px;object-fit:cover;border-radius:10px;border:1px solid var(--ds-line,#dbe1ee)}
+.pv-check{display:flex;gap:8px;align-items:center;margin:6px 0 12px}
+@media(max-width:1000px){.pv-steps{grid-template-columns:1fr 1fr}.pv-layout{grid-template-columns:1fr}.pv-side{position:static;order:-1}}
+@media(max-width:560px){.pv-steps{grid-template-columns:1fr}.pv-cards{grid-template-columns:1fr}}

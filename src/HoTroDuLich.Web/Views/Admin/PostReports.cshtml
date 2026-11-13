@@ -1,0 +1,19 @@
+@model (string Status,List<PostReportDto> Items)
+@{ViewData["Title"]="Báo cáo bài viết";}
+<div class="container-wide pl-manage">
+ <div class="page-head"><div><span class="eyebrow">KIỂM DUYỆT</span><h1>Báo cáo bài viết</h1><p>Bài viết và bình luận trên bảng tin bị người dùng báo cáo.</p></div>
+  <div class="soc-tabs"><a class="btn @(Model.Status=="Open"?"btn-dark":"btn-outline")" href="/quan-tri/bao-cao-bai-viet">Đang chờ</a> <a class="btn @(Model.Status=="Done"?"btn-dark":"btn-outline")" href="/quan-tri/bao-cao-bai-viet?status=Done">Đã xử lý</a></div></div>
+ @if(Model.Items.Count==0){<div class="empty"><h3>Không có báo cáo nào</h3></div>}
+ @foreach(var r in Model.Items)
+ {
+  <article class="panel pv-section"><h2>#@r.Id · @r.Reason</h2>
+   <p><strong>@r.Reporter</strong> báo cáo nội dung của <strong>@r.Author</strong> · @Ui.LocalTime(r.At).ToString("dd/MM/yyyy HH:mm")</p>
+   @if(!string.IsNullOrWhiteSpace(r.Note)){<p class="prose">Ghi chú: @r.Note</p>}
+   <p class="prose">@r.Excerpt</p>
+   <p><a class="text-link" href="/bai-viet/@r.PostId">Mở bài viết</a>@if(r.Hidden){<span class="badge"> Đã ẩn</span>}</p>
+   @if(Model.Status=="Open"){<div class="actions">
+    <form method="post" action="/quan-tri/bao-cao-bai-viet/xu-ly">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@r.Id"/><input type="hidden" name="hide" value="true"/><button class="btn btn-dark" type="submit">Ẩn nội dung</button></form>
+    <form method="post" action="/quan-tri/bao-cao-bai-viet/xu-ly">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@r.Id"/><input type="hidden" name="hide" value="false"/><button class="btn btn-outline" type="submit">Bỏ qua</button></form></div>}
+  </article>
+ }
+</div>

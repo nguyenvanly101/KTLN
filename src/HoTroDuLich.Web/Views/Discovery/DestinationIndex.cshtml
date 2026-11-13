@@ -1,0 +1,19 @@
+@model List<DestinationIndexItem>
+@{
+ ViewData["Title"]="Điểm đến";var withData=Model.Where(x=>x.Count>0).ToList();var without=Model.Where(x=>x.Count==0).ToList();
+ var viec=ViewData["Viec"]?.ToString();
+ var tabs=new Dictionary<string,string>{["an-uong"]="Bạn muốn xem ăn gì ở đâu?",["luu-tru"]="Bạn muốn tìm chỗ ở nơi nào?",["tham-quan"]="Bạn muốn chơi ở đâu?",["di-chuyen"]="Bạn muốn xem cách đi lại ở đâu?",["ban-do"]="Bạn muốn xem bản đồ nơi nào?"};
+ var tab=viec!=null&&tabs.ContainsKey(viec)?viec:null;var suffix=tab!=null?"?tab="+tab:"";
+}
+<div class="ds-page dest-page">
+ <section class="dest-hero dest-hero-slim"><div><span class="eyebrow">ĐIỂM ĐẾN</span><h1>@(tab!=null?tabs[tab]:"Bạn muốn đi đâu?")</h1><p>Chọn một tỉnh, thành phố để xem khu du lịch, nơi ăn uống, lưu trú và cách di chuyển đã được công bố. Sau đó thu hẹp đến quận, huyện, xã, phường.</p></div></section>
+ @if(withData.Count>0)
+ {
+  <section class="dest-section"><div class="ds-section-head"><div><span class="eyebrow">ĐÃ CÓ THÔNG TIN</span><h2>Nơi có thông tin để xem</h2></div></div>
+   <div class="ds-destination-grid">@foreach(var x in withData){<a href="/diem-den/@x.Province.Id@suffix">@if(Ui.DestinationPhoto(x.Province.Name) is string photo){<img src="@photo" alt="" width="600" height="400" loading="lazy"/>}else{<span class="hm-dest-blank" aria-hidden="true">@x.Province.Name.Substring(0,1)</span>}<span><small>@x.Count MỤC THÔNG TIN</small><strong>@x.Province.FullName</strong><b>Xem điểm đến @Ui.Icon("arrow")</b></span></a>}</div>
+  </section>
+ }
+ <section class="dest-section"><div class="ds-section-head"><div><span class="eyebrow">TẤT CẢ TỈNH, THÀNH PHỐ</span><h2>Chưa có thông tin công bố</h2></div></div>
+  <ul class="dest-areas dest-areas-compact">@foreach(var x in without){<li><a href="/diem-den/@x.Province.Id@suffix"><strong>@x.Province.FullName</strong></a></li>}</ul>
+ </section>
+</div>

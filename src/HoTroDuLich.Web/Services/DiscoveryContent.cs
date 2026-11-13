@@ -13,7 +13,7 @@ public sealed partial class DiscoveryService
  public async Task<DiscoveryEditInput> EditForm(long id=0)
  {
   if(id==0){travel.RoleRequired(TravelService.AdminRole);return new(){FeatureRows=DiscoveryText.Features.Select(x=>new DiscoveryFeatureInput{Code=x.Key}).ToList(),Prices=[new()]};}
-  var e=await Editable(id);var result=new DiscoveryEditInput{Id=e.Id,EntryId=e.Id,Version=TravelService.Token(e.RowVersion),LinkedKind=e.ServiceId!=null?"Service":e.PlaceId!=null?"Place":null};
+  var e=await Editable(id);var result=new DiscoveryEditInput{Id=e.Id,EntryId=e.Id,Version=TravelService.Token(e.RowVersion),LinkedKind=e.ServiceId!=null?"Service":e.PlaceId!=null?"Place":null,AttributesJson=e.AttributesJson};
   var display=JsonSerializer.Deserialize<DiscoveryEntry>(JsonSerializer.Serialize(e))!;await Hydrate([display]);
   foreach(var p in typeof(DiscoveryEditInput).GetProperties()){var source=typeof(DiscoveryEntry).GetProperty(p.Name=="Content"?"Body":p.Name);if(source!=null&&source.PropertyType==p.PropertyType&&p.Name!="Id")p.SetValue(result,source.GetValue(display));}
   result.Body="";result.Content=e.Body;var features=await db.Set<DiscoveryFeature>().AsNoTracking().Where(x=>x.EntryId==id).ToDictionaryAsync(x=>x.Code);
@@ -35,8 +35,9 @@ public sealed partial class DiscoveryService
  async Task ApplyEdit(DiscoveryEntry e,DiscoveryEditInput i,string summary)
  {
   var before=JsonSerializer.Serialize(new{Entry=e,Features=await db.Set<DiscoveryFeature>().AsNoTracking().Where(x=>x.EntryId==e.Id).ToListAsync(),Prices=await db.Set<DiscoveryPrice>().AsNoTracking().Where(x=>x.EntryId==e.Id&&x.Active).ToListAsync()});
-  var originalFields=e.ServiceId!=null?new[]{"Title","Region","Summary","PriceFrom","PriceTo","PriceUnit","Includes","Hours"}:e.PlaceId!=null?new[]{"Title","Region","Summary"}:Array.Empty<string>();
-  foreach(var name in new[]{"Title","Kind","Region","Summary","ParentId","Address","Latitude","Longitude","LocationNote","SourceName","SourceUrl","CheckedOn","ValidFrom","ValidTo","PriceFrom","PriceTo","PriceUnit","Includes","Excludes","Hours","OpenDays","OpenTime","CloseTime","DurationMinutes","Tags","TransportMode","Origin","Destination","Contact","Status"})if(!originalFields.Contains(name))typeof(DiscoveryEntry).GetProperty(name)!.SetValue(e,typeof(DiscoveryEditInput).GetProperty(name)!.GetValue(i));
+  var originalFields=e.ServiceId!=null?new[]{"Title","Region","DonViId","Summary","PriceFrom","PriceTo","PriceUnit","Includes","Hours"}:e.PlaceId!=null?new[]{"Title","Region","DonViId","Summary"}:Array.Empty<string>();
+  foreach(var name in new[]{"Title","Kind","Region","DonViId","Summary","ParentId","Address","Latitude","Longitude","LocationNote","SourceName","SourceUrl","CheckedOn","ValidFrom","ValidTo","PriceFrom","PriceTo","PriceUnit","Includes","Excludes","Hours","OpenDays","OpenTime","CloseTime","DurationMinutes","Tags","TransportMode","Origin","Destination","Contact","AttributesJson","Status"})if(!originalFields.Contains(name))typeof(DiscoveryEntry).GetProperty(name)!.SetValue(e,typeof(DiscoveryEditInput).GetProperty(name)!.GetValue(i));
+  if(!originalFields.Contains("DonViId")){e.Region=e.Region??"";if(i.DonViId is long unitId){var unit=await geo.RequireAny(unitId);e.DonViId=unit.Id;e.Region=await geo.RegionLabel(unit.Id);}Need(!string.IsNullOrWhiteSpace(e.Region),"Chọn khu vực.");}
   e.Body=i.Content;e.UpdatedAt=clock.BayGioUtc;e.UpdatedBy=Me;e.SourceUrl=Clean(e.SourceUrl);e.OpenDays=Clean(e.OpenDays);e.Title=e.Title.Trim();e.Region=e.Region.Trim();
   await db.SaveChangesAsync();
   var oldFeatures=await db.Set<DiscoveryFeature>().Where(x=>x.EntryId==e.Id).ToListAsync();foreach(var row in oldFeatures){row.State="Unknown";row.Note=null;}
@@ -51,7 +52,7 @@ public sealed partial class DiscoveryService
  }
  public async Task<long> Save(DiscoveryEditInput i)
  {
-  travel.RoleRequired(TravelService.AdminRole);long id=0;await travel.Execute(async()=>{DiscoveryEntry e;if(i.Id>0){e=await Editable(i.Id);Version(e,i.Version);}else{e=new(){Slug="entry-"+Guid.NewGuid().ToString("N"),CreatedBy=Me,Status="Draft",Kind=i.Kind,Title=i.Title,Region=i.Region,SourceName=i.SourceName,UpdatedAt=clock.BayGioUtc};db.Add(e);await db.SaveChangesAsync();}await ValidateEdit(i,e);await ApplyEdit(e,i,Clean(i.Reason)??"Cập nhật thông tin tra cứu");id=e.Id;});return id;
+  travel.RoleRequired(TravelService.AdminRole);long id=0;await travel.Execute(async()=>{DiscoveryEntry e;if(i.Id>0){e=await Editable(i.Id);Version(e,i.Version);}else{e=new(){Slug="entry-"+Guid.NewGuid().ToString("N"),CreatedBy=Me,Status="Draft",Kind=i.Kind,Title=i.Title,Region=i.Region??"",SourceName=i.SourceName,UpdatedAt=clock.BayGioUtc};db.Add(e);await db.SaveChangesAsync();}await ValidateEdit(i,e);await ApplyEdit(e,i,Clean(i.Reason)??"Cập nhật thông tin tra cứu");id=e.Id;});return id;
  }
  public async Task Propose(DiscoveryEditInput i)
  {

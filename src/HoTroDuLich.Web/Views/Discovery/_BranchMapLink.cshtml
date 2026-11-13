@@ -1,0 +1,7 @@
+@model DiscoverySearchPage
+@if(Model.Items.Any(i=>i.Entry.BranchId!=null))
+{
+ var f=Model.Filter;
+ var mapUrl=PlaceText.SearchUrl(new PlaceSearchFilter{Q=string.IsNullOrWhiteSpace(f.Q)?null:f.Q,Area=f.Area,Category=PlaceText.CategoryFromLegacy(f.Type),PlanId=f.PlanId});
+ <p class="ds-map-link"><a href="@mapUrl">Xem các cơ sở này theo vị trí: bản đồ, cách đi, khoảng cách @Ui.Icon("arrow")</a></p>
+}

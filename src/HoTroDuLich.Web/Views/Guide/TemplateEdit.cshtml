@@ -1,0 +1,17 @@
+@model TemplateInput
+@{ViewData["Title"]=Model.Id==0?"Soạn lịch trình mẫu":"Sửa lịch trình mẫu";var units=ViewBag.Units as System.Collections.IEnumerable;}
+<div class="container-narrow">
+ <a class="back" href="/quan-tri/lich-mau">← Lịch trình mẫu</a>
+ <div class="page-head"><div><h1>@ViewData["Title"]</h1></div></div>
+ <div class="panel"><form action="/quan-tri/lich-mau/luu" method="post">@Html.AntiForgeryToken()<div asp-validation-summary="All"></div><input type="hidden" name="Id" value="@Model.Id"/>
+  <div class="form-grid">
+   <div class="field"><label for="tp-dest">Điểm đến</label><select class="form-select" id="tp-dest" name="DonViId" required><option value="">Chọn điểm đến…</option>@foreach(dynamic u in units){<option value="@u.Id" selected="@(Model.DonViId==(long)u.Id)">@u.Label</option>}</select></div>
+   <div class="field"><label for="tp-title">Tên lịch trình</label><input class="form-control" id="tp-title" name="Title" value="@Model.Title" maxlength="150" required/></div>
+   <div class="field"><label for="tp-days">Số ngày</label><input class="form-control" id="tp-days" name="Days" type="number" min="1" max="14" value="@Model.Days" required/></div>
+   <div class="field"><label for="tp-style">Phong cách</label><select class="form-select" id="tp-style" name="Style">@foreach(var s in GuideService.Styles){<option value="@s.Key" selected="@(Model.Style==s.Key)">@s.Label</option>}</select></div>
+   <div class="field full"><label for="tp-sum">Giới thiệu ngắn</label><textarea class="form-control" id="tp-sum" name="Summary" maxlength="600" rows="2">@Model.Summary</textarea></div>
+   <div class="field full"><label for="tp-items">Các hạng mục</label><textarea class="form-control" id="tp-items" name="ItemsText" rows="14" maxlength="8000" placeholder="1 | 08:00 | Ăn sáng bún bò | 40000&#10;1 | 09:30 | Tham quan chùa Linh Ứng | 0&#10;2 | | Tắm biển Mỹ Khê |">@Model.ItemsText</textarea><small class="help">Mỗi dòng một hạng mục: <code>ngày | giờ (HH:mm, có thể để trống) | nội dung | chi phí (có thể để trống)</code>. Tối đa 60 dòng.</small></div>
+   <div class="field"><label for="tp-status">Trạng thái</label><select class="form-select" id="tp-status" name="Status"><option value="Draft" selected="@(Model.Status=="Draft")">Bản nháp</option><option value="Published" selected="@(Model.Status=="Published")">Công bố</option></select></div>
+  </div>
+  <div class="form-actions"><button class="btn btn-dark" type="submit">Lưu</button></div></form></div>
+</div>

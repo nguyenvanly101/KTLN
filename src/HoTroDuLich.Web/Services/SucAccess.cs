@@ -76,9 +76,9 @@ public static class SucAccess
 
     public static string Home(string role) => role switch
     {
-        P => "/nha-cung-cap/dich-vu",
+        P => "/bang-tin",
         A => "/quan-tri/xet-duyet-dich-vu/mo-danh-sach-cho-duyet",
-        T => "/ke-hoach",
+        T => "/bang-tin",
         _ => "/"
     };
 }

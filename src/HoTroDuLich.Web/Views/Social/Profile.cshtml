@@ -1,0 +1,32 @@
+@model ProfileDto
+@{ViewData["Title"]=Model.Name;}
+<div class="container-wide soc-page soc-profile" data-soc-profile data-id="@Model.Id" data-relation="@Model.Relation" data-request="@Model.RequestId" data-self="@(Model.Self?"1":"")">
+ @Html.AntiForgeryToken()
+ <header class="fb-profile-head panel">
+  <div class="fb-cover" style="@(Model.Cover==null?"":"background-image:url('"+Model.Cover+"')")" role="img" aria-label="Ảnh bìa">@if(Model.Self){<a class="btn btn-outline fb-cover-edit" href="/Account/Profile">@Ui.Icon("edit") Đổi ảnh bìa</a>}</div>
+  <div class="fb-profile-bar">
+   <div class="soc-avatar-big">@if(Model.Avatar!=null){<img src="@Model.Avatar" alt="Ảnh đại diện @Model.Name" width="120" height="120"/>}else{<span>@Ui.Initial(Model.Name)</span>}</div>
+   <div class="fb-profile-id"><h1>@Model.Name</h1>
+    <p class="soc-meta"><span>@Model.Friends bạn bè@(Model.Mutual>0?" · "+Model.Mutual+" bạn chung":"")</span></p></div>
+   <div class="soc-actions" data-soc-actions></div>
+  </div>
+  <nav class="fb-profile-tabs" aria-label="Trang cá nhân"><button type="button" class="active" data-tab="posts">Bài viết</button><button type="button" data-tab="about">Giới thiệu</button><button type="button" data-tab="friends">Bạn bè</button><button type="button" data-tab="photos">Ảnh</button></nav>
+ </header>
+ <div class="fb-profile-cols">
+  <aside class="panel fb-about-card"><h2>Giới thiệu</h2>
+   @if(!string.IsNullOrWhiteSpace(Model.Bio)){<p class="prose">@Model.Bio</p>}
+   <ul class="fb-about-list">
+    @if(Model.City!=null){<li>@Ui.Icon("pin") Sống tại <strong>@Model.City</strong></li>}
+    @if(Model.Interests!=null){<li>@Ui.Icon("compass") Sở thích: @Model.Interests</li>}
+    <li>@Ui.Icon("calendar") Tham gia @Ui.LocalTime(Model.Joined).ToString("MM/yyyy")</li>
+   </ul>
+  </aside>
+  <div class="soc-profile-body">
+   <section data-tabpane="posts" data-soc-posts data-author="@Model.Id"></section>
+   <section data-tabpane="about" hidden><div class="panel"><h2>Giới thiệu</h2>@if(string.IsNullOrWhiteSpace(Model.Bio)&&Model.City==null&&Model.Interests==null){<p class="soc-empty">Chưa có thông tin giới thiệu bạn xem được.</p>}else{<p class="prose">@Model.Bio</p><ul class="fb-about-list">@if(Model.City!=null){<li>Sống tại <strong>@Model.City</strong></li>}@if(Model.Interests!=null){<li>Sở thích: @Model.Interests</li>}<li>Tham gia @Ui.LocalTime(Model.Joined).ToString("dd/MM/yyyy")</li></ul>}</div></section>
+   <section data-tabpane="friends" hidden><div class="panel"><h2>Bạn bè</h2><div data-profile-friends><small class="soc-meta">Đang tải…</small></div></div></section>
+   <section data-tabpane="photos" hidden><div class="panel"><h2>Ảnh</h2><div class="fb-photo-grid" data-profile-photos><small class="soc-meta">Đang tải…</small></div></div></section>
+  </div>
+ </div>
+</div>
+@section Scripts{<script src="~/js/social.js" asp-append-version="true"></script><script src="~/js/posts.js" asp-append-version="true"></script>}

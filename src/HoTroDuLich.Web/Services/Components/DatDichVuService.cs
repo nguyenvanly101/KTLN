@@ -29,7 +29,7 @@ public partial class DatDichVuService(AppDbContext context, IHttpContextAccessor
     {
         var s = await PublicServices().SingleOrDefaultAsync(x => x.MaDichVu == id);
         Ensure(s != null, "0701-01");
-        Ensure(s!.TrangThaiTiepNhan == TrangThaiTiepNhan.TiepNhan && await ProviderActive(s.MaNhaCungCap), "0701-02");
+        Ensure(s!.TrangThaiTiepNhan == TrangThaiTiepNhan.TiepNhan && (ServiceKinds.Get(s.LoaiDichVu)?.Bookable ?? true) && await ProviderActive(s.MaNhaCungCap), "0701-02");
         return s;
     }
 

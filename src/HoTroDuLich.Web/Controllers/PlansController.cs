@@ -8,7 +8,35 @@ namespace HoTroDuLich.Web.Controllers;
 [SucAuthorize(SucAccess.TripPlan)]
 public class PlansController(TravelService s, TripWorkspaceService trips) : AppController(s)
 {
-    public async Task<IActionResult> Index() => View(await S.Plans());
+    public async Task<IActionResult> Index()
+    {
+        var share = HttpContext.RequestServices.GetRequiredService<TripShareService>();
+        ViewBag.Invites = await share.Invites();
+        ViewBag.Shared = await share.SharedWithMe();
+        return View(await S.Plans());
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Invite(long planId, long accountId)
+    {
+        await HttpContext.RequestServices.GetRequiredService<TripShareService>().Invite(planId, accountId);
+        return Done("/Plans/Detail/" + planId + "#trip-members", "Đã gửi lời mời. Bạn bè chấp nhận thì cùng sửa được lịch trình.");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RespondInvite(long planId, bool accept)
+    {
+        await HttpContext.RequestServices.GetRequiredService<TripShareService>().Respond(planId, accept);
+        return Done(accept ? "/Plans/Detail/" + planId : "/Plans", accept ? "Bạn đã tham gia chuyến đi chung." : "Đã từ chối lời mời.");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RemoveMember(long planId, long accountId)
+    {
+        await HttpContext.RequestServices.GetRequiredService<TripShareService>().Remove(planId, accountId);
+        var left = accountId == S.UserId;
+        return Done(left ? "/Plans" : "/Plans/Detail/" + planId + "#trip-members", left ? "Bạn đã rời chuyến đi." : "Đã gỡ thành viên.");
+    }
     public async Task<IActionResult> Detail(long id)
     {
         return View(await trips.Open(id));
@@ -28,7 +56,7 @@ public class PlansController(TravelService s, TripWorkspaceService trips) : AppC
     [HttpGet]
     public async Task<IActionResult> Activity(long id, long activityId = 0, long? serviceId = null, long? placeId = null)
     {
-        var p = await S.OwnPlan(id);
+        var p = await S.SharedPlan(id);
         var i = new ActivityInput
         {
             PlanId = id,
@@ -64,6 +92,19 @@ public class PlansController(TravelService s, TripWorkspaceService trips) : AppC
             i.Content = v.TenDiaDiem;
         }
 
+        // Hang muc nao cung co the gan dich vu: da luu, tim kiem, hoac tim tren ban do.
+        ViewBag.ActivityId = activityId;
+        ViewBag.SavedServices = (await HttpContext.RequestServices.GetRequiredService<ProductService>().Saved()).Where(x => x.Service != null).Select(x => x.Service!).ToList();
+        if (i.ServiceId != null)
+        {
+            try
+            {
+                ViewBag.SourceService = ViewBag.SourceService ?? await S.PublicService(i.ServiceId.Value);
+                ViewBag.ServiceProvider = await S.ServiceProvider(i.ServiceId.Value);
+                ViewBag.Requestable = await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AnyAsync(S.PublicServices(), x => x.MaDichVu == i.ServiceId.Value && x.TrangThaiTiepNhan == HoTroDuLich.Web.Domain.TrangThaiTiepNhan.TiepNhan);
+            }
+            catch (BusinessException) { ViewBag.ServiceGone = true; }
+        }
         // Route id names the plan; form Id names the activity. Render model values, not route ModelState.
         ModelState.Clear();
         return View(i);

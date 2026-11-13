@@ -1,0 +1,67 @@
+@inject TravelService Travel
+@inject BranchService Branches
+@inject PostService PostsSvc
+@{
+ ViewData["Title"]="Bảng tin";
+ var isProvider=User.IsInRole(TravelService.ProviderRole);
+ var me=isProvider?null:await Travel.Profile();
+ var savedJson=isProvider?"[]":System.Text.Json.JsonSerializer.Serialize((await Context.RequestServices.GetRequiredService<ProductService>().Saved()).Where(x=>x.Service!=null).Select(x=>new{id=x.Service!.MaDichVu,name=x.Service.TenDichVu}));
+ var curBranch=isProvider?await Branches.CurrentBranch():null;
+ var owner=isProvider?await Branches.OwnerPage():null;
+ var steps=new List<(string Title,string Href,bool Done)>();
+ if(isProvider)
+ {
+  var hasPost=curBranch!=null&&(await PostsSvc.PublicBranchPosts(curBranch.Id,1)).Count>0;
+  steps.Add(("Tạo cơ sở đầu tiên","/nha-cung-cap/co-so/them",owner!.Branches.Count>0));
+  steps.Add(("Được duyệt và xác minh","/nha-cung-cap/co-so",owner.Verified&&owner.Branches.Any(b=>b.Status=="Approved")));
+  steps.Add(("Đăng dịch vụ cho cơ sở","/Provider/Edit",curBranch!=null&&owner.ServiceCounts.GetValueOrDefault(curBranch.Id)>0));
+  steps.Add(("Đăng tin giới thiệu đầu tiên","/bang-tin",hasPost));
+ }
+ var profileIncomplete=!isProvider&&me!=null&&(string.IsNullOrWhiteSpace(me.GioiThieu)||string.IsNullOrWhiteSpace(me.AnhDaiDien));
+ var branchJson=curBranch!=null&&curBranch.Status=="Approved"?System.Text.Json.JsonSerializer.Serialize(new[]{new{id=curBranch.Id,name=curBranch.Name}}):"[]";
+}
+<div class="container-wide soc-page">
+ @Html.AntiForgeryToken()
+ <div class="fb-layout">
+  <aside class="fb-left" aria-label="Lối tắt">
+   <div class="panel fb-card">
+    @if(isProvider){<strong>@(curBranch?.Name??"Chưa có cơ sở")</strong><small>Nhà cung cấp</small>}
+    else{<strong>@me!.TenHienThi</strong><small>Trang cá nhân của bạn</small>}
+   </div>
+   <nav class="panel fb-links">
+    @if(isProvider)
+    {
+     <a href="/Provider">@Ui.Icon("ticket") Dịch vụ của cơ sở</a>
+     <a href="/Bookings">@Ui.Icon("clock") Yêu cầu đặt dịch vụ</a>
+     <a href="/nha-cung-cap/tin-nhan">@Ui.Icon("chat") Tin nhắn</a>
+     <a href="/nha-cung-cap/co-so">@Ui.Icon("pin") Cơ sở của tôi</a>
+    }
+    else
+    {
+     <a href="/nguoi/@Travel.UserId">@Ui.Icon("user") Trang cá nhân</a>
+     <a href="/ban-be">@Ui.Icon("users") Bạn bè</a>
+     <a href="/tin-nhan">@Ui.Icon("chat") Tin nhắn</a>
+     <a href="/Saved">@Ui.Icon("check") Dịch vụ đã lưu</a>
+     <a href="/Plans">@Ui.Icon("calendar") Chuyến đi của tôi</a>
+     <a href="/Bookings">@Ui.Icon("ticket") Đặt dịch vụ của tôi</a>
+    }
+   </nav>
+  </aside>
+  <section class="soc-feed fb-center" data-soc-feed data-role="@(isProvider?"provider":"traveler")" data-branches="@branchJson" data-saved="@savedJson" data-name="@(isProvider?"Nhà cung cấp":me!.TenHienThi)"></section>
+  <aside class="fb-right" aria-label="Gợi ý">
+   @if(!isProvider)
+   {
+    <div class="panel fb-card" data-soc-requests hidden><strong>Lời mời kết bạn</strong><div data-soc-requests-list></div></div>
+    @if(profileIncomplete){<div class="panel fb-card" data-profile-nudge><strong>Hoàn thiện hồ sơ</strong><p class="help">Thêm ảnh đại diện và giới thiệu ngắn để bạn bè và bạn đồng hành nhận ra bạn.</p><a class="btn btn-outline" href="/Account/Profile">Cập nhật hồ sơ</a></div>}
+    <div class="panel fb-card"><strong>Người liên hệ</strong><div data-soc-contacts><small class="soc-meta">Đang tải…</small></div></div>
+    <div class="panel fb-card"><strong>Những người bạn có thể biết</strong><div data-soc-suggest><small class="soc-meta">Đang tải…</small></div><a class="text-link" href="/ban-be?tab=goi-y">Xem thêm @Ui.Icon("arrow")</a></div>
+   }
+   else
+   {
+    @if(steps.Any(x=>!x.Done)){<div class="panel fb-card" data-provider-checklist><strong>Việc cần làm</strong><ul class="fb-checklist">@foreach(var st in steps){<li class="@(st.Done?"done":"")"><a href="@st.Href"><span aria-hidden="true">@(st.Done?"✓":"○")</span> @st.Title</a></li>}</ul></div>}
+    <div class="panel fb-card"><strong>Mẹo cho nhà cung cấp</strong><p class="help">Đăng ảnh thật, ưu đãi và món/phòng mới thường xuyên. Khách thấy tin của bạn ngay trên bảng tin cộng đồng.</p></div>
+   }
+  </aside>
+ </div>
+</div>
+@section Scripts{<script src="~/js/social.js" asp-append-version="true"></script><script src="~/js/posts.js" asp-append-version="true"></script>}

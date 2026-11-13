@@ -1,5 +1,6 @@
 @model List<SavedChoice>
 @{ViewData["Title"]="Lựa chọn đã lưu";}
+<partial name="/Views/Shared/_ExploreTabs.cshtml" model='"saved"'/>
 <div class="container-wide product-page">
  <header class="product-heading"><div><span class="eyebrow">KHÁM PHÁ / BỘ SƯU TẬP CỦA BẠN</span><h1>Thích thì lưu.<br/>Sẵn sàng thì lên đường.</h1><p>Gom những nơi muốn đến và dịch vụ đang cân nhắc. Chọn chuyến đi khi bạn đã sẵn sàng.</p></div><a class="btn btn-dark" href="/">@Ui.Icon("search") Khám phá thêm</a></header>
  <div asp-validation-summary="All" role="alert" tabindex="-1"></div>

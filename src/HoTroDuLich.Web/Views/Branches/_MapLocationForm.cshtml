@@ -3,7 +3,7 @@
 @{var mapName=Maps.MapsReady?"Google Maps":"OpenStreetMap";}
 <div class="form-grid">
  <div class="field"><label asp-for="Name">Tên địa điểm / tên cơ sở và chi nhánh</label><input class="form-control" asp-for="Name" maxlength="200" placeholder="Ví dụ: tên quán — chi nhánh cụ thể"/><span asp-validation-for="Name"></span></div>
- <div class="field"><label asp-for="Region">Khu vực</label><input class="form-control" asp-for="Region" maxlength="200" placeholder="Phường/xã, tỉnh/thành phố"/><span asp-validation-for="Region"></span></div>
+ <div class="field full"><label>Khu vực (tỉnh/thành phố → quận/huyện → xã/phường)</label><partial name="_DiaGioiPicker" model='new DiaGioiPickerModel("DonViId", Model.DonViId, true)'/><span asp-validation-for="DonViId"></span><input type="hidden" name="Region" value="@Model.Region"/></div>
  <div class="field full"><label asp-for="Address">Địa chỉ do bạn cung cấp</label><input class="form-control" asp-for="Address" maxlength="400" placeholder="Số nhà, đường, phường/xã, tỉnh/thành phố"/><span asp-validation-for="Address"></span></div>
 </div>
 <section class="pl-location-picker" data-location-picker>

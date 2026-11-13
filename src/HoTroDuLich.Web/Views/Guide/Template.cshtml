@@ -1,0 +1,22 @@
+@model TemplateDetail
+@{
+ var t=Model.Template;ViewData["Title"]=t.Title;var traveler=User.IsInRole(TravelService.Traveler);var signed=User.Identity?.IsAuthenticated==true;
+ var perDay=Model.Items.GroupBy(m=>m.DayNo).OrderBy(g=>g.Key).ToList();
+}
+<div class="container-narrow">
+ <a class="back" href="/lich-mau">← Lịch trình mẫu</a>
+ <div class="page-head"><div><span class="eyebrow">@Model.Unit.Name · @t.Days NGÀY · @(GuideService.Styles.First(x=>x.Key==t.Style).Label.ToUpperInvariant())</span><h1>@t.Title</h1><p>@t.Summary</p></div></div>
+ <div class="panel tpl-use">
+  <div><strong>Dự trù khoảng @Labels.Money(Model.Total)</strong><small class="help">Tổng chi phí các hạng mục có ghi giá. Bạn chỉnh được sau khi chép.</small></div>
+  @if(traveler)
+  {
+   <form action="/lich-mau/@t.Id/dung" method="post" class="tpl-use-form">@Html.AntiForgeryToken()<div class="field"><label for="tpl-start">Ngày bắt đầu</label><input class="form-control" id="tpl-start" name="start" type="date" min="@TravelService.Today.ToString("yyyy-MM-dd")" value="@TravelService.Today.AddDays(14).ToString("yyyy-MM-dd")" required/></div><button class="btn btn-dark" type="submit">Dùng lịch này</button></form>
+  }
+  else if(!signed){<a class="btn btn-dark" href="/Account/Login?returnUrl=@Uri.EscapeDataString("/lich-mau/"+t.Id)">Đăng nhập để dùng lịch này</a>}
+ </div>
+ @foreach(var day in perDay)
+ {
+  <section class="panel tpl-day"><h2>Ngày @day.Key</h2><ol>@foreach(var m in day){<li><time>@(m.Time?.ToString("HH:mm")??"—")</time><span>@m.Content</span>@if(m.Cost!=null){<small>@Labels.Money(m.Cost)</small>}</li>}</ol></section>
+ }
+ <p class="help">Giá và giờ mở cửa chỉ để tham khảo. Kiểm tra lại với từng nơi trước khi đi. <a href="/khan-cap">Số khẩn cấp</a></p>
+</div>

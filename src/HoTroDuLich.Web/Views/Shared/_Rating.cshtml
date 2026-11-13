@@ -1,0 +1,6 @@
+@model long?
+@inject ReviewService Reviews
+@if(Model!=null&&(await Reviews.Ratings()).TryGetValue(Model.Value,out var r))
+{
+ <a class="rating-chip" href="/Reviews/Service/@Model" aria-label="Điểm đánh giá @r.Average.ToString("0.0") trên 5, @r.Count đánh giá"><span class="rating-star" aria-hidden="true">★</span><strong>@r.Average.ToString("0.0")</strong><small>(@r.Count)</small></a>
+}

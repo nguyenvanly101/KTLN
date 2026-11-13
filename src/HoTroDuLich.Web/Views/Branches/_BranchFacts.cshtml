@@ -1,0 +1,20 @@
+@model BranchFactsModel
+@{
+ var photos=Ui.ServicePhotos(Model.PhotosJson);
+ var q=Model.RevisionId!=null?"?revision="+Model.RevisionId:"";
+ var price=DiscoveryText.PriceLabel(Model.PriceFrom,Model.PriceTo,Model.PriceUnit);
+ var hours=DiscoveryText.HoursLabel(Model.OpenDays,Model.OpenTime,Model.CloseTime);
+}
+@if(photos.Length>0)
+{
+ <div class="pv-gallery" aria-label="Ảnh thực tế của @Model.Name">@for(var n=0;n<photos.Length;n++){<a href="/co-so/@Model.BranchId/anh/@n@q" target="_blank" rel="noopener"><img src="/co-so/@Model.BranchId/anh/@n@q" alt="Ảnh @(n+1) của @Model.Name" loading="lazy" width="320" height="220"/></a>}</div>
+}
+<dl class="facts pv-facts">
+ <div><dt>Giờ mở cửa</dt><dd>@(hours??"Chưa công bố")@if(!string.IsNullOrWhiteSpace(Model.Hours)){<br/><small>@Model.Hours</small>}</dd></div>
+ <div><dt>Giá tham khảo</dt><dd>@(price??"Chưa công bố")</dd></div>
+</dl>
+@{var described=BranchTemplates.Describe(Model.Type,Model.AttributesJson);}
+@if(described.Count>0)
+{
+ <dl class="facts pv-facts pv-attrs">@foreach(var (label,items) in described){<div><dt>@label</dt><dd>@if(items.Count==1){@items[0]}else{<ul class="pv-attr-list">@foreach(var item in items){<li>@item</li>}</ul>}</dd></div>}</dl>
+}
