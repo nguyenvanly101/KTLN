@@ -1,13 +1,21 @@
 {
   "passed": true,
-  "checks": 52,
+  "checks": 54,
   "observations": [
     {
       "name": "Public discovery home: 200 ",
       "passed": true
     },
     {
-      "name": "New home and map",
+      "name": "Home starts from needs and one search box, no administrative dropdowns",
+      "passed": true
+    },
+    {
+      "name": "Filter results page: 200 ",
+      "passed": true
+    },
+    {
+      "name": "Results page keeps the map",
       "passed": true
     },
     {
@@ -212,9 +220,9 @@
     }
   ],
   "fixtures": {
-    "entryId": 10002,
-    "seed": "DISCOVERY 7afbf7d0"
+    "entryId": 90030,
+    "seed": "DISCOVERY af4ab715"
   },
   "database": "HoTroDuLich_Discovery_20261108",
-  "date": "2026-11-08T07:11:05.347Z"
+  "date": "2026-11-13T05:59:09.118Z"
 }

@@ -2,6 +2,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),{randomUUID}=re
 const {Client,val,base}=require('./fulltext-smoke.cjs');
 const {database,sql,json,literal}=require('./branches-sql.cjs');
 const fixture=JSON.parse(fs.readFileSync('preview/branches-fixture.json','utf8'));assert.equal(fixture.database,database);
+const geoUnit=json(database,"SELECT TOP(1) Id FROM dbo.DonViHanhChinh WHERE Regime='Cu' AND [Level]=3 ORDER BY Id FOR JSON PATH;")[0].Id;
 const checks=[],stamp=Date.now().toString(),today=new Date(Date.now()+7*3600000).toISOString().slice(0,10);
 const user=label=>fixture.users.find(x=>x.label===label);
 function check(ok,name){assert.ok(ok,name);checks.push(name);}
@@ -10,7 +11,7 @@ function named(table,name){return json(database,`SELECT TOP(1) * FROM dbo.[${tab
 function pending(id){return json(database,`SELECT TOP(1) * FROM BanCapNhatCoSo WHERE BranchId=${Number(id)} ORDER BY Number DESC FOR JSON PATH;`)[0];}
 async function status(promise,expected,name){const r=await promise;check(r.status===expected,name+' ['+r.status+'] '+(r.status!==expected?r.text.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').slice(0,1300):''));return r;}
 async function post(c,path,page,values){const data=new URLSearchParams();data.append('__RequestVerificationToken',val(page,'__RequestVerificationToken'));for(const [k,v]of Object.entries(values)){if(v==null)continue;for(const item of Array.isArray(v)?v:[v])data.append(k,String(item));}return c.req(path,data);}
-const branch=(name,lat,other={})=>({Id:0,Name:name,Address:'Địa chỉ '+name,Region:'Khu vực kiểm thử',Type:'AnUong',Summary:'Giới thiệu của đúng chi nhánh '+name,Hours:'11:00–21:00',Phone:'0939000101',LocationSource:'Provider',Latitude:lat,Longitude:107.58,ConfirmLocation:true,OwnershipEvidence:'QA_SECRET_'+name,Parking:true,VegetarianOptions:true,VeganOnly:false,AccessibleEntrance:false,Operation:'Submit',...other});
+const branch=(name,lat,other={})=>({Id:0,Name:name,Address:'Địa chỉ '+name,DonViId:geoUnit,Region:'',Type:'AnUong',Summary:'Giới thiệu của đúng chi nhánh '+name,Hours:'11:00–21:00',Phone:'0939000101',LocationSource:'Provider',Latitude:lat,Longitude:107.58,ConfirmLocation:true,OwnershipEvidence:'QA_SECRET_'+name,Parking:true,VegetarianOptions:true,VeganOnly:false,AccessibleEntrance:false,Operation:'Submit',...other});
 let context={};
 (async()=>{
  for(let attempt=0;;attempt++){try{const ready=await fetch(base+'/api/maps/config');if(ready.ok)break;}catch{}if(attempt>=45)throw Error('Test server did not become ready');await new Promise(r=>setTimeout(r,1000));}
@@ -49,7 +50,7 @@ let context={};
  const badLocation=await status(post(owner,'/nha-cung-cap/co-so/luu',edit,{...aInput,Name:'QA missing coordinate '+stamp,Longitude:''}),422,'Partial position rejected with preserved form');check(badLocation.text.includes('QA missing coordinate'),'Invalid branch form preserves authored data');
  await status(post(owner,'/nha-cung-cap/co-so/luu',edit,{...aInput,Name:'QA Google missing '+stamp,LocationSource:'Google',GooglePlaceId:'ChIJ_test_missing_key'}),503,'Missing Google key does not fabricate verified location');
  let lm=await admin.get('/quan-tri/moc-dia-diem/them');const parentName='QA Điểm chính '+stamp;
- const parentInput={Id:0,Name:parentName,Address:'Địa chỉ điểm thử',Region:'Khu vực kiểm thử',Type:'Point',SourceName:'Nguồn kiểm thử riêng',CheckedOn:today,IsPublished:true,LocationSource:'Provider',Latitude:16.469,Longitude:107.58,ConfirmLocation:true};
+ const parentInput={Id:0,Name:parentName,Address:'Địa chỉ điểm thử',DonViId:geoUnit,Region:'',Type:'Point',SourceName:'Nguồn kiểm thử riêng',CheckedOn:today,IsPublished:true,LocationSource:'Provider',Latitude:16.469,Longitude:107.58,ConfirmLocation:true};
  await status(post(admin,'/quan-tri/moc-dia-diem/luu',lm,parentInput),302,'Admin publishes a specific landmark');const parent=named('MocDiaDiem',parentName);context.parent=parent.Id;
  const entranceName='QA Cửa Đông Bắc thử '+stamp;
  await status(post(admin,'/quan-tri/moc-dia-diem/luu',lm,{...parentInput,Name:entranceName,Address:'Địa chỉ cửa thử',Type:'Entrance',ParentId:parent.Id,Latitude:16.47,Longitude:107.581}),302,'Entrance has own coordinate and parent landmark');const entrance=named('MocDiaDiem',entranceName);context.entrance=entrance.Id;

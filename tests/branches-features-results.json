@@ -1,8 +1,11 @@
 {
   "passed": true,
-  "checks": 83,
+  "checks": 86,
   "observations": [
     "Public search loads without Google credentials [200] ",
+    "Home opens the place search [302] ",
+    "Home redirect opens the default category [200] ",
+    "All categories remains valid when the form submits an empty category [200] ",
     "Search contains anchor and integrated map",
     "Google Maps CSP uses response nonce",
     "Map nonce is available to loader",
@@ -80,23 +83,23 @@
     "Guest compares two branches [200] ",
     "Comparison distinguishes same-provider branches",
     "Routes API requires antiforgery [400] ",
-    "Unavailable live Google route reports configuration failure",
+    "Route rejects unsupported modes before contacting the map provider",
     "Integrated page /quan-tri/moc-dia-diem [200] ",
     "Integrated page /quan-tri/co-so?status=All [200] ",
     "Integrated page /Provider [200] ",
     "Integrated page /thong-tin/mo-tim-kiem [200] "
   ],
   "context": {
-    "a": 10002,
-    "a2": 10003,
-    "b": 10004,
-    "parent": 10002,
-    "entrance": 10003,
-    "service": 10002,
-    "booking": 1
+    "a": 100167,
+    "a2": 100168,
+    "b": 100169,
+    "parent": 90008,
+    "entrance": 90009,
+    "service": 100025,
+    "booking": 80027
   },
   "database": "HoTroDuLich_Branches_20261108_Final",
   "base": "http://127.0.0.1:5225",
   "liveGoogle": false,
-  "date": "2026-11-08T12:29:48.014Z"
+  "date": "2026-11-13T06:02:00.828Z"
 }

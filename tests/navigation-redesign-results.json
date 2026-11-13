@@ -1,15 +1,15 @@
 {
   "passed": true,
   "checks": 102,
-  "base": "http://localhost:5221",
-  "date": "2026-11-04T19:06:49.005Z",
+  "base": "http://localhost:5216",
+  "date": "2026-11-11T13:38:54.869Z",
   "observations": [
     {
-      "name": "GET / returns 200",
+      "name": "GET /Discovery returns 200",
       "passed": true
     },
     {
-      "name": "Razor page renders: /",
+      "name": "Razor page renders: /Discovery",
       "passed": true
     },
     {
@@ -17,7 +17,7 @@
       "passed": true
     },
     {
-      "name": "Public navigation has three related groups",
+      "name": "Public navigation is a short list of plain links (no menus)",
       "passed": true
     },
     {
@@ -25,11 +25,11 @@
       "passed": true
     },
     {
-      "name": "GET /?q=M%C3%A2y&region=%C4%90%C3%A0%20L%E1%BA%A1t&type=LuuTru&min=100000&max=1000000 returns 200",
+      "name": "GET /Discovery?Q=M%C3%A2y&Region=%C4%90%C3%A0%20L%E1%BA%A1t&Type=LuuTru&Min=100000&Max=1000000 returns 200",
       "passed": true
     },
     {
-      "name": "Razor page renders: /?q=M%C3%A2y&region=%C4%90%C3%A0%20L%E1%BA%A1t&type=LuuTru&min=100000&max=1000000",
+      "name": "Razor page renders: /Discovery?Q=M%C3%A2y&Region=%C4%90%C3%A0%20L%E1%BA%A1t&Type=LuuTru&Min=100000&Max=1000000",
       "passed": true
     },
     {
@@ -37,19 +37,19 @@
       "passed": true
     },
     {
-      "name": "Search preserves q",
+      "name": "Search preserves Q",
       "passed": true
     },
     {
-      "name": "Search preserves region",
+      "name": "Search preserves Region",
       "passed": true
     },
     {
-      "name": "Search preserves min",
+      "name": "Search preserves Min",
       "passed": true
     },
     {
-      "name": "Search preserves max",
+      "name": "Search preserves Max",
       "passed": true
     },
     {
@@ -153,11 +153,11 @@
       "passed": true
     },
     {
-      "name": "Traveler workspace groups trips and companions",
+      "name": "Traveler workspace groups trips and feed (companions are feed posts)",
       "passed": true
     },
     {
-      "name": "Traveler can find personal companion posts from the grouped menu",
+      "name": "Traveler sidebar is a short flat list",
       "passed": true
     },
     {

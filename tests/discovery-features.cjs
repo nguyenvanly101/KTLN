@@ -10,7 +10,7 @@ const literal=s=>"N'"+String(s).replaceAll("'","''")+"'";
 const today=new Date(Date.now()+7*3600000).toISOString().slice(0,10);
 module.exports=(async()=>{
  const guest=new Client(),a=new Client(),b=new Client(),provider=new Client(),admin=new Client();
- const root=await status(guest.get('/'),200,'Public discovery home');check(root.text.includes('Một nơi muốn đến.')&&root.text.includes('discovery-map'),'New home and map');
+ const root=await status(guest.get('/Discovery'),200,'Public discovery home');check(root.text.includes('Một nơi muốn đến.')&&root.text.includes('BẠN MUỐN LÀM GÌ?')&&root.text.includes('id="ds-q"')&&!root.text.includes('data-dg'),'Home starts from needs and one search box, no administrative dropdowns');const results=await status(guest.get('/Discovery?Sort=relevance'),200,'Filter results page');check(results.text.includes('discovery-map'),'Results page keeps the map');
  await status(guest.get('/Discovery?Q=xe+lan'),200,'Accent-insensitive search');
  await status(guest.get('/Discovery?Min=200&Max=10'),400,'Reject inverted prices');
  await status(guest.get('/Discovery?Features=Imaginary'),400,'Reject unknown feature');

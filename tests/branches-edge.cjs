@@ -22,7 +22,7 @@ function expectSqlError(command,error,label){const result=sql(database,`SET XACT
  await status(guest.get('/kham-pha?AnchorKind=Pin&Lat=95&Lng=107'),400,'Latitude boundary enforced');
  await status(guest.get('/kham-pha/so-sanh?ids='+c.a+'&ids='+c.a),400,'Duplicate comparison branch rejected');
  const b=row('CoSoDichVu',c.a),edit=await owner.get('/nha-cung-cap/co-so/'+c.a);
- const input={Id:b.Id,Version:b.RowVersion,Name:b.Name,Address:b.Address,Region:b.Region,Type:b.Type,LocationSource:'Provider',Latitude:b.Latitude,Longitude:b.Longitude,ConfirmLocation:true,OwnershipEvidence:'Nguồn thử',Operation:'Submit'};
+ const input={Id:b.Id,Version:b.RowVersion,Name:b.Name,Address:b.Address,DonViId:b.DonViId,Region:b.Region,Type:b.Type,LocationSource:'Provider',Latitude:b.Latitude,Longitude:b.Longitude,ConfirmLocation:true,OwnershipEvidence:'Nguồn thử',Operation:'Submit'};
  const before=pendingCount();
  await status(post(owner,'/nha-cung-cap/co-so/luu',edit,{...input,Version:'AAAAAAAAAAA='}),409,'Stale branch update rejected');check(pendingCount()===before,'Stale branch save creates no revision');
  await status(post(owner,'/nha-cung-cap/co-so/luu',edit,{...input,Website:'javascript:alert(1)'}),422,'Unsafe provider website rejected');
@@ -33,7 +33,7 @@ function expectSqlError(command,error,label){const result=sql(database,`SET XACT
  const newOther=await other.get('/nha-cung-cap/co-so/them');await status(post(other,'/nha-cung-cap/co-so/luu',newOther,{...draft,Name:'QA hồ sơ yêu cầu khác '+Date.now()}),302,'An unreviewed draft cannot reserve a place against another provider');
  const draftRow=json(database,`SELECT * FROM CoSoDichVu WHERE GooglePlaceId=${literal(claim)} FOR JSON PATH;`);check(draftRow.length===2&&draftRow.every(x=>x.PublishedVersion==null&&x.Latitude==null),'Draft Google claims remain private and have no invented coordinates');
  const lm=await admin.get('/quan-tri/moc-dia-diem/'+c.parent),p=row('MocDiaDiem',c.parent);
- const landmark={Id:p.Id,Version:p.RowVersion,Name:p.Name,Address:p.Address,Region:p.Region,Type:'Point',ParentId:c.entrance,SourceName:p.SourceName,CheckedOn:p.CheckedOn,IsPublished:true,LocationSource:'Provider',Latitude:p.Latitude,Longitude:p.Longitude,ConfirmLocation:true};
+ const landmark={Id:p.Id,Version:p.RowVersion,Name:p.Name,Address:p.Address,DonViId:p.DonViId,Region:p.Region,Type:'Point',ParentId:c.entrance,SourceName:p.SourceName,CheckedOn:p.CheckedOn,IsPublished:true,LocationSource:'Provider',Latitude:p.Latitude,Longitude:p.Longitude,ConfirmLocation:true};
  await status(post(admin,'/quan-tri/moc-dia-diem/luu',lm,landmark),422,'Landmark hierarchy cannot form a cycle or reverse entrance ownership');
  expectSqlError(`INSERT DichVuCoSo(ServiceId,BranchId) VALUES(${c.service},${c.a2})`,2627,'Service/branch association unique key');
  expectSqlError(`INSERT DichVuCoSo(ServiceId,BranchId) VALUES(${c.service},9223372036854775806)`,547,'Association branch foreign key');

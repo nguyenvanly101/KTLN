@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "checks": 28,
+  "checks": 27,
   "observations": [
     {
       "name": "Core fixture exists",
@@ -20,10 +20,6 @@
     },
     {
       "name": "Provider service indexed",
-      "passed": true
-    },
-    {
-      "name": "Clean previous test proposal: 302 expected 302 ",
       "passed": true
     },
     {
@@ -115,5 +111,5 @@
       "passed": true
     }
   ],
-  "date": "2026-11-08T07:11:11.087Z"
+  "date": "2026-11-13T06:00:24.478Z"
 }

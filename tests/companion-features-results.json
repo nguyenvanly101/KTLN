@@ -171,7 +171,7 @@
       "passed": true
     },
     {
-      "name": "Host approves member 20002: HTTP 302, expected 302",
+      "name": "Host approves member 40002: HTTP 302, expected 302",
       "passed": true
     },
     {
@@ -427,7 +427,7 @@
       "passed": true
     },
     {
-      "name": "Record external repayment 20002: HTTP 302, expected 302",
+      "name": "Record external repayment 40002: HTTP 302, expected 302",
       "passed": true
     },
     {
@@ -636,20 +636,20 @@
     }
   ],
   "fixture": {
-    "stamp": 1793891366363,
-    "thirdUser": 20002,
-    "plan": 20002,
-    "sourceActivity": 20002,
-    "group": 20002,
-    "messageSubmission": "e1f1951f-d589-4ff7-b8d7-20b6de7b1950",
-    "message": 20002,
-    "poll": 20002,
-    "task": 20002,
-    "expense": 20002,
-    "report": 20002,
-    "raceGroup": 20003
+    "stamp": 1794321324760,
+    "thirdUser": 40002,
+    "plan": 40002,
+    "sourceActivity": 40002,
+    "group": 40002,
+    "messageSubmission": "09abf1fa-0909-4890-b3fa-20fc59194554",
+    "message": 40002,
+    "poll": 40002,
+    "task": 40002,
+    "expense": 40002,
+    "report": 40002,
+    "raceGroup": 40003
   },
   "database": "HoTroDuLich_Companion_20261105",
   "base": "http://localhost:5223",
-  "date": "2026-11-05T15:10:08.387Z"
+  "date": "2026-11-10T14:35:42.087Z"
 }

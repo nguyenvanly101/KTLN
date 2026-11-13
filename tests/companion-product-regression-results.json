@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "checks": 90,
+  "checks": 92,
   "observations": [
     {
       "name": "Expected isolated database",
@@ -279,6 +279,14 @@
       "passed": true
     },
     {
+      "name": "Provider submits a branch for its services: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
+      "name": "Admin approves the branch used by services: HTTP 302, expected 302 ",
+      "passed": true
+    },
+    {
       "name": "Submit service details and real photo for review: HTTP 302, expected 302 ",
       "passed": true
     },
@@ -307,7 +315,7 @@
       "passed": true
     },
     {
-      "name": "Admin can compare submitted address and price unit",
+      "name": "Admin can compare branch address and price unit",
       "passed": true
     },
     {
@@ -339,7 +347,7 @@
       "passed": true
     },
     {
-      "name": "Schema has only declared added tables",
+      "name": "Schema has only declared added tables (46 companion + 12 discovery + 6 branches + 6 geography)",
       "passed": true
     },
     {
@@ -364,31 +372,31 @@
     }
   ],
   "fixture": {
-    "stamp": 1793898079856,
+    "stamp": 1794323486919,
     "saved": 2,
-    "task": 10002,
-    "cost": 10002,
-    "service": 20002,
+    "task": 20007,
+    "cost": 20011,
+    "service": 30006,
     "revision": {
-      "MaBanCapNhat": 20002,
-      "MaDichVu": 20002,
+      "MaBanCapNhat": 30006,
+      "MaDichVu": 30006,
       "SoPhienBan": 1,
-      "TenDichVu": "Trải nghiệm địa phương 1793898079856",
+      "TenDichVu": "Trải nghiệm địa phương 1794323486919",
       "LoaiDichVu": "HoatDong",
       "MoTa": "Mô tả để kiểm tra xét duyệt",
-      "KhuVucPhucVu": "Đà Lạt",
+      "KhuVucPhucVu": "Phường Phúc Xá, Quận Ba Đình, Thành phố Hà Nội",
       "GiaThamKhao": 120000,
       "ThoiGianPhucVu": "08:00–17:00",
       "DieuKienPhucVu": "Xác nhận khả năng phục vụ khi phản hồi",
       "TrangThaiDuyet": "ChoDuyet",
-      "ThoiDiemGui": "2026-11-05T17:01:27",
-      "DiaChiPhucVu": "15 Đường Hoa, Đà Lạt",
+      "ThoiDiemGui": "2026-11-10T15:11:30",
       "DonViGia": "người/lượt",
       "ChinhSachHuy": "Báo trước 24 giờ để đổi lịch",
-      "AnhJson": "[\"2026/bcbe38af-9ec9-491f-a769-6a03191e095c.png\"]"
+      "AnhJson": "[\"2026/456e237c-84a8-498a-8f13-ba34c36ed5a6.png\"]",
+      "DonViId": 824
     }
   },
   "database": "HoTroDuLich_Companion_20261105",
   "base": "http://localhost:5223",
-  "date": "2026-11-05T17:01:29.958Z"
+  "date": "2026-11-10T15:11:30.970Z"
 }

@@ -22,13 +22,13 @@ class Session{
 }
 (async()=>{
  const guest=new Session();
- const home=await guest.page('/');
- check(home.text.includes('Việt Nam rộng mở.'),'New discovery hero is rendered');
- check((home.html.match(/class="nav-disclosure/g)||[]).length===3,'Public navigation has three related groups');
- check(home.html.includes('href="/Bookings"')&&home.html.includes('href="/Companions/Mine"'),'Trip and companion workspaces are reachable');
- const search=await guest.page('/?q='+encodeURIComponent('Mây')+'&region='+encodeURIComponent('Đà Lạt')+'&type=LuuTru&min=100000&max=1000000');
+ const home=await guest.page('/Discovery');
+ check(home.text.includes('Một nơi muốn đến.'),'New discovery hero is rendered');
+ check((home.html.match(/class="nav-disclosure/g)||[]).length===0&&/<nav[^>]*class="mainnav"[\s\S]*?<\/nav>/.test(home.html)&&(home.html.match(/<nav[^>]*class="mainnav"[\s\S]*?<\/nav>/)[0].match(/<a /g)||[]).length<=4,'Public navigation is a short list of plain links (no menus)');
+ check(home.html.includes('href="/Plans"')&&home.html.includes('href="/Companions"'),'Trip and companion workspaces are reachable');
+ const search=await guest.page('/Discovery?Q='+encodeURIComponent('Mây')+'&Region='+encodeURIComponent('Đà Lạt')+'&Type=LuuTru&Min=100000&Max=1000000');
  check(!search.html.includes('id="discovery-title"'),'Search results prioritize the filter and results');
- for(const [name,value] of [['q','Mây'],['region','Đà Lạt'],['min','100000'],['max','1000000']])check(search.text.includes(value),'Search preserves '+name);
+ for(const [name,value] of [['Q','Mây'],['Region','Đà Lạt'],['Min','100000'],['Max','1000000']])check(search.text.includes(value),'Search preserves '+name);
  const companions=await guest.page('/dong-hanh/tim-kiem/tim-nhu-cau?noiDen='+encodeURIComponent('Đà Lạt')+'&nganSachToiDa=2000000&hinhThucDi=Phuot&tuNgay=2026-11-11&denNgay=2026-11-30');
  check(/class="companion-extra" open/.test(companions.html),'Additional companion filters stay open after use');
  check(!companions.html.includes('class="community-intro"'),'Companion results prioritize filters and invitations');
@@ -38,8 +38,8 @@ class Session{
  const traveler=new Session();await traveler.login('khach@hanhtrinh.vn');
  const plans=await traveler.page('/Plans');
  const sidebar=plans.text.match(/<aside\b[^>]*class="workspace-sidebar"[\s\S]*?<\/aside>/)[0];
- check(sidebar.includes('Chuyến đi')&&sidebar.includes('Đồng hành'),'Traveler workspace groups trips and companions');
- check(sidebar.includes('/Companions/Mine'),'Traveler can find personal companion posts from the grouped menu');
+ check(sidebar.includes('Chuyến đi')&&sidebar.includes('Bảng tin'),'Traveler workspace groups trips and feed (companions are feed posts)');
+ check(sidebar.includes('href="/bang-tin"')&&(sidebar.match(/class="sidebar-direct/g)||[]).length<=10,'Traveler sidebar is a short flat list');
  check(!sidebar.includes('/Bookings/Adjustments')&&!sidebar.includes('/Bookings/Results'),'Booking operations are nested within their owning workspace');
  for(const path of ['/Plans/Edit','/Plans/Detail/1','/Companions/Mine','/Companions/Connections','/Companions/Edit','/Support','/Account/Profile','/Account/Notifications','/Account/Password'])await traveler.page(path);
  for(const path of ['/Bookings','/Bookings/Adjustments','/Bookings/Results']){const page=await traveler.page(path);check(page.html.includes('aria-label="Quản lý đặt dịch vụ"'),'Shared booking navigation on '+path);}

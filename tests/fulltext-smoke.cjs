@@ -12,7 +12,7 @@ class Client{
 module.exports={Client,base,val,decode};
 if(require.main===module)(async()=>{
  const guest=new Client(),traveler=new Client(),provider=new Client(),admin=new Client();
- const publicPaths=['/','/thong-tin/mo-tim-kiem','/thong-tin/tra-cuu?loai=LuuTru','/thong-tin/xem-chi-tiet?loai=DiaDiem&maMuc=1','/thong-tin/xem-chi-tiet?loai=DichVu&maMuc=1','/dong-hanh/tim-kiem/mo-tim-kiem','/dong-hanh/tim-kiem/tim-nhu-cau','/dong-hanh/tim-kiem/xem-chi-tiet/1','/tai-khoan/dang-ky/mo-dang-ky'];
+ const publicPaths=['/kham-pha','/thong-tin/mo-tim-kiem','/thong-tin/tra-cuu?loai=LuuTru','/thong-tin/xem-chi-tiet?loai=DiaDiem&maMuc=1','/thong-tin/xem-chi-tiet?loai=DichVu&maMuc=1','/dong-hanh/tim-kiem/mo-tim-kiem','/dong-hanh/tim-kiem/tim-nhu-cau','/dong-hanh/tim-kiem/xem-chi-tiet/1','/tai-khoan/dang-ky/mo-dang-ky'];
  const results=[];
  async function check(client,path,expected=200){const r=await client.get(path);results.push({path,status:r.status,expected});console.log(r.status,path);assert.equal(r.status,expected,r.text.replace(/<[^>]+>/g,' ').slice(0,3000));return r;}
  for(const path of publicPaths)await check(guest,path);

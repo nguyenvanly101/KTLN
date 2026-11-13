@@ -71,7 +71,7 @@
       "passed": true
     },
     {
-      "name": "Save activity Tham quan vườn hoa 1793891570776: HTTP 302 expected 302",
+      "name": "Save activity Tham quan vườn hoa 1794321738131: HTTP 302 expected 302",
       "passed": true
     },
     {
@@ -79,7 +79,7 @@
       "passed": true
     },
     {
-      "name": "Save activity Dùng bữa nhẹ 1793891570776: HTTP 302 expected 302",
+      "name": "Save activity Dùng bữa nhẹ 1794321738131: HTTP 302 expected 302",
       "passed": true
     },
     {
@@ -87,7 +87,7 @@
       "passed": true
     },
     {
-      "name": "Save activity Điểm dừng bên hồ 1793891570776: HTTP 302 expected 302",
+      "name": "Save activity Điểm dừng bên hồ 1794321738131: HTTP 302 expected 302",
       "passed": true
     },
     {
@@ -95,7 +95,7 @@
       "passed": true
     },
     {
-      "name": "Save activity Đêm ngắm sao 1793891570776: HTTP 302 expected 302",
+      "name": "Save activity Đêm ngắm sao 1794321738131: HTTP 302 expected 302",
       "passed": true
     },
     {
@@ -103,7 +103,7 @@
       "passed": true
     },
     {
-      "name": "Save activity Trở về phòng 1793891570776: HTTP 302 expected 302",
+      "name": "Save activity Trở về phòng 1794321738131: HTTP 302 expected 302",
       "passed": true
     },
     {
@@ -171,7 +171,7 @@
       "passed": true
     },
     {
-      "name": "Save activity Tham quan vườn hoa 1793891570776: HTTP 302 expected 302",
+      "name": "Save activity Tham quan vườn hoa 1794321738131: HTTP 302 expected 302",
       "passed": true
     },
     {
@@ -519,7 +519,7 @@
       "passed": true
     },
     {
-      "name": "Save activity Nội dung mới chưa chia sẻ 1793891570776: HTTP 302 expected 302",
+      "name": "Save activity Nội dung mới chưa chia sẻ 1794321738131: HTTP 302 expected 302",
       "passed": true
     },
     {
@@ -604,16 +604,16 @@
     }
   ],
   "fixture": {
-    "stamp": 1793891570776,
-    "plan": 20003,
-    "activity": 20003,
-    "calendar": 1,
-    "booking": 1,
-    "review": 1,
-    "sharePath": "/s/h1vviux4kPIgPjGibJQiN30F5mI91oMotbyxfUTOVVc",
-    "fullSharePath": "/s/b6Go2gZIQCSWotczw6mgpl-6zeQX6A-s9bNGoSYybzc"
+    "stamp": 1794321738131,
+    "plan": 40003,
+    "activity": 40003,
+    "calendar": 10002,
+    "booking": 10002,
+    "review": 2,
+    "sharePath": "/s/LebQKMliAko0zQOA8KcfzwGfS1BLls-BCAaNMVr-if4",
+    "fullSharePath": "/s/8Nm_jrBs5SdMuRrTxBtmNgf0EKw3xgVccSnHEzRxdDg"
   },
   "database": "HoTroDuLich_Companion_20261105",
   "base": "http://localhost:5223",
-  "date": "2026-11-05T15:13:17.464Z"
+  "date": "2026-11-10T14:42:26.407Z"
 }

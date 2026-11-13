@@ -50,9 +50,9 @@ function save(passed,error) { fs.writeFileSync(process.env.TRAVEL_WORKFLOW_RESUL
  check(page.text.includes('Tình huống cần xử lý')&&page.text.replace(/<[^>]+>/g,'').includes('1 tình huống đang xử lý'),'Trip overview surfaces unresolved incident');
  check((page.html.match(/class="timeline-day"/g)||[]).length===3,'Itinerary includes empty days after adding an activity');
  check(page.html.includes('activityId='+activity)&&page.html.includes('planId='+plan),'Activity booking keeps its trip and activity');
- page=await response(a.get('/?region='+encodeURIComponent('Đà Lạt')+'&planId='+plan),200,'Search within trip');
- check(page.text.includes(planValues.Name)&&page.html.includes('name="planId" value="'+plan+'"'),'Search retains and names its trip');
- check(page.html.includes('/Explore/Detail/1?planId='+plan),'Service results preserve trip context');
+ page=await response(a.get('/kham-pha?Q='+encodeURIComponent('Đà Lạt')+'&PlanId='+plan),200,'Search within trip');
+ check(page.text.includes(planValues.Name)&&page.html.toLowerCase().includes('name="planid" value="'+plan+'"'),'Search retains and names its trip');
+ check(new RegExp('planId='+plan,'i').test(page.html),'Search results preserve trip context');
  page=await response(a.get('/thong-tin/tra-cuu?loai=LuuTru&planId='+plan),200,'Canonical search retains context');
  check(page.text.includes(planValues.Name),'Canonical search displays trip name');
  page=await response(a.get('/Explore/Detail/1?planId='+plan),200,'Service detail within trip');
@@ -88,7 +88,7 @@ function save(passed,error) { fs.writeFileSync(process.env.TRAVEL_WORKFLOW_RESUL
  r=await response(b.post('/ke-hoach/khoi-tao-ke-hoach',bcsrf,{Name:'Chuyến riêng của khách B',Destination:'Hội An',Start:date(8),End:date(10)}),302,'Other traveler creates own trip');
  const otherPlan=fixture.otherPlan=Number(r.location.split('/').pop());
  await response(a.get('/Plans/Detail/'+otherPlan),404,'Trip hub checks ownership');
- await response(a.get('/?planId='+otherPlan),404,'Search context checks trip ownership');
+ await response(a.get('/kham-pha?PlanId='+otherPlan),404,'Search context checks trip ownership');
  await response(a.get('/Bookings/Create/1?planId='+otherPlan),404,'Booking form checks trip ownership');
  await response(a.get(`/Bookings/Create/2?planId=${plan}&activityId=${activity}`),404,'Activity must match requested service');
  await response(a.post('/yeu-cau/kiem-tra-truoc-gui',csrf,{...bookingValues,PlanId:otherPlan}),404,'Preview rejects foreign trip');
