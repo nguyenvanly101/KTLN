@@ -92,6 +92,8 @@ const api = async (c, token, path, method = 'GET', body) => {
   check(area.status === 200 && area.body.some(d => d.source === 'area' && d.areaId > 0), 'Diem den: tim duoc don vi hanh chinh (co ma khu vuc)');
   check((await api(t, tk, '/api/lapkehoach/dia-diem?q=')).status === 200 && Array.isArray((await api(t, tk, '/api/lapkehoach/dia-diem?q=a')).body), 'Dia diem khac (Goong): chuoi ngan tra ve danh sach rong, khong goi ngoai');
   check((await api(t, tk, '/api/lapkehoach/dia-chi?lat=0&lng=0')).status === 422 && (await api(guestForApi(), '', '/api/lapkehoach/dia-chi?lat=16&lng=106')).status >= 300, 'Dia chi tu toa do: ngoai khung Viet Nam bi tu choi, khach chua dang nhap khong goi duoc');
+  const gs = await api(t, tk, '/api/lapkehoach/goong-goi-y?group=Info&destination=x&q=');
+  check(gs.status === 200 && Array.isArray(gs.body) && gs.body.length === 0 && (await api(guestForApi(), '', '/api/lapkehoach/goong-goi-y?group=Stay&destination=a')).status >= 300, 'Goi y tu Goong: nhom khong co tu khoa tra ve rong (khong goi ngoai), khach chua dang nhap khong goi duoc');
   const mp = await api(t, tk, '/api/lapkehoach/ban-do');
   check(mp.status === 200 && Array.isArray(mp.body) && mp.body.every(p => typeof p.lat === 'number' && p.name), 'Ban do tra ve cac ghim co ten khu vuc');
 

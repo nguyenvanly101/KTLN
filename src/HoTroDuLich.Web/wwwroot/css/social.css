@@ -479,3 +479,5 @@ dialog[open].pe-picker.pe-narrow{height:auto;max-height:90vh;width:min(560px,cal
 @media(max-height:700px){.pe-picker .pe-confirm #pe-c-slots{display:none}.pe-picker .pe-confirm small{display:none}}
 
 .pe-pop{font-size:14px;line-height:1.4}.pe-pop small{color:#5c667b}
+
+.pe-legend .d.goong{background:#2b8a3e}.pe-card-sm.goong{border-color:#b9dfc2;background:#f6fbf7}.pe-pick-sec.goong{color:#2b8a3e}.pe-credit{font-size:12px;margin:6px 0}

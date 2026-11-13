@@ -208,7 +208,7 @@
   // ---------- them dich vu: day du bo loc cua Kham pha, tren ban do
   var nightsFrom = function (day) { return Math.max(days() - day, 1); };
   var pmap = null, pLayer = null, pMarkers = [], pickData = [];
-  var COL_SAVED = '#e67e22', COL_EXPLORE = '#2447e8', COL_SEL = '#c0392b';
+  var COL_SAVED = '#e67e22', COL_EXPLORE = '#2447e8', COL_GOONG = '#2b8a3e', COL_SEL = '#c0392b';
   var fillPickDest = function () {
     var sel = $('pe-pick-dest'), cur0 = sel.value;
     sel.innerHTML = st.dests.length ? st.dests.map(function (d, i) { return '<option value="' + i + '">' + esc(d.name) + '</option>'; }).join('') : '<option value="">Chưa chọn điểm đến (tìm toàn quốc)</option>';
@@ -253,17 +253,19 @@
       '<div class="pe-detail" hidden></div></div><div class="pe-card-act"><button type="button" class="btn btn-dark" data-pick="' + n + '">Chọn</button><button type="button" class="btn btn-outline" data-detail="' + n + '">Chi tiết</button></div></article>';
   };
   var loadOther = function () {
-    var q = $('pe-pick-q').value.trim(); if (q.length < 2 || $('pe-f-saved').checked) return;
-    var di = $('pe-pick-dest').value, ctx = di !== '' && st.dests[+di] ? ' ' + st.dests[+di].name : '';
-    plain('/api/lapkehoach/dia-diem?q=' + encodeURIComponent(q + ctx)).then(function (rows) {
+    if ($('pe-f-saved').checked) return;
+    var q = $('pe-pick-q').value.trim(), di = $('pe-pick-dest').value, dest = di !== '' && st.dests[+di] ? st.dests[+di].name : '';
+    if (q.length < 2 && !pickGroup) return;
+    plain('/api/lapkehoach/goong-goi-y?group=' + encodeURIComponent(pickGroup) + '&destination=' + encodeURIComponent(dest) + '&q=' + encodeURIComponent(q)).then(function (rows) {
       if (!rows || !rows.length || $('pe-pick-q').value.trim() !== q) return;
-      var box = $('pe-pick-list'), h = '<h4 class="pe-pick-sec" data-sec="goong">Địa điểm khác (chưa có trong dữ liệu, thêm như hoạt động tự nhập)</h4>';
-      rows.slice(0, 5).forEach(function (g) {
-        var item = { entryId: null, serviceId: null, placeId: null, name: g.name + (g.secondary ? ' · ' + g.secondary : ''), kind: 'Place', kindLabel: 'Địa điểm', group: 'Other', region: g.secondary || '', summary: g.description || null, address: null, hours: null, contact: null, priceFrom: null, priceTo: null, unit: null, photo: null, lat: null, lng: null, rating: null, reviews: 0, saved: false, url: null };
+      var box = $('pe-pick-list'), h = '<h4 class="pe-pick-sec goong" data-sec="goong">Gợi ý từ bản đồ Goong (chưa có trong dữ liệu website, thêm như hoạt động tự nhập)</h4>';
+      rows.forEach(function (g) {
+        var item = { entryId: null, serviceId: null, placeId: null, name: g.name, kind: 'Place', kindLabel: 'Địa điểm', group: pickGroup && pickGroup !== 'Info' ? pickGroup : 'Place', region: g.address || '', summary: null, address: g.address || null, hours: null, contact: null, priceFrom: null, priceTo: null, unit: null, photo: null, lat: g.lat, lng: g.lng, rating: null, reviews: 0, saved: false, goong: true, url: null };
         pickData.push(item); var n = pickData.length - 1;
-        h += '<article class="pe-card-sm" data-n="' + n + '"><div class="pe-card-body"><strong>' + esc(g.name) + '</strong><small>' + esc(g.secondary || g.description || '') + '</small></div><div class="pe-card-act"><button type="button" class="btn btn-outline" data-pick="' + n + '">Chọn</button></div></article>';
+        h += '<article class="pe-card-sm goong" data-n="' + n + '"><div class="pe-card-body"><strong>' + esc(g.name) + '</strong><small>' + esc(g.address || '') + '</small></div><div class="pe-card-act"><button type="button" class="btn btn-outline" data-pick="' + n + '">Chọn</button></div></article>';
       });
-      box.insertAdjacentHTML('beforeend', h);
+      box.insertAdjacentHTML('beforeend', h + '<p class="help pe-credit">Dữ liệu địa điểm từ Goong. Giờ mở cửa và giá chưa được xác nhận.</p>');
+      drawPins(true);
     }).catch(function () { });
   };
   var loadPick = function (reset, keepView) {
@@ -291,7 +293,7 @@
     if (!pmap) return; pLayer.clearLayers(); pMarkers = []; var b = [];
     pickData.forEach(function (s, n) {
       if (s.lat == null) return;
-      var mk = L.circleMarker([s.lat, s.lng], { radius: 9 }); mk.baseColor = s.saved ? COL_SAVED : COL_EXPLORE; styleMarker(mk, false);
+      var mk = L.circleMarker([s.lat, s.lng], { radius: 9 }); mk.baseColor = s.saved ? COL_SAVED : s.goong ? COL_GOONG : COL_EXPLORE; styleMarker(mk, false);
       mk.bindTooltip(s.name + (s.priceFrom != null ? ' · ' + money(s.priceFrom) : '')); mk.on('click', function () { selectItem(n); }); mk.addTo(pLayer); pMarkers[n] = mk; b.push([s.lat, s.lng]);
     });
     if (b.length && !keepView) pmap.fitBounds(b, { padding: [30, 30], maxZoom: 14 });

@@ -42,5 +42,12 @@ Bản đồ vector vẽ bằng thư viện VietMap GL (nền MapLibre) và plugi
 
 - `GET /api/lapkehoach/dia-diem?q=`: gợi ý địa điểm khắp Việt Nam (Goong Autocomplete, lưu đệm 30 phút). Hiện trong ô gõ điểm đến ("Địa điểm khác") và cuối danh sách Thêm dịch vụ (thêm như hoạt động tự nhập).
 - `GET /api/lapkehoach/dia-chi?lat=&lng=`: đổi vị trí bấm trên bản đồ thành tên khu vực (Goong Geocode, lưu đệm 6 giờ). Chỉ trong khung vĩ độ 5–24, kinh độ 101,5–118,5, ngoài khung trả 422.
+- `GET /api/lapkehoach/goong-goi-y?group=&destination=&q=`: địa điểm trực tiếp từ Goong cho nhóm dịch vụ (khách sạn, nhà hàng, khu du lịch, bến xe…) quanh điểm đến: gợi ý (Autocomplete) rồi lấy tọa độ (Place Detail), chỉ giữ địa điểm trong bán kính 30 km quanh điểm đến (xác định bằng Geocode) và xếp theo khoảng cách. Hiện trong hộp Thêm dịch vụ ở mục "Gợi ý từ bản đồ Goong" với ghim màu xanh lá; chọn thì thêm như hoạt động tự nhập (chưa xác nhận giờ và giá). **Không lưu vào cơ sở dữ liệu**, chỉ lưu đệm trong bộ nhớ (30 phút gợi ý, 24 giờ chi tiết và tâm điểm đến).
 - Không có khóa REST hoặc Goong lỗi thì các API trả danh sách rỗng, trang vẫn dùng bình thường.
 - Tên khu vực của Goong theo địa giới mới (ví dụ "Hội An, Đà Nẵng"), khác hệ cũ trong danh mục địa giới của website nên điểm đến lấy từ Goong không có mã khu vực.
+
+## Vì sao không nhập hàng loạt dữ liệu Goong vào cơ sở dữ liệu
+
+- Chưa tìm được điều khoản API của Goong về việc lưu trữ hoặc sao chép dữ liệu địa điểm (trang điều khoản tìm thấy là thỏa thuận cho ứng dụng điều hướng, không phải API). Khi chưa xác nhận, website chỉ dùng Goong theo kiểu tra cứu trực tiếp và lưu đệm ngắn.
+- Dịch vụ (khách sạn, quán ăn, tour) trong website do nhà cung cấp tự đăng, có duyệt và đặt được; địa điểm lấy từ Goong không phải dịch vụ của nhà cung cấp nên không được tạo thành dịch vụ.
+- Nếu Goong xác nhận bằng văn bản cho phép lưu trữ, có thể dựng quy trình nhập có kiểm duyệt dựa trên `GoongPlacesService.Nearby`.
