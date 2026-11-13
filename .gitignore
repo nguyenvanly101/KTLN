@@ -20,3 +20,6 @@ preview/branch-query-*.sql
 *.bak
 **/obj/
 **/bin/
+
+# Du lieu tam cua cong cu nhap Goong (chua ket qua API)
+preview/goong-stage/
