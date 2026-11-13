@@ -235,6 +235,8 @@ public sealed class PlanBoardService(AppDbContext context,IHttpContextAccessor a
   try{page=await discovery.Search(f);}catch(BusinessException){throw;}
   var sIds=page.Items.Where(c=>c.Entry.ServiceId!=null).Select(c=>c.Entry.ServiceId!.Value).ToList();
   var types=sIds.Count==0?new Dictionary<long,string>():await db.DichVuDuLich.AsNoTracking().Where(d=>sIds.Contains(d.MaDichVu)).ToDictionaryAsync(d=>d.MaDichVu,d=>d.LoaiDichVu);
+  var pIds=page.Items.Where(c=>c.Entry.PlaceId!=null).Select(c=>c.Entry.PlaceId!.Value).ToList();
+  var placeTypes=pIds.Count==0?new Dictionary<long,string>():await db.DiaDiemDuLich.AsNoTracking().Where(p=>pIds.Contains(p.MaDiaDiem)).ToDictionaryAsync(p=>p.MaDiaDiem,p=>p.LoaiDiaDiem);
   foreach(var c in page.Items)
   {
    var e=c.Entry;
@@ -242,7 +244,7 @@ public sealed class PlanBoardService(AppDbContext context,IHttpContextAccessor a
    if(e.Kind is "Destination" or "Area"||(e.ServiceId==null&&e.PlaceId==null))continue;
    if(e.ServiceId!=null&&seenS.Contains(e.ServiceId.Value))continue;if(e.PlaceId!=null&&seenP.Contains(e.PlaceId.Value))continue;
    var sid=e.ServiceId;
-   items.Add(new(e.Id,e.ServiceId,e.PlaceId,e.Title,e.Kind,DiscoveryText.Kind(e.Kind),string.IsNullOrEmpty(f.Group)?GroupOf(e,types):f.Group,e.Region,Cut(e.Summary,200),e.Address,e.Hours??(e.OpenTime!=null?e.OpenTime.Value.ToString("HH:mm")+(e.CloseTime!=null?"–"+e.CloseTime.Value.ToString("HH:mm"):""):null),e.Contact,e.PriceFrom,e.PriceTo,e.PriceUnit,e.ImagePath??Ui.DestinationPhoto(e.Region+" "+e.Title),(double?)e.Latitude,(double?)e.Longitude,sid!=null&&ratings.TryGetValue(sid.Value,out var r)?r.Average:null,sid!=null&&ratings.TryGetValue(sid.Value,out var r2)?r2.Count:0,false,DiscoveryText.LinkTo(e)));
+   items.Add(new(e.Id,e.ServiceId,e.PlaceId,e.Title,e.Kind,e.PlaceId!=null&&placeTypes.TryGetValue(e.PlaceId.Value,out var loai)&&!string.IsNullOrWhiteSpace(loai)?"Địa điểm · "+loai:DiscoveryText.Kind(e.Kind),string.IsNullOrEmpty(f.Group)?GroupOf(e,types):f.Group,e.Region,Cut(e.Summary,200),e.Address,e.Hours??(e.OpenTime!=null?e.OpenTime.Value.ToString("HH:mm")+(e.CloseTime!=null?"–"+e.CloseTime.Value.ToString("HH:mm"):""):null),e.Contact,e.PriceFrom,e.PriceTo,e.PriceUnit,e.ImagePath??Ui.DestinationPhoto(e.Region+" "+e.Title),(double?)e.Latitude,(double?)e.Longitude,sid!=null&&ratings.TryGetValue(sid.Value,out var r)?r.Average:null,sid!=null&&ratings.TryGetValue(sid.Value,out var r2)?r2.Count:0,false,DiscoveryText.LinkTo(e)));
   }
   return new(items,items.Count,f.Page,20,page.Items.Count>=20);
  }
