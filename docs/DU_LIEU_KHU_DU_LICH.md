@@ -30,6 +30,8 @@ Theo yêu cầu và sự cho phép của chủ website, đã dùng khóa **REST*
 
 Lượt đầu nhập **76 địa điểm** (Bến Tre, Bình Định, Bình Dương, Bình Phước, Bình Thuận, Cà Mau, Cần Thơ, Cao Bằng) sau lọc từ 155 kết quả. Tổng hiện có 181 địa điểm.
 
+**Cập nhật 14/11/2026:** đợt hai nhập thêm 327 địa điểm (tổng 508), hết hạn mức tại điểm đến Hà Nội; còn khoảng 70 điểm đến chạy tiếp ngày mai.
+
 **Hạn mức:** gói miễn phí của Goong chỉ cho **1.000 yêu cầu mỗi ngày** (tài khoản dùng chung với các gợi ý trực tiếp trên website). Lượt đầu đã dùng hết hạn mức trong ngày nên các điểm đến còn lại (khoảng 90) cần chạy tiếp vào những ngày sau: chạy lại `fetch.cjs` với cùng thư mục tạm (kết quả đã lấy được giữ trong cache), rồi `build-sql.cjs` và hai tệp SQL.
 
 **Giới hạn chất lượng:** dữ liệu Goong chỉ có tên, địa chỉ và tọa độ; **không có giờ mở cửa, giá, mô tả hay ảnh**. Mô tả ghi rõ "thông tin tham khảo, chưa xác nhận giờ mở cửa và giá". Autocomplete khớp theo từ nên vẫn có thể lẫn vài kết quả không liên quan, cần quản trị viên rà lại trong Quản lý Khám phá. Địa chỉ theo địa giới mới của Goong (ví dụ "Vĩnh Long" cho một số nơi của Bến Tre).
