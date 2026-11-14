@@ -64,3 +64,16 @@ public sealed class TripDayNote
  public string Note { get; set; } = "";
  public DateTime UpdatedAt { get; set; }
 }
+
+/// <summary>Diem xuat phat va diem ket thuc cua chuyen di; diem ket thuc de trong nghia la quay ve diem xuat phat.</summary>
+public sealed class TripRoutePoints
+{
+ public long PlanId { get; set; }
+ public string? StartName { get; set; }
+ public decimal? StartLat { get; set; }
+ public decimal? StartLng { get; set; }
+ public string? EndName { get; set; }
+ public decimal? EndLat { get; set; }
+ public decimal? EndLng { get; set; }
+ public DateTime UpdatedAt { get; set; }
+}

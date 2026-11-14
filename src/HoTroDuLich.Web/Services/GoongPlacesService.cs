@@ -46,7 +46,7 @@ public sealed class GoongPlacesService(HttpClient http,IConfiguration configurat
  static readonly Dictionary<string,string> KindKeywords=new(StringComparer.OrdinalIgnoreCase){["HoatDong"]="khu du lịch",["AnUong"]="nhà hàng",["LuuTru"]="khách sạn",["PhuongTien"]="bến xe",["Tour"]="công ty du lịch",["GiaiTri"]="khu vui chơi",["SucKhoe"]="spa",["MuaSam"]="chợ",["DichVuHoTro"]="dịch vụ",["CaPhe"]="quán cà phê",["QuanChay"]="quán chay",["ChoAmThuc"]="chợ",["NhaNghi"]="nhà nghỉ",["CamTrai"]="khu cắm trại",["BenXe"]="bến xe",["ThueXe"]="thuê xe máy",["SanBay"]="sân bay",["GaTau"]="ga tàu",["BenTau"]="bến tàu",["TramXang"]="trạm xăng",["SuaXe"]="sửa xe",["BaiDoXe"]="bãi đỗ xe",["BenhVien"]="bệnh viện",["PhongKham"]="phòng khám",["NhaThuoc"]="nhà thuốc",["CongAn"]="công an",["CuuHo"]="cứu hộ",["Atm"]="ATM",["DoiTien"]="đổi tiền",["BuuDien"]="bưu điện",["SieuThi"]="siêu thị",["TrungTamTM"]="trung tâm thương mại",["GiatUi"]="giặt ủi",["NhaVeSinh"]="nhà vệ sinh công cộng",["SimWifi"]="cửa hàng sim",["GuiHanhLy"]="gửi hành lý",["QuaLuuNiem"]="quà lưu niệm"};
  static string? Keyword(string? group,string? kind=null)=>!string.IsNullOrWhiteSpace(kind)?(KindKeywords.TryGetValue(kind,out var k)?k:ServiceKinds.Get(kind)?.Label.ToLowerInvariant()):group switch{"Stay"=>"khách sạn","Eat"=>"nhà hàng","Place"=>"khu du lịch","Move"=>"bến xe","Experience"=>"trải nghiệm","Health"=>"bệnh viện","Utility"=>"siêu thị",_=>null};
  /// <summary>Chi tiet mot dia diem (toa do, dia chi), luu dem 24 gio.</summary>
- async Task<GoongPoi?> Detail(string placeId,CancellationToken ct)
+ public async Task<GoongPoi?> Detail(string placeId,CancellationToken ct)
  {
   if(string.IsNullOrWhiteSpace(placeId)||placeId.Length>400)return null;
   var cacheKey="goong.dt."+placeId;
@@ -127,5 +127,52 @@ public sealed class GoongPlacesService(HttpClient http,IConfiguration configurat
   var place=new GoongPlace(Str(r,"name"),Str(compound,"province"),Str(compound,"commune"),Str(r,"formatted_address"),lat,lng);
   cache.Set(cacheKey,place,TimeSpan.FromHours(6));
   return place;
+ }
+
+ /// <summary>Mot doan duong giua hai diem: km, phut va duong ve (toa do lat,lng). Estimated=true khi Goong khong tra loi, khi do chi la uoc tinh theo duong chim bay.</summary>
+ public sealed record Leg(double Km,double Minutes,List<double[]> Line,bool Estimated);
+ public static double Haversine(double la1,double lo1,double la2,double lo2)
+ {
+  const double R=6371,T=Math.PI/180;var x=(la2-la1)*T;var y=(lo2-lo1)*T;
+  var h=Math.Sin(x/2)*Math.Sin(x/2)+Math.Cos(la1*T)*Math.Cos(la2*T)*Math.Sin(y/2)*Math.Sin(y/2);
+  return 2*R*Math.Asin(Math.Sqrt(h));
+ }
+ static readonly Dictionary<string,double> Speed=new(){["car"]=35,["bike"]=30,["foot"]=4.5};
+ static List<double[]> DecodePolyline(string s)
+ {
+  var res=new List<double[]>();int i=0,lat=0,lng=0;
+  while(i<s.Length)
+  {
+   int b,shift=0,r=0;do{b=s[i++]-63;r|=(b&31)<<shift;shift+=5;}while(b>=32&&i<s.Length);lat+=(r&1)!=0?~(r>>1):r>>1;
+   shift=0;r=0;do{b=s[i++]-63;r|=(b&31)<<shift;shift+=5;}while(b>=32&&i<s.Length);lng+=(r&1)!=0?~(r>>1):r>>1;
+   res.Add([lat/1e5,lng/1e5]);
+  }
+  return res;
+ }
+ /// <summary>Tinh doan duong bang Goong Direction (khoa REST). vehicle: car, bike hoac foot (foot luon la uoc tinh). Luu dem 7 ngay; moi doan moi la mot luot goi Goong.</summary>
+ public async Task<Leg> Route(double la1,double lo1,double la2,double lo2,string vehicle,bool allowCall,CancellationToken ct)
+ {
+  vehicle=vehicle is "car" or "bike" or "foot"?vehicle:"car";
+  var ci=System.Globalization.CultureInfo.InvariantCulture;
+  string P(double d)=>d.ToString("0.0000",ci);
+  var cacheKey=$"goong.dir.{vehicle}.{P(la1)},{P(lo1)}>{P(la2)},{P(lo2)}";
+  if(cache.TryGetValue(cacheKey,out Leg? hit)&&hit!=null)return hit;
+  if(Enabled&&allowCall&&vehicle!="foot"&&Haversine(la1,lo1,la2,lo2)>0.05)
+  {
+   using var doc=await Get($"Direction?origin={la1.ToString("0.######",ci)},{lo1.ToString("0.######",ci)}&destination={la2.ToString("0.######",ci)},{lo2.ToString("0.######",ci)}&vehicle={vehicle}",ct);
+   if(doc!=null&&doc.RootElement.TryGetProperty("routes",out var rs)&&rs.ValueKind==JsonValueKind.Array&&rs.GetArrayLength()>0)
+   {
+    var r=rs[0];double m=0,sec=0;
+    if(r.TryGetProperty("legs",out var legs)&&legs.ValueKind==JsonValueKind.Array)
+     foreach(var l in legs.EnumerateArray()){if(l.TryGetProperty("distance",out var d)&&d.TryGetProperty("value",out var dv)&&dv.TryGetDouble(out var dm))m+=dm;if(l.TryGetProperty("duration",out var u)&&u.TryGetProperty("value",out var uv)&&uv.TryGetDouble(out var us))sec+=us;}
+    var line=r.TryGetProperty("overview_polyline",out var op)&&op.TryGetProperty("points",out var pts)&&pts.ValueKind==JsonValueKind.String?DecodePolyline(pts.GetString()!):[[la1,lo1],[la2,lo2]];
+    if(m>0){var leg=new Leg(Math.Round(m/1000,1),Math.Max(1,Math.Round(sec/60)),line,false);cache.Set(cacheKey,leg,TimeSpan.FromDays(7));return leg;}
+   }
+  }
+  var km=Haversine(la1,lo1,la2,lo2)*1.35;
+  var est=new Leg(Math.Round(km,1),Math.Max(1,Math.Round(km/Speed[vehicle]*60)),[[la1,lo1],[la2,lo2]],true);
+  if(!allowCall||!Enabled||vehicle=="foot")return est;
+  cache.Set(cacheKey,est,TimeSpan.FromMinutes(10));
+  return est;
  }
 }

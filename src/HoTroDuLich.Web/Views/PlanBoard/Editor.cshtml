@@ -30,6 +30,14 @@
   </div>
   <div class="field"><label>Ngân sách</label><div class="pe-chips" id="pe-budget-chips" role="group" aria-label="Ngân sách"></div>
    <input class="form-control pe-budget-other" id="pe-budget" type="number" min="0" max="1000000000" step="1000" placeholder="Nhập số tiền (₫)" hidden/></div>
+  <div class="field pe-route-field"><label for="pe-origin">Điểm xuất phát</label>
+   <div class="pe-pt"><input class="form-control" id="pe-origin" type="text" maxlength="300" placeholder="Khách sạn, nhà bạn, bến xe, sân bay..." autocomplete="off" @dis/><button type="button" class="btn btn-sm btn-outline-secondary" id="pe-origin-here" @dis>Vị trí của tôi</button></div>
+   <ul class="pe-suggest" id="pe-origin-list" hidden></ul>
+   <label class="pe-check"><input type="checkbox" id="pe-end-same" checked @dis/> Kết thúc tại điểm xuất phát</label>
+   <div id="pe-end-wrap" hidden><label for="pe-end">Điểm kết thúc</label>
+    <div class="pe-pt"><input class="form-control" id="pe-end" type="text" maxlength="300" placeholder="Nơi bạn về cuối chuyến" autocomplete="off" @dis/></div>
+    <ul class="pe-suggest" id="pe-end-list" hidden></ul></div>
+   <small class="pe-hint" id="pe-route-hint">Dùng để tính khoảng cách và đường đi giữa các điểm mỗi ngày.</small></div>
  </section>
 
  <section class="pe-card" aria-labelledby="pe-h-days">

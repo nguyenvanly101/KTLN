@@ -31,8 +31,20 @@ public sealed class PlanDraft
  public DateOnly? Start { get; set; }
  public int Days { get; set; }=3;
  public decimal? Budget { get; set; }
+ public PlanPoint? Origin { get; set; }
+ public PlanPoint? End { get; set; }
  public List<DraftItem> Items { get; set; }=[];
 }
+/// <summary>Diem xuat phat hoac ket thuc cua chuyen di (ten va toa do).</summary>
+public sealed class PlanPoint
+{
+ public string? Name { get; set; }
+ public double? Lat { get; set; }
+ public double? Lng { get; set; }
+}
+public sealed record RoutePointDto(string Kind,string Name,double Lat,double Lng,long? ActivityId);
+public sealed record RouteLegDto(int From,int To,double Km,double Minutes,bool Estimated);
+public sealed record PlanRouteDto(int Day,string Mode,List<RoutePointDto> Points,List<RouteLegDto> Legs,List<double[]> Line,double TotalKm,double TotalMinutes,int Skipped,bool AnyEstimated);
 public sealed record PlanEditor(PlanDraft Draft,bool IsOwner,long? GroupId,List<string> MemberNames);
 public sealed record PlanMapPoint(string Name,string Title,double Lat,double Lng);
 public sealed record PickItem(long? EntryId,long? ServiceId,long? PlaceId,string Name,string Kind,string KindLabel,string Group,string Region,string? Summary,string? Address,string? Hours,string? Contact,decimal? PriceFrom,decimal? PriceTo,string? Unit,string? Photo,double? Lat,double? Lng,double? Rating,int Reviews,bool Saved,string? Url);
@@ -40,7 +52,7 @@ public sealed record PickPage(List<PickItem> Items,int Total,int Page,int PageSi
 public sealed record DestHit(string Name,string? Path,long? AreaId,int Level,string Source,string? Summary,string? Photo,double? Lat,double? Lng);
 
 /// <summary>Lap ke hoach tren mot trang: tai ban nhap, luu ca chuyen di va lich trinh mot lan, xoa chuyen di, goi y dich vu va diem den.</summary>
-public sealed class PlanBoardService(AppDbContext context,IHttpContextAccessor accessor,IWebHostEnvironment environment,IConfiguration configuration,IServiceProvider provider,ReviewService reviews,DiscoveryService discovery,DiaGioiService geo)
+public sealed class PlanBoardService(AppDbContext context,IHttpContextAccessor accessor,IWebHostEnvironment environment,IConfiguration configuration,IServiceProvider provider,ReviewService reviews,DiscoveryService discovery,DiaGioiService geo,GoongPlacesService goong)
  : NghiepVuService(context,accessor,environment,configuration,provider)
 {
  TravelService Travel=>Resolve<TravelService>();
@@ -65,6 +77,8 @@ public sealed class PlanBoardService(AppDbContext context,IHttpContextAccessor a
   var draft=new PlanDraft{Id=plan.MaKeHoach,Name=plan.TenKeHoach,Destination=plan.NoiDen,Start=plan.NgayBatDau,Days=plan.NgayKetThuc.DayNumber-plan.NgayBatDau.DayNumber+1,Budget=plan.NganSachDuKien,
    Items=acts.OrderBy(a=>a.Ngay).ThenBy(a=>a.Gio).ThenBy(a=>a.ThuTu).Select(a=>new DraftItem{Id=a.MaHoatDong,Day=a.Ngay.DayNumber-plan.NgayBatDau.DayNumber+1,Time=a.Gio?.ToString("HH:mm"),Content=a.NoiDung,Cost=a.ChiPhiDuKien,ServiceId=a.MaDichVu,PlaceId=a.MaDiaDiem,Kind=a.MaDichVu!=null&&kinds.TryGetValue(a.MaDichVu.Value,out var k)?ServiceKinds.Get(k)?.Group:null}).ToList()};
   draft.Notes=(await db.Set<TripDayNote>().AsNoTracking().Where(n=>n.PlanId==id).OrderBy(n=>n.DayNo).ToListAsync()).Select(n=>new DayNoteDto{Day=n.DayNo,Text=n.Note}).ToList();
+  var pts=await db.Set<TripRoutePoints>().AsNoTracking().FirstOrDefaultAsync(p=>p.PlanId==id);
+  if(pts!=null){if(pts.StartLat!=null)draft.Origin=new(){Name=pts.StartName,Lat=(double)pts.StartLat,Lng=(double)pts.StartLng!};if(pts.EndLat!=null)draft.End=new(){Name=pts.EndName,Lat=(double)pts.EndLat,Lng=(double)pts.EndLng!};}
   var members=await Resolve<TripShareService>().Members(id);
   return new(draft,plan.MaTaiKhoan==UserId,await Resolve<ChatService>().TripGroupFor(id),members.Members.Where(m=>m.IsOwner||m.Accepted).Select(m=>m.Name).ToList());
  }
@@ -127,8 +141,63 @@ public sealed class PlanBoardService(AppDbContext context,IHttpContextAccessor a
    else await Travel.SaveActivity(new ActivityInput{Id=0,PlanId=id,Version=TravelService.Token((await Travel.SharedPlan(id)).RowVersion),Date=date,Time=time,Content=content,Cost=item.Cost,ServiceId=item.ServiceId,PlaceId=item.PlaceId});
   }
   await SaveNotes(id,d);
+  await SaveRoutePoints(id,d);
   await Resolve<ChatService>().SyncTripGroup(id);
   return id;
+ }
+
+ static bool ValidPoint(PlanPoint? p)=>p!=null&&p.Lat is >=5.0 and <=24.0&&p.Lng is >=101.5 and <=118.5;
+ async Task SaveRoutePoints(long id,PlanDraft d)
+ {
+  var o=ValidPoint(d.Origin)?d.Origin:null;var e=ValidPoint(d.End)?d.End:null;
+  Require(d.Origin==null||o!=null,"Điểm xuất phát nằm ngoài khu vực hỗ trợ.",422);Require(d.End==null||e!=null,"Điểm kết thúc nằm ngoài khu vực hỗ trợ.",422);
+  Require((d.Origin?.Name??"").Length<=300&&(d.End?.Name??"").Length<=300,"Tên điểm xuất phát hoặc kết thúc tối đa 300 ký tự.",422);
+  var row=await db.Set<TripRoutePoints>().FirstOrDefaultAsync(p=>p.PlanId==id);
+  if(o==null&&e==null){if(row!=null){Require((await Travel.SharedPlan(id)).MaTaiKhoan==UserId,"Chỉ chủ chuyến đi mới đổi được điểm xuất phát và kết thúc.",403);await Execute(async()=>{db.Remove(row);await Task.CompletedTask;});}return;}
+  string? Nm(PlanPoint? p)=>string.IsNullOrWhiteSpace(p?.Name)?null:p!.Name!.Trim();
+  decimal? Dc(double? v)=>v==null?null:Math.Round((decimal)v.Value,6);
+  var same=row!=null&&row.StartName==Nm(o)&&row.StartLat==Dc(o?.Lat)&&row.StartLng==Dc(o?.Lng)&&row.EndName==Nm(e)&&row.EndLat==Dc(e?.Lat)&&row.EndLng==Dc(e?.Lng);
+  if(same)return;
+  Require((await Travel.SharedPlan(id)).MaTaiKhoan==UserId,"Chỉ chủ chuyến đi mới đổi được điểm xuất phát và kết thúc.",403);
+  await Execute(async()=>
+  {
+   if(row==null){row=new TripRoutePoints{PlanId=id};db.Add(row);}
+   row.StartName=Nm(o);row.StartLat=Dc(o?.Lat);row.StartLng=Dc(o?.Lng);row.EndName=Nm(e);row.EndLat=Dc(e?.Lat);row.EndLng=Dc(e?.Lng);row.UpdatedAt=Clock.BayGioUtc;
+   await Task.CompletedTask;
+  });
+ }
+
+ /// <summary>Khoang cach va duong di trong mot ngay: xuat phat, cac hang muc co toa do theo gio, ket thuc. mode: car, bike hoac foot.</summary>
+ public async Task<PlanRouteDto> Route(long planId,int day,string? mode,CancellationToken ct)
+ {
+  RoleRequired(Traveler);
+  var plan=await Travel.SharedPlan(planId);
+  Require(day>=1&&day<=plan.NgayKetThuc.DayNumber-plan.NgayBatDau.DayNumber+1,"Ngày không nằm trong chuyến đi.",422);
+  mode=mode is "car" or "bike" or "foot"?mode:"bike";
+  var date=plan.NgayBatDau.AddDays(day-1);
+  var acts=(await Travel.Activities(planId)).Where(a=>a.Ngay==date).OrderBy(a=>a.Gio).ThenBy(a=>a.ThuTu).ToList();
+  var placeIds=acts.Where(a=>a.MaDiaDiem!=null).Select(a=>a.MaDiaDiem!.Value).ToList();var serviceIds=acts.Where(a=>a.MaDichVu!=null).Select(a=>a.MaDichVu!.Value).ToList();
+  var entries=await db.Set<DiscoveryEntry>().AsNoTracking().Where(e=>e.Status=="Published"&&e.Latitude!=null&&e.Longitude!=null&&((e.PlaceId!=null&&placeIds.Contains(e.PlaceId.Value))||(e.ServiceId!=null&&serviceIds.Contains(e.ServiceId.Value)))).Select(e=>new{e.PlaceId,e.ServiceId,e.Latitude,e.Longitude}).ToListAsync();
+  var pts=await db.Set<TripRoutePoints>().AsNoTracking().FirstOrDefaultAsync(p=>p.PlanId==planId);
+  var points=new List<RoutePointDto>();var skipped=0;
+  if(pts?.StartLat!=null)points.Add(new("origin",pts.StartName??"Điểm xuất phát",(double)pts.StartLat,(double)pts.StartLng!,null));
+  foreach(var a in acts)
+  {
+   var hit=entries.FirstOrDefault(e=>(a.MaDichVu!=null&&e.ServiceId==a.MaDichVu)||(a.MaDiaDiem!=null&&e.PlaceId==a.MaDiaDiem));
+   if(hit==null){skipped++;continue;}
+   points.Add(new("item",a.NoiDung,(double)hit.Latitude!.Value,(double)hit.Longitude!.Value,a.MaHoatDong));
+  }
+  if(pts?.EndLat!=null)points.Add(new("end",pts.EndName??"Điểm kết thúc",(double)pts.EndLat,(double)pts.EndLng!,null));
+  else if(pts?.StartLat!=null&&points.Count>1)points.Add(new("end",pts.StartName??"Điểm xuất phát",(double)pts.StartLat,(double)pts.StartLng!,null));
+  var legs=new List<RouteLegDto>();var line=new List<double[]>();double km=0,min=0;var est=false;var calls=0;
+  for(var i=0;i+1<points.Count;i++)
+  {
+   var a=points[i];var b=points[i+1];
+   var leg=await goong.Route(a.Lat,a.Lng,b.Lat,b.Lng,mode,calls<14,ct);
+   if(!leg.Estimated)calls++;
+   legs.Add(new(i,i+1,leg.Km,leg.Minutes,leg.Estimated));line.AddRange(leg.Line);km+=leg.Km;min+=leg.Minutes;est|=leg.Estimated;
+  }
+  return new(day,mode,points,legs,line,Math.Round(km,1),Math.Round(min),skipped,est);
  }
 
  async Task SaveNotes(long id,PlanDraft d)

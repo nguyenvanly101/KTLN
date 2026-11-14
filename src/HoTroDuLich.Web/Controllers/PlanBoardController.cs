@@ -32,6 +32,17 @@ public sealed class PlanBoardController(TravelService travel,PlanBoardService bo
  /// <summary>Nơi giúp theo loại quanh vị trí hiện tại của khách (bệnh viện, nhà thuốc, ATM...).</summary>
  [HttpGet("/api/lapkehoach/gan-day"),EnableRateLimiting("discovery")] public async Task<IActionResult> Around(string? kind,double lat,double lng,CancellationToken ct)=>await Api(()=>goong.Around(kind,lat,lng,ct));
  [HttpGet("/api/lapkehoach/goong-goi-y"),EnableRateLimiting("discovery")] public async Task<IActionResult> GoongSuggest(string? group,string? kind,string? destination,string? q,CancellationToken ct)=>await Api(()=>goong.Nearby(group,destination,q,ct,kind));
+ /// <summary>Goi y dia chi/dia diem de chon diem xuat phat va ket thuc (khong gioi han theo nhom dich vu).</summary>
+ [HttpGet("/api/lapkehoach/diem-goi-y"),EnableRateLimiting("discovery")] public async Task<IActionResult> PointSuggest(string? q,string? near,CancellationToken ct)=>await Api(async()=>{var term=(q??"").Trim();var area=(near??"").Trim();if(area.Length>0&&area.Length<=80&&term.IndexOf(area,StringComparison.OrdinalIgnoreCase)<0)term+=" "+area;return (object)await goong.Autocomplete(term,ct);});
+ /// <summary>Toa do cua mot dia diem da chon trong danh sach goi y (chi trong khung Viet Nam).</summary>
+ [HttpGet("/api/lapkehoach/diem-chi-tiet"),EnableRateLimiting("discovery")] public async Task<IActionResult> PointDetail(string? placeId,CancellationToken ct)
+ {
+  var poi=await goong.Detail(placeId??"",ct);
+  if(poi==null||poi.Lat<5.0||poi.Lat>24.0||poi.Lng<101.5||poi.Lng>118.5)return StatusCode(422,new{message="Không lấy được vị trí này. Hãy chọn điểm khác."});
+  return Json(poi);
+ }
+ /// <summary>Khoang cach va duong di trong mot ngay cua chuyen di (xuat phat, cac hang muc co toa do, ket thuc).</summary>
+ [HttpGet("/api/lapkehoach/{id:long}/tuyen"),EnableRateLimiting("discovery")] public async Task<IActionResult> DayRoute(long id,int day,string? mode,CancellationToken ct)=>await Api(()=>board.Route(id,day,mode,ct));
  /// <summary>Doi vi tri bam tren ban do thanh ten khu vuc (chi trong khung Viet Nam).</summary>
  [HttpGet("/api/lapkehoach/dia-chi"),EnableRateLimiting("discovery")] public async Task<IActionResult> AddressAt(double lat,double lng,CancellationToken ct)
  {
