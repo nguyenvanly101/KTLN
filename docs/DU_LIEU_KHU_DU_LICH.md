@@ -32,6 +32,8 @@ Lượt đầu nhập **76 địa điểm** (Bến Tre, Bình Định, Bình Dư
 
 **Cập nhật 14/11/2026:** đợt hai nhập thêm 327 địa điểm (tổng 508), hết hạn mức tại điểm đến Hà Nội; còn khoảng 70 điểm đến chạy tiếp ngày mai.
 
+**Cập nhật 15/11/2026:** đợt ba nhập thêm 380 địa điểm (tổng 888), gắn thêm 248 địa điểm xuống quận, huyện, xã, phường; hết hạn mức tại Lý Sơn, còn khoảng 30 điểm đến.
+
 **Hạn mức:** gói miễn phí của Goong chỉ cho **1.000 yêu cầu mỗi ngày** (tài khoản dùng chung với các gợi ý trực tiếp trên website). Lượt đầu đã dùng hết hạn mức trong ngày nên các điểm đến còn lại (khoảng 90) cần chạy tiếp vào những ngày sau: chạy lại `fetch.cjs` với cùng thư mục tạm (kết quả đã lấy được giữ trong cache), rồi `build-sql.cjs` và hai tệp SQL.
 
 **Giới hạn chất lượng:** dữ liệu Goong chỉ có tên, địa chỉ và tọa độ; **không có giờ mở cửa, giá, mô tả hay ảnh**. Mô tả ghi rõ "thông tin tham khảo, chưa xác nhận giờ mở cửa và giá". Autocomplete khớp theo từ nên vẫn có thể lẫn vài kết quả không liên quan, cần quản trị viên rà lại trong Quản lý Khám phá. Địa chỉ theo địa giới mới của Goong (ví dụ "Vĩnh Long" cho một số nơi của Bến Tre).
