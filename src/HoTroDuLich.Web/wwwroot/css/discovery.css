@@ -6,3 +6,16 @@
 @media(prefers-reduced-motion:reduce){.ds-page *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
 .ds-filter-chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.ds-filter-chips a{display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;border:1px solid #dbe1ee;border-radius:20px;background:#f3f6fc;font-size:.8rem;color:#15213e}
+
+/* Danh sach canh ban do: cuon trong man hinh, ban do dung yen */
+@media(min-width:761px){
+ .ds-results-grid:not(:has(#discovery-map-area[hidden]))>[data-ds-list]{max-height:calc(100vh - 96px);overflow-y:auto;overscroll-behavior:contain;padding:2px 8px 2px 2px;scrollbar-gutter:stable}
+ .ds-results-grid>.ds-map-area{position:sticky;top:84px;max-height:calc(100vh - 96px);overflow-y:auto}
+ .ds-results-grid .ds-map{height:clamp(300px,calc(100vh - 330px),620px)}
+}
+.near-on>.ds-card-grid,.near-on>.ds-pagination,.near-on>.ds-empty,.near-on>.ds-note{display:none}
+.ds-near-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:0 0 12px;padding:12px 14px;border:1px solid var(--ds-line);border-radius:14px;background:var(--ds-soft)}
+.ds-near-list{display:grid;gap:10px}
+.ds-near-item{border:1px solid var(--ds-line);border-radius:14px;padding:12px 14px;background:#fff;min-width:0}
+.ds-near-item h3{font-size:1rem;margin:0 0 4px}.ds-near-item p{margin:0 0 4px;font-size:.86rem;color:var(--ds-muted)}.ds-near-sum{color:var(--ds-ink)!important}
+.ds-card.is-picked,.ds-near-item.is-picked{border-color:var(--ds-blue);box-shadow:0 0 0 3px rgba(36,71,232,.16)}
