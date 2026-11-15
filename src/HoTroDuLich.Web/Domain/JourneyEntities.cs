@@ -5,6 +5,7 @@ public partial class HoatDongLichTrinh
     public int? ThoiLuongPhut { get; set; }
     public int? DiChuyenTruocPhut { get; set; }
     public DateTime? HoanThanhLuc { get; set; }
+    public DateTime? BoQuaLuc { get; set; }
 }
 
 public sealed class ChiaSeChuyenDi

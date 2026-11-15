@@ -124,7 +124,7 @@ public partial class LapKeHoachService(AppDbContext context, IHttpContextAccesso
             a.MaDichVu = i.ServiceId;
             a.MaDiaDiem = i.PlaceId;
             if(i.UpdateTiming||i.DurationMinutes!=null||i.TravelMinutes!=null){a.ThoiLuongPhut=i.DurationMinutes;a.DiChuyenTruocPhut=i.TravelMinutes;}
-            if(rescheduled)a.HoanThanhLuc=null;
+            if(rescheduled){a.HoanThanhLuc=null;a.BoQuaLuc=null;}
             p.TrangThai = HoTroDuLich.Web.Domain.TrangThaiKeHoach.Nhap;
             p.ThoiDiemCapNhat = Clock.BayGioUtc;
         });

@@ -77,3 +77,11 @@ public sealed class TripRoutePoints
  public decimal? EndLng { get; set; }
  public DateTime UpdatedAt { get; set; }
 }
+
+/// <summary>Tien do cua chuyen di: luc khoi hanh va luc ket thuc (chi chu chuyen di dat).</summary>
+public sealed class TripProgress
+{
+ public long PlanId { get; set; }
+ public DateTime? DepartedAt { get; set; }
+ public DateTime? FinishedAt { get; set; }
+}

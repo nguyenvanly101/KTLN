@@ -10,6 +10,8 @@ public sealed class JourneyController(TravelService travel,JourneyService journe
 {
     [HttpGet] public async Task<IActionResult> Today(long planId,DateOnly? date=null)=>View(await journey.Day(planId,date));
     [HttpPost] public async Task<IActionResult> Complete(long planId,CommandInput input){await journey.Complete(planId,input);return Done("/Journey/Today?planId="+planId,"Đã cập nhật tiến độ hoạt động.");}
+    [HttpPost] public async Task<IActionResult> Depart(long planId){await journey.Depart(planId);return Done("/Journey/Today?planId="+planId,"Chúc bạn một chuyến đi vui vẻ. Đã ghi lại giờ khởi hành.");}
+    [HttpPost] public async Task<IActionResult> Finish(long planId){await journey.Finish(planId);return Done("/Journey/Today?planId="+planId,"Chuyến đi đã kết thúc. Cảm ơn bạn đã đi cùng.");}
     [HttpGet] public async Task<IActionResult> Share(long planId)=>View(await journey.Shares(planId));
     [HttpPost] public async Task<IActionResult> Share(ShareTripInput input){TempData["NewSharePath"]=await journey.CreateShare(input);return Done("/Journey/Share?planId="+input.PlanId,"Đã tạo bản chia sẻ. Sao chép liên kết ở khung bên dưới.");}
     [HttpPost] public async Task<IActionResult> Revoke(long planId,CommandInput input){await journey.Revoke(planId,input);return Done("/Journey/Share?planId="+planId,"Đã thu hồi liên kết chia sẻ.");}

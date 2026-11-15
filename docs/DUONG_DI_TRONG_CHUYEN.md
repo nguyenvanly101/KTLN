@@ -41,4 +41,14 @@ Trang Sửa kế hoạch có ô **Điểm xuất phát** (gõ để chọn từ 
 - Goong dùng chung hạn mức **1.000 yêu cầu mỗi ngày** với gợi ý địa điểm và nhập dữ liệu. Mỗi đoạn mới là một yêu cầu.
 - Thời gian là ước tính theo giao thông thông thường, không phải thời gian thực.
 - Chưa tự điền ô "thời gian di chuyển trước" của hạng mục từ kết quả này; ô đó vẫn do người dùng nhập.
-- Chưa có nút **Khởi hành** riêng và trạng thái chuyến đi "Đang đi"; trang Hôm nay vẫn dựa vào ngày hiện tại và việc đánh dấu hoàn thành từng hạng mục.
+- Khởi hành và kết thúc chỉ ghi lại giờ; chưa thay đổi trạng thái nháp hay đã xác nhận của kế hoạch và chưa gửi thông báo cho người đi cùng.
+
+## Khởi hành, bỏ qua và kết thúc (15/11/2026)
+
+Trên trang Hôm nay (`/Journey/Today`), chỉ **chủ chuyến đi** thao tác được.
+
+- **Khởi hành:** khung "Sẵn sàng khởi hành?" hiện khi hôm nay nằm từ một ngày trước ngày đi đến hết ngày kết thúc. Khung nêu điểm xuất phát và điểm dừng đầu tiên. Bấm **Khởi hành** (`POST /Journey/Depart`) ghi giờ đi vào bảng `TienDoChuyenDi`; bấm lần hai không ghi đè.
+- **Đang trên đường:** khung đổi thành "Đang trên đường" kèm giờ khởi hành và nút **Kết thúc chuyến** (có hỏi lại). Thẻ "Điểm dừng tiếp theo" có nút **Xong, đến điểm tiếp theo** và **Bỏ qua**.
+- **Bỏ qua hạng mục:** cột mới `HoatDongLichTrinh.BoQuaLuc` (`Decision=Skip` của `POST /Journey/Complete`). Hạng mục bỏ qua không tính là hoàn thành, được đánh dấu "Đã bỏ qua", điểm tiếp theo chuyển sang hạng mục sau, tiến độ ghi "0 / 3 · 1 bỏ qua". Bấm **Mở lại** để hoàn tác; đánh dấu xong hoặc đổi giờ hạng mục sẽ xóa dấu bỏ qua.
+- **Kết thúc:** `POST /Journey/Finish` ghi giờ kết thúc, chỉ khi đã khởi hành; sau đó trang hiện "Chuyến đi đã kết thúc" và không còn nút.
+- Dữ liệu: `Database/033_KhoiHanh.sql` (tự chạy khi khởi động). Kiểm tra: `tests/trip-depart.cjs`.

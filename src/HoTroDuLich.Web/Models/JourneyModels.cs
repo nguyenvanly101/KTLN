@@ -5,7 +5,7 @@ using HoTroDuLich.Web.Services;
 namespace HoTroDuLich.Web.Models;
 
 public sealed record ScheduleWarning(long ActivityId,string Message);
-public sealed record TripDayPage(TripWorkspace Trip,DateOnly Day,List<HoatDongLichTrinh> Items,List<ScheduleWarning> Warnings);
+public sealed record TripDayPage(TripWorkspace Trip,DateOnly Day,List<HoatDongLichTrinh> Items,List<ScheduleWarning> Warnings,TripProgress? Progress=null,bool IsOwner=false,string? OriginName=null);
 public sealed class ShareTripInput : CommandInput
 {
     [Range(1,long.MaxValue)] public long PlanId { get; set; }

@@ -34,7 +34,9 @@ public sealed class JourneyService(AppDbContext db,TravelService travel,TripWork
     {
         var trip=await trips.Open(planId);var day=date??clock.HomNay;
         travel.Require(day==clock.HomNay||day>=trip.Plan.NgayBatDau&&day<=trip.Plan.NgayKetThuc,"Chọn ngày trong chuyến đi.",400);
-        return new(trip,day,trip.Activities.Where(x=>x.Ngay==day).ToList(),Warnings(trip.Activities).Where(x=>trip.Activities.Any(a=>a.MaHoatDong==x.ActivityId&&a.Ngay==day)).ToList());
+        var progress=await db.Set<TripProgress>().AsNoTracking().FirstOrDefaultAsync(p=>p.PlanId==planId);
+        var origin=await db.Set<TripRoutePoints>().AsNoTracking().Where(p=>p.PlanId==planId).Select(p=>p.StartName).FirstOrDefaultAsync();
+        return new(trip,day,trip.Activities.Where(x=>x.Ngay==day).ToList(),Warnings(trip.Activities).Where(x=>trip.Activities.Any(a=>a.MaHoatDong==x.ActivityId&&a.Ngay==day)).ToList(),progress,trip.Plan.MaTaiKhoan==travel.UserId,origin);
     }
     public async Task Complete(long planId,CommandInput input)
     {
@@ -43,12 +45,45 @@ public sealed class JourneyService(AppDbContext db,TravelService travel,TripWork
         {
             var plan=await travel.OwnPlan(planId);travel.CheckVersion(plan,input.Version);
             var activity=await db.HoatDongLichTrinh.SingleOrDefaultAsync(x=>x.MaHoatDong==input.Id&&x.MaKeHoach==planId)??throw new BusinessException("Không tìm thấy hoạt động trong chuyến đi.",404);
-            travel.Require(input.Decision is "Done" or "Undo","Thao tác không hợp lệ.",400);
+            travel.Require(input.Decision is "Done" or "Undo" or "Skip","Thao tác không hợp lệ.",400);
             travel.Require(activity.Ngay<=clock.HomNay,"Chỉ đánh dấu hoạt động của hôm nay hoặc ngày đã qua.");
             activity.HoanThanhLuc=input.Decision=="Done"?clock.BayGioUtc:null;
+            activity.BoQuaLuc=input.Decision=="Skip"?clock.BayGioUtc:null;
             // Completion is independent of the FullText draft/confirmed plan state.
             plan.ThoiDiemCapNhat=clock.BayGioUtc;db.Entry(plan).Property(x=>x.ThoiDiemCapNhat).IsModified=true;
             travel.Audit("TienDoHoatDong","HoatDongLichTrinh",activity.MaHoatDong,null,input.Decision);
+        });
+    }
+    /// <summary>Chu chuyen di bam Khoi hanh: ghi lai luc di. Cho phep tu 1 ngay truoc ngay di den het ngay ket thuc.</summary>
+    public async Task Depart(long planId)
+    {
+        travel.RoleRequired(TravelService.Traveler);
+        await travel.Execute(async()=>
+        {
+            var plan=await travel.OwnPlan(planId);
+            travel.Require(plan.MaTaiKhoan==travel.UserId,"Chỉ chủ chuyến đi mới khởi hành được.",403);
+            travel.Require(clock.HomNay>=plan.NgayBatDau.AddDays(-1)&&clock.HomNay<=plan.NgayKetThuc,"Chỉ khởi hành được từ một ngày trước ngày đi đến hết ngày kết thúc của chuyến.",409);
+            var row=await db.Set<TripProgress>().FirstOrDefaultAsync(p=>p.PlanId==planId);
+            travel.Require(row?.DepartedAt==null,"Chuyến đi đã khởi hành rồi.",409);
+            if(row==null){row=new TripProgress{PlanId=planId};db.Add(row);}
+            row.DepartedAt=clock.BayGioUtc;
+            travel.Audit("KhoiHanh","KeHoachChuyenDi",planId,null,"Depart");
+        });
+    }
+    /// <summary>Ket thuc chuyen di sau khi da khoi hanh.</summary>
+    public async Task Finish(long planId)
+    {
+        travel.RoleRequired(TravelService.Traveler);
+        await travel.Execute(async()=>
+        {
+            var plan=await travel.OwnPlan(planId);
+            travel.Require(plan.MaTaiKhoan==travel.UserId,"Chỉ chủ chuyến đi mới kết thúc được chuyến.",403);
+            var row=await db.Set<TripProgress>().FirstOrDefaultAsync(p=>p.PlanId==planId);
+            travel.Require(row?.DepartedAt!=null,"Chuyến đi chưa khởi hành.",409);
+            travel.Require(row!.FinishedAt==null,"Chuyến đi đã kết thúc rồi.",409);
+            row.FinishedAt=clock.BayGioUtc;
+            travel.Audit("KetThucChuyen","KeHoachChuyenDi",planId,null,"Finish");
+            await Task.CompletedTask;
         });
     }
     public async Task<SharedTrip> Snapshot(long planId,bool budget,bool services)

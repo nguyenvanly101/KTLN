@@ -112,3 +112,8 @@ public sealed class TripRoutePointsConfiguration:IEntityTypeConfiguration<TripRo
 {
  public void Configure(EntityTypeBuilder<TripRoutePoints> e){e.ToTable("DiemTuyenChuyenDi");e.HasKey(x=>x.PlanId);e.Property(x=>x.StartLat).HasColumnType("decimal(9,6)");e.Property(x=>x.StartLng).HasColumnType("decimal(9,6)");e.Property(x=>x.EndLat).HasColumnType("decimal(9,6)");e.Property(x=>x.EndLng).HasColumnType("decimal(9,6)");}
 }
+
+public sealed class TripProgressConfiguration:IEntityTypeConfiguration<TripProgress>
+{
+ public void Configure(EntityTypeBuilder<TripProgress> e){e.ToTable("TienDoChuyenDi");e.HasKey(x=>x.PlanId);}
+}
