@@ -85,3 +85,12 @@ public sealed class TripProgress
  public DateTime? DepartedAt { get; set; }
  public DateTime? FinishedAt { get; set; }
 }
+
+/// <summary>Co so duoc tao tu viec nhan mot dia diem trong Kham pha; HiddenAt la luc dia diem goc duoc an sau khi co so duoc duyet.</summary>
+public sealed class PlaceClaim
+{
+ public long BranchId { get; set; }
+ public long EntryId { get; set; }
+ public DateTime CreatedAt { get; set; }
+ public DateTime? HiddenAt { get; set; }
+}

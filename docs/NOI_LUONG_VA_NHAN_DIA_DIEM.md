@@ -20,11 +20,13 @@ Kiểm tra: `tests/trip-flow.cjs`.
 - Nút mở `/nha-cung-cap/co-so/them?tu={mã mục Khám phá}`: biểu mẫu Thêm cơ sở được **điền sẵn** tên, địa chỉ, khu vực, tọa độ, loại gợi ý theo nhãn (lưu trú, ăn uống, hoạt động), và phần căn cứ ghi rõ "Nhận từ địa điểm đã có trong Khám phá (mục #…)" để quản trị viên đối chiếu.
 - Nhà cung cấp vẫn phải xác nhận vị trí, bổ sung giờ mở cửa, giá, ảnh, căn cứ quản lý và **gửi xét duyệt như bình thường**. Mở biểu mẫu không thay đổi địa điểm gốc.
 
+- **Tự ẩn địa điểm gốc.** Khi lưu cơ sở mới từ biểu mẫu nhận địa điểm, website ghi lại mục Khám phá gốc (bảng `NhanDiaDiemKhamPha`, `Database/034_NhanDiaDiem.sql`). Khi quản trị viên duyệt cơ sở đó và vị trí khớp trong 500 m, địa điểm gốc được ẩn (`DiaDiemDuLich.DangHienThi = 0`) để Khám phá không hiện trùng; việc ẩn được ghi vào nhật ký. Quản trị viên có thể cho hiện lại trong phần quản lý địa điểm.
+
 Kiểm tra: `tests/claim-place.cjs`.
 
 ## Giới hạn
 
-- Sau khi cơ sở được duyệt, mục địa điểm gốc **chưa tự gộp hoặc ẩn**, nên Khám phá có thể hiện cả địa điểm lẫn cơ sở. Quản trị viên cần ẩn mục gốc bằng tay trong Quản lý Khám phá.
+- Địa điểm gốc chỉ tự ẩn khi vị trí cơ sở được duyệt cách địa điểm gốc không quá 500 m. Nếu lệch xa hơn, cả hai cùng hiện và quản trị viên cần xem lại bằng tay.
 - Tin báo nhóm chỉ gửi khi chuyến đi đã có nhóm chat (chuyến có thành viên).
 - Giờ mở cửa, giá, ảnh của các địa điểm nhập từ Goong vẫn trống cho đến khi có nhà cung cấp nhận hoặc có khóa Google Places.
 - Ở điện thoại, khung "Đường đi hôm nay" nằm dưới danh sách việc trong ngày, phải cuộn xuống mới thấy.

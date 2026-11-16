@@ -19,7 +19,7 @@
  <div class="page-head"><div><span class="eyebrow">ĐĂNG THÔNG TIN CHO KHÁCH</span><h1>@ViewData["Title"]</h1><p>Điền đủ bốn phần. Khách sẽ thấy ảnh, giờ mở cửa, giá và vị trí ngay trên trang của cơ sở.</p></div>@if(Model.Current?.Status=="Approved"){<a class="btn btn-outline" href="/co-so/@i.Id">Xem như khách @Ui.Icon("arrow")</a>}</div>
  @if(!Model.CanSubmit){<div class="notice warning">Nhà cung cấp cần được xác minh và có quyền hoạt động để gửi cơ sở.</div>}
  @if(pending){<div class="notice">Cơ sở đang có phiên bản chờ duyệt. Bạn có thể xem nội dung đã gửi trong lịch sử bên dưới.</div>}
- <form method="post" action="/nha-cung-cap/co-so/luu" enctype="multipart/form-data" class="pv-form" data-pv-form>@Html.AntiForgeryToken()<div asp-validation-summary="All"></div><input type="hidden" name="Id" value="@i.Id"/><input type="hidden" name="Version" value="@i.Version"/>
+ <form method="post" action="/nha-cung-cap/co-so/luu" enctype="multipart/form-data" class="pv-form" data-pv-form>@Html.AntiForgeryToken()@if(i.Id==0&&i.ClaimedEntryId!=null){<input type="hidden" name="ClaimedEntryId" value="@i.ClaimedEntryId"/>}<div asp-validation-summary="All"></div><input type="hidden" name="Id" value="@i.Id"/><input type="hidden" name="Version" value="@i.Version"/>
  <fieldset disabled="@(pending||!Model.CanSubmit)" class="pv-fieldset"><legend class="sr-only">Thông tin cơ sở</legend>
   <div class="pv-layout">
    <div class="pv-main">

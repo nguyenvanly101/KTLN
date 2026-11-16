@@ -20,6 +20,8 @@ public class MapLocationInput : CommandInput
 public sealed class BranchInput : MapLocationInput
 {
  public List<IFormFile> Documents { get; set; }=[];
+ /// <summary>Ma muc Kham pha ma nha cung cap dang nhan (chi dung khi tao co so moi).</summary>
+ public long? ClaimedEntryId { get; set; }
  public string Type { get; set; } = "AnUong";
  [MaxLength(2000)] public string? Summary { get; set; }
  [MaxLength(30)] public string? Phone { get; set; }

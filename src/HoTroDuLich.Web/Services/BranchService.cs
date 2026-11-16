@@ -140,7 +140,7 @@ public sealed class BranchService(AppDbContext context,IHttpContextAccessor acce
   var tags=e.Tags??"";
   var type=tags.Contains("Lưu trú",StringComparison.OrdinalIgnoreCase)||tags.Contains("lưu trú")?"LuuTru":tags.Contains("Ăn uống",StringComparison.OrdinalIgnoreCase)||tags.Contains("ăn uống")?"AnUong":"HoatDong";
   static string Cut(string? v,int n)=>string.IsNullOrWhiteSpace(v)?"":v.Trim().Length<=n?v.Trim():v.Trim()[..n];
-  return new BranchInput{Name=Cut(e.Title,200),Address=Cut(e.Address,400),Region=Cut(e.Region,200),DonViId=e.DonViId,Latitude=e.Latitude,Longitude=e.Longitude,Type=type,
+  return new BranchInput{Name=Cut(e.Title,200),Address=Cut(e.Address,400),Region=Cut(e.Region,200),DonViId=e.DonViId,Latitude=e.Latitude,Longitude=e.Longitude,Type=type,ClaimedEntryId=e.Id,
    OwnershipEvidence=Cut("Nhận từ địa điểm đã có trong Khám phá (mục #"+e.Id+": "+e.Title+").",2000)};
  }
  public async Task<BranchEditPage> EditPage(long id=0,BranchInput? rejected=null)
@@ -191,6 +191,7 @@ public sealed class BranchService(AppDbContext context,IHttpContextAccessor acce
   {
    Require(await CanSubmitBranch(p),"Quyền hoạt động của nhà cung cấp đã thay đổi.",409);
    CoSoDichVu b;
+   var created=i.Id==0;
    if(i.Id==0){b=new(){ProviderId=p.MaNhaCungCap,Status="Draft",CreatedAt=Clock.BayGioUtc};db.Add(b);}
    else{b=await Own(i.Id,p.MaNhaCungCap);CheckVersion(b,i.Version);Require(!await db.Set<BanCapNhatCoSo>().AnyAsync(x=>x.BranchId==b.Id&&x.Status=="Pending"),"Cơ sở đang có phiên bản chờ duyệt.",409);}
    Require(i.Operation!="Draft"||b.PublishedVersion==null,"Cơ sở đã công bố cần gửi bản cập nhật xét duyệt.",422);
@@ -206,6 +207,9 @@ public sealed class BranchService(AppDbContext context,IHttpContextAccessor acce
    }
    if(b.PublishedVersion==null){Copy(i,b);b.LocationExpiresAt=expires;b.Status=i.Operation=="Submit"?"Pending":"Draft";}
    b.UpdatedAt=Clock.BayGioUtc;await db.SaveChangesAsync();savedId=b.Id;
+   // Co so moi tao tu viec nhan dia diem: ghi lai muc Kham pha goc de an khi co so duoc duyet.
+   if(created&&i.ClaimedEntryId is long claimed&&await db.Set<DiscoveryEntry>().AnyAsync(x=>x.Id==claimed&&x.Status=="Published"&&x.Kind=="Place"&&x.PlaceId!=null&&x.ServiceId==null&&x.BranchId==null))
+    db.Add(new PlaceClaim{BranchId=b.Id,EntryId=claimed,CreatedAt=Clock.BayGioUtc});
    if(i.Operation=="Submit")
    {
     var number=(await db.Set<BanCapNhatCoSo>().Where(x=>x.BranchId==b.Id).MaxAsync(x=>(int?)x.Number)??0)+1;
@@ -251,6 +255,17 @@ public sealed class BranchService(AppDbContext context,IHttpContextAccessor acce
     if(r.GooglePlaceId!=null)Require(!await db.Set<CoSoDichVu>().AnyAsync(x=>x.Id!=b.Id&&x.GooglePlaceId==r.GooglePlaceId&&x.PublishedVersion!=null),"Địa điểm Google đang thuộc một cơ sở khác đã được duyệt.",409);
     foreach(var key in Fields)typeof(CoSoDichVu).GetProperty(key)!.SetValue(b,typeof(BanCapNhatCoSo).GetProperty(key)!.GetValue(r));
     b.LocationExpiresAt=r.LocationExpiresAt;b.PublishedVersion=r.Number;b.Status="Approved";
+    // Co so nhan tu mot dia diem trong Kham pha: an dia diem goc de khong hien trung, chi khi vi tri co so cach dia diem goc khong qua 500 m.
+    var claim=await db.Set<PlaceClaim>().FirstOrDefaultAsync(x=>x.BranchId==b.Id&&x.HiddenAt==null);
+    if(claim!=null)
+    {
+     var source=await db.Set<DiscoveryEntry>().FirstOrDefaultAsync(x=>x.Id==claim.EntryId&&x.Kind=="Place"&&x.PlaceId!=null);
+     if(source?.Latitude!=null&&b.Latitude!=null&&GoongPlacesService.Haversine((double)source.Latitude,(double)source.Longitude!,(double)b.Latitude,(double)b.Longitude!)<=0.5)
+     {
+      var place=await db.DiaDiemDuLich.FirstOrDefaultAsync(x=>x.MaDiaDiem==source.PlaceId);
+      if(place!=null&&place.DangHienThi){place.DangHienThi=false;claim.HiddenAt=Clock.BayGioUtc;audit.Ghi("AnDiaDiemDaNhan","DiaDiemDuLich",place.MaDiaDiem,"HienThi","An","Cơ sở #"+b.Id+" nhận địa điểm này đã được duyệt");}
+     }
+    }
    }
    else if(b.PublishedVersion==null)b.Status=i.Decision;
    b.UpdatedAt=Clock.BayGioUtc;r.Status=i.Decision;r.Reason=string.IsNullOrWhiteSpace(i.Reason)?null:i.Reason.Trim();r.AdminId=UserId;r.ReviewedAt=Clock.BayGioUtc;

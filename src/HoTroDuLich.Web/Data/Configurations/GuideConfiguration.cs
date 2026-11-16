@@ -117,3 +117,8 @@ public sealed class TripProgressConfiguration:IEntityTypeConfiguration<TripProgr
 {
  public void Configure(EntityTypeBuilder<TripProgress> e){e.ToTable("TienDoChuyenDi");e.HasKey(x=>x.PlanId);}
 }
+
+public sealed class PlaceClaimConfiguration:IEntityTypeConfiguration<PlaceClaim>
+{
+ public void Configure(EntityTypeBuilder<PlaceClaim> e){e.ToTable("NhanDiaDiemKhamPha");e.HasKey(x=>x.BranchId);e.Property(x=>x.BranchId).ValueGeneratedNever();}
+}

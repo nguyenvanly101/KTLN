@@ -28,7 +28,8 @@ public sealed class GuideController(TravelService travel,GuideService guide,AppD
 [Authorize(Roles=TravelService.AdminRole)]
 public sealed class GuideAdminController(TravelService travel,GuideService guide,AppDbContext db):AppController(travel)
 {
- async Task Units(){ViewBag.Units=await (from u in db.Set<DonViHanhChinh>().AsNoTracking() where u.Regime=="Cu"&&u.Level<=2 join p in db.Set<DonViHanhChinh>() on u.ParentId equals p.Id into parents from p in parents.DefaultIfEmpty() orderby u.Level,u.Name select new{u.Id,Label=u.Level==1?u.FullName:u.FullName+" — "+(p==null?"":p.Name)}).ToListAsync();}
+ // Tai du lieu tho roi sap xep trong ung dung: tranh de SQL Server xin cap bo nho cho phep sap xep/noi bang (LocalDB it bo nho se cho qua gio).
+ async Task Units(){var rows=await db.Set<DonViHanhChinh>().AsNoTracking().Where(u=>u.Regime=="Cu"&&u.Level<=2).Select(u=>new{u.Id,u.Level,u.Name,u.FullName,u.ParentId}).ToListAsync();var names=rows.Where(r=>r.Level==1).ToDictionary(r=>r.Id,r=>r.Name);ViewBag.Units=rows.OrderBy(r=>r.Level).ThenBy(r=>r.Name,StringComparer.Create(new System.Globalization.CultureInfo("vi-VN"),false)).Select(r=>new{r.Id,Label=r.Level==1?r.FullName:r.FullName+" — "+(r.ParentId!=null&&names.TryGetValue(r.ParentId.Value,out var p)?p:"")}).ToList();}
  [HttpGet("/quan-tri/lich-mau")] public async Task<IActionResult> Index()=>V("Guide/AdminTemplates",await guide.AllForAdmin());
  [HttpGet("/quan-tri/lich-mau/soan")] public async Task<IActionResult> Edit(long id=0,long? diemDen=null){await Units();return V("Guide/TemplateEdit",await guide.TemplateForm(id,diemDen));}
  [HttpPost("/quan-tri/lich-mau/luu")] public async Task<IActionResult> Save(TemplateInput input){var id=await guide.SaveTemplate(input);return Done("/quan-tri/lich-mau","Đã lưu lịch trình mẫu.");}
