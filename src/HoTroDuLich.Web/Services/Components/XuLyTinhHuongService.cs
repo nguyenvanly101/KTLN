@@ -30,7 +30,8 @@ public partial class XuLyTinhHuongService(AppDbContext context, IHttpContextAcce
         var ids = i.ActivityIds.Concat(i.ActivityId.HasValue ? [i.ActivityId.Value] : Array.Empty<long>()).Distinct().ToArray();
         await Execute(async () =>
         {
-            Ensure(await Resolve<IKeHoach>().LaChuKeHoach(UserId,i.PlanId),"0501-01");
+            // Chu chuyen di hoac thanh vien da chap nhan cua chuyen di chung deu ghi duoc su co.
+            Ensure(await Resolve<IKeHoach>().LaChuKeHoach(UserId,i.PlanId)||await db.Set<ThanhVienChuyenDi>().AnyAsync(m=>m.PlanId==i.PlanId&&m.AccountId==UserId&&m.Status=="Accepted"),"0501-01");
             Ensure(await db.HoatDongLichTrinh.CountAsync(x => ids.Contains(x.MaHoatDong) && x.MaKeHoach == i.PlanId) == ids.Length, "0501-03");
             var t = new TinhHuongPhatSinh
             {

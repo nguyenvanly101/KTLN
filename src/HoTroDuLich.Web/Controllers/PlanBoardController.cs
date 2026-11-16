@@ -43,6 +43,8 @@ public sealed class PlanBoardController(TravelService travel,PlanBoardService bo
  }
  /// <summary>Khoang cach va duong di trong mot ngay cua chuyen di (xuat phat, cac hang muc co toa do, ket thuc).</summary>
  [HttpGet("/api/lapkehoach/{id:long}/tuyen"),EnableRateLimiting("discovery")] public async Task<IActionResult> DayRoute(long id,int day,string? mode,CancellationToken ct)=>await Api(()=>board.Route(id,day,mode,ct));
+ /// <summary>Dien thoi gian di chuyen vao cac hang muc cua mot ngay tu ket qua tinh tuyen (chi o hang muc chua nhap).</summary>
+ [HttpPost("/api/lapkehoach/{id:long}/tuyen/ap-dung"),EnableRateLimiting("discovery")] public async Task<IActionResult> ApplyRoute(long id,int day,string? mode,CancellationToken ct)=>await Api(()=>board.ApplyTravel(id,day,mode,ct));
  /// <summary>Doi vi tri bam tren ban do thanh ten khu vuc (chi trong khung Viet Nam).</summary>
  [HttpGet("/api/lapkehoach/dia-chi"),EnableRateLimiting("discovery")] public async Task<IActionResult> AddressAt(double lat,double lng,CancellationToken ct)
  {

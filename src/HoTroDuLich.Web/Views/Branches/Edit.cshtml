@@ -15,6 +15,7 @@
 }
 <div class="container-wide pl-manage pv-edit">
  <a class="back" href="/nha-cung-cap/co-so">← Cơ sở của tôi</a>
+ @if(ViewData["ClaimedFrom"] is string claimed){<div class="notice" data-claimed>Đã điền sẵn tên, địa chỉ và vị trí từ địa điểm <strong>@claimed</strong> trong Khám phá. Hãy kiểm tra lại, bổ sung giờ mở cửa, giá, ảnh và căn cứ quản lý cơ sở trước khi gửi.</div>}
  <div class="page-head"><div><span class="eyebrow">ĐĂNG THÔNG TIN CHO KHÁCH</span><h1>@ViewData["Title"]</h1><p>Điền đủ bốn phần. Khách sẽ thấy ảnh, giờ mở cửa, giá và vị trí ngay trên trang của cơ sở.</p></div>@if(Model.Current?.Status=="Approved"){<a class="btn btn-outline" href="/co-so/@i.Id">Xem như khách @Ui.Icon("arrow")</a>}</div>
  @if(!Model.CanSubmit){<div class="notice warning">Nhà cung cấp cần được xác minh và có quyền hoạt động để gửi cơ sở.</div>}
  @if(pending){<div class="notice">Cơ sở đang có phiên bản chờ duyệt. Bạn có thể xem nội dung đã gửi trong lịch sử bên dưới.</div>}

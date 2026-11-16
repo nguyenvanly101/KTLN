@@ -131,6 +131,18 @@ public sealed class BranchService(AppDbContext context,IHttpContextAccessor acce
  var services=links.GroupBy(x=>x.BranchId).ToDictionary(g=>g.Key,g=>g.Select(x=>(x.MaDichVu,x.TenDichVu,x.GiaThamKhao,x.TrangThaiCongBo.ToString())).ToList());
  return new(rows,pending,counts,await CanSubmitBranch(p),done,p.TrangThaiXacMinh==TrangThaiXacMinh.DaXacMinh,services);
  }
+ /// <summary>Bieu mau Them co so dien san tu mot dia diem da cong bo trong Kham pha (nha cung cap "nhan" dia diem). Chi lay ten, dia chi, khu vuc, toa do; nha cung cap van phai xac nhan vi tri va gui xet duyet nhu binh thuong.</summary>
+ public async Task<BranchInput?> ClaimDraft(long entryId)
+ {
+  RoleRequired(ProviderRole);
+  var e=await db.Set<DiscoveryEntry>().AsNoTracking().FirstOrDefaultAsync(x=>x.Id==entryId&&x.Status=="Published"&&x.Kind=="Place"&&x.ServiceId==null&&x.BranchId==null);
+  if(e==null)return null;
+  var tags=e.Tags??"";
+  var type=tags.Contains("Lưu trú",StringComparison.OrdinalIgnoreCase)||tags.Contains("lưu trú")?"LuuTru":tags.Contains("Ăn uống",StringComparison.OrdinalIgnoreCase)||tags.Contains("ăn uống")?"AnUong":"HoatDong";
+  static string Cut(string? v,int n)=>string.IsNullOrWhiteSpace(v)?"":v.Trim().Length<=n?v.Trim():v.Trim()[..n];
+  return new BranchInput{Name=Cut(e.Title,200),Address=Cut(e.Address,400),Region=Cut(e.Region,200),DonViId=e.DonViId,Latitude=e.Latitude,Longitude=e.Longitude,Type=type,
+   OwnershipEvidence=Cut("Nhận từ địa điểm đã có trong Khám phá (mục #"+e.Id+": "+e.Title+").",2000)};
+ }
  public async Task<BranchEditPage> EditPage(long id=0,BranchInput? rejected=null)
  {
   RoleRequired(ProviderRole);var p=await MyProvider();

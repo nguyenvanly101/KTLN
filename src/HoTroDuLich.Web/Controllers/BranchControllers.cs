@@ -9,7 +9,7 @@ namespace HoTroDuLich.Web.Controllers;
 public sealed class BranchesController(TravelService travel,BranchService branches,PostService posts):AppController(travel)
 {
  [HttpGet("/nha-cung-cap/co-so")] public async Task<IActionResult> Index()=>V("Branches/Index",await branches.OwnerPage());
- [HttpGet("/nha-cung-cap/co-so/them")] public async Task<IActionResult> New()=>V("Branches/Edit",await branches.EditPage());
+ [HttpGet("/nha-cung-cap/co-so/them")] public async Task<IActionResult> New(long? tu=null){var draft=tu is long entry?await branches.ClaimDraft(entry):null;if(draft!=null)ViewData["ClaimedFrom"]=draft.Name;return V("Branches/Edit",await branches.EditPage(0,draft));}
  [HttpGet("/nha-cung-cap/co-so/{id:long}")] public async Task<IActionResult> Edit(long id)=>V("Branches/Edit",await branches.EditPage(id));
  [HttpPost("/nha-cung-cap/co-so/luu")] public async Task<IActionResult> Save(BranchInput input,CancellationToken ct)
  {input.AttributesJson=BranchTemplates.Collect(Request.Form,input.Type);var id=await branches.Save(input,ct);return Done("/nha-cung-cap/co-so/"+id,input.AppliedNow?"Đã cập nhật ngay: giờ mở cửa, giá, liên hệ và tiện ích không cần chờ duyệt.":input.Operation=="Draft"?"Đã lưu bản nháp cơ sở. Hãy bổ sung giờ, giá, ảnh để khách dễ chọn.":"Đã gửi cơ sở chờ duyệt. Thông tin đang công bố được giữ đến khi bản cập nhật được chấp thuận.");}

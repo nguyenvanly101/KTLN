@@ -19,3 +19,6 @@
 .ds-near-item{border:1px solid var(--ds-line);border-radius:14px;padding:12px 14px;background:#fff;min-width:0}
 .ds-near-item h3{font-size:1rem;margin:0 0 4px}.ds-near-item p{margin:0 0 4px;font-size:.86rem;color:var(--ds-muted)}.ds-near-sum{color:var(--ds-ink)!important}
 .ds-card.is-picked,.ds-near-item.is-picked{border-color:var(--ds-blue);box-shadow:0 0 0 3px rgba(36,71,232,.16)}
+@media(max-width:760px){
+ .ds-results-grid:not(:has(#discovery-map-area[hidden]))>[data-ds-list]{max-height:78vh;overflow-y:auto;padding:2px;border-top:1px solid var(--ds-line);border-bottom:1px solid var(--ds-line)}
+}

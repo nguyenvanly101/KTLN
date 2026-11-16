@@ -43,7 +43,7 @@ public sealed class JourneyService(AppDbContext db,TravelService travel,TripWork
         travel.RoleRequired(TravelService.Traveler);
         await travel.Execute(async()=>
         {
-            var plan=await travel.OwnPlan(planId);travel.CheckVersion(plan,input.Version);
+            var plan=await travel.SharedPlan(planId);travel.CheckVersion(plan,input.Version);
             var activity=await db.HoatDongLichTrinh.SingleOrDefaultAsync(x=>x.MaHoatDong==input.Id&&x.MaKeHoach==planId)??throw new BusinessException("Không tìm thấy hoạt động trong chuyến đi.",404);
             travel.Require(input.Decision is "Done" or "Undo" or "Skip","Thao tác không hợp lệ.",400);
             travel.Require(activity.Ngay<=clock.HomNay,"Chỉ đánh dấu hoạt động của hôm nay hoặc ngày đã qua.");

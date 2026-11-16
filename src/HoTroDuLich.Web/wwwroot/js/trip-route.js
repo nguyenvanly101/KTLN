@@ -56,6 +56,20 @@
           if (last) last.parentNode.insertBefore(el, last.nextSibling); else body.appendChild(el);
         }
       });
+      if (d.legs.some(function (l) { return pts[l.to].kind === 'item'; })) {
+        var fill = document.createElement('div'); fill.className = 'route-injected route-fill';
+        fill.innerHTML = '<button type="button" class="btn btn-sm btn-outline-secondary">Điền thời gian di chuyển vào lịch</button><span role="status"></span>';
+        var fb = fill.querySelector('button'), fs = fill.querySelector('span');
+        fb.addEventListener('click', function () {
+          fb.disabled = true; fs.textContent = 'Đang lưu…';
+          var token = (document.querySelector('input[name="__RequestVerificationToken"]') || {}).value || '';
+          fetch('/api/lapkehoach/' + planId + '/tuyen/ap-dung?day=' + day + '&mode=' + modeSel.value, { method: 'POST', credentials: 'same-origin', headers: { RequestVerificationToken: token } })
+            .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.message || 'Không lưu được.'); return j; }); })
+            .then(function (j) { fs.textContent = 'Đã điền ' + j.filled + ' hạng mục' + (j.kept ? ', giữ nguyên ' + j.kept + ' hạng mục bạn đã nhập' : '') + (j.estimated ? ' (có đoạn là ước tính)' : '') + '.'; })
+            .catch(function (e) { fs.textContent = e.message; fb.disabled = false; });
+        });
+        bar.after(fill);
+      }
       var box = document.createElement('div'); box.className = 'route-injected route-map'; bar.after(box);
       loadLeaflet().then(function () {
         map = L.map(box, { scrollWheelZoom: false }); if (window.htBaseMap) window.htBaseMap(map); else L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);

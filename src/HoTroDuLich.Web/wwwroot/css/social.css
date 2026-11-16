@@ -519,3 +519,6 @@ dialog[open].pe-picker.pe-narrow{height:auto;max-height:90vh;width:min(560px,cal
 .depart-card strong{display:block}.depart-card span{color:#475569;font-size:.92rem}.depart-card.is-on{border-color:#99e0c9;background:#effaf5}.depart-card.is-finished{border-color:#dfe3ea;background:#f8fafc}
 .next-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.next-actions form{margin:0}
 .day-activity.is-skipped{opacity:.7}.journey-status.is-skipped{background:#f1f5f9;color:#475569}
+
+.route-fill{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 10px;font-size:.9rem;color:#334155}
+.depart-links{display:flex;flex-wrap:wrap;gap:8px}

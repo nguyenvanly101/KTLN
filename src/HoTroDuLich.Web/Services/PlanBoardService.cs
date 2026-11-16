@@ -200,6 +200,22 @@ public sealed class PlanBoardService(AppDbContext context,IHttpContextAccessor a
   return new(day,mode,points,legs,line,Math.Round(km,1),Math.Round(min),skipped,est);
  }
 
+ /// <summary>Dien "thoi gian di chuyen truoc" cho cac hang muc trong ngay tu ket qua tinh tuyen. Chi dien o hang muc chua nhap; hang muc da nhap tay duoc giu nguyen.</summary>
+ public async Task<object> ApplyTravel(long planId,int day,string? mode,CancellationToken ct)
+ {
+  var route=await Route(planId,day,mode,ct);
+  var minutes=new Dictionary<long,int>();
+  foreach(var leg in route.Legs){var to=route.Points[leg.To];if(to.ActivityId is long aid)minutes[aid]=(int)Math.Clamp(Math.Round(leg.Minutes),0,720);}
+  int filled=0,kept=0;
+  await Execute(async()=>
+  {
+   var ids=minutes.Keys.ToList();
+   var rows=await db.HoatDongLichTrinh.Where(a=>a.MaKeHoach==planId&&ids.Contains(a.MaHoatDong)).ToListAsync();
+   foreach(var a in rows){if(a.DiChuyenTruocPhut==null){a.DiChuyenTruocPhut=minutes[a.MaHoatDong];filled++;}else kept++;}
+  });
+  return new{filled,kept,estimated=route.AnyEstimated};
+ }
+
  async Task SaveNotes(long id,PlanDraft d)
  {
   var want=d.Notes.Select(n=>(n.Day,Text:(n.Text??"").Trim())).Where(n=>n.Text.Length>0).GroupBy(n=>n.Day).ToDictionary(g=>g.Key,g=>g.Last().Text);
