@@ -18,6 +18,14 @@ public sealed partial class DiscoveryService
 {
  public static readonly (string Key,string Label)[] DestinationTabs=[("tong-quan","Tổng quan"),("tham-quan","Tham quan"),("an-uong","Ăn uống"),("luu-tru","Lưu trú"),("di-chuyen","Di chuyển"),("ban-do","Bản đồ")];
  static readonly Dictionary<string,string[]> QuickChips=new(){["tham-quan"]=["Biển","Núi","Bảo tàng","Chợ","Chùa"],["an-uong"]=["Cà phê","Chay","Hải sản","Mì Quảng"],["luu-tru"]=["Khách sạn","Homestay","Resort"],["di-chuyen"]=["Sân bay","Ga","Thuê xe"]};
+ /// <summary>Sap xep tren cot hep (chi lay ma) roi moi tai noi dung, de SQL Server khong phai xin cap bo nho lon cho phep sap xep cac dong co Body dai.</summary>
+ async Task<List<DiscoveryEntry>> Narrow(IQueryable<long> orderedIds)
+ {
+  var ids=await orderedIds.ToListAsync();if(ids.Count==0)return [];
+  var order=new Dictionary<long,int>();for(var n=0;n<ids.Count;n++)order[ids[n]]=n;
+  var list=await db.Set<DiscoveryEntry>().AsNoTracking().Where(e=>orderedIds.Contains(e.Id)).ToListAsync();
+  return list.Where(e=>order.ContainsKey(e.Id)).OrderBy(e=>order[e.Id]).ToList();
+ }
  IQueryable<DiscoveryEntry> InArea(long unitId){var sub=geo.SubtreeQuery(unitId);return Public().AsNoTracking().Where(e=>e.DonViId!=null&&sub.Contains(e.DonViId.Value));}
  IQueryable<DiscoveryEntry> OfServiceType(IQueryable<DiscoveryEntry> q,string type)
  {
@@ -45,7 +53,7 @@ public sealed partial class DiscoveryService
  /// <summary>Cac diem den noi bat cho trang chu: muc "Diem den" da cong bo, kem so muc thong tin trong khu vuc.</summary>
  public async Task<List<HomeDestination>> HomePage()
  {
-  var entries=await Public().AsNoTracking().Where(e=>e.Kind=="Destination"&&e.DonViId!=null).OrderBy(e=>e.Title).ToListAsync();
+  var entries=await Narrow(Public().AsNoTracking().Where(e=>e.Kind=="Destination"&&e.DonViId!=null).OrderBy(e=>e.Title).Select(e=>e.Id));
   var list=new List<HomeDestination>();
   foreach(var e in entries.GroupBy(x=>x.DonViId!.Value).Select(g=>g.First()))list.Add(new(e.DonViId!.Value,e.Title,e.Summary,await InArea(e.DonViId!.Value).CountAsync()));
   return list.OrderByDescending(x=>x.Count).ThenBy(x=>x.Name).ToList();
@@ -76,11 +84,11 @@ public sealed partial class DiscoveryService
   {
    foreach(var (key,title,icon) in new[]{("tham-quan","Khu du lịch & địa điểm tham quan","pin"),("an-uong","Ăn uống","food"),("luu-tru","Lưu trú","bed"),("di-chuyen","Di chuyển","car")})
    {
-    var items=await TabQuery(area,key).OrderBy(e=>e.Kind=="Guide"?1:0).ThenBy(e=>e.Title).Take(3).ToListAsync();await Hydrate(items);
+    var items=await Narrow(TabQuery(area,key).OrderBy(e=>e.Kind=="Guide"?1:0).ThenBy(e=>e.Title).Select(e=>e.Id).Take(3));await Hydrate(items);
     sections.Add(new(key,title,icon,counts[key],items.Select(e=>new DiscoveryCard(e)).ToList(),key));
    }
   }
-  var guides=tab=="tong-quan"?await area.Where(e=>(e.Kind=="Guide"&&!e.Tags.Contains("Ăn uống")&&!e.Tags.Contains("Lưu trú"))||e.Kind=="Event"||e.Kind=="Destination").OrderBy(e=>e.Kind=="Destination"?0:1).ThenBy(e=>e.Title).Take(6).ToListAsync():new List<DiscoveryEntry>();
+  var guides=tab=="tong-quan"?await Narrow(area.Where(e=>(e.Kind=="Guide"&&!e.Tags.Contains("Ăn uống")&&!e.Tags.Contains("Lưu trú"))||e.Kind=="Event"||e.Kind=="Destination").OrderBy(e=>e.Kind=="Destination"?0:1).ThenBy(e=>e.Title).Select(e=>e.Id).Take(6)):new List<DiscoveryEntry>();
   await Hydrate(guides);
 
   // tab danh sach + ban do
@@ -90,14 +98,14 @@ public sealed partial class DiscoveryService
    var query=TabQuery(scope,tab);
    if(!string.IsNullOrWhiteSpace(q)){var w=DiscoveryText.Fold(q.Trim());if(w.Length is >=2 and <=40)query=query.Where(e=>EF.Functions.Collate((" "+e.Title+" "+e.Summary+" "+e.Tags+" "+e.Body+" ").Replace("đ","d").Replace("Đ","D").Replace(","," ").Replace("."," ").Replace("-"," ").Replace("("," ").Replace(")"," "),SearchCollation).Contains(" "+w));}
    itemsTotal=await query.CountAsync();
-   var list=await query.OrderBy(e=>e.Kind=="Guide"?1:0).ThenBy(e=>e.Title).Take(60).ToListAsync();await Hydrate(list);
+   var list=await Narrow(query.OrderBy(e=>e.Kind=="Guide"?1:0).ThenBy(e=>e.Title).Select(e=>e.Id).Take(60));await Hydrate(list);
    cards=list.Select(e=>new DiscoveryCard(e)).ToList();
    var located=list.Where(e=>e.Latitude!=null&&e.Longitude!=null).ToList();without=list.Count-located.Count;
    points=located.Select(e=>new MapPoint(e.Id,e.Title,tab,DiscoveryText.Kind(e.Kind),DiscoveryText.LinkTo(e),e.Latitude!.Value,e.Longitude!.Value)).ToList();
   }
   else if(tab=="ban-do")
   {
-   var located=await scope.Where(e=>e.Latitude!=null&&e.Longitude!=null).OrderBy(e=>e.Title).Take(300).ToListAsync();await Hydrate(located);
+   var located=await Narrow(scope.Where(e=>e.Latitude!=null&&e.Longitude!=null).OrderBy(e=>e.Title).Select(e=>e.Id).Take(300));await Hydrate(located);
    points=located.Select(e=>new MapPoint(e.Id,e.Title,Category(e),DiscoveryText.Kind(e.Kind),DiscoveryText.LinkTo(e),e.Latitude!.Value,e.Longitude!.Value)).ToList();
    without=await scope.CountAsync()-await scope.CountAsync(e=>e.Latitude!=null);
    tabs[^1]=tabs[^1] with{Count=await area.CountAsync(e=>e.Latitude!=null)};
