@@ -23,3 +23,8 @@ preview/branch-query-*.sql
 
 # Du lieu tam cua cong cu nhap Goong (chua ket qua API)
 preview/goong-stage/
+
+# Ket qua tam cua cong cu nhap Goong va gan don vi
+preview/goong-out*/
+preview/goong-after.txt
+preview/gan-don-vi.sql
