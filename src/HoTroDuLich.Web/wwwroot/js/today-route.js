@@ -1,3 +1,24 @@
+// Khung "San sang khoi hanh?": dat diem xuat phat bang vi tri hien tai ngay truoc khi di.
+(function () {
+  'use strict';
+  var box = document.querySelector('.depart-origin'); if (!box) return;
+  var btn = box.querySelector('[data-origin-here]'), status = box.querySelector('[data-origin-status]');
+  var tokenEl = document.querySelector('#depart input[name="__RequestVerificationToken"]');
+  var say = function (m) { status.textContent = m; };
+  btn.addEventListener('click', function () {
+    if (!navigator.geolocation) return say('Trình duyệt này không hỗ trợ định vị. Hãy bấm Chọn nơi khác.');
+    btn.disabled = true; say('Đang lấy vị trí…');
+    navigator.geolocation.getCurrentPosition(function (p) {
+      var lat = +p.coords.latitude.toFixed(6), lng = +p.coords.longitude.toFixed(6);
+      fetch('/api/lapkehoach/dia-chi?lat=' + lat + '&lng=' + lng, { credentials: 'same-origin' }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }).then(function (a) {
+        var name = ((a && (a.address || [a.commune, a.province].filter(Boolean).join(', '))) || 'Vị trí của tôi').slice(0, 300);
+        return fetch('/api/lapkehoach/' + box.dataset.plan + '/xuat-phat', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', RequestVerificationToken: tokenEl ? tokenEl.value : '' }, body: JSON.stringify({ name: name, lat: lat, lng: lng }) });
+      }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw new Error(j.message || 'Không lưu được điểm xuất phát.'); }); })
+        .then(function () { location.reload(); })
+        .catch(function (e) { btn.disabled = false; say(e.message); });
+    }, function (er) { btn.disabled = false; say(er && er.code === 1 ? 'Trình duyệt đang chặn định vị cho trang này. Hãy cho phép định vị hoặc bấm Chọn nơi khác.' : 'Không lấy được vị trí lúc này. Hãy bấm Chọn nơi khác.'); }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 60000 });
+  });
+})();
 // Khung "Duong di hom nay" tren trang Hom nay: xuat phat -> cac diem dung -> ket thuc, km/phut tung doan, chi duong toi diem ke tiep.
 (function () {
   'use strict';

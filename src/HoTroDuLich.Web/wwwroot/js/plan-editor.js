@@ -397,6 +397,8 @@
     if (!name) { $('pe-name').focus(); return showError('Nhập tên chuyến đi.'); }
     if (!dest) { $('pe-dest').focus(); return showError('Chọn ít nhất một điểm đến.'); }
     if (!start) { $('pe-start').focus(); return showError('Chọn ngày đi.'); }
+    if (originPick.pending()) { $('pe-origin').focus(); return showError('Điểm xuất phát chưa có vị trí. Chọn một dòng gợi ý, bấm Chọn trên bản đồ, hoặc xóa trống ô này.'); }
+    if (!$('pe-end-same').checked && endPick.pending()) { $('pe-end').focus(); return showError('Điểm kết thúc chưa có vị trí. Chọn một dòng gợi ý, bấm Chọn trên bản đồ, hoặc tích “Kết thúc tại điểm xuất phát”.'); }
     var body = { id: st.id, name: name, destination: dest, start: start, days: days(), budget: st.budget, origin: st.origin || null, end: $('pe-end-same').checked ? null : (st.end || null), notes: Object.keys(st.notes).filter(function (k) { return +k <= days() && (st.notes[k] || '').trim(); }).map(function (k) { return { day: +k, text: st.notes[k] }; }), items: st.items.map(function (i) { return { id: i.id || 0, day: i.day, time: i.time || null, content: i.content, cost: i.cost == null ? null : i.cost, serviceId: i.serviceId || null, placeId: i.placeId || null }; }) };
     btn.disabled = true; btn.textContent = 'Đang lưu…';
     api('/api/lapkehoach', 'POST', body).then(function (r) { dirty = false; location.href = '/Plans/Detail/' + r.id; }).catch(function (e) { btn.disabled = false; btn.textContent = 'Lưu'; showError(e.message); });
@@ -405,41 +407,98 @@
   $('pe-cancel').addEventListener('click', function (e) { if (dirty && !confirm('Bỏ các thay đổi chưa lưu?')) e.preventDefault(); else dirty = false; });
 
   // ---------- diem xuat phat / ket thuc
-  var pointPicker = function (key, inputId, listId) {
-    var input = $(inputId), list = $(listId), timer = 0, token = 0;
-    var close = function () { list.hidden = true; list.innerHTML = ''; };
-    var setPoint = function (p) { st[key] = p; input.value = p ? p.name : ''; close(); touch(); };
+  var pointPicker = function (key, inputId, listId, stateId) {
+    var input = $(inputId), list = $(listId), state = $(stateId), timer = 0, token = 0, hits = [];
+    var close = function () { list.hidden = true; list.innerHTML = ''; hits = []; };
+    var paint = function () {
+      var typed = input.value.trim();
+      if (st[key]) state.innerHTML = '<span class="pe-ok">✓ Đã có vị trí, dùng được để tính đường đi.</span>' + (isOwner ? ' <button type="button" class="pe-link" data-clear>Xóa</button>' : '');
+      else if (typed) state.innerHTML = '<span class="pe-warn">Chưa có vị trí. Chọn một dòng gợi ý, hoặc bấm Chọn trên bản đồ.</span>';
+      state.hidden = !st[key] && !typed;
+    };
+    var setPoint = function (p) { st[key] = p; input.value = p ? p.name : ''; close(); touch(); paint(); };
+    var choose = function (h) {
+      var name = (h.name + (h.secondary ? ', ' + h.secondary : '')).slice(0, 300);
+      if (h.lat != null && h.lng != null) return setPoint({ name: name, lat: h.lat, lng: h.lng });
+      input.disabled = true;
+      plain('/api/lapkehoach/diem-chi-tiet?placeId=' + encodeURIComponent(h.placeId)).then(function (d) { setPoint({ name: name, lat: d.lat, lng: d.lng }); }).catch(function (er) { showError(er.message); }).then(function () { input.disabled = !isOwner; });
+    };
+    var note = function (m) { hits = []; list.innerHTML = '<li class="pe-suggest-empty">' + m + '</li>'; list.hidden = false; };
     input.addEventListener('input', function () {
       if (st[key]) { st[key] = null; touch(); }
-      clearTimeout(timer); var q = input.value.trim(); if (q.length < 3) return close();
-      var mine = ++token;
+      paint(); clearTimeout(timer); var q = input.value.trim(); var mine = ++token; if (q.length < 2) return close();
       timer = setTimeout(function () {
-        plain('/api/lapkehoach/diem-goi-y?q=' + encodeURIComponent(q) + '&near=' + encodeURIComponent(st.dests && st.dests.length ? st.dests[0].name : '')).then(function (hits) {
+        plain('/api/lapkehoach/diem-goi-y?q=' + encodeURIComponent(q)).then(function (r) {
           if (mine !== token) return;
-          if (!hits.length) { list.innerHTML = '<li class="pe-suggest-empty">Chưa tìm thấy. Thử gõ rõ hơn hoặc bấm "Vị trí của tôi".</li>'; list.hidden = false; return; }
-          list.innerHTML = hits.slice(0, 6).map(function (h, n) { return '<li><button type="button" data-n="' + n + '"><strong>' + esc(h.name) + '</strong><small>' + esc(h.secondary || '') + '</small></button></li>'; }).join(''); list.hidden = false;
-          list.onclick = function (e) {
-            var b = e.target.closest('[data-n]'); if (!b) return; var h = hits[+b.dataset.n]; input.disabled = true;
-            plain('/api/lapkehoach/diem-chi-tiet?placeId=' + encodeURIComponent(h.placeId)).then(function (d) { setPoint({ name: h.name + (h.secondary ? ', ' + h.secondary : ''), lat: d.lat, lng: d.lng }); }).catch(function (er) { showError(er.message); }).then(function () { input.disabled = !isOwner; });
-          };
-        }).catch(function () { close(); });
+          var found = (r && r.hits) || [];
+          if (!found.length) return note(r && r.limited ? 'Dịch vụ tìm địa chỉ đang quá tải nên chưa gợi ý được. Bấm Chọn trên bản đồ hoặc Vị trí của tôi.' : 'Chưa tìm thấy. Thử gõ rõ hơn hoặc bấm Chọn trên bản đồ.');
+          hits = found;
+          list.innerHTML = found.map(function (h, n) { return '<li><button type="button" data-n="' + n + '"><strong>' + esc(h.name) + '</strong><small>' + esc(h.secondary || '') + '</small></button></li>'; }).join('') + (r.limited ? '<li class="pe-suggest-empty">Tìm địa chỉ đang quá tải, chỉ có địa điểm sẵn trên website. Nơi khác: bấm Chọn trên bản đồ.</li>' : '');
+          list.hidden = false;
+        }).catch(function () { if (mine === token) note('Không tải được gợi ý. Bấm Chọn trên bản đồ hoặc Vị trí của tôi.'); });
       }, 350);
     });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') return close();
+      if (e.key === 'Enter' && hits.length) { e.preventDefault(); choose(hits[0]); }
+    });
+    list.addEventListener('click', function (e) { var b = e.target.closest('[data-n]'); if (b && hits[+b.dataset.n]) choose(hits[+b.dataset.n]); });
+    state.addEventListener('click', function (e) { if (e.target.closest('[data-clear]')) { setPoint(null); input.focus(); } });
     document.addEventListener('click', function (e) { if (!list.contains(e.target) && e.target !== input) close(); });
-    return setPoint;
+    return { set: setPoint, paint: paint, pending: function () { return !st[key] && !!input.value.trim(); }, input: input };
   };
-  var setOrigin = pointPicker('origin', 'pe-origin', 'pe-origin-list'), setEnd = pointPicker('end', 'pe-end', 'pe-end-list');
+  var originPick = pointPicker('origin', 'pe-origin', 'pe-origin-list', 'pe-origin-state'), endPick = pointPicker('end', 'pe-end', 'pe-end-list', 'pe-end-state');
+  // ten cho mot toa do (neu tra duoc), khong chan thao tac khi dich vu khong tra loi
+  var nameAt = function (lat, lng) { return plain('/api/lapkehoach/dia-chi?lat=' + lat + '&lng=' + lng).then(function (r) { return (r && (r.address || [r.commune, r.province].filter(Boolean).join(', '))) || ''; }).catch(function () { return ''; }); };
   $('pe-origin-here').addEventListener('click', function () {
-    if (!navigator.geolocation) return showError('Trình duyệt này không hỗ trợ định vị.');
+    var btn = this;
+    if (!navigator.geolocation) return showError('Trình duyệt này không hỗ trợ định vị. Hãy bấm Chọn trên bản đồ.');
+    btn.disabled = true; btn.textContent = 'Đang lấy vị trí…';
+    var done = function () { btn.disabled = false; btn.textContent = 'Vị trí của tôi'; };
     navigator.geolocation.getCurrentPosition(function (p) {
+      done();
       var lat = +p.coords.latitude.toFixed(6), lng = +p.coords.longitude.toFixed(6);
-      if (lat < 5 || lat > 24 || lng < 101.5 || lng > 118.5) return showError('Vị trí của bạn nằm ngoài khu vực hỗ trợ. Hãy gõ tên nơi xuất phát.');
-      setOrigin({ name: 'Vị trí của tôi', lat: lat, lng: lng });
-    }, function () { showError('Không lấy được vị trí. Hãy cho phép định vị hoặc gõ tên nơi xuất phát.'); }, { enableHighAccuracy: false, timeout: 10000 });
+      if (lat < 5 || lat > 24 || lng < 101.5 || lng > 118.5) return showError('Vị trí của bạn nằm ngoài khu vực hỗ trợ. Hãy gõ tên nơi xuất phát hoặc chọn trên bản đồ.');
+      var point = { name: 'Vị trí của tôi', lat: lat, lng: lng };
+      showError(''); originPick.set(point);
+      nameAt(lat, lng).then(function (n) { if (n && st.origin === point) { point.name = n.slice(0, 300); originPick.input.value = point.name; } });
+    }, function (er) { done(); showError(er && er.code === 1 ? 'Trình duyệt đang chặn định vị cho trang này. Hãy cho phép định vị, hoặc bấm Chọn trên bản đồ.' : 'Không lấy được vị trí lúc này. Hãy bấm Chọn trên bản đồ.'); }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 60000 });
   });
-  $('pe-end-same').addEventListener('change', function () { $('pe-end-wrap').hidden = this.checked; if (this.checked) { st.end = null; $('pe-end').value = ''; } touch(); });
-  if (st.origin) $('pe-origin').value = st.origin.name || '';
-  if (st.end) { $('pe-end-same').checked = false; $('pe-end-wrap').hidden = false; $('pe-end').value = st.end.name || ''; }
+  // chon diem tren ban do: khong phu thuoc dich vu tim dia chi
+  var pmap = null, pmark = null, ppick = null, ptarget = null;
+  var openPointMap = function (picker, key, title) {
+    ptarget = picker; ppick = null; $('pe-point-title').textContent = title; $('pe-point-use').disabled = true;
+    $('pe-point-status').textContent = 'Bấm vào bản đồ để đặt điểm.'; $('pe-point').showModal();
+    if (!window.L) { $('pe-point-canvas').textContent = 'Không tải được bản đồ.'; return; }
+    if (pmap) { pmap.remove(); pmap = null; } pmark = null;
+    pmap = L.map('pe-point-canvas', { maxBounds: VN_BOUNDS, maxBoundsViscosity: 1 }); addTiles(pmap);
+    var cur = st[key], from = cur || st.origin || st.end;
+    if (from) pmap.setView([from.lat, from.lng], cur ? 15 : 12); else pmap.setView([16.1, 106.3], 5);
+    limitToVn(pmap);
+    // chua co diem nao: dua ban do ve diem den dau tien de do phai phong to tu ca nuoc
+    if (!from && st.dests && st.dests.length) { var here = pmap, want = (st.dests[0].name || '').toLowerCase(); plain('/api/lapkehoach/ban-do').then(function (pts) { var hit = pts.filter(function (p) { return (p.name || '').toLowerCase() === want; })[0]; if (hit && pmap === here && !ppick) here.setView([hit.lat, hit.lng], 11); }).catch(function () { }); }
+    var put = function (lat, lng, name) {
+      if (pmark) pmark.setLatLng([lat, lng]); else pmark = L.marker([lat, lng]).addTo(pmap);
+      var mine = ppick = { name: name || '', lat: +lat.toFixed(6), lng: +lng.toFixed(6) };
+      $('pe-point-use').disabled = false;
+      if (name) { $('pe-point-status').textContent = 'Đang chọn: ' + name; return; }
+      $('pe-point-status').textContent = 'Đã đặt điểm. Đang tìm tên vị trí…';
+      nameAt(mine.lat, mine.lng).then(function (n) { if (ppick !== mine) return; mine.name = n.slice(0, 300); $('pe-point-status').textContent = n ? 'Đã chọn: ' + n : 'Đã đặt điểm trên bản đồ.'; });
+    };
+    if (cur) put(cur.lat, cur.lng, cur.name || 'điểm đã lưu');
+    pmap.on('click', function (ev) { put(ev.latlng.lat, ev.latlng.lng); });
+    setTimeout(function () { pmap.invalidateSize(); limitToVn(pmap); }, 80);
+  };
+  $('pe-point-use').addEventListener('click', function () {
+    if (!ppick || !ptarget) return;
+    ptarget.set({ name: ppick.name || 'Điểm đã chọn trên bản đồ', lat: ppick.lat, lng: ppick.lng }); showError(''); $('pe-point').close();
+  });
+  $('pe-origin-map').addEventListener('click', function () { openPointMap(originPick, 'origin', 'Chọn điểm xuất phát trên bản đồ'); });
+  $('pe-end-map').addEventListener('click', function () { openPointMap(endPick, 'end', 'Chọn điểm kết thúc trên bản đồ'); });
+  $('pe-end-same').addEventListener('change', function () { $('pe-end-wrap').hidden = this.checked; if (this.checked) { st.end = null; $('pe-end').value = ''; endPick.paint(); } touch(); });
+  if (st.origin) $('pe-origin').value = st.origin.name || 'Điểm đã lưu';
+  if (st.end) { $('pe-end-same').checked = false; $('pe-end-wrap').hidden = false; $('pe-end').value = st.end.name || 'Điểm đã lưu'; }
+  originPick.paint(); endPick.paint();
 
   // ---------- khoi tao
   $('pe-name').value = st.name || ''; $('pe-start').value = st.start || ''; $('pe-days').value = st.days || 3; st.days = days();

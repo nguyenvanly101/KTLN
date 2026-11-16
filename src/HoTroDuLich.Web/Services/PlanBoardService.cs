@@ -146,6 +146,26 @@ public sealed class PlanBoardService(AppDbContext context,IHttpContextAccessor a
   return id;
  }
 
+ /// <summary>Goi y cho o diem xuat phat/ket thuc: dia diem va dich vu da co toa do tren website truoc, roi den dia chi tu Goong. Limited=true khi Goong khong tra loi.</summary>
+ public async Task<object> PointSuggest(string? q,CancellationToken ct)
+ {
+  var term=(q??"").Trim();if(term.Length>100)term=term[..100];
+  if(term.Length<2)return new{hits=Array.Empty<object>(),limited=false};
+  var local=await db.Set<DiscoveryEntry>().AsNoTracking().Where(e=>e.Status=="Published"&&e.Latitude!=null&&e.Longitude!=null&&e.Title.Contains(term)).Select(e=>new{e.Title,e.Address,e.Region,e.Latitude,e.Longitude}).Take(5).ToListAsync(ct);
+  var (remote,ok)=await goong.AutocompleteChecked(term,ct);
+  var hits=local.Select(e=>(object)new{name=e.Title,secondary=string.IsNullOrWhiteSpace(e.Address)?e.Region:e.Address,placeId=(string?)null,lat=(double?)e.Latitude,lng=(double?)e.Longitude})
+   .Concat(remote.Where(h=>h.PlaceId.Length>0).Take(6).Select(h=>(object)new{name=h.Name,secondary=h.Secondary,placeId=(string?)h.PlaceId,lat=(double?)null,lng=(double?)null})).ToList();
+  return new{hits,limited=!ok};
+ }
+ /// <summary>Dat diem xuat phat ngay tren trang Hom nay (giu nguyen diem ket thuc). Chi chu chuyen di.</summary>
+ public async Task SetOrigin(long id,PlanPoint? p)
+ {
+  Require(ValidPoint(p),"Vị trí nằm ngoài khu vực hỗ trợ.",422);
+  var plan=await Travel.SharedPlan(id);
+  Require(plan.MaTaiKhoan==UserId,"Chỉ chủ chuyến đi mới đổi được điểm xuất phát và kết thúc.",403);
+  var row=await db.Set<TripRoutePoints>().AsNoTracking().FirstOrDefaultAsync(x=>x.PlanId==id);
+  await SaveRoutePoints(id,new PlanDraft{Origin=p,End=row?.EndLat==null?null:new PlanPoint{Name=row.EndName,Lat=(double)row.EndLat,Lng=(double?)row.EndLng}});
+ }
  static bool ValidPoint(PlanPoint? p)=>p!=null&&p.Lat is >=5.0 and <=24.0&&p.Lng is >=101.5 and <=118.5;
  async Task SaveRoutePoints(long id,PlanDraft d)
  {

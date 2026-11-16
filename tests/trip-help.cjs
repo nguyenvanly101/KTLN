@@ -6,7 +6,7 @@ const { database, json, sql } = require('./branches-sql.cjs');
 const fixture = JSON.parse(fs.readFileSync('preview/branches-fixture.json', 'utf8'));
 const user = label => fixture.users.find(x => x.label === label);
 const results = []; const check = (ok, n) => { assert.ok(ok, n); results.push(n); };
-const day = n => new Date(Date.now() + n * 864e5).toISOString().slice(0, 10);
+const day = n => new Date(Date.now() + n * 864e5 + 7 * 36e5).toISOString().slice(0, 10); // ngay theo gio Viet Nam
 const stamp = Date.now().toString().slice(-7);
 const api = async (c, token, path, method = 'GET', body) => {
   const r = await fetch(base + path, { method, redirect: 'manual', headers: { cookie: [...c.cookies].map(([k, v]) => k + '=' + v).join('; '), RequestVerificationToken: token, ...(body ? { 'content-type': 'application/json' } : {}) }, body: body ? JSON.stringify(body) : undefined });

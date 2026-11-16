@@ -498,7 +498,10 @@ dialog[open].pe-picker.pe-narrow{height:auto;max-height:90vh;width:min(560px,cal
 .th-note{font-size:12px;margin-top:12px}.th-actions .btn[disabled]{opacity:.6}
 
 .pe-route-field{position:relative}
-.pe-pt{display:flex;gap:8px;align-items:center}.pe-pt .form-control{flex:1;min-width:0}
+.pe-pt{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.pe-pt .form-control{flex:1 1 240px;min-width:0}.pe-pt .btn{min-height:40px}
+.pe-pt-state{margin:6px 0 0;font-size:.9rem}.pe-ok{color:#0f766e;font-weight:600}.pe-warn{color:#b45309}.pe-link{border:0;background:none;color:#2447e8;text-decoration:underline;padding:0 4px;cursor:pointer}
+.pe-point-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:10px}.pe-point-foot span{color:#475569;font-size:.92rem;flex:1 1 220px}
+.depart-origin{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:8px}.depart-origin .help{flex-basis:100%;margin:0}
 .pe-suggest{list-style:none;margin:4px 0 0;padding:4px;border:1px solid var(--bs-border-color,#dfe3ea);border-radius:10px;background:#fff;box-shadow:0 6px 18px rgba(15,23,42,.12);max-height:260px;overflow:auto}
 .pe-suggest button{display:block;width:100%;text-align:left;background:none;border:0;padding:8px 10px;border-radius:8px}
 .pe-suggest button:hover,.pe-suggest button:focus-visible{background:#eef2ff}

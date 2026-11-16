@@ -24,11 +24,13 @@ public sealed class GoongPlacesService(HttpClient http,IConfiguration configurat
   catch(Exception e) when(e is HttpRequestException or TaskCanceledException or JsonException){logger.LogWarning("Khong goi duoc Goong: {Type}",e.GetType().Name);return null;}
  }
 
- public async Task<List<GoongHit>> Autocomplete(string? q,CancellationToken ct)
+ public async Task<List<GoongHit>> Autocomplete(string? q,CancellationToken ct)=>(await AutocompleteChecked(q,ct)).Hits;
+ /// <summary>Goi y kem co bao Goong co tra loi hay khong (Ok=false khi het han muc hoac mat ket noi), de giao dien khong bao nham la "khong tim thay".</summary>
+ public async Task<(List<GoongHit> Hits,bool Ok)> AutocompleteChecked(string? q,CancellationToken ct)
  {
-  var term=(q??"").Trim();if(!Enabled||term.Length<2)return [];if(term.Length>100)term=term[..100];
+  var term=(q??"").Trim();if(term.Length<2)return ([],true);if(!Enabled)return ([],false);if(term.Length>100)term=term[..100];
   var cacheKey="goong.ac."+term.ToLowerInvariant();
-  if(cache.TryGetValue(cacheKey,out List<GoongHit>? hit)&&hit!=null)return hit;
+  if(cache.TryGetValue(cacheKey,out List<GoongHit>? hit)&&hit!=null)return (hit,true);
   using var doc=await Get("v2/place/autocomplete?input="+Uri.EscapeDataString(term),ct);
   var list=new List<GoongHit>();
   if(doc!=null&&doc.RootElement.TryGetProperty("predictions",out var arr)&&arr.ValueKind==JsonValueKind.Array)
@@ -40,7 +42,7 @@ public sealed class GoongPlacesService(HttpClient http,IConfiguration configurat
     list.Add(new(name,Str(sf,"secondary_text"),Str(p,"description"),Str(p,"place_id")));
    }
   if(doc!=null)cache.Set(cacheKey,list,TimeSpan.FromMinutes(30));
-  return list;
+  return (list,doc!=null);
  }
 
  static readonly Dictionary<string,string> KindKeywords=new(StringComparer.OrdinalIgnoreCase){["HoatDong"]="khu du lịch",["AnUong"]="nhà hàng",["LuuTru"]="khách sạn",["PhuongTien"]="bến xe",["Tour"]="công ty du lịch",["GiaiTri"]="khu vui chơi",["SucKhoe"]="spa",["MuaSam"]="chợ",["DichVuHoTro"]="dịch vụ",["CaPhe"]="quán cà phê",["QuanChay"]="quán chay",["ChoAmThuc"]="chợ",["NhaNghi"]="nhà nghỉ",["CamTrai"]="khu cắm trại",["BenXe"]="bến xe",["ThueXe"]="thuê xe máy",["SanBay"]="sân bay",["GaTau"]="ga tàu",["BenTau"]="bến tàu",["TramXang"]="trạm xăng",["SuaXe"]="sửa xe",["BaiDoXe"]="bãi đỗ xe",["BenhVien"]="bệnh viện",["PhongKham"]="phòng khám",["NhaThuoc"]="nhà thuốc",["CongAn"]="công an",["CuuHo"]="cứu hộ",["Atm"]="ATM",["DoiTien"]="đổi tiền",["BuuDien"]="bưu điện",["SieuThi"]="siêu thị",["TrungTamTM"]="trung tâm thương mại",["GiatUi"]="giặt ủi",["NhaVeSinh"]="nhà vệ sinh công cộng",["SimWifi"]="cửa hàng sim",["GuiHanhLy"]="gửi hành lý",["QuaLuuNiem"]="quà lưu niệm"};

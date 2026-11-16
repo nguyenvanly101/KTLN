@@ -33,7 +33,9 @@ public sealed class PlanBoardController(TravelService travel,PlanBoardService bo
  [HttpGet("/api/lapkehoach/gan-day"),EnableRateLimiting("discovery")] public async Task<IActionResult> Around(string? kind,double lat,double lng,CancellationToken ct)=>await Api(()=>goong.Around(kind,lat,lng,ct));
  [HttpGet("/api/lapkehoach/goong-goi-y"),EnableRateLimiting("discovery")] public async Task<IActionResult> GoongSuggest(string? group,string? kind,string? destination,string? q,CancellationToken ct)=>await Api(()=>goong.Nearby(group,destination,q,ct,kind));
  /// <summary>Goi y dia chi/dia diem de chon diem xuat phat va ket thuc (khong gioi han theo nhom dich vu).</summary>
- [HttpGet("/api/lapkehoach/diem-goi-y"),EnableRateLimiting("discovery")] public async Task<IActionResult> PointSuggest(string? q,string? near,CancellationToken ct)=>await Api(async()=>{var term=(q??"").Trim();var area=(near??"").Trim();if(area.Length>0&&area.Length<=80&&term.IndexOf(area,StringComparison.OrdinalIgnoreCase)<0)term+=" "+area;return (object)await goong.Autocomplete(term,ct);});
+ [HttpGet("/api/lapkehoach/diem-goi-y"),EnableRateLimiting("discovery")] public async Task<IActionResult> PointSuggest(string? q,CancellationToken ct)=>await Api(()=>board.PointSuggest(q,ct));
+ /// <summary>Dat diem xuat phat cho chuyen di tu trang Hom nay (vi tri hien tai cua chu chuyen).</summary>
+ [HttpPost("/api/lapkehoach/{id:long}/xuat-phat")] public async Task<IActionResult> SetOrigin(long id,[FromBody]PlanPoint? point)=>await Api(async()=>{await board.SetOrigin(id,point);return new{ok=true};});
  /// <summary>Toa do cua mot dia diem da chon trong danh sach goi y (chi trong khung Viet Nam).</summary>
  [HttpGet("/api/lapkehoach/diem-chi-tiet"),EnableRateLimiting("discovery")] public async Task<IActionResult> PointDetail(string? placeId,CancellationToken ct)
  {

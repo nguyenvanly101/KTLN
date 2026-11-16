@@ -52,3 +52,22 @@ Trên trang Hôm nay (`/Journey/Today`), chỉ **chủ chuyến đi** thao tác 
 - **Bỏ qua hạng mục:** cột mới `HoatDongLichTrinh.BoQuaLuc` (`Decision=Skip` của `POST /Journey/Complete`). Hạng mục bỏ qua không tính là hoàn thành, được đánh dấu "Đã bỏ qua", điểm tiếp theo chuyển sang hạng mục sau, tiến độ ghi "0 / 3 · 1 bỏ qua". Bấm **Mở lại** để hoàn tác; đánh dấu xong hoặc đổi giờ hạng mục sẽ xóa dấu bỏ qua.
 - **Kết thúc:** `POST /Journey/Finish` ghi giờ kết thúc, chỉ khi đã khởi hành; sau đó trang hiện "Chuyến đi đã kết thúc" và không còn nút.
 - Dữ liệu: `Database/033_KhoiHanh.sql` (tự chạy khi khởi động). Kiểm tra: `tests/trip-depart.cjs`.
+
+## Ô điểm xuất phát dễ dùng hơn và không phụ thuộc Goong (17/11/2026)
+
+Nguyên nhân lỗi: ô điểm xuất phát chỉ lấy gợi ý từ Goong. Khi khóa Goong hết hạn mức trong ngày (Goong trả mã 429), website nhận danh sách rỗng và báo "Chưa tìm thấy" với mọi từ khóa, nên không đặt được điểm xuất phát. Ngoài ra gõ tên mà không chọn dòng gợi ý thì khi lưu điểm xuất phát bị bỏ mất mà không báo.
+
+Đã sửa:
+
+- **Gợi ý từ hai nguồn.** Địa điểm và dịch vụ đã có tọa độ trên website hiện trước (không tốn lượt Goong), sau đó là địa chỉ từ Goong. Không còn ghép tên điểm đến vào từ khóa, vì nơi xuất phát thường là nhà ở tỉnh khác.
+- **Báo đúng tình trạng.** Khi Goong không trả lời, ô gợi ý ghi rõ dịch vụ tìm địa chỉ đang quá tải và chỉ sang hai cách còn lại, thay vì báo "Chưa tìm thấy".
+- **Chọn trên bản đồ.** Nút mới cho cả điểm xuất phát và điểm kết thúc: bấm vào bản đồ để đặt điểm, bấm chỗ khác để đổi, rồi **Dùng điểm này**. Cách này không cần Goong; nếu tra được tên thì điền tên, không thì ghi "Điểm đã chọn trên bản đồ".
+- **Vị trí của tôi** tự điền địa chỉ thật khi tra được, và báo rõ khi trình duyệt chặn định vị.
+- **Dòng trạng thái** dưới ô: "Đã có vị trí" kèm nút Xóa, hoặc "Chưa có vị trí" khi mới gõ tên.
+- **Chặn lưu thiếu vị trí.** Gõ tên mà chưa có vị trí thì bấm Lưu sẽ báo và đưa con trỏ về ô đó. Ô để trống vẫn lưu được.
+- **Phím Enter** chọn dòng gợi ý đầu tiên.
+- **Đặt ngay trước khi khởi hành.** Khung "Sẵn sàng khởi hành?" ở trang Hôm nay có nút **Xuất phát từ vị trí hiện tại của tôi** (`POST /api/lapkehoach/{id}/xuat-phat`, chỉ chủ chuyến, giữ nguyên điểm kết thúc) và lối sang **Chọn nơi khác**.
+
+Giới hạn: khi Goong hết hạn mức, đường đi vẫn tính được nhưng là ước tính theo đường chim bay nhân hệ số, và gợi ý chỉ gồm nơi đã có trên website. Công cụ nhập dữ liệu Goong dùng chung khóa và hạn mức với website, nên chạy nhập hàng loạt sẽ làm tính năng này tạm yếu đi trong ngày đó.
+
+Kiểm tra: `tests/trip-route.cjs` (36 mục).
