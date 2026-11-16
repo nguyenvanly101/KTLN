@@ -25,6 +25,8 @@ builder.Services.AddControllersWithViews(o =>
 });
 builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("HoTroDuLich")));
 builder.Services.AddMemoryCache();
+// Mot tac vu nen gap loi (vi du SQL qua gio khi may thieu bo nho) khong duoc lam dung ca website.
+builder.Services.Configure<HostOptions>(o => o.BackgroundServiceExceptionBehavior = BackgroundServiceExceptionBehavior.Ignore);
 builder.Logging.AddFilter("System.Net.Http.HttpClient.DiscoveryRouting",LogLevel.Warning);
 var keyFolder=Path.GetFullPath(builder.Configuration["DataProtection:ThuMucKhoa"]??Path.Combine("App_Data","keys"),builder.Environment.ContentRootPath);
 var protection = builder.Services.AddDataProtection().SetApplicationName("HoTroDuLichTuTuc").PersistKeysToFileSystem(new DirectoryInfo(keyFolder));
@@ -179,10 +181,30 @@ app.MapStaticAssets();
 app.MapControllerRoute(name: "default", pattern: "{controller=Explore}/{action=Index}/{id?}").WithStaticAssets();
 if (args.Contains("--initialize") || app.Environment.IsDevelopment())
 {
-    using var scope = app.Services.CreateScope();
-    await Seed.Initialize(scope.ServiceProvider, app.Environment.ContentRootPath);
-    await DiaGioiBootstrap.Assign(scope.ServiceProvider);
-    await DiscoveryIndexWorker.Initialize(scope.ServiceProvider);
+    // Cac buoc chuan bi du lieu luc khoi dong. Khi may thieu bo nho, SQL Server LocalDB co the tra loi cham hoac qua gio:
+    // thu lai vai lan, neu van loi thi ghi log va van mo website (tru khi chay --initialize, khi do loi phai duoc bao ra).
+    var startLog = app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("KhoiDong");
+    var strict = args.Contains("--initialize");
+    async Task Prepare(string name, Func<IServiceProvider, Task> step)
+    {
+        for (var attempt = 1; ; attempt++)
+        {
+            try { using var scope = app.Services.CreateScope(); await step(scope.ServiceProvider); return; }
+            catch (Exception e) when (attempt < 3)
+            {
+                startLog.LogWarning("Buoc khoi dong {Step} loi lan {Attempt} ({Type}); thu lai sau 5 giay.", name, attempt, e.GetType().Name);
+                await Task.Delay(TimeSpan.FromSeconds(5));
+            }
+            catch (Exception e) when (!strict)
+            {
+                startLog.LogError(e, "Buoc khoi dong {Step} khong hoan thanh sau 3 lan; website van mo, buoc nay se chay lai o lan khoi dong sau.", name);
+                return;
+            }
+        }
+    }
+    await Prepare("Seed", sp => Seed.Initialize(sp, app.Environment.ContentRootPath));
+    await Prepare("DiaGioi", sp => DiaGioiBootstrap.Assign(sp));
+    await Prepare("ChiMucKhamPha", sp => DiscoveryIndexWorker.Initialize(sp));
     if (args.Contains("--initialize"))
         return;
 }
