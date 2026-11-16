@@ -76,8 +76,9 @@ public sealed partial class DiscoveryService(AppDbContext db,TravelService trave
  async Task Hydrate(List<DiscoveryEntry> entries)
  {
   var pids=entries.Where(x=>x.PlaceId!=null).Select(x=>x.PlaceId!.Value).ToList();var sids=entries.Where(x=>x.ServiceId!=null).Select(x=>x.ServiceId!.Value).ToList();
-  var places=await db.DiaDiemDuLich.AsNoTracking().Where(x=>pids.Contains(x.MaDiaDiem)).ToDictionaryAsync(x=>x.MaDiaDiem);
-  var services=await travel.PublicServices().AsNoTracking().Where(x=>sids.Contains(x.MaDichVu)).ToDictionaryAsync(x=>x.MaDichVu);
+  // Danh sach dai (ban do tai ca nghin muc): tai ca bang thay vi gui hang tram tham so len may chu.
+  var places=pids.Count>300?await db.DiaDiemDuLich.AsNoTracking().ToDictionaryAsync(x=>x.MaDiaDiem):await db.DiaDiemDuLich.AsNoTracking().Where(x=>pids.Contains(x.MaDiaDiem)).ToDictionaryAsync(x=>x.MaDiaDiem);
+  var services=sids.Count>300?await travel.PublicServices().AsNoTracking().ToDictionaryAsync(x=>x.MaDichVu):await travel.PublicServices().AsNoTracking().Where(x=>sids.Contains(x.MaDichVu)).ToDictionaryAsync(x=>x.MaDichVu);
   foreach(var e in entries){if(e.PlaceId is long pid&&places.TryGetValue(pid,out var p)){e.Title=p.TenDiaDiem;e.Region=p.KhuVuc;e.DonViId=p.DonViId;e.Address=p.DiaChi??e.Address;e.Summary=p.MoTa??e.Summary;}if(e.ServiceId is long sid&&services.TryGetValue(sid,out var s)){e.Title=s.TenDichVu;e.Region=s.KhuVucPhucVu;e.DonViId=s.DonViId;e.Address=s.DiaChiPhucVu??e.Address;e.Summary=s.MoTa??e.Summary;e.PriceFrom=s.GiaThamKhao;e.PriceTo=null;e.PriceUnit=s.DonViGia;e.Hours=s.ThoiGianPhucVu??e.Hours;e.Includes=s.DieuKienPhucVu??e.Includes;e.Tags+=" "+DanhMuc.Ten(s.LoaiDichVu);}}
  }
  public async Task<DiscoverySearchPage> Search(DiscoveryFilter f,bool map=false)
@@ -132,10 +133,12 @@ public sealed partial class DiscoveryService(AppDbContext db,TravelService trave
   if(f.Lat!=null){var lat=f.Lat.Value;var lng=f.Lng!.Value;var dy=f.RadiusKm/110.5;var dx=f.RadiusKm/(111.32*Math.Max(.01,Math.Cos(lat*Math.PI/180)));query=query.Where(e=>e.Latitude>=(decimal)(lat-dy)&&e.Latitude<=(decimal)(lat+dy)&&e.Longitude>=(decimal)(lng-dx)&&e.Longitude<=(decimal)(lng+dx));}
   if(map)query=query.Where(e=>e.Latitude!=null);
   var total=await query.CountAsync();// Sap xep tren cot hep roi moi tai noi dung: tranh xin cap bo nho lon cho phep sap xep cac dong co Body dai (LocalDB it bo nho se cho rat lau).
-  var ids=await query.OrderByDescending(e=>e.Title==f.Q).ThenByDescending(e=>e.Kind=="Destination").ThenByDescending(e=>e.UpdatedAt).ThenBy(e=>e.Id).Select(e=>e.Id).Take(1500).ToListAsync();
+  var idQuery=query.OrderByDescending(e=>e.Title==f.Q).ThenByDescending(e=>e.Kind=="Destination").ThenByDescending(e=>e.UpdatedAt).ThenBy(e=>e.Id).Select(e=>e.Id).Take(1500);
+  var ids=await idQuery.ToListAsync();
   var order=new Dictionary<long,int>();for(var n=0;n<ids.Count;n++)order[ids[n]]=n;
-  var list=new List<DiscoveryEntry>();foreach(var chunk in ids.Chunk(500)){var part=chunk.ToList();list.AddRange(await db.Set<DiscoveryEntry>().AsNoTracking().Where(e=>part.Contains(e.Id)).ToListAsync());}
-  list=list.OrderBy(e=>order[e.Id]).ToList();await Hydrate(list);
+  // Tai noi dung bang truy van con (khong gui danh sach ma dai len may chu, khong sap xep dong rong).
+  var list=await db.Set<DiscoveryEntry>().AsNoTracking().Where(e=>idQuery.Contains(e.Id)).ToListAsync();
+  list=list.Where(e=>order.ContainsKey(e.Id)).OrderBy(e=>order[e.Id]).ToList();await Hydrate(list);
   var cards=list.Select(e=>new DiscoveryCard(e,f.Lat!=null&&e.Latitude!=null?DiscoveryText.Distance(f.Lat.Value,f.Lng!.Value,(double)e.Latitude.Value,(double)e.Longitude!.Value):null)).ToList();
   if(f.Lat!=null)cards=cards.Where(c=>c.DistanceKm<=f.RadiusKm).ToList();if(f.At!=null){Need(f.Date!=null,"Chọn ngày để tìm theo giờ mở cửa.",400);cards=cards.Where(c=>DiscoveryText.OpenAt(c.Entry,f.Date!.Value,f.At.Value)).ToList();}
   if(f.Lat!=null||f.At!=null||total<=1500)total=cards.Count;
