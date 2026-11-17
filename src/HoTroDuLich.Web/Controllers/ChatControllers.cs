@@ -121,6 +121,7 @@ public sealed class ChatPagesController(TravelService travel,ChatService chat):A
  public async Task<IActionResult> OfBooking(long requestId)
  {
   var id=await chat.ConversationOfBooking(requestId);
+  if(id==null){try{id=await chat.AttachBooking(requestId);}catch(BusinessException){id=null;}}
   return id==null?Redirect("/Bookings/Detail/"+requestId):Redirect("/tin-nhan/"+id);
  }
  [HttpGet("/tin-nhan/dich-vu/{serviceId:long}"),Authorize(Roles=TravelService.Traveler)]

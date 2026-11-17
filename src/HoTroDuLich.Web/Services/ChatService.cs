@@ -381,10 +381,10 @@ public sealed partial class ChatService(AppDbContext context,IHttpContextAccesso
   Require(await db.Set<TinNhanChat>().CountAsync(m=>m.SenderId==UserId&&m.CreatedAt>since)<PerMinute,"Bạn gửi quá nhanh. Hãy thử lại sau ít phút.",429);
  }
  /// <summary>Them mot tin the/su kien vao cuoc tro chuyen va cap nhat dau cuoc tro chuyen. Goi trong Execute.</summary>
- async Task<ChatMessageDto> AppendCard(long conversationId,bool traveler,string kind,string body,long? requestId,long? connectionId=null,long? agreementId=null)
+ async Task<ChatMessageDto> AppendCard(long conversationId,bool traveler,string kind,string body,long? requestId,long? connectionId=null,long? agreementId=null,long? senderId=null)
  {
   var c=await db.Set<CuocTroChuyen>().SingleAsync(x=>x.Id==conversationId);var now=Clock.BayGioUtc;
-  var m=new TinNhanChat{ConversationId=c.Id,SenderId=UserId,Side=traveler?"Traveler":"Branch",Kind=kind,Body=Cut(body,MaxBody),BookingRequestId=requestId,ConnectionId=connectionId,AgreementId=agreementId,CreatedAt=now};
+  var m=new TinNhanChat{ConversationId=c.Id,SenderId=senderId??UserId,Side=traveler?"Traveler":"Branch",Kind=kind,Body=Cut(body,MaxBody),BookingRequestId=requestId,ConnectionId=connectionId,AgreementId=agreementId,CreatedAt=now};
   db.Add(m);await db.SaveChangesAsync();
   c.LastMessageId=m.Id;c.LastMessageAt=now;c.LastPreview=Cut((agreementId!=null?(kind=="Agreement"?"[Thỏa thuận đi cùng] ":"[Đi cùng] "):connectionId!=null?(kind=="Connection"?"[Lời rủ đi cùng] ":"[Đi cùng] "):kind=="Booking"?"[Yêu cầu đặt] ":"[Đặt dịch vụ] ")+body.Replace('\n',' '),110);c.LastFromTraveler=traveler;
   if(traveler){c.State="Open";c.TravelerReadId=m.Id;c.TravelerReadAt=now;}else{c.BranchReadId=m.Id;c.BranchReadAt=now;}

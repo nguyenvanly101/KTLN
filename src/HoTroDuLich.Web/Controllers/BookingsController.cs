@@ -5,17 +5,21 @@ using Microsoft.AspNetCore.Mvc;
 namespace HoTroDuLich.Web.Controllers;
 [Authorize(Roles=TravelService.Traveler+","+TravelService.ProviderRole)]
 [SucAuthorize(SucAccess.Booking)]
-public class BookingsController(TravelService s,TripWorkspaceService trips,BranchService branches):AppController(s){
+public class BookingsController(TravelService s,TripWorkspaceService trips,BranchService branches,ChatService chat):AppController(s){
  /// <summary>Nha cung cap chi thay yeu cau cua dich vu thuoc co so dang chon.</summary>
- async Task<List<HoTroDuLich.Web.Domain.YeuCauDatDichVu>> ForBranch(List<HoTroDuLich.Web.Domain.YeuCauDatDichVu> all)
+ async Task<List<HoTroDuLich.Web.Domain.YeuCauDatDichVu>> ForBranch(List<HoTroDuLich.Web.Domain.YeuCauDatDichVu> all,bool everything=false)
  {
   if (!User.IsInRole(TravelService.ProviderRole)) return all;
   var current = await branches.CurrentBranch();
   if (current == null) return all;
   var linked = await branches.ServiceIdsOf(current.Id);
+  // Yeu cau dang cho o co so khac khong duoc an lang le: bao so luong va cho xem tat ca.
+  ViewBag.BranchName=current.Name;ViewBag.AllBranches=everything;
+  ViewBag.OtherWaiting=all.Count(x=>!linked.Contains(x.MaDichVu)&&(x.TrangThai is HoTroDuLich.Web.Domain.TrangThaiYeuCau.ChoPhanHoi or HoTroDuLich.Web.Domain.TrangThaiYeuCau.DeXuatKhac));
+  if(everything)return all;
   return all.Where(x => linked.Contains(x.MaDichVu)).ToList();
  }
- public async Task<IActionResult> Index(){ViewBag.ServiceNames=await S.BookingServiceNames();return View(await ForBranch(await S.Bookings()));}
+ public async Task<IActionResult> Index(bool tatCa=false){ViewBag.ServiceNames=await S.BookingServiceNames();return View(await ForBranch(await S.Bookings(),tatCa));}
  public async Task<IActionResult> Detail(long id){ViewBag.ServiceName=await S.BookingServiceName(id);return View(await S.Booking(id));}
  [SucAuthorize(SucAccess.BookingChange)]
  public async Task<IActionResult> Adjustments(){ViewBag.ServiceNames=await S.BookingServiceNames();return View(await ForBranch(await S.AdjustmentBookings()));}
@@ -27,7 +31,7 @@ public class BookingsController(TravelService s,TripWorkspaceService trips,Branc
  public async Task<IActionResult> Outcome(long id){ViewBag.ServiceName=await S.BookingServiceName(id);ViewBag.Results=await S.Results(id);ViewBag.Items=await S.BookingItems(id);return View(await S.Booking(id));}
  [Authorize(Roles=TravelService.Traveler),HttpGet] public async Task<IActionResult> Create(long id,long? planId=null,long? activityId=null,long? branchId=null){var input=await trips.BookingForm(id,planId,activityId);input.BranchId=branchId;ViewBag.Service=await S.BookableService(id);return View(input);}
  [Authorize(Roles=TravelService.Traveler),HttpPost] public async Task<IActionResult> Create(BookingInput i){ViewBag.Warnings=await S.CheckBooking(i);ViewBag.ServiceName=(await S.PublicService(i.ServiceId)).TenDichVu;return View("Preview",i);}
- [Authorize(Roles=TravelService.Traveler),HttpPost] public async Task<IActionResult> Submit(BookingInput i)=>Done("/Bookings/Detail/"+await S.Book(i),"Đã gửi yêu cầu, chờ nhà cung cấp phản hồi.");
+ [Authorize(Roles=TravelService.Traveler),HttpPost] public async Task<IActionResult> Submit(BookingInput i){var id=await S.Book(i);try{await chat.AttachBooking(id);}catch(BusinessException){/* yeu cau da gui; chi khong gan duoc vao tro chuyen */}return Done("/Bookings/Detail/"+id,"Đã gửi yêu cầu, chờ nhà cung cấp phản hồi.");}
  [Authorize(Roles=TravelService.Traveler),HttpPost] public async Task<IActionResult> Revise(BookingInput i){ViewBag.Service=await S.BookableService(i.ServiceId);return View("Create",i);}
  [Authorize(Roles=TravelService.Traveler),HttpPost] public async Task<IActionResult> Trip(long id,string version,long? planId){await trips.AssignBooking(id,version,planId);return Done("/Bookings/Detail/"+id,"Đã cập nhật chuyến đi cho yêu cầu.");}
  [HttpPost] public async Task<IActionResult> Respond(CommandInput i){await S.BookingAction(i);return Done("/Bookings/Detail/"+i.Id);}
