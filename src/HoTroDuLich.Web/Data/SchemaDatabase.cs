@@ -75,6 +75,7 @@ public static class SchemaDatabase
             await ExecuteScript(db, Path.Combine(root, "Database", "033_KhoiHanh.sql"));
             await ExecuteScript(db, Path.Combine(root, "Database", "034_NhanDiaDiem.sql"));
             await ExecuteScript(db, Path.Combine(root, "Database", "035_AnhMinhHoa.sql"));
+            await ExecuteScript(db, Path.Combine(root, "Database", "036_DuLieuKhamPha.sql"));
         }
         finally { await db.Database.CloseConnectionAsync(); }
     }
