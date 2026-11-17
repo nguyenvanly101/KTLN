@@ -31,3 +31,16 @@ Build thành công chưa có nghĩa Windows cho phép chạy assembly. Lỗi 0x8
 ## Khi đã chạy được
 
 Terminal có `Now listening on: http://localhost:5216`; mở địa chỉ đó. Nếu xuất hiện lỗi SQL trong lúc dùng, kiểm tra lại trạng thái instance và log trước khi thao tác với database. Sao lưu database và App_Data trước mọi thay đổi dữ liệu; không xóa instance để chữa lỗi kết nối.
+
+## Bước gán địa giới không còn quá giờ (17/11/2026)
+
+Thủ tục `usp_GanDonViChoKhuVucCu` chạy mỗi lần khởi động. Trước đây nó luôn dựng bảng ứng viên cho toàn bộ khoảng 14.000 đơn vị hành chính rồi sắp xếp, gom nhóm, kể cả khi không còn bản ghi nào cần gán. Khi máy thiếu bộ nhớ, bước này quá 30 giây và bị bỏ qua.
+
+Đã sửa trong `Database/008b_GanDonViChoKhuVucCu.sql`:
+
+- **Thoát sớm** khi không còn bản ghi nào cần xử lý (chưa có đơn vị, khác "Việt Nam", chưa nằm trong hàng chờ). Đây là trường hợp thường gặp; chạy khoảng 0,1 đến 0,2 giây.
+- **Chỉ xét các tên khu vực đang chờ gán** thay vì toàn bộ đơn vị. Khi có một bản ghi cần gán, thủ tục chạy khoảng 0,6 giây trên cơ sở dữ liệu thử; cách cũ chạy hơn 120 giây vẫn chưa xong.
+
+Quy tắc gán không đổi: khớp đúng một đơn vị thì tự gán, không khớp hoặc khớp nhiều thì vào hàng chờ.
+
+Trên cơ sở dữ liệu thật, hai lần bị bỏ qua không làm thiếu dữ liệu: chỉ có 4 mục Khám phá chưa có đơn vị, đều là bài hướng dẫn chung ghi khu vực "Việt Nam" mà thủ tục cố ý bỏ qua.
