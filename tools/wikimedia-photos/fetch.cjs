@@ -41,7 +41,7 @@ async function getJson(url, key, wait) {
   }
   return null;
 }
-const wikiSummary = title => getJson('https://vi.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(title.split(' ').join('_')), null, 700);
+const wikiSummary = title => getJson('https://vi.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(title.split(' ').join('_')), null, 300);
 const otm = (p, cacheKey) => OTM ? getJson('https://api.opentripmap.com/0.1/en/places/' + p + (p.includes('?') ? '&' : '?') + 'apikey=' + OTM, 'otm:' + cacheKey, 250) : null;
 
 const fold = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[đĐ]/g, 'd').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();

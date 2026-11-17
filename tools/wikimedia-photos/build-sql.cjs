@@ -1,14 +1,14 @@
 // Sinh SQL nhap anh Wikimedia da duyet va (tuy chon) chep anh vao wwwroot/anh-tra-cuu.
 // Chay: node tools/wikimedia-photos/build-sql.cjs <thu-muc-ra> [--loai=T12,M345] [--chep]
 // --loai: ma anh khop sai can bo (T = tinh/thanh, M = muc tra cuu), lay tu xem-truoc.html.
-// Anh trung voi muc khac (duplicateOf) bi bo, tru anh dau tien.
+// Anh trung (cung tinh o dia gioi cu va moi, hoac cung dia diem) duoc giu; loai bang --loai neu khop sai.
 const fs = require('fs'), path = require('path');
 const args = process.argv.slice(2); const out = args.find(a => !a.startsWith('--'));
 if (!out) { console.error('Thieu thu muc ra'); process.exit(1); }
 const skip = new Set(((args.find(a => a.startsWith('--loai=')) || '').slice(7)).split(',').map(s => s.trim().toUpperCase()).filter(Boolean));
 const copy = args.includes('--chep');
 const rows = JSON.parse(fs.readFileSync(path.join(out, 'staging.json'), 'utf8'))
-  .filter(r => !r.duplicateOf && !skip.has((r.target === 'unit' ? 'T' : 'M') + r.id));
+  .filter(r => !skip.has((r.target === 'unit' ? 'T' : 'M') + r.id));
 const sq = s => "N'" + String(s).split("'").join("''") + "'";
 const web = '/anh-tra-cuu/';
 let s = '-- Anh Wikimedia da duyet: ' + rows.length + ' anh. Chi gan cho muc chua co anh (khong de anh do co so cung cap).\r\nSET XACT_ABORT ON;\r\nBEGIN TRANSACTION;\r\n';
