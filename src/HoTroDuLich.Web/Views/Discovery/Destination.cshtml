@@ -10,24 +10,18 @@
 }
 <div class="ds-page dest-page">
  <nav class="dest-crumbs" aria-label="Vị trí"><a href="/diem-den">Điểm đến</a>@foreach(var p in Model.Path){<span aria-hidden="true">›</span>@if(p.Id==u.Id){<strong>@p.FullName</strong>}else{<a href="/diem-den/@p.Id">@p.FullName</a>}}</nav>
- <section class="dest-hero dest-hero-compact">
-  <div>
-   <span class="eyebrow">ĐIỂM ĐẾN</span>
+ <section class="dest-hero dest-hero-photo">
+  @if(photo!=null){<img src="@photo" alt="" width="1200" height="480" fetchpriority="high"/>}
+  <div class="dest-hero-in">
    <h1>@u.FullName</h1>
    <p>@(Model.Total>0?$"{Model.Total} mục thông tin đã công bố, gồm cả các khu vực nhỏ hơn bên trong.":"Chưa có thông tin nào được công bố cho khu vực này.")</p>
   </div>
-  @if(photo!=null){<img src="@photo" alt="" width="420" height="280"/>}
  </section>
 
  <nav class="dest-tabs" aria-label="Xem theo nhu cầu">@foreach(var t in Model.Tabs){<a href="@TabUrl(t.Key)" class="@(t.Key==Model.Tab?"active":"")" aria-current="@(t.Key==Model.Tab?"page":null)">@t.Label@if(t.Key!="tong-quan"&&t.Count>0){<small>@t.Count</small>}</a>}</nav>
 
  @if(Model.Tab=="tong-quan")
  {
-  <partial name="/Views/Shared/_QaBox.cshtml" model="u.Id"/>
-  @if(Model.NewProvinces.Count>0)
-  {
-   <aside class="dest-note" role="note"><strong>Thay đổi hành chính từ 01/07/2025.</strong> Các xã/phường thuộc khu vực này nay thuộc: @string.Join("; ",Model.NewProvinces.Select(m=>$"{m.Province} ({m.Units} đơn vị)")). Dữ liệu theo bảng chuyển đổi của Tổng cục Thống kê.</aside>
-  }
   @if(Model.Areas.Any(a=>a.Count>0))
   {
    <section class="dest-section" id="areas"><div class="ds-section-head"><div><span class="eyebrow">THU HẸP THEO KHU VỰC</span><h2>@(u.Level==1?"Các quận, huyện, thị xã":"Các xã, phường, thị trấn")</h2></div></div>
@@ -54,6 +48,11 @@
     <div class="ds-card-grid">@foreach(var g in Model.Guides){<partial name="_Card" model="new DiscoveryCard(g)"/>}</div>
    </section>
   }
+  @if(Model.NewProvinces.Count>0)
+  {
+   <p class="dest-note" role="note"><strong>Thay đổi hành chính từ 01/07/2025.</strong> Các xã/phường thuộc khu vực này nay thuộc: @string.Join("; ",Model.NewProvinces.Select(m=>$"{m.Province} ({m.Units} đơn vị)")). Dữ liệu theo bảng chuyển đổi của Tổng cục Thống kê.</p>
+  }
+  <details class="dest-fold"><summary>Câu hỏi từ du khách <span>Hỏi hoặc xem tất cả</span></summary><partial name="/Views/Shared/_QaBox.cshtml" model="u.Id"/></details>
  }
  else
  {

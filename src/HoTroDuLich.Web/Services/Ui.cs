@@ -16,8 +16,8 @@ public static class Ui
 
     public static IHtmlContent Icon(string name) => new HtmlString($"<svg class=\"icon\" aria-hidden=\"true\"><use href=\"/images/icons.svg#{name}\"></use></svg>");
     /// <summary>Anh that cua diem den neu he thong co; null khi chua co (giao dien dung khoi mau thay vi anh sai).</summary>
-    public static string? DestinationPhoto(string name) => name.Contains("Hội An") ? "/images/hoian.jpg" : name.Contains("Hải Phòng") || name.Contains("Lan Hạ") || name.Contains("Hạ Long") ? "/images/vietnam-bay.jpg" : name.Contains("Đà Lạt") || name.Contains("Lâm Đồng") ? "/images/dalat.jpg" : null;
-    public static string DestinationImage(string region) => region.Contains("Hội An") ? "/images/hoian.jpg" : region.Contains("Hải Phòng") || region.Contains("Lan Hạ") || region.Contains("Hạ Long") ? "/images/vietnam-bay.jpg" : "/images/dalat.jpg";
+    public static string? DestinationPhoto(string name) => name.Contains("Hội An") ? "/images/hoian.jpg" : name.Contains("Hải Phòng") || name.Contains("Lan Hạ") || name.Contains("Hạ Long") || name.Contains("Quảng Ninh") ? "/images/vietnam-bay.jpg" : name.Contains("Đà Lạt") || name.Contains("Lâm Đồng") ? "/images/dalat.jpg" : null;
+    public static string DestinationImage(string region) => region.Contains("Hội An") ? "/images/hoian.jpg" : region.Contains("Hải Phòng") || region.Contains("Lan Hạ") || region.Contains("Hạ Long") || region.Contains("Quảng Ninh") ? "/images/vietnam-bay.jpg" : "/images/dalat.jpg";
     public static string ServiceImage(DichVuDuLich s) => ServicePhotos(s.AnhJson).Length>0 ? "/service-photos/"+s.MaDichVu+"/0" : DanhMuc.ChuanHoa(s.LoaiDichVu) == "LuuTru" ? "/images/stay.jpg" : DanhMuc.ChuanHoa(s.LoaiDichVu) == "AnUong" ? "/images/food.jpg" : DestinationImage(s.KhuVucPhucVu);
     public static string CategoryIcon(string type) => DanhMuc.ChuanHoa(type) switch { "LuuTru" => "bed", "AnUong" => "food", "PhuongTien" => "car", "HoatDong" => "compass", _ => "pin" };
 }

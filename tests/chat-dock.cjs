@@ -49,7 +49,7 @@ const stamp = Date.now().toString().slice(-8);
   // 2. Che do nhung
   const full = await a.get('/tin-nhan');
   const emb = await a.get('/tin-nhan?embed=1');
-  check(full.html.includes('workspace-sidebar') && !full.html.includes('is-embed'), 'Trang /tin-nhan day du co thanh ben');
+  check(!full.html.includes('workspace-sidebar') && full.html.includes('id="main-navigation"') && !full.html.includes('is-embed'), 'Trang /tin-nhan day du dung thanh tren, khong thanh ben');
   check(emb.status === 200 && emb.html.includes('is-embed') && emb.html.includes('data-chat-app') && emb.html.includes('<base target="_top"') && !emb.html.includes('workspace-sidebar') && !emb.html.includes('chat-dock.js'), 'Che do nhung: khong thanh ben, co hop thu, lien ket mo ra trang goc');
   check(emb.html.includes('data-chat-open-compose') && emb.html.includes('data-chat-compose-q'), 'Hop thu co nut "Tin nhan moi" va o tim');
   const embBranch = await a.get(`/tin-nhan/co-so/${branch.Id}?embed=1`);

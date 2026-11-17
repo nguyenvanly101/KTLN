@@ -26,8 +26,8 @@ const fd = values => { const f = new FormData(); for (const [k, v] of Object.ent
   // 1. Menu
   const t1 = decode((await traveler.get('/Plans')).html);
   check(/class="icon-button chat-link[^"]*" href="\/tin-nhan"/.test(t1), 'Khach: Tin nhan nam canh thong bao o thanh tren');
-  const side = (t1.match(/<nav[^>]*class="sidebar-nav"[\s\S]*?<\/nav>/) || [''])[0];
-  check(side.includes('Khám phá') && side.includes('Bảng tin') && side.includes('Chuyến đi') && !side.includes('Tin nhắn') && !side.includes('Hỗ trợ chuyến đi'), 'Khach: menu ben gon (Kham pha, Bang tin, Chuyen di), Tin nhan khong nam trong menu ben');
+  const side = (t1.match(/<nav[^>]*id="main-navigation"[\s\S]*?<\/nav>/) || [''])[0];
+  check(!t1.includes('workspace-sidebar') && side.includes('Khám phá') && side.includes('Bảng tin') && side.includes('Chuyến đi') && !side.includes('Tin nhắn') && !side.includes('Hỗ trợ chuyến đi'), 'Khach: chi con thanh tren (Kham pha, Chuyen di, Bang tin), khong thanh ben');
 
   // 2. Dang ky nha cung cap don gian
   const email = `ncc-${stamp}@example.com`;

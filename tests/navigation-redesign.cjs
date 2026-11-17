@@ -25,7 +25,7 @@ class Session{
  const home=await guest.page('/Discovery');
  check(home.text.includes('Một nơi muốn đến.'),'New discovery hero is rendered');
  check((home.html.match(/class="nav-disclosure/g)||[]).length===0&&/<nav[^>]*class="mainnav"[\s\S]*?<\/nav>/.test(home.html)&&(home.html.match(/<nav[^>]*class="mainnav"[\s\S]*?<\/nav>/)[0].match(/<a /g)||[]).length<=4,'Public navigation is a short list of plain links (no menus)');
- check(home.html.includes('href="/Plans"')&&home.html.includes('href="/Companions"'),'Trip and companion workspaces are reachable');
+ check(home.html.includes('href="/Plans"'),'Trip workspace is reachable (companions moved to the feed)');
  const search=await guest.page('/Discovery?Q='+encodeURIComponent('Mây')+'&Region='+encodeURIComponent('Đà Lạt')+'&Type=LuuTru&Min=100000&Max=1000000');
  check(!search.html.includes('id="discovery-title"'),'Search results prioritize the filter and results');
  for(const [name,value] of [['Q','Mây'],['Region','Đà Lạt'],['Min','100000'],['Max','1000000']])check(search.text.includes(value),'Search preserves '+name);
@@ -37,9 +37,10 @@ class Session{
  for(const path of ['/css/experience.css','/js/site.js','/images/icons.svg','/images/vietnam-bay.jpg','/images/hoian.jpg','/images/dalat.jpg']){const asset=await fetch(base+path);check(asset.status===200,'Asset '+path+' loads');await asset.arrayBuffer();}
  const traveler=new Session();await traveler.login('khach@hanhtrinh.vn');
  const plans=await traveler.page('/Plans');
- const sidebar=plans.text.match(/<aside\b[^>]*class="workspace-sidebar"[\s\S]*?<\/aside>/)[0];
- check(sidebar.includes('Chuyến đi')&&sidebar.includes('Bảng tin'),'Traveler workspace groups trips and feed (companions are feed posts)');
- check(sidebar.includes('href="/bang-tin"')&&(sidebar.match(/class="sidebar-direct/g)||[]).length<=10,'Traveler sidebar is a short flat list');
+ check(!plans.text.includes('workspace-sidebar'),'Traveler has a single top bar and no sidebar');
+ const sidebar=plans.text.match(/<nav\b[^>]*id="main-navigation"[\s\S]*?<\/nav>/)[0];
+ check(sidebar.includes('Chuyến đi')&&sidebar.includes('Bảng tin')&&sidebar.includes('Khám phá'),'Traveler top bar groups discovery, trips and feed (companions are feed posts)');
+ check(sidebar.includes('href="/bang-tin"')&&(sidebar.match(/<a /g)||[]).length<=4,'Traveler top navigation is a short flat list');
  check(!sidebar.includes('/Bookings/Adjustments')&&!sidebar.includes('/Bookings/Results'),'Booking operations are nested within their owning workspace');
  for(const path of ['/Plans/Edit','/Plans/Detail/1','/Companions/Mine','/Companions/Connections','/Companions/Edit','/Support','/Account/Profile','/Account/Notifications','/Account/Password'])await traveler.page(path);
  for(const path of ['/Bookings','/Bookings/Adjustments','/Bookings/Results']){const page=await traveler.page(path);check(page.html.includes('aria-label="Quản lý đặt dịch vụ"'),'Shared booking navigation on '+path);}

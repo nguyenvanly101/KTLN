@@ -1,10 +1,2 @@
 @model string
-@if(User.IsInRole(TravelService.Traveler))
-{
- <nav class="explore-tabs" aria-label="Khám phá">
-  <a class="@(Model=="discover"?"active":"")" href="/Discovery">@Ui.Icon("compass") Tìm kiếm</a>
-  <a class="@(Model=="map"?"active":"")" href="/kham-pha">@Ui.Icon("pin") Bản đồ</a>
-  <a class="@(Model=="saved"?"active":"")" href="/Saved">@Ui.Icon("check") Dịch vụ đã lưu</a>
-  <a class="@(Model=="templates"?"active":"")" href="/lich-mau">@Ui.Icon("calendar") Lịch trình mẫu</a>
- </nav>
-}
+@* Tab Khám phá cũ đã bỏ: thanh trên cùng đã có Khám phá; lối tắt tới bản đồ, dịch vụ đã lưu, lịch mẫu nằm ở cuối trang Khám phá. *@

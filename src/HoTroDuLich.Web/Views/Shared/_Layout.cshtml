@@ -31,6 +31,7 @@
  workspace=workspace||(signed&&new[]{"Branches","BranchAdmin","Landmarks","Chat","Social"}.Contains(route));
  workspace=workspace||(signed&&route=="Discovery"&&new[]{"Library","Manage","Edit"}.Contains(action));
  workspace=workspace||(signed&&traveler&&route is "Discovery" or "Explore" or "Places" or "TripSplit");
+ if(traveler)workspace=false; // khach: thanh tren duy nhat, khong thanh ben
  var tripArea=new[]{"Plans","Bookings","Support","Preparation","Expenses","Journey","Reviews"}.Contains(route);
  var companionArea=route is "Companions" or "Together";
  var roleName=admin?"Không gian quản trị":provider?"Nhà cung cấp":"Không gian của bạn";
@@ -66,13 +67,14 @@
   @if(traveler||provider){<a class="@(route=="Social"?"active":"")" href="/bang-tin">@Ui.Icon("grid") Bảng tin</a>}
   @if(!provider&&!admin){<a class="@((route is "Explore" or "Discovery")?"active":"")" href="/Discovery">@Ui.Icon("compass") Khám phá Việt Nam</a>}
  }else{
-  @if(traveler||provider){<a class="@(route=="Social"?"active":"")" href="/bang-tin">Bảng tin</a>}
-  @if(!provider){<a class="@((route is "Explore" or "Discovery" or "Places")?"active":"")" href="@(traveler?"/Discovery":"/")">Khám phá</a>}
+  @if(!provider){<a class="@((route is "Explore" or "Discovery" or "Places" or "Saved")?"active":"")" href="@(traveler?"/Discovery":"/")">Khám phá</a>}
   @if(canPlan){<a class="@(tripArea?"active":"")" href="/Plans">Chuyến đi</a>}
+  @if(traveler||provider){<a class="@(route=="Social"?"active":"")" href="/bang-tin">Bảng tin</a>}
  }
  </nav>
  <div class="account-nav">
  @if(signed){
+  @if(traveler&&!workspace){<a class="btn btn-dark nav-create" href="/lapkehoach">@Ui.Icon("plus") Tạo chuyến đi</a>}
   @if(traveler||provider){<a class="icon-button chat-link @(route=="Chat"?"active":"")" href="@(provider?"/nha-cung-cap/tin-nhan":"/tin-nhan")" aria-label="Tin nhắn">@Ui.Icon("chat")<span class="chat-badge" data-chat-badge @(chatUnread>0?"":"hidden")>@(chatUnread>99?"99+":chatUnread.ToString())</span></a>}
   <a class="icon-button notification-link" href="/thong-bao" aria-label="Thông báo, @unread chưa đọc">@Ui.Icon("bell")@if(unread>0){<span class="notification-count">@(unread>99?"99+":unread.ToString())</span>}</a>
   <details class="account-menu" data-header-menu><summary aria-label="Menu tài khoản của @name"><span class="avatar">@Ui.Initial(name)</span><span class="account-name">@name</span>@Ui.Icon("chevron")</summary><div class="account-dropdown"><span class="dropdown-label">@Labels.Status(role)</span>@if(canProfile){<a href="/Account/Profile">@Ui.Icon("user") Thông tin cá nhân</a>}<a href="/Account/Notifications">@Ui.Icon("bell") Thông báo</a><a href="/Account/Password">@Ui.Icon("shield") Đổi mật khẩu</a><form action="/Account/Logout" method="post">@Html.AntiForgeryToken()<button type="submit">@Ui.Icon("logout") Đăng xuất</button></form></div></details>
@@ -124,7 +126,7 @@
  @if(workspace){<div class="workspace-topline"><nav aria-label="Vị trí hiện tại"><a href="@workspaceHome">@roleName</a>@if(provBranch!=null){<span class="crumb-separator">&gt;</span><b>@provBranch.Name</b>}<span class="crumb-separator">/</span><span>@pageSection</span>@if(ViewData["Title"]?.ToString()!=pageSection){<span class="crumb-separator">/</span><b>@ViewData["Title"]</b>}</nav><span class="workspace-date">@Ui.Icon("calendar") @TravelService.Today.ToString("dd.MM.yyyy")</span></div>}
  <main id="main-content">@if(TempData["Success"] is string success){<div class="toast-message" role="status">@Ui.Icon("check")<span>@success</span><button type="button" class="dismiss" aria-label="Đóng thông báo">×</button></div>}@RenderBody()<partial name="_SimplePager"/></main>
  @if(!workspace){
-  <footer class="site-footer"><div class="footer-invitation"><span class="eyebrow">CÓ MỘT VIỆT NAM ĐANG CHỜ BẠN</span><h2>Chuyến đi hay bắt đầu<br/>từ một ý tưởng.</h2><a class="btn btn-lime" href="@(canPlan?"/Plans/Edit":"/")">@(canPlan?"Lên kế hoạch của bạn":"Khám phá Việt Nam") @Ui.Icon("arrow")</a></div><div class="footer-main"><div><a class="brand" href="/">@Ui.Icon("compass") Hành Trình</a><p>Đi theo cách của bạn.<br/>Kết nối những trải nghiệm mới.</p></div><div><h3>Khám phá</h3><a href="/?type=DiaDiem">Điểm đến</a><a href="/">Dịch vụ du lịch</a><a href="/bang-tin?tab=dong-hanh">Tìm bạn đồng hành</a></div><div><h3>Hành trình của bạn</h3>@if(canPlan){<a href="/Plans">Chuyến đi của tôi</a><a href="/Bookings">Đặt dịch vụ</a><a href="/Support">Hỗ trợ chuyến đi</a>}@if(!signed){<a href="/Account/Register?accountType=provider">Trở thành đối tác</a>}</div></div><div class="footer-bottom"><span>© @DateTime.Now.Year Hành Trình</span><span><a href="/dieu-khoan-su-dung">Điều khoản sử dụng</a> · <a href="/chinh-sach-bao-mat">Quyền riêng tư</a></span><span>Ảnh điểm đến và dịch vụ mang tính minh họa.</span><span>KHÁM PHÁ · KẾ HOẠCH · ĐỒNG HÀNH</span></div></footer>
+  <footer class="site-footer">@if(!signed){<div class="footer-invitation"><span class="eyebrow">CÓ MỘT VIỆT NAM ĐANG CHỜ BẠN</span><h2>Chuyến đi hay bắt đầu<br/>từ một ý tưởng.</h2><a class="btn btn-lime" href="@(canPlan?"/Plans/Edit":"/")">@(canPlan?"Lên kế hoạch của bạn":"Khám phá Việt Nam") @Ui.Icon("arrow")</a></div>}<div class="footer-main"><div><a class="brand" href="/">@Ui.Icon("compass") Hành Trình</a><p>Đi theo cách của bạn.<br/>Kết nối những trải nghiệm mới.</p></div><div><h3>Khám phá</h3><a href="/?type=DiaDiem">Điểm đến</a><a href="/">Dịch vụ du lịch</a><a href="/bang-tin?tab=dong-hanh">Tìm bạn đồng hành</a></div><div><h3>Hành trình của bạn</h3>@if(canPlan){<a href="/Plans">Chuyến đi của tôi</a><a href="/Bookings">Đặt dịch vụ</a><a href="/Support">Hỗ trợ chuyến đi</a>}@if(!signed){<a href="/Account/Register?accountType=provider">Trở thành đối tác</a>}</div></div><div class="footer-bottom"><span>© @DateTime.Now.Year Hành Trình</span><span><a href="/dieu-khoan-su-dung">Điều khoản sử dụng</a> · <a href="/chinh-sach-bao-mat">Quyền riêng tư</a></span><span>Ảnh điểm đến và dịch vụ mang tính minh họa.</span><span>KHÁM PHÁ · KẾ HOẠCH · ĐỒNG HÀNH</span></div></footer>
  }
 </div></div><div class="nav-scrim" hidden></div>
 @if(ViewData["RejectedForm"] is string rejected){<script id="rejected-input" type="application/json">@Html.Raw(rejected)</script>}
