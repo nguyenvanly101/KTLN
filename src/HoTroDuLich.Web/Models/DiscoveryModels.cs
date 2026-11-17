@@ -42,6 +42,9 @@ public class DiscoveryEditInput : DiscoveryCommand
 {
  [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever] public string? LinkedKind { get; set; }
  [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever] public string? AttributesJson { get; set; }
+ [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever] public string? CurrentPhoto { get; set; }
+ [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever] public string? CurrentPhotoCredit { get; set; }
+ [Display(Name="Gỡ ảnh minh họa")] public bool RemovePhoto { get; set; }
  [Required,MaxLength(200)] [Display(Name="Tiêu đề")] public string Title { get; set; }="";
  [Required,MaxLength(25)] [Display(Name="Loại thông tin")] public string Kind { get; set; }="Guide";
  [MaxLength(100)] [Display(Name="Khu vực")] public string? Region { get; set; }="";

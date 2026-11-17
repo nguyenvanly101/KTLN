@@ -99,3 +99,18 @@ public sealed class ChuyenDoiDiaGioiChoConfiguration : IEntityTypeConfiguration<
         e.HasOne<DonViHanhChinh>().WithMany().HasForeignKey(x => x.ResolvedUnitId).OnDelete(DeleteBehavior.NoAction);
     }
 }
+
+public sealed class AnhDonViConfiguration : IEntityTypeConfiguration<AnhDonVi>
+{
+    public void Configure(EntityTypeBuilder<AnhDonVi> e)
+    {
+        e.ToTable("AnhDonVi");
+        e.HasKey(x => x.DonViId);
+        e.Property(x => x.DonViId).ValueGeneratedNever();
+        e.Property(x => x.ImagePath).HasColumnType("nvarchar(300)").HasMaxLength(300);
+        e.Property(x => x.Credit).HasColumnType("nvarchar(300)").HasMaxLength(300);
+        e.Property(x => x.SourceUrl).HasColumnType("nvarchar(500)").HasMaxLength(500);
+        e.Property(x => x.UpdatedAt).HasColumnType("datetime2(7)");
+        e.HasOne<DonViHanhChinh>().WithMany().HasForeignKey(x => x.DonViId).OnDelete(DeleteBehavior.Cascade);
+    }
+}

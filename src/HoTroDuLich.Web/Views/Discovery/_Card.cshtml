@@ -7,7 +7,7 @@
  var icon=tone switch{"move"=>"car","eat"=>"food","stay"=>"bed","see"=>"pin",_=>"compass"};
 }
 <article class="ds-card" data-entry-card="@e.Id">
- <a class="ds-card-photo" href="@DiscoveryText.LinkTo(e)">@if(photo!=null){<img src="@photo" alt="@(e.ImagePath!=null?"Ảnh thực tế: "+e.Title:"")" width="480" height="320" loading="lazy"/>@if(e.ImagePath==null){<small>Ảnh minh họa</small>}}else{<span class="ds-card-blank ds-tone-@tone" aria-hidden="true">@Ui.Icon(icon)</span>}<span>@DiscoveryText.Kind(e.Kind)</span></a>
+ <a class="ds-card-photo" href="@DiscoveryText.LinkTo(e)">@if(photo!=null){<img src="@photo" alt="@(e.ImagePath!=null?"Ảnh: "+e.Title:"")" title="@(e.ImagePath==null?null:e.ImageCredit??"Ảnh do cơ sở cung cấp")" width="480" height="320" loading="lazy"/>@if(e.ImagePath==null){<small>Ảnh minh họa</small>}}else{<span class="ds-card-blank ds-tone-@tone" aria-hidden="true">@Ui.Icon(icon)</span>}<span>@DiscoveryText.Kind(e.Kind)</span></a>
  <div class="ds-card-copy"><span class="ds-location">@Ui.Icon("pin") @e.Region</span><h3><a href="@DiscoveryText.LinkTo(e)">@e.Title</a></h3><p>@e.Summary</p>
   @if(e.ServiceId!=null){<partial name="/Views/Shared/_Rating.cshtml" model="e.ServiceId"/>}
   @if(e.PriceFrom!=null){<div class="ds-card-price">@Labels.Money(e.PriceFrom) <small>/ @(e.PriceUnit??"chưa công bố đơn vị")</small></div>}

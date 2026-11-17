@@ -13,7 +13,7 @@ public sealed partial class DiscoveryService
  public async Task<DiscoveryEditInput> EditForm(long id=0)
  {
   if(id==0){travel.RoleRequired(TravelService.AdminRole);return new(){FeatureRows=DiscoveryText.Features.Select(x=>new DiscoveryFeatureInput{Code=x.Key}).ToList(),Prices=[new()]};}
-  var e=await Editable(id);var result=new DiscoveryEditInput{Id=e.Id,EntryId=e.Id,Version=TravelService.Token(e.RowVersion),LinkedKind=e.ServiceId!=null?"Service":e.PlaceId!=null?"Place":null,AttributesJson=e.AttributesJson};
+  var e=await Editable(id);var result=new DiscoveryEditInput{Id=e.Id,EntryId=e.Id,Version=TravelService.Token(e.RowVersion),LinkedKind=e.ServiceId!=null?"Service":e.PlaceId!=null?"Place":null,AttributesJson=e.AttributesJson,CurrentPhoto=e.ImagePath,CurrentPhotoCredit=e.ImageCredit};
   var display=JsonSerializer.Deserialize<DiscoveryEntry>(JsonSerializer.Serialize(e))!;await Hydrate([display]);
   foreach(var p in typeof(DiscoveryEditInput).GetProperties()){var source=typeof(DiscoveryEntry).GetProperty(p.Name=="Content"?"Body":p.Name);if(source!=null&&source.PropertyType==p.PropertyType&&p.Name!="Id")p.SetValue(result,source.GetValue(display));}
   result.Body="";result.Content=e.Body;var features=await db.Set<DiscoveryFeature>().AsNoTracking().Where(x=>x.EntryId==id).ToDictionaryAsync(x=>x.Code);
@@ -52,7 +52,7 @@ public sealed partial class DiscoveryService
  }
  public async Task<long> Save(DiscoveryEditInput i)
  {
-  travel.RoleRequired(TravelService.AdminRole);long id=0;await travel.Execute(async()=>{DiscoveryEntry e;if(i.Id>0){e=await Editable(i.Id);Version(e,i.Version);}else{e=new(){Slug="entry-"+Guid.NewGuid().ToString("N"),CreatedBy=Me,Status="Draft",Kind=i.Kind,Title=i.Title,Region=i.Region??"",SourceName=i.SourceName,UpdatedAt=clock.BayGioUtc};db.Add(e);await db.SaveChangesAsync();}await ValidateEdit(i,e);await ApplyEdit(e,i,Clean(i.Reason)??"Cập nhật thông tin tra cứu");id=e.Id;});return id;
+  travel.RoleRequired(TravelService.AdminRole);long id=0;await travel.Execute(async()=>{DiscoveryEntry e;if(i.Id>0){e=await Editable(i.Id);Version(e,i.Version);if(i.RemovePhoto){e.ImagePath=null;e.ImageCredit=null;e.ImageSourceUrl=null;}}else{e=new(){Slug="entry-"+Guid.NewGuid().ToString("N"),CreatedBy=Me,Status="Draft",Kind=i.Kind,Title=i.Title,Region=i.Region??"",SourceName=i.SourceName,UpdatedAt=clock.BayGioUtc};db.Add(e);await db.SaveChangesAsync();}await ValidateEdit(i,e);await ApplyEdit(e,i,Clean(i.Reason)??"Cập nhật thông tin tra cứu");id=e.Id;});return id;
  }
  public async Task Propose(DiscoveryEditInput i)
  {

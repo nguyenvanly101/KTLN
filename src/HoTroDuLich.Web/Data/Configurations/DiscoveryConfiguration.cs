@@ -17,6 +17,8 @@ public sealed class DiscoveryEntryConfiguration : IEntityTypeConfiguration<Disco
  e.Property(x=>x.Title).HasColumnType("nvarchar(200)");
  e.Property(x=>x.Region).HasColumnType("nvarchar(100)");
  e.Property(x=>x.Summary).HasColumnType("nvarchar(700)");
+ e.Property(x=>x.ImageCredit).HasColumnType("nvarchar(300)").HasMaxLength(300);
+ e.Property(x=>x.ImageSourceUrl).HasColumnType("nvarchar(500)").HasMaxLength(500);
  e.Property(x=>x.Body).HasColumnType("nvarchar(max)");
  e.Property(x=>x.Address).HasColumnType("nvarchar(400)");
  e.Property(x=>x.Latitude).HasColumnType("decimal(9,6)");

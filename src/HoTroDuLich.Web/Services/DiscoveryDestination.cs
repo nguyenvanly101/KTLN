@@ -200,3 +200,26 @@ public sealed partial class DiscoveryService
   return best==null?null:(best.Id,best.Name);
  }
 }
+
+/// <summary>Anh cua mot tinh/thanh de hien tren the va hero; Credit/SourceUrl null voi anh minh hoa co san cua website.</summary>
+public sealed record UnitPhoto(string Path, string? Credit, string? SourceUrl);
+
+/// <summary>Tra anh tinh/thanh: anh Wikimedia da duyet (bang AnhDonVi) truoc, roi den nam anh minh hoa co san theo ten.</summary>
+public sealed class DestinationPhotos(HoTroDuLich.Web.Data.AppDbContext db)
+{
+ public async Task<Dictionary<long,UnitPhoto>> For(IEnumerable<(long Id,string Name)> units)
+ {
+  var list=units.ToList();var ids=list.Select(x=>x.Id).Distinct().ToList();
+  var rows=ids.Count==0?new List<AnhDonVi>():await db.Set<AnhDonVi>().AsNoTracking().Where(x=>ids.Contains(x.DonViId)).ToListAsync();
+  var map=new Dictionary<long,UnitPhoto>();
+  foreach(var (id,name) in list)
+  {
+   if(map.ContainsKey(id))continue;
+   var row=rows.FirstOrDefault(r=>r.DonViId==id);
+   if(row!=null)map[id]=new(row.ImagePath,row.Credit,row.SourceUrl);
+   else if(Ui.DestinationPhoto(name) is string local)map[id]=new(local,null,null);
+  }
+  return map;
+ }
+ public async Task<UnitPhoto?> For(long id,string name)=>(await For([(id,name)])).GetValueOrDefault(id);
+}

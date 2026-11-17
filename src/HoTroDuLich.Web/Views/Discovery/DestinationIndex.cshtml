@@ -1,8 +1,10 @@
 @model List<DestinationIndexItem>
+@inject DestinationPhotos Photos
 @{
  ViewData["Title"]="Điểm đến";var withData=Model.Where(x=>x.Count>0).ToList();var without=Model.Where(x=>x.Count==0).ToList();
  var viec=ViewData["Viec"]?.ToString();
  var tabs=new Dictionary<string,string>{["an-uong"]="Bạn muốn xem ăn gì ở đâu?",["luu-tru"]="Bạn muốn tìm chỗ ở nơi nào?",["tham-quan"]="Bạn muốn chơi ở đâu?",["di-chuyen"]="Bạn muốn xem cách đi lại ở đâu?",["ban-do"]="Bạn muốn xem bản đồ nơi nào?"};
+ var photos=await Photos.For(Model.Where(m=>m.Count>0).Select(m=>(m.Province.Id,m.Province.Name)));
  var tab=viec!=null&&tabs.ContainsKey(viec)?viec:null;var suffix=tab!=null?"?tab="+tab:"";
 }
 <div class="ds-page dest-page">
@@ -10,7 +12,7 @@
  @if(withData.Count>0)
  {
   <section class="dest-section"><div class="ds-section-head"><div><h2>Nơi có thông tin để xem</h2></div></div>
-   <div class="hm-dest-grid">@foreach(var x in withData){<a class="hm-dest" href="/diem-den/@x.Province.Id@suffix">@if(Ui.DestinationPhoto(x.Province.Name) is string photo){<img src="@photo" alt="" width="600" height="800" loading="lazy"/>}else{<span class="hm-dest-blank" aria-hidden="true">@Ui.Icon("pin")</span>}<span class="hm-dest-copy"><strong>@x.Province.FullName</strong><small>@x.Count mục thông tin</small></span></a>}</div>
+   <div class="hm-dest-grid">@foreach(var x in withData){<a class="hm-dest" href="/diem-den/@x.Province.Id@suffix">@if(photos.GetValueOrDefault(x.Province.Id) is UnitPhoto photo){<img src="@photo.Path" alt="" title="@photo.Credit" width="600" height="800" loading="lazy"/>}else{<span class="hm-dest-blank" aria-hidden="true">@Ui.Icon("pin")</span>}<span class="hm-dest-copy"><strong>@x.Province.FullName</strong><small>@x.Count mục thông tin</small></span></a>}</div>
   </section>
  }
  <section class="dest-section"><div class="ds-section-head"><div><h2>Chưa có thông tin công bố</h2></div></div>

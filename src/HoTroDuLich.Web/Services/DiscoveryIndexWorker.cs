@@ -34,6 +34,12 @@ public sealed class DiscoveryIndexWorker(IServiceScopeFactory scopes,ILogger<Dis
     DateOnly? to=data.TryGetValue("ngayketthuc",out var b)&&b.ValueKind==System.Text.Json.JsonValueKind.String&&DateOnly.TryParse(b.GetString(),out var d2)?d2:from;
     entry.ValidFrom=from;entry.ValidTo=to;
    }
+   // Anh dich vu do nha cung cap tai: dung anh dau tien; go anh cu khi nha cung cap xoa het anh.
+   foreach(var s in publicServices)
+   {
+    var entry=db.ChangeTracker.Entries<DiscoveryEntry>().Select(x=>x.Entity).FirstOrDefault(x=>x.ServiceId==s.MaDichVu);if(entry==null)continue;
+    SetOwnPhoto(entry,Ui.ServicePhotos(s.AnhJson).Length>0?"/service-photos/"+s.MaDichVu+"/0":null,"/service-photos/");
+   }
    await db.SaveChangesAsync();
    // Co so da cong bo -> muc tra cuu chung (cung xep hang, loc, ban do voi dia diem va dich vu).
    var branchList=await services.GetRequiredService<BranchService>().PublicBranches().AsNoTracking().ToListAsync();
@@ -53,6 +59,7 @@ public sealed class DiscoveryIndexWorker(IServiceScopeFactory scopes,ILogger<Dis
      e.Title=b.Name;e.Region=region;e.DonViId=b.DonViId;e.Summary=Cut(b.Summary,700)??"";e.Address=b.Address;e.Latitude=b.Latitude;e.Longitude=b.Longitude;
      e.Hours=Cut(b.Hours,700);e.Contact=Cut(b.Phone,300);e.Tags=Cut(DanhMuc.Ten(b.Type)+" cơ sở"+(string.IsNullOrEmpty(b.AttributesJson)?"":", "+BranchTemplates.Tags(b.Type,b.AttributesJson)),480);e.CheckedOn=reviewed;e.PriceFrom=b.PriceFrom;e.PriceTo=b.PriceTo;e.PriceUnit=b.PriceUnit;e.OpenDays=b.OpenDays;e.OpenTime=b.OpenTime;e.CloseTime=b.CloseTime;e.ImagePath=Ui.ServicePhotos(b.PhotosJson).Length>0?"/co-so/"+b.Id+"/anh/0":null;e.SourceStamp=stamp;e.UpdatedAt=clock.BayGioUtc;
     }
+    SetOwnPhoto(e,Ui.ServicePhotos(b.PhotosJson).Length>0?"/co-so/"+b.Id+"/anh/0":null,"/co-so/");
     await db.SaveChangesAsync();
     var features=await db.Set<DiscoveryFeature>().Where(f=>f.EntryId==e.Id).ToListAsync();
     foreach(var (code,value) in new[]{("Parking",b.Parking),("AccessibleEntrance",b.AccessibleEntrance)})
@@ -62,9 +69,19 @@ public sealed class DiscoveryIndexWorker(IServiceScopeFactory scopes,ILogger<Dis
     }
     await db.SaveChangesAsync();
    }
+   // Co so khong con cong khai: go anh cua co so khoi muc tra cuu de the khong hien anh hong.
+   var publicIds=branchList.Select(b=>b.Id).ToHashSet();
+   foreach(var stale in branchIndex.Where(x=>x.BranchId!=null&&!publicIds.Contains(x.BranchId.Value)))SetOwnPhoto(stale,null,"/co-so/");
+   await db.SaveChangesAsync();
   });
   await DiscoveryStarterContent.Initialize(db,clock);
   if(services.GetRequiredService<IConfiguration>().GetValue<bool>("Demo:Enabled"))await DiscoveryDemoContent.Initialize(db,clock);
+ }
+ /// <summary>Anh nha cung cap uu tien hon anh minh hoa; khi khong con anh thi chi go anh do chinh nguon nay dat.</summary>
+ static void SetOwnPhoto(DiscoveryEntry e,string? own,string prefix)
+ {
+  if(own!=null){if(e.ImagePath!=own){e.ImagePath=own;e.ImageCredit=null;e.ImageSourceUrl=null;}}
+  else if(e.ImagePath!=null&&e.ImagePath.StartsWith(prefix,StringComparison.Ordinal)){e.ImagePath=null;e.ImageCredit=null;e.ImageSourceUrl=null;}
  }
  protected override async Task ExecuteAsync(CancellationToken stoppingToken)
  {

@@ -80,3 +80,13 @@ public sealed class ChuyenDoiDiaGioiCho
     public DateTime? ResolvedAt { get; set; }
     public DateTime CreatedAt { get; set; }
 }
+
+/// <summary>Anh minh hoa cua tinh/thanh (thuong tu Wikimedia Commons) kem ghi cong. Cot khop Database/035_AnhMinhHoa.sql.</summary>
+public sealed class AnhDonVi
+{
+    public long DonViId { get; set; }
+    public string ImagePath { get; set; } = "";
+    public string Credit { get; set; } = "";
+    public string SourceUrl { get; set; } = "";
+    public DateTime UpdatedAt { get; set; }
+}

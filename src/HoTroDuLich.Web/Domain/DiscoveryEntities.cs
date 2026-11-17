@@ -13,6 +13,9 @@ public sealed class DiscoveryEntry
     public long? DonViId { get; set; }
     public long? BranchId { get; set; }
     public string? ImagePath { get; set; }
+    /// <summary>Ghi cong anh (tac gia, giay phep, nguon); null voi anh do co so cung cap.</summary>
+    public string? ImageCredit { get; set; }
+    public string? ImageSourceUrl { get; set; }
     public string Summary { get; set; } = "";
     public string Body { get; set; } = "";
     public string? Address { get; set; }

@@ -16,6 +16,11 @@
   steps.Add(("Được duyệt và xác minh","/nha-cung-cap/co-so",owner.Verified&&owner.Branches.Any(b=>b.Status=="Approved")));
   steps.Add(("Đăng dịch vụ cho cơ sở","/Provider/Edit",curBranch!=null&&owner.ServiceCounts.GetValueOrDefault(curBranch.Id)>0));
   steps.Add(("Đăng tin giới thiệu đầu tiên","/bang-tin",hasPost));
+  if(curBranch!=null)
+  {
+   var branchPhotos=await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(Context.RequestServices.GetRequiredService<HoTroDuLich.Web.Data.AppDbContext>().Set<CoSoDichVu>().Where(b=>b.Id==curBranch.Id).Select(b=>b.PhotosJson));
+   steps.Add(("Thêm ảnh thực tế cho cơ sở","/nha-cung-cap/co-so/"+curBranch.Id+"#pv-s3",Ui.ServicePhotos(branchPhotos).Length>0));
+  }
  }
  var profileIncomplete=!isProvider&&me!=null&&(string.IsNullOrWhiteSpace(me.GioiThieu)||string.IsNullOrWhiteSpace(me.AnhDaiDien));
  var branchJson=curBranch!=null&&curBranch.Status=="Approved"?System.Text.Json.JsonSerializer.Serialize(new[]{new{id=curBranch.Id,name=curBranch.Name}}):"[]";

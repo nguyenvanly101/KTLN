@@ -1,6 +1,8 @@
 @model List<HomeDestination>
+@inject DestinationPhotos Photos
 @{
  ViewData["Title"]="Khám phá & tra cứu";
+ var photos=await Photos.For(Model.Select(d=>(d.UnitId,d.Name)));
  var intents=new (string Label,string Hint,string Icon,string Href)[]
  {
   ("Ăn gì","Món địa phương, quán ăn","food","/diem-den?viec=an-uong"),
@@ -34,7 +36,7 @@
    @if(Model.Count==0){<p class="dest-empty">Chưa có điểm đến nào được công bố.</p>}
    else
    {
-    <div class="hm-dest-grid">@foreach(var d in Model){var photo=Ui.DestinationPhoto(d.Name);<a class="hm-dest" href="/diem-den/@d.UnitId">@if(photo!=null){<img src="@photo" alt="" width="600" height="800" loading="lazy"/>}else{<span class="hm-dest-blank" aria-hidden="true">@Ui.Icon("pin")</span>}<span class="hm-dest-copy"><strong>@d.Name</strong><small>@(d.Count>0?d.Count+" mục thông tin":"Chưa có thông tin")</small></span></a>}</div>
+    <div class="hm-dest-grid">@foreach(var d in Model){var photo=photos.GetValueOrDefault(d.UnitId);<a class="hm-dest" href="/diem-den/@d.UnitId">@if(photo!=null){<img src="@photo.Path" alt="" title="@photo.Credit" width="600" height="800" loading="lazy"/>}else{<span class="hm-dest-blank" aria-hidden="true">@Ui.Icon("pin")</span>}<span class="hm-dest-copy"><strong>@d.Name</strong><small>@(d.Count>0?d.Count+" mục thông tin":"Chưa có thông tin")</small></span></a>}</div>
    }
   </section>
 

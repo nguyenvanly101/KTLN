@@ -42,6 +42,7 @@ builder.Services.AddScoped<ReviewService>();
 builder.Services.AddScoped<AvailabilityService>();
 builder.Services.AddScoped<CompanionService>();
 builder.Services.AddScoped<DiscoveryService>();
+builder.Services.AddScoped<DestinationPhotos>();
 builder.Services.AddScoped<BranchService>();
 builder.Services.AddScoped<DiaGioiService>();
 builder.Services.AddSingleton<ChatBroker>();
