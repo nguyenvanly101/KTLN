@@ -602,29 +602,40 @@
 
   // ---------------------------------------------------------------- ru di cung (ket noi dong hanh) ngay trong chat
   function setupConnect(peerId, canSend) {
-    el.connectToggle.hidden = true; el.connect.hidden = true; st.peerId = peerId || null;
+    el.connectToggle.hidden = true; el.connect.hidden = true; st.peerId = peerId || null; st.invitable = [];
     if (!peerId || !canSend) return;
-    api('/chat/nguoi/' + peerId + '/loi-ru').then(function (list) {
-      st.needs = list; if (!list.length) return;
-      el.meta.appendChild(h('span', null, 'Lời rủ đang mở: ' + list.map(function (n) { return n.destination + ' ' + dmy(n.start) + '–' + dmy(n.end); }).join(' · ')));
+    api('/chat/nguoi/' + peerId + '/chuyen-di').then(function (list) {
+      if (st.peerId !== peerId) return;
+      var open = list.filter(function (p) { return p.state === 'can'; }); st.invitable = open;
       var sel = el.connect.querySelector('[data-connect="need"]'); sel.replaceChildren();
-      list.forEach(function (n) { var o = h('option', null, n.destination + ' · ' + dmy(n.start) + ' – ' + dmy(n.end) + (n.mode ? ' · ' + n.mode : '')); o.value = n.id; sel.appendChild(o); });
+      open.forEach(function (p) { var o = h('option', null, p.name + ' · ' + p.destination + ' · ' + dmy(p.start) + ' – ' + dmy(p.end)); o.value = p.id; sel.appendChild(o); });
+      el.connect.querySelectorAll('[data-connect-pick]').forEach(function (x) { x.hidden = !open.length; });
+      el.connect.querySelector('[data-connect-send]').hidden = !open.length;
+      el.connect.querySelector('[data-connect-empty]').hidden = !!open.length;
+      var waiting = list.filter(function (p) { return p.state === 'pending'; }), joined = list.filter(function (p) { return p.state === 'accepted'; });
+      if (joined.length) el.meta.appendChild(h('span', null, 'Cùng chuyến đi: ' + joined.map(function (p) { return p.name; }).join(' · ')));
+      if (waiting.length) el.meta.appendChild(h('span', null, 'Đã mời, chờ trả lời: ' + waiting.map(function (p) { return p.name; }).join(' · ')));
       el.connectToggle.hidden = false;
-      if (st.pickNeed && list.some(function (n) { return String(n.id) === st.pickNeed; })) { sel.value = st.pickNeed; el.connect.hidden = false; st.pickNeed = null; }
     }).catch(function () {});
   }
   if (el.connectToggle) {
     el.connectToggle.addEventListener('click', function () { el.connect.hidden = !el.connect.hidden; });
     el.connectClose.addEventListener('click', function () { el.connect.hidden = true; });
     el.connect.addEventListener('submit', function (e) {
-      e.preventDefault(); if (st.sending) return;
-      var fd = new FormData(); fd.append('NeedId', el.connect.querySelector('[data-connect="need"]').value); fd.append('Text', el.connect.querySelector('[data-connect="text"]').value);
-      if (st.openId) fd.append('ConversationId', st.openId); else if (st.startPeer) fd.append('PeerId', st.startPeer); else return;
+      e.preventDefault(); if (st.sending || !st.peerId) return;
+      var planId = el.connect.querySelector('[data-connect="need"]').value, note = el.connect.querySelector('[data-connect="text"]').value.trim();
+      var plan = (st.invitable || []).filter(function (p) { return String(p.id) === String(planId); })[0]; if (!plan) return;
+      var fd = new FormData(); fd.append('planId', planId); fd.append('accountId', st.peerId);
       st.sending = true; showError('');
-      api('/chat/ru', { method: 'POST', body: fd }).then(function (r) {
+      api('/chat/moi-chuyen-di', { method: 'POST', body: fd }).then(function () {
+        // bao ngay trong cuoc tro chuyen de nguoi nhan biet can mo muc Chuyen di
+        var msg = new FormData(); msg.append('Body', 'Mình vừa mời bạn vào chuyến đi “' + plan.name + '” (' + plan.destination + ', ' + dmy(plan.start) + ' – ' + dmy(plan.end) + '). Bạn mở mục Chuyến đi để chấp nhận nhé.' + (note ? '\n' + note : ''));
+        if (st.openId) msg.append('ConversationId', st.openId); else if (st.startPeer) msg.append('PeerId', st.startPeer);
+        return api('/chat/gui', { method: 'POST', body: msg });
+      }).then(function (r) {
         el.connect.hidden = true; el.connect.querySelector('[data-connect="text"]').value = '';
         if (!st.openId) { st.openId = r.conversationId; st.startPeer = null; history.replaceState({ id: r.conversationId }, '', base + '/' + r.conversationId); return openThread(r.conversationId, true).then(loadList); }
-        fetchNew(); refreshConns(); loadList();
+        fetchNew(); loadList(); setupConnect(st.peerId, true);
       }).catch(function (err) { showError(err.message); }).then(function () { st.sending = false; });
     });
   }

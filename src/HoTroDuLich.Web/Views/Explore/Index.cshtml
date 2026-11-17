@@ -29,7 +29,7 @@
 <div class="discovery-inner">
  <partial name="_TripContext"/>
  <section id="travel-search" aria-label="Tìm điểm đến và dịch vụ" class="search-box @(filtered?"search-box-results":"")">
-  <div class="search-box-tabs"><span class="active">@Ui.Icon("compass") Điểm đến & dịch vụ</span><a href="/Companions">@Ui.Icon("users") Tìm người đồng hành</a><span class="search-caption">BẮT ĐẦU MỘT HÀNH TRÌNH MỚI</span></div>
+  <div class="search-box-tabs"><span class="active">@Ui.Icon("compass") Điểm đến & dịch vụ</span><a href="/bang-tin?tab=dong-hanh">@Ui.Icon("users") Tìm bạn đồng hành</a><span class="search-caption">BẮT ĐẦU MỘT HÀNH TRÌNH MỚI</span></div>
   <form action="/" method="get" class="discovery-search">
    @if(ViewBag.TripPlan is KeHoachChuyenDi tripSearch){<input type="hidden" name="planId" value="@tripSearch.MaKeHoach"/>}
    <div class="search-input search-keyword">@Ui.Icon("search")<div><label for="q">Bạn muốn tìm gì?</label><input id="q" name="q" value="@ViewBag.Query" placeholder="Điểm đến, nơi ở, trải nghiệm…"/></div></div>
@@ -64,6 +64,6 @@
   </div>
  </section>
  @if(!filtered){
-  <section class="companion-feature" aria-labelledby="companion-feature-title"><div class="companion-feature-photo"><img src="~/images/dalat.jpg" alt="Bình minh trên hồ ở Đà Lạt" loading="lazy" width="720" height="540"/><span class="feature-note">CÙNG MỘT ĐIỂM ĐẾN. THÊM MỘT NGƯỜI BẠN.</span><span class="feature-compass" aria-hidden="true">@Ui.Icon("users")</span></div><div class="companion-feature-copy"><span class="eyebrow">03 / ĐI CÙNG NGƯỜI HỢP GU</span><h2 id="companion-feature-title">Một lời rủ.<br/>Một hành trình mới.</h2><p>Có người cũng đang muốn đi nơi bạn muốn đến. Tìm nhau, trao đổi lịch trình và cùng viết thêm những câu chuyện.</p><a href="/Companions" class="btn btn-lime">Tìm người đồng hành @Ui.Icon("arrow")</a>@if(canPlan){<a href="/Companions/Edit" class="text-link">Hoặc đăng lời rủ của bạn @Ui.Icon("plus")</a>}</div></section>
+  <section class="companion-feature" aria-labelledby="companion-feature-title"><div class="companion-feature-photo"><img src="~/images/dalat.jpg" alt="Bình minh trên hồ ở Đà Lạt" loading="lazy" width="720" height="540"/><span class="feature-note">CÙNG MỘT ĐIỂM ĐẾN. THÊM MỘT NGƯỜI BẠN.</span><span class="feature-compass" aria-hidden="true">@Ui.Icon("users")</span></div><div class="companion-feature-copy"><span class="eyebrow">03 / ĐI CÙNG NGƯỜI HỢP GU</span><h2 id="companion-feature-title">Một lời rủ.<br/>Một hành trình mới.</h2><p>Có người cũng đang muốn đi nơi bạn muốn đến. Đăng bài tìm bạn trên Bảng tin, nhắn tin làm quen rồi mời nhau vào cùng một kế hoạch.</p><a href="/bang-tin?tab=dong-hanh" class="btn btn-lime">Tìm bạn đồng hành @Ui.Icon("arrow")</a>@if(canPlan){<a href="/Plans" class="text-link">Hoặc mời bạn bè vào chuyến đi của bạn @Ui.Icon("arrow")</a>}</div></section>
  }
 </div></div>

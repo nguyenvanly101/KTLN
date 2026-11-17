@@ -83,7 +83,8 @@ public sealed partial class ChatService(AppDbContext context,IHttpContextAccesso
  }
  async Task RequirePeerReachable(long accountId)
  {
-  Require(await Resolve<FriendService>().AreFriends(UserId,accountId)||await db.NhuCauDongHanh.AsNoTracking().AnyAsync(n=>n.MaTaiKhoan==accountId&&n.TrangThaiCongBo==TrangThaiNhuCau.DangCongBo),"Chỉ nhắn tin được với bạn bè hoặc người đang có lời rủ đi cùng công khai.",403);
+  Require(await Resolve<FriendService>().AreFriends(UserId,accountId)||await db.NhuCauDongHanh.AsNoTracking().AnyAsync(n=>n.MaTaiKhoan==accountId&&n.TrangThaiCongBo==TrangThaiNhuCau.DangCongBo)
+   ||await db.Set<BaiViet>().AsNoTracking().AnyAsync(p=>p.AuthorId==accountId&&p.Kind=="Companion"&&p.Visibility=="Public"&&p.DeletedAt==null&&p.TripEnd>=TravelService.Today),"Chỉ nhắn tin được với bạn bè hoặc người đang có bài tìm bạn đồng hành công khai.",403);
  }
 
  /// <summary>Tim nguoi hoac co so de bat dau tro chuyen: chi tra ve nguoi nhan tin duoc (ban be / co loi ru cong khai / da tung nhan tin).</summary>
@@ -94,6 +95,7 @@ public sealed partial class ChatService(AppDbContext context,IHttpContextAccesso
   var found=await Resolve<FriendService>().Search(term);
   var ids=found.Select(p=>p.Id).ToList();
   var withNeed=(await db.NhuCauDongHanh.AsNoTracking().Where(n=>ids.Contains(n.MaTaiKhoan)&&n.TrangThaiCongBo==TrangThaiNhuCau.DangCongBo).Select(n=>n.MaTaiKhoan).Distinct().ToListAsync()).ToHashSet();
+  withNeed.UnionWith(await db.Set<BaiViet>().AsNoTracking().Where(p=>ids.Contains(p.AuthorId)&&p.Kind=="Companion"&&p.Visibility=="Public"&&p.DeletedAt==null&&p.TripEnd>=TravelService.Today).Select(p=>p.AuthorId).Distinct().ToListAsync());
   var talked=(await db.Set<CuocTroChuyen>().AsNoTracking().Where(x=>x.BranchId==null&&!x.IsGroup&&(x.TravelerId==UserId||x.PeerId==UserId)).Select(x=>x.TravelerId==UserId?x.PeerId!.Value:x.TravelerId).ToListAsync()).ToHashSet();
   var people=found.Where(p=>p.Relation=="friends"||withNeed.Contains(p.Id)||talked.Contains(p.Id)).Take(8).Select(p=>new PersonRef(p.Id,p.Name,p.Relation)).ToList();
   var shops=await branches.PublicBranches().AsNoTracking().Where(b=>b.Name.Contains(term)).OrderBy(b=>b.Name).Take(8).Select(b=>new ChatFindBranch(b.Id,b.Name,b.Type,b.Address)).ToListAsync();

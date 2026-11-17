@@ -18,6 +18,7 @@ builder.Services.AddControllersWithViews(o =>
     o.ValueProviderFactories.Insert(0, new HoTroDuLich.Web.Models.FullTextValueProviderFactory());
     o.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
     o.Filters.Add<NhatKyAntiforgeryFilter>();
+    o.Filters.Add<LegacyCompanionFilter>();
     o.ModelMetadataDetailsProviders.Add(new HoTroDuLich.Web.Models.VietnameseMetadataProvider());
     o.ModelBindingMessageProvider.SetAttemptedValueIsInvalidAccessor((v, f) => $"Giá trị nhập cho {f} không hợp lệ.");
     o.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(_ => "Vui lòng nhập thông tin bắt buộc.");

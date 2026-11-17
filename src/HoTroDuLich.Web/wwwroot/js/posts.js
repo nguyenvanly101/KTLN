@@ -324,7 +324,7 @@
     tSaved.addEventListener('click', function () { open('saved'); }); tPublic.addEventListener('click', function () { open('public'); });
     tComp.addEventListener('click', function () { open('companion'); });
     searchBox.addEventListener('input', function () { clearTimeout(searchTimer); searchTimer = setTimeout(function () { open('companion'); }, 350); });
-    open(isProv ? (branches0.length ? 'branch' : 'public') : 'home');
+    open(isProv ? (branches0.length ? 'branch' : 'public') : (/[?&]tab=dong-hanh(&|$)/.test(location.search) ? 'companion' : 'home'));
   }
 
   // ---------------------------------------------------------------- cot phai kieu Facebook

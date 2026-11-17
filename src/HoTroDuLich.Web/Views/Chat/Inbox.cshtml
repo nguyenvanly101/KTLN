@@ -18,7 +18,7 @@
      <input class="form-control" type="search" placeholder="Tìm khách hoặc nội dung…" data-chat-search aria-label="Tìm trong tin nhắn"/></div>
    }
    <ul class="chat-items" data-chat-list></ul>
-   <p class="chat-empty" data-chat-list-empty hidden>@(branch?"Chưa có tin nhắn nào.":"Chưa có tin nhắn. Mở trang cơ sở hoặc lời rủ đi cùng rồi bấm “Nhắn tin”.")</p>
+   <p class="chat-empty" data-chat-list-empty hidden>@(branch?"Chưa có tin nhắn nào.":"Chưa có tin nhắn. Mở trang cơ sở hoặc một bài tìm bạn đồng hành rồi bấm “Nhắn tin”.")</p>
   </aside>
   <section class="chat-thread panel" data-chat-thread aria-live="polite">
    <div class="chat-placeholder" data-chat-placeholder>@Ui.Icon("chat")<p>Chọn một cuộc trò chuyện để xem và trả lời.</p></div>
@@ -44,10 +44,10 @@
     <div class="chat-blocked" data-chat-blocked hidden></div>
     <div class="chat-quick" data-chat-quick hidden></div>
     <form class="chat-book" data-chat-connect hidden>
-     <strong>Rủ đi cùng</strong><p class="help">Chọn chuyến bạn muốn cùng đi. Người nhận đồng ý ngay trong cuộc trò chuyện, sau đó hai bạn lập thỏa thuận đi cùng.</p>
-     <label>Chuyến đi<select class="form-select" data-connect="need"></select></label>
-     <label>Lời giới thiệu (tùy chọn)<textarea class="form-control" rows="2" maxlength="1000" data-connect="text" placeholder="Bạn là ai, thích đi kiểu nào, dự định ra sao…"></textarea></label>
-     <div class="form-actions"><button class="btn btn-dark" type="submit">Gửi lời rủ</button><button class="btn btn-outline" type="button" data-chat-connect-close>Đóng</button></div>
+     <strong>Mời vào chuyến đi</strong><p class="help">Chọn một chuyến đi của bạn. Người nhận chấp nhận trong mục Chuyến đi, sau đó hai bạn cùng sửa lịch trình và có nhóm chat của chuyến.</p><p class="help" data-connect-empty hidden>Bạn chưa có chuyến đi nào còn mời được người này. <a class="text-link" href="/lapkehoach">Lập kế hoạch mới</a></p>
+     <label data-connect-pick>Chuyến đi của bạn<select class="form-select" data-connect="need"></select></label>
+     <label data-connect-pick>Lời nhắn (tùy chọn)<textarea class="form-control" rows="2" maxlength="500" data-connect="text" placeholder="Vài dòng về chuyến đi và điều bạn mong muốn…"></textarea></label>
+     <div class="form-actions"><button class="btn btn-dark" type="submit" data-connect-send>Gửi lời mời</button><button class="btn btn-outline" type="button" data-chat-connect-close>Đóng</button></div>
     </form>
     <form class="chat-book" data-chat-book hidden>
      <strong>Gửi yêu cầu đặt dịch vụ</strong><p class="help">Cơ sở sẽ xem yêu cầu ngay trong cuộc trò chuyện. Hai bên cùng trao đổi và thống nhất tại đây.</p>
@@ -66,7 +66,7 @@
     <div class="chat-replybar" data-chat-replybar hidden><span data-chat-reply-text></span><button type="button" data-chat-reply-cancel aria-label="Bỏ trả lời">✕</button></div>
     <div class="chat-emoji-pop" data-chat-emoji-pop hidden></div>
     <form class="chat-composer" data-chat-form>
-     <button type="button" class="btn btn-outline chat-book-toggle" data-chat-connect-toggle hidden>@Ui.Icon("users") Rủ đi cùng</button>
+     <button type="button" class="btn btn-outline chat-book-toggle" data-chat-connect-toggle hidden>@Ui.Icon("users") Mời vào chuyến đi</button>
      <button type="button" class="btn btn-outline chat-book-toggle" data-chat-book-toggle hidden>@Ui.Icon("ticket") Đặt dịch vụ</button>
      <label class="chat-attach" title="Gửi ảnh">@Ui.Icon("image")<span class="sr-only">Gửi ảnh</span><input type="file" accept="image/jpeg,image/png" data-chat-image hidden/></label>
      <label class="chat-attach" title="Gửi tệp PDF">📄<span class="sr-only">Gửi tệp PDF</span><input type="file" accept="application/pdf" data-chat-pdf hidden/></label>

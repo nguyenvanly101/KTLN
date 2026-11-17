@@ -6,6 +6,8 @@ namespace HoTroDuLich.Web.Services;
 
 public sealed record TripMemberDto(long AccountId,string Name,bool Accepted,bool IsOwner);
 public sealed record TripInviteDto(long PlanId,string PlanName,string Destination,DateOnly Start,DateOnly End,string Inviter);
+/// <summary>Chuyen di cua toi co the moi mot nguoi vao. State: can, pending, accepted, full.</summary>
+public sealed record TripInviteOption(long Id,string Name,string Destination,DateOnly Start,DateOnly End,string State);
 public sealed record TripMembersPage(List<TripMemberDto> Members,List<PersonDto> InvitableFriends,bool IsOwner,bool IsMember);
 
 /// <summary>Chuyen di chung: chu chuyen di moi ban be (chi ban be), ban be chap nhan thi cung xem va sua hang muc.</summary>
@@ -41,12 +43,28 @@ public sealed class TripShareService(AppDbContext context,IHttpContextAccessor a
   return new(list,invitable,isOwner,isMember);
  }
 
+ Task<bool> Talked(long accountId)=>db.Set<CuocTroChuyen>().AsNoTracking().AnyAsync(x=>x.BranchId==null&&!x.IsGroup&&((x.TravelerId==UserId&&x.PeerId==accountId)||(x.TravelerId==accountId&&x.PeerId==UserId)));
+ /// <summary>Cac chuyen di sap toi cua toi kem tinh trang moi voi mot nguoi (de chon ngay trong chat).</summary>
+ public async Task<List<TripInviteOption>> InvitablePlans(long accountId)
+ {
+  RoleRequired(Traveler);
+  var plans=await db.KeHoachChuyenDi.AsNoTracking().Where(p=>p.MaTaiKhoan==UserId&&p.NgayKetThuc>=TravelService.Today).Select(p=>new{p.MaKeHoach,p.TenKeHoach,p.NoiDen,p.NgayBatDau,p.NgayKetThuc}).ToListAsync();
+  var ids=plans.Select(p=>p.MaKeHoach).ToList();
+  var members=await db.Set<ThanhVienChuyenDi>().AsNoTracking().Where(m=>ids.Contains(m.PlanId)).Select(m=>new{m.PlanId,m.AccountId,m.Status}).ToListAsync();
+  return plans.OrderBy(p=>p.NgayBatDau).Take(30).Select(p=>
+  {
+   var mine=members.FirstOrDefault(m=>m.PlanId==p.MaKeHoach&&m.AccountId==accountId);
+   var state=mine!=null?(mine.Status=="Pending"?"pending":"accepted"):members.Count(m=>m.PlanId==p.MaKeHoach)>=MaxMembers?"full":"can";
+   return new TripInviteOption(p.MaKeHoach,p.TenKeHoach,p.NoiDen,p.NgayBatDau,p.NgayKetThuc,state);
+  }).ToList();
+ }
+
  public async Task Invite(long planId,long accountId)
  {
   var plan=await OwnerPlan(planId);
   Require(accountId!=UserId,"Bạn đã là chủ chuyến đi.",400);
   Require(plan.NgayKetThuc>=TravelService.Today,"Chuyến đi đã kết thúc.",422);
-  Require(await friends.AreFriends(UserId,accountId),"Chỉ mời được bạn bè của bạn.",403);
+  Require(await friends.AreFriends(UserId,accountId)||await Talked(accountId),"Chỉ mời được bạn bè hoặc người bạn đã trò chuyện.",403);
   Require(await db.Set<ThanhVienChuyenDi>().CountAsync(m=>m.PlanId==planId)<MaxMembers,"Mỗi chuyến đi chung tối đa "+MaxMembers+" thành viên được mời.",422);
   Require(!await db.Set<ThanhVienChuyenDi>().AnyAsync(m=>m.PlanId==planId&&m.AccountId==accountId),"Người này đã được mời.",409);
   await Execute(async()=>

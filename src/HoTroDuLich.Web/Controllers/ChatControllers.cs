@@ -53,6 +53,9 @@ public sealed class ChatApiController(ChatService chat,ChatBroker broker):Contro
  [HttpPost("dat"),EnableRateLimiting("chat")] public Task<IActionResult> Book([FromForm]ChatBookingInput input)=>Run(async()=>{var (m,c)=await chat.SendBooking(input);return new{message=m,conversationId=c};});
  [HttpPost("{id:long}/dat/hanh-dong"),EnableRateLimiting("chat")] public Task<IActionResult> BookingAct(long id,[FromForm]ChatBookingAction input)=>Run(async()=>{await chat.BookingAct(id,input);return new{ok=true};});
  [HttpGet("nguoi/{accountId:long}/loi-ru")] public Task<IActionResult> PeerNeeds(long accountId)=>Run(async()=>await chat.PeerNeeds(accountId));
+ /// <summary>Chuyen di cua toi co the moi nguoi dang tro chuyen vao.</summary>
+ [HttpGet("nguoi/{accountId:long}/chuyen-di")] public Task<IActionResult> InvitablePlans(long accountId)=>Run(async()=>await HttpContext.RequestServices.GetRequiredService<TripShareService>().InvitablePlans(accountId));
+ [HttpPost("moi-chuyen-di"),EnableRateLimiting("chat")] public Task<IActionResult> InviteToPlan([FromForm]long planId,[FromForm]long accountId)=>Run(async()=>{await HttpContext.RequestServices.GetRequiredService<TripShareService>().Invite(planId,accountId);return new{ok=true};});
  [HttpGet("{id:long}/ket-noi")] public Task<IActionResult> Connections(long id)=>Run(async()=>await chat.ConnectionCards(id));
  [HttpPost("ru"),EnableRateLimiting("chat")] public Task<IActionResult> Invite([FromForm]ChatConnectInput input)=>Run(async()=>{var (m,c)=await chat.SendConnection(input);return new{message=m,conversationId=c};});
  [HttpPost("{id:long}/ket-noi/hanh-dong"),EnableRateLimiting("chat")] public Task<IActionResult> ConnectionAct(long id,[FromForm]ChatConnectAction input)=>Run(async()=>{await chat.ConnectionAct(id,input);return new{ok=true};});
