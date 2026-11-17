@@ -21,7 +21,7 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
   const cards = id => json(database, `SELECT Id, ConversationId C, SenderId S FROM dbo.TinNhanChat WHERE BookingRequestId=${id} AND Kind='Booking' FOR JSON PATH;`) || [];
 
   // 1. Khach gui yeu cau theo mau (hai buoc)
-  const form = await t.get('/Bookings/Create/' + svc.Id);
+  const form = await t.get('/yeu-cau/mo-dat-dich-vu?maDichVu=' + svc.Id); // bieu mau day du (duong dan tieng Viet), /Bookings/Create nay chuyen sang bang dat
   check(form.status === 200, 'Khach mo bieu mau dat dich vu');
   const fields = { ServiceId: svc.Id, BranchId: svc.BranchId, SubmissionId: crypto.randomUUID(), Start: day(6), People: 3, Quantity: 1, Notes: 'Ban gan cua so' };
   const preview = await t.post('/yeu-cau/kiem-tra-truoc-gui', form, fields);
@@ -53,9 +53,9 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
   check(cards(id).length === 1, 'Mo lai nhieu lan khong sinh the trung');
 
   // 4. Danh sach cua nha cung cap: khong an lang le yeu cau o co so khac
-  const all = decode((await p.get('/Bookings?tatCa=true')).html), mine = decode((await p.get('/Bookings')).html);
-  check(all.includes('Yêu cầu #' + id), 'Xem tat ca co so thay yeu cau vua gui');
-  check(mine.includes('Yêu cầu #' + id) || (mine.includes('id="other-branch-waiting"') && mine.includes('/Bookings?tatCa=true')), 'Dang chon co so khac thi co dong bao con yeu cau cho va loi xem tat ca');
+  const all = decode((await p.get('/Bookings?loc=can-tra-loi')).html), mine = decode((await p.get('/Bookings')).html);
+  check(all.includes('#' + id), 'Xem tat ca co so thay yeu cau vua gui');
+  check(mine.includes('#' + id), 'Danh sach chung hien yeu cau cua moi co so, khong an theo co so dang chon');
 
   // 5. De xuat dieu kien khac: khach thay ro doi gi
   const propose = await p.post('/yeu-cau/chap-nhan', pDetail, { Id: id, Version: val(pDetail, 'Version'), BusinessVersion: val(pDetail, 'BusinessVersion'), Decision: 'DeXuatKhac', People: 4, Cost: 250000, Text: 'Chi con ban 4 nguoi, gia tron goi' });

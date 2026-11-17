@@ -118,7 +118,8 @@ public partial class DatDichVuService(AppDbContext context, IHttpContextAccessor
 
     public async Task ChapNhanAsync(CommandInput i)
     {
-        RoleRequired(new[] { "Rut", "KhachDongY", "KhachKhongDongY" }.Contains(i.Decision) ? Traveler : ProviderRole);
+        if (i.Decision == "Huy") RoleRequired(Traveler, ProviderRole);
+        else RoleRequired(new[] { "Rut", "KhachDongY", "KhachKhongDongY" }.Contains(i.Decision) ? Traveler : ProviderRole);
         await Execute(async () =>
         {
             var y = await ChiTietAsync(i.Id);
@@ -128,7 +129,28 @@ public partial class DatDichVuService(AppDbContext context, IHttpContextAccessor
             var p = await Find<NhaCungCapDichVu>(s.MaNhaCungCap);
             var before = BookingSnapshot(y);
             string type;
-            if (i.Decision == "Rut")
+            if (i.Decision == "Huy")
+            {
+                // Huy truc tiep kem ly do, khong can ben kia duyet; yeu cau da xac nhan chi huy duoc truoc ngay dung.
+                var customer = y.MaTaiKhoan == UserId;
+                Require(customer || p.MaTaiKhoan == UserId, "Không có quyền hủy yêu cầu này.", 404);
+                Require(!string.IsNullOrWhiteSpace(i.Reason), "Vui lòng ghi lý do hủy.", 422);
+                Require(y.TrangThai is HoTroDuLich.Web.Domain.TrangThaiYeuCau.ChoPhanHoi or HoTroDuLich.Web.Domain.TrangThaiYeuCau.DeXuatKhac or HoTroDuLich.Web.Domain.TrangThaiYeuCau.DaXacNhan, "Yêu cầu này không còn hủy được.", 409);
+                Require(y.TrangThai != HoTroDuLich.Web.Domain.TrangThaiYeuCau.DaXacNhan || y.NgayBatDau > HomNay, "Đã tới ngày sử dụng, không hủy được nữa. Hãy nhắn tin với bên kia.", 409);
+                y.TrangThai = HoTroDuLich.Web.Domain.TrangThaiYeuCau.DaHuy;
+                var why = i.Reason.Trim();
+                y.LyDo = ((customer ? "Khách hủy: " : "Cơ sở hủy: ") + why)[..Math.Min(500, (customer ? 11 : 11) + why.Length)];
+                type = "YeuCauDaHuy";
+            }
+            else if (i.Decision is "DaPhucVu" or "KhachKhongDen")
+            {
+                Require(p.MaTaiKhoan == UserId, "Không có quyền.", 404);
+                Require(y.TrangThai == HoTroDuLich.Web.Domain.TrangThaiYeuCau.DaXacNhan && y.NgayBatDau <= HomNay, "Chỉ ghi nhận sau khi tới ngày sử dụng của yêu cầu đã xác nhận.", 409);
+                y.TrangThai = i.Decision == "DaPhucVu" ? HoTroDuLich.Web.Domain.TrangThaiYeuCau.HoanThanh : HoTroDuLich.Web.Domain.TrangThaiYeuCau.KhongThucHien;
+                y.LyDo = i.Decision == "KhachKhongDen" ? "Khách không đến" : null;
+                type = i.Decision == "DaPhucVu" ? "YeuCauDaPhucVu" : "YeuCauKhachKhongDen";
+            }
+            else if (i.Decision == "Rut")
             {
                 Ensure(y.MaTaiKhoan == UserId && new HoTroDuLich.Web.Domain.TrangThaiYeuCau[] { HoTroDuLich.Web.Domain.TrangThaiYeuCau.ChoPhanHoi, HoTroDuLich.Web.Domain.TrangThaiYeuCau.DeXuatKhac }.Contains(y.TrangThai), "0801-02");
                 y.TrangThai = HoTroDuLich.Web.Domain.TrangThaiYeuCau.KhongTiepTuc;
@@ -183,7 +205,7 @@ public partial class DatDichVuService(AppDbContext context, IHttpContextAccessor
             y.ThoiDiemPhanHoi = Clock.BayGioUtc;
             y.PhienBan++;
             serviceNhatKy.Ghi(i.Decision=="DeXuatKhac"?"DeXuatDieuKien":"PhanHoiDatDichVu", "YeuCauDatDichVu", y.MaYeuCau, before, BookingSnapshot(y), i.Reason);
-            serviceThongBao.Tao(UserId == y.MaTaiKhoan ? p.MaTaiKhoan : y.MaTaiKhoan,type,"Yêu cầu #" + y.MaYeuCau + ": " + Labels.Status((y.TrangThai).ToString()),UserId == y.MaTaiKhoan ? "/nha-cung-cap/yeu-cau/" + y.MaYeuCau : "/yeu-cau/" + y.MaYeuCau);
+            serviceThongBao.Tao(UserId == y.MaTaiKhoan ? p.MaTaiKhoan : y.MaTaiKhoan,type,"Yêu cầu #" + y.MaYeuCau + " (" + s.TenDichVu + "): " + BookingUi.Label(y.TrangThai) + (y.TrangThai == HoTroDuLich.Web.Domain.TrangThaiYeuCau.DaHuy && y.LyDo != null ? " · " + y.LyDo : ""),UserId == y.MaTaiKhoan ? "/nha-cung-cap/yeu-cau/" + y.MaYeuCau : "/yeu-cau/" + y.MaYeuCau);
         });
     }
 

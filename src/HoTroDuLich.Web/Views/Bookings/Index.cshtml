@@ -1,15 +1,47 @@
 @model List<YeuCauDatDichVu>
 @inject TravelService Travel
-@{ViewData["Title"]="Quản lý đặt dịch vụ";var names=(Dictionary<long,string>)ViewBag.ServiceNames;var provider=Travel.Role==TravelService.ProviderRole;}
-<div class="container-wide"><div class="page-head"><div><h1>@(provider?"Yêu cầu đặt dịch vụ":"Đặt dịch vụ của tôi")</h1><p>@(provider?"Tiếp nhận yêu cầu của khách và theo dõi quá trình cung cấp dịch vụ.":"Theo dõi trạng thái đặt dịch vụ và quản lý các thay đổi trong chuyến đi.")</p></div>@if(!provider){<a class="btn btn-dark" href="/">@Ui.Icon("search") Tìm dịch vụ</a>}</div>
-<partial name="_BookingWorkspaceTabs"/>
-@if(provider&&ViewBag.AllBranches is true){<div class="notice">Đang xem yêu cầu của tất cả cơ sở. <a href="/Bookings">Chỉ xem cơ sở @ViewBag.BranchName</a></div>}
-else if(provider&&ViewBag.OtherWaiting is int otherWaiting&&otherWaiting>0){<div class="notice warning" id="other-branch-waiting">Còn <b>@otherWaiting</b> yêu cầu đang chờ ở cơ sở khác của bạn. <a href="/Bookings?tatCa=true">Xem tất cả cơ sở</a></div>}
-<div class="workflow-ribbon" aria-label="Quy trình đặt dịch vụ"><span><b>01</b> Gửi yêu cầu</span>@Ui.Icon("arrow")<span><b>02</b> Nhà cung cấp phản hồi</span>@Ui.Icon("arrow")<span><b>03</b> Xác nhận & theo dõi</span></div>
-<div class="stats compact-stats"><div class="stat">@Ui.Icon("ticket")<small>Tất cả yêu cầu</small><strong>@Model.Count</strong></div><div class="stat">@Ui.Icon("clock")<small>Chờ phản hồi</small><strong>@Model.Count(x=>new[]{"ChoPhanHoi","DeXuatKhac"}.Contains(x.TrangThai.ToString()))</strong></div><div class="stat">@Ui.Icon("check")<small>Đã xác nhận</small><strong>@Model.Count(x=>x.TrangThai.ToString()=="DaXacNhan")</strong></div></div>
-@if(Model.Count==0){<div class="empty">@Ui.Icon("ticket")<h3>Chưa có yêu cầu đặt dịch vụ</h3><p>@(provider?"Các yêu cầu mới của khách sẽ xuất hiện tại đây.":"Tìm dịch vụ phù hợp và gửi yêu cầu cho chuyến đi của bạn.")</p>@if(!provider){<a class="btn btn-dark" href="/">Khám phá dịch vụ</a>}</div>}else{
- <div class="panel table-wrap"><table class="table booking-table" role="table"><caption class="visually-hidden">Các yêu cầu đặt dịch vụ và trạng thái xử lý</caption><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Dịch vụ</th><th scope="col" role="columnheader">Ngày sử dụng</th><th scope="col" role="columnheader">Số người / số lượng</th><th scope="col" role="columnheader">Chi phí dự kiến</th><th scope="col" role="columnheader">Trạng thái</th><th scope="col" role="columnheader"><span class="visually-hidden">Thao tác</span></th></tr></thead><tbody role="rowgroup">
- @foreach(var y in Model){<tr role="row"><td role="cell"><b>@names.GetValueOrDefault(y.MaYeuCau,"Dịch vụ du lịch")</b><span class="help">Yêu cầu #@y.MaYeuCau</span></td><td role="cell"><span class="mobile-cell-label" aria-hidden="true">Ngày sử dụng</span>@y.NgayBatDau.ToString("dd/MM/yyyy")</td><td role="cell"><span class="mobile-cell-label" aria-hidden="true">Số lượng</span>@y.SoNguoi người · @y.SoLuong đơn vị</td><td role="cell"><span class="mobile-cell-label" aria-hidden="true">Chi phí dự kiến</span>@Labels.Money(y.ChiPhiDuKien)</td><td role="cell"><span class="mobile-cell-label" aria-hidden="true">Trạng thái</span><span class="badge @Labels.Badge(y.TrangThai.ToString())">@Labels.Status(y.TrangThai.ToString())</span></td><td role="cell"><a class="booking-detail-link" href="/Bookings/Detail/@y.MaYeuCau" aria-label="Chi tiết yêu cầu @y.MaYeuCau">Xem chi tiết @Ui.Icon("arrow")</a></td></tr>}
- </tbody></table></div>
+@inject HoTroDuLich.Web.Data.AppDbContext BookingDb
+@using Microsoft.EntityFrameworkCore
+@{
+ ViewData["Title"]="Yêu cầu đặt dịch vụ";
+ var names=(Dictionary<long,string>)ViewBag.ServiceNames;
+ var provider=Travel.Role==TravelService.ProviderRole;
+ var today=TravelService.Today;
+ var ids=Model.Select(x=>x.MaYeuCau).ToList();
+ var branches=ids.Count==0?new Dictionary<long,string>():await BookingDb.Set<YeuCauDatCoSo>().AsNoTracking().Where(x=>ids.Contains(x.RequestId)).ToDictionaryAsync(x=>x.RequestId,x=>x.BranchName);
+ var people=new Dictionary<long,string>();
+ if(provider){var acc=Model.Select(x=>x.MaTaiKhoan).Distinct().ToList();people=await BookingDb.Set<HoSoNguoiDung>().AsNoTracking().Where(x=>acc.Contains(x.MaTaiKhoan)).ToDictionaryAsync(x=>x.MaTaiKhoan,x=>x.TenHienThi??"");}
+ var byFilter=Model.GroupBy(x=>BookingUi.Filter(x,provider,today)).ToDictionary(g=>g.Key,g=>g.ToList());
+ var requested=Context.Request.Query["loc"].ToString();
+ var current=BookingUi.Filters.Any(f=>f.Key==requested)?requested:BookingUi.Filters.FirstOrDefault(f=>byFilter.ContainsKey(f.Key)).Key??"can-tra-loi";
+ // Yeu cau moi can tra loi len dau, roi theo ngay dung gan nhat; muc da xong xep moi nhat truoc.
+ var open=current is "can-tra-loi" or "sap-toi";
+ var shown=open
+  ?(byFilter.GetValueOrDefault(current)??[]).OrderBy(x=>x.TrangThai is TrangThaiYeuCau.ChoPhanHoi or TrangThaiYeuCau.DeXuatKhac?0:1).ThenBy(x=>x.NgayBatDau).ThenByDescending(x=>x.MaYeuCau).ToList()
+  :(byFilter.GetValueOrDefault(current)??[]).OrderByDescending(x=>x.ThoiDiemPhanHoi??x.ThoiDiemGui).ThenByDescending(x=>x.MaYeuCau).ToList();
 }
+<div class="container-narrow bk-page">
+ <div class="page-head"><div><h1>@(provider?"Yêu cầu đặt dịch vụ":"Đặt dịch vụ của tôi")</h1><p>@(provider?"Yêu cầu của khách ở mọi cơ sở của bạn.":"Theo dõi yêu cầu bạn đã gửi cho các cơ sở.")</p></div>@if(!provider){<a class="btn btn-outline" href="/Discovery">@Ui.Icon("search") Tìm dịch vụ</a>}</div>
+ <nav class="bk-chips" aria-label="Lọc yêu cầu">@foreach(var f in BookingUi.Filters){<a class="@(f.Key==current?"on":"")" aria-current="@(f.Key==current?"page":null)" href="?loc=@f.Key">@f.Label<em>@(byFilter.GetValueOrDefault(f.Key)?.Count??0)</em></a>}</nav>
+ @if(shown.Count==0)
+ {
+  <div class="empty">@Ui.Icon("ticket")<h2>@(Model.Count==0?"Chưa có yêu cầu nào":"Không có yêu cầu ở mục này")</h2><p>@(provider?"Yêu cầu mới của khách sẽ hiện ở “Cần trả lời”.":Model.Count==0?"Mở một dịch vụ và bấm “Đặt dịch vụ” để gửi yêu cầu cho cơ sở.":"Chọn mục khác ở trên.")</p></div>
+ }
+ else
+ {
+  <ul class="bk-list">
+  @foreach(var y in shown.Take(60))
+  {
+   var group=BookingUi.Group(y.TrangThai);
+   <li class="bk-item">
+    <a class="bk-item-main" href="/Bookings/Detail/@y.MaYeuCau"><b>@names.GetValueOrDefault(y.MaYeuCau,"Dịch vụ du lịch") · @BookingUi.Dates(y) · @y.SoNguoi người</b>
+     <span class="help">@string.Join(" · ",new[]{provider?(people.GetValueOrDefault(y.MaTaiKhoan) is string n&&n.Length>0?n:"Khách #"+y.MaTaiKhoan):null,branches.GetValueOrDefault(y.MaYeuCau),y.ChiPhiDuKien!=null?Labels.Money(y.ChiPhiDuKien):null,"#"+y.MaYeuCau}.Where(s=>!string.IsNullOrEmpty(s)))</span></a>
+    <div class="bk-item-side"><span class="bk-pill bk-@group">@BookingUi.Label(y.TrangThai)</span>
+     @if(provider&&y.TrangThai==TrangThaiYeuCau.ChoPhanHoi){<form action="/Bookings/Respond" method="post">@Html.AntiForgeryToken()<input type="hidden" name="Id" value="@y.MaYeuCau"/><input type="hidden" name="Version" value="@TravelService.Token(y.RowVersion)"/><input type="hidden" name="BusinessVersion" value="@y.PhienBan"/><button class="btn btn-dark btn-small" name="Decision" value="DaXacNhan" type="submit">Xác nhận</button></form>}
+     <a class="btn btn-outline btn-small" href="/Bookings/Detail/@y.MaYeuCau">Mở</a></div>
+   </li>
+  }
+  </ul>
+  @if(shown.Count>60){<p class="help">Đang hiện 60 yêu cầu gần nhất trong mục này.</p>}
+ }
 </div>

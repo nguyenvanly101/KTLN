@@ -103,7 +103,7 @@ const request = id => json(database, `SELECT TrangThai,PhienBan,SoNguoi,ChiPhiDu
   const agree = await api(traveler, tokenT, 'POST', `/chat/${cid}/dat/hanh-dong`, fd({ RequestId: rid, Decision: 'KhachDongY' }));
   check(agree.status === 200 && request(rid).TrangThai === 'DaXacNhan', 'Khach dong y de xuat: yeu cau duoc xac nhan');
   const done = (await api(provider, tokenP, 'GET', '/chat/' + cid)).body;
-  check(done.cards.find(c => c.id === rid).status === 'DaXacNhan' && done.cards.find(c => c.id === rid).actions.filter(x => !['YeuCauCoc', 'DaNhanCoc', 'ThemVaoChuyenDi'].includes(x)).length === 0, 'The cho hai ben deu o trang thai da xac nhan, het hanh dong');
+  check(done.cards.find(c => c.id === rid).status === 'DaXacNhan' && done.cards.find(c => c.id === rid).actions.filter(x => !['YeuCauCoc', 'DaNhanCoc', 'ThemVaoChuyenDi', 'Huy'].includes(x)).length === 0, 'The cho hai ben deu o trang thai da xac nhan, chi con Huy (truoc ngay dung) va viec phu');
   check(done.messages.some(m => m.kind === 'Event' && m.body.includes('Đã xác nhận')), 'Co dong su kien da xac nhan');
   check((await api(traveler, tokenT, 'POST', `/chat/${cid}/dat/hanh-dong`, fd({ RequestId: rid, Decision: 'Rut' }))).status >= 400, 'Khong the rut yeu cau da xac nhan');
   const detail = await traveler.get('/Bookings/Detail/' + rid);

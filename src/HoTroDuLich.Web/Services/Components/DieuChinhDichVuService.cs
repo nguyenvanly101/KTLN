@@ -22,8 +22,11 @@ public partial class DieuChinhDichVuService(AppDbContext context, IHttpContextAc
         await Execute(async () =>
         {
             var y = await serviceDatDichVu.ChiTietAsync(i.Id);
-            Ensure(y.MaTaiKhoan == UserId && y.TrangThai == HoTroDuLich.Web.Domain.TrangThaiYeuCau.ChoPhanHoi, "0801-02");
+            // Sua khi dang cho phan hoi, hoac sau khi da xac nhan (truoc ngay dung): yeu cau quay lai cho co so xac nhan lai.
+            var reconfirm = y.TrangThai == HoTroDuLich.Web.Domain.TrangThaiYeuCau.DaXacNhan && y.NgayBatDau > HomNay;
+            Ensure(y.MaTaiKhoan == UserId && (y.TrangThai == HoTroDuLich.Web.Domain.TrangThaiYeuCau.ChoPhanHoi || reconfirm), "0801-02");
             CheckVersion(y, i.Version, "0801-03");
+            if (reconfirm) { y.TrangThai = HoTroDuLich.Web.Domain.TrangThaiYeuCau.ChoPhanHoi; y.DieuKienDeXuat = null; }
             y.NgayBatDau = i.Start;
             y.NgayKetThuc = i.End;
             y.ThoiGianDenDi = i.ArrivalDeparture;
@@ -35,7 +38,7 @@ public partial class DieuChinhDichVuService(AppDbContext context, IHttpContextAc
             y.PhienBan++;
             var s = await Find<DichVuDuLich>(y.MaDichVu);
             var p = await Find<NhaCungCapDichVu>(s.MaNhaCungCap);
-            serviceThongBao.Tao(p.MaTaiKhoan,"YeuCauDaSua","Khách vừa sửa yêu cầu #" + y.MaYeuCau,"/nha-cung-cap/yeu-cau/" + y.MaYeuCau);
+            serviceThongBao.Tao(p.MaTaiKhoan,"YeuCauDaSua",(reconfirm ? "Khách đổi yêu cầu đã xác nhận #" : "Khách vừa sửa yêu cầu #") + y.MaYeuCau + " (" + s.TenDichVu + "), cần xác nhận lại","/nha-cung-cap/yeu-cau/" + y.MaYeuCau);
         });
     }
 

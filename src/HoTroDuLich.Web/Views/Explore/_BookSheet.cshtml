@@ -1,0 +1,46 @@
+@model DichVuDuLich
+@inject ChatService Chat
+@* Dat dich vu gon: mot bang noi tren trang dich vu, gui xong vao thang cuoc tro chuyen voi co so. *@
+@{
+ var trip = ViewBag.TripPlan as KeHoachChuyenDi;
+ var signed = User.Identity?.IsAuthenticated == true;
+ var traveler = User.IsInRole(TravelService.Traveler);
+ long? preferred = long.TryParse(Context.Request.Query["branchId"], out var b) ? b : null;
+ long? branch = traveler ? await Chat.BranchForService(Model.MaDichVu, preferred) : null;
+ var today = TravelService.Today;
+ var start = trip != null && trip.NgayBatDau >= today ? trip.NgayBatDau : today.AddDays(7);
+ var unit = (Model.DonViGia ?? "").ToLowerInvariant();
+ var ranged = unit.Contains("đêm") || unit.Contains("ngày") || DanhMuc.ChuanHoa(Model.LoaiDichVu) == "LuuTru";
+}
+@if (!signed)
+{
+ <a class="btn btn-dark w-100 mt-3" href="/Account/Login?ReturnUrl=@Uri.EscapeDataString(Context.Request.Path + Context.Request.QueryString)">@Ui.Icon("ticket") Đặt dịch vụ</a>
+ <p class="help">Đăng nhập để gửi yêu cầu cho cơ sở.</p>
+}
+else if (branch == null)
+{
+ @* Dich vu chua gan co so: van gui yeu cau theo mau. *@
+ <a class="btn btn-dark w-100 mt-3" href="/Bookings/Create/@Model.MaDichVu@(trip != null ? "?planId=" + trip.MaKeHoach : "")">@Ui.Icon("ticket") Đặt dịch vụ</a>
+}
+else
+{
+ <button type="button" class="btn btn-dark w-100 mt-3" data-book-open>@Ui.Icon("ticket") Đặt dịch vụ</button>
+ <p class="help">Cơ sở xác nhận giá và chỗ trong tin nhắn. <a href="/tin-nhan/co-so/@branch?dichVu=@Model.MaDichVu">Nhắn hỏi trước</a></p>
+ <dialog class="book-sheet" id="book-sheet" aria-labelledby="book-title">
+  <form method="dialog" class="book-form" data-book-form data-plan="@trip?.MaKeHoach">
+   @Html.AntiForgeryToken()
+   <input type="hidden" name="ServiceId" value="@Model.MaDichVu"/><input type="hidden" name="BranchId" value="@branch"/><input type="hidden" name="Quantity" value="1"/><input type="hidden" name="SubmissionId" value="@Guid.NewGuid()"/>
+   <div class="book-head"><div><h2 id="book-title">Đặt dịch vụ</h2><p>@Model.TenDichVu</p></div><button type="button" class="icon-button" data-book-close aria-label="Đóng">×</button></div>
+   <div class="book-fields">
+    <label>Ngày@(ranged ? " đến" : "")<input class="form-control" type="date" name="Start" value="@start.ToString("yyyy-MM-dd")" min="@today.ToString("yyyy-MM-dd")" required/></label>
+    @if (ranged){<label>Ngày đi<input class="form-control" type="date" name="End" value="@start.AddDays(1).ToString("yyyy-MM-dd")" min="@today.ToString("yyyy-MM-dd")"/></label>}
+    <label>Số người<input class="form-control" type="number" name="People" value="2" min="1" max="100" required/></label>
+    <label class="full">Ghi chú cho cơ sở (tùy chọn)<textarea class="form-control" name="Notes" maxlength="1000" rows="2" placeholder="Ví dụ: bàn gần cửa sổ, có trẻ em"></textarea></label>
+   </div>
+   <div class="book-warn" data-book-warn hidden></div>
+   <div class="book-est"><span data-book-basis>Tạm tính theo giá tham khảo</span><strong data-book-total>…</strong></div>
+   <button type="submit" class="btn btn-dark w-100" data-book-send>Gửi yêu cầu cho cơ sở</button>
+   <p class="help">Gửi yêu cầu chưa phải là đã đặt được chỗ. Cơ sở xác nhận giá cuối và chỗ trong cuộc trò chuyện.@if (trip != null){<text> Yêu cầu được gắn vào chuyến <b>@trip.TenKeHoach</b>.</text>}</p>
+  </form>
+ </dialog>
+}

@@ -210,13 +210,14 @@
     if (!st.openId) return;
     api('/chat/' + st.openId + '/ket-noi').then(function (list) { st.conns = {}; list.forEach(function (c) { st.conns[c.id] = c; }); renderConnections(); }).catch(function () {});
   }
-  var ACTION_LABEL = { YeuCauCoc: 'Đề nghị đặt cọc', DaNhanCoc: 'Đã nhận cọc', ThemVaoChuyenDi: 'Thêm vào chuyến đi', DaXacNhan: 'Xác nhận', TuChoi: 'Từ chối', DeXuatKhac: 'Đề xuất khác', Rut: 'Rút yêu cầu', KhachDongY: 'Đồng ý đề xuất', KhachKhongDongY: 'Không đồng ý' };
+  var ACTION_LABEL = { YeuCauCoc: 'Đề nghị đặt cọc', DaNhanCoc: 'Đã nhận cọc', ThemVaoChuyenDi: 'Thêm vào chuyến đi', DaXacNhan: 'Xác nhận', TuChoi: 'Từ chối', DeXuatKhac: 'Đề xuất khác', Rut: 'Rút yêu cầu', KhachDongY: 'Đồng ý đề xuất', KhachKhongDongY: 'Không đồng ý', Huy: 'Hủy yêu cầu', DaPhucVu: 'Đã phục vụ', KhachKhongDen: 'Khách không đến' };
   function cardActions(c) {
     var box = h('div', 'chat-card-actions'), form = h('div', 'chat-card-form'); form.hidden = true;
     c.actions.forEach(function (a) {
       var b = h('button', 'btn ' + (a === 'DaXacNhan' || a === 'KhachDongY' ? 'btn-dark' : 'btn-outline'), ACTION_LABEL[a]); b.type = 'button';
       b.addEventListener('click', function () {
-        if (a === 'TuChoi' || a === 'DeXuatKhac' || a === 'KhachKhongDongY' || a === 'YeuCauCoc' || a === 'ThemVaoChuyenDi') { openCardForm(form, c, a); return; }
+        if (a === 'TuChoi' || a === 'Huy' || a === 'DeXuatKhac' || a === 'KhachKhongDongY' || a === 'YeuCauCoc' || a === 'ThemVaoChuyenDi') { openCardForm(form, c, a); return; }
+        if (a === 'KhachKhongDen' && !confirm('Ghi nhận khách không đến?')) return;
         if (a === 'DaNhanCoc') { if (!confirm('Xác nhận bạn đã nhận khoản cọc này?')) return; api('/chat/' + st.openId + '/dat/coc/xac-nhan', { method: 'POST', body: form2({ requestId: c.id }) }).then(function () { fetchNew(); refreshCards(); }).catch(function (e) { showError(e.message); }); return; }
         if (a === 'Rut' && !confirm('Rút yêu cầu này?')) return;
         doAction(c, { Decision: a });
@@ -244,7 +245,7 @@
       function addOpt() { if (optRows.children.length >= 3) return; var row = h('div', 'chat-option'); var t = h('textarea', 'form-control'); t.rows = 2; t.maxLength = 400; t.placeholder = 'Phương án ' + (optRows.children.length + 1) + ': hạng phòng, giờ khác, điều kiện…'; var cst = h('input', 'form-control'); cst.type = 'number'; cst.min = 0; cst.placeholder = 'Chi phí (₫)'; row.appendChild(t); row.appendChild(cst); optRows.appendChild(row); }
       addOpt(); form.appendChild(optRows);
       var more = h('button', 'text-link', '+ Thêm phương án (tối đa 3)'); more.type = 'button'; more.addEventListener('click', addOpt); form.appendChild(more);
-    } else field(a === 'TuChoi' ? 'Lý do từ chối' : 'Lý do (tùy chọn)', 'textarea', 'Reason', '');
+    } else field(a === 'TuChoi' ? 'Lý do từ chối' : a === 'Huy' ? 'Lý do hủy' : 'Lý do (tùy chọn)', 'textarea', 'Reason', '');
     var go = h('button', 'btn btn-dark', 'Gửi'); go.type = 'button';
     go.addEventListener('click', function () {
       var v = { Decision: a }; form.querySelectorAll('[name]').forEach(function (i) { if (i.value !== '') v[i.name] = i.value; });

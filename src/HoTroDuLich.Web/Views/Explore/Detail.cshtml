@@ -23,12 +23,13 @@
   <partial name="_SaveChoice" model="@(new SavedInput{ServiceId=Model.MaDichVu,ReturnUrl=Context.Request.Path+Context.Request.QueryString})"/>
   @if(canPlan){
    @if(!(ServiceKinds.Get(Model.LoaiDichVu)?.Bookable ?? true)){<div class="notice">Dịch vụ này chỉ cung cấp thông tin. Liên hệ nhà cung cấp theo thông tin bên dưới.</div>}
-   else if(Model.TrangThaiTiepNhan == TrangThaiTiepNhan.TiepNhan && provider.TrangThaiQuyenHoatDong == TrangThaiQuyenHoatDong.DangHoatDong){<a class="btn btn-dark w-100 mt-3" href="/tin-nhan/dich-vu/@Model.MaDichVu?branchId=@Context.Request.Query["branchId"]" data-service-chat>@Ui.Icon("chat") Nhắn tin để đặt dịch vụ</a><p class="help">Trao đổi trực tiếp với cơ sở, hai bên thống nhất ngày, giá và điều kiện ngay trong tin nhắn. <a asp-controller="Bookings" asp-action="Create" asp-route-branchId="@Context.Request.Query["branchId"]" asp-route-id="@Model.MaDichVu" asp-route-planId="@trip?.MaKeHoach" asp-route-activityId="@(existingActivities.FirstOrDefault()?.MaHoatDong)">Hoặc gửi yêu cầu theo mẫu</a></p>}
+   else if(Model.TrangThaiTiepNhan == TrangThaiTiepNhan.TiepNhan && provider.TrangThaiQuyenHoatDong == TrangThaiQuyenHoatDong.DangHoatDong){<partial name="/Views/Explore/_BookSheet.cshtml" model="Model"/>}
    else {<div class="notice warning">Dịch vụ hiện không tiếp nhận yêu cầu mới.</div>}
    @if(trip != null){<a class="btn btn-outline w-100 mt-3" href="/Plans/Activity/@trip.MaKeHoach?serviceId=@Model.MaDichVu">@Ui.Icon("plus") Thêm vào chuyến này</a>}
    else {<a class="btn btn-outline w-100 mt-3" href="/Plans/Select?serviceId=@Model.MaDichVu">@Ui.Icon("plus") Thêm vào lịch trình</a>}
    @if(existingActivities.Count > 0){<p class="help mt-3">Dịch vụ đã có trong lịch trình. Bạn vẫn có thể thêm vào ngày khác.</p>}
-   <div class="notice">Thêm vào lịch trình để dự kiến hoạt động. Nhắn tin cho cơ sở khi bạn muốn đặt dịch vụ.</div>
+   
   }
  </div><div class="panel"><span class="eyebrow">NHÀ CUNG CẤP</span><h3>@provider.TenDonVi</h3><span class="badge @Labels.Badge(provider.TrangThaiXacMinh.ToString())">@Labels.Status(provider.TrangThaiXacMinh.ToString())</span><p class="help mt-3">Địa chỉ đăng ký đối tác: @provider.DiaChi</p><p class="help">@provider.SoDienThoai · @provider.EmailLienHe</p></div></aside></div>
 </div>
+@section Scripts{<script src="~/js/booking-sheet.js" asp-append-version="true"></script>}

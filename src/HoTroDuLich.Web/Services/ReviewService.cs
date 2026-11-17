@@ -9,7 +9,7 @@ namespace HoTroDuLich.Web.Services;
 
 public sealed class ReviewService(AppDbContext db,TravelService travel,IDongHo clock)
 {
-    private IQueryable<YeuCauDatDichVu> Eligible()=>db.YeuCauDatDichVu.Where(x=>x.MaTaiKhoan==travel.UserId&&(x.TrangThai==TrangThaiYeuCau.HoanThanh||x.TrangThai==TrangThaiYeuCau.ThucHienMotPhan||x.TrangThai==TrangThaiYeuCau.KhongThucHien)&&(x.NgayKetThuc??x.NgayBatDau)<=clock.HomNay&&db.KetQuaCungCapDichVu.Any(r=>r.MaYeuCau==x.MaYeuCau)&&!db.KetQuaCungCapDichVu.Any(r=>r.MaYeuCau==x.MaYeuCau&&r.TrangThaiKiemTra==TrangThaiKiemTra.ChoKiemTra));
+    private IQueryable<YeuCauDatDichVu> Eligible()=>db.YeuCauDatDichVu.Where(x=>x.MaTaiKhoan==travel.UserId&&(x.TrangThai==TrangThaiYeuCau.HoanThanh||x.TrangThai==TrangThaiYeuCau.ThucHienMotPhan)&&x.NgayBatDau<=clock.HomNay&&!db.KetQuaCungCapDichVu.Any(r=>r.MaYeuCau==x.MaYeuCau&&r.TrangThaiKiemTra==TrangThaiKiemTra.ChoKiemTra));
     public async Task<MyReviewsPage> Mine()
     {
         travel.RoleRequired(TravelService.Traveler);var bookings=await Eligible().OrderByDescending(x=>x.NgayBatDau).ThenByDescending(x=>x.MaYeuCau).ToListAsync();

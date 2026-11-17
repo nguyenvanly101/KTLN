@@ -431,6 +431,8 @@ public sealed partial class ChatService(AppDbContext context,IHttpContextAccesso
    var y=r.y;var actions=new List<string>();
    if(traveler){if(y.TrangThai==TrangThaiYeuCau.ChoPhanHoi)actions.Add("Rut");else if(y.TrangThai==TrangThaiYeuCau.DeXuatKhac)actions.AddRange(["KhachDongY","KhachKhongDongY","Rut"]);}
    else if(y.TrangThai==TrangThaiYeuCau.ChoPhanHoi)actions.AddRange(["DaXacNhan","DeXuatKhac","TuChoi"]);
+   if(y.TrangThai==TrangThaiYeuCau.DaXacNhan&&y.NgayBatDau>today)actions.Add("Huy");
+   if(!traveler&&y.TrangThai==TrangThaiYeuCau.DaXacNhan&&y.NgayBatDau<=today)actions.AddRange(["DaPhucVu","KhachKhongDen"]);
    var dep=deposits.FirstOrDefault(d=>d.RequestId==y.MaYeuCau);
    if(!traveler&&y.TrangThai is TrangThaiYeuCau.ChoPhanHoi or TrangThaiYeuCau.DaXacNhan&&(dep==null||dep.Status=="Requested"))actions.Add(dep==null?"YeuCauCoc":"DaNhanCoc");
    if(traveler&&y.TrangThai==TrangThaiYeuCau.DaXacNhan)actions.Add("ThemVaoChuyenDi");
@@ -442,7 +444,7 @@ public sealed partial class ChatService(AppDbContext context,IHttpContextAccesso
  {
   var (c,_,_,traveler)=await Open(conversationId,true);await CheckRate();
   Require(await db.Set<TinNhanChat>().AnyAsync(m=>m.ConversationId==c.Id&&m.BookingRequestId==a.RequestId&&m.Kind=="Booking"),"Không tìm thấy yêu cầu trong cuộc trò chuyện.",404);
-  var allowed=traveler?new[]{"Rut","KhachDongY","KhachKhongDongY"}:new[]{"DaXacNhan","TuChoi","DeXuatKhac"};
+  var allowed=traveler?new[]{"Rut","KhachDongY","KhachKhongDongY","Huy"}:new[]{"DaXacNhan","TuChoi","DeXuatKhac","Huy","DaPhucVu","KhachKhongDen"};
   Require(allowed.Contains(a.Decision),"Bạn không thể thực hiện thao tác này ở vai trò hiện tại.",403);
   var y=await db.YeuCauDatDichVu.AsNoTracking().SingleAsync(x=>x.MaYeuCau==a.RequestId);
   var cmd=new CommandInput{Id=y.MaYeuCau,Version=Token(y.RowVersion),BusinessVersion=y.PhienBan,Decision=a.Decision,Reason=a.Reason??"",Text=a.Text??"",Start=a.Start,End=a.End,People=a.People,Quantity=a.Quantity,Cost=a.Cost};
@@ -453,6 +455,9 @@ public sealed partial class ChatService(AppDbContext context,IHttpContextAccesso
    TrangThaiYeuCau.DaXacNhan=>"Đã xác nhận: hai bên thống nhất yêu cầu #"+after.MaYeuCau+".",
    TrangThaiYeuCau.TuChoi=>"Cơ sở không nhận yêu cầu #"+after.MaYeuCau+(string.IsNullOrWhiteSpace(after.LyDo)?"":": "+after.LyDo),
    TrangThaiYeuCau.DeXuatKhac=>"Cơ sở đề xuất điều kiện khác cho yêu cầu #"+after.MaYeuCau+": "+after.DieuKienDeXuat,
+   TrangThaiYeuCau.DaHuy=>"Yêu cầu #"+after.MaYeuCau+" đã hủy. "+after.LyDo,
+   TrangThaiYeuCau.HoanThanh=>"Cơ sở ghi nhận đã phục vụ yêu cầu #"+after.MaYeuCau+". Mời khách đánh giá.",
+   TrangThaiYeuCau.KhongThucHien=>"Cơ sở ghi nhận khách không đến theo yêu cầu #"+after.MaYeuCau+".",
    TrangThaiYeuCau.KhongTiepTuc=>a.Decision=="Rut"?"Khách đã rút yêu cầu #"+after.MaYeuCau+".":"Khách không đồng ý đề xuất, yêu cầu #"+after.MaYeuCau+" không tiếp tục.",
    _=>(traveler?"Khách":"Cơ sở")+" đã cập nhật yêu cầu #"+after.MaYeuCau+"."
   };
