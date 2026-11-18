@@ -234,10 +234,10 @@
   function composer(onCreated, me, cfg) {
     cfg = cfg || {};
     var box = h('form', 'post-composer panel'); var top = h('div', 'post-composer-top');
-    top.appendChild(S.avatar(me || { name: 'Tôi' })); var ta = h('textarea', 'form-control'); ta.placeholder = cfg.provider ? 'Chia sẻ ưu đãi, món mới hay hình ảnh của cơ sở…' : 'Bạn đang nghĩ gì về chuyến đi?'; ta.maxLength = 4000; ta.rows = 2; ta.setAttribute('aria-label', 'Nội dung bài viết'); top.appendChild(ta); box.appendChild(top);
+    top.appendChild(S.avatar(me || { name: 'Tôi' })); var ta = h('textarea', 'form-control'); ta.placeholder = cfg.provider ? 'Chia sẻ ưu đãi, món mới hay hình ảnh của cơ sở…' : 'Bạn đang nghĩ gì về chuyến đi?'; ta.maxLength = 4000; ta.rows = 1; ta.setAttribute('aria-label', 'Nội dung bài viết'); top.appendChild(ta); box.appendChild(top);
     var previews = h('div', 'post-previews'); box.appendChild(previews);
     var bar = h('div', 'post-composer-bar'); var left = h('div', 'soc-card-actions');
-    var lab = h('label', 'btn btn-outline', 'Thêm ảnh'); var file = h('input'); file.type = 'file'; file.accept = 'image/jpeg,image/png'; file.multiple = true; file.hidden = true; lab.appendChild(file);
+    var lab = h('label', 'post-tool', '🖼'); lab.title = 'Thêm ảnh'; lab.setAttribute('aria-label', 'Thêm ảnh'); var file = h('input'); file.type = 'file'; file.accept = 'image/jpeg,image/png'; file.multiple = true; file.hidden = true; lab.appendChild(file);
     var kindSel = h('select', 'form-select'); kindSel.setAttribute('aria-label', 'Loại bài viết'); (cfg.provider ? [['Branch', 'Giới thiệu cơ sở']] : [['Share', 'Chia sẻ'], ['Companion', 'Tìm bạn đồng hành']]).forEach(function (k) { var o = h('option', null, k[1]); o.value = k[0]; kindSel.appendChild(o); });
     var branchSel = null;
     if (cfg.provider) { branchSel = h('select', 'form-select'); branchSel.setAttribute('aria-label', 'Cơ sở'); (cfg.branches || []).forEach(function (b) { var o = h('option', null, b.name); o.value = b.id; branchSel.appendChild(o); }); if (!(cfg.branches || []).length) { var no = h('option', null, 'Chưa có cơ sở được duyệt'); no.value = ''; branchSel.appendChild(no); } }
@@ -249,7 +249,12 @@
     trip.appendChild(dest); trip.appendChild(d1); trip.appendChild(d2); box.appendChild(trip); if (svcSel) box.appendChild(svcSel);
     kindSel.addEventListener('change', function () { trip.hidden = kindSel.value !== 'Companion'; ta.placeholder = kindSel.value === 'Companion' ? 'Bạn muốn đi cùng ai, kiểu chuyến đi thế nào?' : 'Bạn đang nghĩ gì về chuyến đi?'; });
     var sel = h('select', 'form-select'); sel.setAttribute('aria-label', 'Ai được xem'); Object.keys(VIS).forEach(function (k) { var o = h('option', null, VIS[k]); o.value = k; if (k === 'Friends') o.selected = true; sel.appendChild(o); });
-    left.appendChild(lab); if (!cfg.provider) left.appendChild(kindSel); if (branchSel && (cfg.branches || []).length !== 1) left.appendChild(branchSel); if (!cfg.provider) left.appendChild(sel); var go = h('button', 'btn btn-dark', 'Đăng'); go.type = 'submit'; bar.appendChild(left); bar.appendChild(go); box.appendChild(bar);
+    // Loai bai: hai nut thay o chon; nguoi xem: o chon nho canh nut Dang.
+    var kinds = h('div', 'post-kinds'); if (!cfg.provider) { kindSel.hidden = true; [['Share', 'Chia sẻ'], ['Companion', 'Tìm bạn đồng hành']].forEach(function (k, n) { var b = h('button', n === 0 ? 'on' : '', k[1]); b.type = 'button'; b.addEventListener('click', function () { kindSel.value = k[0]; kindSel.dispatchEvent(new Event('change')); kinds.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); }); box.classList.add('open'); }); kinds.appendChild(b); }); }
+    sel.classList.add('post-vis'); Array.prototype.forEach.call(sel.options, function (o) { o.textContent = (o.value === 'Public' ? '🌐 ' : o.value === 'Friends' ? '👥 ' : '🔒 ') + o.textContent; });
+    left.appendChild(lab); if (!cfg.provider) { left.appendChild(kinds); left.appendChild(kindSel); } if (branchSel && (cfg.branches || []).length !== 1) left.appendChild(branchSel); var right = h('div', 'post-composer-right'); if (!cfg.provider) right.appendChild(sel); var go = h('button', 'btn btn-dark', 'Đăng'); go.type = 'submit'; right.appendChild(go); bar.appendChild(left); bar.appendChild(right); box.appendChild(bar);
+    // Gon khi chua soan: chi mot dong; bam vao (hoac chon anh) thi mo rong.
+    if (!cfg.provider) { box.classList.add('post-composer-compact'); ['focus', 'click', 'input'].forEach(function (ev) { ta.addEventListener(ev, function () { box.classList.add('open'); }); }); file.addEventListener('change', function () { box.classList.add('open'); }); }
     var files = [];
     file.addEventListener('change', function () {
       Array.prototype.forEach.call(file.files, function (f) { if (files.length < 4 && f.size <= 5 * 1024 * 1024) files.push(f); else if (f.size > 5 * 1024 * 1024) toast('Ảnh tối đa 5 MB.'); });
@@ -307,24 +312,24 @@
     var isProv = feed.dataset.role === 'provider';
     var branches0 = JSON.parse(feed.dataset.branches || '[]');
     var scope = isProv ? (branches0.length ? 'branch' : 'public') : 'home', area = h('div'), tabs = h('div', 'soc-tabs');
-    var tFriends = h('button', 'active', 'Dành cho bạn'), tPublic = h('button', null, 'Cộng đồng'); tFriends.type = tPublic.type = 'button'; if (!isProv) tabs.appendChild(tFriends); else if (branches0.length) { tFriends.textContent = 'Tin của ' + branches0[0].name; tabs.appendChild(tFriends); } tabs.appendChild(tPublic);
-    var tComp = h('button', null, 'Tìm bạn đồng hành'); tComp.type = 'button'; if (!isProv) tabs.appendChild(tComp);
-    var tSaved = h('button', null, 'Đã lưu'); tSaved.type = 'button'; if (!isProv) tabs.appendChild(tSaved);
-    var searchBox = h('input', 'form-control'); searchBox.type = 'search'; searchBox.placeholder = 'Tìm theo điểm đến…'; searchBox.maxLength = 100; searchBox.hidden = true; searchBox.setAttribute('aria-label', 'Tìm theo điểm đến'); var searchTimer = null;
+    // Khach: mot luong bai, loc bang nut. Nha cung cap: tin cua co so / cong dong nhu cu.
+    var filters = isProv ? (branches0.length ? [['branch', 'Tin của ' + branches0[0].name], ['public', 'Cộng đồng']] : [['public', 'Cộng đồng']]) : [['all', 'Tất cả'], ['home', 'Bạn bè'], ['companion', 'Tìm bạn đồng hành']];
+    var btns = {}; filters.forEach(function (f) { var bt = h('button', null, f[1]); bt.type = 'button'; bt.setAttribute('aria-pressed', 'false'); bt.addEventListener('click', function () { open(f[0]); }); btns[f[0]] = bt; tabs.appendChild(bt); });
+    tabs.setAttribute('role', 'group'); tabs.setAttribute('aria-label', 'Lọc bài viết');
+    var savedHead = h('div', 'soc-saved-head'); savedHead.hidden = true; savedHead.appendChild(h('strong', null, 'Bài đã lưu')); var back = h('a', null, '← Về bảng tin'); back.href = '/bang-tin'; savedHead.appendChild(back);
+    var searchBox = h('input', 'form-control'); searchBox.type = 'search'; searchBox.placeholder = 'Lọc theo điểm đến, ví dụ: Đà Lạt'; searchBox.maxLength = 100; searchBox.hidden = true; searchBox.setAttribute('aria-label', 'Lọc theo điểm đến'); var searchTimer = null;
     var handle;
     var comp = composer(function (p) { if (handle) handle.prepend(p); }, { name: feed.dataset.name || 'Tôi', avatar: feed.dataset.avatar || null }, { provider: isProv, branches: JSON.parse(feed.dataset.branches || '[]'), saved: JSON.parse(feed.dataset.saved || '[]') });
-    feed.appendChild(comp); feed.appendChild(tabs); feed.appendChild(searchBox); feed.appendChild(area);
-    function open(s) { scope = s; tFriends.classList.toggle('active', s !== 'public' && s !== 'companion' && s !== 'saved'); tSaved.classList.toggle('active', s === 'saved'); tComp.classList.toggle('active', s === 'companion'); searchBox.hidden = s !== 'companion'; tPublic.classList.toggle('active', s === 'public'); area.replaceChildren(); if (handle && handle.stop) handle.stop(); handle = list(area, function (before) { return '/api/mxh/bai-viet?scope=' + scope + (scope === 'branch' ? '&branchId=' + branches0[0].id : '') + (scope === 'companion' && searchBox.value.trim() ? '&q=' + encodeURIComponent(searchBox.value.trim()) : '') + (before ? '&before=' + before : ''); }, {
-      emptyText: s === 'home' ? 'Chưa có gì mới. Kết bạn, theo dõi cơ sở hoặc xem tab Cộng đồng để thấy nhiều bài viết hơn.' : s === 'saved' ? 'Bạn chưa lưu bài viết nào.' : 'Chưa có bài viết nào.',
+    feed.appendChild(comp); feed.appendChild(savedHead); feed.appendChild(tabs); feed.appendChild(searchBox); feed.appendChild(area);
+    function open(s) { scope = s; Object.keys(btns).forEach(function (k) { btns[k].classList.toggle('active', k === s); btns[k].setAttribute('aria-pressed', String(k === s)); }); var saved = s === 'saved'; tabs.hidden = saved; savedHead.hidden = !saved; comp.hidden = saved; searchBox.hidden = s !== 'companion'; area.replaceChildren(); if (handle && handle.stop) handle.stop(); handle = list(area, function (before) { return '/api/mxh/bai-viet?scope=' + scope + (scope === 'branch' ? '&branchId=' + branches0[0].id : '') + (scope === 'companion' && searchBox.value.trim() ? '&q=' + encodeURIComponent(searchBox.value.trim()) : '') + (before ? '&before=' + before : ''); }, {
+      emptyText: s === 'home' ? 'Chưa có bài của bạn bè. Kết bạn hoặc theo dõi cơ sở để thấy thêm bài viết.' : s === 'saved' ? 'Bạn chưa lưu bài viết nào. Bấm 🔖 Lưu dưới một bài để xem lại ở đây.' : s === 'companion' ? 'Chưa có bài tìm bạn đồng hành phù hợp.' : 'Chưa có bài viết nào.',
       unsaveRemoves: s === 'saved',
-      onShared: function (np) { if (scope === 'home' && handle) handle.prepend(np); },
+      onShared: function (np) { if ((scope === 'home' || scope === 'all') && handle) handle.prepend(np); },
       pollUrl: s === 'saved' ? null : function (since) { return '/api/mxh/bai-viet-moi?scope=' + scope + '&since=' + since + (scope === 'branch' ? '&branchId=' + branches0[0].id : ''); }
     }); }
-    tFriends.addEventListener('click', function () { open(isProv ? 'branch' : 'home'); });
-    tSaved.addEventListener('click', function () { open('saved'); }); tPublic.addEventListener('click', function () { open('public'); });
-    tComp.addEventListener('click', function () { open('companion'); });
     searchBox.addEventListener('input', function () { clearTimeout(searchTimer); searchTimer = setTimeout(function () { open('companion'); }, 350); });
-    open(isProv ? (branches0.length ? 'branch' : 'public') : (/[?&]tab=dong-hanh(&|$)/.test(location.search) ? 'companion' : 'home'));
+    var q0 = location.search;
+    open(isProv ? (branches0.length ? 'branch' : 'public') : /[?&]tab=dong-hanh(&|$)/.test(q0) ? 'companion' : /[?&]tab=da-luu(&|$)/.test(q0) ? 'saved' : 'all');
   }
 
   // ---------------------------------------------------------------- cot phai kieu Facebook

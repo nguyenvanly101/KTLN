@@ -38,7 +38,7 @@ public sealed class PostsApiController(PostService posts):ControllerBase
   try{return Ok(await work());}
   catch(BusinessException e){return StatusCode(e.Status,new{message=e.Message});}
  }
- [HttpGet("bai-viet")] public Task<IActionResult> Feed(string? scope,long? before,long? branchId,string? q)=>Run(async()=>await posts.Feed(scope is "public" or "branch" or "companion" or "home" or "saved" or "friends"?scope:"home",before,branchId,q));
+ [HttpGet("bai-viet")] public Task<IActionResult> Feed(string? scope,long? before,long? branchId,string? q)=>Run(async()=>await posts.Feed(scope is "all" or "public" or "branch" or "companion" or "home" or "saved" or "friends"?scope:"all",before,branchId,q));
  [HttpPost("bao-cao"),EnableRateLimiting("chat")] public Task<IActionResult> Report([FromForm]long postId,[FromForm]long? commentId,[FromForm]string reason,[FromForm]string? note)=>Run(async()=>{await posts.Report(postId,commentId,reason,note);return new{ok=true};});
  [HttpGet("nguoi/{id:long}/anh")] public Task<IActionResult> PhotosOf(long id)=>Run(async()=>await posts.PhotosOf(id));
  [HttpGet("nguoi/{id:long}/bai-viet")] public Task<IActionResult> ByAuthor(long id,long? before)=>Run(async()=>await posts.ByAuthor(id,before));
@@ -55,7 +55,7 @@ public sealed class PostsApiController(PostService posts):ControllerBase
  [HttpPost("bai-viet/{id:long}/chia-se"),EnableRateLimiting("chat")] public Task<IActionResult> Share(long id,[FromForm]string? content,[FromForm]string? visibility)=>Run(async()=>await posts.Share(id,content,visibility??"Public"));
  [HttpPost("bai-viet/{id:long}/luu")] public Task<IActionResult> Save(long id,[FromForm]bool saved=true)=>Run(async()=>new{saved=await posts.SetSaved(id,saved)});
  [HttpPost("co-so/{id:long}/theo-doi")] public Task<IActionResult> Follow(long id,[FromForm]bool follow=true)=>Run(async()=>new{following=await posts.SetFollow(id,follow),followers=await posts.FollowerCount(id)});
- [HttpGet("bai-viet-moi")] public Task<IActionResult> NewCount(string? scope,long since,long? branchId)=>Run(async()=>new{count=await posts.NewCount(scope is "home" or "public" or "branch" or "companion" or "saved"?scope:"home",since,branchId)});
+ [HttpGet("bai-viet-moi")] public Task<IActionResult> NewCount(string? scope,long since,long? branchId)=>Run(async()=>new{count=await posts.NewCount(scope is "all" or "home" or "public" or "branch" or "companion" or "saved"?scope:"all",since,branchId)});
 }
 
 public sealed class SocialPagesController(TravelService travel,FriendService friends,PostService posts):AppController(travel)

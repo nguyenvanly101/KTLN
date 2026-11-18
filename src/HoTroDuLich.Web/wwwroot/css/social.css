@@ -691,3 +691,23 @@ dialog[open].pe-picker.pe-narrow{height:auto;max-height:90vh;width:min(560px,cal
 .fb-layout>*{min-width:0}
 @media(max-width:760px){.soc-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.soc-tabs::-webkit-scrollbar{display:none}.soc-tabs button{flex-shrink:0}}
 .fb-layout>.fb-center{margin-left:0;margin-right:0;width:100%;justify-self:stretch}
+
+/* Bang tin loc gon */
+.soc-tabs{gap:6px}
+.soc-tabs button{min-height:36px;padding:6px 14px;font-size:14px}
+.soc-tabs button.active{background:#15213e;border-color:#15213e;color:#fff}
+.soc-saved-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:4px 0 12px}
+.soc-saved-head strong{font-size:1.15rem}
+.soc-saved-head a{color:var(--teal);font-weight:600;text-decoration:none}
+.post-composer-compact .post-composer-top textarea{min-height:44px!important;height:44px;resize:none;border-radius:22px;padding:10px 16px;overflow:hidden}
+.post-composer-compact.open .post-composer-top textarea{min-height:88px!important;height:auto;border-radius:12px;resize:vertical;overflow:auto}
+.post-composer-compact:not(.open) .post-composer-bar,.post-composer-compact:not(.open) .post-trip,.post-composer-compact:not(.open)>select{display:none!important}
+.post-composer-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.post-composer-bar .soc-card-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.post-composer-right{display:flex;align-items:center;gap:8px;margin-left:auto}
+.post-tool{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--line);cursor:pointer;font-size:18px;margin:0;background:#fff}
+.post-tool:hover{background:var(--teal-light)}
+.post-kinds{display:flex;gap:4px;background:var(--canvas,#f5f7fc);border-radius:999px;padding:3px}
+.post-kinds button{border:0;background:none;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+.post-kinds button.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px #15213e22}
+.post-vis{width:auto!important;min-height:40px;padding:6px 30px 6px 12px;font-size:13px;border-radius:12px}

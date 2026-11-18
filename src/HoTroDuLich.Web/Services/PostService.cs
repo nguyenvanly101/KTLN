@@ -110,6 +110,8 @@ public sealed class PostService(AppDbContext context,IHttpContextAccessor access
     var ids=await friends.FriendIds(UserId);ids.Add(UserId);
     return (q.Where(p=>ids.Contains(p.AuthorId)),false);
    }
+   case "all":
+    return (q,false); // moi bai minh duoc xem: Visible() da gioi han theo quyen
    case "home":
    {
     var ids=await friends.FriendIds(UserId);ids.Add(UserId);
