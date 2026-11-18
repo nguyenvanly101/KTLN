@@ -7,6 +7,7 @@
  var branchPending=await Db.Set<BanCapNhatCoSo>().CountAsync(x=>x.Status=="Pending");
  var postReports=await Db.Set<BaoCaoBaiViet>().CountAsync(x=>x.Status=="Open");
  var chatReports=await Db.Set<BaoCaoChat>().CountAsync(x=>x.Status=="Open");
+ var reviewsPending=await Db.Set<DanhGiaDichVu>().CountAsync(x=>x.TrangThai=="ChoDuyet"||(x.PhanHoiNCC!=null&&x.TrangThaiPhanHoi=="ChoDuyet"));
  var infoReports=await Db.Set<DiscoveryReport>().CountAsync(x=>x.Status=="Pending")+await Db.Set<DiscoveryExperience>().CountAsync(x=>x.Status=="Pending");
  var tasks=new List<(string Title,string Hint,int Count,string Href,string Icon)>{
   ("Cơ sở chờ duyệt","Kiểm tra địa chỉ, vị trí và quyền quản lý trước khi công bố",branchPending,"/quan-tri/co-so","pin"),
@@ -15,6 +16,7 @@
   ("Giải trình của nhà cung cấp","Xem xét đình chỉ, khôi phục, thu hồi",Model.PendingExplanations,"/Admin/Providers","users"),
   ("Báo cáo bài viết","Bài viết bị người dùng báo cáo",postReports,"/quan-tri/bao-cao-bai-viet","bell"),
   ("Báo cáo tin nhắn","Tin nhắn hoặc cuộc trò chuyện bị báo cáo",chatReports,"/quan-tri/bao-cao-chat","chat"),
+  ("Đánh giá chờ duyệt","Đánh giá của khách và phản hồi của cơ sở trước khi công bố",reviewsPending,"/Reviews/Moderation","check"),
   ("Góp ý thông tin tra cứu","Khách báo sai hoặc chia sẻ trải nghiệm chờ duyệt",infoReports,"/Discovery/Manage","compass"),
  };
  var open=tasks.Where(t=>t.Count>0).ToList();var done=tasks.Where(t=>t.Count==0).ToList();

@@ -9,7 +9,9 @@ namespace HoTroDuLich.Web.Services;
 
 public sealed class ReviewService(AppDbContext db,TravelService travel,IDongHo clock)
 {
-    private IQueryable<YeuCauDatDichVu> Eligible()=>db.YeuCauDatDichVu.Where(x=>x.MaTaiKhoan==travel.UserId&&(x.TrangThai==TrangThaiYeuCau.HoanThanh||x.TrangThai==TrangThaiYeuCau.ThucHienMotPhan)&&x.NgayBatDau<=clock.HomNay&&!db.KetQuaCungCapDichVu.Any(r=>r.MaYeuCau==x.MaYeuCau&&r.TrangThaiKiemTra==TrangThaiKiemTra.ChoKiemTra));
+    /// <summary>Yeu cau duoc danh gia: cua chinh khach, da dung (co so bam "Da phuc vu") hoac da xac nhan va da qua ngay dung
+    /// (nhieu co so khong bam "Da phuc vu"; bo nhac lich cung moi khach danh gia dung cac yeu cau nay).</summary>
+    private IQueryable<YeuCauDatDichVu> Eligible(){var today=clock.HomNay;return db.YeuCauDatDichVu.Where(x=>x.MaTaiKhoan==travel.UserId&&(x.TrangThai==TrangThaiYeuCau.HoanThanh||x.TrangThai==TrangThaiYeuCau.ThucHienMotPhan||(x.TrangThai==TrangThaiYeuCau.DaXacNhan&&(x.NgayKetThuc??x.NgayBatDau)<today))&&x.NgayBatDau<=today&&!db.KetQuaCungCapDichVu.Any(r=>r.MaYeuCau==x.MaYeuCau&&r.TrangThaiKiemTra==TrangThaiKiemTra.ChoKiemTra));}
     public async Task<MyReviewsPage> Mine()
     {
         travel.RoleRequired(TravelService.Traveler);var bookings=await Eligible().OrderByDescending(x=>x.NgayBatDau).ThenByDescending(x=>x.MaYeuCau).ToListAsync();
@@ -43,7 +45,7 @@ public sealed class ReviewService(AppDbContext db,TravelService travel,IDongHo c
         var ctx=travel.HttpContextOrNull;
         if(ctx!=null&&ctx.Items.TryGetValue("AllRatings",out var cached)&&cached is Dictionary<long,(double,int)> hit)return hit;
         var rows=await (from review in db.DanhGiaDichVu.AsNoTracking() join booking in db.YeuCauDatDichVu.AsNoTracking() on review.MaYeuCau equals booking.MaYeuCau
-            where review.TrangThai=="DaDuyet"&&(booking.TrangThai==TrangThaiYeuCau.HoanThanh||booking.TrangThai==TrangThaiYeuCau.ThucHienMotPhan||booking.TrangThai==TrangThaiYeuCau.KhongThucHien)
+            where review.TrangThai=="DaDuyet"&&(booking.TrangThai==TrangThaiYeuCau.HoanThanh||booking.TrangThai==TrangThaiYeuCau.ThucHienMotPhan||booking.TrangThai==TrangThaiYeuCau.DaXacNhan)
             group review by booking.MaDichVu into g select new{Id=g.Key,Avg=g.Average(x=>(double)x.SoSao),N=g.Count()}).ToListAsync();
         var map=rows.ToDictionary(x=>x.Id,x=>(x.Avg,x.N));
         if(ctx!=null)ctx.Items["AllRatings"]=map;
@@ -52,7 +54,7 @@ public sealed class ReviewService(AppDbContext db,TravelService travel,IDongHo c
     public async Task<ReviewFeed> PublicFeed(long serviceId,int page=1)
     {
         var service=await travel.PublicService(serviceId);travel.Require(page is >=1 and <=100000,"Trang không hợp lệ.",400);
-        var query=from review in db.DanhGiaDichVu.AsNoTracking() join booking in db.YeuCauDatDichVu on review.MaYeuCau equals booking.MaYeuCau where booking.MaDichVu==serviceId&&review.TrangThai=="DaDuyet"&&(booking.TrangThai==TrangThaiYeuCau.HoanThanh||booking.TrangThai==TrangThaiYeuCau.ThucHienMotPhan||booking.TrangThai==TrangThaiYeuCau.KhongThucHien)&&!db.KetQuaCungCapDichVu.Any(r=>r.MaYeuCau==booking.MaYeuCau&&r.TrangThaiKiemTra==TrangThaiKiemTra.ChoKiemTra) select review;
+        var query=from review in db.DanhGiaDichVu.AsNoTracking() join booking in db.YeuCauDatDichVu on review.MaYeuCau equals booking.MaYeuCau where booking.MaDichVu==serviceId&&review.TrangThai=="DaDuyet"&&(booking.TrangThai==TrangThaiYeuCau.HoanThanh||booking.TrangThai==TrangThaiYeuCau.ThucHienMotPhan||booking.TrangThai==TrangThaiYeuCau.DaXacNhan)&&!db.KetQuaCungCapDichVu.Any(r=>r.MaYeuCau==booking.MaYeuCau&&r.TrangThaiKiemTra==TrangThaiKiemTra.ChoKiemTra) select review;
         var total=await query.CountAsync();var average=await query.Select(x=>(double?)x.SoSao).AverageAsync();
         // Project only approved reply text. Pending/hidden fields never leave the service.
         var items=await query.OrderByDescending(x=>x.ThoiDiemTao).ThenByDescending(x=>x.MaDanhGia).Skip((page-1)*20).Take(20).Select(x=>new DanhGiaDichVu{MaDanhGia=x.MaDanhGia,SoSao=x.SoSao,NoiDung=x.NoiDung,ThoiDiemTao=x.ThoiDiemTao,TrangThai="DaDuyet",PhanHoiNCC=x.TrangThaiPhanHoi=="DaDuyet"?x.PhanHoiNCC:null,TrangThaiPhanHoi=x.TrangThaiPhanHoi=="DaDuyet"?"DaDuyet":"ChoDuyet"}).ToListAsync();
@@ -91,7 +93,20 @@ public sealed class ReviewService(AppDbContext db,TravelService travel,IDongHo c
             if(input.Part=="Reply"){travel.Require(entry.PhanHoiNCC!=null,"Chưa có phản hồi để xét duyệt.");travel.Require(input.Decision!="DaDuyet"||entry.TrangThai=="DaDuyet","Công bố đánh giá trước khi công bố phản hồi.");entry.TrangThaiPhanHoi=input.Decision;entry.LyDoPhanHoi=input.Reason?.Trim();}
             else {entry.TrangThai=input.Decision;entry.LyDoKiemDuyet=input.Reason?.Trim();}
             entry.ThoiDiemCapNhat=clock.BayGioUtc;travel.Audit("KiemDuyetDanhGia","DanhGiaDichVu",entry.MaDanhGia,before,JsonSerializer.Serialize(new{input.Part,input.Decision,input.Reason}));
-            var booking=await db.YeuCauDatDichVu.SingleAsync(x=>x.MaYeuCau==entry.MaYeuCau);travel.Notify(booking.MaTaiKhoan,"Đánh giá dịch vụ của bạn đã được cập nhật trạng thái.","/Reviews/Mine","DanhGia");
+            var booking=await db.YeuCauDatDichVu.SingleAsync(x=>x.MaYeuCau==entry.MaYeuCau);
+            var svc=await db.DichVuDuLich.AsNoTracking().SingleAsync(x=>x.MaDichVu==booking.MaDichVu);
+            var ownerAccount=await db.NhaCungCapDichVu.AsNoTracking().Where(x=>x.MaNhaCungCap==svc.MaNhaCungCap).Select(x=>x.MaTaiKhoan).SingleAsync();
+            string Why()=>string.IsNullOrWhiteSpace(input.Reason)?"":" Lý do: "+input.Reason.Trim();
+            if(input.Part=="Review")
+            {
+             travel.Notify(booking.MaTaiKhoan,input.Decision=="DaDuyet"?"Đánh giá của bạn về "+svc.TenDichVu+" đã được công bố.":"Đánh giá của bạn về "+svc.TenDichVu+" chưa được công bố."+Why()+" Bạn có thể sửa và gửi lại.","/Reviews/Mine","DanhGia");
+             if(input.Decision=="DaDuyet")travel.Notify(ownerAccount,"Có đánh giá "+entry.SoSao+" sao mới cho "+svc.TenDichVu+". Bạn có thể phản hồi khách.","/Reviews/Partner?serviceId="+svc.MaDichVu,"DanhGia");
+            }
+            else
+            {
+             travel.Notify(ownerAccount,input.Decision=="DaDuyet"?"Phản hồi đánh giá của bạn cho "+svc.TenDichVu+" đã được công bố.":"Phản hồi đánh giá cho "+svc.TenDichVu+" chưa được công bố."+Why(),"/Reviews/Partner?serviceId="+svc.MaDichVu,"DanhGia");
+             if(input.Decision=="DaDuyet")travel.Notify(booking.MaTaiKhoan,"Cơ sở đã phản hồi đánh giá của bạn về "+svc.TenDichVu+".","/Reviews/Service/"+svc.MaDichVu,"DanhGia");
+            }
         });
     }
 }

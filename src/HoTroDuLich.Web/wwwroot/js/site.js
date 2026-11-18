@@ -147,3 +147,9 @@ document.addEventListener('click', function (e) {
   e.preventDefault(); f.setCustomValidity('Nhập lý do trước khi ' + b.textContent.trim().toLowerCase() + '.'); f.reportValidity(); f.focus();
   f.addEventListener('input', function () { f.setCustomValidity(''); }, { once: true });
 });
+// Chon sao: hien chu thich ngan theo so sao.
+document.querySelectorAll('.star-pick').forEach(function (box) {
+  var cap = box.parentElement.querySelector('[data-star-caption]'); var words = { 1: 'Rất tệ', 2: 'Chưa tốt', 3: 'Tạm được', 4: 'Tốt', 5: 'Rất tốt' };
+  function sync() { var c = box.querySelector('input:checked'); if (cap) cap.textContent = c ? c.value + ' sao · ' + words[c.value] : 'Chọn số sao'; }
+  box.addEventListener('change', sync); sync();
+});

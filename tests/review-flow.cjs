@@ -1,0 +1,82 @@
+// Danh gia dich vu tu dau den cuoi theo 3 vai:
+//  khach viet danh gia (yeu cau da xac nhan va qua ngay dung, hoac da dung) -> quan tri kiem duyet -> cong khai, diem trung binh
+//  -> nha cung cap phan hoi -> quan tri duyet phan hoi -> khach thay; sua danh gia thi quay lai cho duyet.
+// Kiem ca quyen: nha cung cap / nha cung cap khac khong viet hay phan hoi thay, khong danh gia yeu cau cua nguoi khac, khong danh gia trung.
+// Chay: FULLTEXT_TEST_BASE=http://127.0.0.1:5227 BRANCH_TEST_DB=HoTroDuLich_Branches_20261108_Final node tests/review-flow.cjs
+const assert = require('node:assert/strict'), fs = require('node:fs');
+const { Client, decode, base } = require('./fulltext-smoke.cjs');
+const { database, json, sql } = require('./branches-sql.cjs');
+const fx = JSON.parse(fs.readFileSync('preview/branches-fixture.json', 'utf8')); const user = l => fx.users.find(x => x.label === l);
+const results = []; const check = (ok, n) => { assert.ok(ok, n); results.push(n); };
+const one = q => json(database, q + ' FOR JSON PATH;')[0];
+const iso = d => { const t = new Date(Date.now() + 7 * 3600000 + d * 86400000); return t.toISOString().slice(0, 10); };
+const val = (html, name) => (decode(html).match(new RegExp('name="' + name + '" value="([^"]*)"')) || [])[1];
+
+(async () => {
+  const t = new Client(), p = new Client(), o = new Client(), a = new Client(), g = new Client();
+  await t.login(user('traveler').email, 'BranchTest@2026'); await p.login(user('provider').email, 'BranchTest@2026');
+  await o.login(user('other').email, 'BranchTest@2026'); await a.login(user('admin').email, 'BranchTest@2026');
+  const me = one(`SELECT MaTaiKhoan Id FROM dbo.TaiKhoan WHERE Email=N'${user('traveler').email}'`).Id;
+  const prov = one(`SELECT p.MaNhaCungCap Id FROM dbo.NhaCungCapDichVu p JOIN dbo.TaiKhoan t ON t.MaTaiKhoan=p.MaTaiKhoan WHERE t.Email=N'${user('provider').email}'`).Id;
+  // Mot yeu cau cua khach cho dich vu da cong bo cua nha cung cap thu; dua ve "da xac nhan, da qua ngay dung", xoa danh gia cu.
+  const bk = one(`SELECT TOP 1 y.MaYeuCau Id, y.MaDichVu S FROM dbo.YeuCauDatDichVu y JOIN dbo.DichVuDuLich s ON s.MaDichVu=y.MaDichVu WHERE y.MaTaiKhoan=${me} AND s.MaNhaCungCap=${prov} AND s.TrangThaiCongBo='DaDuyet' ORDER BY y.MaYeuCau DESC`);
+  assert.ok(bk, 'Can mot yeu cau cua khach thu cho dich vu da cong bo');
+  sql(database, `DELETE FROM dbo.DanhGiaDichVu WHERE MaYeuCau=${bk.Id}; UPDATE dbo.YeuCauDatDichVu SET TrangThai='DaXacNhan', NgayBatDau='${iso(-3)}', NgayKetThuc='${iso(-2)}' WHERE MaYeuCau=${bk.Id};`);
+
+  // 1. Khach thay duoc moi danh gia o moi noi
+  const list = decode((await t.get('/Bookings?loc=da-dung')).html); check(list.includes('#' + bk.Id), 'Yeu cau da xac nhan va qua ngay nam o "Da dung", khong con o "Sap toi"');
+  const det = decode((await t.get('/Bookings/Detail/' + bk.Id)).html); check(det.includes('/Reviews/Write?bookingId=' + bk.Id), 'Trang yeu cau co nut Danh gia dich vu');
+  const conv = one(`SELECT TOP 1 m.ConversationId C FROM dbo.TinNhanChat m WHERE m.BookingRequestId=${bk.Id} AND m.Kind='Booking'`);
+  if (conv) { const th = await t.get('/chat/' + conv.C); const body = JSON.parse(th.html); const card = (body.cards || []).find(x => x.id === bk.Id); check(card && card.canReview === true, 'The dat cho trong chat hien nut Viet danh gia'); }
+  const mine = decode((await t.get('/Reviews/Mine')).html); check(mine.includes('/Reviews/Write?bookingId=' + bk.Id) && mine.includes('Chờ bạn đánh giá'), 'Danh sach "Danh gia cua toi" co yeu cau nay o muc cho danh gia');
+
+  // 2. Viet danh gia + kiem tra du lieu nhap
+  const form = await t.get('/Reviews/Write?bookingId=' + bk.Id); check(form.status === 200, 'Mo form viet danh gia');
+  const bad = await t.post('/Reviews/Write', form, { BookingId: bk.Id, Id: 0, Stars: 0, Content: 'x' }); check(bad.status !== 302, 'Sao ngoai 1..5 bi tu choi');
+  const empty = await t.post('/Reviews/Write', form, { BookingId: bk.Id, Id: 0, Stars: 4, Content: '   ' }); check(empty.status !== 302, 'Noi dung rong bi tu choi');
+  const ok = await t.post('/Reviews/Write', form, { BookingId: bk.Id, Id: 0, Stars: 4, Content: 'Phục vụ nhanh, món ngon, sẽ quay lại.' });
+  check(ok.status === 302, 'Gui danh gia thanh cong');
+  const rv = one(`SELECT MaDanhGia Id, TrangThai S FROM dbo.DanhGiaDichVu WHERE MaYeuCau=${bk.Id}`); check(rv && rv.S === 'ChoDuyet', 'Danh gia moi o trang thai cho duyet');
+  const dup = await t.post('/Reviews/Write', form, { BookingId: bk.Id, Id: 0, Stars: 2, Content: 'Gửi lần hai' }); check(dup.status !== 302 || one(`SELECT COUNT(*) N FROM dbo.DanhGiaDichVu WHERE MaYeuCau=${bk.Id}`).N === 1, 'Khong tao danh gia thu hai cho cung yeu cau');
+
+  // 3. Quyen
+  check([403, 404].includes((await p.get('/Reviews/Write?bookingId=' + bk.Id)).status), 'Nha cung cap khong mo duoc form danh gia cua khach');
+  const otherBk = one(`SELECT TOP 1 MaYeuCau Id FROM dbo.YeuCauDatDichVu WHERE MaTaiKhoan<>${me} ORDER BY 1 DESC`);
+  if (otherBk) check((await t.get('/Reviews/Write?bookingId=' + otherBk.Id)).status === 404, 'Khach khong danh gia yeu cau cua nguoi khac');
+  const pub0 = decode((await g.get('/Reviews/Service/' + bk.S)).html); check(!pub0.includes('Phục vụ nhanh, món ngon'), 'Danh gia chua duyet khong hien cong khai');
+  const home = decode((await a.get('/Admin')).html); check(home.includes('Đánh giá chờ duyệt'), 'Tong quan quan tri co hang viec danh gia cho duyet');
+
+  // 4. Kiem duyet
+  const mod = await a.get('/Reviews/Moderation?status=ChoDuyet'); const ver = () => one(`SELECT CONVERT(varchar(100),CAST(RowVersion AS varbinary(8)),2) V FROM dbo.DanhGiaDichVu WHERE MaDanhGia=${rv.Id}`).V;
+  const tok = Buffer.from(ver(), 'hex').toString('base64');
+  const noReason = await a.post('/Reviews/Moderate', mod, { Id: rv.Id, Version: tok, Part: 'Review', Decision: 'An', Reason: '' }); check(noReason.status !== 302, 'An danh gia bat buoc co ly do');
+  const pass = await a.post('/Reviews/Moderate', mod, { Id: rv.Id, Version: tok, Part: 'Review', Decision: 'DaDuyet', Reason: '' }); check(pass.status === 302, 'Quan tri cong bo danh gia');
+  const notes = json(database, `SELECT MaNguoiNhan R, NoiDung N FROM dbo.ThongBao WHERE LoaiThongBao='DanhGia' AND ThoiDiemTao>DATEADD(minute,-5,SYSUTCDATETIME()) FOR JSON PATH;`) || [];
+  check(notes.some(n => n.R === me && n.N.includes('đã được công bố')), 'Khach nhan thong bao danh gia da cong bo');
+  check(notes.some(n => n.R !== me && n.N.includes('Bạn có thể phản hồi')), 'Nha cung cap nhan thong bao co danh gia moi de phan hoi');
+  const pub1 = decode((await g.get('/Reviews/Service/' + bk.S)).html); check(pub1.includes('Phục vụ nhanh, món ngon'), 'Danh gia da duyet hien cong khai');
+
+  // 5. Phan hoi cua nha cung cap
+  const part = await p.get('/Reviews/Partner?serviceId=' + bk.S); check(part.status === 200 && decode(part.html).includes('Phục vụ nhanh, món ngon'), 'Nha cung cap thay danh gia cua dich vu minh');
+  const tok2 = Buffer.from(ver(), 'hex').toString('base64');
+  { const hack = await o.post('/Reviews/Reply', part, { Id: rv.Id, Version: tok2, ServiceId: bk.S, Text: 'Hack' }); check(hack.status !== 302 && hack.status < 500 && one(`SELECT PhanHoiNCC R FROM dbo.DanhGiaDichVu WHERE MaDanhGia=${rv.Id}`).R == null, 'Nha cung cap khac khong phan hoi thay duoc (bi chan, khong ghi gi) [' + hack.status + ']'); }
+  const rep = await p.post('/Reviews/Reply', part, { Id: rv.Id, Version: tok2, ServiceId: bk.S, Text: 'Cảm ơn bạn, hẹn gặp lại!' }); check(rep.status === 302, 'Nha cung cap gui phan hoi');
+  check(!decode((await g.get('/Reviews/Service/' + bk.S)).html).includes('Cảm ơn bạn, hẹn gặp lại'), 'Phan hoi chua duyet khong hien cong khai');
+  const tok3 = Buffer.from(ver(), 'hex').toString('base64');
+  check((await a.post('/Reviews/Moderate', mod, { Id: rv.Id, Version: tok3, Part: 'Reply', Decision: 'DaDuyet', Reason: '' })).status === 302, 'Quan tri duyet phan hoi');
+  check(decode((await g.get('/Reviews/Service/' + bk.S)).html).includes('Cảm ơn bạn, hẹn gặp lại'), 'Phan hoi da duyet hien duoi danh gia');
+  check((json(database, `SELECT COUNT(*) N FROM dbo.ThongBao WHERE MaNguoiNhan=${me} AND NoiDung LIKE N'%đã phản hồi đánh giá%' AND ThoiDiemTao>DATEADD(minute,-5,SYSUTCDATETIME()) FOR JSON PATH;`)[0].N) >= 1, 'Khach duoc bao khi co so phan hoi');
+
+  // 6. Sua danh gia -> quay lai cho duyet, an khoi trang cong khai
+  const ef = await t.get('/Reviews/Write?bookingId=' + bk.Id);
+  const edit = await t.post('/Reviews/Write', ef, { BookingId: bk.Id, Id: rv.Id, Version: val(ef.html, 'Version'), Stars: 5, Content: 'Sửa lại: rất hài lòng.' });
+  check(edit.status === 302 && one(`SELECT TrangThai S FROM dbo.DanhGiaDichVu WHERE MaDanhGia=${rv.Id}`).S === 'ChoDuyet', 'Sua danh gia thi quay lai cho duyet');
+  check(!decode((await g.get('/Reviews/Service/' + bk.S)).html).includes('Sửa lại: rất hài lòng'), 'Ban sua chua duyet chua hien cong khai');
+
+  // 7. Yeu cau "sap toi" (chua toi ngay) thi chua danh gia duoc
+  sql(database, `UPDATE dbo.YeuCauDatDichVu SET NgayBatDau='${iso(5)}', NgayKetThuc='${iso(6)}' WHERE MaYeuCau=${bk.Id};`);
+  check((await t.get('/Reviews/Write?bookingId=' + bk.Id)).status === 404, 'Chua toi ngay dung thi chua danh gia duoc');
+  sql(database, `UPDATE dbo.YeuCauDatDichVu SET NgayBatDau='${iso(-3)}', NgayKetThuc='${iso(-2)}' WHERE MaYeuCau=${bk.Id};`);
+
+  console.log(`PASS ${results.length} review-flow checks.`);
+})().catch(e => { console.error(e); process.exit(1); });

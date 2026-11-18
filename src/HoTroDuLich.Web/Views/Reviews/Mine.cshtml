@@ -1,5 +1,20 @@
 @model MyReviewsPage
-@{ViewData["Title"]="Đánh giá của tôi";}
-<div class="container-wide journey-page"><header class="product-heading"><div><span class="eyebrow">SAU MỖI TRẢI NGHIỆM</span><h1>Chia sẻ điều bạn đã trải qua.</h1><p>Đánh giá giúp người đi sau có thêm thông tin lựa chọn dịch vụ.</p></div></header><partial name="/Views/Shared/_BookingWorkspaceTabs.cshtml"/>
-@if(Model.Bookings.Count==0){<div class="empty"><h2>Chưa có dịch vụ đủ điều kiện đánh giá</h2><p>Sau ngày phục vụ, yêu cầu của bạn cần có kết quả hoàn tất và không còn đối chiếu đang chờ. Bạn có thể theo dõi ở phần Kết quả phục vụ.</p><a class="btn btn-outline" href="/Bookings/Results">Xem kết quả phục vụ</a></div>}
-@foreach(var booking in Model.Bookings){var review=Model.Reviews.GetValueOrDefault(booking.MaYeuCau);<article class="review-own-row"><div><span class="eyebrow">YÊU CẦU #@booking.MaYeuCau</span><h2>@Model.Names[booking.MaDichVu]</h2><p class="help">@booking.NgayBatDau.ToString("dd/MM/yyyy") · @Labels.Status(booking.TrangThai.ToString())</p>@if(review!=null){<span class="review-rating">@review.SoSao / 5</span><span class="badge journey-status">@ReviewStates.Label(review.TrangThai)</span><p class="prose">@review.NoiDung</p>@if(!string.IsNullOrWhiteSpace(review.LyDoKiemDuyet)){<p class="notice">Lý do kiểm duyệt: @review.LyDoKiemDuyet</p>}}</div><div class="actions"><a class="btn btn-outline" href="/Reviews/Write?bookingId=@booking.MaYeuCau">@(review==null?"Viết đánh giá":"Sửa đánh giá")</a><a class="text-link" href="/Bookings/Outcome/@booking.MaYeuCau">Xem kết quả</a></div></article>}</div>
+@{
+ ViewData["Title"]="Đánh giá của tôi";
+ var todo=Model.Bookings.Where(b=>!Model.Reviews.ContainsKey(b.MaYeuCau)).ToList();
+ var done=Model.Bookings.Where(b=>Model.Reviews.ContainsKey(b.MaYeuCau)).OrderByDescending(b=>Model.Reviews[b.MaYeuCau].ThoiDiemCapNhat).ToList();
+}
+<div class="container-narrow journey-page reviews-mine">
+ <header class="page-head"><div><h1>Đánh giá của tôi</h1><p>Đánh giá giúp người đi sau chọn dịch vụ. Bạn đánh giá được sau ngày dùng dịch vụ.</p></div></header>
+ @if(Model.Bookings.Count==0){<div class="empty"><h2>Chưa có dịch vụ để đánh giá</h2><p>Sau ngày dùng một dịch vụ đã đặt, bạn sẽ thấy nó ở đây.</p><a class="btn btn-outline" href="/Bookings">Xem dịch vụ đã đặt</a></div>}
+ @if(todo.Count>0)
+ {
+  <h2 class="reviews-title">Chờ bạn đánh giá <small>@todo.Count</small></h2>
+  <div class="review-list">@foreach(var b in todo){<article class="review-own-row"><div class="review-own-main"><strong>@Model.Names[b.MaDichVu]</strong><small>Ngày dùng @BookingUi.Dates(b)</small></div><a class="btn btn-dark" href="/Reviews/Write?bookingId=@b.MaYeuCau">Viết đánh giá</a></article>}</div>
+ }
+ @if(done.Count>0)
+ {
+  <h2 class="reviews-title">Đã đánh giá <small>@done.Count</small></h2>
+  <div class="review-list">@foreach(var b in done){var r=Model.Reviews[b.MaYeuCau];<article class="review-own-row is-done"><div class="review-own-main"><strong>@Model.Names[b.MaDichVu]</strong><p class="review-meta"><partial name="/Views/Shared/_Stars.cshtml" model="r.SoSao"/> <span class="badge journey-status">@ReviewStates.Label(r.TrangThai)</span></p><p class="review-text">@r.NoiDung</p>@if(!string.IsNullOrWhiteSpace(r.LyDoKiemDuyet)&&r.TrangThai=="An"){<p class="notice">Chưa công bố: @r.LyDoKiemDuyet. Sửa lại rồi gửi để được xét lần nữa.</p>}@if(r.PhanHoiNCC!=null&&r.TrangThaiPhanHoi=="DaDuyet"){<div class="provider-reply"><strong>Cơ sở phản hồi</strong><p>@r.PhanHoiNCC</p></div>}</div><a class="btn btn-outline" href="/Reviews/Write?bookingId=@b.MaYeuCau">Sửa</a></article>}</div>
+ }
+</div>

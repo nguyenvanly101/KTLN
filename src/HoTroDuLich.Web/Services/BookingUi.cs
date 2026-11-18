@@ -25,10 +25,13 @@ public static class BookingUi
     {
         "wait" => provider ? "can-tra-loi" : "sap-toi",
         "prop" => provider ? "sap-toi" : "can-tra-loi",
-        "ok" => provider && y.NgayBatDau <= today ? "can-tra-loi" : "sap-toi",
+        // Da xac nhan: co so can ghi nhan ket qua khi da toi ngay; voi khach, qua ngay dung thi khong con la "sap toi".
+        "ok" => provider ? (y.NgayBatDau <= today ? "can-tra-loi" : "sap-toi") : ((y.NgayKetThuc ?? y.NgayBatDau) < today ? "da-dung" : "sap-toi"),
         "used" or "noshow" => "da-dung",
         _ => "da-huy"
     };
+    /// <summary>Khach duoc danh gia yeu cau nay (cung quy tac voi ReviewService).</summary>
+    public static bool CanReview(YeuCauDatDichVu y, DateOnly today) => y.TrangThai is TrangThaiYeuCau.HoanThanh or TrangThaiYeuCau.ThucHienMotPhan || (y.TrangThai == TrangThaiYeuCau.DaXacNhan && (y.NgayKetThuc ?? y.NgayBatDau) < today);
     public static readonly (string Key, string Label)[] Filters = [("can-tra-loi", "Cần trả lời"), ("sap-toi", "Sắp tới"), ("da-dung", "Đã dùng"), ("da-huy", "Đã hủy")];
     public static string Dates(YeuCauDatDichVu y) => y.NgayBatDau.ToString("dd/MM/yyyy") + (y.NgayKetThuc is DateOnly e && e != y.NgayBatDau ? " – " + e.ToString("dd/MM/yyyy") : "");
 }

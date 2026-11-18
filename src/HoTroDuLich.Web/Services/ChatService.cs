@@ -437,7 +437,7 @@ public sealed partial class ChatService(AppDbContext context,IHttpContextAccesso
    var dep=deposits.FirstOrDefault(d=>d.RequestId==y.MaYeuCau);
    if(!traveler&&y.TrangThai is TrangThaiYeuCau.ChoPhanHoi or TrangThaiYeuCau.DaXacNhan&&(dep==null||dep.Status=="Requested"))actions.Add(dep==null?"YeuCauCoc":"DaNhanCoc");
    if(traveler&&y.TrangThai==TrangThaiYeuCau.DaXacNhan)actions.Add("ThemVaoChuyenDi");
-   return new ChatBookingCard(y.MaYeuCau,y.MaDichVu,r.TenDichVu,y.TrangThai.ToString(),Labels.Status(y.TrangThai.ToString()),y.NgayBatDau,y.NgayKetThuc,y.SoNguoi,y.SoLuong,y.ChiPhiDuKien,y.GhiChu,y.ThoiGianDenDi,y.DieuKienDeXuat,y.LyDo,actions,dep?.Amount,dep?.Method,dep?.Status,dep?.Note,traveler&&y.TrangThai==TrangThaiYeuCau.DaXacNhan&&(y.NgayKetThuc??y.NgayBatDau)<today,y.MaKeHoach);
+   return new ChatBookingCard(y.MaYeuCau,y.MaDichVu,r.TenDichVu,y.TrangThai.ToString(),Labels.Status(y.TrangThai.ToString()),y.NgayBatDau,y.NgayKetThuc,y.SoNguoi,y.SoLuong,y.ChiPhiDuKien,y.GhiChu,y.ThoiGianDenDi,y.DieuKienDeXuat,y.LyDo,actions,dep?.Amount,dep?.Method,dep?.Status,dep?.Note,traveler&&(y.TrangThai is TrangThaiYeuCau.HoanThanh or TrangThaiYeuCau.ThucHienMotPhan||(y.TrangThai==TrangThaiYeuCau.DaXacNhan&&(y.NgayKetThuc??y.NgayBatDau)<today)),y.MaKeHoach);
   }).ToList();
  }
  /// <summary>Hai ben thoa thuan ngay trong chat: moi hanh dong dung quy trinh yeu cau dat san co va ghi mot dong su kien vao cuoc tro chuyen.</summary>

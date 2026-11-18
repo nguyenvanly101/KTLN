@@ -50,7 +50,7 @@
    @if(!customer&&Model.TrangThai==TrangThaiYeuCau.DaXacNhan&&!before){
     <form action="/Bookings/Respond" method="post">@Html.AntiForgeryToken()<input type="hidden" name="Id" value="@Model.MaYeuCau"/><input type="hidden" name="Version" value="@version"/><input type="hidden" name="BusinessVersion" value="@Model.PhienBan"/><button class="btn btn-dark" name="Decision" value="DaPhucVu" type="submit">Đã phục vụ</button> <button class="btn btn-outline" name="Decision" value="KhachKhongDen" type="submit">Khách không đến</button></form>
    }
-   @if(customer&&(group=="used")){<a class="btn btn-dark" href="/Reviews/Write?bookingId=@Model.MaYeuCau">Đánh giá dịch vụ</a>}
+   @if(customer&&BookingUi.CanReview(Model,TravelService.Today)){<a class="btn btn-dark" href="/Reviews/Write?bookingId=@Model.MaYeuCau">Đánh giá dịch vụ</a>}
    @if(canChat){<a class="btn btn-outline" id="booking-chat" href="/tin-nhan/dat-cho/@Model.MaYeuCau">@Ui.Icon("chat") @(customer?"Nhắn tin với cơ sở":"Nhắn tin với khách")</a>}
   </div>
   @if(customer&&Model.TrangThai==TrangThaiYeuCau.DaXacNhan&&!before){<p class="help">Cơ sở sẽ ghi nhận đã phục vụ sau ngày sử dụng; khi đó bạn đánh giá được dịch vụ.</p>}
