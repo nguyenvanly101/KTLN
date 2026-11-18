@@ -23,6 +23,8 @@ public static class DiscoveryDemoContent
             && p.TrangThaiQuyenHoatDong == TrangThaiQuyenHoatDong.DangHoatDong
             && db.TaiKhoan.Any(a => a.MaTaiKhoan == p.MaTaiKhoan && a.TrangThai == TrangThaiTaiKhoan.HoatDong)).OrderBy(p => p.MaNhaCungCap).FirstOrDefaultAsync();
         if (province == null || provider == null) return;
+        // Chi tao co so mau cho co so du lieu moi tinh: nha cung cap da co co so (ke ca co so mau da bi an/doi ten) thi khong tao them.
+        if (await db.Set<CoSoDichVu>().AnyAsync(b => b.ProviderId == provider.MaNhaCungCap)) return;
 
         // (ten, loai, ma quan/huyen cu cua Da Nang)
         var plan = new (string Name, string Type, string District, string Summary)[]

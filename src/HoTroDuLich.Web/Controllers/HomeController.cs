@@ -24,10 +24,13 @@ public class HomeController : Controller
     public IActionResult Terms()=>View();
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    [Route("/loi")]
+    [Route("/loi/{code:int?}")]
     [IgnoreAntiforgeryToken]
-    public IActionResult Error()
+    public IActionResult Error(int? code)
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        var status = code ?? (HttpContext.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>() != null ? 500 : Response.StatusCode);
+        if (status < 400) status = 500;
+        Response.StatusCode = status;
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier, Status = status });
     }
 }

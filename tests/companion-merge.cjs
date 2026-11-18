@@ -44,6 +44,8 @@ const api = async (c, token, method, path, body, isJson) => {
     check(found.status === 200 && found.body.people.some(p => p.id === sid), 'Tim nguoi de nhan tin thay nguoi dang bai tim ban');
 
     // 4. Moi vao chuyen di ngay trong chat
+    // Danh sach chon chuyen trong chat toi da 30 chuyen sap toi: day cac chuyen thu con sot tu lan chay truoc ve qua khu.
+    sql(database, `UPDATE k SET NgayBatDau=DATEADD(year,-1,NgayBatDau),NgayKetThuc=DATEADD(year,-1,NgayKetThuc) FROM dbo.KeHoachChuyenDi k JOIN dbo.TaiKhoan a ON a.MaTaiKhoan=k.MaTaiKhoan WHERE a.Email=N'${user('traveler').email}' AND (k.TenKeHoach LIKE N'QA %' OR k.TenKeHoach LIKE N'Lịch thử %') AND k.NgayKetThuc>=CAST(GETDATE() AS date);`);
     const created = await api(t, tk, 'POST', '/api/lapkehoach', { notes: [], id: 0, name: 'QA Moi ' + stamp, destination: 'Hội An', start: day(10), days: 2, budget: 2000000, items: [] }, true);
     planId = created.body && created.body.id; check(created.status === 200 && planId > 0, 'Tao chuyen di de moi');
     const opts = await api(t, tk, 'GET', `/chat/nguoi/${sid}/chuyen-di`);

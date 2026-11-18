@@ -1,6 +1,6 @@
 @model ServiceInput
 @{var current=BranchTemplates.Parse(Model.AttributesJson);var selected=DanhMuc.ChuanHoa(Model.Type);}
-<p class="help">Thông tin riêng theo loại dịch vụ. Khách thấy ngay trên trang dịch vụ; chỉnh sửa phần này có hiệu lực ngay.</p>
+
 @foreach(var kind in ServiceKinds.All.Where(k=>k.Active&&k.ProviderPostable))
 {
  <partial name="/Views/Shared/_KindFieldset.cshtml" model='(kind,current,selected,"Thông tin riêng của")'/>

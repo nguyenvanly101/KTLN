@@ -20,7 +20,7 @@ public sealed partial class DiscoveryService
  }
  public async Task ModerateExperience(DiscoveryCommand i)
  {
-  travel.RoleRequired(TravelService.AdminRole);Need(new[]{"Published","Hidden"}.Contains(i.Decision)&&!string.IsNullOrWhiteSpace(i.Reason),"Chọn kết quả và ghi lý do kiểm duyệt.");await travel.Execute(async()=>{var x=await db.Set<DiscoveryExperience>().SingleOrDefaultAsync(x=>x.Id==i.Id)??throw new BusinessException("Không tìm thấy kinh nghiệm.",404);Version(x,i.Version);x.Status=i.Decision;x.ModeratedBy=Me;x.ModerationNote=i.Reason;x.UpdatedAt=clock.BayGioUtc;audit.Ghi("KiemDuyetKinhNghiem","DiscoveryExperience",x.Id,null,x.Status,i.Reason);notices.Tao(x.OwnerId,"KiemDuyetKinhNghiem","Kinh nghiệm của bạn đã được xem xét: "+DiscoveryText.State(x.Status),DiscoveryText.Link(x.EntryId)+"#experiences");});
+  travel.RoleRequired(TravelService.AdminRole);Need(new[]{"Published","Hidden"}.Contains(i.Decision),"Chọn kết quả kiểm duyệt.");Need(i.Decision=="Published"||!string.IsNullOrWhiteSpace(i.Reason),"Nhập lý do ẩn để người viết biết cần sửa gì.");await travel.Execute(async()=>{var x=await db.Set<DiscoveryExperience>().SingleOrDefaultAsync(x=>x.Id==i.Id)??throw new BusinessException("Không tìm thấy kinh nghiệm.",404);Version(x,i.Version);x.Status=i.Decision;x.ModeratedBy=Me;x.ModerationNote=i.Reason;x.UpdatedAt=clock.BayGioUtc;audit.Ghi("KiemDuyetKinhNghiem","DiscoveryExperience",x.Id,null,x.Status,i.Reason);notices.Tao(x.OwnerId,"KiemDuyetKinhNghiem","Kinh nghiệm của bạn đã được xem xét: "+DiscoveryText.State(x.Status),DiscoveryText.Link(x.EntryId)+"#experiences");});
  }
  public async Task Report(DiscoveryCommand i)
  {

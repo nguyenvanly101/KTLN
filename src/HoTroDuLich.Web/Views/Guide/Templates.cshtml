@@ -1,7 +1,7 @@
 @model List<TemplateCard>
 @{
  ViewData["Title"]="Lịch trình mẫu";
- var units=ViewBag.Units as System.Collections.IEnumerable;
+ var units=ViewBag.Units as System.Collections.IEnumerable??Array.Empty<object>();
  var f=((long? Dest,string? Style,int? Days))ViewBag.Filter;
 }
 <partial name="/Views/Shared/_ExploreTabs.cshtml" model='"templates"'/>

@@ -27,7 +27,7 @@ public sealed class DiscoveryIndexWorker(IServiceScopeFactory scopes,ILogger<Dis
    var byPlace=index.Where(x=>x.PlaceId!=null).GroupBy(x=>x.PlaceId!.Value).ToDictionary(g=>g.Key,g=>g.Single());
    var byService=index.Where(x=>x.ServiceId!=null).GroupBy(x=>x.ServiceId!.Value).ToDictionary(g=>g.Key,g=>g.Single());
    foreach(var p in places)await Sync(byPlace.GetValueOrDefault(p.MaDiaDiem),p.MaDiaDiem,"Place",p.TenDiaDiem,p.KhuVuc,p.MoTa,p.LoaiDiaDiem,JsonSerializer.Serialize(p),p.DonViId);
-   foreach(var s in publicServices)await Sync(byService.GetValueOrDefault(s.MaDichVu),s.MaDichVu,"Service",s.TenDichVu,s.KhuVucPhucVu,s.MoTa,Cut(DanhMuc.Ten(s.LoaiDichVu)+" "+s.LoaiDichVu+(string.IsNullOrEmpty(s.AttributesJson)?"":", "+BranchTemplates.Tags(DanhMuc.ChuanHoa(s.LoaiDichVu),s.AttributesJson)),480),JsonSerializer.Serialize(new{s.AttributesJson,s.TenDichVu,s.KhuVucPhucVu,s.MoTa,s.GiaThamKhao,s.DonViGia,s.DieuKienPhucVu,s.ThoiGianPhucVu,s.TamNgungTu,s.TamNgungDen,s.TrangThaiTiepNhan,s.TrangThaiCongBo,s.DiaChiPhucVu,s.PhienBanCongBo}),s.DonViId);
+   foreach(var s in publicServices)await Sync(byService.GetValueOrDefault(s.MaDichVu),s.MaDichVu,"Service",s.TenDichVu,s.KhuVucPhucVu,s.MoTa,Cut(DanhMuc.Ten(s.LoaiDichVu)+" "+s.LoaiDichVu+(string.IsNullOrEmpty(s.AttributesJson)?"":", "+BranchTemplates.Tags(DanhMuc.ChuanHoa(s.LoaiDichVu),s.AttributesJson)),480)??"",JsonSerializer.Serialize(new{s.AttributesJson,s.TenDichVu,s.KhuVucPhucVu,s.MoTa,s.GiaThamKhao,s.DonViGia,s.DieuKienPhucVu,s.ThoiGianPhucVu,s.TamNgungTu,s.TamNgungDen,s.TrangThaiTiepNhan,s.TrangThaiCongBo,s.DiaChiPhucVu,s.PhienBanCongBo}),s.DonViId);
    var tracked=db.ChangeTracker.Entries<DiscoveryEntry>().Select(x=>x.Entity).Where(x=>x.ServiceId!=null).GroupBy(x=>x.ServiceId!.Value).ToDictionary(g=>g.Key,g=>g.First());
    // Loai co han (su kien...): han hieu luc lay tu thuoc tinh de tim kiem tu an khi da ket thuc.
    foreach(var s in publicServices.Where(x=>ServiceKinds.Get(x.LoaiDichVu)?.TimeBound==true))
@@ -64,7 +64,7 @@ public sealed class DiscoveryIndexWorker(IServiceScopeFactory scopes,ILogger<Dis
     {
      var region=b.DonViId!=null?await geo.RegionLabel(b.DonViId.Value):b.Region;region=Cut(region,100)??"";
      e.Title=b.Name;e.Region=region;e.DonViId=b.DonViId;e.Summary=Cut(b.Summary,700)??"";e.Address=b.Address;e.Latitude=b.Latitude;e.Longitude=b.Longitude;
-     e.Hours=Cut(b.Hours,700);e.Contact=Cut(b.Phone,300);e.Tags=Cut(DanhMuc.Ten(b.Type)+" cơ sở"+(string.IsNullOrEmpty(b.AttributesJson)?"":", "+BranchTemplates.Tags(b.Type,b.AttributesJson)),480);e.CheckedOn=reviewed;e.PriceFrom=b.PriceFrom;e.PriceTo=b.PriceTo;e.PriceUnit=b.PriceUnit;e.OpenDays=b.OpenDays;e.OpenTime=b.OpenTime;e.CloseTime=b.CloseTime;e.ImagePath=Ui.ServicePhotos(b.PhotosJson).Length>0?"/co-so/"+b.Id+"/anh/0":null;e.SourceStamp=stamp;e.UpdatedAt=clock.BayGioUtc;
+     e.Hours=Cut(b.Hours,700);e.Contact=Cut(b.Phone,300);e.Tags=Cut(DanhMuc.Ten(b.Type)+" cơ sở"+(string.IsNullOrEmpty(b.AttributesJson)?"":", "+BranchTemplates.Tags(b.Type,b.AttributesJson)),480)??"";e.CheckedOn=reviewed;e.PriceFrom=b.PriceFrom;e.PriceTo=b.PriceTo;e.PriceUnit=b.PriceUnit;e.OpenDays=b.OpenDays;e.OpenTime=b.OpenTime;e.CloseTime=b.CloseTime;e.ImagePath=Ui.ServicePhotos(b.PhotosJson).Length>0?"/co-so/"+b.Id+"/anh/0":null;e.SourceStamp=stamp;e.UpdatedAt=clock.BayGioUtc;
     }
     SetOwnPhoto(e,Ui.ServicePhotos(b.PhotosJson).Length>0?"/co-so/"+b.Id+"/anh/0":null,"/co-so/");
     if(!changed)continue;

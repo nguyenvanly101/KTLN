@@ -18,10 +18,10 @@
  <div asp-validation-summary="All"></div>
  @if(!Model.CanSubmit){<div class="notice warning">Hoàn tất xác minh và quyền hoạt động trước khi gửi cơ sở. <a href="/Provider/Verification">Xem hồ sơ đối tác</a></div>}
 
- <section class="pv-steps-wrap" aria-labelledby="pv-steps-title">
+ @if(steps.Any(x=>!x.Done)){<section class="pv-steps-wrap" aria-labelledby="pv-steps-title">
   <h2 id="pv-steps-title" class="sr-only">Các bước đăng thông tin</h2>
   <ol class="pv-steps">@foreach(var (s,n) in steps.Select((s,n)=>(s,n+1))){<li class="@(s.Done?"done":"")"><span class="pv-step-no" aria-hidden="true">@(s.Done?"✓":n.ToString())</span><div><a href="@s.Href"><strong>@s.Title</strong></a><small>@s.Hint</small></div></li>}</ol>
- </section>
+ </section>}
 
  @if(!hasBranch)
  {
@@ -39,7 +39,7 @@
     <div class="pv-meter" role="img" aria-label="Thông tin đã hoàn thiện @c.Percent phần trăm"><div><i style="width:@(c.Percent)%"></i></div><strong>@c.Percent%</strong></div>
     @if(c.Missing.Count>0){<p class="pv-missing">Còn thiếu: @string.Join(" · ",c.Missing.Take(3))@(c.Missing.Count>3?" · …":"")</p>}else{<p class="pv-missing ok">Hồ sơ đầy đủ.</p>}
     @if(pending!=null){<div class="notice">Phiên bản @pending.Number đang chờ xét duyệt. @(b.PublishedVersion!=null?"Bản đã duyệt vẫn được giữ.":"")</div>}
-    <div class="pv-actions"><a class="btn btn-outline" href="/nha-cung-cap/co-so/@b.Id">@(c.Percent<100?"Hoàn thiện thông tin":"Chỉnh sửa")</a>@if(b.Status=="Approved"&&b.PublishedVersion!=null){<a class="btn btn-outline" href="/Provider/Edit?coSo=@b.Id">+ Đăng dịch vụ</a><a class="btn btn-outline" href="/nha-cung-cap/co-so/@b.Id/tin">Đăng tin giới thiệu</a><a class="text-link" href="/nha-cung-cap/co-so/@b.Id/bao-sai">Khách báo sai</a><a class="text-link" href="/co-so/@b.Id">Xem như khách @Ui.Icon("arrow")</a>}</div>
+    <div class="pv-actions"><a class="btn btn-outline" href="/nha-cung-cap/co-so/@b.Id">@(c.Percent<100?"Hoàn thiện thông tin":"Chỉnh sửa")</a>@if(b.Status=="Approved"&&b.PublishedVersion!=null){<a class="btn btn-outline" href="/Provider/Edit?coSo=@b.Id">+ Đăng dịch vụ</a><a class="btn btn-outline" href="/nha-cung-cap/co-so/@b.Id/tin">Đăng tin giới thiệu</a><a class="btn btn-outline" href="/nha-cung-cap/co-so/@b.Id/bao-sai">Khách báo sai</a><a class="text-link" href="/co-so/@b.Id">Xem như khách @Ui.Icon("arrow")</a>}</div>
     <div class="pv-svc"><strong>Dịch vụ của cơ sở</strong>
      @{var list=Model.BranchServices?.GetValueOrDefault(b.Id)??[];}
      @if(list.Count==0){<p class="help">Chưa có dịch vụ. Cơ sở vẫn hiển thị với khách; thêm dịch vụ nếu khách có thể đặt hoặc hỏi giá.</p>}

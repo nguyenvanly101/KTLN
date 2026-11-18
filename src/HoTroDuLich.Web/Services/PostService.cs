@@ -44,7 +44,11 @@ public sealed class PostService(AppDbContext context,IHttpContextAccessor access
  async Task<IQueryable<BaiViet>> Visible()
  {
   var friendIds=await friends.FriendIds(UserId);var me=UserId;
-  return db.Set<BaiViet>().Where(p=>p.DeletedAt==null&&(p.AuthorId==me||p.Visibility=="Public"||(p.Visibility=="Friends"&&friendIds.Contains(p.AuthorId))));
+  // Nguoi khac chi thay bai cua tai khoan dang hoat dong; bai cua co so chi hien khi co so con cong khai.
+  var publicBranches=Resolve<BranchService>().PublicBranches();
+  return db.Set<BaiViet>().Where(p=>p.DeletedAt==null&&(p.AuthorId==me||((p.Visibility=="Public"||(p.Visibility=="Friends"&&friendIds.Contains(p.AuthorId)))
+   &&db.TaiKhoan.Any(a=>a.MaTaiKhoan==p.AuthorId&&a.TrangThai==TrangThaiTaiKhoan.HoatDong)
+   &&(p.BranchId==null||publicBranches.Any(b=>b.Id==p.BranchId)))));
  }
  async Task<BaiViet> ViewablePost(long id,bool track=false)
  {
@@ -164,7 +168,7 @@ public sealed class PostService(AppDbContext context,IHttpContextAccessor access
   if(Role==ProviderRole)
   {
    Require(i.Kind=="Branch"&&i.BranchId!=null,"Nhà cung cấp đăng tin giới thiệu cho một cơ sở của mình.",400);
-   return (await Project([await CreateBranchPost(i.BranchId.Value,i)]))[0];
+   return (await Project([await CreateBranchPost(i.BranchId!.Value,i)]))[0];
   }
   Require(i.Kind is "Share" or "Companion","Loại bài viết không hợp lệ.",400);
   string? destination=null;

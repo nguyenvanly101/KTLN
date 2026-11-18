@@ -49,3 +49,34 @@
 .prov-head h1{margin:0 0 6px;font-size:1.9rem}
 .prov-head-meta{margin:0;color:var(--muted);font-size:14px}
 .prov-head-meta a{color:var(--teal)}
+
+/* Danh sach dich vu cua nha cung cap: mot hang nut dong bo, "Go" la nut chu nho mau do */
+.managed-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.managed-actions .btn{min-height:40px;padding:8px 16px;font-size:14px}
+.managed-actions form{margin:0 0 0 auto}
+.managed-remove{border:0;background:none;color:#b42318;font-weight:600;font-size:14px;cursor:pointer;padding:8px 4px}
+.managed-remove:hover{text-decoration:underline}
+@media(max-width:560px){.managed-actions{display:grid;grid-template-columns:1fr 1fr}.managed-actions .btn:first-child{grid-column:1/-1}.managed-actions form{margin:0;grid-column:1/-1;text-align:center}}
+
+/* Form quyet dinh cua quan tri */
+.decision-options{border:0;padding:0;margin:0 0 14px;display:grid;gap:8px}
+.decision-option{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:14px;cursor:pointer;background:#fff}
+.decision-option input{margin-top:4px;accent-color:var(--teal)}
+.decision-option span{display:grid;gap:2px}
+.decision-option small{color:var(--muted)}
+.decision-option:has(input:checked){border-color:var(--teal);background:var(--teal-light,#eef2ff)}
+.decision-option.is-danger:has(input:checked){border-color:#d92d20;background:#fff4f2}
+.btn-danger{background:#d92d20!important;border-color:#d92d20!important;color:#fff!important}
+
+/* Trang loi */
+.error-page{text-align:center;padding:64px 16px 80px}
+.error-code{display:block;font-size:72px;font-weight:800;color:var(--teal);opacity:.25;line-height:1}
+.error-page h1{margin:8px 0 10px}
+.error-page p{color:var(--muted);max-width:520px;margin:0 auto 18px}
+.error-page .actions{justify-content:center;display:flex;gap:8px;flex-wrap:wrap}
+.badge-warning{background:#fff4e5!important;color:#8a4b00!important;border:1px solid #f5c98b;margin-left:6px}
+.req{color:#d92d20;font-weight:700}
+.pv-typefields>legend{font-size:1.05rem;font-weight:700;color:var(--ink);padding:0 4px;letter-spacing:0}
+/* Cac nut cua tung co so: luoi deu nhau tren dien thoai */
+.pv-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media(max-width:560px){.pv-actions{display:grid;grid-template-columns:1fr 1fr}.pv-actions>.btn{width:100%;justify-content:center;font-size:13px;padding:10px 8px}.pv-actions>.text-link{grid-column:1/-1;justify-self:start}}

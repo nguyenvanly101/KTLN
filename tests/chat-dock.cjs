@@ -53,7 +53,8 @@ const stamp = Date.now().toString().slice(-8);
   check(emb.status === 200 && emb.html.includes('is-embed') && emb.html.includes('data-chat-app') && emb.html.includes('<base target="_top"') && !emb.html.includes('workspace-sidebar') && !emb.html.includes('chat-dock.js'), 'Che do nhung: khong thanh ben, co hop thu, lien ket mo ra trang goc');
   check(emb.html.includes('data-chat-open-compose') && emb.html.includes('data-chat-compose-q'), 'Hop thu co nut "Tin nhan moi" va o tim');
   const embBranch = await a.get(`/tin-nhan/co-so/${branch.Id}?embed=1`);
-  check(embBranch.status === 200 && embBranch.html.includes('is-embed') && embBranch.html.includes('id="chat-start"'), 'Mo chat voi co so trong khung nhung');
+  // Chua co cuoc tro chuyen: trang bat dau trong khung nhung; da co: chuyen sang cuoc tro chuyen va giu ?embed=1.
+  check((embBranch.status === 200 && embBranch.html.includes('is-embed') && embBranch.html.includes('id="chat-start"')) || (embBranch.status === 302 && /^\/tin-nhan\/\d+\?embed=1$/.test(embBranch.location)), 'Mo chat voi co so trong khung nhung');
   const probe = await fetch(base + '/tin-nhan?embed=1', { headers: { cookie: cookie(a) } });
   const xfo = probe.headers.get('x-frame-options'), csp = probe.headers.get('content-security-policy') || '';
   check(xfo === 'SAMEORIGIN' && csp.includes("frame-ancestors 'self'") && csp.includes("frame-src 'self'"), 'Chi cho nhung cung nguon (SAMEORIGIN, frame-ancestors self)');

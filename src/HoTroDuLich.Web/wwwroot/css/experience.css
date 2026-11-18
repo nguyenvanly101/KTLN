@@ -900,8 +900,9 @@ body.experience-refresh {font:16px/1.65 'Segoe UI',Arial,sans-serif;color:var(--
  .experience-refresh .workspace-topline {height:50px;padding:0 20px;font-size:10px}
  .workspace-topline>nav {gap:8px}
  .workspace-topline>nav>a {max-width:105px;overflow:hidden;text-overflow:ellipsis}
- .workspace-topline>nav>span:not(.crumb-separator) {display:none}
- .workspace-topline>nav>.crumb-separator~.crumb-separator {display:none}
+ /* Dien thoai: chi giu ten co so (hoac ten trang) - truoc day con lai "Vai > Co so Trang" thieu dau ngan */
+ .workspace-topline>nav>* {display:none}
+ .workspace-topline>nav>b:first-of-type {display:inline;font-size:12px}
  .experience-refresh.is-workspace .container-wide,.experience-refresh .container-wide {padding:6px 20px 38px}
  .experience-refresh .container-narrow,.experience-refresh.is-workspace .container-narrow {padding:16px 20px 38px}
  .workspace-hero {min-height:235px;padding:25px 23px;border-radius:17px;align-items:start}
@@ -1096,4 +1097,11 @@ body.experience-refresh {font:16px/1.65 'Segoe UI',Arial,sans-serif;color:var(--
  *,*::before,*::after {scroll-behavior:auto!important;transition:none!important;animation:none!important}
  .experience-refresh .destination-tile:hover,.hero-postcard:hover {transform:none}
  .experience-refresh .service-card:hover .service-image img {transform:none}
+}
+
+/* Danh sach chuyen di tren dien thoai: the gon (anh thanh dai mong) de luot nhanh nhieu chuyen */
+@media(max-width:560px){
+ .plan-card-visual{height:72px}
+ .plan-card .plan-date-tile{transform:scale(.8);transform-origin:top right}
+ .plan-card .plan-card-blank .icon{width:26px;height:26px}
 }

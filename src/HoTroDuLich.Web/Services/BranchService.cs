@@ -203,7 +203,7 @@ public sealed class BranchService(AppDbContext context,IHttpContextAccessor acce
   var errors=new List<System.ComponentModel.DataAnnotations.ValidationResult>();
   Require(System.ComponentModel.DataAnnotations.Validator.TryValidateObject(i,new(i),errors,true),errors.FirstOrDefault()?.ErrorMessage??"Kiểm tra thông tin cơ sở.",422);
   i.Region=await ResolveRegion(i.DonViId,i.Region,i.Operation=="Submit");
-  i.Name=i.Name.Trim();i.Address=i.Address.Trim();i.Website=CleanUrl(i.Website);
+  i.Name=TextClean.Name(i.Name);i.Address=i.Address.Trim();i.Website=CleanUrl(i.Website);
   Require(i.Name.Length>0&&i.Address.Length>0&&i.Region.Length>0,"Điền tên cơ sở, địa chỉ và khu vực.",422);
   Require(i.VeganOnly!=true||i.VegetarianOptions!=false,"Quán thuần chay không thể khai không có món chay.",422);
   if(i.VeganOnly==true)i.VegetarianOptions=true;
@@ -296,6 +296,10 @@ public sealed class BranchService(AppDbContext context,IHttpContextAccessor acce
    else if(b.PublishedVersion==null)b.Status=i.Decision;
    b.UpdatedAt=Clock.BayGioUtc;r.Status=i.Decision;r.Reason=string.IsNullOrWhiteSpace(i.Reason)?null:i.Reason.Trim();r.AdminId=UserId;r.ReviewedAt=Clock.BayGioUtc;
    audit.Ghi("DuyetCoSo","BanCapNhatCoSo",r.Id,"Pending",r.Status,r.Reason);
+   // Bao cho nha cung cap ket qua duyet (kem ly do khi tu choi / can bo sung); truoc day khong co thong bao nao.
+   var ownerAccount=(await Find<NhaCungCapDichVu>(b.ProviderId)).MaTaiKhoan;
+   var verdict=i.Decision=="Approved"?"đã được duyệt và hiện với khách":i.Decision=="Rejected"?"không được duyệt":"cần bổ sung thông tin";
+   Resolve<IThongBaoService>().Tao(ownerAccount,"CoSo"+i.Decision,"Cơ sở "+b.Name+": "+verdict+(r.Reason!=null?". "+(r.Reason.Length>300?r.Reason[..300]+"…":r.Reason):""),"/nha-cung-cap/co-so/"+b.Id);
   });
  }
  public async Task Toggle(CommandInput i)

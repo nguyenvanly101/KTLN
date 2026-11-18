@@ -59,8 +59,8 @@ public sealed partial class DiscoveryService
  public async Task<List<HomeDestination>> HomePage()
  {
   var entries=await Narrow(Public().AsNoTracking().Where(e=>e.Kind=="Destination"&&e.DonViId!=null).OrderBy(e=>e.Title).Select(e=>e.Id));
-  var list=new List<HomeDestination>();
-  foreach(var e in entries.GroupBy(x=>x.DonViId!.Value).Select(g=>g.First()))list.Add(new(e.DonViId!.Value,e.Title,e.Summary,await InArea(e.DonViId!.Value).CountAsync()));
+  var counts=await CountsWithAncestors();var list=new List<HomeDestination>();
+  foreach(var e in entries.GroupBy(x=>x.DonViId!.Value).Select(g=>g.First()))list.Add(new(e.DonViId!.Value,e.Title,e.Summary,counts.GetValueOrDefault(e.DonViId!.Value)));
   return list.OrderByDescending(x=>x.Count).ThenBy(x=>x.Name).ToList();
  }
 
@@ -149,11 +149,11 @@ public sealed partial class DiscoveryService
   return new(unit,path,areas,sections,guides,zones,moves,total,tab,tabs,cards,itemsTotal,points,without,q,chosen,chosenName,QuickChips.GetValueOrDefault(tab)??[]);
  }
 
- public async Task<List<DestinationIndexItem>> DestinationIndex()
+ /// <summary>So muc cong khai cua moi don vi hanh chinh, cong don len moi cap cha (mot truy van dem + moi cap mot truy van tim cha),
+ /// thay cho viec chay bo loc cong khai rieng cho tung diem den.</summary>
+ async Task<Dictionary<long,int>> CountsWithAncestors()
  {
-  var provinces=await geo.Provinces();
   var perUnit=await Public().AsNoTracking().Where(e=>e.DonViId!=null).GroupBy(e=>e.DonViId).Select(g=>new{Id=g.Key!.Value,N=g.Count()}).ToListAsync();
-  // Tim tinh goc cua tung don vi theo lo (moi cap mot truy van) thay vi goi Path tung don vi (hang tram truy van).
   var parent=new Dictionary<long,long?>();var pending=perUnit.Select(x=>x.Id).Distinct().ToList();
   for(var level=0;level<4&&pending.Count>0;level++)
   {
@@ -161,13 +161,18 @@ public sealed partial class DiscoveryService
    foreach(var r in rows)parent[r.Id]=r.ParentId;
    pending=rows.Where(r=>r.ParentId!=null&&!parent.ContainsKey(r.ParentId.Value)).Select(r=>r.ParentId!.Value).Distinct().ToList();
   }
-  var perProvince=new Dictionary<long,int>();
+  var total=new Dictionary<long,int>();
   foreach(var row in perUnit)
   {
-   if(!parent.ContainsKey(row.Id))continue;var root=row.Id;var guard=0;
-   while(parent.TryGetValue(root,out var up)&&up!=null&&parent.ContainsKey(up.Value)&&guard++<4)root=up.Value;
-   perProvince[root]=perProvince.GetValueOrDefault(root)+row.N;
+   long? cursor=row.Id;var guard=0;
+   while(cursor is long c&&parent.ContainsKey(c)&&guard++<5){total[c]=total.GetValueOrDefault(c)+row.N;cursor=parent[c];}
   }
+  return total;
+ }
+ public async Task<List<DestinationIndexItem>> DestinationIndex()
+ {
+  var provinces=await geo.Provinces();
+  var perProvince=await CountsWithAncestors();
   return provinces.Select(p=>new DestinationIndexItem(p,perProvince.GetValueOrDefault(p.Id))).OrderByDescending(x=>x.Count).ThenBy(x=>x.Province.Name).ToList();
  }
 

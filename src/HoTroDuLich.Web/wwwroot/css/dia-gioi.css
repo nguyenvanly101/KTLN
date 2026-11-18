@@ -209,3 +209,5 @@ body .dest-hero-photo p{margin:0;color:#e8ecf7;max-width:58ch}
 .saved-ds-item small{color:var(--muted)}
 .saved-ds-kind{font-size:12px;font-weight:700;color:var(--teal)}
 [data-ds-save].saved{color:var(--teal);font-weight:700}
+/* The khong co anh tren dien thoai: dai mau mong thay o trong cao 160px */
+@media(max-width:560px){.ds-card-photo.is-blank{aspect-ratio:auto!important;height:56px;min-height:0}.ds-card-photo.is-blank .ds-card-blank svg{width:24px;height:24px}}

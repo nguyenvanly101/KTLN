@@ -56,7 +56,7 @@ public partial class XetDuyetDichVuService(AppDbContext context, IHttpContextAcc
                 s.TrangThaiCongBo = System.Enum.Parse<HoTroDuLich.Web.Domain.TrangThaiCongBo>(i.Decision);
             s.ThoiDiemCapNhat = Clock.BayGioUtc;
             var p = await Find<NhaCungCapDichVu>(s.MaNhaCungCap);
-            serviceThongBao.Tao(p.MaTaiKhoan,i.Decision=="DaDuyet"?"DichVuDaDuyet":i.Decision=="TuChoi"?"DichVuBiTuChoi":"DichVuCanSua","Dịch vụ " + v.TenDichVu + ": " + Labels.Status(i.Decision),"/nha-cung-cap/dich-vu/" + s.MaDichVu);
+            serviceThongBao.Tao(p.MaTaiKhoan,i.Decision=="DaDuyet"?"DichVuDaDuyet":i.Decision=="TuChoi"?"DichVuBiTuChoi":"DichVuCanSua","Dịch vụ " + v.TenDichVu + ": " + Labels.Status(i.Decision) + (string.IsNullOrWhiteSpace(i.Reason) ? "" : ". " + (i.Reason.Length > 300 ? i.Reason[..300] + "…" : i.Reason.Trim())),"/nha-cung-cap/dich-vu/" + s.MaDichVu);
             serviceNhatKy.Ghi("DuyetDichVu", "BanCapNhatDichVu", v.MaBanCapNhat, "ChoDuyet", i.Decision, i.Reason);
         });
     }

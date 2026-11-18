@@ -125,3 +125,25 @@ if (productErrors) {
         field.scrollIntoView({ block: 'center' });
     }));
 }
+
+// Form quyet dinh (quan tri): chon quyet dinh truoc, o noi dung doi nhan / bat buoc theo quyet dinh.
+document.querySelectorAll('[data-decision-form]').forEach(function (form) {
+  var text = form.querySelector('[data-decision-text]'), label = form.querySelector('[data-decision-label]'), submit = form.querySelector('[data-decision-submit]');
+  function sync() {
+    var r = form.querySelector('input[name="Decision"]:checked'); if (!r || !text) return;
+    var need = r.dataset.required === '1';
+    label.textContent = r.dataset.label + (need ? ' *' : '');
+    text.required = need; if (r.dataset.placeholder) text.placeholder = r.dataset.placeholder;
+    if (submit) { submit.textContent = r.closest('.decision-option').querySelector('strong').textContent; submit.classList.toggle('btn-danger', r.value === 'TuChoi'); }
+  }
+  form.addEventListener('change', function (e) { if (e.target.name === 'Decision') sync(); });
+  sync();
+});
+document.querySelectorAll('[data-history-back]').forEach(function (b) { b.addEventListener('click', function () { if (history.length > 1) history.back(); else location.href = '/'; }); });
+// Nut can ly do (An / Tu choi): nhac nhap ly do trong cung form truoc khi gui.
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('button[data-need-reason]'); if (!b || !b.form) return;
+  var f = b.form.querySelector('[name="Reason"]'); if (!f || f.value.trim()) return;
+  e.preventDefault(); f.setCustomValidity('Nhập lý do trước khi ' + b.textContent.trim().toLowerCase() + '.'); f.reportValidity(); f.focus();
+  f.addEventListener('input', function () { f.setCustomValidity(''); }, { once: true });
+});

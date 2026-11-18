@@ -730,3 +730,11 @@ dialog[open].pe-picker.pe-narrow{height:auto;max-height:90vh;width:min(560px,cal
 .fb-provider{grid-template-columns:minmax(0,1fr) 300px}
 .fb-provider .fb-left{display:none}
 @media(max-width:900px){.fb-provider{grid-template-columns:1fr}}
+
+.post-blocked{margin:0 0 10px;padding:10px 12px;border-radius:12px;background:#fff7e6;color:#7a4b00;font-size:14px}
+.post-blocked a{color:inherit;font-weight:700}
+/* Hang nut loc tren dien thoai: mot hang, vuot thi cuon ngang (truoc bi .soc-page .soc-tabs de len) */
+@media(max-width:760px){.soc-page .soc-tabs{flex-wrap:nowrap;overflow-x:auto}}
+.post-tool{color:var(--muted,#667085)}
+/* Danh sach tin nhan trong: dong thong bao o giua thay vi bi day xuong day */
+.chat-list .chat-empty{margin:auto 0;text-align:center;padding:32px 20px;opacity:.8}

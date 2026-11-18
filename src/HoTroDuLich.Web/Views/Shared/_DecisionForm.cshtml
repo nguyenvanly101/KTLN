@@ -1,0 +1,11 @@
+@model DecisionFormModel
+@{var first=Model.Options[0];}
+<form action="@Model.Action" method="post" class="decision-form" data-decision-form>
+ @Html.AntiForgeryToken()<div asp-validation-summary="All"></div>
+ @foreach(var h in Model.Hidden){<input type="hidden" name="@h.Key" value="@h.Value"/>}
+ <fieldset class="decision-options"><legend class="sr-only">Chọn quyết định</legend>
+  @foreach(var o in Model.Options){<label class="decision-option @(o.Danger?"is-danger":"")"><input type="radio" name="Decision" value="@o.Value" data-label="@o.TextLabel" data-required="@(o.TextRequired?"1":"0")" data-placeholder="@o.Placeholder" checked="@(o==first)"/><span><strong>@o.Title</strong><small>@o.Hint</small></span></label>}
+ </fieldset>
+ <div class="field full"><label for="decision-text" data-decision-label>@first.TextLabel</label><textarea id="decision-text" name="@Model.TextName" class="form-control" rows="3" maxlength="500" data-decision-text placeholder="@first.Placeholder"></textarea><small class="help">@Model.Help</small></div>
+ <div class="form-actions"><button class="btn btn-dark" type="submit" data-decision-submit>@first.Title</button></div>
+</form>

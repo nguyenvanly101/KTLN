@@ -21,6 +21,8 @@ public class ProviderController(TravelService s,BranchService branches) : AppCon
         ViewBag.Provider = await S.MyProvider();
         ViewBag.CanSubmit = await S.CanSubmitService();
         ViewBag.Unlinked = await branches.UnlinkedServiceCount();
+        // Dich vu da duyet nhung khach khong thay (co so chua duyet / bi an): bao ro cho nha cung cap.
+        ViewBag.PublicIds = (await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync(System.Linq.Queryable.Select(S.PublicServices(), x => x.MaDichVu))).ToHashSet();
         var all = await S.MyServices();
         var current = await branches.CurrentBranch();
         if (current == null) return View(all);

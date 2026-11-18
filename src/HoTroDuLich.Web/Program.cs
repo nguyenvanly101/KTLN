@@ -92,6 +92,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     o.Events.OnRedirectToAccessDenied = c =>
     {
         c.Response.StatusCode = StatusCodes.Status403Forbidden;
+        // Trang thuong: de trang loi chung (/loi/403) hien thong bao va duong quay lai; API: tra chu ngan.
+        var p = c.Request.Path;
+        if (!(p.StartsWithSegments("/api") || p.StartsWithSegments("/chat") || c.Request.Headers.Accept.ToString().Contains("application/json"))) return Task.CompletedTask;
         c.Response.ContentType = "text/plain; charset=utf-8";
         return c.Response.WriteAsync("Bạn không có quyền truy cập chức năng này theo vai trò hiện tại.");
     };
@@ -120,6 +123,11 @@ builder.Services.AddHostedService<NhacDenHanDinhChiService>();
 builder.Services.AddHostedService<PreparationReminderService>();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
+// Trang loi than thien ca khi chay Development (ban demo tren may): stack trace chi hien khi bat ro Diagnostics:DetailedErrors.
+if (app.Environment.IsDevelopment() && !app.Configuration.GetValue<bool>("Diagnostics:DetailedErrors"))
+    app.UseExceptionHandler("/loi");
+// 403 / 404 khong co noi dung (vd duong dan khong ton tai) -> trang loi tieng Viet co duong quay lai.
+app.UseStatusCodePagesWithReExecute("/loi/{0}");
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/loi");

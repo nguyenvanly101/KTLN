@@ -26,7 +26,7 @@
      <label for="@name">@f.Label</label><input class="form-control" id="@name" name="@name" type="date" value="@(values.FirstOrDefault())"/>
      break;
     case "list":
-     <label for="@name">@f.Label</label><textarea class="form-control" id="@name" name="@name" rows="4" placeholder="@f.Hint">@string.Join("\n",values)</textarea><small>@f.Hint (tối đa @f.Max dòng)</small>
+     <label for="@name">@f.Label</label><textarea class="form-control" id="@name" name="@name" rows="4">@string.Join("\n",values)</textarea><small>@f.Hint (tối đa @f.Max dòng)</small>
      break;
     default:
      <label for="@name">@f.Label</label><input class="form-control" id="@name" name="@name" maxlength="@f.Max" value="@(values.FirstOrDefault())"/>

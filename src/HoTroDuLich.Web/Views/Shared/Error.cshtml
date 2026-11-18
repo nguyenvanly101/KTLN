@@ -1,25 +1,17 @@
 @model ErrorViewModel
 @{
-    ViewData["Title"] = "Error";
+ var (title,text)=Model.Status switch
+ {
+  403=>("Bạn không có quyền xem trang này","Trang này dành cho vai trò khác hoặc thuộc về tài khoản khác. Nếu bạn nghĩ đây là nhầm lẫn, hãy đăng nhập đúng tài khoản."),
+  404=>("Không tìm thấy trang","Đường dẫn có thể đã thay đổi, hoặc nội dung đã bị gỡ."),
+  _=>("Đã có lỗi xảy ra","Hệ thống chưa xử lý được yêu cầu này. Bạn thử lại sau ít phút; nếu vẫn lỗi, gửi mã lỗi bên dưới cho quản trị viên.")
+ };
+ ViewData["Title"]=title;
 }
-
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
-
-@if (Model.ShowRequestId)
-{
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
-}
-
-<h3>Development Mode</h3>
-<p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
-</p>
-<p>
-    <strong>The Development environment shouldn't be enabled for deployed applications.</strong>
-    It can result in displaying sensitive information from exceptions to end users.
-    For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
-    and restarting the app.
-</p>
+<div class="container-narrow error-page">
+ <span class="error-code" aria-hidden="true">@Model.Status</span>
+ <h1>@title</h1>
+ <p>@text</p>
+ <div class="actions"><a class="btn btn-dark" href="/">Về trang chính</a><button type="button" class="btn btn-outline" data-history-back>Quay lại</button>@if(Model.Status==403&&User.Identity?.IsAuthenticated!=true){<a class="btn btn-outline" href="/Account/Login">Đăng nhập</a>}</div>
+ @if(Model.Status>=500&&Model.ShowRequestId){<p class="help">Mã lỗi: <code>@Model.RequestId</code></p>}
+</div>

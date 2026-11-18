@@ -22,11 +22,18 @@ public partial class DangNhapService(AppDbContext context, IHttpContextAccessor 
         var email = identity.ToLowerInvariant();
         var phone = NormalizePhone(identity);
         var a=await Resolve<ITaiKhoan>().TimTheoDinhDanh(identity);
+        // Khoa theo tai khoan: sai mat khau 5 lan trong 15 phut thi tam khoa dang nhap 15 phut (gioi han theo IP khong chan duoc ke doi IP).
+        if (a != null)
+        {
+            var since = Clock.BayGioUtc.AddMinutes(-15);
+            var fails = await db.NhatKyThaoTac.AsNoTracking().CountAsync(x => x.DoiTuong == "TaiKhoan" && x.MaDoiTuong == a.MaTaiKhoan && x.LoaiSuKien == "DangNhapThatBai" && x.TrangThaiSau == "ThatBai" && x.ThoiDiem >= since);
+            Require(fails < 5, "Bạn đã nhập sai mật khẩu nhiều lần. Tài khoản tạm khóa đăng nhập 15 phút, thử lại sau.", 429);
+        }
         var hasher = new PasswordHasher<TaiKhoan>();
         var check = hasher.VerifyHashedPassword(a ?? FakeAccount, a?.MatKhauBam ?? FakePasswordHash, i.Password);
         if (a == null || check == PasswordVerificationResult.Failed)
         {
-            await serviceNhatKy.GhiRiengAsync("DangNhapThatBai", "TaiKhoan", 0, null, "ThatBai", "Định danh: " + identity[..Math.Min(identity.Length, 2)] + "***; sai thông tin");
+            await serviceNhatKy.GhiRiengAsync("DangNhapThatBai", "TaiKhoan", a?.MaTaiKhoan ?? 0, null, "ThatBai", "Định danh: " + identity[..Math.Min(identity.Length, 2)] + "***; sai thông tin");
             Ensure(false, "1101-02", "Password");
         }
 

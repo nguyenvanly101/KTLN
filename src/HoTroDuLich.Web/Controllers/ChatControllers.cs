@@ -99,7 +99,7 @@ public sealed class ChatPagesController(TravelService travel,ChatService chat):A
  const string Both=TravelService.Traveler+","+TravelService.ProviderRole;
  async Task<ChatPageModel> Page(long? open=null,ChatStartDto? start=null,long? branch=null)
   {
-  if(travel.Role!=TravelService.ProviderRole)return new("Traveler",open,start,[],branch);
+  if(S.Role!=TravelService.ProviderRole)return new("Traveler",open,start,[],branch);
   // Nha cung cap: chi co so dang chon; mo cuoc tro chuyen cua co so khac thi chuyen sang co so do.
   var bs=HttpContext.RequestServices.GetRequiredService<BranchService>();
   if(open is long oid&&await bs.Focus(await chat.BranchOf(oid)) is {} moved)TempData["Success"]="Đã chuyển sang cơ sở "+moved.Name+" để trả lời cuộc trò chuyện này.";

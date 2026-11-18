@@ -126,9 +126,9 @@
     if (p.kind === 'Branch' && p.branchId && !p.mine && document.querySelector('[data-soc-feed]') && document.querySelector('[data-soc-feed]').dataset.role === 'traveler') {
       var fol = h('button', 'btn btn-outline post-follow', p.following ? 'Đang theo dõi' : '+ Theo dõi'); fol.type = 'button';
       fol.addEventListener('click', function () { api('/api/mxh/co-so/' + p.branchId + '/theo-doi', { method: 'POST', body: form({ follow: !p.following }) }).then(function (r) { p.following = r.following; fol.textContent = p.following ? 'Đang theo dõi' : '+ Theo dõi'; toast(p.following ? 'Bài viết của cơ sở này sẽ hiện ở Dành cho bạn.' : 'Đã bỏ theo dõi.'); }).catch(function (e) { toast(e.message); }); });
-      head.appendChild(fol);
+      var followBtn = fol; // dua xuong hang nut cua bai (dau bai chi giu ten, gio)
     }
-    if (p.kind === 'Branch' && p.branchId) { var go2 = h('a', 'text-link', 'Xem cơ sở'); go2.href = '/co-so/' + p.branchId; var msg2 = h('a', 'btn btn-outline', 'Nhắn tin cơ sở'); msg2.href = '/tin-nhan/co-so/' + p.branchId; var wrapB = h('div', 'post-trip-info'); wrapB.appendChild(go2); wrapB.appendChild(msg2); extra = wrapB; }
+    if (p.kind === 'Branch' && p.branchId) { var go2 = h('a', 'text-link', 'Xem cơ sở'); go2.href = '/co-so/' + p.branchId; var msg2 = h('a', 'btn btn-outline', 'Nhắn tin cơ sở'); msg2.href = '/tin-nhan/co-so/' + p.branchId; var wrapB = h('div', 'post-trip-info'); wrapB.appendChild(go2); if (typeof followBtn !== 'undefined' && followBtn) wrapB.appendChild(followBtn); wrapB.appendChild(msg2); extra = wrapB; }
     var photos = h('div', 'post-photos n' + Math.min(p.photos, 4) + (p.photos === 1 ? ' one' : ''));
     var urls = []; for (var i = 0; i < p.photos; i++) urls.push('/mxh/bai-viet/' + p.id + '/anh/' + i);
     urls.slice(0, 4).forEach(function (u, idx) {
@@ -234,24 +234,26 @@
   function composer(onCreated, me, cfg) {
     cfg = cfg || {};
     var box = h('form', 'post-composer panel'); var top = h('div', 'post-composer-top');
-    top.appendChild(S.avatar(me || { name: 'Tôi' })); var ta = h('textarea', 'form-control'); ta.placeholder = cfg.provider ? 'Chia sẻ ưu đãi, món mới hay hình ảnh của cơ sở…' : 'Bạn đang nghĩ gì về chuyến đi?'; ta.maxLength = 4000; ta.rows = 1; ta.setAttribute('aria-label', 'Nội dung bài viết'); top.appendChild(ta); box.appendChild(top);
+    top.appendChild(S.avatar(me || { name: 'Tôi' })); var ta = h('textarea', 'form-control'); ta.placeholder = cfg.provider ? 'Đăng tin mới cho cơ sở…' : 'Bạn đang nghĩ gì?'; ta.maxLength = 4000; ta.rows = 1; ta.setAttribute('aria-label', 'Nội dung bài viết'); top.appendChild(ta); box.appendChild(top);
     var previews = h('div', 'post-previews'); box.appendChild(previews);
     var bar = h('div', 'post-composer-bar'); var left = h('div', 'soc-card-actions');
-    var lab = h('label', 'post-tool', '🖼'); lab.title = 'Thêm ảnh'; lab.setAttribute('aria-label', 'Thêm ảnh'); var file = h('input'); file.type = 'file'; file.accept = 'image/jpeg,image/png'; file.multiple = true; file.hidden = true; lab.appendChild(file);
+    var lab = h('label', 'post-tool'); lab.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>'; lab.title = 'Thêm ảnh'; lab.setAttribute('aria-label', 'Thêm ảnh'); var file = h('input'); file.type = 'file'; file.accept = 'image/jpeg,image/png'; file.multiple = true; file.hidden = true; lab.appendChild(file);
     var kindSel = h('select', 'form-select'); kindSel.setAttribute('aria-label', 'Loại bài viết'); (cfg.provider ? [['Branch', 'Giới thiệu cơ sở']] : [['Share', 'Chia sẻ'], ['Companion', 'Tìm bạn đồng hành']]).forEach(function (k) { var o = h('option', null, k[1]); o.value = k[0]; kindSel.appendChild(o); });
     var branchSel = null;
-    if (cfg.provider) { branchSel = h('select', 'form-select'); branchSel.setAttribute('aria-label', 'Cơ sở'); (cfg.branches || []).forEach(function (b) { var o = h('option', null, b.name); o.value = b.id; branchSel.appendChild(o); }); if (!(cfg.branches || []).length) { var no = h('option', null, 'Chưa có cơ sở được duyệt'); no.value = ''; branchSel.appendChild(no); } }
+    if (cfg.provider) { branchSel = h('select', 'form-select'); branchSel.setAttribute('aria-label', 'Cơ sở'); (cfg.branches || []).forEach(function (b) { var o = h('option', null, b.name); o.value = b.id; branchSel.appendChild(o); }); if (!(cfg.branches || []).length) branchSel = null; }
     var svcSel = null;
     if (!cfg.provider && (cfg.saved || []).length) { svcSel = h('select', 'form-select'); svcSel.setAttribute('aria-label', 'Gắn dịch vụ đã lưu'); var none = h('option', null, 'Gắn dịch vụ đã lưu (không bắt buộc)'); none.value = ''; svcSel.appendChild(none); cfg.saved.forEach(function (s) { var o = h('option', null, s.name); o.value = s.id; svcSel.appendChild(o); }); }
     var trip = h('div', 'post-trip'); trip.hidden = true;
     var dest = h('input', 'form-control'); dest.type = 'text'; dest.maxLength = 200; dest.placeholder = 'Điểm đến (ví dụ: Đà Nẵng)'; dest.setAttribute('aria-label', 'Điểm đến');
     var d1 = h('input', 'form-control'); d1.type = 'date'; d1.setAttribute('aria-label', 'Ngày đi'); var d2 = h('input', 'form-control'); d2.type = 'date'; d2.setAttribute('aria-label', 'Ngày về');
     trip.appendChild(dest); trip.appendChild(d1); trip.appendChild(d2); box.appendChild(trip); if (svcSel) box.appendChild(svcSel);
-    kindSel.addEventListener('change', function () { trip.hidden = kindSel.value !== 'Companion'; ta.placeholder = kindSel.value === 'Companion' ? 'Bạn muốn đi cùng ai, kiểu chuyến đi thế nào?' : 'Bạn đang nghĩ gì về chuyến đi?'; });
+    kindSel.addEventListener('change', function () { trip.hidden = kindSel.value !== 'Companion'; ta.placeholder = kindSel.value === 'Companion' ? 'Bạn muốn đi cùng ai, kiểu chuyến đi thế nào?' : 'Bạn đang nghĩ gì?'; });
     var sel = h('select', 'form-select'); sel.setAttribute('aria-label', 'Ai được xem'); Object.keys(VIS).forEach(function (k) { var o = h('option', null, VIS[k]); o.value = k; if (k === 'Friends') o.selected = true; sel.appendChild(o); });
     // Loai bai: hai nut thay o chon; nguoi xem: o chon nho canh nut Dang.
     var kinds = h('div', 'post-kinds'); if (!cfg.provider) { kindSel.hidden = true; [['Share', 'Chia sẻ'], ['Companion', 'Tìm bạn đồng hành']].forEach(function (k, n) { var b = h('button', n === 0 ? 'on' : '', k[1]); b.type = 'button'; b.addEventListener('click', function () { kindSel.value = k[0]; kindSel.dispatchEvent(new Event('change')); kinds.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); }); box.classList.add('open'); }); kinds.appendChild(b); }); }
     sel.classList.add('post-vis'); Array.prototype.forEach.call(sel.options, function (o) { o.textContent = (o.value === 'Public' ? '🌐 ' : o.value === 'Friends' ? '👥 ' : '🔒 ') + o.textContent; });
+    // Co so dang chon chua duoc duyet: noi ro va dan toi trang co so, khong de o chon rong.
+    if (cfg.provider && !(cfg.branches || []).length) { var note = h('p', 'post-blocked'); note.appendChild(document.createTextNode('Cơ sở đang chọn chưa được duyệt nên chưa đăng tin được. ')); var ln = h('a', null, 'Xem cơ sở của tôi'); ln.href = '/nha-cung-cap/co-so'; note.appendChild(ln); box.insertBefore(note, box.firstChild); ta.disabled = true; ta.placeholder = 'Chưa đăng tin được'; }
     left.appendChild(lab); if (!cfg.provider) { left.appendChild(kinds); left.appendChild(kindSel); } if (branchSel && (cfg.branches || []).length !== 1) left.appendChild(branchSel); var right = h('div', 'post-composer-right'); if (!cfg.provider) right.appendChild(sel); var go = h('button', 'btn btn-dark', 'Đăng'); go.type = 'submit'; right.appendChild(go); bar.appendChild(left); bar.appendChild(right); box.appendChild(bar);
     // Gon khi chua soan: chi mot dong; bam vao (hoac chon anh) thi mo rong.
     if (!cfg.provider) { box.classList.add('post-composer-compact'); ['focus', 'click', 'input'].forEach(function (ev) { ta.addEventListener(ev, function () { box.classList.add('open'); }); }); file.addEventListener('change', function () { box.classList.add('open'); }); }
@@ -313,7 +315,7 @@
     var branches0 = JSON.parse(feed.dataset.branches || '[]');
     var scope = isProv ? (branches0.length ? 'branch' : 'public') : 'home', area = h('div'), tabs = h('div', 'soc-tabs');
     // Khach: mot luong bai, loc bang nut. Nha cung cap: tin cua co so / cong dong nhu cu.
-    var filters = isProv ? (branches0.length ? [['branch', 'Tin của ' + branches0[0].name], ['public', 'Cộng đồng']] : [['public', 'Cộng đồng']]) : [['all', 'Tất cả'], ['home', 'Bạn bè'], ['companion', 'Tìm bạn đồng hành']];
+    var filters = isProv ? (branches0.length ? [['branch', 'Tin của cơ sở'], ['public', 'Cộng đồng']] : [['public', 'Cộng đồng']]) : [['all', 'Tất cả'], ['home', 'Bạn bè'], ['companion', 'Tìm bạn đồng hành']];
     var btns = {}; filters.forEach(function (f) { var bt = h('button', null, f[1]); bt.type = 'button'; bt.setAttribute('aria-pressed', 'false'); bt.addEventListener('click', function () { open(f[0]); }); btns[f[0]] = bt; tabs.appendChild(bt); });
     tabs.setAttribute('role', 'group'); tabs.setAttribute('aria-label', 'Lọc bài viết');
     var savedHead = h('div', 'soc-saved-head'); savedHead.hidden = true; savedHead.appendChild(h('strong', null, 'Bài đã lưu')); var back = h('a', null, '← Về bảng tin'); back.href = '/bang-tin'; savedHead.appendChild(back);

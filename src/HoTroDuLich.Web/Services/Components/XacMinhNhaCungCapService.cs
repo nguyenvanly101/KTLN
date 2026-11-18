@@ -111,7 +111,7 @@ public partial class XacMinhNhaCungCapService(AppDbContext context, IHttpContext
             p.TrangThaiXacMinh = System.Enum.Parse<HoTroDuLich.Web.Domain.TrangThaiXacMinh>(i.Decision);
             p.TrangThaiQuyenHoatDong = i.Decision == "DaXacMinh" ? TrangThaiQuyenHoatDong.DangHoatDong : null;
             serviceNhatKy.Ghi("XacMinhNhaCungCap", "HoSoXacMinhNhaCungCap", h.MaHoSo, "ChoXacMinh", i.Decision, i.Reason);
-            serviceThongBao.Tao(p.MaTaiKhoan,"XacMinh"+i.Decision,"Hồ sơ nhà cung cấp: " + Labels.Status(i.Decision),"/nha-cung-cap/ho-so-xac-minh");
+            serviceThongBao.Tao(p.MaTaiKhoan,"XacMinh"+i.Decision,"Hồ sơ nhà cung cấp: " + Labels.Status(i.Decision) + (string.IsNullOrWhiteSpace(i.Reason) ? "" : ". " + (i.Reason.Length > 300 ? i.Reason[..300] + "…" : i.Reason.Trim())),"/nha-cung-cap/ho-so-xac-minh");
         });
     }
 

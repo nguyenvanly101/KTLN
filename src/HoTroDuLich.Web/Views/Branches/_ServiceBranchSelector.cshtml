@@ -6,7 +6,7 @@
  else if(Model.Id==0||chosen.Count<=1)
  {
   var one=chosen.FirstOrDefault()??choices[0];
-  <input type="hidden" name="BranchIds" value="@one.Id"/><p class="help">Dịch vụ thuộc cơ sở <strong>@one.Name</strong>. Muốn đổi cơ sở, chọn ở đầu thanh bên.</p>
+  <input type="hidden" name="BranchIds" value="@one.Id"/><p class="help">Dịch vụ thuộc cơ sở <strong>@one.Name</strong>. Muốn đổi cơ sở, chọn ở mục “Đang quản lý cơ sở” trong menu.</p>
  }
  else
  {

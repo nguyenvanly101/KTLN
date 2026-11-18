@@ -56,7 +56,7 @@ public partial class QuanLyDichVuService(AppDbContext context, IHttpContextAcces
             if(branchUnits.Count>0&&branchUnits.All(u=>u!=null))i.DonViId=await Resolve<DiaGioiService>().CommonAncestor(branchUnits.Select(u=>u!.Value));
             i.Address=null;
         }
-        i.Name = i.Name.Trim();
+        i.Name = TextClean.Name(i.Name);
         i.Region = (i.Region??"").Trim();
         if(i.Operation=="LuuNhap"&&i.Region.Length==0)i.Region="Chưa chọn cơ sở";
         i.Address=string.IsNullOrWhiteSpace(i.Address)?null:i.Address.Trim();
