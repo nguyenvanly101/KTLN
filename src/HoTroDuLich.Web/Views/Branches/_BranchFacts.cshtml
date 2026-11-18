@@ -10,8 +10,9 @@
  <div class="pv-gallery" aria-label="Ảnh thực tế của @Model.Name">@for(var n=0;n<photos.Length;n++){<a href="/co-so/@Model.BranchId/anh/@n@q" target="_blank" rel="noopener"><img src="/co-so/@Model.BranchId/anh/@n@q" alt="Ảnh @(n+1) của @Model.Name" loading="lazy" width="320" height="220"/></a>}</div>
 }
 <dl class="facts pv-facts">
- <div><dt>Giờ mở cửa</dt><dd>@(hours??"Chưa công bố")@if(!string.IsNullOrWhiteSpace(Model.Hours)){<br/><small>@Model.Hours</small>}</dd></div>
- <div><dt>Giá tham khảo</dt><dd>@(price??"Chưa công bố")</dd></div>
+ @* Gio: co gio chuan thi hien gio chuan (kem ghi chu); chi co ghi chu thi hien ghi chu - khong ghi "Chua cong bo" canh mot gio cu the. *@
+ <div><dt>Giờ mở cửa</dt><dd>@if(hours!=null){@hours@if(!string.IsNullOrWhiteSpace(Model.Hours)){<br/><small>@Model.Hours</small>}}else if(!string.IsNullOrWhiteSpace(Model.Hours)){@Model.Hours}else{<span>Chưa công bố</span>}</dd></div>
+ <div><dt>Giá tham khảo</dt><dd>@(price??"Xem giá từng dịch vụ bên dưới")</dd></div>
 </dl>
 @{var described=BranchTemplates.Describe(Model.Type,Model.AttributesJson);}
 @if(described.Count>0)

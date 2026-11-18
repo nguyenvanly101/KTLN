@@ -27,7 +27,7 @@
 }
 <div class="container-wide soc-page">
  @Html.AntiForgeryToken()
- <div class="fb-layout">
+ <div class="fb-layout@(isProvider?" fb-provider":"")">
   <aside class="fb-left" aria-label="Lối tắt">
    <div class="panel fb-card">
     @if(isProvider){<strong>@(curBranch?.Name??"Chưa có cơ sở")</strong><small>Nhà cung cấp</small>}
@@ -47,7 +47,7 @@
      <a href="/ban-be">@Ui.Icon("users") Bạn bè</a>
      <a href="/tin-nhan">@Ui.Icon("chat") Tin nhắn</a>
      <a href="/bang-tin?tab=da-luu">@Ui.Icon("check") Bài đã lưu</a>
-     <a href="/Saved">@Ui.Icon("check") Dịch vụ đã lưu</a>
+     <a href="/Saved">@Ui.Icon("check") Địa điểm &amp; dịch vụ đã lưu</a>
      <a href="/Plans">@Ui.Icon("calendar") Chuyến đi của tôi</a>
      <a href="/Bookings">@Ui.Icon("ticket") Đặt dịch vụ của tôi</a>
     }

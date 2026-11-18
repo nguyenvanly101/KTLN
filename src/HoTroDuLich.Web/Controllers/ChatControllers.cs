@@ -114,14 +114,16 @@ public sealed class ChatPagesController(TravelService travel,ChatService chat):A
  public async Task<IActionResult> WithBranch(long branchId)
  {
   var info=await chat.StartInfo(branchId);
-  if(info.ConversationId is long existing)return Redirect("/tin-nhan/"+existing);
+  // Giu ?dichVu= (mo san bieu mau dat dung dich vu) va ?embed=1 (khung chat noi) khi chuyen sang cuoc tro chuyen da co.
+  if(info.ConversationId is long existing)return Redirect("/tin-nhan/"+existing+Request.QueryString);
   return V("Chat/Inbox",await Page(null,info));
  }
  [HttpGet("/tin-nhan/nguoi/{accountId:long}"),Authorize(Roles=TravelService.Traveler)]
  public async Task<IActionResult> WithPerson(long accountId)
  {
   var info=await chat.StartPeer(accountId);
-  if(info.ConversationId is long existing)return Redirect("/tin-nhan/"+existing);
+  // Giu ?dichVu= (mo san bieu mau dat dung dich vu) va ?embed=1 (khung chat noi) khi chuyen sang cuoc tro chuyen da co.
+  if(info.ConversationId is long existing)return Redirect("/tin-nhan/"+existing+Request.QueryString);
   return V("Chat/Inbox",await Page(null,info));
  }
  [HttpGet("/tin-nhan/dat-cho/{requestId:long}"),Authorize(Roles=Both)]

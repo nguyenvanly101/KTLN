@@ -39,6 +39,27 @@ public sealed partial class DiscoveryService
   Signed();var collections=await db.Set<DiscoveryCollection>().AsNoTracking().Where(x=>x.OwnerId==Me&&!x.Archived).OrderByDescending(x=>x.UpdatedAt).Take(30).ToListAsync();var ids=collections.Select(x=>x.Id).ToList();var items=await db.Set<DiscoveryCollectionItem>().AsNoTracking().Where(x=>ids.Contains(x.CollectionId)&&!x.Removed).ToListAsync();var follows=db.Set<DiscoveryFollow>().Where(x=>x.OwnerId==Me&&x.Active);var followedIds=await follows.Select(x=>x.EntryId).ToListAsync();var entryIds=items.Select(x=>x.EntryId).ToList();var entries=await Public().AsNoTracking().Where(x=>entryIds.Contains(x.Id)||follows.Any(f=>f.EntryId==x.Id)).ToListAsync();await Hydrate(entries);
   return new(collections,items,entries.ToDictionary(x=>x.Id),await db.Set<DiscoveryRoute>().AsNoTracking().Where(x=>x.OwnerId==Me&&!x.Archived).OrderByDescending(x=>x.UpdatedAt).Take(30).ToListAsync(),entries.Where(x=>followedIds.Contains(x.Id)).ToList(),await db.Set<DiscoveryQuestion>().AsNoTracking().Where(x=>x.OwnerId==Me).OrderByDescending(x=>x.Id).Take(50).ToListAsync(),await db.Set<DiscoveryReport>().AsNoTracking().Where(x=>x.OwnerId==Me).OrderByDescending(x=>x.Id).Take(50).ToListAsync(),input??new(),followedIds.Except(entries.Select(x=>x.Id)).ToList());
  }
+ /// <summary>Danh sach luu nhanh cua tai khoan: nut "Luu" tren the Kham pha luu vao day, trang "Da luu" doc lai.</summary>
+ public const string QuickListName="Đã lưu";
+ IQueryable<DiscoveryCollectionItem> QuickItems()=>db.Set<DiscoveryCollectionItem>().Where(x=>!x.Removed&&db.Set<DiscoveryCollection>().Any(c=>c.Id==x.CollectionId&&c.OwnerId==Me&&!c.Archived&&c.Name==QuickListName));
+ /// <summary>Luu mot muc vao danh sach "Da luu" cua tai khoan. Tra ve false neu da luu tu truoc.</summary>
+ public async Task<bool> QuickSave(long entryId)
+ {
+  Signed();if(await QuickItems().AnyAsync(x=>x.EntryId==entryId))return false;
+  await Collection(new DiscoveryCommand{Decision="Import",Name=QuickListName,EntryIds=[entryId]});return true;
+ }
+ public async Task QuickRemove(long entryId)
+ {
+  Signed();var rows=await QuickItems().Where(x=>x.EntryId==entryId).ToListAsync();Need(rows.Count>0,"Mục này không còn trong danh sách đã lưu.",404);
+  foreach(var r in rows){r.Removed=true;r.UpdatedAt=clock.BayGioUtc;}await db.SaveChangesAsync();
+ }
+ /// <summary>Cac muc da luu tu Kham pha (moi nhat truoc), chi gom muc con cong khai.</summary>
+ public async Task<List<DiscoveryEntry>> QuickSaved()
+ {
+  Signed();var rows=await QuickItems().AsNoTracking().OrderByDescending(x=>x.UpdatedAt).Select(x=>x.EntryId).Take(100).ToListAsync();if(rows.Count==0)return [];
+  var list=await Public().AsNoTracking().Where(e=>rows.Contains(e.Id)).ToListAsync();await Hydrate(list);
+  return list.OrderBy(e=>rows.IndexOf(e.Id)).ToList();
+ }
  public async Task Collection(DiscoveryCommand i)
  {
   Signed();Validate(i);Need(new[]{"Create","Rename","Archive","Add","Remove","Import","Note"}.Contains(i.Decision),"Thao tác danh sách không hợp lệ.");Need(i.EntryIds.Count<=100,"Chỉ đồng bộ tối đa 100 lựa chọn mỗi lần.");await travel.Execute(async()=>{

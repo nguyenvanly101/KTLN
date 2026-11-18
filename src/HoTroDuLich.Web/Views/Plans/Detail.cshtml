@@ -22,7 +22,7 @@
  <a class="back" href="/Plans">← Chuyến đi của tôi</a>
  @if(!isOwner){<div class="notice">Chuyến đi chung của <strong>@share.Members.First(m=>m.IsOwner).Name</strong>. Bạn sửa được lịch trình.</div>}
  <header class="trip-hero trip-hero-compact">
-  <div class="trip-hero-copy"><h1>@plan.TenKeHoach</h1><p class="trip-hero-meta">@Ui.Icon("pin") @plan.NoiDen <span>·</span> @days ngày</p><p>@plan.NgayBatDau.ToString("dd/MM/yyyy") – @plan.NgayKetThuc.ToString("dd/MM/yyyy") <span class="badge @Labels.Badge(plan.TrangThai.ToString())">@Labels.PlanStatus(plan.TrangThai.ToString())</span></p><p class="trip-hero-money">Tạm tính <b>@Labels.Money(total)</b>@(plan.NganSachDuKien != null ? " · Ngân sách " + Labels.Money(plan.NganSachDuKien) : "")</p>
+  <div class="trip-hero-copy"><h1>@plan.TenKeHoach</h1><p class="trip-hero-meta">@Ui.Icon("pin") @plan.NoiDen <span>·</span> @days ngày</p><p>@plan.NgayBatDau.ToString("dd/MM/yyyy") – @plan.NgayKetThuc.ToString("dd/MM/yyyy") <span class="badge @Labels.Badge(plan.TrangThai.ToString())">@Labels.PlanStatus(plan.TrangThai.ToString())</span>@if(isOwner&&plan.TrangThai==TrangThaiKeHoach.Nhap){<form class="trip-confirm" action="/Plans/Decision" method="post">@Html.AntiForgeryToken()<input type="hidden" name="Id" value="@plan.MaKeHoach"/><input type="hidden" name="Version" value="@TravelService.Token(plan.RowVersion)"/><button name="Decision" value="DaChapNhan" type="submit" title="Chốt lịch trình: bạn bè trong chuyến thấy đây là lịch đã thống nhất">✓ Xác nhận lịch trình</button></form>}</p><p class="trip-hero-money">Tạm tính <b>@Labels.Money(total)</b>@(plan.NganSachDuKien != null ? " · Ngân sách " + Labels.Money(plan.NganSachDuKien) : "")</p>
    @{var inWindow=TravelService.Today>=plan.NgayBatDau.AddDays(-1)&&TravelService.Today<=plan.NgayKetThuc;}
    <div class="actions trip-actionbar">
     @if(inWindow){<a class="btn btn-lime" href="/Journey/Today?planId=@plan.MaKeHoach#depart">@Ui.Icon("pin") Khởi hành · Hôm nay</a>}
@@ -31,7 +31,7 @@
     @if(groupId != null){<a class="btn trip-hero-secondary" href="/tin-nhan/@groupId">Nhóm chat</a>}
     <details class="trip-more"><summary class="btn trip-hero-secondary">Thêm ▾</summary><div class="trip-more-menu">
      @if(!inWindow){<a href="/Journey/Today?planId=@plan.MaKeHoach">Xem theo từng ngày</a>}
-     @if(isOwner){<form action="/Plans/Decision" method="post">@Html.AntiForgeryToken()<input type="hidden" name="Id" value="@plan.MaKeHoach"/><input type="hidden" name="Version" value="@TravelService.Token(plan.RowVersion)"/><button name="Decision" value="@(plan.TrangThai == TrangThaiKeHoach.Nhap ? "DaChapNhan" : "Nhap")" type="submit">@(plan.TrangThai == TrangThaiKeHoach.Nhap ? "Xác nhận lịch trình" : "Chuyển về bản nháp")</button></form><a href="/Journey/Share?planId=@plan.MaKeHoach">Chia sẻ</a>}
+     @if(isOwner){@if(plan.TrangThai != TrangThaiKeHoach.Nhap){<form action="/Plans/Decision" method="post">@Html.AntiForgeryToken()<input type="hidden" name="Id" value="@plan.MaKeHoach"/><input type="hidden" name="Version" value="@TravelService.Token(plan.RowVersion)"/><button name="Decision" value="Nhap" type="submit">Chuyển về bản nháp</button></form>}<a href="/Journey/Share?planId=@plan.MaKeHoach">Chia sẻ</a>}
      <a href="/Plans/Split/@plan.MaKeHoach">Chia tiền</a>
      <a href="/Support/Create?planId=@plan.MaKeHoach">Ghi nhận sự cố</a>
     </div></details>

@@ -34,7 +34,6 @@ public class ProviderController(TravelService s,BranchService branches) : AppCon
     public async Task<IActionResult> Edit(long id = 0, long coSo = 0)
     {
         ViewBag.CanSubmit = await S.CanSubmitService();
-        ViewBag.Places = await S.VisiblePlaces();
         if (id == 0)
         {
             // Dich vu moi: tu gan vao co so da duyet (hoac co so duoc chon san), khong bat chon lai.

@@ -31,20 +31,21 @@
  </section>
 
  <div class="ds-page hm-page">
+  <section class="hm-section" aria-labelledby="hm-intents">
+   <div class="ds-section-head"><div><h2 id="hm-intents">Bạn cần tìm gì?</h2></div></div>
+   <ul class="hm-tiles">@foreach(var t in intents){<li><a href="@t.Href"><span class="hm-tile-icon">@Ui.Icon(t.Icon)</span><strong>@t.Label</strong><small>@t.Hint</small></a></li>}</ul>
+  </section>
+
   <section class="hm-section" aria-labelledby="hm-dest">
-   <div class="ds-section-head"><div><h2 id="hm-dest">Điểm đến được xem nhiều</h2></div><a class="dest-all" href="/diem-den">Tất cả điểm đến @Ui.Icon("arrow")</a></div>
+   <div class="ds-section-head"><div><h2 id="hm-dest">Điểm đến nổi bật</h2></div><a class="dest-all" href="/diem-den">Tất cả @Model.Count điểm đến @Ui.Icon("arrow")</a></div>
    @if(Model.Count==0){<p class="dest-empty">Chưa có điểm đến nào được công bố.</p>}
    else
    {
-    <div class="hm-dest-grid">@foreach(var d in Model){var photo=photos.GetValueOrDefault(d.UnitId);<a class="hm-dest" href="/diem-den/@d.UnitId">@if(photo!=null){<img src="@photo.Path" alt="" title="@photo.Credit" width="600" height="800" loading="lazy"/>}else{<span class="hm-dest-blank" aria-hidden="true">@Ui.Icon("pin")</span>}<span class="hm-dest-copy"><strong>@d.Name</strong><small>@(d.Count>0?d.Count+" mục thông tin":"Chưa có thông tin")</small></span></a>}</div>
+    <div class="hm-dest-grid">@foreach(var d in Model.OrderBy(x=>photos.ContainsKey(x.UnitId)?0:1).Take(8)){var photo=photos.GetValueOrDefault(d.UnitId);<a class="hm-dest" href="/diem-den/@d.UnitId">@if(photo!=null){<img src="@photo.Path" alt="" title="@photo.Credit" width="600" height="800" loading="lazy"/>}else{<span class="hm-dest-blank" aria-hidden="true">@Ui.Icon("pin")</span>}<span class="hm-dest-copy"><strong>@d.Name</strong><small>@(d.Count>0?d.Count+" mục thông tin":"Chưa có thông tin")</small></span></a>}</div>
    }
   </section>
 
-  <section class="hm-section" aria-labelledby="hm-intents">
-   <div class="ds-section-head"><div><h2 id="hm-intents">Hoặc bắt đầu từ điều bạn cần</h2></div></div>
-   <ul class="hm-tiles">@foreach(var t in intents){<li><a href="@t.Href"><span class="hm-tile-icon">@Ui.Icon(t.Icon)</span><strong>@t.Label</strong><small>@t.Hint</small></a></li>}</ul>
-  </section>
-  <p class="hm-links"><a href="/Discovery?Sort=relevance">Tìm nâng cao với bộ lọc</a><a href="/kham-pha">Bản đồ cơ sở quanh một mốc</a>@if(User.IsInRole(TravelService.Traveler)){<a href="/Saved">Dịch vụ đã lưu</a>}<a href="/lich-mau">Lịch trình mẫu</a></p>
+  <p class="hm-links"><a href="/Discovery?Sort=relevance">Tìm nâng cao với bộ lọc</a><a href="/kham-pha">Bản đồ cơ sở quanh một mốc</a>@if(User.IsInRole(TravelService.Traveler)){<a href="/Saved">Đã lưu</a>}<a href="/lich-mau">Lịch trình mẫu</a></p>
   <div hidden data-ds-csrf>@Html.AntiForgeryToken()</div>
  </div>
 </div>

@@ -6,9 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace HoTroDuLich.Web.Controllers;
 
 [Authorize(Roles=TravelService.Traveler)]
-public sealed class SavedController(TravelService travel,ProductService product):AppController(travel)
+public sealed class SavedController(TravelService travel,ProductService product,DiscoveryService discovery):AppController(travel)
 {
-    public async Task<IActionResult> Index()=>View(await product.Saved());
+    public async Task<IActionResult> Index(){ViewBag.FromDiscovery=await discovery.QuickSaved();return View(await product.Saved());}
+    [HttpPost] public async Task<IActionResult> RemoveEntry(CommandInput input){await discovery.QuickRemove(input.Id);return Done("/Saved","Đã bỏ khỏi danh sách đã lưu.");}
     [HttpPost] public async Task<IActionResult> Add(SavedInput input){await product.Save(input);return Done(Url.IsLocalUrl(input.ReturnUrl)?input.ReturnUrl!:"/Saved","Đã lưu lựa chọn của bạn.");}
     [HttpPost] public async Task<IActionResult> Remove(CommandInput input){await product.RemoveSaved(input.Id);return Done("/Saved","Đã bỏ mục khỏi danh sách lưu.");}
     [HttpGet] public async Task<IActionResult> Compare(long[] ids)=>View(await product.Compare(ids));

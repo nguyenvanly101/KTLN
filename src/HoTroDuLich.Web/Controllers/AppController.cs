@@ -54,7 +54,7 @@ public abstract class AppController(TravelService service):Controller
     case ActivityInput i:ViewBag.Plan=await S.SharedPlan(i.PlanId);return V("Plans/Activity",i);
     case NeedInput i:return V("Companions/Edit",i);
     case AgreementInput i:return V("Companions/Propose",i);
-    case ServiceInput i:ViewBag.CanSubmit=await S.CanSubmitService();ViewBag.Places=await S.VisiblePlaces();if(i.Id>0){var serviceHistory=await S.ServiceHistory(i.Id);ViewBag.History=serviceHistory;var liveService=await S.OwnService(i.Id);var lastRevision=serviceHistory.FirstOrDefault();i.PhotoPaths=lastRevision!=null&&new[]{TrangThaiDuyet.CanSua,TrangThaiDuyet.TuChoi}.Contains(lastRevision.TrangThaiDuyet)?lastRevision.AnhJson:liveService.AnhJson;}return V("Provider/Edit",i);
+    case ServiceInput i:ViewBag.CanSubmit=await S.CanSubmitService();if(i.Id>0){var serviceHistory=await S.ServiceHistory(i.Id);ViewBag.History=serviceHistory;var liveService=await S.OwnService(i.Id);var lastRevision=serviceHistory.FirstOrDefault();i.PhotoPaths=lastRevision!=null&&new[]{TrangThaiDuyet.CanSua,TrangThaiDuyet.TuChoi}.Contains(lastRevision.TrangThaiDuyet)?lastRevision.AnhJson:liveService.AnhJson;}return V("Provider/Edit",i);
     case BookingInput i:if(i.Id>0){ViewBag.ServiceName=await S.BookingServiceName(i.Id);return V("Bookings/Edit",i);}ViewBag.Service=await S.PublicService(i.ServiceId);return V("Bookings/Create",i);
     case ChangeInput i:return V("Bookings/Change",i);
     case IncidentInput i:ViewBag.Plan=await S.OwnPlan(i.PlanId);ViewBag.Activities=await S.Activities(i.PlanId);return V("Support/Create",i);

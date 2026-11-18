@@ -388,7 +388,7 @@ public sealed class BranchService(AppDbContext context,IHttpContextAccessor acce
   Add(!string.IsNullOrWhiteSpace(G<string>("Address")),10,"Địa chỉ");
   Add(G<decimal?>("Latitude")!=null,10,"Ghim vị trí trên bản đồ");
   Add((G<string>("Summary")?.Trim().Length??0)>=40,10,"Giới thiệu ít nhất 40 ký tự");
-  Add(!string.IsNullOrEmpty(G<string>("OpenDays")),10,"Giờ mở cửa");
+  Add(!string.IsNullOrEmpty(G<string>("OpenDays")),10,"Chọn ngày và giờ mở cửa (để khách lọc nơi đang mở)");
   Add(G<decimal?>("PriceFrom")!=null,10,"Giá tham khảo");
   var photos=Ui.ServicePhotos(G<string>("PhotosJson")).Length;
   Add(photos>=1,15,"Ít nhất một ảnh thực tế");if(photos>=3)score+=5;else if(photos>=1)missing.Add("Thêm ảnh (nên có từ 3 ảnh)");else score+=0;

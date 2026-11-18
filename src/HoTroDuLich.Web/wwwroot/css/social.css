@@ -485,7 +485,7 @@ dialog[open].pe-picker.pe-narrow{height:auto;max-height:90vh;width:min(560px,cal
 /* Ho tro khi dang di (trang chuyen di) */
 .trip-sos{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:0 0 14px;padding:12px 16px;border:1px solid #f1c7c7;background:#fff6f5;border-radius:12px}.trip-sos strong{display:block}.trip-sos span{color:#5b6475;font-size:14px}
 .btn-danger-soft{background:#c0392b;color:#fff;border:1px solid #c0392b}.btn-danger-soft:hover{background:#a93226;color:#fff}
-.trip-issue-btn{border:0;background:none;color:#a93226;font-size:13px;padding:2px 0;cursor:pointer;text-decoration:underline}.trip-issue-btn:hover{color:#7b241c}
+.trip-issue-btn{border:0;background:none;color:var(--muted,#667085);font-size:12.5px;padding:2px 0;cursor:pointer;text-decoration:none}.trip-issue-btn:hover{color:#a93226;text-decoration:underline}
 .th-dialog{border:0;border-radius:16px;padding:0;width:min(560px,94vw);max-height:88vh;overflow:auto}.th-dialog::backdrop{background:rgba(15,20,40,.5)}
 .th-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px 8px}.th-head h2{margin:0;font-size:20px}.th-close{border:0;background:none;font-size:28px;line-height:1;cursor:pointer;min-width:40px;min-height:40px}
 .th-urgent{margin:0 20px 8px;padding:10px 12px;background:#fff1f0;border-radius:10px;font-size:14px}.th-urgent a{font-weight:600;color:#c0392b}
@@ -711,3 +711,22 @@ dialog[open].pe-picker.pe-narrow{height:auto;max-height:90vh;width:min(560px,cal
 .post-kinds button{border:0;background:none;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
 .post-kinds button.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px #15213e22}
 .post-vis{width:auto!important;min-height:40px;padding:6px 30px 6px 12px;font-size:13px;border-radius:12px}
+
+/* Ra soat giao dien bang tin */
+.post-menu-btn{width:36px;height:36px;border:0;border-radius:50%;background:none;font-size:18px;line-height:1;cursor:pointer;color:var(--muted,#667085)}
+.post-menu-btn:hover{background:#f1f3f7;color:var(--ink,#15213e)}
+.fb-right .fb-card{min-width:0;overflow:hidden}
+.fb-contact{display:flex;align-items:center;gap:10px;min-width:0}
+.fb-contact>a:not(.btn){flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fb-contact .btn{flex:none;min-height:30px;padding:4px 10px;font-size:13px}
+@media(max-width:900px){.fb-layout{grid-template-columns:1fr}.fb-right{display:none}}
+@media(max-width:480px){.post-actions{gap:0}.post-actions button{font-size:13px;padding:8px 2px}}
+
+/* Ra soat: o soan tin khong bi bop khi co nut "Dat dich vu" (khung chat noi hep) */
+.chat-composer{flex-wrap:wrap}
+.chat-composer textarea{flex:1 1 150px;min-width:150px}
+.chat-composer .chat-book-toggle{min-height:38px;padding:6px 12px;font-size:13px}
+/* Nha cung cap: thanh ben da co thong tin co so va loi tat, bo cot trai lap lai */
+.fb-provider{grid-template-columns:minmax(0,1fr) 300px}
+.fb-provider .fb-left{display:none}
+@media(max-width:900px){.fb-provider{grid-template-columns:1fr}}

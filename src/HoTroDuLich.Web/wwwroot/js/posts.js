@@ -140,7 +140,7 @@
     });
     if (p.serviceId && p.serviceName) { var tag = h('a', 'post-tag', '🏷 ' + p.serviceName); tag.href = '/Explore/Detail/' + p.serviceId; extra = extra || h('div', 'post-trip-info'); extra.appendChild(tag); }
     if (!p.mine) {
-      var rmenu = h('div', 'post-menu'); var rt = h('button', 'btn btn-outline', '⋯'); rt.type = 'button'; rt.setAttribute('aria-label', 'Tùy chọn bài viết'); var rl = h('div', 'post-menu-list'); rl.hidden = true;
+      var rmenu = h('div', 'post-menu'); var rt = h('button', 'post-menu-btn', '⋯'); rt.type = 'button'; rt.setAttribute('aria-label', 'Tùy chọn bài viết'); var rl = h('div', 'post-menu-list'); rl.hidden = true;
       var rep = h('button', null, 'Báo cáo bài viết'); rep.type = 'button'; rl.appendChild(rep); rmenu.appendChild(rt); rmenu.appendChild(rl); head.appendChild(rmenu);
       rt.addEventListener('click', function () { rl.hidden = !rl.hidden; });
       document.addEventListener('click', function (e) { if (!rmenu.contains(e.target)) rl.hidden = true; });
@@ -152,7 +152,7 @@
       });
     }
     if (p.mine) {
-      var menu = h('div', 'post-menu'); var t = h('button', 'btn btn-outline', '⋯'); t.type = 'button'; t.setAttribute('aria-label', 'Tùy chọn bài viết'); var ml = h('div', 'post-menu-list'); ml.hidden = true;
+      var menu = h('div', 'post-menu'); var t = h('button', 'post-menu-btn', '⋯'); t.type = 'button'; t.setAttribute('aria-label', 'Tùy chọn bài viết'); var ml = h('div', 'post-menu-list'); ml.hidden = true;
       var edit = h('button', null, 'Sửa bài viết'); edit.type = 'button'; var del = h('button', null, 'Xóa bài viết'); del.type = 'button'; ml.appendChild(edit); ml.appendChild(del); menu.appendChild(t); menu.appendChild(ml); head.appendChild(menu);
       t.addEventListener('click', function () { ml.hidden = !ml.hidden; });
       document.addEventListener('click', function (e) { if (!menu.contains(e.target)) ml.hidden = true; });

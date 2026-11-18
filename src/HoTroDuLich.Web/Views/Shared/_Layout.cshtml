@@ -111,12 +111,11 @@
    <a class="sidebar-direct @(route=="TravelerAdmin"?"active":"")" href="/quan-tri/khach-du-lich">@Ui.Icon("users") Khách du lịch</a>
    <a class="sidebar-direct @(new[]{"Providers","Provider","Consequences"}.Contains(action)?"active":"")" href="/Admin/Providers">@Ui.Icon("shield") Nhà cung cấp</a>
    <a class="sidebar-direct @((route=="Chat"||(route=="Together"&&action=="Moderation")||route=="Reviews")?"active":"")" href="/quan-tri/bao-cao-bai-viet">@Ui.Icon("bell") Báo cáo bài viết</a>
-   <a class="sidebar-direct @(route=="Chat"?"active":"")" href="/quan-tri/bao-cao-chat">@Ui.Icon("bell") Báo cáo tin nhắn</a>
    <a class="sidebar-direct @(action=="Audit"?"active":"")" href="/Admin/Audit">@Ui.Icon("clock") Nhật ký hoạt động</a>
   }
    @if(admin){<a class="sidebar-direct @(route=="Discovery"?"active":"")" href="/Discovery/Manage">@Ui.Icon("compass") Thông tin tra cứu</a>}
    <div class="sidebar-divider"></div>
-   <a class="sidebar-direct @(route=="Account"?"active":"")" href="@(canProfile?"/Account/Profile":"/Account/Notifications")">@Ui.Icon("user") Tài khoản @if(unread>0){<span class="nav-count">@unread</span>}</a>
+   <a class="sidebar-direct @(route=="Account"?"active":"")" href="@(canProfile?"/Account/Profile":"/Account/Notifications")">@Ui.Icon("user") Tài khoản</a>
   </nav>
   @if(traveler){<div class="sidebar-explore"><span class="mini-compass">@Ui.Icon("compass")</span><strong>Còn nhiều nơi để khám phá.</strong><p>Tìm cảm hứng cho hành trình tiếp theo.</p><a href="/">Khám phá Việt Nam @Ui.Icon("arrow")</a></div>}
   <div class="sidebar-user"><span class="avatar">@Ui.Initial(name)</span><span><strong>@name</strong><small>@Labels.Status(role)</small></span></div>
