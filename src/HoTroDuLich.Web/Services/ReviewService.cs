@@ -34,9 +34,16 @@ public sealed class ReviewService(AppDbContext db,TravelService travel,IDongHo c
             if(entry==null){travel.Require(input.Id==0,"Không tìm thấy đánh giá.",404);entry=new(){MaYeuCau=input.BookingId,ThoiDiemTao=clock.BayGioUtc};db.Add(entry);}
             else {if(input.Id==0&&entry.SoSao==input.Stars&&entry.NoiDung==input.Content.Trim())return;travel.Require(entry.MaDanhGia==input.Id,"Đánh giá đã tồn tại. Mở bản hiện tại để chỉnh sửa.",409);travel.CheckVersion(entry,input.Version);before=JsonSerializer.Serialize(new{entry.SoSao,entry.NoiDung,entry.TrangThai});}
             travel.Require(input.Content.Trim().Length>0,"Chia sẻ trải nghiệm của bạn.",400);
-            entry.SoSao=input.Stars;entry.NoiDung=input.Content.Trim();entry.TrangThai="ChoDuyet";entry.LyDoKiemDuyet=null;entry.ThoiDiemCapNhat=clock.BayGioUtc;
-            if(entry.PhanHoiNCC!=null){entry.TrangThaiPhanHoi="ChoDuyet";entry.LyDoPhanHoi=null;}
-            await db.SaveChangesAsync();travel.Audit("GuiDanhGiaDichVu","DanhGiaDichVu",entry.MaDanhGia,before,JsonSerializer.Serialize(new{entry.SoSao,entry.NoiDung,entry.TrangThai}));
+            // Hien ngay, khong cho quan tri duyet. Neu truoc do bi an, khach sua lai thi hien lai (quan tri van an duoc).
+            var isNew=entry.MaDanhGia==0;
+            entry.SoSao=input.Stars;entry.NoiDung=input.Content.Trim();entry.TrangThai="DaDuyet";entry.LyDoKiemDuyet=null;entry.ThoiDiemCapNhat=clock.BayGioUtc;
+            await db.SaveChangesAsync();
+            if(isNew)
+            {
+             var bk=await db.YeuCauDatDichVu.AsNoTracking().SingleAsync(x=>x.MaYeuCau==entry.MaYeuCau);var svc=await db.DichVuDuLich.AsNoTracking().SingleAsync(x=>x.MaDichVu==bk.MaDichVu);
+             var owner=await db.NhaCungCapDichVu.AsNoTracking().Where(x=>x.MaNhaCungCap==svc.MaNhaCungCap).Select(x=>x.MaTaiKhoan).SingleAsync();
+             travel.Notify(owner,"Có đánh giá "+entry.SoSao+" sao mới cho "+svc.TenDichVu+". Bạn có thể phản hồi khách.","/Reviews/Partner?serviceId="+svc.MaDichVu,"DanhGia");
+            }travel.Audit("GuiDanhGiaDichVu","DanhGiaDichVu",entry.MaDanhGia,before,JsonSerializer.Serialize(new{entry.SoSao,entry.NoiDung,entry.TrangThai}));
         });
     }
     /// <summary>Diem trung binh va so danh gia da duyet cua moi dich vu (mot truy van, nho trong yeu cau hien tai).</summary>
@@ -77,8 +84,10 @@ public sealed class ReviewService(AppDbContext db,TravelService travel,IDongHo c
         {
             var entry=await db.DanhGiaDichVu.SingleOrDefaultAsync(x=>x.MaDanhGia==input.Id)??throw new BusinessException("Không tìm thấy đánh giá.",404);
             var booking=await db.YeuCauDatDichVu.SingleAsync(x=>x.MaYeuCau==entry.MaYeuCau);await travel.OwnService(booking.MaDichVu);travel.CheckVersion(entry,input.Version);
-            travel.Require(entry.TrangThai=="DaDuyet","Chỉ phản hồi đánh giá đã được công bố.");
-            var before=entry.PhanHoiNCC;entry.PhanHoiNCC=input.Text.Trim();entry.TrangThaiPhanHoi="ChoDuyet";entry.LyDoPhanHoi=null;entry.ThoiDiemCapNhat=clock.BayGioUtc;
+            travel.Require(entry.TrangThai!="An","Đánh giá này đang bị ẩn nên chưa phản hồi được.");
+            // Phan hoi hien ngay duoi danh gia; bao cho khach biet.
+            var before=entry.PhanHoiNCC;entry.PhanHoiNCC=input.Text.Trim();entry.TrangThaiPhanHoi="DaDuyet";entry.LyDoPhanHoi=null;entry.ThoiDiemCapNhat=clock.BayGioUtc;
+            if(before==null){var svcName=await db.DichVuDuLich.AsNoTracking().Where(x=>x.MaDichVu==booking.MaDichVu).Select(x=>x.TenDichVu).SingleAsync();travel.Notify(booking.MaTaiKhoan,"Cơ sở đã phản hồi đánh giá của bạn về "+svcName+".","/Reviews/Service/"+booking.MaDichVu,"DanhGia");}
             travel.Audit("PhanHoiDanhGia","DanhGiaDichVu",entry.MaDanhGia,before,entry.PhanHoiNCC);
         });
     }
@@ -90,23 +99,16 @@ public sealed class ReviewService(AppDbContext db,TravelService travel,IDongHo c
         {
             var entry=await db.DanhGiaDichVu.SingleOrDefaultAsync(x=>x.MaDanhGia==input.Id)??throw new BusinessException("Không tìm thấy đánh giá.",404);travel.CheckVersion(entry,input.Version);
             var before=JsonSerializer.Serialize(new{entry.TrangThai,entry.TrangThaiPhanHoi,entry.LyDoKiemDuyet,entry.LyDoPhanHoi});
-            if(input.Part=="Reply"){travel.Require(entry.PhanHoiNCC!=null,"Chưa có phản hồi để xét duyệt.");travel.Require(input.Decision!="DaDuyet"||entry.TrangThai=="DaDuyet","Công bố đánh giá trước khi công bố phản hồi.");entry.TrangThaiPhanHoi=input.Decision;entry.LyDoPhanHoi=input.Reason?.Trim();}
+            if(input.Part=="Reply"){travel.Require(entry.PhanHoiNCC!=null,"Chưa có phản hồi để xét duyệt.");entry.TrangThaiPhanHoi=input.Decision;entry.LyDoPhanHoi=input.Reason?.Trim();}
             else {entry.TrangThai=input.Decision;entry.LyDoKiemDuyet=input.Reason?.Trim();}
             entry.ThoiDiemCapNhat=clock.BayGioUtc;travel.Audit("KiemDuyetDanhGia","DanhGiaDichVu",entry.MaDanhGia,before,JsonSerializer.Serialize(new{input.Part,input.Decision,input.Reason}));
             var booking=await db.YeuCauDatDichVu.SingleAsync(x=>x.MaYeuCau==entry.MaYeuCau);
             var svc=await db.DichVuDuLich.AsNoTracking().SingleAsync(x=>x.MaDichVu==booking.MaDichVu);
             var ownerAccount=await db.NhaCungCapDichVu.AsNoTracking().Where(x=>x.MaNhaCungCap==svc.MaNhaCungCap).Select(x=>x.MaTaiKhoan).SingleAsync();
             string Why()=>string.IsNullOrWhiteSpace(input.Reason)?"":" Lý do: "+input.Reason.Trim();
-            if(input.Part=="Review")
-            {
-             travel.Notify(booking.MaTaiKhoan,input.Decision=="DaDuyet"?"Đánh giá của bạn về "+svc.TenDichVu+" đã được công bố.":"Đánh giá của bạn về "+svc.TenDichVu+" chưa được công bố."+Why()+" Bạn có thể sửa và gửi lại.","/Reviews/Mine","DanhGia");
-             if(input.Decision=="DaDuyet")travel.Notify(ownerAccount,"Có đánh giá "+entry.SoSao+" sao mới cho "+svc.TenDichVu+". Bạn có thể phản hồi khách.","/Reviews/Partner?serviceId="+svc.MaDichVu,"DanhGia");
-            }
-            else
-            {
-             travel.Notify(ownerAccount,input.Decision=="DaDuyet"?"Phản hồi đánh giá của bạn cho "+svc.TenDichVu+" đã được công bố.":"Phản hồi đánh giá cho "+svc.TenDichVu+" chưa được công bố."+Why(),"/Reviews/Partner?serviceId="+svc.MaDichVu,"DanhGia");
-             if(input.Decision=="DaDuyet")travel.Notify(booking.MaTaiKhoan,"Cơ sở đã phản hồi đánh giá của bạn về "+svc.TenDichVu+".","/Reviews/Service/"+svc.MaDichVu,"DanhGia");
-            }
+            // Quan tri chi an noi dung khong phu hop (kem ly do) hoac hien lai.
+            if(input.Part=="Review")travel.Notify(booking.MaTaiKhoan,input.Decision=="An"?"Đánh giá của bạn về "+svc.TenDichVu+" đã bị ẩn."+Why()+" Bạn có thể sửa lại để hiện lại.":"Đánh giá của bạn về "+svc.TenDichVu+" đã được hiện lại.","/Reviews/Mine","DanhGia");
+            else travel.Notify(ownerAccount,input.Decision=="An"?"Phản hồi đánh giá của bạn cho "+svc.TenDichVu+" đã bị ẩn."+Why():"Phản hồi đánh giá của bạn cho "+svc.TenDichVu+" đã được hiện lại.","/Reviews/Partner?serviceId="+svc.MaDichVu,"DanhGia");
         });
     }
 }

@@ -110,3 +110,7 @@
 .reviews-mine .review-own-main{flex:1 1 auto}
 .reviews-mine .review-own-main strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 @media(max-width:560px){.reviews-mine .review-own-row:not(.is-done)>.btn{padding:8px 12px;font-size:13px}}
+.hide-box{margin-top:10px}.hide-box>summary{cursor:pointer;color:#b42318;font-weight:600;font-size:14px}.hide-box[open]{display:grid;gap:8px}.hide-box .btn{justify-self:start}
+.managed-review .moderation-form{border-top:0!important;padding-top:0!important;margin-top:8px!important}
+.managed-review details.hide-box{border-top:0!important;padding-top:0!important;margin-top:6px!important}
+.reply-edit>summary{color:var(--teal)!important}

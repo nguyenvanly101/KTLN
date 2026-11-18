@@ -10,11 +10,11 @@ public sealed class ReviewsController(TravelService travel,ReviewService reviews
     [AllowAnonymous,HttpGet] public async Task<IActionResult> Service(long id,int page=1)=>View(await reviews.PublicFeed(id,page));
     [Authorize(Roles=TravelService.Traveler),HttpGet] public async Task<IActionResult> Mine()=>View(await reviews.Mine());
     [Authorize(Roles=TravelService.Traveler),HttpGet] public async Task<IActionResult> Write(long bookingId)=>View(await reviews.Write(bookingId));
-    [Authorize(Roles=TravelService.Traveler),HttpPost] public async Task<IActionResult> Write(ServiceReviewInput input){await reviews.Save(input);return Done("/Reviews/Mine","Đã gửi đánh giá. Nội dung được công bố sau khi xét duyệt.");}
+    [Authorize(Roles=TravelService.Traveler),HttpPost] public async Task<IActionResult> Write(ServiceReviewInput input){await reviews.Save(input);return Done("/Reviews/Mine","Đã đăng đánh giá. Cảm ơn bạn đã chia sẻ.");}
     [Authorize(Roles=TravelService.ProviderRole),HttpGet] public async Task<IActionResult> Partner(long serviceId=0,int page=1,string status="")=>View("Manage",await reviews.Manage(false,page,status,serviceId));
-    [Authorize(Roles=TravelService.ProviderRole),HttpPost] public async Task<IActionResult> Reply(ReviewReplyInput input){await reviews.Reply(input);return Done("/Reviews/Partner?serviceId="+input.ServiceId,"Đã gửi phản hồi để xét duyệt.");}
-    [Authorize(Roles=TravelService.AdminRole),HttpGet] public async Task<IActionResult> Moderation(int page=1,string status="ChoDuyet")=>View("Manage",await reviews.Manage(true,page,status));
-    [Authorize(Roles=TravelService.AdminRole),HttpPost] public async Task<IActionResult> Moderate(ReviewModerationInput input){await reviews.Moderate(input);return Done("/Reviews/Moderation","Đã cập nhật kết quả kiểm duyệt.");}
+    [Authorize(Roles=TravelService.ProviderRole),HttpPost] public async Task<IActionResult> Reply(ReviewReplyInput input){await reviews.Reply(input);return Done("/Reviews/Partner?serviceId="+input.ServiceId,"Đã đăng phản hồi.");}
+    [Authorize(Roles=TravelService.AdminRole),HttpGet] public async Task<IActionResult> Moderation(int page=1,string status="")=>View("Manage",await reviews.Manage(true,page,status));
+    [Authorize(Roles=TravelService.AdminRole),HttpPost] public async Task<IActionResult> Moderate(ReviewModerationInput input){await reviews.Moderate(input);return Done("/Reviews/Moderation","Đã cập nhật.");}
 }
 
 public sealed class AvailabilityController(TravelService travel,AvailabilityService availability):AppController(travel)

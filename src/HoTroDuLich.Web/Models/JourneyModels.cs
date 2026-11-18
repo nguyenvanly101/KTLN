@@ -54,5 +54,5 @@ public sealed record AvailabilityPage(DichVuDuLich Service,DateOnly Month,List<L
 
 public static class ReviewStates
 {
-    public static string Label(string value)=>value switch {"ChoDuyet"=>"Chờ duyệt","DaDuyet"=>"Đã công bố","An"=>"Đã ẩn",_=>value};
+    public static string Label(string value)=>value switch {"An"=>"Đã ẩn",_=>"Đang hiện"};
 }
