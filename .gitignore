@@ -30,3 +30,7 @@ preview/goong-after.txt
 preview/gan-don-vi.sql
 
 # Anh minh hoa tai tu Wikimedia (tools/wikimedia-photos), khong dua vao git
+
+# Khoa ma hoa cua cac may chu thu (khong dua len kho)
+preview/**/keys/
+preview/*-keys/
