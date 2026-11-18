@@ -235,6 +235,7 @@ public sealed partial class ChatService(AppDbContext context,IHttpContextAccesso
  {
   RoleRequired(Traveler,ProviderRole);
   long? providerId=Role==ProviderRole?(await MyProvider()).MaNhaCungCap:null;
+  if(providerId!=null)branchId=(await branches.CurrentBranch())?.Id??-1; // nha cung cap: chi co so dang chon
   IQueryable<CuocTroChuyen> query=db.Set<CuocTroChuyen>().AsNoTracking().Where(c=>(!c.IsGroup&&(c.TravelerId==UserId||c.PeerId==UserId))||(c.IsGroup&&db.Set<ThanhVienChat>().Any(t=>t.ConversationId==c.Id&&t.AccountId==UserId&&t.LeftAt==null))||(providerId!=null&&c.BranchId!=null&&db.Set<CoSoDichVu>().Any(b=>b.Id==c.BranchId&&b.ProviderId==providerId)));
   if(branchId!=null)query=query.Where(c=>c.BranchId==branchId);
   if(filter=="done")query=query.Where(c=>c.State=="Done");else if(filter=="open")query=query.Where(c=>c.State=="Open");
@@ -572,13 +573,15 @@ public sealed partial class ChatService(AppDbContext context,IHttpContextAccesso
   else{Require(c.BlockedById==UserId,"Chỉ người đã chặn mới bỏ chặn được.",403);c.BlockedById=null;}
   await db.SaveChangesAsync();
  }
+ public async Task<long?> BranchOf(long conversationId)=>await db.Set<CuocTroChuyen>().AsNoTracking().Where(x=>x.Id==conversationId).Select(x=>x.BranchId).FirstOrDefaultAsync();
  public async Task<int> Unread()
  {
   if(UserId==0||Role is not (Traveler or ProviderRole))return 0;
   long? providerId=Role==ProviderRole?(await MyProvider()).MaNhaCungCap:null;
   var asFirst=await db.Set<CuocTroChuyen>().AsNoTracking().Where(c=>c.TravelerId==UserId&&c.LastMessageId>c.TravelerReadId&&!c.LastFromTraveler)
    .SumAsync(c=>db.Set<TinNhanChat>().Count(m=>m.ConversationId==c.Id&&m.Id>c.TravelerReadId&&m.Side!="Traveler"));
-  var asSecond=await db.Set<CuocTroChuyen>().AsNoTracking().Where(c=>c.LastMessageId>c.BranchReadId&&c.LastFromTraveler&&(c.PeerId==UserId||(providerId!=null&&c.BranchId!=null&&db.Set<CoSoDichVu>().Any(b=>b.Id==c.BranchId&&b.ProviderId==providerId))))
+  long? currentBranch=providerId!=null?(await branches.CurrentBranch())?.Id??-1:null;
+  var asSecond=await db.Set<CuocTroChuyen>().AsNoTracking().Where(c=>c.LastMessageId>c.BranchReadId&&c.LastFromTraveler&&(c.PeerId==UserId||(providerId!=null&&c.BranchId==currentBranch&&db.Set<CoSoDichVu>().Any(b=>b.Id==c.BranchId&&b.ProviderId==providerId))))
    .SumAsync(c=>db.Set<TinNhanChat>().Count(m=>m.ConversationId==c.Id&&m.Id>c.BranchReadId&&m.Side=="Traveler"));
   var asMember=await db.Set<ThanhVienChat>().AsNoTracking().Where(t=>t.AccountId==UserId&&t.LeftAt==null).SumAsync(t=>db.Set<TinNhanChat>().Count(m=>m.ConversationId==t.ConversationId&&m.Id>t.ReadId&&m.SenderId!=UserId));
   return asFirst+asSecond+asMember;

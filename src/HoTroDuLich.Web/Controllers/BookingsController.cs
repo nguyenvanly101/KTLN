@@ -19,8 +19,10 @@ public class BookingsController(TravelService s,TripWorkspaceService trips,Branc
   if(everything)return all;
   return all.Where(x => linked.Contains(x.MaDichVu)).ToList();
  }
- public async Task<IActionResult> Index(){ViewBag.ServiceNames=await S.BookingServiceNames();return View(await S.Bookings());}
- public async Task<IActionResult> Detail(long id){ViewBag.ServiceName=await S.BookingServiceName(id);return View(await S.Booking(id));}
+ /// <summary>Nha cung cap mo yeu cau cua co so khac (vd tu thong bao): chuyen sang co so do de xu ly dung noi.</summary>
+ async Task FocusRequest(long id){if(!User.IsInRole(TravelService.ProviderRole))return;if(await branches.Focus(await branches.BranchOfRequest(id)) is {} moved)TempData["Success"]="Đã chuyển sang cơ sở "+moved.Name+" để xử lý yêu cầu này.";}
+ public async Task<IActionResult> Index(){ViewBag.ServiceNames=await S.BookingServiceNames();var all=await S.Bookings();if(User.IsInRole(TravelService.ProviderRole)){ViewBag.BranchName=(await branches.CurrentBranch())?.Name;all=await branches.OfCurrentBranch(all);}return View(all);}
+ public async Task<IActionResult> Detail(long id){await FocusRequest(id);ViewBag.ServiceName=await S.BookingServiceName(id);return View(await S.Booking(id));}
  [SucAuthorize(SucAccess.BookingChange)]
  public async Task<IActionResult> Adjustments(){ViewBag.ServiceNames=await S.BookingServiceNames();return View(await ForBranch(await S.AdjustmentBookings()));}
  [SucAuthorize(SucAccess.BookingChange)]

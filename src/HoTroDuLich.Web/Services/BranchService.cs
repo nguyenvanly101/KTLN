@@ -94,7 +94,33 @@ public sealed class BranchService(AppDbContext context,IHttpContextAccessor acce
  {
   var all=await OwnedBranches();Require(all.Any(b=>b.Id==id),"Không tìm thấy cơ sở của bạn.",404);
   http.HttpContext!.Response.Cookies.Append(CurrentCookie,id.ToString(),new CookieOptions{HttpOnly=true,SameSite=SameSiteMode.Lax,Secure=http.HttpContext.Request.IsHttps,MaxAge=TimeSpan.FromDays(90),IsEssential=true});
-  http.HttpContext.Items.Remove("CurrentBranch");http.HttpContext.Items.Remove("OwnedBranches");
+  http.HttpContext.Items.Remove("OwnedBranches");http.HttpContext.Items["CurrentBranch"]=all.First(b=>b.Id==id);
+ }
+ /// <summary>Chuyen sang co so cua minh neu dang chon co so khac; tra ve co so vua chuyen, null neu khong doi.</summary>
+ public async Task<OwnedBranch?> Focus(long? branchId)
+ {
+  if(branchId==null||Role!=ProviderRole)return null;
+  var cur=await CurrentBranch();if(cur?.Id==branchId)return null;
+  var target=(await OwnedBranches()).FirstOrDefault(x=>x.Id==branchId);if(target==null)return null;
+  await SetCurrentBranch(target.Id);return target;
+ }
+ /// <summary>Co so cua mot yeu cau dat: co so ghi trong yeu cau, hoac co so cua minh dang gan dich vu do.</summary>
+ public async Task<long?> BranchOfRequest(long requestId)
+ {
+  var snap=await db.Set<YeuCauDatCoSo>().AsNoTracking().Where(x=>x.RequestId==requestId).Select(x=>(long?)x.BranchId).FirstOrDefaultAsync();
+  if(snap!=null)return snap;
+  var service=await db.YeuCauDatDichVu.AsNoTracking().Where(x=>x.MaYeuCau==requestId).Select(x=>x.MaDichVu).FirstOrDefaultAsync();
+  var mine=(await OwnedBranches()).Select(x=>x.Id).ToList();
+  return await db.Set<DichVuCoSo>().AsNoTracking().Where(x=>x.ServiceId==service&&mine.Contains(x.BranchId)).Select(x=>(long?)x.BranchId).FirstOrDefaultAsync();
+ }
+ /// <summary>Chi giu yeu cau thuoc co so dang chon (theo co so ghi trong yeu cau; yeu cau cu chua ghi co so thi theo dich vu gan voi co so).</summary>
+ public async Task<List<YeuCauDatDichVu>> OfCurrentBranch(List<YeuCauDatDichVu> all)
+ {
+  var cur=await CurrentBranch();if(cur==null)return [];if(all.Count==0)return all;
+  var ids=all.Select(x=>x.MaYeuCau).ToList();
+  var snaps=await db.Set<YeuCauDatCoSo>().AsNoTracking().Where(x=>ids.Contains(x.RequestId)).ToDictionaryAsync(x=>x.RequestId,x=>x.BranchId);
+  var linked=await ServiceIdsOf(cur.Id);
+  return all.Where(x=>snaps.TryGetValue(x.MaYeuCau,out var bid)?bid==cur.Id:linked.Contains(x.MaDichVu)).ToList();
  }
  /// <summary>Ma dich vu dang gan voi co so (de loc danh sach dich vu theo co so dang chon).</summary>
  public async Task<HashSet<long>> ServiceIdsOf(long branchId)=>(await db.Set<DichVuCoSo>().AsNoTracking().Where(x=>x.BranchId==branchId).Select(x=>x.ServiceId).ToListAsync()).ToHashSet();

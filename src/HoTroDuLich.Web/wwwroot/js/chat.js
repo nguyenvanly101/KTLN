@@ -664,7 +664,7 @@
     function saveMeta() { if (!st.openId) return; var fd = new FormData(); fd.append('Note', el.note.value); fd.append('Label', el.label.value); api('/chat/' + st.openId + '/trang-thai', { method: 'POST', body: fd }).then(loadList).catch(function (e) { showError(e.message); }); }
     el.note.addEventListener('change', saveMeta); el.label.addEventListener('change', saveMeta);
     app.querySelectorAll('[data-chat-filter]').forEach(function (b) { b.addEventListener('click', function () { app.querySelectorAll('[data-chat-filter]').forEach(function (x) { x.classList.toggle('active', x === b); }); st.filter = b.dataset.chatFilter; loadList(); }); });
-    el.branchSel.addEventListener('change', function () { st.branch = el.branchSel.value; loadList(); });
+    if (el.branchSel) el.branchSel.addEventListener('change', function () { st.branch = el.branchSel.value; loadList(); });
     var timer; el.search.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(function () { st.term = el.search.value.trim(); loadList(); }, 300); });
   }
 

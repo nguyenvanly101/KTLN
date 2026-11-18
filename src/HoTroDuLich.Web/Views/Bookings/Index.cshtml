@@ -21,7 +21,7 @@
   :(byFilter.GetValueOrDefault(current)??[]).OrderByDescending(x=>x.ThoiDiemPhanHoi??x.ThoiDiemGui).ThenByDescending(x=>x.MaYeuCau).ToList();
 }
 <div class="container-narrow bk-page">
- <div class="page-head"><div><h1>@(provider?"Yêu cầu đặt dịch vụ":"Đặt dịch vụ của tôi")</h1><p>@(provider?"Yêu cầu của khách ở mọi cơ sở của bạn.":"Theo dõi yêu cầu bạn đã gửi cho các cơ sở.")</p></div>@if(!provider){<a class="btn btn-outline" href="/Discovery">@Ui.Icon("search") Tìm dịch vụ</a>}</div>
+ <div class="page-head"><div><h1>@(provider?"Yêu cầu đặt dịch vụ":"Đặt dịch vụ của tôi")</h1><p>@(provider?"Yêu cầu của khách ở cơ sở "+(ViewBag.BranchName??"đang chọn")+". Đổi cơ sở ở thanh bên để xem cơ sở khác.":"Theo dõi yêu cầu bạn đã gửi cho các cơ sở.")</p></div>@if(!provider){<a class="btn btn-outline" href="/Discovery">@Ui.Icon("search") Tìm dịch vụ</a>}</div>
  <nav class="bk-chips" aria-label="Lọc yêu cầu">@foreach(var f in BookingUi.Filters){<a class="@(f.Key==current?"on":"")" aria-current="@(f.Key==current?"page":null)" href="?loc=@f.Key">@f.Label<em>@(byFilter.GetValueOrDefault(f.Key)?.Count??0)</em></a>}</nav>
  @if(shown.Count==0)
  {

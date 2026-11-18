@@ -18,6 +18,7 @@ const state = id => json(database, `SELECT TrangThai S, SoNguoi P, LyDo L FROM d
   const svc = json(database, `SELECT TOP 1 s.MaDichVu Id, x.BranchId FROM dbo.DichVuDuLich s JOIN dbo.DichVuCoSo x ON x.ServiceId=s.MaDichVu JOIN dbo.CoSoDichVu b ON b.Id=x.BranchId
     WHERE s.MaNhaCungCap=${user('provider').providerId} AND s.TrangThaiCongBo='DaDuyet' AND s.TrangThaiTiepNhan='TiepNhan' AND b.Status='Approved' AND b.PublishedVersion IS NOT NULL ORDER BY s.MaDichVu DESC FOR JSON PATH;`)[0];
   check(!!svc, 'Co dich vu thu gan voi co so cong khai');
+  { const pg = await p.get('/bang-tin'); await p.post('/nha-cung-cap/co-so/chon', pg, { id: svc.BranchId, returnUrl: '/Bookings' }); } // nha cung cap chi thay co so dang chon
 
   // 1. Mot loi dat tren trang dich vu
   const page = decode((await t.get('/Explore/Detail/' + svc.Id)).html);

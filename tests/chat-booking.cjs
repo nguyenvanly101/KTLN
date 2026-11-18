@@ -42,6 +42,7 @@ const request = id => json(database, `SELECT TrangThai,PhienBan,SoNguoi,ChiPhiDu
   const guest = new Client(), traveler = new Client(), provider = new Client(), other = new Client();
   await traveler.login(user('traveler').email, 'BranchTest@2026');
   await provider.login(providerEmail, 'BranchTest@2026');
+  { const pg = await provider.get('/bang-tin'); await provider.post('/nha-cung-cap/co-so/chon', pg, { id: bid, returnUrl: '/bang-tin' }); } // nha cung cap chi thay co so dang chon
   await other.login(user('other').email, 'BranchTest@2026');
   const tokenT = val(await traveler.get('/tin-nhan'), '__RequestVerificationToken');
   const tokenP = val(await provider.get('/nha-cung-cap/tin-nhan'), '__RequestVerificationToken');

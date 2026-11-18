@@ -98,7 +98,14 @@ public sealed class ChatPagesController(TravelService travel,ChatService chat):A
 {
  const string Both=TravelService.Traveler+","+TravelService.ProviderRole;
  async Task<ChatPageModel> Page(long? open=null,ChatStartDto? start=null,long? branch=null)
-  =>new(travel.Role==TravelService.ProviderRole?"Branch":"Traveler",open,start,travel.Role==TravelService.ProviderRole?await chat.MyBranches():[],branch);
+  {
+  if(travel.Role!=TravelService.ProviderRole)return new("Traveler",open,start,[],branch);
+  // Nha cung cap: chi co so dang chon; mo cuoc tro chuyen cua co so khac thi chuyen sang co so do.
+  var bs=HttpContext.RequestServices.GetRequiredService<BranchService>();
+  if(open is long oid&&await bs.Focus(await chat.BranchOf(oid)) is {} moved)TempData["Success"]="Đã chuyển sang cơ sở "+moved.Name+" để trả lời cuộc trò chuyện này.";
+  var cur=await bs.CurrentBranch();
+  return new("Branch",open,start,(await chat.MyBranches()).Where(b=>b.Id==cur?.Id).ToList(),cur?.Id);
+  }
  [HttpGet("/tin-nhan"),Authorize(Roles=Both)] public async Task<IActionResult> Inbox(long? coSo)=>V("Chat/Inbox",await Page(null,null,coSo));
  [HttpGet("/nha-cung-cap/tin-nhan"),Authorize(Roles=TravelService.ProviderRole)] public async Task<IActionResult> BranchInbox(long? coSo)=>V("Chat/Inbox",await Page(null,null,coSo));
  [HttpGet("/tin-nhan/{id:long}"),Authorize(Roles=Both)] public async Task<IActionResult> Thread(long id){await chat.Thread(id);return V("Chat/Inbox",await Page(id));}
@@ -134,7 +141,7 @@ public sealed class ChatPagesController(TravelService travel,ChatService chat):A
  public async Task<IActionResult> Settings(long? coSo)
  {
   var mine=await chat.MyBranches();if(mine.Count==0)return Redirect("/nha-cung-cap/co-so");
-  return V("Chat/Settings",await chat.SettingsPage(coSo??mine[0].Id));
+  return V("Chat/Settings",await chat.SettingsPage(coSo??(await HttpContext.RequestServices.GetRequiredService<BranchService>().CurrentBranch())?.Id??mine[0].Id));
  }
  [HttpPost("/nha-cung-cap/tin-nhan/cai-dat"),Authorize(Roles=TravelService.ProviderRole)] public async Task<IActionResult> SaveSettings(ChatSettingsInput input){await chat.SaveSettings(input);return Done("/nha-cung-cap/tin-nhan/cai-dat?coSo="+input.BranchId,"Đã lưu cài đặt tin nhắn.");}
  [HttpPost("/nha-cung-cap/tin-nhan/mau"),Authorize(Roles=TravelService.ProviderRole)] public async Task<IActionResult> SaveQuick(QuickReplyInput input){await chat.SaveQuick(input);return Done("/nha-cung-cap/tin-nhan/cai-dat?coSo="+input.BranchId,input.Delete?"Đã xóa tin mẫu.":"Đã lưu tin mẫu.");}

@@ -50,6 +50,7 @@ async function waitFor(fn, name, ms = 6000) { const end = Date.now() + ms; while
   const guest = new Client(), traveler = new Client(), provider = new Client(), other = new Client();
   await traveler.login(travelerEmail, 'BranchTest@2026');
   await provider.login(providerEmail, 'BranchTest@2026');
+  { const pg = await provider.get('/bang-tin'); await provider.post('/nha-cung-cap/co-so/chon', pg, { id: branchId, returnUrl: '/bang-tin' }); } // nha cung cap chi thay co so dang chon
   await other.login(user('other').email, 'BranchTest@2026');
 
   // 1. Quyen truy cap

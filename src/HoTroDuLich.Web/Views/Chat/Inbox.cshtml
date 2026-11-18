@@ -13,7 +13,7 @@
    @if(!branch){<div class="chat-compose" data-chat-compose hidden><input class="form-control" type="search" placeholder="Gõ tên bạn bè hoặc cơ sở…" data-chat-compose-q aria-label="Tìm người hoặc cơ sở"/><div class="chat-compose-results" data-chat-compose-results></div></div>}
    @if(branch)
    {
-    <div class="chat-filters"><select class="form-select" data-chat-branch aria-label="Cơ sở"><option value="">Mọi cơ sở</option>@foreach(var b in Model.Branches){<option value="@b.Id" selected="@(Model.BranchFilter==b.Id)">@b.Name</option>}</select>
+    <div class="chat-filters">@if(Model.Branches.Count>1){<select class="form-select" data-chat-branch aria-label="Cơ sở"><option value="">Mọi cơ sở</option>@foreach(var b in Model.Branches){<option value="@b.Id" selected="@(Model.BranchFilter==b.Id)">@b.Name</option>}</select>}
      <div class="chat-tabs" role="tablist"><button type="button" class="active" data-chat-filter="">Tất cả</button><button type="button" data-chat-filter="unread">Chưa đọc</button><button type="button" data-chat-filter="open">Đang mở</button><button type="button" data-chat-filter="booking">Chờ xác nhận</button><button type="button" data-chat-filter="done">Đã xử lý</button></div>
      <input class="form-control" type="search" placeholder="Tìm khách hoặc nội dung…" data-chat-search aria-label="Tìm trong tin nhắn"/></div>
    }
