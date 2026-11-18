@@ -38,7 +38,8 @@ public static class DiscoveryText
  public static double Distance(double a,double b,double c,double d){var r=Math.PI/180;var h=Math.Pow(Math.Sin((c-a)*r/2),2)+Math.Cos(a*r)*Math.Cos(c*r)*Math.Pow(Math.Sin((d-b)*r/2),2);return 6371*2*Math.Atan2(Math.Sqrt(h),Math.Sqrt(Math.Max(0,1-h)));}
  public static bool HttpUrl(string? s)=>string.IsNullOrWhiteSpace(s)||(Uri.TryCreate(s,UriKind.Absolute,out var u)&&u.Scheme=="https"&&!string.IsNullOrWhiteSpace(u.Host)&&u.UserInfo.Length==0);
  public static string Link(long id)=>"/Discovery/Entry/"+id;
- public static string LinkTo(DiscoveryEntry e)=>e.BranchId!=null?"/co-so/"+e.BranchId:Link(e.Id);
+ /// <summary>Moi thu chi co mot trang: co so -> trang co so, dich vu -> trang dich vu (dat duoc), con lai -> trang tra cuu.</summary>
+ public static string LinkTo(DiscoveryEntry e)=>e.BranchId!=null?"/co-so/"+e.BranchId:e.ServiceId!=null?"/Explore/Detail/"+e.ServiceId:Link(e.Id);
  /// <summary>"Thứ 2 – Chủ nhật · 07:00–21:00" tu ngay mo (1=thu 2 ... 7=chu nhat) va gio mo/dong; null khi chua co.</summary>
  public static string? HoursLabel(string? days,TimeOnly? open,TimeOnly? close)
  {
