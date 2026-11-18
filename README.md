@@ -90,6 +90,25 @@ Nếu không chạy được, làm theo [hướng dẫn tự xử lý lỗi kh�
 
 Ở Development, ứng dụng tạo lược đồ nền bằng `Database/schema.sql` khi database rỗng, sau đó chạy các phần mở rộng 002/003/004/005/006 có thể chạy lại; dữ liệu mẫu chỉ thêm nếu chưa có tài khoản. Script căn chỉnh nền 001 vẫn là bước nâng cấp riêng. Database chính trên máy đã áp dụng 001–006 với sao lưu và đối chiếu dữ liệu. `start.ps1` kiểm tra instance LocalDB hiện có trước khi chạy web; không tự xóa/tạo lại instance khi có lỗi.
 
+## Dữ liệu mẫu đi kèm kho (đã làm sạch)
+
+Thư mục `data/` có bản sao dữ liệu đang dùng để demo, **đã làm sạch** trước khi đưa lên kho công khai:
+
+- `data/HoTroDuLich.zip`: bản sao lưu CSDL (địa điểm, điểm đến, dịch vụ, cơ sở, bài viết, đánh giá, chuyến đi, tài khoản mẫu).
+- `src/HoTroDuLich.Web/wwwroot/anh-tra-cuu/`: ảnh tỉnh, thành và địa điểm từ Wikimedia Commons (giấy phép CC; tác giả và giấy phép lưu trong CSDL, hiện dưới ảnh).
+
+Đã thay hoặc bỏ: email, số điện thoại, tên thật và mật khẩu của tài khoản thật (đổi thành `nguoidungN@example.com`, dùng mật khẩu mẫu), địa chỉ IP trong nhật ký, giấy tờ xác minh, tệp gửi trong chat, ảnh đại diện và ảnh người dùng tải lên cho dịch vụ / cơ sở / bài viết (các mục này hiện ảnh mặc định). Bản sao lưu được tạo từ một CSDL mới chỉ có cấu trúc rồi chép dữ liệu sạch sang, nên không còn giá trị cũ trong vùng trống của trang.
+
+Khôi phục vào LocalDB (mặc định tên `HoTroDuLich`), rồi mở website:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/data-export/khoi-phuc-du-lieu.ps1          # CSDL chưa có
+powershell -ExecutionPolicy Bypass -File tools/data-export/khoi-phuc-du-lieu.ps1 -GhiDe   # thay CSDL đang có (mất dữ liệu hiện tại)
+.\start.ps1
+```
+
+Xuất lại từ CSDL đang chạy: `powershell -ExecutionPolicy Bypass -File tools/data-export/xuat-du-lieu.ps1` (chỉ đọc CSDL thật, làm sạch trên bản sao).
+
 ## Tài khoản mẫu
 
 Mật khẩu ban đầu: `HanhTrinh@2026`.
