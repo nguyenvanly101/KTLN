@@ -4,13 +4,16 @@ Mọi bản đồ Leaflet trên website (chọn điểm đến, chọn dịch v�
 
 ## Khóa cần có
 
-| Khóa (kho bí mật) | Dùng để | Loại khóa Goong |
+| Khóa | Dùng để | Loại khóa Goong |
 |---|---|---|
 | `Discovery:Goong:MapKey` | Vẽ bản đồ (ảnh vector, biểu tượng, phông chữ) | **Maptiles Key** |
 | `Discovery:Goong:RestKey` | Gợi ý địa điểm, đổi vị trí thành tên khu vực (chỉ ở máy chủ) | **API Key (REST)** |
 | `Discovery:Map:TrackAsiaKey`, `Discovery:Map:VietMapKey` | Nhà cung cấp dự phòng | |
+| `Discovery:OpenTripMap:Key` | Công cụ tìm ảnh minh họa | |
 
-Hai khóa Goong **không đổi cho nhau được**: khóa REST không vẽ được bản đồ (ảnh trả 403), khóa Maptiles không gọi được REST. Đặt khóa vào kho bí mật của dự án (không ghi vào tệp cấu hình hay git; `UserSecretsId` = `HoTroDuLich.Web.TravelMaps`, chỉ nạp khi chạy môi trường Development):
+Hai khóa Goong **không đổi cho nhau được**: khóa REST không vẽ được bản đồ (ảnh trả 403), khóa Maptiles không gọi được REST.
+
+Các khóa đang dùng **được ghi sẵn trong `src/HoTroDuLich.Web/appsettings.json`** (kho công khai, chủ dự án chọn để ai tải về cũng chạy được ngay). Khóa công khai có thể bị người khác dùng hết hạn mức; khi đó tạo khóa mới và ghi đè bằng kho bí mật của máy mình (`UserSecretsId` = `HoTroDuLich.Web.TravelMaps`, chỉ nạp khi chạy môi trường Development, ưu tiên hơn `appsettings.json`):
 
 ```bash
 dotnet user-secrets set "Discovery:Goong:MapKey" "KHOA_MAPTILES" --project src/HoTroDuLich.Web
