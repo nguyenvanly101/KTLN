@@ -5,17 +5,17 @@
  var embed=Layout=="_EmbedLayout";
 }
 <div class="container-wide chat-page">
- @if(!embed){<div class="page-head"><div><span class="eyebrow">TIN NHẮN</span><h1>Tin nhắn</h1><p>@(branch?"Khách hỏi và đặt dịch vụ ngay tại đây. Trả lời nhanh để khách quyết định sớm.":"Trò chuyện với cơ sở và những người cùng đi. Hỏi, đặt dịch vụ và thỏa thuận ngay tại đây.")</p></div></div>}
+ @if(!embed){<h1 class="sr-only">Tin nhắn</h1>}
  @Html.AntiForgeryToken()
  <div class="chat-app" data-chat-app data-me="@Model.Me" data-account="@User.FindFirstValue(ClaimTypes.NameIdentifier)" data-open="@Model.OpenId" data-filter-branch="@Model.BranchFilter" data-start-branch="@Model.Start?.BranchId">
   <aside class="chat-list panel" aria-label="Danh sách cuộc trò chuyện">
-   <div class="chat-toolbar">@if(branch){<a class="btn btn-outline" href="/nha-cung-cap/tin-nhan/cai-dat">Cài đặt &amp; tin mẫu</a>}else{<button type="button" class="btn btn-outline" data-chat-notify hidden title="Nhận thông báo khi có tin nhắn mới lúc bạn đang ở tab khác">🔔 Bật thông báo</button><button type="button" class="btn btn-dark" data-chat-open-compose>@Ui.Icon("plus") Tin nhắn mới</button><button type="button" class="btn btn-outline" data-chat-open-create>@Ui.Icon("users") Tạo nhóm</button>}</div>
+   @if(!branch){<div class="chat-toolbar"><button type="button" class="btn btn-outline" data-chat-notify hidden title="Nhận thông báo khi có tin nhắn mới lúc bạn đang ở tab khác">🔔 Bật thông báo</button><button type="button" class="btn btn-dark" data-chat-open-compose>@Ui.Icon("plus") Tin nhắn mới</button><button type="button" class="btn btn-outline" data-chat-open-create>@Ui.Icon("users") Tạo nhóm</button></div>}
    @if(!branch){<div class="chat-compose" data-chat-compose hidden><input class="form-control" type="search" placeholder="Gõ tên bạn bè hoặc cơ sở…" data-chat-compose-q aria-label="Tìm người hoặc cơ sở"/><div class="chat-compose-results" data-chat-compose-results></div></div>}
    @if(branch)
    {
     <div class="chat-filters">@if(Model.Branches.Count>1){<select class="form-select" data-chat-branch aria-label="Cơ sở"><option value="">Mọi cơ sở</option>@foreach(var b in Model.Branches){<option value="@b.Id" selected="@(Model.BranchFilter==b.Id)">@b.Name</option>}</select>}
-     <div class="chat-tabs" role="tablist"><button type="button" class="active" data-chat-filter="">Tất cả</button><button type="button" data-chat-filter="unread">Chưa đọc</button><button type="button" data-chat-filter="open">Đang mở</button><button type="button" data-chat-filter="booking">Chờ xác nhận</button><button type="button" data-chat-filter="done">Đã xử lý</button></div>
-     <input class="form-control" type="search" placeholder="Tìm khách hoặc nội dung…" data-chat-search aria-label="Tìm trong tin nhắn"/></div>
+     <div class="chat-tabs" role="tablist"><button type="button" class="active" data-chat-filter="">Tất cả</button><button type="button" data-chat-filter="unread">Chưa đọc</button><button type="button" data-chat-filter="booking">Chờ xác nhận</button><button type="button" data-chat-filter="done">Đã xử lý</button></div>
+     <div class="chat-search-row"><input class="form-control" type="search" placeholder="Tìm khách hoặc nội dung…" data-chat-search aria-label="Tìm trong tin nhắn"/><a class="chat-gear" href="/nha-cung-cap/tin-nhan/cai-dat" title="Cài đặt &amp; tin mẫu" aria-label="Cài đặt và tin mẫu">⚙</a></div></div>
    }
    <ul class="chat-items" data-chat-list></ul>
    <p class="chat-empty" data-chat-list-empty hidden>@(branch?"Chưa có tin nhắn nào.":"Chưa có tin nhắn. Mở trang cơ sở hoặc một bài tìm bạn đồng hành rồi bấm “Nhắn tin”.")</p>
@@ -30,7 +30,8 @@
    </div>
    <div class="chat-pane" data-chat-pane hidden>
     <header class="chat-head"><button type="button" class="chat-back" data-chat-back aria-label="Quay lại danh sách">←</button><div class="chat-head-main"><strong data-chat-title></strong><small data-chat-sub></small></div>
-     <div class="chat-head-actions"><a class="text-link" data-chat-branch-link href="#" hidden>Xem cơ sở</a><button type="button" class="btn btn-outline" data-chat-state hidden></button><button type="button" class="text-link" data-chat-block hidden></button><button type="button" class="text-link" data-chat-report hidden>Báo cáo</button><button type="button" class="btn btn-outline" data-chat-members-toggle hidden>@Ui.Icon("users") Thành viên</button></div></header>
+     <div class="chat-head-actions"><button type="button" class="btn btn-outline" data-chat-state hidden></button><button type="button" class="btn btn-outline" data-chat-members-toggle hidden>@Ui.Icon("users") Thành viên</button>
+      <details class="chat-more" data-header-menu><summary aria-label="Thêm thao tác">⋯</summary><div class="chat-more-menu"><a data-chat-branch-link href="#" hidden>Xem cơ sở</a>@if(branch){<button type="button" data-chat-note-toggle>Ghi chú nội bộ &amp; nhãn</button>}<button type="button" data-chat-block hidden></button><button type="button" data-chat-report hidden>Báo cáo</button></div></details></div></header>
     <div class="chat-context" data-chat-context hidden></div>
     <div class="chat-members" data-chat-members hidden>
      <div class="chat-members-row"><input class="form-control" maxlength="100" data-chat-rename aria-label="Tên nhóm"/><button type="button" class="btn btn-outline" data-chat-rename-go>Đổi tên</button></div>

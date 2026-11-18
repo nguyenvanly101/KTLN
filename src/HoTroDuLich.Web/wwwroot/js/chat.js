@@ -3,6 +3,15 @@
   'use strict';
   var app = document.querySelector('[data-chat-app]');
   if (!app) return;
+  // Khung chat vua dung phan man hinh con lai (duoi thanh tren, duong dan, thong bao) de o soan tin luon thay duoc.
+  function fitApp() {
+    if (document.body.classList.contains('is-embed') || window.innerWidth < 600) { app.style.height = ''; return; }
+    var top = app.getBoundingClientRect().top + window.scrollY;
+    app.style.height = Math.max(420, window.innerHeight - top - 16) + 'px';
+  }
+  fitApp(); window.addEventListener('resize', fitApp);
+  document.querySelectorAll('.toast-message .dismiss').forEach(function (b) { b.addEventListener('click', function () { setTimeout(fitApp, 50); }); });
+  setTimeout(fitApp, 400);
   var me = app.dataset.me; // Traveler | Branch
   var isProvider = me === 'Branch';
   function iAmFirst() { return !st.thread || st.thread.me === 'Traveler'; }
@@ -423,7 +432,7 @@
     var rb = q('[data-chat-report]'); if (rb) rb.hidden = group;
     el.blockBtn.hidden = group; el.blockBtn.textContent = t.blockedByMe ? 'Bỏ chặn' : 'Chặn';
     el.stateBtn.hidden = true;
-    if (!first && hasBranch) { el.stateBtn.hidden = false; el.stateBtn.textContent = t.item.state === 'Done' ? 'Mở lại' : 'Đánh dấu đã xử lý'; if (el.note) el.note.value = t.note || ''; if (el.label) el.label.value = t.item.label || ''; loadQuick(t.item.branchId); } else { el.quick.hidden = true; }
+    if (!first && hasBranch) { el.stateBtn.hidden = false; el.stateBtn.textContent = t.item.state === 'Done' ? 'Mở lại' : '✓ Đã xử lý'; el.stateBtn.title = t.item.state === 'Done' ? 'Mở lại cuộc trò chuyện' : 'Đánh dấu đã xử lý'; if (el.note) el.note.value = t.note || ''; if (el.label) el.label.value = t.item.label || ''; loadQuick(t.item.branchId); } else { el.quick.hidden = true; }
     if (el.noteBox) el.noteBox.hidden = first || !hasBranch;
     renderMembers(t); renderContext(t.context);
     el.blocked.hidden = t.canSend; el.blocked.textContent = t.blocked || '';
@@ -664,6 +673,9 @@
     function saveMeta() { if (!st.openId) return; var fd = new FormData(); fd.append('Note', el.note.value); fd.append('Label', el.label.value); api('/chat/' + st.openId + '/trang-thai', { method: 'POST', body: fd }).then(loadList).catch(function (e) { showError(e.message); }); }
     el.note.addEventListener('change', saveMeta); el.label.addEventListener('change', saveMeta);
     app.querySelectorAll('[data-chat-filter]').forEach(function (b) { b.addEventListener('click', function () { app.querySelectorAll('[data-chat-filter]').forEach(function (x) { x.classList.toggle('active', x === b); }); st.filter = b.dataset.chatFilter; loadList(); }); });
+    var noteToggle = q('[data-chat-note-toggle]');
+    if (noteToggle && el.noteBox) noteToggle.addEventListener('click', function () { el.noteBox.classList.toggle('open'); var d = noteToggle.closest('details'); if (d) d.open = false; if (el.noteBox.classList.contains('open') && el.note) el.note.focus(); });
+    app.querySelectorAll('.chat-more-menu > *').forEach(function (b) { b.addEventListener('click', function () { var d = b.closest('details'); if (d) d.open = false; }); });
     if (el.branchSel) el.branchSel.addEventListener('change', function () { st.branch = el.branchSel.value; loadList(); });
     var timer; el.search.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(function () { st.term = el.search.value.trim(); loadList(); }, 300); });
   }
