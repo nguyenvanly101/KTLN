@@ -4,27 +4,24 @@ using HoTroDuLich.Web.Models;
 using Microsoft.Extensions.Caching.Memory;
 namespace HoTroDuLich.Web.Services;
 
-// One gate per host, not per user. Public demo limits apply to the whole app.
-public sealed class DiscoveryRouter(IHttpClientFactory clients,IMemoryCache cache,IConfiguration config)
+// Tinh tuyen bang Goong Direction (ban do Viet Nam, cung khoa REST cua website). Khi Goong khong tra duoc thi uoc luong theo duong thang,
+// van ve tuyen va tim cho ghe doc duong, kem ghi chu ro la uoc luong. Di bo: dung hinh tuyen xe may, thoi gian theo toc do di bo.
+public sealed class DiscoveryRouter(GoongPlacesService goong)
 {
- static readonly SemaphoreSlim Gate=new(1,1);
- static DateTime LastRequest=DateTime.MinValue;
+ static readonly Dictionary<string,double> Speed=new(){["car"]=35,["bike"]=30,["foot"]=4.5};
  public async Task<DiscoveryRouteResult> Compute(List<DiscoveryPoint> points,string mode,CancellationToken cancellation)
  {
-  var endpoints=new Dictionary<string,string>{["car"]=config["Discovery:Routing:Car"]??"https://routing.openstreetmap.de/routed-car/",["bike"]=config["Discovery:Routing:Bike"]??"https://routing.openstreetmap.de/routed-bike/",["foot"]=config["Discovery:Routing:Foot"]??"https://routing.openstreetmap.de/routed-foot/"};
-  if(!endpoints.TryGetValue(mode,out var endpoint)||!Uri.TryCreate(endpoint,UriKind.Absolute,out var server)||server.Scheme!="https")throw new BusinessException("Nhà cung cấp tuyến đường chưa được cấu hình hợp lệ.",503);
-  var coords=string.Join(';',points.Select(p=>p.Lng.ToString("0.######",CultureInfo.InvariantCulture)+","+p.Lat.ToString("0.######",CultureInfo.InvariantCulture)));var key="discovery-route:"+endpoint+coords;
-  if(cache.TryGetValue(key,out DiscoveryRouteResult? cached))return cached! with{Points=points};
-  await Gate.WaitAsync(cancellation);try{
-   if(cache.TryGetValue(key,out cached))return cached! with{Points=points};
-   var pause=TimeSpan.FromMilliseconds(1100)-(DateTime.UtcNow-LastRequest);if(pause>TimeSpan.Zero)await Task.Delay(pause,cancellation);
-   LastRequest=DateTime.UtcNow;
-   using var timeout=CancellationTokenSource.CreateLinkedTokenSource(cancellation);timeout.CancelAfter(TimeSpan.FromSeconds(12));
-   try{var client=clients.CreateClient("DiscoveryRouting");using var response=await client.GetAsync(new Uri(server,"route/v1/driving/"+coords+"?overview=full&geometries=geojson&steps=false&alternatives=false&radiuses="+string.Join(';',points.Select(_=>"1500"))),timeout.Token);response.EnsureSuccessStatusCode();using var doc=JsonDocument.Parse(await response.Content.ReadAsStringAsync(timeout.Token));var root=doc.RootElement;if(root.GetProperty("code").GetString()!="Ok"||root.GetProperty("routes").GetArrayLength()==0)throw new BusinessException("Chưa tìm được đường đi cho các vị trí này. Hãy chọn lại lối tiếp cận hoặc phương tiện.",422);
-    var route=root.GetProperty("routes")[0];var geometry=route.GetProperty("geometry").GetProperty("coordinates").EnumerateArray().Select(p=>new[]{p[1].GetDouble(),p[0].GetDouble()}).ToList();if(geometry.Count<2||geometry.Any(p=>!double.IsFinite(p[0])||!double.IsFinite(p[1])||Math.Abs(p[0])>90||Math.Abs(p[1])>180))throw new JsonException();if(geometry.Count>20000){var stride=(int)Math.Ceiling(geometry.Count/20000d);geometry=geometry.Where((_,i)=>i%stride==0||i==geometry.Count-1).ToList();}
-    var result=new DiscoveryRouteResult(route.GetProperty("distance").GetDouble()/1000,route.GetProperty("duration").GetDouble()/60,geometry,points,[],"OSRM / OpenStreetMap","Thời gian ước tính theo mạng đường; chưa gồm thời gian dừng, chờ và tình hình giao thông hiện tại.");cache.Set(key,result,TimeSpan.FromMinutes(30));return result;
-   }catch(OperationCanceledException)when(!cancellation.IsCancellationRequested){throw new BusinessException("Dịch vụ tính tuyến phản hồi chậm. Bạn vẫn có thể xem danh sách và thử tính lại.",503);}catch(HttpRequestException){throw new BusinessException("Hiện chưa kết nối được dịch vụ tính tuyến. Bạn có thể tiếp tục tra cứu và thử lại sau.",503);}catch(Exception error)when(error is JsonException or InvalidOperationException or KeyNotFoundException or FormatException){throw new BusinessException("Dịch vụ tuyến đường trả dữ liệu chưa hợp lệ. Hãy thử lại sau.",503);}
-  }finally{Gate.Release();}
+  if(!Speed.ContainsKey(mode))mode="car";
+  var pts=points.Select(p=>(p.Lat,p.Lng)).ToList();
+  var leg=await goong.RouteMany(pts,mode=="car"?"car":"bike",cancellation);
+  if(leg!=null)
+  {
+   var minutes=mode=="foot"?leg.Km/Speed["foot"]*60:leg.Minutes;
+   return new DiscoveryRouteResult(leg.Km,minutes,leg.Line,points,[],"Goong",mode=="foot"?"Đường đi theo Goong; thời gian đi bộ tính theo khoảng 4,5 km/giờ.":"Thời gian theo Goong; chưa gồm thời gian dừng, chờ và tình hình giao thông lúc đi.");
+  }
+  // Goong khong tra duoc (het han muc, mat mang): uoc luong theo duong thang qua cac diem.
+  double km=0;for(var n=1;n<pts.Count;n++)km+=GoongPlacesService.Haversine(pts[n-1].Lat,pts[n-1].Lng,pts[n].Lat,pts[n].Lng)*1.35;
+  return new DiscoveryRouteResult(km,km/Speed[mode]*60,pts.Select(p=>new[]{p.Lat,p.Lng}).ToList(),points,[],"Ước lượng","Chưa lấy được đường đi từ Goong nên tuyến là đường nối thẳng các điểm, quãng đường và thời gian chỉ là ước lượng.");
  }
 }
 

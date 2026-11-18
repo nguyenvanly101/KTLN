@@ -152,6 +152,22 @@ public sealed class GoongPlacesService(HttpClient http,IConfiguration configurat
   return res;
  }
  /// <summary>Tinh doan duong bang Goong Direction (khoa REST). vehicle: car, bike hoac foot (foot luon la uoc tinh). Luu dem 7 ngay; moi doan moi la mot luot goi Goong.</summary>
+ /// <summary>Tuyen qua nhieu diem theo dung thu tu (Goong Direction, diem den cach nhau dau ;). Null neu Goong khong tra duoc; khong tu uoc luong.</summary>
+ public async Task<Leg?> RouteMany(IReadOnlyList<(double Lat,double Lng)> pts,string vehicle,CancellationToken ct)
+ {
+  if(!Enabled||pts.Count<2)return null;
+  vehicle=vehicle=="bike"?"bike":"car";
+  var ci=System.Globalization.CultureInfo.InvariantCulture;string P(double d)=>d.ToString("0.######",ci);
+  var origin=P(pts[0].Lat)+","+P(pts[0].Lng);var dest=string.Join(";",pts.Skip(1).Select(x=>P(x.Lat)+","+P(x.Lng)));
+  var cacheKey="goong.many."+vehicle+"."+origin+">"+dest;
+  if(cache.TryGetValue(cacheKey,out Leg? hit)&&hit!=null)return hit;
+  using var doc=await Get("Direction?origin="+origin+"&destination="+dest+"&vehicle="+vehicle,ct);
+  if(doc==null||!doc.RootElement.TryGetProperty("routes",out var rs)||rs.ValueKind!=JsonValueKind.Array||rs.GetArrayLength()==0)return null;
+  var r=rs[0];double m=0,sec=0;
+  if(r.TryGetProperty("legs",out var legs)&&legs.ValueKind==JsonValueKind.Array)foreach(var l in legs.EnumerateArray()){if(l.TryGetProperty("distance",out var d)&&d.TryGetProperty("value",out var dv)&&dv.TryGetDouble(out var dm))m+=dm;if(l.TryGetProperty("duration",out var u)&&u.TryGetProperty("value",out var uv)&&uv.TryGetDouble(out var us))sec+=us;}
+  if(m<=0||!r.TryGetProperty("overview_polyline",out var op)||!op.TryGetProperty("points",out var pp)||pp.ValueKind!=JsonValueKind.String)return null;
+  var leg=new Leg(m/1000,sec/60,DecodePolyline(pp.GetString()!),false);cache.Set(cacheKey,leg,TimeSpan.FromDays(7));return leg;
+ }
  public async Task<Leg> Route(double la1,double lo1,double la2,double lo2,string vehicle,bool allowCall,CancellationToken ct)
  {
   vehicle=vehicle is "car" or "bike" or "foot"?vehicle:"car";

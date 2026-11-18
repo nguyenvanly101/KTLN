@@ -173,3 +173,27 @@ body .dest-hero-photo p{margin:0;color:#e8ecf7;max-width:58ch}
 .entry-photo{margin:0 0 22px;display:grid;gap:6px}
 .entry-photo img{width:100%;max-height:420px;object-fit:cover;border-radius:18px}
 .entry-photo figcaption{font-size:12px;color:var(--ds-muted,#5c667b)}
+
+/* Tuyen doc duong */
+.rt-stops{display:grid;gap:8px;margin:10px 0 6px}
+.rt-field{position:relative}
+.rt-row{display:flex;align-items:center;gap:8px;border:1px solid var(--ds-line,#dbe1ee);border-radius:12px;padding:4px 6px 4px 8px;background:#fff}
+.rt-row.active{border-color:#2447e8;box-shadow:0 0 0 3px #2447e81f}
+.rt-row .form-control{border:0;box-shadow:none;padding:8px 4px;min-height:40px;flex:1;min-width:0;background:transparent}
+.rt-tag{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;background:#142447;color:#def69b;flex-shrink:0}
+.rt-pick,.rt-remove{width:34px;height:34px;border:0;border-radius:9px;background:#f3f6fc;cursor:pointer;flex-shrink:0;font-size:16px;line-height:1}
+.rt-pick:hover,.rt-remove:hover{background:#edf1ff}
+.rt-suggest{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:40;background:#fff;border:1px solid var(--ds-line,#dbe1ee);border-radius:12px;box-shadow:0 12px 28px rgba(21,33,62,.16);max-height:280px;overflow:auto;padding:4px}
+.rt-hit{display:grid;gap:1px;width:100%;text-align:left;border:0;background:none;padding:8px 10px;border-radius:8px;cursor:pointer}
+.rt-hit:hover,.rt-hit:focus-visible{background:#edf1ff}
+.rt-hit small{color:var(--ds-muted,#5c667b)}
+.rt-empty{margin:0;padding:8px 10px;font-size:13px;color:var(--ds-muted,#5c667b)}
+.rt-tools{display:flex;justify-content:space-between;gap:8px;margin-bottom:10px}
+.rt-modes{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
+.rt-modes button{border:1px solid var(--ds-line,#dbe1ee);background:#fff;border-radius:999px;padding:7px 14px;font-weight:600;font-size:14px;cursor:pointer}
+.rt-modes button[aria-checked="true"]{background:#142447;border-color:#142447;color:#fff}
+.rt-adv{margin:0 0 12px!important;padding:0!important;border:0!important}
+.rt-adv>summary{cursor:pointer;color:#2447e8;font-weight:600;font-size:14px}
+.rt-go{width:100%}
+/* Ket qua tra cuu cuon theo trang (khong cuon long); ban do + bang tuyen dinh ben phai */
+.ds-results-grid > [data-ds-list]{max-height:none!important;overflow:visible!important;padding:0!important}

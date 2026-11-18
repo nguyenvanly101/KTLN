@@ -71,3 +71,9 @@ Nguyên nhân lỗi: ô điểm xuất phát chỉ lấy gợi ý từ Goong. Kh
 Giới hạn: khi Goong hết hạn mức, đường đi vẫn tính được nhưng là ước tính theo đường chim bay nhân hệ số, và gợi ý chỉ gồm nơi đã có trên website. Công cụ nhập dữ liệu Goong dùng chung khóa và hạn mức với website, nên chạy nhập hàng loạt sẽ làm tính năng này tạm yếu đi trong ngày đó.
 
 Kiểm tra: `tests/trip-route.cjs` (36 mục).
+
+## Tìm dịch vụ dọc tuyến (trang Khám phá) dùng Goong
+
+Từ 18/11/2026, tìm dịch vụ dọc tuyến không còn gọi OSRM/OpenStreetMap. `DiscoveryRouter` gọi Goong Direction một lần cho cả tuyến nhiều điểm (điểm đến cách nhau dấu `;`), giữ đúng thứ tự. Đi bộ dùng hình tuyến xe máy, thời gian tính theo 4,5 km/giờ. Khi Goong không trả được, tuyến là đường nối thẳng các điểm, ghi rõ là ước lượng, vẫn tìm chỗ ghé được.
+
+Cách dùng mới: ô "Đi từ" (A) và "Đến" (B) gõ tên để lấy gợi ý Goong (`/api/discovery/diem`, `/api/discovery/diem-chi-tiet`), hoặc bấm 📍 rồi bấm lên bản đồ (tên lấy từ `/api/discovery/ten-vi-tri`). "+ Thêm điểm ghé" chèn điểm giữa, phương tiện chọn bằng nút (Ô tô, Xe máy, Đi bộ), khoảng cách và thời gian đi thêm nằm trong "Tùy chọn tìm chỗ ghé". Kiểm thử: `tests/route-goong.cjs`.

@@ -69,7 +69,7 @@ builder.Services.AddSingleton<OpenMapPlaces>();
 builder.Services.AddHttpClient("OpenMapPlaces",c=>{c.DefaultRequestHeaders.UserAgent.ParseAdd("HanhTrinhTravel/1.0");c.Timeout=TimeSpan.FromSeconds(8);});
 builder.Logging.AddFilter("System.Net.Http.HttpClient.OpenMapPlaces",LogLevel.Warning);
 builder.Services.AddHostedService<GoogleLocationCleanup>();
-builder.Services.AddSingleton<DiscoveryRouter>();
+builder.Services.AddScoped<DiscoveryRouter>();
 builder.Services.AddHttpClient("DiscoveryRouting",c=>{c.DefaultRequestHeaders.UserAgent.ParseAdd("HanhTrinhTravel/1.0");c.Timeout=TimeSpan.FromSeconds(15);});
 builder.Services.AddHostedService<DiscoveryIndexWorker>();
 builder.Services.AddFullTextComponents();
