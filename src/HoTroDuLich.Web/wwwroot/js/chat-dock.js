@@ -21,7 +21,9 @@
   var frame = h('iframe'); frame.setAttribute('data-chat-dock-frame', ''); frame.title = 'Hộp thư'; panel.appendChild(frame);
   document.body.appendChild(panel); document.body.appendChild(bubble);
 
-  function embedUrl(url) { return url + (url.indexOf('?') >= 0 ? '&' : '?') + 'embed=1'; }
+  // Dia chi trong khung: bo/them embed=1 bang URL de khong ghep sai khi co tham so khac.
+  function plainUrl(l) { var u = new URL(l.href); u.searchParams.delete('embed'); return u.pathname + u.search; }
+  function embedUrl(path) { var u = new URL(path, location.origin); u.searchParams.set('embed', '1'); return u.pathname + u.search; }
   function open(src) {
     var target = src || state.src || '/tin-nhan?embed=1';
     if (!frame.getAttribute('src') || (src && frame.getAttribute('src') !== target)) frame.setAttribute('src', target);
@@ -32,11 +34,11 @@
   min.addEventListener('click', close);
   expand.addEventListener('click', function () {
     var path = '/tin-nhan';
-    try { path = frame.contentWindow.location.pathname + frame.contentWindow.location.search.replace(/[?&]embed=1/, ''); } catch (e) { /* giu mac dinh */ }
+    try { path = plainUrl(frame.contentWindow.location); } catch (e) { /* giu mac dinh */ }
     location.href = path;
   });
   frame.addEventListener('load', function () {
-    try { var l = frame.contentWindow.location; state.src = embedUrl(l.pathname + l.search.replace(/[?&]embed=1/, '')); save(state); } catch (e) { /* khac nguon */ }
+    try { var l = frame.contentWindow.location; if (l.pathname.indexOf('/tin-nhan') === 0 || l.pathname.indexOf('/nha-cung-cap/tin-nhan') === 0) { state.src = embedUrl(plainUrl(l)); save(state); } else if (l.href !== 'about:blank') { frame.setAttribute('src', '/tin-nhan?embed=1'); } } catch (e) { /* khac nguon */ }
     if (window.chatBadge) window.chatBadge.refresh();
   });
 

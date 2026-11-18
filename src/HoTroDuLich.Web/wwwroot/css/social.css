@@ -653,3 +653,41 @@ dialog[open].pe-picker.pe-narrow{height:auto;max-height:90vh;width:min(560px,cal
 .chat-msg .chat-bubble p,.chat-msg .chat-bubble li,.chat-msg .chat-bubble span{color:inherit}
 .chat-msg .chat-bubble p{margin:0}
 .chat-msg.mine .chat-bubble a{color:#fff;text-decoration:underline}
+
+/* Chuyen di gon */
+.plans-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+.plans-head h1{margin:0}.plans-head p{margin:4px 0 0}
+.plans-links{display:flex;gap:16px;flex-wrap:wrap}.plans-links a{display:inline-flex;gap:6px;align-items:center;color:var(--teal);font-weight:600;font-size:14px;text-decoration:none}
+.plans-next{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:16px;background:var(--teal-light);color:var(--ink);text-decoration:none;margin:0 0 20px;max-width:560px}
+.plans-next strong{display:block}.plans-next small{color:var(--muted)}
+.plans-next>.icon{margin-left:auto;color:var(--teal)}
+.plans-next-date{display:grid;place-items:center;width:52px;height:56px;border-radius:12px;background:#fff;line-height:1.1}
+.plans-next-date small{font-size:9px;letter-spacing:.06em;color:var(--muted)}.plans-next-date b{font-size:22px}
+.plan-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))!important;gap:16px!important}
+.plan-card-visual{height:150px!important;background:linear-gradient(160deg,#2447e8,#142447)}
+.plan-card-visual img{height:150px!important}
+.plan-card-blank{position:absolute;inset:0;display:grid;place-items:end start;padding:14px;color:rgba(255,255,255,.3)}
+.plan-card-blank .icon{width:44px;height:44px}
+.plan-card .card-content{padding:14px 16px 16px}
+.plan-card-actions .btn{min-height:38px;padding:7px 14px;font-size:13px}
+/* Trang chuyen di: lich trinh khong nam trong khung cuon long */
+.trip-scroll{max-height:none!important;overflow:visible!important;border:0;padding:0;background:transparent}
+.trip-more{position:relative;margin:0!important;padding:0!important;border:0!important;display:inline-block}
+.trip-more>summary{list-style:none;cursor:pointer}
+.trip-more>summary::-webkit-details-marker{display:none}
+.trip-more-menu{position:absolute;left:0;top:calc(100% + 6px);z-index:30;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px #15213e33;min-width:210px;padding:6px;display:grid}
+.trip-more-menu form{margin:0}
+.trip-more-menu a,.trip-more-menu button{display:block;width:100%;text-align:left;background:none;border:0;cursor:pointer;padding:9px 12px;border-radius:8px;font-size:14px;color:var(--ink);text-decoration:none;font-weight:500}
+.trip-more-menu a:hover,.trip-more-menu button:hover{background:var(--teal-light)}
+.trip-workspace .itinerary-layout{grid-template-columns:1fr}
+.trip-workspace .timeline-item{padding:14px 18px;margin-bottom:10px}
+.trip-workspace .timeline-item h3{margin:4px 0 2px;font-size:1.05rem}
+.trip-workspace .trip-hero{padding:28px 32px}
+.trip-workspace .trip-hero h1{font-size:clamp(1.6rem,3vw,2.2rem)}
+/* Thanh tren tren dien thoai: nut Tao chuyen di chi con dau +, khong day bieu tuong ra ngoai man hinh */
+@media(max-width:760px){.nav-create{width:44px;min-height:44px!important;padding:0!important;font-size:0!important;gap:0!important;border-radius:13px!important;flex-shrink:0}.nav-create .icon{width:20px;height:20px}.account-nav{gap:8px!important}}
+@media(max-width:430px){.experience-refresh .brand>span:not(.brandmark){display:none}}
+/* Bang tin tren dien thoai: cot giua khong bi noi dung keo rong hon man hinh */
+.fb-layout>*{min-width:0}
+@media(max-width:760px){.soc-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.soc-tabs::-webkit-scrollbar{display:none}.soc-tabs button{flex-shrink:0}}
+.fb-layout>.fb-center{margin-left:0;margin-right:0;width:100%;justify-self:stretch}

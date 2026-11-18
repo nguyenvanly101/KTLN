@@ -21,7 +21,7 @@ const sidebarOf = html => (decode(html).match(/<nav[^>]*class="sidebar-nav"[\s\S
   const feed = await traveler.get('/bang-tin'); const fh = decode(feed.html);
   check(feed.status === 200 && fh.includes('fb-layout') && fh.includes('fb-left') && fh.includes('fb-right') && fh.includes('data-soc-suggest'), 'Bang tin co 3 cot kieu Facebook (loi tat, bang tin, goi y ket ban)');
   const side = text((decode(feed.html).match(/<nav[^>]*id="main-navigation"[\s\S]*?<\/nav>/) || [''])[0]);
-  check(side.indexOf('Khám phá') >= 0 && side.indexOf('Khám phá') < side.indexOf('Chuyến đi') && side.indexOf('Chuyến đi') < side.indexOf('Bảng tin') && !side.includes('Dịch vụ đã lưu') && !decode(feed.html).includes('workspace-sidebar'), 'Thanh tren cua khach: Kham pha, Chuyen di, Bang tin; khong thanh ben');
+  check(side.indexOf('Bảng tin') >= 0 && side.indexOf('Bảng tin') < side.indexOf('Khám phá') && side.indexOf('Khám phá') < side.indexOf('Chuyến đi') && !side.includes('Dịch vụ đã lưu') && !decode(feed.html).includes('workspace-sidebar'), 'Thanh tren cua khach: Bang tin, Kham pha, Chuyen di; khong thanh ben');
   check(!/Hỗ trợ chuyến đi|Đặt chỗ của tôi/.test((fh.match(/class="account-dropdown"[\s\S]*?<\/div>/) || [''])[0]), 'Menu tai khoan chi con quan ly tai khoan');
   for (const [path, label] of [['/Discovery', 'Tim kiem'], ['/kham-pha', 'Ban do'], ['/Saved', 'Da luu']]) {
     const r = await traveler.get(path); check(r.status === 200 && !decode(r.html).includes('explore-tabs'), `Trang ${label} khong con thanh tab Kham pha rieng`);

@@ -36,7 +36,7 @@ const api = async (c, token, path, method = 'GET', body) => {
   check(js.status === 200 && ['matvi', 'matgiayto', 'lac', 'thientai', 'lacnhom', 'BenhVien', 'NhaThuoc', 'CongAn', 'Atm', 'SuaXe'].every(k => jt.includes(k)), 'Script co du tinh huong va noi giup');
   const future = await api(t, tk, '/api/lapkehoach', 'POST', { ...draft, name: 'QA Tuong lai ' + stamp, start: day(10) });
   const fh = decode((await t.get('/Plans/Detail/' + future.body.id)).html);
-  check(fh.includes('Khi đang trên đường') && !fh.includes('Bạn đang trong chuyến đi'), 'Chuyen chua toi ngay dung tieu de khac');
+  check(!fh.includes('class="trip-sos"') && !fh.includes('class="trip-issue-btn"'), 'Chuyen chua toi ngay: khong hien hop ho tro khan va nut Co van de');
 
   // 2. Ghi nhanh su co
   const types = ['DiChuyenGapSuCo', 'LuuTruCoVanDe', 'SucKhoeCaNhan', 'MatGiayToTaiSan', 'AnToanCaNhan', 'NhomDiCung', 'HetTienNganSach', 'ThoiTiet', 'DichVuCoVanDe', 'Khac'];

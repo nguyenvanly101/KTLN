@@ -67,9 +67,9 @@
   @if(traveler||provider){<a class="@(route=="Social"?"active":"")" href="/bang-tin">@Ui.Icon("grid") Bảng tin</a>}
   @if(!provider&&!admin){<a class="@((route is "Explore" or "Discovery")?"active":"")" href="/Discovery">@Ui.Icon("compass") Khám phá Việt Nam</a>}
  }else{
+  @if(traveler||provider){<a class="@(route=="Social"?"active":"")" href="/bang-tin">Bảng tin</a>}
   @if(!provider){<a class="@((route is "Explore" or "Discovery" or "Places" or "Saved")?"active":"")" href="@(traveler?"/Discovery":"/")">Khám phá</a>}
   @if(canPlan){<a class="@(tripArea?"active":"")" href="/Plans">Chuyến đi</a>}
-  @if(traveler||provider){<a class="@(route=="Social"?"active":"")" href="/bang-tin">Bảng tin</a>}
  }
  </nav>
  <div class="account-nav">
