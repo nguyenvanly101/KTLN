@@ -70,9 +70,8 @@
      <button type="button" class="btn btn-outline chat-book-toggle" data-chat-connect-toggle hidden>@Ui.Icon("users") Mời vào chuyến đi</button>
      <button type="button" class="btn btn-outline chat-book-toggle" data-chat-book-toggle hidden>@Ui.Icon("ticket") Đặt dịch vụ</button>
      <label class="chat-attach" title="Gửi ảnh">@Ui.Icon("image")<span class="sr-only">Gửi ảnh</span><input type="file" accept="image/jpeg,image/png" data-chat-image hidden/></label>
-     <label class="chat-attach" title="Gửi tệp PDF">📄<span class="sr-only">Gửi tệp PDF</span><input type="file" accept="application/pdf" data-chat-pdf hidden/></label>
-     <button type="button" class="chat-attach" title="Gửi vị trí của tôi" data-chat-location>📍<span class="sr-only">Gửi vị trí</span></button>
      <button type="button" class="chat-attach" title="Biểu tượng cảm xúc" data-chat-emoji>😊<span class="sr-only">Biểu tượng cảm xúc</span></button>
+     <details class="chat-plus"><summary class="chat-attach" title="Gửi thêm">＋<span class="sr-only">Gửi thêm tệp hoặc vị trí</span></summary><div class="chat-plus-menu"><label>📄 Tệp PDF<input type="file" accept="application/pdf" data-chat-pdf hidden/></label><button type="button" data-chat-location>📍 Vị trí của tôi</button></div></details>
      <textarea class="form-control" rows="1" maxlength="2000" placeholder="Nhập tin nhắn…" data-chat-input aria-label="Nội dung tin nhắn"></textarea>
      <button class="btn btn-dark" type="submit" data-chat-send>@Ui.Icon("send") <span>Gửi</span></button>
     </form>

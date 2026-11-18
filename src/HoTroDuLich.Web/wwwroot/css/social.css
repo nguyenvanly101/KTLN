@@ -618,3 +618,38 @@ dialog[open].pe-picker.pe-narrow{height:auto;max-height:90vh;width:min(560px,cal
 @media(max-width:900px){.chat-page .chat-app{grid-template-columns:1fr;height:calc(100dvh - 100px)}}
 .chat-tabs{flex-wrap:wrap;overflow:visible}
 .chat-tabs button{font-size:12.5px;padding:3px 10px}
+
+/* Tin nhan gon dot 2 */
+.is-embed .chat-page{padding:0!important}
+.is-embed .chat-page .chat-app{height:100vh;min-height:0}
+.chat-more,.chat-plus{margin:0!important;padding:0!important;border:0!important}
+.chat-head-actions{align-items:center}
+.chat-composer{align-items:flex-end;gap:4px}
+.chat-composer .chat-attach{width:38px;height:38px;padding:0;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;flex-shrink:0;font-size:18px;color:var(--ink,#15213e)}
+.chat-composer .chat-attach:hover{background:var(--teal-light,#edf1ff)}
+.chat-composer textarea.form-control{flex:1 1 auto;min-width:0;min-height:40px;height:40px;max-height:140px;resize:none;padding:9px 12px;line-height:1.4;border-radius:12px}
+.chat-composer [data-chat-send]{flex-shrink:0;min-height:40px}
+.chat-plus{position:relative;flex-shrink:0}
+.chat-plus>summary{list-style:none;cursor:pointer}
+.chat-plus>summary::-webkit-details-marker{display:none}
+.chat-plus-menu{position:absolute;left:0;bottom:calc(100% + 6px);z-index:30;background:#fff;border:1px solid var(--line,#e1e6f0);border-radius:12px;box-shadow:0 12px 30px #15213e22;min-width:190px;padding:6px;display:grid}
+.chat-plus-menu>label,.chat-plus-menu>button{display:block;text-align:left;background:none;border:0;cursor:pointer;padding:9px 12px;border-radius:8px;font-size:14px;color:var(--ink,#15213e);margin:0}
+.chat-plus-menu>label:hover,.chat-plus-menu>button:hover{background:var(--teal-light,#edf1ff)}
+@media(max-width:420px){.chat-composer [data-chat-send] span{display:none}}
+.chat-tabs{gap:4px}
+.chat-tabs button{font-size:12px;padding:3px 8px}
+.chat-composer textarea::placeholder{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:600px){.chat-page{padding-left:8px!important;padding-right:8px!important}.chat-page .chat-app{min-height:380px}.chat-composer{padding:8px}.chat-composer .chat-attach{width:34px}}
+/* Tin nhan: dung mau thuong hieu (xanh duong) thay mau xanh la cu, ke ca trong khung chat noi */
+.chat-msg.mine .chat-bubble{background:#2447e8;color:#fff}
+.chat-tabs button.active{background:#15213e;color:#fff;border-color:#15213e}
+.chat-item.unread strong{color:#2447e8}
+.chat-dock-bubble{background:#2447e8}
+.chat-dock-head{background:#15213e}
+.chat-chip.suggest{border-color:#2447e8;background:#edf1ff}
+.is-embed .btn-dark,.is-embed .btn-primary{background:#2447e8;border-color:#2447e8;color:#fff}
+.is-embed .btn-dark:hover{background:#1934b4;border-color:#1934b4}
+/* Chu trong bong bong theo mau bong bong (quy tac chung p{color:muted} lam chu xam tren nen dam) */
+.chat-msg .chat-bubble p,.chat-msg .chat-bubble li,.chat-msg .chat-bubble span{color:inherit}
+.chat-msg .chat-bubble p{margin:0}
+.chat-msg.mine .chat-bubble a{color:#fff;text-decoration:underline}

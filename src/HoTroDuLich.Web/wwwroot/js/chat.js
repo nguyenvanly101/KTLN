@@ -5,7 +5,7 @@
   if (!app) return;
   // Khung chat vua dung phan man hinh con lai (duoi thanh tren, duong dan, thong bao) de o soan tin luon thay duoc.
   function fitApp() {
-    if (document.body.classList.contains('is-embed') || window.innerWidth < 600) { app.style.height = ''; return; }
+    if (document.body.classList.contains('is-embed')) { app.style.height = ''; return; }
     var top = app.getBoundingClientRect().top + window.scrollY;
     app.style.height = Math.max(420, window.innerHeight - top - 16) + 'px';
   }
@@ -673,6 +673,8 @@
     function saveMeta() { if (!st.openId) return; var fd = new FormData(); fd.append('Note', el.note.value); fd.append('Label', el.label.value); api('/chat/' + st.openId + '/trang-thai', { method: 'POST', body: fd }).then(loadList).catch(function (e) { showError(e.message); }); }
     el.note.addEventListener('change', saveMeta); el.label.addEventListener('change', saveMeta);
     app.querySelectorAll('[data-chat-filter]').forEach(function (b) { b.addEventListener('click', function () { app.querySelectorAll('[data-chat-filter]').forEach(function (x) { x.classList.toggle('active', x === b); }); st.filter = b.dataset.chatFilter; loadList(); }); });
+    // Menu "+" (tep PDF, vi tri) dong lai sau khi chon; o soan tin da tu cao bang autosize().
+    app.querySelectorAll('.chat-plus-menu > *').forEach(function (b) { b.addEventListener('click', function () { var d = b.closest('details'); if (d) setTimeout(function () { d.open = false; }, 0); }); });
     var noteToggle = q('[data-chat-note-toggle]');
     if (noteToggle && el.noteBox) noteToggle.addEventListener('click', function () { el.noteBox.classList.toggle('open'); var d = noteToggle.closest('details'); if (d) d.open = false; if (el.noteBox.classList.contains('open') && el.note) el.note.focus(); });
     app.querySelectorAll('.chat-more-menu > *').forEach(function (b) { b.addEventListener('click', function () { var d = b.closest('details'); if (d) d.open = false; }); });
