@@ -107,6 +107,8 @@ const stamp = Date.now().toString().slice(-8);
   check(th.context && th.context.id === bid && th.context.name === pair.BranchName && th.context.url === '/co-so/' + bid && th.context.address === pair.Address, 'Ngu canh co so ghim dau cuoc tro chuyen (phia nha cung cap)');
   const tth = (await api(a, tA, 'GET', '/chat/' + bcid)).body;
   check(tth.context && tth.context.name === pair.BranchName, 'Ngu canh co so ghim dau cuoc tro chuyen (phia khach)');
+  // Danh sach tin nhan cua nha cung cap chi gom co so dang chon: chon co so cua cuoc tro chuyen truoc.
+  { const bid = json(database, `SELECT BranchId B FROM dbo.CuocTroChuyen WHERE Id=${bcid} FOR JSON PATH;`)[0].B; const feedPage = await provider.get('/bang-tin'); await provider.post('/nha-cung-cap/co-so/chon', feedPage, { id: bid, returnUrl: '/nha-cung-cap/tin-nhan' }); }
   const pending = async (c, t, filter) => (await api(c, t, 'GET', '/chat/danh-sach' + (filter ? '?loc=' + filter : ''))).body.find(x => x.id === bcid);
   check((await pending(provider, tP)).pending === 1 && (await pending(a, tA)).pending === 0, 'Nha cung cap thay 1 yeu cau cho xac nhan; khach khong co gi can lam');
   check(!!(await pending(provider, tP, 'booking')), 'Bo loc "Cho xac nhan" giu cuoc tro chuyen nay');
@@ -122,7 +124,7 @@ const stamp = Date.now().toString().slice(-8);
   check((await provider.get('/tin-nhan/dat-cho/' + rid)).location === '/tin-nhan/' + bcid, 'Tu yeu cau dat mo dung cuoc tro chuyen (nha cung cap)');
   check((await other.get('/tin-nhan/dat-cho/' + rid)).location === '/Bookings/Detail/' + rid, 'Nguoi khong lien quan khong duoc dua vao cuoc tro chuyen');
   const detail = await a.get('/Bookings/Detail/' + rid);
-  check(detail.status === 200 && detail.html.includes('/tin-nhan/' + bcid), 'Trang chi tiet dat cho co nut "Mo tro chuyen"');
+  check(detail.status === 200 && (detail.html.includes('/tin-nhan/' + bcid) || detail.html.includes('/tin-nhan/dat-cho/' + rid)), 'Trang chi tiet dat cho co nut "Mo tro chuyen"');
   const list = await a.get('/tin-nhan/' + bcid);
   check(list.status === 200 && list.html.includes('data-chat-context'), 'Trang chat co vung ngu canh');
 

@@ -61,7 +61,7 @@ public static class DiscoveryText
  public static bool OpenAt(DiscoveryEntry e,DateOnly day,TimeOnly time){if(e.OpenDays==null||e.OpenTime==null||e.CloseTime==null)return false;var weekday=((int)day.DayOfWeek+6)%7+1;return e.OpenTime<=e.CloseTime?e.OpenDays.Contains(weekday.ToString())&&time>=e.OpenTime&&time<e.CloseTime:(e.OpenDays.Contains(weekday.ToString())&&time>=e.OpenTime)||(e.OpenDays.Contains((weekday==1?7:weekday-1).ToString())&&time<e.CloseTime);}
 }
 
-public sealed partial class DiscoveryService(AppDbContext db,TravelService travel,IDongHo clock,INhatKyService audit,IThongBaoService notices,DiaGioiService geo,BranchService branches)
+public sealed partial class DiscoveryService(AppDbContext db,TravelService travel,IDongHo clock,INhatKyService audit,IThongBaoService notices,DiaGioiService geo,BranchService branches,Microsoft.Extensions.Caching.Memory.IMemoryCache cache)
 {
  const string SearchCollation="Latin1_General_100_CI_AI";
  long Me=>travel.UserId;
@@ -81,11 +81,13 @@ public sealed partial class DiscoveryService(AppDbContext db,TravelService trave
   var services=sids.Count>300?await travel.PublicServices().AsNoTracking().ToDictionaryAsync(x=>x.MaDichVu):await travel.PublicServices().AsNoTracking().Where(x=>sids.Contains(x.MaDichVu)).ToDictionaryAsync(x=>x.MaDichVu);
   foreach(var e in entries){if(e.PlaceId is long pid&&places.TryGetValue(pid,out var p)){e.Title=p.TenDiaDiem;e.Region=p.KhuVuc;e.DonViId=p.DonViId;e.Address=p.DiaChi??e.Address;e.Summary=p.MoTa??e.Summary;}if(e.ServiceId is long sid&&services.TryGetValue(sid,out var s)){e.Title=s.TenDichVu;e.Region=s.KhuVucPhucVu;e.DonViId=s.DonViId;e.Address=s.DiaChiPhucVu??e.Address;e.Summary=s.MoTa??e.Summary;e.PriceFrom=s.GiaThamKhao;e.PriceTo=null;e.PriceUnit=s.DonViGia;e.Hours=s.ThoiGianPhucVu??e.Hours;e.Includes=s.DieuKienPhucVu??e.Includes;e.Tags+=" "+DanhMuc.Ten(s.LoaiDichVu);}}
  }
+ /// <summary>Danh sach vung cua cac muc cong khai, dung de nhan ra ten vung trong cau tim. It thay doi nen giu 5 phut (tranh chay bo loc cong khai nang o moi lan tim).</summary>
+ async Task<List<string>> KnownRegions()=>(await Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync(cache,"discovery:regions",async e=>{e.AbsoluteExpirationRelativeToNow=TimeSpan.FromMinutes(5);return await Public().Select(x=>x.Region).Distinct().ToListAsync();}))!;
  public async Task<DiscoverySearchPage> Search(DiscoveryFilter f,bool map=false)
  {
   Need(f.Page is >=1 and <=100000&&(f.Q?.Length??0)<=200&&(f.Region?.Length??0)<=100&&(f.Min==null||f.Min>=0)&&(f.Max==null||f.Max>=0),"Điều kiện tìm kiếm không hợp lệ.",400);
   Need(f.Min==null||f.Max==null||f.Min<=f.Max,"Giá đến phải lớn hơn hoặc bằng giá từ.",400);
-  var phrase=DiscoveryText.Canon(DiscoveryText.Fold(f.Q));var knownRegions=await Public().Select(e=>e.Region).Distinct().ToListAsync();var mentioned=knownRegions.Where(r=>DiscoveryText.Fold(r)!="viet nam"&&Regex.IsMatch(phrase,@"\b"+Regex.Escape(DiscoveryText.Fold(r))+@"\b")).ToList();
+  var phrase=DiscoveryText.Canon(DiscoveryText.Fold(f.Q));var knownRegions=await KnownRegions();var mentioned=knownRegions.Where(r=>DiscoveryText.Fold(r)!="viet nam"&&Regex.IsMatch(phrase,@"\b"+Regex.Escape(DiscoveryText.Fold(r))+@"\b")).ToList();
   string? placeName=null;
   if(f.Area==null&&string.IsNullOrWhiteSpace(f.Region)){if(await FindPlaceUnit(phrase) is var place&&place!=null){f.Area=place.Value.Id;placeName=place.Value.Name;}else if(mentioned.Count==1)f.Region=mentioned[0];}
   var categoryWords=new HashSet<string>();

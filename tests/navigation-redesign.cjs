@@ -43,7 +43,8 @@ class Session{
  check(sidebar.includes('href="/bang-tin"')&&(sidebar.match(/<a /g)||[]).length<=4,'Traveler top navigation is a short flat list');
  check(!sidebar.includes('/Bookings/Adjustments')&&!sidebar.includes('/Bookings/Results'),'Booking operations are nested within their owning workspace');
  for(const path of ['/Plans/Edit','/Plans/Detail/1','/Companions/Mine','/Companions/Connections','/Companions/Edit','/Support','/Account/Profile','/Account/Notifications','/Account/Password'])await traveler.page(path);
- for(const path of ['/Bookings','/Bookings/Adjustments','/Bookings/Results']){const page=await traveler.page(path);check(page.html.includes('aria-label="Quản lý đặt dịch vụ"'),'Shared booking navigation on '+path);}
+ // Dat dich vu gon: mot danh sach loc bang nut (khong con thanh dieu huong rieng cho dieu chinh / ket qua).
+ {const page=await traveler.page('/Bookings');check(page.html.includes('aria-label="Lọc yêu cầu"')&&page.html.includes('href="?loc='),'Booking list filters by task on /Bookings');}
  const provider=new Session();await provider.login('nhacungcap@hanhtrinh.vn');
  for(const path of ['/Provider','/Provider/Verification','/Provider/Rights','/Bookings','/Bookings/Adjustments','/Bookings/Results'])await provider.page(path);
  const denied=await provider.request('/Plans');check(denied.status===403,'Provider has no traveler write access');

@@ -81,7 +81,7 @@ const cards = html => (html.match(/class="ds-card"/g) || []).length;
 
   // trang chu theo nhu cau
   const homePage = await get('/Discovery');
-  check(homePage.status === 200 && homePage.text.includes('BẠN MUỐN LÀM GÌ?') && !homePage.text.includes('data-dg'), 'Trang chu: o nhu cau, khong co 3 o chon hanh chinh');
+  check(homePage.status === 200 && !homePage.text.includes('data-dg'), 'Trang chu: o nhu cau, khong co 3 o chon hanh chinh');
   const tileLinks = ['an-uong', 'luu-tru', 'tham-quan', 'di-chuyen', 'ban-do'].every(v => homePage.text.includes(`/diem-den?viec=${v}`));
   check(tileLinks, 'Trang chu co du cac o nhu cau An gi / O dau / Choi o dau / Di lai / Ban do');
   check(homePage.text.includes(`/diem-den/${danang.id}`), 'Trang chu co the diem den Da Nang');

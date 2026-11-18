@@ -106,6 +106,9 @@ public sealed class ChatReminderService(AppDbContext db,ChatBroker broker,IDongH
   var today=clock.HomNay;var tomorrow=today.AddDays(1);var sent=0;
   var due=await (from y in db.YeuCauDatDichVu.AsNoTracking()
    where y.TrangThai==TrangThaiYeuCau.DaXacNhan&&(y.NgayBatDau==tomorrow||(y.NgayKetThuc??y.NgayBatDau)<today)
+   // Bo cac yeu cau da nhac ngay trong SQL: truoc day lay 200 dong roi moi bo, nen khi da co hon 200 yeu cau cu duoc nhac thi yeu cau moi khong bao gio toi luot.
+   &&!db.Set<NhacLichChat>().Any(x=>x.RequestId==y.MaYeuCau&&x.Kind==(y.NgayBatDau==tomorrow?"Reminder":"Review"))
+   orderby y.MaYeuCau
    select new{y.MaYeuCau,y.NgayBatDau,y.NgayKetThuc}).Take(200).ToListAsync();
   foreach(var d in due)
   {

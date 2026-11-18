@@ -32,14 +32,19 @@ public sealed partial class DiscoveryService
   var legacy=DanhMuc.Ten(type);
   return q.Where(e=>e.Kind=="Service"&&((e.ServiceId==null&&e.Tags.Contains(legacy))||(e.ServiceId!=null&&db.DichVuDuLich.Any(s=>s.MaDichVu==e.ServiceId&&(s.LoaiDichVu==type||s.LoaiDichVu==legacy)))));
  }
- IQueryable<DiscoveryEntry> TabQuery(IQueryable<DiscoveryEntry> area,string tab)=>tab switch
+ /// <summary>Gop hai nhom bang ma (UNION tren cot Id) roi loc lai: UNION tren ca dong co Body dai lam SQL Server sap xep rat cham (qua 30 giay).</summary>
+ IQueryable<DiscoveryEntry> TabQuery(IQueryable<DiscoveryEntry> area,string tab)
  {
-  "tham-quan"=>area.Where(e=>e.Kind=="Place"||e.Kind=="Area").Union(OfServiceType(area,"HoatDong")),
-  "an-uong"=>OfServiceType(area,"AnUong").Union(area.Where(e=>e.Kind=="Guide"&&e.Tags.Contains("Ăn uống"))),
-  "luu-tru"=>OfServiceType(area,"LuuTru").Union(area.Where(e=>e.Kind=="Guide"&&e.Tags.Contains("Lưu trú"))),
-  "di-chuyen"=>area.Where(e=>e.Kind=="Transport").Union(OfServiceType(area,"PhuongTien")),
-  _=>area
- };
+  IQueryable<long>? ids=tab switch
+  {
+   "tham-quan"=>area.Where(e=>e.Kind=="Place"||e.Kind=="Area").Select(e=>e.Id).Union(OfServiceType(area,"HoatDong").Select(e=>e.Id)),
+   "an-uong"=>OfServiceType(area,"AnUong").Select(e=>e.Id).Union(area.Where(e=>e.Kind=="Guide"&&e.Tags.Contains("Ăn uống")).Select(e=>e.Id)),
+   "luu-tru"=>OfServiceType(area,"LuuTru").Select(e=>e.Id).Union(area.Where(e=>e.Kind=="Guide"&&e.Tags.Contains("Lưu trú")).Select(e=>e.Id)),
+   "di-chuyen"=>area.Where(e=>e.Kind=="Transport").Select(e=>e.Id).Union(OfServiceType(area,"PhuongTien").Select(e=>e.Id)),
+   _=>null
+  };
+  return ids==null?area:db.Set<DiscoveryEntry>().AsNoTracking().Where(e=>ids.Contains(e.Id));
+ }
  /// <summary>Nhom nhu cau cua mot muc, dung de to mau diem tren ban do.</summary>
  static string Category(DiscoveryEntry e)=>e.Kind switch
  {
@@ -64,13 +69,15 @@ public sealed partial class DiscoveryService
   tab=DestinationTabs.Any(t=>t.Key==tab)?tab!:"tong-quan";
   var path=await geo.Path(unitId);Need(path.Count>0,"Không tìm thấy điểm đến này.",404);
   var unit=path[^1];Need(unit.Regime==geo.Regime&&unit.Status=="Active","Điểm đến này không còn được sử dụng.",404);
-  var area=InArea(unitId);
+  // Loc quyen cong khai (nhieu EXISTS long nhau) chi chay mot lan; cac truy van dem/sap xep sau dung danh sach ma da loc.
+  var areaIds=await InArea(unitId).Select(e=>e.Id).ToListAsync();
+  var area=db.Set<DiscoveryEntry>().AsNoTracking().Where(e=>areaIds.Contains(e.Id));
   var sub=geo.SubtreeQuery(unitId);
 
   // khu vuc dang chon (phai nam trong diem den)
   long? chosen=null;string? chosenName=null;
   if(areaId is long a&&a!=unitId&&await sub.AnyAsync(x=>x==a)){chosen=a;chosenName=(await geo.Get(a))?.FullName;}
-  var scope=chosen!=null?InArea(chosen.Value):area;
+  var scope=area;if(chosen!=null){var chosenSub=geo.SubtreeQuery(chosen.Value);scope=area.Where(e=>e.DonViId!=null&&chosenSub.Contains(e.DonViId.Value));}
 
   // so luong theo tab (tren toan bo diem den)
   var counts=new Dictionary<string,int>();
@@ -146,8 +153,21 @@ public sealed partial class DiscoveryService
  {
   var provinces=await geo.Provinces();
   var perUnit=await Public().AsNoTracking().Where(e=>e.DonViId!=null).GroupBy(e=>e.DonViId).Select(g=>new{Id=g.Key!.Value,N=g.Count()}).ToListAsync();
+  // Tim tinh goc cua tung don vi theo lo (moi cap mot truy van) thay vi goi Path tung don vi (hang tram truy van).
+  var parent=new Dictionary<long,long?>();var pending=perUnit.Select(x=>x.Id).Distinct().ToList();
+  for(var level=0;level<4&&pending.Count>0;level++)
+  {
+   var batch=pending;var rows=await db.Set<DonViHanhChinh>().AsNoTracking().Where(u=>batch.Contains(u.Id)).Select(u=>new{u.Id,u.ParentId}).ToListAsync();
+   foreach(var r in rows)parent[r.Id]=r.ParentId;
+   pending=rows.Where(r=>r.ParentId!=null&&!parent.ContainsKey(r.ParentId.Value)).Select(r=>r.ParentId!.Value).Distinct().ToList();
+  }
   var perProvince=new Dictionary<long,int>();
-  foreach(var row in perUnit){var chain=await geo.Path(row.Id);if(chain.Count>0)perProvince[chain[0].Id]=perProvince.GetValueOrDefault(chain[0].Id)+row.N;}
+  foreach(var row in perUnit)
+  {
+   if(!parent.ContainsKey(row.Id))continue;var root=row.Id;var guard=0;
+   while(parent.TryGetValue(root,out var up)&&up!=null&&parent.ContainsKey(up.Value)&&guard++<4)root=up.Value;
+   perProvince[root]=perProvince.GetValueOrDefault(root)+row.N;
+  }
   return provinces.Select(p=>new DestinationIndexItem(p,perProvince.GetValueOrDefault(p.Id))).OrderByDescending(x=>x.Count).ThenBy(x=>x.Province.Name).ToList();
  }
 

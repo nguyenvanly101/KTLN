@@ -23,12 +23,16 @@ public sealed class DiscoveryIndexWorker(IServiceScopeFactory scopes,ILogger<Dis
     db.Add(new DiscoveryRevision{EntryId=e.Id,BeforeJson=before,AfterJson=JsonSerializer.Serialize(e),Summary="Thông tin gốc của địa điểm/dịch vụ vừa thay đổi. Kiểm tra giá và điều kiện mới trước khi lựa chọn.",Public=e.Status=="Published",CreatedAt=clock.BayGioUtc});
     if(e.Status=="Published")foreach(var owner in await db.Set<DiscoveryFollow>().Where(x=>x.EntryId==e.Id&&x.Active).Select(x=>x.OwnerId).ToListAsync())services.GetRequiredService<IThongBaoService>().Tao(owner,"ThongTinCapNhat",title+": thông tin công bố vừa thay đổi.",DiscoveryText.Link(e.Id));
    }
-   foreach(var p in places)await Sync(index.SingleOrDefault(x=>x.PlaceId==p.MaDiaDiem),p.MaDiaDiem,"Place",p.TenDiaDiem,p.KhuVuc,p.MoTa,p.LoaiDiaDiem,JsonSerializer.Serialize(p),p.DonViId);
-   foreach(var s in publicServices)await Sync(index.SingleOrDefault(x=>x.ServiceId==s.MaDichVu),s.MaDichVu,"Service",s.TenDichVu,s.KhuVucPhucVu,s.MoTa,Cut(DanhMuc.Ten(s.LoaiDichVu)+" "+s.LoaiDichVu+(string.IsNullOrEmpty(s.AttributesJson)?"":", "+BranchTemplates.Tags(DanhMuc.ChuanHoa(s.LoaiDichVu),s.AttributesJson)),480),JsonSerializer.Serialize(new{s.AttributesJson,s.TenDichVu,s.KhuVucPhucVu,s.MoTa,s.GiaThamKhao,s.DonViGia,s.DieuKienPhucVu,s.ThoiGianPhucVu,s.TamNgungTu,s.TamNgungDen,s.TrangThaiTiepNhan,s.TrangThaiCongBo,s.DiaChiPhucVu,s.PhienBanCongBo}),s.DonViId);
+   // Tra muc theo ma bang tu dien (truoc day quet ca danh sach cho moi dia diem/dich vu).
+   var byPlace=index.Where(x=>x.PlaceId!=null).GroupBy(x=>x.PlaceId!.Value).ToDictionary(g=>g.Key,g=>g.Single());
+   var byService=index.Where(x=>x.ServiceId!=null).GroupBy(x=>x.ServiceId!.Value).ToDictionary(g=>g.Key,g=>g.Single());
+   foreach(var p in places)await Sync(byPlace.GetValueOrDefault(p.MaDiaDiem),p.MaDiaDiem,"Place",p.TenDiaDiem,p.KhuVuc,p.MoTa,p.LoaiDiaDiem,JsonSerializer.Serialize(p),p.DonViId);
+   foreach(var s in publicServices)await Sync(byService.GetValueOrDefault(s.MaDichVu),s.MaDichVu,"Service",s.TenDichVu,s.KhuVucPhucVu,s.MoTa,Cut(DanhMuc.Ten(s.LoaiDichVu)+" "+s.LoaiDichVu+(string.IsNullOrEmpty(s.AttributesJson)?"":", "+BranchTemplates.Tags(DanhMuc.ChuanHoa(s.LoaiDichVu),s.AttributesJson)),480),JsonSerializer.Serialize(new{s.AttributesJson,s.TenDichVu,s.KhuVucPhucVu,s.MoTa,s.GiaThamKhao,s.DonViGia,s.DieuKienPhucVu,s.ThoiGianPhucVu,s.TamNgungTu,s.TamNgungDen,s.TrangThaiTiepNhan,s.TrangThaiCongBo,s.DiaChiPhucVu,s.PhienBanCongBo}),s.DonViId);
+   var tracked=db.ChangeTracker.Entries<DiscoveryEntry>().Select(x=>x.Entity).Where(x=>x.ServiceId!=null).GroupBy(x=>x.ServiceId!.Value).ToDictionary(g=>g.Key,g=>g.First());
    // Loai co han (su kien...): han hieu luc lay tu thuoc tinh de tim kiem tu an khi da ket thuc.
    foreach(var s in publicServices.Where(x=>ServiceKinds.Get(x.LoaiDichVu)?.TimeBound==true))
    {
-    var entry=db.ChangeTracker.Entries<DiscoveryEntry>().Select(x=>x.Entity).FirstOrDefault(x=>x.ServiceId==s.MaDichVu);if(entry==null)continue;
+    var entry=tracked.GetValueOrDefault(s.MaDichVu);if(entry==null)continue;
     var data=BranchTemplates.Parse(s.AttributesJson);
     DateOnly? from=data.TryGetValue("ngaybatdau",out var a)&&a.ValueKind==System.Text.Json.JsonValueKind.String&&DateOnly.TryParse(a.GetString(),out var d1)?d1:null;
     DateOnly? to=data.TryGetValue("ngayketthuc",out var b)&&b.ValueKind==System.Text.Json.JsonValueKind.String&&DateOnly.TryParse(b.GetString(),out var d2)?d2:from;
@@ -37,7 +41,7 @@ public sealed class DiscoveryIndexWorker(IServiceScopeFactory scopes,ILogger<Dis
    // Anh dich vu do nha cung cap tai: dung anh dau tien; go anh cu khi nha cung cap xoa het anh.
    foreach(var s in publicServices)
    {
-    var entry=db.ChangeTracker.Entries<DiscoveryEntry>().Select(x=>x.Entity).FirstOrDefault(x=>x.ServiceId==s.MaDichVu);if(entry==null)continue;
+    var entry=tracked.GetValueOrDefault(s.MaDichVu);if(entry==null)continue;
     SetOwnPhoto(entry,Ui.ServicePhotos(s.AnhJson).Length>0?"/service-photos/"+s.MaDichVu+"/0":null,"/service-photos/");
    }
    await db.SaveChangesAsync();
@@ -47,19 +51,23 @@ public sealed class DiscoveryIndexWorker(IServiceScopeFactory scopes,ILogger<Dis
    var branchIndex=await db.Set<DiscoveryEntry>().Where(x=>x.BranchId!=null).ToListAsync();
    var geo=services.GetRequiredService<DiaGioiService>();
    static string? Cut(string? text,int max)=>text==null?null:(text.Length<=max?text:text[..max]);
+   var byBranch=branchIndex.GroupBy(x=>x.BranchId!.Value).ToDictionary(g=>g.Key,g=>g.First());
    foreach(var b in branchList)
    {
-    var e=branchIndex.SingleOrDefault(x=>x.BranchId==b.Id);
-    var region=b.DonViId!=null?await geo.RegionLabel(b.DonViId.Value):b.Region;region=Cut(region,100)??"";
+    var e=byBranch.GetValueOrDefault(b.Id);
     var stamp=Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(new{b.Name,b.Type,b.Region,b.DonViId,b.Address,b.Summary,b.Phone,b.Hours,b.Parking,b.AccessibleEntrance,b.Latitude,b.Longitude,b.PublishedVersion,b.PriceFrom,b.PriceTo,b.PriceUnit,b.OpenDays,b.OpenTime,b.CloseTime,b.PhotosJson,b.AttributesJson}))));
     DateOnly? reviewed=approvedAt.TryGetValue(b.Id,out var at)&&at!=null?DateOnly.FromDateTime(at.Value):null;
     if(e==null){e=new(){Slug="branch-"+b.Id,Kind="Service",BranchId=b.Id,Status="Published",SourceName="Cơ sở do nhà cung cấp đăng, đã được quản trị viên duyệt",Body=""};db.Add(e);}
-    if(e.SourceStamp!=stamp||e.Id==0)
+    // Chi lam viec voi CSDL khi co so moi hoac vua doi (truoc day moi phut deu tra vung, luu va doc tien ich cho tung co so).
+    var changed=e.SourceStamp!=stamp||e.Id==0;
+    if(changed)
     {
+     var region=b.DonViId!=null?await geo.RegionLabel(b.DonViId.Value):b.Region;region=Cut(region,100)??"";
      e.Title=b.Name;e.Region=region;e.DonViId=b.DonViId;e.Summary=Cut(b.Summary,700)??"";e.Address=b.Address;e.Latitude=b.Latitude;e.Longitude=b.Longitude;
      e.Hours=Cut(b.Hours,700);e.Contact=Cut(b.Phone,300);e.Tags=Cut(DanhMuc.Ten(b.Type)+" cơ sở"+(string.IsNullOrEmpty(b.AttributesJson)?"":", "+BranchTemplates.Tags(b.Type,b.AttributesJson)),480);e.CheckedOn=reviewed;e.PriceFrom=b.PriceFrom;e.PriceTo=b.PriceTo;e.PriceUnit=b.PriceUnit;e.OpenDays=b.OpenDays;e.OpenTime=b.OpenTime;e.CloseTime=b.CloseTime;e.ImagePath=Ui.ServicePhotos(b.PhotosJson).Length>0?"/co-so/"+b.Id+"/anh/0":null;e.SourceStamp=stamp;e.UpdatedAt=clock.BayGioUtc;
     }
     SetOwnPhoto(e,Ui.ServicePhotos(b.PhotosJson).Length>0?"/co-so/"+b.Id+"/anh/0":null,"/co-so/");
+    if(!changed)continue;
     await db.SaveChangesAsync();
     var features=await db.Set<DiscoveryFeature>().Where(f=>f.EntryId==e.Id).ToListAsync();
     foreach(var (code,value) in new[]{("Parking",b.Parking),("AccessibleEntrance",b.AccessibleEntrance)})
